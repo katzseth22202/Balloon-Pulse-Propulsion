@@ -78,16 +78,7 @@ Carissa Christensen, the chief executive of Bryce Tech, an analytics firm that t
 
 In other words Starship satellite launches will underutilize payload capacity.   The launch cost may also fall significantly below the cost of building the satellite once launches are reusable and cheap.   With balloon pulse propulsion, we launch Starship at full payload with balloons.   Since the satellite is on a secondary rocket, it is never placed next to the fragile high propellant mass fraction orbital rocket.   We buy a safer launch with Starship's spare capacity when we employ balloon pulse propulsion and a secondary suborbital rocket.
 
-\subsection{Private Jet Travel and Oxygen Refuelling}
-Currently, passenger aviation volume represents orders of magnitude more tonnage than satellites.  
-\end{quote}  Airlines served nearly 4.5 billion yearly passengers before the COVID pandemic.  \cite{icao_passenger_volume}
-
-
-
-\section{Balloon Pulse Propulsion Modelling}
-\label{sec:pulse_modelling}
-\subsection{Starship Economics and Balloon Pulse Propulsion}
-SpaceX Starship will be reusable, but it also has an unnecessarily large payload capacity for almost any current satellites.   For example, 
+\subsubsection{Balloon To Rocket Mass Launch Ratios}\label{sec:balloon_rocket_ratio}
 Let's built a simplified model of how large a spacecraft a given mass of balloons can accelerate.
 
 Suppose \(v_r\)\,  \(v_b\),  \(m_r\), and \(m_b\) represent balloon and rocket masses and velocities,    \(a\) represents the constant desired rocket acceleration and \(e\) represents how efficient each balloon collision is, where \(e=1\) would be a perfectly elastic collision.   For simplicity, let's assume the efficiency is the same for each balloon and that 1 balloon impacts the pusher plate each second.   Using the equations for elastic collisions shows that 
@@ -99,7 +90,29 @@ We can write a simple script to loop and add the balloon masses until desired ve
 
 The collision efficiency can likely be improved by absorbing more of the light produces when the balloon gas heats up.   Project Orion assumed these collisions are highly efficient because the plasma was opaque to the radiation it produced \cite{orion_reflections}.  Our gas won't be hot enough to benefit from these calculations, but we can design the pusher plate to spray soot.   Since our pulses can be small, they can also potentially be partially contained by a pusher plate designed to reflect light many times though the gas to increase absorption.   The more of this radiation we absorb, the more efficient our pulses can be.  
 
-\section{Suborbital rockets from ordinary airports}\label{sec:suborbital_airports}
+Individual balloons traveling in elliptical orbits follow paths around the Earth’s center of mass. For intercity travel, adjustments are necessary since most cities are not connected by paths that bisect the Earth’s center. A suborbital rocket can make minor trajectory adjustments if the required correction is small. Alternatively, two balloon pulses can be used (see \autoref{fig:two_pulses}), where the second pulse adjusts the spacecraft’s trajectory to reach the destination city.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/Two Pulses.png}
+    \caption{A first sequence of balloon pulses launches the spacecraft into orbit, then a second smaller set of pulses adjusts the orbit to target the second city}
+    \label{fig:two_pulses}
+\end{figure}
+\subsection{Private Jet Travel and Oxygen Refuelling}
+Currently, passenger aviation volume represents orders of magnitude more tonnage than satellites.  
+\end{quote}  Airlines served nearly 4.5 billion yearly passengers before the COVID pandemic.  \cite{icao_passenger_volume}.  By contrast, only about 50,000 tons worth of satellites have ever been launched. \cite{usa_today_satellite}.    Starship's payload of 150 \SI{tonne}
+
+
+
+\section{Balloon Pulse Propulsion Modelling}
+\label{sec:pulse_modelling}
+\subsection{Starship Economics and Balloon Pulse Propulsion}
+SpaceX Starship will be reusable, but it also has an unnecessarily large payload capacity for almost any current satellites.   For example, 
+
+
+
+
+\subsection{Suborbital rockets from ordinary airports}\label{sec:suborbital_airports}
 SpaceX has proposed direct Earth to Earth transportation with SpaceX Starship \cite{spacex_earth_earth}.   However, in the unlikely event this received regulatory approval, it would require very complex bordering procedures involving boats to offshore platforms.   If we could use regular airports, the concept would be much more viable.    However, most airports don't have the liquid oxygen handling facilities for a rocket engine.
 
 Since our suborbital plane has a low propellant mass fraction, we can spend some weight including air breathing jet engines for takeoff and landing.   The plane takes off with empty oxygen tanks.   Separately, a specialized oxygen airplane tanker takes off from specialized airports that do have liquid oxygen facilities.    The planes rendezvous and the tanker fuels the suborbital rocket's oxygen tank mid-air.   This is similar to military airplane refueling, except we are tanking up on oxygen rather than fuel.   The specialized oxygen handling airports can be in rural areas near major regions.   A tanker taking off in West Virginia could likely rendezvous with an airplane from any airport between Boston and Washington DC within half an hour of takeoff.   
