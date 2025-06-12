@@ -26,14 +26,14 @@
 \rhead{ \textit{ }} 
 
 % Update your Headers here
-\fancyhead[LO]{To the Moon By Water Balloon}
+\fancyhead[LO]{Aim Is All You Need}
 % \fancyhead[RE]{Firstauthor and Secondauthor} % Firstauthor et al. if more than 2 - must use \documentclass[twoside]{article}
 
 
 
   
 %% Title
-\title{To the Moon By Water Balloon}
+\title{Aim Is All You Need}
 
 \author{
   Seth Katz \\
@@ -43,102 +43,30 @@
 
 \begin{document}
 \maketitle
-\tableofcontents
 
 \begin{abstract}
-    Project Orion \cite{projorion} proposed using nuclear explosions to accelerate a spacecraft.  Although Project Orion was cancelled for practical reasons,  it successfully demonstrated the theoretical feasibility of propelling spacecraft using pulses of gas impacting a shock-absorbing pusher plate.
+ In 2017, Google Research published ``Attention is All You Need" \cite{vaswani2023attentionneed}.  This paper introduced the Transformer, which let neural networks capture long range dependencies between words in a sentence or pixels in an image.   Just a few years later, OpenAI developed tools like ChatGPT that resemble hypothetical early prototypes of the computers in Star Trek.
 
-    Instead of bombs, we can give the spacecraft momentum pulses by crashing low density gas filled balloons travelling at high orbital speeds into a pusher plate at the back of the rocket fuselage.   Water vapor is probably the easiest and most environmentally benign balloon gas to use, but any gas will work.   We will call this idea balloon pulse propulsion \cite{aim2024}.   This paper argues balloon pulse propulsion is the key to practical hypersonic intercity travel, space flight, satellite launches,  and clean energy production.
- \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
-    \caption{Space X Starship or another heavy lift rocket  can launch balloons into an eccentric orbit with a high speed near perigee.   A separate suborbital craft steers into the balloons' path.   The suborbital craft gains momentum as successive balloons impact a shock absorbing pusher plate on the rocket.}
-    \label{fig:starship_ellipse}
-\end{figure}
+But here's the bittersweet truth:  While our screens flicker with progress, the tangible realms of space, energy and paleontology remain comparatively stagnant.
 
-As shown in \autoref{fig:starship_ellipse}, the balloons are launched into an eccentric orbit from a larger spacecraft, such as SpaceX Starship \cite{starship}.   Subsequently, a suborbital rocket launches from Earth and intercepts the path of the balloons just above the atmosphere.    The balloon orbits are eccentric so that they are moving significantly faster than low earth orbital velocity at perigee.   We can also use balloon pulse propulsion to decelerate a rocket for atmospheric reentry or to accelerate a suborbital rocket  to speeds substantially below Earth's minimal orbital velocity.    In either of those cases, can save rocket delta-v by launching the balloons into a low eccentricity low Earth orbital trajectory.   
+\textbf{Enter our mission}
 
-The suborbital craft does not require the extremely high propellant mass fraction typical of orbital rockets.   Therefore, it
- can spare the mass for wings and air breathing jet engines.   This means it can take off just like an airplane, igniting its rocket engines at high altitudes over remote locations.   Unlike SpaceX’s proposed Earth-to-Earth direct rocket travel \cite{spacex_earth_earth}, this suborbital rocket integrates seamlessly with today’s commercial aviation infrastructure, as explained in \autoref{sec:suborbital_airports}. If desired, the rocket can be propelled by the balloons it intercepts all the way into low Earth orbit instead of traveling to another city.  Balloon pulse propulsion may also be economically desirable for satellite launches if the satellites are costly, as discussed in \autoref{sec:satellite_economics}.   
+This paper's goal is to enable the progress on physics to catch up to our IT progress.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   Specifically, we'll argue that if we can master the technology to precisely throw collections of fast objects at a specific target in space, that's all we need to achieve some truly groundbreaking geek milestones.   Just as neural networks enabled consumer AI, they potentially allow us to achieve the precision control to make this external pulsed propulsion concept feasible.
 
-If the gas used to fill the balloons are sourced from lunar shadowed regions, asteroids, or distant low-gravity icy bodies, we can eliminate the need for heavy rockets to launch the balloons from Earth. Utilizing gravity assists and other techniques, these balloons can intercept Earth at extremely high speeds.    We will discuss methods to extract the kinetic energy from these balloons for large scale power generation in space.   We will also discuss how this kinetic energy can be transferred for terrestrial use and economically power all of human civilization.
-
-
-Achieving balloon pulse propulsion requires positioning the balloons with centimeter scale precision.  Proving this is feasible is a likely first step in validating balloon pulse propulsion's practical viability.    To attract private funding for a demonstration of this precision balloon deployment, we propose launching a rocket filled with thousands of kilogram-sized “meteors” to create spectacular artificial meteor showers on Earth above a few major cities. These showers could coincide with a special celebration.   For example, a set of meteor shows timed for US Independence Day could be visible to most Americans.   Equipment can verify that centimeter precision was achieved for each artificial meteor.  Note that private investor risk is mitigated because these meteor shower will likely be spectacular and enjoyable even if they fail to achieve the desired precision of each object.    We discuss early development milestones in \autoref{sec:milestones}
-
+\textbf{A Checklist of Grand Challenges Aim Can Solve}
+\begin{itemize}
+    \item 
+Suborbital Transit:  We'll create a viable suborbital travel market allowing passengers to reach anywhere in the world in less than 2 hours
+ \item Rocket Revolution: We'll end the tyranny of the rocket equation.   We'll still use small rockets, but giant rockets with high propellant mass fraction will no longer be needed to reach orbit
+  \item Jurassic Dark: We'll discover concrete evidence for how life originated on earth and a genetic record of extinct species from ancient geological periods, like the dinosaurs. \item We'll also create lunar paleontology, a new science field uncovering Earth's biological history in the permanently shadowed regions of the moon
+  \item Carbon Cancelled: We will solve our energy problems with carbon negative fuel that absorbs the carbon dioxide produced by industry, all while using minimal land and resources
+  \item Moon mining:  We'll develop off world ISRU technology first on our moon and then on icy moons, ideally Saturn's move Phoebe
+\end{itemize}
+Note, this paper summarizes some of the ideas in the blog ``Aim Is All You Need"\cite{aim2024}.
 \end{abstract}
 
-
-\section{Balloon Pulse Propulsion Details}
-\label{sec:pulse_propulsion_details}
-\subsection{SpaceX Starship Economics - leveraging spare payload capacity for safer satellite launches}\label{sec:satellite_economics}
-SpaceX’s Starship has the potential to dramatically reduce launch costs if it achieves full reusability. However, its payload capacity is much larger than necessary for today’s satellite market, leading to capacity underutilization during satellite launches.   \begin{quote}
-Carissa Christensen,   the chief executive of Bryce Tech, an analytics firm that tracks the launch market, says launching Starship frequently will be key to closing SpaceX’s business case, but finding customers to fill the rocket’s giant payload capacity will be challenging. 
-"Starship's payload capacity is huge; it's very, very big, and there aren't that many commercial uses today for a rocket that big," she said.  "Maybe it'll be so cheap that it makes sense to launch satellites on it if its not full or near full." \cite{nyt_starship_size} \end{quote}
-
-In other words Starship satellite launches will under utilize payload capacity.   It's  launch cost may also fall significantly below the cost of building the satellite once launches are reusable and cheap.   With balloon pulse propulsion, we launch Starship with a full payload of balloons.   Since the satellite is on a secondary rocket, it is never placed next to the fragile high propellant mass fraction orbital rocket.   We buy a safer launch with Starship's spare capacity without a significant cost increase.
-
-\subsection{Balloon To Rocket Mass Launch Ratios}\label{sec:balloon_rocket_ratio}
-Let's built a simplified model of how large a spacecraft a given mass of balloons can accelerate into orbit.
-
-Suppose \(v_r\)\,  \(v_b\),  \(m_r\), and \(m_b\) represent balloon and rocket masses and velocities,    \(a\) represents the constant desired rocket acceleration and \(e\) represents how efficient each balloon collision is, where \(e=1\) would be a perfectly elastic collision.   For simplicity, let's assume the efficiency is the same for each balloon and that 1 balloon impacts the pusher plate each second.   Using the equations for elastic collisions shows that 
-\begin{equation}
-m_b=\frac{-am_r}{e(a - 2v_b + 2v_r)}
-\label{eq:balloon_mass}
-\end{equation}
-We can write a simple script \cite{balloon_mass_script} to loop and add the balloon masses until desired velocity is achieved.   If the final suborbital rocket speed is \SI{7.8}{\kilo\metre\per\second}, \(v_b=\SI{11}{\kilo\metre\per\second}\), \(a=\SI{20}{\metre\per\second\squared}\), and \(e=.6\) then the balloons can lift 104 \% of their mass into low Earth orbit.   
-
-The collision efficiency can likely be improved by absorbing more of the light produced when the balloon gas heats up.   Project Orion assumed these plasma impacts are highly efficient because the plasma was opaque to the radiation it produced \cite{orion_reflections}.  Our gas won't be hot enough to benefit from plasma opacity, but we can design the pusher plate to spray light absorbing soot.   Since our pulses can be small, they can also potentially be partially contained by a shape designed to reflect light many times though the gas to increase thermal absorption.   The more of this radiation we absorb, the more efficient our pulses can be.  
-
-Individual balloons traveling in elliptical orbits follow paths around the Earth’s center of mass. For intercity travel, adjustments are necessary since most cities are not connected by paths that bisect the Earth’s center of mass. A suborbital rocket can make minor trajectory adjustments if the required correction is small. Alternatively, two balloon pulses can be used (see \autoref{fig:two_pulses}), where the second pulse adjusts the spacecraft’s trajectory to reach the destination city.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{images/Two Pulses.png}
-    \caption{A first sequence of balloon pulses launches the spacecraft into orbit, then a second smaller set of pulses adjusts the orbit to target the second city}
-    \label{fig:two_pulses}
-\end{figure}
-
-
-\subsection{Suborbital rockets and LOX handling from ordinary airports}\label{sec:suborbital_airports}
-SpaceX has proposed direct Earth to Earth transportation with SpaceX Starship \cite{spacex_earth_earth}.   However, in the unlikely event this received regulatory approval, it would require inconvenient, time consuming passenger boarding procedures involving boats to offshore platforms.   If we could use regular airports, the concept would be much more viable.    However, most airports don't have the liquid oxygen handling facilities for a rocket engine.
-
-Since our suborbital plane has a low propellant mass fraction, we can spend some weight including air breathing jet engines for takeoff and landing.   The plane takes off with empty oxygen tanks.   Separately, a specialized LOX airplane tanker takes off from specialized airports that do have liquid oxygen facilities.    The planes rendezvous and the tanker fuels the suborbital rocket's oxygen tank mid-air.   This is similar to military airplane refueling, except we are tanking up on oxygen rather than fuel.   The specialized oxygen handling airports can be in rural areas near major regions.   A tanker taking off in West Virginia could likely rendezvous with an airplane from any airport between Boston and Washington DC within half an hour of takeoff.   
-
-Suborbital planes with heat shielding can reenter the atmosphere for landing.   However, heat shielding adds weight.   Sonic booms from reentry could create regulatory hurdles.   Alternatively, we can use balloon pulse propulsion to decelerate before atmospheric reentry.   To do this, we insert balloons into the retrograde orbit from the one we are travelling in.   These retrograde balloons don't need to be launched into a highly eccentric orbit, significantly less mass would be required.
-
-\subsection{Private Aviation Most Likely Initial Market}\label{sec:private_aviation}
-SpaceX Starship payload to eccentric orbits like GTO is about 27 tons \cite{spacex_user_guide}.   This implies lifting approximately a 28 ton plane based on our balloon mass analysis in \autoref{sec:balloon_rocket_ratio}.   That is fairly small for a commercial airplane, but is comparable to a mid sized private jet.   Also, the Concorde's economic failure suggests commercial passengers are unwilling to pay very high premiums for faster travel \cite{concorde_expensive}.  The wealthiest private jet customers presumably are less price sensitive and care more about saving time.    
-
-The primary disadvantage of private jet travel is the need for logistics to be scheduled well ahead of the flight.   Since 3 balloon pulses are potentially needed for an intercity trip (the initial burst, a course correction burst for cities that don't lie on one orbit, and a deceleration burst to reenter the atmosphere without a heat shield), the trips do need to be planned ahead of time so that all of the logistics are prepared.   Our customers will need to trade the flexibility of being able to take off exactly when they want for a much faster flight.   
-
-\subsection{Positioning of Spacecraft and Balloons}\label{sec:balloon_positioning}
-For real balloon pulse propulsion flights, some additional details must be worked out.   Each balloon will not accelerate the spacecraft by exactly the expected amount.   Therefore, the spacecraft must have small but fast acting thrusters so that between each balloon pulse, it makes small corrections to stay exactly in front of the balloon pulses.    These thrusters are likely small, adjusting acceleration by millimeters per second between balloons if our accuracy is high.
-
-The next adjustment involves keeping the balloons exactly in position.  Using techniques like Kalman filtering, it should be relatively simple to accurately measure the relative positions of the balloons very precisely.   The exact position of all the balloons may be slightly less accurate but the ability to take many balloon measurements should also increase the exact position accuracy.   
-
-Finally, we must be able to adjust the balloon positions themselves.   Orbital perturbations make exact trajectories on launch hard to compute perfectly.    However, the balloons are likely relatively transparent.   If they do not move into the shadow of the next balloon, they are perturbed similarly by solar radiation.    A few lasers can likely make small balloon adjustments if they are tuned to the narrow frequencies where the balloons efficiently absorb light.    Suppose a \SI{30}{\kilo\watt} laser shines one a \SI{1}{\kilo\gram} balloon for one second.   Ideally the balloon reflects this light, but let's suppose it only absorbs it fully.   This produces \(\frac{ \SI{20}{\kilo\watt}}{c}=0.1 \SI{0.1}{\milli\metre\per\square\second}\) acceleration.   Let's say we have 10 of these lasers guiding 10000 1 kilogram balloons.   That implies adjust eaching balloon by up to \(\frac{10 \times 3600\times 24\times0.1}{10000}=\SI{8.6} {\milli\meter\per\square\second}\) every day.   These lasers can be reused on multiple flights, amortizing their cost.   If the balloons are simple they present less long term space debris risk.   They are also cheaper to make since it is just a balloon.   Thin plastic balloon skin debris that doesn't vaporize on impacts would be distintegrated by oxygen and UV light in low Earth orbit within a short time period.  Note that we would probably never shine these laser on a single balloon for a full second, but rather make multiple brief pulses so that the laser doesn't overheat the balloons.   Note that these effects from laser heating can be amplified by clever balloon skins that incorporate memory shape alloys or chemical reactions that are sensitive to heat and temporarily change the balloons' optical properties and allow the balloon to act as a solar sail for a brief time.  
-
-Note that we assume a benign environment free from intentional interference.   If a malign state wants to fire lasers at these balloons, the only realistic defense against this is to disable the hostile laser, ideally through diplomacy.
-
-\subsection{Balloon Deployment Details}\label{sec:balloon_deployment}
-On initial deployment of individual balloons, we ideally try to get their initial paths as accurate as possible.   Even though we have an ability to course correct as discussed in \autoref{sec:balloon_positioning}, optimal initial deployment keeps necessary adjustments desirably small.   Since Kepler's laws dictate that orbits sweep out equal areas in equal time \cite{keplers_laws}, deployment near apogee reduces the speed the balloons need to be tossed from the rocket and the distance the lasers need to focus significantly.      An elliptical orbit with a perigee of 2 lunar radii moves only about 1 percent of the speed it moves at perigee.   
-
-Launching balloons near apogee also helps modify the balloon's orbit.   Since the suborbital rocket begins to move as it accelerates, each balloon should have a slightly different perigee to impact the suborbital rocket optimally.   These adjustments also require a much smaller delta-v at apogee.
-
-\section{Practical Demonstration Milestones}\label{sec:milestones}
-The total cost for fully developing balloon pulse propulsion may create barriers for attracting investors.  This project probably requires funding for individual milestones, with each early milestone requiring less than \$10 million USD.    Here are several potential early milestones.
-
-\subsection{Laboratory Scale Shock Absorbing Pusher Plate}\label{sec:lab_scale_pusher_plate}    
-In addition to computer simulations, we can simulate the pusher plate mechanism with high explosives, similar to the Hot Rod Project Orion propulsion test vehicle \cite{orion_hot_rod}.    Light gas guns may also be able to deliver burst of fast moving hydrogen gas for more accurate simulations of orbital speeds.    Unlike the Orion Hot Rod test, we should also test slightly off center impacts on the pusher plate since our ability to align the balloons with the rocket's center is likely imperfect.
-
-\subsection{Liquid Oxygen Refueling} \label{sec:lox_milestone}
-We discussed liquid oxygen refueling in \autoref{sec:suborbital_airports}.   It may make sense to retrofit military refueling planes to demonstrate the feasibility of liquid oxygen refueling.  In all likelihood, we would initially demonstate liquid nitrogen refueling.   Once the cryogenic liquid is fueled on the plane it is simply discarded.   Liquid nitrogen is significantly safer to test with.   At later stages, the process can be repeated with liquid oxygen.   
-
-\subsection{Sub Orbital Plane Flight Above Atmosphere}\label{sec:suborbital_plane_milestone}
-Once liquid oxgyen refueling is demonstrated, we can also demonstrate that the fueled suborbital plane can reach above the atmosphere.   In this test, the plane does not attempt to leverage balloons to reach higher speeds.   We are independently verifying that the suborbital plane can reach this target.
-
-
+\section{Introduction}
+In the 1950s, Project Orion proposed the only known propulsion technology that provides both high specific impulse and high thrust \cite{projorion}.  It relied on throwing hypervelocity plasma from a nuclear explosion at a pusher plate to propel the rocket.  Aside from obvious political problems and radioactive fallout, Orion rockets needed to be impractically massive because nuclear explosion have high minimum yield.  Nevertheless, Orion affirmed the physics of hypervelocity pulsed propulsion.
 
 %Bibliography
 \bibliographystyle{unsrt}  
