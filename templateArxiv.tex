@@ -54,13 +54,13 @@ But here's the bittersweet truth:  While our screens flicker with progress, the 
 This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
-    \caption{Balloons from a first rocket crash (not shown) crash into a second target rocket and provide propulsion}
+    \caption{Balloons from a first rocket (not shown) crash into a second target rocket and provide propulsion}
     \label{fig:balloon_impact}
 \end{figure}
 
-Consider two rockets.   The first deploys a series of fast moving balloons capable of small navigation adjustments.  As shown in \autoref{fig:balloon_impact} these balloons precisely follow a path to crash  into a separate  target rocket.   These precise collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications.    
+Consider two rockets.   The first deploys a series of fast moving balloons with miniaturized rockets capable of small navigation adjustments.  As shown in \autoref{fig:balloon_impact} these balloons precisely follow a path to sequentially crash  into a separate  target rocket.   These precise collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications.    
 
-Just as neural networks enabled consumer AI, they potentially allow us to achieve the precision control to make this externally pulsed propulsion concept feasible.
+Just as neural networks enabled consumer AI, they potentially allow us to extend recent advances in cube-sat formation flying to achieve the precision control required to make this externally pulsed propulsion concept feasible.
 
 \textbf{A Checklist of Grand Challenges Externally Pulsed Propulsion Can Solve}
 \begin{itemize}
@@ -84,21 +84,48 @@ Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas ball
 
 Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloons could achieve energy densities and specific impulses comparable to Project Orion. This approach wouldn't demand nuclear or massive photovoltaic power, and it would enable lunar launches that use polar volatiles directly without needing to produce rocket fuel.     
 
-Traditional control and localization techniques combined with recent neural network advancements raises the probability of achieving the extremely precise navigation for externally pulsed propulsion.
+Traditional control and localization techniques, cube sat formation flying and navigation algorithms and recent neural network advancements raise the probability of achieving the extremely precise navigation for externally pulsed propulsion.
 
-\section{To the moon by water balloon.  Getting to orbit with External Pulsed Propulsion}
+\section{To the moon by water balloon.  Reaching Orbit with External Pulsed Propulsion}
+Before we delve into the engineering details of external pulsed propulsion, let's consider how it could significantly enhance the utility and appeal of giant reusable rockets like SpaceX's Starship \cite{starship}.   
 \subsection{Making Starship's excess capacity useful to satellite customers}
-SpaceX's Starship \cite{starship} rocket may be the first fully reusable rocket. At scale, this could dramatically reduce space flight costs.   However, the rocket's large payload size is probably too big for today's space industry needs. For example, in \textit{The New York Times}
+SpaceX's Starship may be the first fully reusable rocket. At scale, this could dramatically reduce space flight costs.   However, the rocket's large payload size is probably too big for today's space industry needs. For example, in \textit{The New York Times}
 \begin{quote}
 Carissa Christensen, the chief executive of Bryce Tech, an analytics firm that tracks the launch market, says launching Starship frequently will be key to closing SpaceX’s business case, but finding customers to fill the rocket’s giant payload capacity will be challenging. 
 "Starship's payload capacity is huge; it's very, very big, and there aren't that many commercial uses today for a rocket that big," she said.  "Maybe it'll be so cheap that it makes sense to launch satellites on it if its not full or near full."  \cite{nyt_starship_size}
 \end{quote}
-Although many satellites might be too small to fill up Starship, they can still be very expensive to build and test. For an extreme example, the James Webb Telescope \cite{james_webb_space_telescope} cost \9.7 billion dollars \cite{jwst_cost} to build. This McKinsey report argues 
+Although many satellites might be too small to fill up Starship, they can still be very expensive to build and test. For an extreme example, the James Webb Telescope \cite{james_webb_space_telescope} cost \$9.7 billion dollars \cite{jwst_cost} to build. \textit{McKinsey Consulting} argues 
 \begin{quote}
 Safety and reliability will continue to be overarching concerns, suggesting excellent execution will be table stakes for a competitive launch company. \cite{mckinsey_reliability}
 \end{quote}
-Once rockets start ferrying astronauts, reliability becomes even more emphatically nonnegotiable. What if there was a way to use Starship's huge size to make its valuable payloads less vulnerable to rapid unscheduled disassembly? 
+Once rockets start ferrying astronauts, reliability becomes even more emphatically non-negotiable. Fully stacked, Starship weighs 5,000 tons at launch \cite{starship}, yet its empty mass is only 300 tons. That’s an awfully thin soda can to entrust with billion-dollar satellites or human passengers.
 
+By contrast, a suborbital rocket that merely reaches 200 kilometers in altitude might have a propellant mass fraction under 50 percent. This greater structural margin allows for more robust, reliable engines and extensive payload protection systems. Of course, such a suborbital rocket cannot reach orbit on its own.
+
+Starship launches balloons for externally pulsed propulsion into a highly eccentric orbit around Earth, with a low 200-kilometer perigee and a high apogee. These balloons move near Earth’s escape velocity at perigee. The suborbital rocket intercepts the balloons with its pusher plate and rides their momentum pulses to orbit. While this approach reduces payload capacity compared to a single rocket system, most satellites are unable to take advantage of Starship’s enormous payload volume anyway.
+
+\subsection{The 200 Mile High Club}
+Starship's proposed Earth-to-Earth travel \cite{earth_to_earth}, launching passengers like intercontinental ballistic missiles from offshore platforms, faces significant challenges:
+\begin{itemize}
+\item Marine environmental Impact: Noise pollution from sea launches could severely harm marine ecosystems, including dolphins and whales.
+\item Noise Over Populated Areas: Starship's descent would generate loud sonic booms over cities.
+\item Logistical Inefficiency: Offshore launch platforms, by necessity located far from land, would add hours to the journey for boarding and departure, undermining the benefit of rapid travel.
+\end{itemize}
+A suborbital rocket plane offers a more practical alternative. To reach orbit, the suborbital rocket requires propulsion balloons launched by the Starship, which can be deployed from remote locations where noise pollution is acceptable.  Our suborbital rocket plane could take off from conventional urban airports using standard aircraft engines, then switch to rocket propulsion at high altitudes over remote areas to "skip" above the atmosphere. While normal airports can handle kerosene or methane fuel, most lack the infrastructure for cryogenic liquid oxygen.
+
+However, two solutions address the liquid oxygen challenge:
+\begin{itemize}
+\item Air-breathing Scramjets (Optimistic Scenario): If economical passenger scramjets become feasible, rockets could accelerate to around Mach 7 before a steep climb, eliminating the need for liquid oxygen. This would also reduce propellant mass. Unfortunately, the extreme stress on the airframe makes suborbital rockets more economically viable for the foreseeable future.
+\item Mid-air oxygen refueling: Suborbital rocket planes could receive liquid oxygen from specialized aircraft launched from airports equipped with liquid oxygen storage. This avoids retrofitting every urban airport, requiring only a single, strategically located airport near major destinations.
+\end{itemize}
+
+A formation of propulsion balloons launched in an eccentric Keplerian orbit could only propel the  rocket plane on trajectories that bisect the Earth. Since most urban destinations would not align with such trajectories, the rocket plane needs to fire an adjustment burn at least once to reach the destination.
+
+Alternatively, a second set of propulsion balloons, launched at the precise moment, could adjust the plane's trajectory. Furthermore, to avoid a sonic boom upon descent, the plane must decelerate before atmospheric reentry. This deceleration could be provided by yet another set of propulsion balloons that were travelling in a retrograde orbit relative to the plane. Notably, these reentry balloons could be in a circular low Earth orbit rather than a high eccentricity orbit, significantly reducing the mass required.
+
+For externally pulsed propulsion to achieve genuine economic competitiveness, the cost of launching its propulsion balloons must be exceptionally low. Even highly reusable rockets may prove too expensive, limiting this technology primarily to the very high-end private luxury aviation market. While luxury aviation customers typically prioritize flexibility, balloon-propelled flights necessitate advance scheduling. This is due to the need for balloons to be launched ahead of time and follow an eccentric path to periapsis. Despite these limitations, the potential market for affluent travel between cities like Dubai and Dallas is likely at least an order of magnitude larger than the satellite market.
+
+Still, it would be disappointing if we can't make suborbital travel mainstream.   If we can launch our balloons without giant rockets, we can reduce cost.   After all, "the best part is no part," \cite{best_part_no_part} and a reusable rocket is one heck of a part.
 
 %Bibliography
 \bibliographystyle{unsrt}  
