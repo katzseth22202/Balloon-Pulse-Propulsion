@@ -62,18 +62,23 @@ Consider two rockets.   The first deploys a series of fast moving low density ba
 
 Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for externally pulsed propulsion.
 
-\textbf{A Checklist of Grand Challenges Externally Pulsed Propulsion Can Solve}
-\begin{itemize}
-    \item 
-Suborbital Transit:  We'll create a viable suborbital travel vehicle allowing passengers to take off from normal airport runways and reach anywhere in the world in less than 2 hours.   Noise pollution near population centers will be no worse than it is with conventional aircraft.
- \item Rocket Revolution: We'll end the tyranny of the rocket equation.   We'll still use small rockets, but giant rockets with high propellant mass fraction will no longer be needed to reach orbit.   
- 
- \item Lunar Lift-off: Launching from the moon may still require volatiles, but not the more difficult task of making and storing high performance rocket fuel.
-  \item Jurassic Dark: As a side effect of our advances, we'll create the field of lunar paleontology and discover concrete evidence for how life originated on Earth.  We'll build a genetic record of extinct species from ancient geological periods, like the dinosaurs. 
-  \item Straw Ways to Heaven:   We can construct terrestrial megastructures, extending from the ground to the edge of space, without relying on advanced magnetic technologies such as Lofstrom Launch Loops \cite{lofstrom_loop}. A particularly ambitious yet beneficial example might be a vacuum tube connecting Earth and space, a "Straw Way to Heaven."
-  \item Carbon Cancelled: We will solve our energy problems with carbon negative fuel that absorbs the carbon dioxide produced by industry, all while using minimal land and resources
-  \item Moon mining:  We'll develop in-situ resource utilization (ISRU) technology, first on our moon and then on icy moons like Saturn's moon Phoebe
-\end{itemize}
+\begin{table}
+    \centering
+\caption{A Checklist of Grand Challenges Externally Pulsed Propulsion Can Solve}
+\label{tab:applications}
+    \begin{tabular}{|c|>{\centering\arraybackslash}p{0.5\linewidth}|}\hline
+         Suborbital Transit& We'll create a viable suborbital travel vehicle allowing passengers to take off from normal airport runways and reach anywhere in the world in less than 2 hours.   Noise pollution near population centers will be no worse than it is with conventional aircraft.\\\hline
+         Rocket Revolution& We'll end the tyranny of the rocket equation.   We'll still use small rockets, but giant rockets with high propellant mass fraction will no longer be needed to reach orbit.   \\\hline
+         Lunar Lift-off& Launching from the moon may still require volatiles, but not the more difficult task of making and storing high performance rocket fuel.\\ \hline
+ Jurassic Dark&As a side effect of our advances, we'll create the field of lunar paleontology and discover concrete evidence for how life originated on Earth.  We'll build a genetic record of extinct species from ancient geological periods, like the dinosaurs. \\\hline
+ Straw Ways to Heaven&We can construct terrestrial megastructures, extending from the ground to the edge of space, without relying on advanced magnetic technologies such as Lofstrom Launch Loops \cite{lofstrom_loop}. A particularly ambitious yet beneficial example might be a vacuum tube connecting Earth and space, a "Straw Way to Heaven."\\\hline
+ Carbon Cancelled&We will solve our energy problems with carbon negative fuel that absorbs the carbon dioxide produced by industry, all while using minimal land and resources\\\hline
+ Moon mining&We'll develop in-situ resource utilization (ISRU) technology, first on our moon and then on icy moons like Saturn's moon Phoebe\\\hline
+    \end{tabular}
+    
+    
+\end{table}
+
 Note, this paper summarizes some of the ideas in the blog ``Aim Is All You Need"\cite{aim2024}.
 \end{abstract}
 
@@ -85,6 +90,10 @@ Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas ball
 Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloons could achieve energy densities and specific impulses comparable to Project Orion. This approach wouldn't demand nuclear or massive photovoltaic power, and it would enable lunar launches that use polar volatiles directly without needing to produce rocket fuel.     
 
 Traditional control and localization techniques, cube sat formation flying and navigation algorithms and recent neural network advancements raise the probability of achieving the extremely precise navigation for externally pulsed propulsion.
+
+\section{Externally Pulsed Propulsion Back of the Napkin Fundamentals}
+Before we explore the applications of externally pulsed propulsion referenced in \autoref{tab:applications}, let's first establish its core fundamentals. This paper provides a back of the napkin analysis aimed at demonstrating the idea's initial feasibility. Rigorous high fidelity analysis can follow in future work.
+\subsection{Mass Fraction of Balloon to Rocket Mass}
 
 \section{To the moon by water balloon.  Reaching Orbit with External Pulsed Propulsion}
 Before we delve into the engineering details of external pulsed propulsion, let's consider how it could significantly enhance the utility and appeal of giant reusable rockets like SpaceX's Starship \cite{starship}.   
@@ -164,22 +173,21 @@ After the collision, let:
 \subsection{By conservation of momentum} \[
 m_r v_r + dm_b v_b = m_r (v_r + dv_r) + dm_b v_b'
 \]
-Since \( dm_b \) is infinitesimal, we neglect higher-order terms involving \( (dm_b)^2 \). Rearrange:
 \[
 m_r v_r + dm_b v_b = m_r v_r + m_r dv_r + dm_b v_b'
 \]
 \[
 dm_b v_b = m_r dv_r + dm_b v_b'
 \]
-\[
-m_r dv_r = dm_b (v_b - v_b') \tag{1}
-\]  
-\subsection{By conservation of energy}:
+\begin{equation}
+m_r dv_r = dm_b (v_b - v_b') \label{eq:momentum}
+\end{equation}
+\subsection{By conservation of energy}
 Since the collision is elastic, energy is conserved
 \[
 \frac{1}{2} m_r v_r^2 + \frac{1}{2} dm_b v_b^2 = \frac{1}{2} m_r (v_r + dv_r)^2 + \frac{1}{2} dm_b (v_b')^2
 \]
-Expand \( (v_r + dv_r)^2 \approx v_r^2 + 2 v_r dv_r \) (neglecting \( (dv_r)^2 \)), and since \( dm_b \) is small, the energy equation becomes:
+Expand \( (v_r + dv_r)^2 \approx v_r^2 + 2 v_r dv_r \) (neglecting \( (dv_r)^2 \)).  The energy equation becomes:
 \[
 m_r v_r^2 + dm_b v_b^2 \approx m_r (v_r^2 + 2 v_r dv_r) + dm_b (v_b')^2
 \]
@@ -188,14 +196,15 @@ Subtract \( m_r v_r^2 \) from both sides:
 dm_b v_b^2 \approx m_r 2 v_r dv_r + dm_b (v_b')^2
 \]
 \[
-2 m_r v_r dv_r \approx dm_b (v_b^2 - (v_b')^2)
+2 m_r v_r dv_r \approx dm_b (v_b^2 - v_b'^2)
 \]
-\[
-m_r v_r dv_r \approx dm_b \frac{v_b^2 - (v_b')^2}{2} \tag{2}
-\]
-Since \( v_b^2 - (v_b')^2 = (v_b - v_b')(v_b + v_b') \), we need \( v_b' \).
+\begin{equation}
+m_r v_r dv_r \approx dm_b \frac{v_b^2 - v_b'^2}{2} 
+\end{equation}
+
+
 \subsection{Velocity change of \(m_r\)}
-Substitute \( v_b' = 2 v_r - v_b \) into the momentum equation (1):
+If the collision is elastic and \( m_r \gg dm_b \),we can substitute \( v_b' = 2 v_r - v_b \) into \autoref{eq:momentum}:
 \[
 m_r dv_r = dm_b (v_b - (2 v_r - v_b))
 \]
@@ -208,12 +217,12 @@ m_r dv_r = dm_b (2 v_b - 2 v_r)
 \[
 m_r dv_r = 2 dm_b (v_b - v_r)
 \]
-\[
-dv_r = \frac{2 (v_b - v_r)}{m_r} dm_b \tag{4}
-\]
+\begin{equation}
+dv_r = \frac{2 (v_b - v_r)}{m_r} dm_b \label{eq:vchange_mr}
+\end{equation}
 This differential equation relates the change in velocity of \( m_r \) to the infinitesimal mass \( dm_b \) of the balloons hitting it.
 \subsection{Integrate over many collisions}
-The velocity of \( m_r \) changes from \( v_{ri} \) to \( v_{rf} \) as more balloons collide. Integrate equation (4):
+The velocity of \( m_r \) changes from \( v_{ri} \) to \( v_{rf} \) as more balloons collide. Integrate \autoref{eq:vchange_mr}:
 \[
 \int_{v_{ri}}^{v_{rf}} dv_r = \int_0^{m_b} \frac{2 (v_b - v_r)}{m_r} dm_b
 \]
@@ -221,11 +230,12 @@ The left-hand side is:
 \[
 \int_{v_{ri}}^{v_{rf}} dv_r = v_{rf} - v_{ri}
 \]
-For the right-hand side, treat \( v_r \) as a function of the accumulated balloon mass \( m_b \). However, we need to express \( v_r \) in terms of \( m_b \). From equation (4):
-\[
-\frac{dv_r}{v_b - v_r} = \frac{2 dm_b}{m_r}
-\]
-Rewrite:
+For the right-hand side, treat \( v_r \) as a function of the accumulated balloon mass \( m_b \). However, we need to express \( v_r \) in terms of \( m_b \). From \autoref{eq:vchange_mr}:
+\begin{equation}
+\frac{dv_r}{v_b - v_r} = \frac{2 dm_b}{m_r}\label{eq:dvr_velocity_relation}
+\end{equation}
+
+Since \(v_b\) is constant, \(-d(v_b-v_r)=dv_r\), so we can rewrite \autoref{eq:dvr_velocity_relation} as:
 \[
 -\frac{d(v_b - v_r)}{v_b - v_r} = \frac{2 dm_b}{m_r}
 \]
@@ -243,20 +253,20 @@ Solve for \( m_b \):
 \[
 \left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right| = e^{2 m_b / m_r}
 \]
-\[
-m_b = \frac{m_r}{2} \ln \left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right| \tag{5}
-\]
+\begin{equation}
+m_b = \frac{m_r}{2} \ln \left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right| 
+\end{equation}
 \subsection{Interpret the Absolute Value}   
 The absolute value accounts for the direction of velocities:
-- If \( v_b > v_{ri} \) and \( v_b > v_{rf} \), then \( v_b - v_{ri} \) and \( v_b - v_{rf} \) are positive, so:
+- If \( v_b > v_{ri} \) and \( v_b > v_{rf} \),  then \( v_b - v_{ri} \) and \( v_b - v_{rf} \) are positive, so:
 \[
 m_b = \frac{m_r}{2} \ln \left( \frac{v_b - v_{ri}}{v_b - v_{rf}} \right)
 \]
-- If \( v_{ri} \) or \( v_{rf} > v_b \), the relative velocity \( v_b - v_r \) changes sign, and we must ensure the physical context is consistent (e.g., balloons impart momentum in the direction that reduces \( v_r \) toward \( v_{rf} \)).
+\subsection{Compute Balloon to Rocket Mass Ratio, with a fudge factor for real world losses}
 
-We can then solve for the total balloon to rocket ratio, with a fudge factor e between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate \[
-\frac{m_r}{m_b} = \frac{2e}{ln(\frac{v_b-v_{ri}}{v_b-v_{rf}})}
-\]
+We can then solve for the total balloon to rocket ratio, with a fudge factor e between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate \begin{equation}
+\frac{m_r}{m_b} = \frac{2e}{ln(\frac{v_b-v_{ri}}{v_b-v_{rf}})}\label{eq:balloon_ratio}
+\end{equation}
 
 
 %Bibliography
