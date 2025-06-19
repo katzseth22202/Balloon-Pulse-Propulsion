@@ -148,6 +148,116 @@ Instead of using Starship, lunar volatiles extracted from the moon's permanently
 
 \subsection{Lunar Rockets without Lunar Rocket Fuel}
 A clever lunar orbit and externally pulsed propulsion can launch with 
+\appendix 
+\section{Derivation of Balloon Mass/Rocket Mass Continous Approximation}\label{sec:balloon_ratio_approximation}  We want to approximate the ratio of the total balloon mass \(m_b\) all traveling at velocity \(v_b\) for a sequence of balloons to push a rocket with mass \(m_r\) with initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   Let's initially naively assume every collision is perfectly elastic in one dimension.   We'll use calculus to get a  closed form expression by solving for a rocket  continously bombarded by infinitestimal balloons each with mass \(dm_b\).   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
+
+The initial velocities are
+\begin{itemize}
+\item Mass \( m_r \): Velocity \( v_r \).
+\item Balloon: Mass \( dm_b \), velocity \( v_b \).
+\end{itemize}
+After the collision, let:
+\begin{itemize}
+    \item Mass \( m_r \): Velocity \( v_r + dv_r \).
+    \item Balloon: Velocity \( v_b' \).
+\end{itemize}
+\subsection{By conservation of momentum} \[
+m_r v_r + dm_b v_b = m_r (v_r + dv_r) + dm_b v_b'
+\]
+Since \( dm_b \) is infinitesimal, we neglect higher-order terms involving \( (dm_b)^2 \). Rearrange:
+\[
+m_r v_r + dm_b v_b = m_r v_r + m_r dv_r + dm_b v_b'
+\]
+\[
+dm_b v_b = m_r dv_r + dm_b v_b'
+\]
+\[
+m_r dv_r = dm_b (v_b - v_b') \tag{1}
+\]  
+\subsection{By conservation of energy}:
+Since the collision is elastic, energy is conserved
+\[
+\frac{1}{2} m_r v_r^2 + \frac{1}{2} dm_b v_b^2 = \frac{1}{2} m_r (v_r + dv_r)^2 + \frac{1}{2} dm_b (v_b')^2
+\]
+Expand \( (v_r + dv_r)^2 \approx v_r^2 + 2 v_r dv_r \) (neglecting \( (dv_r)^2 \)), and since \( dm_b \) is small, the energy equation becomes:
+\[
+m_r v_r^2 + dm_b v_b^2 \approx m_r (v_r^2 + 2 v_r dv_r) + dm_b (v_b')^2
+\]
+Subtract \( m_r v_r^2 \) from both sides:
+\[
+dm_b v_b^2 \approx m_r 2 v_r dv_r + dm_b (v_b')^2
+\]
+\[
+2 m_r v_r dv_r \approx dm_b (v_b^2 - (v_b')^2)
+\]
+\[
+m_r v_r dv_r \approx dm_b \frac{v_b^2 - (v_b')^2}{2} \tag{2}
+\]
+Since \( v_b^2 - (v_b')^2 = (v_b - v_b')(v_b + v_b') \), we need \( v_b' \).
+\subsection{Velocity change of \(m_r\)}
+Substitute \( v_b' = 2 v_r - v_b \) into the momentum equation (1):
+\[
+m_r dv_r = dm_b (v_b - (2 v_r - v_b))
+\]
+\[
+m_r dv_r = dm_b (v_b - 2 v_r + v_b)
+\]
+\[
+m_r dv_r = dm_b (2 v_b - 2 v_r)
+\]
+\[
+m_r dv_r = 2 dm_b (v_b - v_r)
+\]
+\[
+dv_r = \frac{2 (v_b - v_r)}{m_r} dm_b \tag{4}
+\]
+This differential equation relates the change in velocity of \( m_r \) to the infinitesimal mass \( dm_b \) of the balloons hitting it.
+\subsection{Integrate over many collisions}
+The velocity of \( m_r \) changes from \( v_{ri} \) to \( v_{rf} \) as more balloons collide. Integrate equation (4):
+\[
+\int_{v_{ri}}^{v_{rf}} dv_r = \int_0^{m_b} \frac{2 (v_b - v_r)}{m_r} dm_b
+\]
+The left-hand side is:
+\[
+\int_{v_{ri}}^{v_{rf}} dv_r = v_{rf} - v_{ri}
+\]
+For the right-hand side, treat \( v_r \) as a function of the accumulated balloon mass \( m_b \). However, we need to express \( v_r \) in terms of \( m_b \). From equation (4):
+\[
+\frac{dv_r}{v_b - v_r} = \frac{2 dm_b}{m_r}
+\]
+Rewrite:
+\[
+-\frac{d(v_b - v_r)}{v_b - v_r} = \frac{2 dm_b}{m_r}
+\]
+Integrate both sides:
+- Left: \( \int_{v_b - v_{ri}}^{v_b - v_{rf}} -\frac{d(v_b - v_r)}{v_b - v_r} = \int_{v_{ri}}^{v_{rf}} \frac{dv_r}{v_b - v_r} \)
+\[
+= \left[ -\ln|v_b - v_r| \right]_{v_{ri}}^{v_{rf}} = \ln \left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right|
+\]
+- Right: \( \int_0^{m_b} \frac{2 dm_b}{m_r} = \frac{2 m_b}{m_r} \)
+Equate:
+\[
+\ln \left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right| = \frac{2 m_b}{m_r}
+\]
+Solve for \( m_b \):
+\[
+\left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right| = e^{2 m_b / m_r}
+\]
+\[
+m_b = \frac{m_r}{2} \ln \left| \frac{v_b - v_{ri}}{v_b - v_{rf}} \right| \tag{5}
+\]
+\subsection{Interpret the Absolute Value}   
+The absolute value accounts for the direction of velocities:
+- If \( v_b > v_{ri} \) and \( v_b > v_{rf} \), then \( v_b - v_{ri} \) and \( v_b - v_{rf} \) are positive, so:
+\[
+m_b = \frac{m_r}{2} \ln \left( \frac{v_b - v_{ri}}{v_b - v_{rf}} \right)
+\]
+- If \( v_{ri} \) or \( v_{rf} > v_b \), the relative velocity \( v_b - v_r \) changes sign, and we must ensure the physical context is consistent (e.g., balloons impart momentum in the direction that reduces \( v_r \) toward \( v_{rf} \)).
+
+We can then solve for the total balloon to rocket ratio, with a fudge factor e between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate \[
+\frac{m_r}{m_b} = \frac{2e}{ln(\frac{v_b-v_{ri}}{v_b-v_{rf}})}
+\]
+
 
 %Bibliography
 \bibliographystyle{unsrt}  
