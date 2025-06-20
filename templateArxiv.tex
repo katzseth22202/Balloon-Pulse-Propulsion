@@ -13,6 +13,7 @@
 \usepackage{microtype}      % microtypography
 \usepackage{siunitx}
 \usepackage{hyperref}
+\usepackage{ragged2e}
 \sisetup{per-mode=symbol}
 \usepackage{lipsum}
 \usepackage{parskip}
@@ -41,7 +42,8 @@
   \texttt{\{katzseth22202@gmail.com} \\
 }
 
-
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}{>{\RaggedRight\arraybackslash}c}
 \begin{document}
 \maketitle
 
@@ -52,7 +54,7 @@ But here's the bittersweet truth:  While our screens flicker with progress, the 
 
 \textbf{Dude, Where's my spaceeship?}
 
-This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   \begin{figure}[h]
+This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
     \caption{Balloons from a first rocket (not shown) crash into a second target rocket and provide propulsion \cite{earth_image}}
@@ -63,21 +65,19 @@ Consider two rockets.   The first deploys a series of fast moving low density ba
 
 Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for externally pulsed propulsion.
 
-\begin{table}
+\begin{table}[htpb]
     \centering
-\caption{A Checklist of Grand Challenges Externally Pulsed Propulsion Can Solve}
-\label{tab:applications}
-    \begin{tabularx}{\textwidth}{|c|X|}\hline
-         Suborbital Transit& We'll create a viable suborbital travel vehicle allowing passengers to take off from normal airport runways and reach anywhere in the world in less than 2 hours.   Noise pollution near population centers will be no worse than it is with conventional aircraft.\\\hline
-         Rocket Revolution& We'll end the tyranny of the rocket equation.   We'll still use small rockets, but giant rockets with high propellant mass fraction will no longer be needed to reach orbit.   \\\hline
-         Lunar Lift-off& Launching from the moon may still require volatiles, but not the more difficult task of making and storing high performance rocket fuel.\\ \hline
- Jurassic Dark&As a side effect of our advances, we'll create the field of lunar paleontology and discover concrete evidence for how life originated on Earth.  We'll build a genetic record of extinct species from ancient geological periods, like the dinosaurs. \\\hline
- Straw Ways to Heaven&We can construct terrestrial megastructures, extending from the ground to the edge of space, without relying on advanced magnetic technologies such as Lofstrom Launch Loops \cite{lofstrom_loop}. A particularly ambitious yet beneficial example might be a vacuum tube connecting Earth and space, a "Straw Way to Heaven."\\\hline
- Carbon Cancelled&We will solve our energy problems with carbon negative fuel that absorbs the carbon dioxide produced by industry, all while using minimal land and resources\\\hline
- Moon mining&We'll develop in-situ resource utilization (ISRU) technology, first on our moon and then on icy moons like Saturn's moon Phoebe\\\hline
+    \caption{A Checklist of Grand Challenges Externally Pulsed Propulsion Can Solve}
+    \label{tab:applications}
+    \begin{tabularx}{\textwidth}{|c|L|}\hline 
+        \textbf{Suborbital Transit} & We'll create a viable suborbital travel vehicle allowing passengers to take off from normal airport runways and reach anywhere in the world in less than 2 hours. Noise pollution near population centers will be no worse than it is with conventional aircraft.\\\hline
+        \textbf{Rocket Revolution} & We'll end the tyranny of the rocket equation. We'll still use small rockets, but giant rockets with high propellant mass fraction will no longer be needed to reach orbit.\\\hline
+        \textbf{Lunar Lift-off} & Launching from the moon may still require volatiles, but not the more difficult task of making and storing high performance rocket fuel.\\ \hline
+        \textbf{Jurassic Dark} & As a side effect of our advances, we'll create the field of lunar paleontology and discover concrete evidence for how life originated on Earth. We'll build a genetic record of extinct species from ancient geological periods, like the dinosaurs. \\\hline
+        \textbf{Straw Ways to Heaven} & We can construct terrestrial megastructures, extending from the ground to the edge of space, without relying on advanced magnetic technologies such as Lofstrom Launch Loops \cite{lofstrom_loop}. A particularly ambitious yet beneficial example might be a vacuum tube connecting Earth and space, a "Straw Way to Heaven."\\\hline
+        \textbf{Carbon Cancelled} & We will solve our energy problems with carbon negative fuel that absorbs the carbon dioxide produced by industry, all while using minimal land and resources\\\hline
+        \textbf{Moon mining} & We'll develop in-situ resource utilization (ISRU) technology, first on our moon and then on icy moons like Saturn's moon Phoebe\\\hline
     \end{tabularx}
-    
-    
 \end{table}
 
 Note, this paper summarizes some of the ideas in the blog ``Aim Is All You Need"\cite{aim2024}.
@@ -98,14 +98,19 @@ Before we explore the applications of externally pulsed propulsion referenced in
 A key question is the ratio of the total external balloon mass required to propel the rocket mass to its final velocity. Project Orion concluded that these pusher plate collisions could be opaque \cite{orion_reflections}, suggesting relatively little kinetic energy is lost to heating the pusher plate and thus a more elastic collision. Furthermore, a curved, roughly parabolic pusher plate should ensure high collimation of the reflected gas. Therefore, we use a high estimated fudge factor of e=0. in the balloon ratio equation derived in Equation \autoref{eq:balloon_ratio}.
 
 
-\begin{table}[h]
+\begin{table}[htpb] % tabularx should be inside a table environment
     \centering
     \caption{Mass Ratio of balloon to rocket with fudge factor \(e=0.8\)}
     \label{tab:mass_scenarios}
-    \begin{tabularx}{\textwidth}{|c|c|c|c|X|}\hline 
-        \textbf{Rocket \(v_{rf}\) (\SI{}{\km\per\second})} & \textbf{Balloon \(v_b\) (\SI{}{\km\per\second})} & \textbf{Rocket \(v_{ri}\) (\SI{}{\km\per\second})} & \textbf{Ratio} & \textbf{Scenario} \\\hline
-        7.784 & 10.916 & 0  & 1.28           & Eccentric balloons with apogee at lunar distance pushes rocket to minimal low Earth orbit\\\hline
-        0 & 7.784 & 7.784 & 2.308 & Decelerate the rocket for powered reentry with retrograde balloons in low orbit \\\hline
+    \begin{tabularx}{\textwidth}{|c|c|c|c|L|}\hline % Remove the extra { on this line
+        \textbf{\(v_{rf}\) (\SI{}{\km\per\second})} & \textbf{\(v_b\) (\SI{}{\km\per\second})} & \textbf{\(v_{ri}\) (\SI{}{\km\per\second})} & \textbf{\(\frac{m_r}{m_b}\)} & \textbf{Scenario} \\\hline
+        7.784 & 10.916 & 0 & 1.28 & Eccentric balloons with apogee at lunar distance pushes rocket to minimal low Earth orbit\\\hline
+        0 & 7.784 & 7.784 & 2.308 & Decelerate intercity rocket for powered reentry with retrograde balloons in low orbit \\\hline
+        0 & 10.916 & 7.784 & 2.97 & Decelerate intercity rocket for powered reentry with retrograde balloons from lunar orbit \\\hline
+        21.518 & 69.277 & 0 & 4.30 & Balloons approach Earth from Jupiter retrograde Hohmann trajectory and push the object to escape velocity and then to a periapsis near Parker Space probe \\\hline
+        42.673 & 69.277 & 0 & 1.671 & Balloons approach Earth from Jupiter retrograde Hohmann trajectory and push the object to escape velocity and then to a periapsis near Parker Space probe \\\hline
+        3 & 6.421 & 0 & 2.54 & Launch balloons from the moon to trans-lunar injection orbit with low periapsis on Earth \\\hline
+        0 & 2.58 & 2.38 & 2.17 & Decelerate trans-lunar payloads to land on the moon \\\hline
     \end{tabularx}
 \end{table}
 
@@ -125,7 +130,7 @@ Safety and reliability will continue to be overarching concerns, suggesting exce
 Once rockets start ferrying astronauts, reliability becomes even more emphatically non-negotiable. Fully stacked, Starship weighs 5,000 tons at launch \cite{starship}, yet its empty mass is only 300 tons. That’s an awfully thin soda can to entrust with billion-dollar satellites or human passengers.
 
 By contrast, a suborbital rocket that merely reaches 200 kilometers in altitude might have a propellant mass fraction under 50 percent. This greater structural margin allows for more robust, reliable engines and extensive payload protection systems. Of course, such a suborbital rocket cannot reach orbit on its own.  It needs Starship to "push" it with externally pulsed propulsion.
-\begin{figure}[h]
+\begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{images/suborbital_push_cartoon.png}
     \caption{A fun and of course very technically accurate cartoon about a suborbital rocket's delta-v limitations}
@@ -162,13 +167,13 @@ Still, it would be disappointing if we can't make suborbital travel mainstream. 
 
 \subsection{Lunar Volatiles for Externally Pulsed Propulsion}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth]{images/Water Drawing From Moon.jpg}
     \caption{Lunar launched balloons replace Starship launched balloons \cite{earth_image} \cite{moon_image}}
     \label{fig:lunar_launched_balloons}
 \end{figure}
-Instead of using Starship, lunar volatiles extracted from the moon's permanently shadowed regions could fuel balloons our propulsive balloons. As shown in \autoref{fig:lunar_launched_balloons}, these balloons could be sent into a trans-lunar injection orbit that intersects our terrestrial suborbital rocket plane. Although balloon skins and electronics would likely still be sourced from Earth, volatiles constitute the majority of the balloon's mass. One approach to launching these balloons into orbit involves using rockets powered by lunar-derived propellants. The space community is enthusiastic about water electrolysis to produce and store cryogenic fuel for lunar rockets \cite{nasa_water}. However, this process is energy-intensive and requires complex cryogenic infrastructure, particularly for hydrogen fuel. Moreover, a reusable lunar rocket designed for repeated landings would require approximately 6 \si{km/s} of delta-v, necessitating propellant mass fractions of about 75\% for hydrogen or 81\% for methane. While these figures are an improvement over Earth-launched rockets, the high propellant mass fractions remain a significant challenge.   
+Instead of using Starship, lunar volatiles extracted from the moon's permanently shadowed regions could fuel balloons our propulsive balloons. As shown in \autoref{fig:lunar_launched_balloons}, these balloons could be sent into a trans-lunar injection orbit that intersects our terrestrial suborbital rocket plane. Although balloon skins and electronics would likely still be sourced from Earth, volatiles constitute the majority of the balloon's mass. One approach to launching these balloons into orbit involves using rockets powered by lunar-derived propellants. The space community is enthusiastic about water electrolysis to produce and store cryogenic fuel for lunar rockets \cite{nasa_water}. However, this process is energy-intensive and requires complex cryogenic infrastructure, particularly for hydrogen fuel. Moreover, a reusable lunar rocket designed for repeated landings would require approximately \SI{6}{\km\per\second} of delta-v, necessitating propellant mass fractions of about 75\% for hydrogen or 81\% for methane. While these figures are an improvement over Earth-launched rockets, the high propellant mass fractions remain a significant challenge.   
 
 \subsection{Lunar Rockets without Lunar Rocket Fuel}
 A clever lunar orbit and externally pulsed propulsion can launch with 
@@ -198,7 +203,7 @@ dm_b v_b = m_r dv_r + dm_b v_b'
 m_r dv_r = dm_b (v_b - v_b') \label{eq:momentum}
 \end{equation}
 
-\subsection{Velocity change of \(m_r\)}
+\subsection[Velocity change of rocket mass]{Velocity change of \(m_r\)}
 For an elastic collision
 \begin{equation}
     v_b'\ = \frac{2m_r}{m_r+m_b}v_r + \frac{m_b-m_r}{m_r+m_b}v_b \label{eq:vb_prime_full_momentum}
