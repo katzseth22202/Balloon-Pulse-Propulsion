@@ -61,11 +61,11 @@ This paper's goal is to enable our progress in physical realms to catch up with 
     \label{fig:balloon_impact}
 \end{figure}
 
-Consider two rockets.   The first deploys a series of fast moving low density balloons with miniaturized rockets capable of small navigation adjustments.  As shown in \autoref{fig:balloon_impact} these balloons precisely follow a path to sequentially crash  into a separate  target rocket.   These precise collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications.    
+Consider two rockets.   The first deploys a series of fast moving low density balloons with miniaturized rockets capable of small navigation adjustments.  As shown in \autoref{fig:balloon_impact} these balloons precisely follow a path to sequentially crash  into a separate  target rocket.   These precise collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}).    
 
 Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for externally pulsed propulsion.
 
-\begin{table}[htpb]
+\begin{table}[!htpb]
     \centering
     \caption{A Checklist of Grand Challenges Externally Pulsed Propulsion Can Solve}
     \label{tab:applications}
@@ -84,21 +84,24 @@ Note, this paper summarizes some of the ideas in the blog ``Aim Is All You Need"
 \end{abstract}
 
 \section{Introduction}
-Project Orion, conceived in the 1950s, remains the sole propulsion method based on mature contemporary technology that offers both high specific impulse and high thrust \cite{projorion}. Its mechanism involved propelling a spacecraft by directing hypervelocity plasma from nuclear explosions onto a pusher plate. Despite its theoretical promise, Orion faced insurmountable challenges related to political feasibility, radioactive fallout, and the impractical mass requirements stemming from the high minimum yield of nuclear explosions. Nevertheless, Orion conceptually validated the physics of hypervelocity pulsed propulsion.
+Project Orion, conceived in the 1950s, remains the sole propulsion method based on mature contemporary technology that simultaneously offers both specific impulse and thrust superior to chemical rockets\cite{projorion}. Its mechanism involved propelling a spacecraft by directing hypervelocity plasma from nuclear explosions onto a pusher plate. Despite its theoretical promise, Orion faced insurmountable challenges related to political feasibility, radioactive fallout, and the impractical mass requirements stemming from the high minimum yield of nuclear explosions. Nevertheless, Orion conceptually validated the physics of hypervelocity pulsed propulsion.
 
-Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas balloons impacting a rocket's pusher plate. These balloons can be downscaled to practical sizes, and unlike nuclear explosions, small hypervelocity impacts could potentially be efficiently contained within a pulsed reaction chamber.
+Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas balloons sequentially impacting a rocket's pusher plate. These balloons can be downscaled to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed reaction chamber.
 
 Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloons could achieve energy densities and specific impulses comparable to Project Orion. This approach wouldn't demand nuclear or massive photovoltaic power, and it would enable lunar launches that use polar volatiles directly without needing to produce rocket fuel.     
 
-Traditional control and localization techniques, cube sat formation flying and navigation algorithms and recent neural network advancements raise the probability of achieving the extremely precise navigation for externally pulsed propulsion.
+Recent cube sat formation flying navigation algorithms and neural network advancements raise the probability of achieving the extremely precise navigation for externally pulsed propulsion.
 
 \section{Externally Pulsed Propulsion  Fundamentals}
-Before we explore the applications of externally pulsed propulsion referenced in \autoref{tab:applications}, let's first establish its core fundamentals. This paper provides a back of the napkin analysis aimed at demonstrating the idea's initial feasibility. Rigorous high fidelity analysis can follow in future work.
+To lay the groundwork for understanding the applications of externally pulsed propulsion referenced in \autoref{tab:applications}, let's sketch out some conceptual details. This paper presents a preliminary "back-of-the-envelope" analysis, intended to establish the concept's potential. More rigorous, high-fidelity analyses are reserved for future work.
 \subsection{Mass Fraction of Balloon to Rocket Mass}
-A key question is the ratio of the total external balloon mass required to propel the rocket mass to its final velocity. Project Orion concluded that these pusher plate collisions could be opaque \cite{orion_reflections}, suggesting relatively little kinetic energy is lost to heating the pusher plate and thus a more elastic collision. Furthermore, a curved, roughly parabolic pusher plate should ensure high collimation of the reflected gas. Therefore, we use a high estimated fudge factor of e=0. in the balloon ratio equation derived in Equation \autoref{eq:balloon_ratio}.
+For externally pulsed propulsion to be a viable option, the ratio of balloon propulsion mass to rocket mass must be low for relevant rocket velocity changes. We develop a closed-form approximation for this ratio ( \autoref{eq:balloon_ratio} in {\autoref{sec:balloon_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," \(e\).  Justification for a high \(e\) comes from Project Orion's findings\cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a relatively high  \(e=0.8\).   
+
+Relevant mass ratios and mission scenarios are summarized in \autoref{tab:mass_scenarios}. This table clearly shows that externally pulsed propulsion can lift significant mass into orbit. For instance, if a reusable rocket like SpaceX Starship \cite{starship} could launch 25 tons of balloons into a trans-lunar orbit, they then propel a 32 ton rocket into low Earth orbit. This exceeds the Space Shuttle's maximum capacity \cite{space_shuttle_program} or the Zero Fuel Mass of smaller regional jets like the Embraer E170 \cite{embraer_e170}.
 
 
-\begin{table}[htpb] % tabularx should be inside a table environment
+
+\begin{table}[!htpb] % tabularx should be inside a table environment
     \centering
     \caption{Mass Ratio of balloon to rocket with fudge factor \(e=0.8\)}
     \label{tab:mass_scenarios}
