@@ -12,6 +12,7 @@
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 \usepackage{siunitx}
+\usepackage{titling}
 \usepackage{hyperref}
 \usepackage{ragged2e}
 \sisetup{per-mode=symbol}
@@ -31,11 +32,23 @@
 \fancyhead[LO]{Aim Is All You Need}
 % \fancyhead[RE]{Firstauthor and Secondauthor} % Firstauthor et al. if more than 2 - must use \documentclass[twoside]{article}
 
-
-
+% Define the subtitle command
+\pretitle{%
+  \begin{center}
+  \LARGE
+}
+\posttitle{%
+  \par\vskip0.5em%
+  \begin{large}
+  \textsl{\thesubtitle}%  This prints the subtitle
+  \end{large}\par\end{center}%
+  \vskip1.5em
+}
+\newcommand{\subtitle}[1]{\def\thesubtitle{#1}}
   
 %% Title
 \title{Aim Is All You Need}
+\subtitle{A Conceptual Introduction to Externally Pulsed Propulsion}
 
 \author{
   Seth Katz \\
@@ -64,7 +77,7 @@ This paper's goal is to enable our progress in physical realms to catch up with 
 
 Consider two rockets.   The first deploys a series of fast moving low density balloons with miniaturized rockets capable of small navigation adjustments.  As shown in \autoref{fig:balloon_impact} these balloons precisely follow a path to sequentially crash  into a separate  target rocket.   These precise collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}).    
 
-Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for externally pulsed propulsion.
+Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for this externally pulsed propulsion.
 
 \begin{table}[!htpb]
     \centering
@@ -90,11 +103,11 @@ Project Orion, conceived in the 1950s, remains the sole propulsion method based 
 
 Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas balloons sequentially impacting a rocket's pusher plate. These balloons can be downscaled to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed reaction chamber.
 
-Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloons could achieve high energy densities and specific impulses.  Recent cube sat formation flying navigation and neural network advancements make the extremely precise navigation for this externally pulsed propulsion viable.  This paper presents a preliminary "back-of-the-envelope" analysis, intended to establish the concept's potential. More rigorous, high-fidelity analyses are reserved for future work.
+Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloons could achieve high energy densities and specific impulses.  Recent cube sat formation flying and neural network advancements make the extremely precise navigation for this externally pulsed propulsion viable.  This paper presents a preliminary "back of the envelope" analysis, intended to establish the concept's potential. More rigorous, high fidelity analyses are reserved for future work.
 
 \section{Groundwork and Prior Work for Externally Pulsed Propulsion}
 \subsection{Navigation for Externally Pulsed Propulsion}
-Millimeter-accuracy CubeSat formation flying is rapidly advancing. The European Space Agency's (ESA) Proba-3 mission recently demonstrated this capability by creating artificial solar eclipses with a precise two-CubeSat formation \cite{esa_proba_3}. The Stanford Space Rendezvous Laboratory's VISORS mission, nearing flight readiness (as of June 2025), will further showcase precise formation flying with an increased number of spacecraft \cite{guffanti2023autonomous}.  
+Millimeter accuracy CubeSat formation flying is rapidly advancing. The European Space Agency's (ESA) Proba-3 mission recently demonstrated this capability by creating artificial solar eclipses with a precise two CubeSat formation \cite{esa_proba_3}. The Stanford Space Rendezvous Laboratory's VISORS mission, nearing flight readiness (as of June 2025), will further showcase precise formation flying with an increased number of spacecraft \cite{guffanti2023autonomous}.  
 
 Our hypervelocity balloons employ formation flying algorithms for precise positioning. We want to maximize gas mass and minimize the solid mass for mini-thrusters and electronics. To achieve this, a few coordinator CubeSats with enhanced computing and power will measure balloon positions and relay adjustment instructions.  As shown in \autoref{fig:coordinator-nodes}, these heavier coordinator nodes fly along with the balloons but do not impact the target rocket.  We keep the electronics on the balloons as simple and low mass as possible.   Each balloon, carrying perhaps a maximum of 100 grams of solid mass for sensors, power, mini-rockets, microcontrollers, and low-bandwidth communication with coordinator nodes, will detach its solid components shortly before hypervelocity rocket impact so they don't damage the target rocket.   Alternatively, the solids can fly through a small aperture in the pusher plate. Given that thousands of balloons are needed per mission, mass production will reduce costs.  
 
@@ -109,7 +122,7 @@ Equipped with a high performance rocket based reaction control system, the targe
 \subsection{Mass Fraction of Balloon to Rocket Mass}
 For externally pulsed propulsion to be a viable option, the ratio of balloon propulsion mass to rocket mass must be low for relevant rocket velocity changes. We develop a closed-form approximation for this ratio ( \autoref{eq:balloon_ratio} in {\autoref{sec:balloon_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," \(e\).  Justification for a high \(e\) comes from Project Orion's findings \cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a relatively high  \(e=0.8\).   
 
-Relevant mass ratios and mission scenarios are summarized in \autoref{tab:mass_scenarios}. This table clearly shows that externally pulsed propulsion can lift significant mass into orbit. For instance, if a reusable rocket like SpaceX Starship \cite{starship} lifts 25 tons of balloons into a trans-lunar orbit, they can propel a 32 ton target craft into low Earth orbit. This exceeds the Space Shuttle's maximum capacity \cite{space_shuttle_program} or the Zero Fuel Mass of smaller regional jets like the Embraer E170 \cite{embraer_e170}.
+Relevant mass ratios and mission scenarios are summarized in \autoref{tab:mass_scenarios}. This table clearly shows that externally pulsed propulsion can lift significant mass into orbit. For instance, if a reusable rocket like SpaceX Starship \cite{starship} lifts 25 tons of balloons into a trans-lunar orbit, they can propel a 32 ton target craft into low Earth orbit. This exceeds the Space Shuttle's maximum capacity \cite{space_shuttle_program} or the zero fuel mass of smaller regional jets like the Embraer E170 \cite{embraer_e170}.
 
 \begin{table}[!htpb] % tabularx should be inside a table environment
     \centering
@@ -140,7 +153,7 @@ The solid components of each balloon risk becoming space debris. To avoid this, 
 
 \begin{itemize}
 \item The J2 perturbation induces a changing argument of periapsis. Any balloon orbit designed to avoid specific critical angles will eventually have a periapsis over the equator.  Since the Earth is wider at the equator, periapsis will be at a lower atmospheric altitude with much more drag.
-\item If our balloon interceptions occur at night, subsequent daytime interceptions will be over a warmer atmosphere with higher drag at the same altitude.
+\item If our balloon interceptions occur at night, subsequent daytime periapsis will be over a warmer atmosphere with higher drag at the same altitude.
 \end{itemize}
 
 \subsection{Balloon Deployment Details for Low Earth Orbit Scenario}
@@ -149,7 +162,7 @@ Let's consider the complexities of launching target rockets into Low Earth Orbit
 It's crucial to acknowledge that these balloons will not follow strictly identical Keplerian orbits. As the target rocket accelerates, the optimal balloon interception point moves along with it, so that successive balloons have slightly different orbital elements.
 For low-density balloons, solar radiation pressure will significantly distort their orbits. To simplify orbit planning and maintain consistent  effects across the fleet, it's ideal for each balloon to remain outside the shadow of the others. This may necessitate slight variations in orbital parameters, such as inclination, for nearby balloons. The micro thrusters on each balloon  make corrections for unmodelled perturbations.  We still ensure each balloon achieves the correct interception position with the target rocket.   
 
-Fortunately, strategically deploying our balloons near apoapsis can minimize the delta-v required for these inclination changes. Apoapsis balloon deployment also minimizes the delta-v for appropriate balloon spacing. The small delta-v changes required at apoapsis should enable practical designs for a very precise mechanical balloon launcher onboard our balloon deployment rocket.
+Fortunately, strategically deploying our balloons near apoapsis can minimize the $\Delta v$ required for these inclination changes. Apoapsis balloon deployment also minimizes the $\Delta v$ for appropriate balloon spacing. The small $\Delta v$ changes required at apoapsis should enable practical designs for a very precise mechanical balloon launcher onboard our balloon deployment rocket.
 
 Low density gas would consume too much volume in a balloon deployment vessel.   Instead, the balloons can be frozen and thaw once deployed from the rocket.  
 \section{To The Moon by Water Balloon.  The Business Case for Externally Pulsed Propulsion}   
@@ -169,7 +182,7 @@ By contrast, a suborbital rocket that merely reaches 200 kilometers in altitude 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{images/suborbital_push_cartoon.png}
-    \caption{A fun and of course very technically accurate cartoon about a suborbital rocket's delta-v limitations}
+    \caption{A fun and of course very technically accurate cartoon about a suborbital rocket's $\Delta v$ limitations}
     \label{fig:suborbital-cartoon}
 \end{figure}
 
@@ -195,7 +208,7 @@ However, two solutions address the liquid oxygen challenge:
 A formation of propulsion balloons launched in an eccentric Keplerian orbit could only propel the  rocket plane on trajectories that bisect the Earth. Since most urban destinations would not align with such trajectories, the rocket plane needs to fire an adjustment burn at least once to reach the destination. Alternatively, a second set of propulsion balloons could intercept the rocket plane mid-flight and adjusting it's trajectory. Furthermore, to avoid a sonic boom upon descent, the plane must decelerate before atmospheric reentry. This deceleration could be provided by yet another set of propulsion balloons that were traveling in a retrograde orbit relative to the plane. Notably, these reentry balloons could be in a circular low Earth orbit rather than a high eccentricity orbit, significantly reducing the mass required.
 
 \section{I Love ISRU.  Cheaper Externally Pulsed Propulsion \textit{Without} Giant Reusable Rockets}
-For externally pulsed propulsion to achieve genuine economic competitiveness, the cost of launching its propulsion balloons must be exceptionally low.  The rocket plane must be robust enough to guarantee on-time takeoffs and avoid missing its initial balloon rendezvous. Even highly reusable rockets may prove too expensive, limiting this technology primarily to the very high-end private luxury aviation market. While luxury aviation customers typically prioritize flexibility, balloon-propelled flights necessitate advance scheduling.  Despite these limitations, the potential market for affluent travel between cities like Dubai and Dallas is likely at least an order of magnitude larger than the satellite market.
+For externally pulsed propulsion to achieve genuine economic competitiveness, the cost of launching its propulsion balloons must be exceptionally low.  The rocket plane must be robust enough to guarantee on-time takeoffs and avoid missing its initial balloon rendezvous.  Rocket acceleration must be limited for infants and other susceptible passengers, further increasing costs and $\Delta v$.  Even highly reusable rockets may prove too expensive, limiting this technology primarily to the very high-end private luxury aviation market. While luxury aviation customers typically prioritize flexibility, balloon-propelled flights necessitate advance scheduling.  Despite these limitations, the potential market for affluent travel between cities like Dubai and Dallas is likely at least an order of magnitude larger than the satellite market.
 
 Still, it would be disappointing if we can't make suborbital travel mainstream.   If we can launch our balloons without giant rockets, we can reduce cost.   After all, "the best part is no part," \cite{best_part_no_part} and a reusable rocket is one heck of a part.
 
@@ -207,17 +220,21 @@ Still, it would be disappointing if we can't make suborbital travel mainstream. 
     \caption{Lunar launched balloons replace Starship launched balloons \cite{earth_image} \cite{moon_image}}
     \label{fig:lunar_launched_balloons}
 \end{figure}
-Instead of using Starship, lunar volatiles extracted from the moon's permanently shadowed regions could fill our propulsive balloons. As shown in \autoref{fig:lunar_launched_balloons}, these balloons could be sent into a trans-lunar injection orbit that intersects our terrestrial suborbital rocket plane. Although balloon skins and electronics would likely still be sourced from Earth, volatiles constitute the majority of the balloons' mass. One approach to launching these balloons into orbit involves using rockets powered by lunar-derived propellants. The space community is enthusiastic about water electrolysis to produce and store cryogenic fuel for lunar rockets \cite{nasa_water}. However, this process is energy-intensive and requires complex cryogenic infrastructure, particularly for hydrogen fuel. Moreover, a reusable lunar rocket designed for repeated landings would require approximately \SI{6}{\km\per\second} of delta-v, necessitating propellant mass fractions of about 75\% for hydrogen or 81\% for methane. While these figures are an improvement over Earth-launched rockets, the high propellant mass fractions remain a significant challenge.   
+Instead of using Starship, lunar volatiles extracted from the moon's permanently shadowed regions could fill our propulsive balloons. As shown in \autoref{fig:lunar_launched_balloons}, these balloons could be sent into a trans-lunar injection orbit that intersects our terrestrial suborbital rocket plane. Although balloon skins and electronics would likely still be sourced from Earth, volatiles constitute the majority of the balloons' mass. One approach to launching these balloons into orbit involves using rockets powered by lunar-derived propellants. The space community is enthusiastic about water electrolysis to produce and store cryogenic fuel for lunar rockets \cite{nasa_water}. However, this process is energy-intensive and requires complex cryogenic infrastructure, particularly for hydrogen fuel. Moreover, a reusable lunar rocket designed for repeated landings would require approximately \SI{6}{\km\per\second} of $\Delta v$, necessitating propellant mass fractions of about 75\% for hydrogen or 81\% for methane. While these figures are an improvement over Earth-launched rockets, the high propellant mass fractions remain a significant challenge.   
 
-\subsection{Lunar Rockets without Lunar Rocket Fuel}
-Instead of launching our lunar volatiles towards Earth with conventional rocket fuel, we launch off the moon using the same externally pulsed propulsion we've been discussing for terrestrial launches.   A rocket launched with external pulsed propulsion from the lunar surface into a trans lunar injection orbit can burn its engines at periapsis around Earth.  Due to the Oberth effect a small burn near Earth returns the rocket to the moon with a significant velocity change.   These returning balloons can push a new, more massive rocket filled with fresh volatiles off the moon, and then we repeat the cycle for exponential growth in balloon launch mass capacity.   We've reduced combustible fuel requirements by burning near Earth.
+\subsection{Lunar Rockets without Lunar Rocket Fuel} \label{sec:lunar_rockets_no_fuel}
+Instead of launching our lunar volatiles towards Earth with conventional rocket fuel, we launch off the moon using the same externally pulsed propulsion we've been discussing for terrestrial launches.   A rocket launched with externally pulsed propulsion from the lunar surface into a trans lunar injection orbit can burn its engines at periapsis around Earth.  Due to the Oberth effect, a small burn near Earth returns the rocket to the moon with a large velocity change.  As the rocket approaches the moon, it deploys its payload of balloons previously filled with lunar volatiles.  These returning balloons can push a new, more massive rocket filled with fresh volatiles off the moon.   We can then repeat this  cycle for exponential growth in lunar balloon launch mass capacity.   We've reduced combustible fuel requirements by burning our rockets near Earth.
 
-However, we ideally don't want to make any chemical rocket fuel at all.   Let's again use external propulsion to launch our balloons into a trans-lunar orbit, as before.   Then we launch a second set of balloons into a retrograde orbit.   Using the millimeter precision navigation techniques we've discussed, we collide these retrograde balloons with the more massive prograde balloons the main rocket is carrying.  We trap the exploding gas from these collisions in a pulsed reaction chamber and redirect this gas for thrust.    
+However, we ideally don't want to make any chemical rocket fuel at all.   Let's again use external propulsion to launch our balloon deployment rocket from the lunar surface into a trans-lunar orbit.   We also launch a second set of balloons from the lunar surface into a retrograde trans-lunar orbit.   Using the millimeter precision navigation techniques we've discussed, we sequentially collide these retrograde balloons with more massive prograde balloons the main rocket is carrying.  We trap the exploding gas from these collisions in a pulsed reaction chamber and redirect this gas for thrust.    
 
-Suppose  \(m_{rb}=\frac{m_{pb}}{3}\) where \(m_{rb}\) is the mass of a retrograde balloon and \(m_{pb}\) is the mass of a prograde balloon on the main rocket we're trying to propel.   If they collide at \SI{11}{\kilo\meter\per\second}, then the gas can be expelled at up to \SI{11}{\kilo\meter\per\second} for an effective delta-v = \SI {5.5}{\kilo\meter\per\second} after subtracting momentum lost when the retrograde balloon impact is accounted for.  Suppose this pulsed reaction has significant real world losses for an effective delta-v around \SI {3}{\kilo\meter\per\second}.   If the main rocket accelerates at it's Earth periapsis with a burn of \SI{1.5226}{\kilo\meter\per\second} it will reach the moon at \SI{6.42}{\kilo\meter\per\second}.   That's enough to start an exponential growth cycle where each loop around the moon launches about 1.6 times the starting mass.   If we do this once per month, we have increased our initial launch mass capacity by a factor of 1 million in only about 2.5 years.
+If our colliding balloons each travel at \SI{11}{\kilo\meter\per\second}, then from \autoref{eq:max_m_rb} derived in \autoref{sec:dv_effective},  the maximum theoretical combined effective \(\Delta v = \frac{1}{2}v = \SI {5.5}{\kilo\meter\per\second}\) .  Suppose this pulsed reaction has significant real world losses for an effective $\Delta v$ = \SI {3}{\kilo\meter\per\second}.   If the main rocket accelerates at it's Earth periapsis with a burn of \SI{1.5226}{\kilo\meter\per\second} it will reach the moon at \SI{6.42}{\kilo\meter\per\second}.   That's enough to start an exponential growth cycle where each loop around the moon launches about 1.6 times the starting mass.   If we do this once per month, we have increased our initial launch mass capacity by a factor of 1 million in only about 2.5 years. 
 
 \subsection{Lunar Oxygen Has Mass And That's All It Needs}
-Lunar volatiles like water ice are ideal for filling balloons, but they are scarce.   However, oxygen is very common in lunar surface minerals.   Using solar energy and mining rovers derived from platforms like the IPex Pilot Excavator \cite{ipex_pilot_excavator}, we can produce oxygen.  On the volatiles depleted moon, finding something to burn oxygen with is hard.   However, externally pulsed propulsion does not require oxygen \textit{combustion}, just gas momentum.  In shadowed craters or artificial shade, lunar derived oxygen will liquify and perhaps even solidify for storage.   We use some of our lunar balloons to launch solar panels, electronics, pulsed reaction chambers, and other advanced components from Earth to the moon.   We can use externally pulsed propulsion to decelerate them at the moon with balloons launched from the moon's surface.  This deceleration minimizes conventional rocket fuel required for lunar landings.  We use the rest of our lunar balloons to exponentially grow our balloon mass capacity in orbit.  Even though lunar regolith will likely degrade rovers, solar concentrator, and solar panels faster than they would degrade on Earth, they may produce propulsion at costs that make hypersonic travel scalable at competitive costs.
+Lunar volatiles like water ice are ideal for filling balloons, but they are scarce.   However, oxygen is very common in lunar surface minerals.   Using solar energy and mining rovers derived from platforms like the IPex Pilot Excavator \cite{ipex_pilot_excavator}, we can produce oxygen.  On the volatiles depleted sunlit lunar surface, finding something to burn oxygen with for rocket propulsion is hard.   However, externally pulsed propulsion does not require oxygen combustion, just gas momentum.  In shadowed craters or artificial shade, lunar derived oxygen will liquify and perhaps even solidify for storage.  
+
+We use some of our lunar balloons for the externally pulsed propulsion to lift terrestrial suborbital supply rockets into low Earth orbit.  These rockets then use conventional engines to gain \(\Delta v\) so they can resupply our lunar surface operations.   When they reach the moon, we also use externally pulsed propulsion to decelerate these supplies for lunar landing.  The deceleration balloons would previously have been launched from the moon's surface into an eccentric lunar orbit opposite to the incoming supplies' velocity.   We can optionally reduce terrestrial resupply requirements by embracing basic lunar manufacturing using metals like iron that are byproducts of lunar oxygen production.  These lunar metals could be shaped into pusher plate and pulsed reaction chamber components.  
+
+We use the rest of our lunar balloons to exponentially grow our balloon mass capacity in orbit using the Oberth cycle discussed in \autoref{sec:lunar_rockets_no_fuel}.  Even though lunar regolith will likely degrade machinery somewhat faster than equipment would degrade on Earth, regolith resistant machines  may still enable propulsion at costs that make hypersonic travel scalable at competitive costs.
 
 \appendix 
 \section{Derivation of Balloon Mass/Rocket Mass Continous Approximation}\label{sec:balloon_ratio_approximation}  We want to approximate the ratio of the total balloon mass \(m_b\) all traveling at velocity \(v_b\) for a sequence of balloons to push a rocket with mass \(m_r\) with initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   Let's initially naively assume every collision is perfectly elastic in one dimension.   We'll use calculus to get a  closed form expression by solving for a rocket  continously bombarded by infinitestimal balloons each with mass \(dm_b\).   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
@@ -320,7 +337,34 @@ We can then solve for the total balloon to rocket ratio, with a fudge factor e b
 \frac{m_r}{m_b} = \frac{2e}{ln(\frac{v_b-v_{ri}}{v_b-v_{rf}})}\label{eq:balloon_ratio}
 \end{equation}
 
+\section{Deriving Effective $\Delta v$ for idealized 100\% efficient prograde/retrograde balloon thrust}\label{sec:dv_effective}
+Suppose a retrograde balloon with $m_rb$ and a prograde balloon with $m_{pb}$ collide in a combustion chamber.  We want to find maximum $\Delta v$ when engine efficiency is 100\% and for simplicity we say 
+\begin{equation}
+m_{rb} + m_{pb} = 1\label{eq:mass_is_1}
+\end{equation} 
+Each balloon has velocity $v$ so the retrograde balloon has velocity $2v$ in the reference frame of the prograde balloon.   In the prograde reference frame, kinetic energy is
+\begin{equation}
+E = \frac{m_rb (2v)^2}{2} = 2m_{rb}v^2\label{eq:ke_balloons}
+\end{equation}
 
+Let $v_g$ be gas exhaust velocity expelled from the rocket.  Applying mass from \autoref{eq:mass_is_1}
+ and kinetic energy from \autoref{eq:ke_balloons}, we have 
+ \begin{equation}
+ 2m_{rb}v^2= \frac{v_g^2}{2}
+ \end{equation}
+ and solving for $v_g$ we get 
+ \begin{equation}
+ v_g = 2v\sqrt{m_{rb}} \label{eq:vg_result}
+ \end{equation}
+ Total momentum change is 
+ \[(m_{rb} + m_{pb})v_g - 2vm_{rb} = v_g-2vm_{rb} = 2v(\sqrt{m_{rb}} - m_{rb}) \]
+ Using calculus, its straightforward to show we maximize \(\Delta v\) when 
+ \begin{equation}
+ m_{rb} = \frac{1}{4}, \label{eq:max_m_rb}
+ v_g = v,
+ \Delta v= \frac{v}{2}
+ \end{equation}
+ 
 %Bibliography
 \bibliographystyle{unsrt}  
 \bibliography{references}  
