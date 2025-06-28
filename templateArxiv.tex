@@ -225,9 +225,23 @@ Instead of using Starship, lunar volatiles extracted from the moon's permanently
 \subsection{Lunar Rockets without Lunar Rocket Fuel} \label{sec:lunar_rockets_no_fuel}
 Instead of launching our lunar volatiles towards Earth with conventional rocket fuel, we launch off the moon using the same externally pulsed propulsion we've been discussing for terrestrial launches.   A rocket launched with externally pulsed propulsion from the lunar surface into a trans lunar injection orbit can burn its engines at periapsis around Earth.  Due to the Oberth effect, a small burn near Earth returns the rocket to the moon with a large velocity change.  As the rocket approaches the moon, it deploys its payload of balloons previously filled with lunar volatiles.  These returning balloons can push a new, more massive rocket filled with fresh volatiles off the moon.   We can then repeat this  cycle for exponential growth in lunar balloon launch mass capacity.   We've reduced combustible fuel requirements by burning our rockets near Earth.
 
-However, we ideally don't want to make any chemical rocket fuel at all.   Let's again use external propulsion to launch our balloon deployment rocket from the lunar surface into a trans-lunar orbit.   We also launch a second set of balloons from the lunar surface into a retrograde trans-lunar orbit.   Using the millimeter precision navigation techniques we've discussed, we sequentially collide these retrograde balloons with more massive prograde balloons the main rocket is carrying.  We trap the exploding gas from these collisions in a pulsed reaction chamber and redirect this gas for thrust.    
 
-If our colliding balloons each travel at $v=\SI{11}{\kilo\meter\per\second}$, then from \autoref{eq:max_m_rb} derived in \autoref{sec:dv_effective},  the maximum theoretical combined effective \(\Delta v = \frac{1}{2}v = \SI {5.5}{\kilo\meter\per\second}\) .  Suppose this pulsed reaction has significant real world losses for an effective $\Delta v$ = \SI{3}{\kilo\meter\per\second}.   If the main rocket accelerates at it's Earth periapsis with a burn of \SI{1.5226}{\kilo\meter\per\second} it will reach the moon at \SI{6.42}{\kilo\meter\per\second}.   That's enough to start an exponential growth cycle where each loop around the moon launches about 1.6 times the starting mass.   If we do this once per month, we have increased our initial launch mass capacity by a factor of 1 million in only about 2.5 years. 
+\begin{table}[htpb!]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        Before Collision & After Collision \\\hline
+        \includegraphics[width=0.45\textwidth]{images/Pulsed Propulsion Chamber Before Impact.png} &
+        \includegraphics[width=0.45\textwidth]{images/_Pulsed Propulsion Chamber After Impact.png} \\ \hline
+         
+    \end{tabular}
+    \caption{A pulsed propulsion chamber.   Balloons enter, collide and produce thrust.   The valve, likely a fast rotating door synchronized with balloon arrivals, is optional. A small front opening will produce less thrust than a large rear opening.  If the explosion turns the gas into plasma, the valve could be magnetic rather than solid state.}
+    \label{tab:pulsed_combustion_illustration}
+\end{table}
+
+However, we ideally don't want to make any chemical rocket fuel at all.   Let's again use external propulsion to launch our balloon deployment rocket from the lunar surface into a trans-lunar orbit.   We also launch a second set of balloons from the lunar surface into a retrograde trans-lunar orbit.   Using the millimeter precision navigation techniques we've discussed, we sequentially collide these retrograde balloons with more massive prograde balloons the main rocket is carrying.  As depicted in \autoref{tab:pulsed_combustion_illustration}, we trap the exploding gas from these collisions in a pulsed reaction chamber and redirect this gas for thrust, .   To leverage the Oberth effect and maximize gas collision velocity, we collide our balloons close to periapsis near Earth.
+
+If our colliding balloons each travel at $v=\SI{11}{\kilo\meter\per\second}$, then from \autoref{eq:max_m_rb} derived in \autoref{sec:dv_effective},  the maximum theoretical combined effective exhaust velocity is $v_e = \frac{1}{2}v = \SI {5.5}{\kilo\meter\per\second}$.  Suppose this pulsed reaction has significant real world losses for an effective exhaust of $v_e = \SI{3}{\kilo\meter\per\second}$.   If the main rocket accelerates at it's Earth periapsis with a burn of \SI{1.5226}{\kilo\meter\per\second} it will reach the moon at \SI{6.42}{\kilo\meter\per\second}.   That's enough to start an exponential growth cycle where each loop around the moon launches about 1.6 times the starting mass.   If we do this once per month, we have increased our initial launch mass capacity by a factor of 1 million in only about 2.5 years. 
 
 \subsection{Lunar Oxygen Has Mass And That's All It Needs}\label{sec:lunar_mining}
 Lunar volatiles like water ice are ideal for filling balloons, but they are scarce.   However, oxygen is very common in lunar surface minerals.   Using solar energy and mining rovers derived from platforms like the IPex Pilot Excavator \cite{ipex_pilot_excavator}, we can produce oxygen.  On the volatiles depleted sunlit lunar surface, finding something to burn oxygen with for rocket propulsion is hard.   However, externally pulsed propulsion does not require oxygen combustion, just gas momentum.  In shadowed craters or artificial shade, lunar derived oxygen will liquify and perhaps even solidify for storage.  
@@ -237,35 +251,58 @@ We use some of our lunar balloons for the externally pulsed propulsion to lift t
 We use the rest of our lunar balloons to exponentially grow our balloon mass capacity in orbit using the Oberth cycle discussed in \autoref{sec:lunar_rockets_no_fuel}.  Even though lunar regolith will likely degrade machinery somewhat faster than equipment would degrade on Earth, regolith resistant machines  may still enable propulsion at costs that make hypersonic travel scalable at competitive costs.
 
 \subsection{Lunar Paleontology: Ancient DNA from Lunar Volatiles}\label{sec:jurassic_dark}
-In \autoref{sec:lunar_rockets_no_fuel}, we explored using lunar volatiles from permanently shadowed craters for externally pulsed propulsion. These extremely cold craters could also indefinitely preserve DNA and other biomolecules from Earth impact ejecta \cite{dino_dna}. We could check the volatiles we're extracting for chiral molecules, which are only produced by living organisms.   Studying samples that contain chiral molecules would offer a unique window into Earth's entire biological history, potentially revealing how life began. And, of course, the discovery of dinosaur DNA would surely delight \textit{Jurassic Park} \cite{jurassic_park} fans.
+In \autoref{sec:lunar_rockets_no_fuel}, we explored using lunar volatiles from permanently shadowed craters for externally pulsed propulsion. These extremely cold craters could also indefinitely preserve DNA and other biomolecules from Earth impact ejecta \cite{dino_dna}. We could check the volatiles we're extracting to see if they contain homochiral organic molecules, which are only produced by living organisms.   Studying samples that contain homochiral molecules would offer a unique window into Earth's entire biological history, potentially revealing how life began. And, of course, the discovery of dinosaur DNA would surely delight \textit{Jurassic Park} \cite{jurassic_park} fans.
 
 \section{Sorry, I Don't Need ISRU}
 \subsection{The Need For Speed}\label{sec:no_isru_rocket}
-If our externally pulsed balloons can achieve sufficient velocity, we could launch payloads exceeding their own mass directly from Earth, bypassing the need for lunar ISRU. Repeatedly executing this cycle would enable exponential growth in our launch capacity. Consider a rocket carrying pulsed propulsion payload launched from Earth.   We send $\frac{3}{4}$ our payload on a prograde trajectory with periapsis similar to the Parker Space Probe and $\frac{1}{4}$ our payload on a retrograde trajectory.   We collide payloads sequentially at periapsis in a pulsed propulsion chamber as described in \autoref{sec:dv_effective}, they can produce effective \(\Delta v = \SI{100}{\kilo\meter\per\second}\) or higher, perhaps accelerating periapsis speeds from \SI{200}{\kilo\meter\per\second} to \SI{220}{\kilo\meter\per\second} and Earth crossing speeds to around \SI{90}{\kilo\meter\per\second}.  At these Earth crossing velocities, we can used pulsed propulsion to give a new larger terrestrial payload prograde and retrograde orbits near Parker Space Probe periapsis.   If we repeat this cycle and double payload mass every 3 months, we increase our initial payload by a factor of 1 million in about 6 years. 
+If our propulsion balloons can reach high enough velocities, we could directly launch terrestrial payloads heavier than the balloons themselves.   This would eliminate the need for lunar ISRU. Repeatedly executing this launch cycle with ever larger (or more numerous) payloads would enable exponential growth in our launch capacity. Consider a rocket launched from Earth carrying pulsed propulsion payload.   We send $\frac{3}{4}$ our payload on a prograde trajectory with a solar periapsis similar to the Parker Space Probe and the remaining quarter on the opposing retrograde trajectory with the same Sun grazing periapsis.  These trajectories require high $\Delta v$ but we can use Jupiter gravity assists to achieve them (See \autoref{sec:jupiter_gravity_initial}).   These payloads release micro-thurst precision steered projectiles (see \autoref{sec:solid_balloons}) which then collide sequentially at periapsis in a pulsed propulsion chamber as described in \autoref{sec:dv_effective}. The resulting plasma can produce effective exhaust velocity of \SI{100}{\kilo\meter\per\second} or higher. Perhaps we accelerate from \SI{200}{\kilo\meter\per\second} to \SI{250}{\kilo\meter\per\second} with Earth crossing speeds around \SI{150}{\kilo\meter\per\second}.  At these Earth-crossing velocities, the incoming balloons could collide with propulsion mass balloons carried by a new terrestrial payload.  This new payload would then be sent on prograde and retrograde orbits with low solar periapsis, repeating the cycle.  If desired, we can optimize exhaust velocity further by lowering the periapsis in steps, allowing our payload to fall significantly towards the Sun after each step.  This way, collisions after each periapsis reduction occur at progressively higher velocities for greater effective exhaust velocity.   If we double payload mass every 3 months, we increase our initial payload by a factor of 1 million in about 6 years. 
 
-\subsection{Balloon Composition and Differences from Project Orion}
-Project Orion required shaped explosives to redirect plasma towards the pusher plate because 70\% of the bombs energy became black body x-ray thermal radiation \cite{orion_reflections}.  Even at Parker Space Probe speeds,  radiative losses from our collisions would be minimal.  Near solar periapsis, we no longer collide low density balloons since solid objects vaporize to opaque plasma.  We don't worry about detaching electronics payloads since they will vaporize.   Real world efficiency for these plasma explosions is likely high because the extreme temperatures should bring the entire plasma to thermal equilibrium before it appreciably expands.   
-
-We'd make these solid "balloons" primarily from light thermal ceramics like boron nitride or graphite, with some iron to ensure opacity to the x-rays we're producing.  Unlike Parker Space Probe, all the balloon mass is useful regardless of what it's made of, so we don't need to minimize thermal protection, solar cell or battery mass.  The balloons can contain some liquid that passively or actively cools the skin through convection.     They can also partially be made from battery materials so that solar power is not needed too close to the Sun.    
-
-The reason radiative losses are less than in nuclear bombs are 
+\subsection{Radiative Differences from Project Orion}
+Project Orion required shaped explosives to redirect plasma towards the pusher plate because 80\% of the bombs' energy became black body X-ray thermal radiation \cite{toughsf_cassaba_howitzer}.  In contrast, our proposed system anticipates minimal radiative losses from collisions, even at speeds matching the Parker Solar Probe. Though detailed computer analysis is needed for full confirmation, our reasoning for this low loss stems from
 \begin{itemize}
-    \item The colliding atoms have much lower atomic mass than fissile atoms, and proportionally lower temperature at the same velocity.
-    \item The colliding atoms mean velocity remains no more than $\frac{1}{5}$ that of even inefficient 1\% yield bombs
-    \item Radiative power rises with the fourth power of temperature, so peak radiation is likely around 5 orders of magnitude less than the least efficient nuclear bombs
-    \item The colliding masses should be small.  As they expand adiabatically, their temperature drops faster than a larger object expanding at the same linear velocity.
+    \item The much lower atomic mass of the colliding atoms compared to fissile atoms, leading to proportionally lower temperatures at equivalent velocities.
+    \item The mean velocity of colliding atoms is likely about $\frac{1}{5}$ that of atoms in an inefficient 1\% yield bomb, generating peak temperatures at least 25 times lower
+    \item Combined, lower mean velocity and atomic mass imply temperatures might be 200 times less in our collision than in a bomb.  Radiative power rises with the fourth power of temperature ($T^4$), so peak radiation flux is likely around 1 billion times less than the least efficient nuclear bombs.
+    \item The colliding masses should be much smaller than a nuclear bomb, with a lower radiative surface area.   As the collision plasma expands adiabatically, its volume increases proportionally faster than a larger bomb plasma would at the same linear expansion velocity.  Temperature would decrease faster due to this faster proportional change in volume. 
 \end{itemize}
 
-Note this analysis, while intuitive, needs to be corroborated by detailed computer simulations.
+Lower temperatures generate longer-wavelength blackbody X-rays compared to those from bombs. This means materials with lower atomic numbers (lower Z) can absorb this radiation and keep the plasma opaque. While Project Orion favored expensive and difficult to work with tungsten \cite{toughsf_cassaba_howitzer}, these longer wavelengths should allow for the use of cheaper elements to achieve opaque plasma.
+
+\subsection{Solids Rather than Low Density Balloons}\label{sec:solid_balloons}
+Given the extreme velocities at periapsis, we no longer collide low-density balloons because solid objects vaporize into opaque plasma.   The real-world efficiency of these plasma explosions is likely high because the extreme temperatures should bring the entire plasma to thermal equilibrium before significant expansion occurs.
+
+We'd make these solid "balloons" primarily from cheap low atomic number (low Z) materials like boron nitride, motor oil, and graphite.  A small amount of cheap higher Z materials like iron would be included to ensure opacity to the blackbody X-rays produced.  
+All the balloon's mass contributes to propulsion, irrespective of its composition.  The balloons can contain electronics, heat shielding, and some liquid that passively or actively cools the skin through convection.     They can also partially be made from batteries so that solar power is not needed too close to the Sun.    
 
 \subsection{Navigation Challenges Near Periapsis}
-Close solar periapsis involves some unique challenges.   Obviously, any sensor dependent on visible light has limited utility.  Relativisitic influences preturb calculations more than they do on Earth.  
+Close solar periapsis involves some unique challenges.   Obviously, any sensor dependent on visible light will need to filter interfering solar illumination.   Instruments will need to handle heat and solar wind.  Relativisitic influences preturb the craft more than they would on Earth.  High collision speeds demand extremely accurate navigation.   The pulsed propulsion chamber may ablate slightly on each pulse.  The impacting projectiles must be miniaturized to at most a few kilograms to contain the immense energy from explosions at these velocities. 
 
 Perhaps the most significant nuance is the need to adjust for solar weather.  Since this weather influences luminosity, it also influences radiation pressure.   Fortunately, neural networks appear capable of improving weather predictions \cite{lam2023learning}.   
 
-Spacing balloon sequentially apart may be hard at periapsis because the spacing decreases with orbital radius.  However, the terrestrial payloads we're directly accelerating this way are presumably unmanned and capable of high accelerations.   To lift high value payloads, we first use these fast balloons from the Sun to push unmanned payloads into eccentric orbits are Earth and use the terrestrially eccentric balloons to push our vital cargo like people or custom satellites.
+Spacing balloons sequentially far apart  may be hard.  Objects far apart at periapsis get closer together as radial distance grows.  As a result, Earth distance propulsion balloons would need to impart relatively high acceleration in short times.  However, the terrestrial payloads we're directly accelerating this way should be unmanned.   
 
-A final issue is placing the initial payload in a retrograde Parker Space Probe orbit.  The best approach for this is likely using a gravity assist from Jupiter, which was the original plan for the Parker Space Probe mission \cite{mccomas2005solar}. Note that since our mass can include large batteries and radiation shielding, the Jupiter bound part of the mission may prove easier than a typical Jupiter probe.
+When we lift high value payloads like astronauts into Low Earth Orbit, we use two sets of propulsive balloons. First, our Earth crossing balloons from the Sun push unmanned payloads into eccentric orbits around Earth. Then these eccentric payloads deploy balloons to push vital cargo like people or  satellites just as we discussed in \autoref{sec:200_mile_high}.
+
+\subsection{Initial Periapsis Orbits with Jupiter Gravity Assists} \label{sec:jupiter_gravity_initial}
+A final issue is placing the initial payload in a retrograde low periapsis solar orbit.  The best approach for this is likely using a gravity assist from Jupiter, which was the original plan for the Parker Space Probe mission \cite{mccomas2005solar}. Note that our payload can include large batteries and radiation shielding.  The batteries obviate the need for solar power far from the Sun, and the radiation shielding allows our gravity assist to occur at low Jupiter radial distance.   
+
+Optionally we can push more mass into the initial orbit by using Jupiter gravity assist (possibly with a burn at Jupiter to leverage it's Oberth effect) to place propulsion balloons into a retrograde Hohmann trajectory back to Earth.   They would cross Earth at around \SI{69}{\kilo\meter\per\second}, which could push a larger terrestrial payload onto  prograde and retrograde colliding trajectories at low solar periapsis.
+
+\section{One Hiroshima Per Second. The World Set Free} 
+In \autoref{sec:no_isru_rocket}, we propelled balloons to \SI{150}{\kilo\meter\per\second} at \SI{1}{\astronomicalunit} using solar gravity and externally pulsed propulsion. A \SI{60}{\tera\watt} power source, which is equivalent to one Hiroshima bomb per second \cite{hiroshima}, requires harnessing the kinetic energy of just \SI{5.3}{\tonne\per\second} of propulsion mass at these speeds. For context, humanity's total power consumption is approximately \SI{20}{\tera\watt} \cite{owid-energy-production-consumption}. Given that typical power plants are roughly one-third efficient, a single one of these power sources could meet the energy needs of all human civilization.
+
+Remarkably, this concept evokes H.G. Wells's prophetic vision in his 1913 novel, \textit{The World Set Free}, where he imagined atomic bombs as a "blazing continual explosion" \cite{wells1914world}.  We will now explore how to convert the kinetic energy generated by such externally pulsed propulsion into a terrestrial power source.
+
+\subsection{Straw Ways To Heaven}\label{sec:death_star}
+For kinetic projectile energy to reach Earth, the projectiles need to survive through the atmosphere.  One way to do this is to build a vacuum tube from Earth's surface to space aligned with the projectile's path as depicted in \autoref{fig:straw_way_to_heaven}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/Straw Way To Heaven.png}
+    \caption{Vacuum Tube Suspended From Cables Allows Projectiles Through the Atmosphere}
+    \label{fig:straw_way_to_heaven}
+\end{figure}
+
 
 \appendix 
 \section{Derivation of Balloon Mass/Rocket Mass Continous Approximation}\label{sec:balloon_ratio_approximation}  We want to approximate the ratio of the total balloon mass \(m_b\) all traveling at velocity \(v_b\) for a sequence of balloons to push a rocket with mass \(m_r\) with initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   Let's initially naively assume every collision is perfectly elastic in one dimension.   We'll use calculus to get a  closed form expression by solving for a rocket  continously bombarded by infinitestimal balloons each with mass \(dm_b\).   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
@@ -368,8 +405,8 @@ We can then solve for the total balloon to rocket ratio, with a fudge factor e b
 \frac{m_r}{m_b} = \frac{2e}{ln(\frac{v_b-v_{ri}}{v_b-v_{rf}})}\label{eq:balloon_ratio}
 \end{equation}
 
-\section{Deriving Effective $\Delta v$ for idealized 100\% efficient prograde/retrograde balloon collision rocket thrust}\label{sec:dv_effective}
-Suppose a retrograde balloon with $m_{rb}$ and a prograde balloon with $m_{pb}$ collide in a pulsed rocket propulsion chamber.  We want to find the maximum $\Delta v$ for the prograde rocket  when engine efficiency is 100\% and we expel all the combined gas behind us (in the retrograde direction).   For simplicity we say 
+\section{Deriving Effective Exhaust Velocity $v_e$ for Idealized 100\% Efficient Prograde/Retrograde Balloon Collision Rocket Thrust}\label{sec:dv_effective}
+Suppose a retrograde balloon with $m_{rb}$ and a prograde balloon with $m_{pb}$ collide in a pulsed rocket propulsion chamber, as depicted in \autoref{tab:pulsed_combustion_illustration}.  We want to find the maximum exhaust velocity $v_e$ for the prograde rocket  when engine efficiency is 100\% and we expel all the combined gas behind us (in the retrograde direction).   For simplicity we say 
 \begin{equation}
 m_{rb} + m_{pb} = 1\label{eq:mass_is_1}
 \end{equation} 
@@ -389,11 +426,11 @@ Let $v_g$ be gas exhaust velocity expelled from the rocket, and assume this mass
  \end{equation}
  Total momentum change is 
  \[(m_{rb} + m_{pb})v_g - 2vm_{rb} = v_g-2vm_{rb} = 2v(\sqrt{m_{rb}} - m_{rb}) \]
- Using calculus, its straightforward to show we maximize \(\Delta v\) when 
+ Using calculus, its straightforward to show we maximize exhaust velocity when 
  \begin{equation}
  m_{rb} = \frac{1}{4}, \label{eq:max_m_rb}
  v_g = v,
- \Delta v= \frac{v}{2}
+ v_e= \frac{v}{2}
  \end{equation}
  
 %Bibliography
