@@ -48,7 +48,7 @@
   
 %% Title
 \title{Aim Is All You Need}
-\subtitle{A Conceptual Introduction to Externally Pulsed Propulsion}
+\subtitle{Externally Pulsed Propulsion - A Conceptual Exploration}
 
 \author{
   Seth Katz \\
@@ -62,22 +62,29 @@
 \maketitle
 
 \begin{abstract}\label{sec:abstract}
- In 2017, Google Research published \textit{Attention is All You Need} \cite{vaswani2023attentionneed}.  Their paper introduced the Transformer, which let neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that resemble hypothetical early prototypes of the computers in Star Trek \cite{startrek}.
+ 
+In 2017, Google Research published \textit{Attention is All You Need} \cite{vaswani2023attentionneed}.  Their paper introduced the Transformer, which let neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that resemble hypothetical early prototypes of the computers in Star Trek \cite{startrek}.
 
 But here's the bittersweet truth:  While our screens flicker with progress, the tangible realms of space, energy and paleontology remain comparatively stagnant.
 
-\textbf{Dude, Where's my spaceeship?}
+\textbf{Dude, Where's My Spaceeship?}
 
-This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   \begin{figure}[htpb]
+This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   
+
+\begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
     \caption{Balloons from a first rocket (not shown) crash into a second target rocket and provide propulsion \cite{earth_image}}
     \label{fig:balloon_impact}
 \end{figure}
 
-Consider two rockets.   The first deploys a series of fast moving low density balloons with miniaturized rockets capable of small navigation adjustments.  As shown in \autoref{fig:balloon_impact} these balloons precisely follow a path to sequentially crash  into a separate  target rocket.   These precise collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}).    
+Consider a "smart balloon" CubeSat -- a specialized device whose mass is mostly a low density gas surrounded by a microns thick weather balloon like skin. The CubeSat can perform small navigation adjustments using ultra-lightweight microthrusters and electronics.
+
+Imagine a scenario with two rockets. The first rocket deploys a series of these fast moving smart balloons. As shown in \autoref{fig:balloon_impact}, the deployed balloons precisely follow a path to sequentially impact a shock absorbing momentum pusher plate on a separate target rocket. These collisions deliver high density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}). 
 
 Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for this externally pulsed propulsion.
+
+This paper is a brainstorming exploration that could be followed by more rigorous analysis. If the ideas prove too advanced for near term implementation, they can instead serve as fodder for hard science fiction. The paper summarizes and updates some of the writings from the author's own blog, "Aim Is All You Need."\cite{aim2024}
 
 \begin{table}[!htpb]
     \centering
@@ -96,15 +103,16 @@ Paralleling their role in consumer AI, neural networks offer a promising avenue 
     \end{tabularx}
 \end{table}
 
-Note, this paper summarizes some of the ideas in the blog ``Aim Is All You Need"\cite{aim2024}.
-\end{abstract}
+\end{abstract}.  
 
 \section{Introduction}
 Conceived in the 1950s and later popularized by \textit{The Three-Body Problem} \cite{liu2014three}, Project Orion remains one of the most compelling rockets ever proposed. It uniquely offers specific impulses surpassing those of electric propulsion while delivering thrust levels on par with chemical rockets \cite{projorion}.   Orion would propel a spacecraft by directing hypervelocity plasma from nuclear explosions onto a pusher plate. Despite its theoretical promise, Orion faced insurmountable challenges related to political feasibility, radioactive fallout, and the impractical mass requirements stemming from the high minimum yield of nuclear explosions. Nevertheless, Orion conceptually validated the physics of hypervelocity pulsed propulsion.   
 
 Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas balloons sequentially impacting a rocket's pusher plate. These balloons can be downscaled to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed propulsion chamber.
 
-Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloon impacts could achieve high energy densities and specific impulses.  Recent cube sat formation flying and neural network advancements make the extremely precise navigation for this externally pulsed propulsion viable.  This paper presents a preliminary "back of the envelope" analysis, intended to establish the concept's potential. More rigorous, high fidelity analyses are reserved for future work.
+Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity balloon impacts could achieve high energy densities and specific impulses.  Recent CubeSat formation flying and neural network advancements make the extremely precise navigation for this externally pulsed propulsion viable.  
+
+This paper presents a preliminary back of the envelope analysis of what are clearly very ambitious ideas. While rigorous, high fidelity modeling is left for future work, our aim is to stimulate fresh thinking and new research directions. Whether this concept remains a provocative thought experiment, inspires science fiction, or evolves into a transformative 21st-century technology, it underscores bold and, to the best of the author's knowledge, novel applications of emerging formation flying capabilities. 
 
 \section{Groundwork and Prior Work for Externally Pulsed Propulsion}
 \subsection{Navigation for Externally Pulsed Propulsion}
@@ -121,7 +129,10 @@ We want to maximize gas mass and minimize the solid mass for mini-thrusters and 
     \label{fig:coordinator-nodes}
 \end{figure}
 
+Instead of relying on solid components, radiation pressure could directly manipulate balloons. Coordinator nodes might employ kilowatt-class lasers to adjust balloon trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the balloon's skin, altering its shape or color. If these changes briefly persist, the altered solar radiation pressure would magnify balloon trajectory changes compared to the laser's radiation pressure alone. Eliminating solid components on balloons  reduces the risk of pusher plate damage in an accident.  The balloons have lower mass and cost if they don't include microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the balloons, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology.  
+
 Equipped with a high performance rocket based reaction control system, the target craft will precisely navigate and adjust its position to intercept each balloon in the formation.   Given the large number of balloons and high confidence in their relative positions, algorithms like Kalman filtering should enable precise state estimation for interceptions. After each balloon impacts the rocket, we'll need to rapidly adjust for any disparities between predicted and measured propulsion. This requires quickly solving for the necessary thrust adjustments to intercept the next balloon, all while adhering to the constraints on our rocket's performance. With thousands of balloons, the rocket's system must also be robust to occasional balloon failures caused by micrometeorite impacts or manufacturing defects. Neural networks show significant promise here because they can provide controllers with accurate initial guesses for trajectories \cite{guffanti2024transformerstrajectoryoptimizationapplication} and constraints \cite{briden_constraint}.   These good initial guesses produce fast convergence without compromising control guarantees.   Additionally, reinforcement learning shows promise for developing fast space trajectory recovery algorithms for anomalies like lost balloons \ \cite{zavoli2021reinforcement}.   This powerful combination of neural networks for rapid rocket adjustments and accurate formation flying can effectively keep the rocket on course for the next balloon interception.
+
 \subsection{Mass Fraction of Balloon to Rocket Mass}
 For externally pulsed propulsion to be a viable option, the ratio of balloon propulsion mass to rocket mass must be low for relevant rocket velocity changes. We develop a closed-form approximation for this ratio ( \autoref{eq:balloon_ratio} in {\autoref{sec:balloon_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," \(e\).  Justification for a high \(e\) comes from Project Orion's findings \cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a relatively high  \(e=0.8\).   
 
@@ -167,18 +178,25 @@ For low-density balloons, solar radiation pressure will significantly distort th
 
 Fortunately, strategically deploying our balloons near apoapsis can minimize the $\Delta v$ required for these inclination changes. Apoapsis balloon deployment also minimizes the $\Delta v$ for appropriate balloon spacing. The small $\Delta v$ changes required at apoapsis should enable practical designs for a very precise mechanical balloon launcher onboard our balloon deployment rocket.
 
-Low density gas would consume too much volume in a balloon deployment vessel.   Instead, the balloons can be frozen and thaw once deployed from the rocket.  
+Low density gas would consume too much volume in a balloon deployment vessel.   Instead, the balloons can be frozen and thaw once deployed from the rocket. 
+
 \section{To The Moon by Water Balloon:  The Business Case for Externally Pulsed Propulsion}   
+
 \subsection{Making Starship's Excess Capacity Useful To Satellite Customers} \label{sec:starship_safelaunch}
+
 SpaceX's Starship may be the first fully reusable rocket. At scale, this could dramatically reduce space flight costs.   However, the rocket's large payload size is probably too big for today's space industry needs. For example, in \textit{The New York Times}
+
 \begin{quote}
 Carissa Christensen, the chief executive of Bryce Tech, an analytics firm that tracks the launch market, says launching Starship frequently will be key to closing SpaceX’s business case, but finding customers to fill the rocket’s giant payload capacity will be challenging. 
 "Starship's payload capacity is huge; it's very, very big, and there aren't that many commercial uses today for a rocket that big," she said.  "Maybe it'll be so cheap that it makes sense to launch satellites on it if its not full or near full."  \cite{nyt_starship_size}
 \end{quote}
+
 Although many satellites might be too small to fill up Starship, they can still be very expensive to build and test. For an extreme example, the James Webb Telescope \cite{james_webb_space_telescope} cost \$9.7 billion dollars \cite{jwst_cost} to build. \textit{McKinsey Consulting} argues 
+
 \begin{quote}
 Safety and reliability will continue to be overarching concerns, suggesting excellent execution will be table stakes for a competitive launch company. \cite{mckinsey_reliability}
 \end{quote}
+
 Once rockets start ferrying astronauts, reliability becomes even more emphatically non-negotiable. Fully stacked, Starship weighs \SI{5}{\kilo\tonne} at launch \cite{starship}, yet its empty mass is only \SI{300}{\tonne}. That’s an awfully thin soda can strapped to a \SI{5}{\kilo\tonne} bomb that we're entrusting with billion-dollar satellites or human passengers.
 
 By contrast, a suborbital rocket that merely reaches 200 kilometers in altitude might have a propellant mass fraction under 50 percent. This greater structural margin allows for more robust, reliable engines and extensive payload protection systems. Of course, such a suborbital rocket cannot reach orbit on its own.  It needs Starship to "push" it with externally pulsed propulsion.
@@ -208,10 +226,10 @@ However, two solutions address the liquid oxygen challenge:
 \item \textbf{Mid-air oxygen refueling:} Suborbital rocket planes could receive liquid oxygen from specialized aircraft launched from airports equipped with liquid oxygen storage. This avoids retrofitting every urban airport, requiring only a single, strategically located airport near major destinations.   Mid-air refueling also reduces our rocket plane's takeoff weight.
 \end{itemize}
 
-A formation of propulsion balloons launched in an eccentric Keplerian orbit could only propel the  rocket plane on trajectories that bisect the Earth. Since most urban destinations would not align with such trajectories, the rocket plane needs to fire an adjustment burn at least once to reach the destination. Alternatively, a second set of propulsion balloons could intercept the rocket plane mid-flight and adjusting it's trajectory. Furthermore, to avoid a sonic boom upon descent, the plane must decelerate before atmospheric reentry. This deceleration could be provided by yet another set of propulsion balloons that were traveling in a retrograde orbit relative to the plane. Notably, these reentry balloons could be in a circular low Earth orbit rather than a high eccentricity orbit, significantly reducing the mass required.
+A formation of propulsion balloons launched in an eccentric Keplerian orbit could only propel the  rocket plane on trajectories that bisect the Earth. Since most urban destinations would not align with such trajectories, the rocket plane needs to fire an adjustment burn at least once to reach the destination. Alternatively, a second set of propulsion balloons could intercept the rocket plane mid-flight and adjusting it's trajectory. Furthermore, to avoid a sonic boom upon descent, the plane must decelerate before atmospheric reentry. This deceleration could be provided by yet another set of propulsion balloons that were traveling in a retrograde orbit relative to the plane. These reentry balloons could be in a circular low Earth orbit rather than a high eccentricity orbit, significantly reducing the mass required.
 
 \section{I Love ISRU.  Cheaper Externally Pulsed Propulsion \textit{Without} Giant Reusable Rockets}
-For externally pulsed propulsion to achieve genuine economic competitiveness, the cost of launching its propulsion balloons must be exceptionally low.  The rocket plane must be robust enough to guarantee on-time takeoffs and avoid missing its initial balloon rendezvous.  Rocket acceleration must be limited for infants and other susceptible passengers, further increasing costs and $\Delta v$.  Even highly reusable rockets may prove too expensive, limiting this technology primarily to the very high-end private luxury aviation market. While luxury aviation customers typically prioritize flexibility, balloon-propelled flights necessitate advance scheduling.  Despite these limitations, the potential market for affluent travel between cities like Dubai and Dallas is likely at least an order of magnitude larger than the satellite market.
+For externally pulsed propulsion to achieve genuine economic competitiveness, the cost of launching its propulsion balloons must be exceptionally low.  The rocket plane must be robust enough to guarantee on-time takeoffs and avoid missing its initial balloon rendezvous.  Rocket acceleration and passenger cabin vibrations must be limited for infants and other susceptible passengers, further increasing costs and $\Delta v$.  Even highly reusable rockets may prove too expensive, limiting this technology primarily to the very high-end private luxury aviation market. While luxury aviation customers typically prioritize flexibility, balloon-propelled flights necessitate advance scheduling.  Despite these limitations, the potential market for affluent travel between cities like Dubai and Dallas is likely at least an order of magnitude larger than the satellite market.
 
 Still, it would be disappointing if we can't make suborbital travel mainstream.   If we can launch our balloons without giant rockets, we can reduce cost.   After all, "the best part is no part," \cite{best_part_no_part} and a reusable rocket is one heck of a part.
 
@@ -242,7 +260,7 @@ Instead of launching our lunar volatiles towards Earth with conventional rocket 
     \label{tab:pulsed_combustion_illustration}
 \end{table}
 
-However, we ideally don't want to make any chemical rocket fuel at all.   Let's again use external propulsion to launch our balloon deployment rocket from the lunar surface into a trans-lunar orbit.   We also launch a second set of balloons from the lunar surface into a retrograde trans-lunar orbit.   Using the millimeter precision navigation techniques we've discussed, we sequentially collide these retrograde balloons with more massive prograde balloons the main rocket is carrying.  As depicted in \autoref{tab:pulsed_combustion_illustration}, we trap the exploding gas from these collisions in a pulsed reaction chamber and redirect this gas for thrust, .   To leverage the Oberth effect and maximize gas collision velocity, we collide our balloons close to periapsis near Earth.
+However, we ideally don't want to make any chemical rocket fuel at all.   Let's again use external propulsion to launch our balloon deployment rocket from the lunar surface into a trans-lunar orbit.   We also launch a second set of balloons from the lunar surface into a retrograde trans-lunar orbit.   Using the millimeter precision navigation techniques we've discussed, we sequentially collide these retrograde balloons with more massive prograde balloons the main rocket is carrying.  As depicted in \autoref{tab:pulsed_combustion_illustration}, we trap the exploding gas from these collisions in a pulsed propulsion chamber and redirect this gas for thrust.   To leverage the Oberth effect and maximize gas collision velocity, we collide our balloons close to periapsis near Earth.
 
 If our colliding balloons each travel at $v=\SI{11}{\kilo\meter\per\second}$, then from \autoref{eq:max_m_rb} derived in \autoref{sec:dv_effective},  the maximum theoretical combined effective exhaust velocity is $v_e = \frac{1}{2}v = \SI {5.5}{\kilo\meter\per\second}$.  Suppose this pulsed reaction has significant real world losses for an effective exhaust of $v_e = \SI{3}{\kilo\meter\per\second}$.   If the main rocket accelerates at it's Earth periapsis with a burn of \SI{1.5226}{\kilo\meter\per\second} it will reach the moon at \SI{6.42}{\kilo\meter\per\second}.   That's enough to start an exponential growth cycle where each loop around the moon launches about 1.6 times the starting mass.   If we do this once per month, we have increased our initial launch mass capacity by a factor of 1 million in only about 2.5 years. 
 
@@ -353,7 +371,7 @@ Power from our plant could be globally distributed by super tanker sized batteri
 
 Batteries are environmentally attractive, but our world still depends heavily on fossil fuels.  Very low cost power can cheaply produce hydrocarbon fuels from water and carbon dioxide.  The hydrogen can come from electrolysis, while carbon dioxide comes from biomass, heating carbonates, industrial waste, or direct air/ocean capture.
 
-Though the power plant and distribution infrastructure would cost billions to construct and operate, the revenue generated is staggering. Ultimately, we'd spend billions to make trillions annually from a planetary-scale plant.
+Though the power plant and distribution infrastructure would cost billions to construct and operate, the revenue generated is staggering. Ultimately, we'd spend billions to make trillions annually from a planetary-scale plant.  Turns out, if  \textit{Superman} wants to be as rich as \textit{Lex Luthor}, he should get limitless energy not from the light of a yellow sun, but from its gravity \cite{superman2025}.
 
 \subsection{To Solve Climate Change, Make The Earth A Death Star}\label{sec:death_star}
 A Death Star \cite{death_star} is a giant sphere with a  narrow 1 meter opening you can shoot something down to create an explosion inside the main reactor.   Building a Death Star from scratch  would be a huge undertaking.   Fortunately, if we build the Straw Way To Heaven described in \autoref{sec:straw_way_to_heaven}, we're living on one.  Although our Straw Way generator produces clean energy from incoming projectiles, it's power production is restricted to daytime hours when the straw can face the sun.   Also, a limitless clean energy source would only slow climate change.   Industrial carbon emissions from steel, cement, agriculture, and other processes would still heat the planet \cite{steel_and_cement}.   
@@ -364,7 +382,7 @@ Projectiles made from lunar materials could enter a terrestrial Straw Way from h
 To generate \SI{60}{\tera\watt} of heat from lunar bombardment, we'd need an astonishing \SI{1}{\kilo\tonne\per\second} of lunar mass to pass through the terrestrial vacuum tube. Such a vast quantity is daunting, but the momentum for launching off the moon could come from kinetic projectiles inbound from the Sun (as described in \autoref{sec:no_isru_rocket}). Beyond providing thrust, these projectiles aimed at the Moon could vaporize lunar regolith. The resulting thermal energy could be harnessed for electricity generation or to power chemical and industrial processes directly. This lunar power source could support large scale mining and production of the oxygen gas used in externally pulsed propulsion  (as discussed in \autoref{sec:lunar_mining}).
 
 \subsection{Fusion Propulsion and Epstein Drives}\label{sec:epstein_drives}
-The fast projectiles from \autoref{sec:no_isru_rocket} could propel a spacecraft around the inner solar system at relatively high speeds.  Ideally though, we'd want torch ships that travel under constant Earth gravity acceleration between the planets as envisioned in \textit{The Expanse} \cite{Corey2012Drive}.  Advanced heat shields like solar white should enable spacecraft to approach the Sun to 2 solar radii and potential head on collision velocities exceeding \SI{800}{\kilo\meter\per\second} in the target rocket's reference frame.  
+The fast projectiles from \autoref{sec:no_isru_rocket} could propel a spacecraft around the inner solar system at relatively high speeds.   As our technology advances, we'd want to travel on brachistochrone trajectories under constant Earth gravity acceleration between the planets as envisioned in \textit{The Expanse} \cite{Corey2012Drive}.  Evaporative cooling and advanced heat shields like NASA's yttrium oxide based "solar white" might  enable spacecraft to approach the Sun to 2 solar radii \cite{ted_ed_2025_how_close}.  At this close solar periapsis, prograde and retrograde projectile collision velocities would exceed \SI{800}{\kilo\meter\per\second} in the reference frame of a fusion pulsed propulsion chamber on the target rocket \cite{ted_ed_2025_how_close}.  
 
 \begin{figure}[htpb]
     \centering
@@ -374,7 +392,14 @@ The fast projectiles from \autoref{sec:no_isru_rocket} could propel a spacecraft
 \end{figure}
 
 A 1979 Los Alamos Impact Fusion workshop concluded speeds of just \SI{200}{\kilo\meter\per\second} might be sufficient for precompressed gram sized projectiles \cite{impactfusion1979}.   Larger projectiles would likely be easier to confine long enough for ignition.   A lead tamper, as depicted in \autoref{fig:fusion_tamper} surrounding a few hundred grams of fusion fuel could ignite fusion explosions and trigger immense exhaust velocities.  
-This could propel projectiles towards spacecraft at velocities of up to \SI{20,000}{\kilo\meter\per\second}, especially if the fusion fuel is mostly aneutronic.   A seed of deuterium-tritium could ignite a larger deuterium and helium-3 mixture to maximize thrust.   As the spacecraft accelerate, they can also reach speeds where they trigger fusion by crashing into stationary fusion fuel targets at speeds exceeding \SI{1000}{\kilo\meter\per\second}.
+This could propel projectiles towards spacecraft at velocities of up to \SI{20,000}{\kilo\meter\per\second}, especially if the fusion fuel is mostly aneutronic.   A seed of deuterium-tritium could ignite a larger deuterium and helium-3 mixture to maximize thrust.   As the spacecraft accelerates, it can also reach speeds where it trigger fusion by crashing into slower moving fusion fuel targets.   If carefully planned, these chains of fast-moving projectiles could essentially create interplanetary highways, allowing people to travel between planets under comfortable Earth gravity in timeframes comparable to ocean liners crossing the Atlantic. 
+
+\subsection{The Sixth Question For Climate Change}\label{sec:sith_question}
+Bill Gates' excellent book, \textit{How to Avoid a Climate Disaster} \cite{gates2021avoid}, details five practical questions \cite{breakthroughenergy_2021_five} any effective climate solution must address. However, perhaps the truly successful solution will be one that inspires the public by giving humanity fundamentally new abilities.
+
+Our Straw Way to Heaven (see \autoref{sec:straw_way_to_heaven}) addresses Gates' questions better than other alternatives. It completely negates carbon emissions, reverses cement emissions, provides indefinite global power, occupies minimal space, and boasts marginal costs that decline rapidly with output.
+
+Yet, I respectfully propose a sixth crucial question for public acceptance of any global warming solution: Beyond just reducing our electric bills, how will this breakthrough drastically improve daily life? An investment on the scale required to solve climate change should ideally grant human society new abilities, such as hypervelocity transport and affordable space travel. Externally pulsed propulsion can achieve all of these things.  
 
 \section{When We Get Greedy, We'll Go To Phoebe}\label{sec:greedy_phoebe}
 In \autoref{sec:no_isru_rocket} we discussed using Sun grazing Oberth maneuvers to accelerate projectiles to \SI{150}{\kilo\meter\per\second} at \SI{1}{\astronomicalunit}. These high velocities give the projectiles enough energy for the high $\Delta v$ required to place the next suborbital rocket into  prograde and retrograde orbits near the Sun. Such close approaches introduce significant challenges, as detailed in \autoref{sec:periapsis_challenges}. These difficulties could increase projectile costs compared to those making less extreme solar approaches.
@@ -389,19 +414,25 @@ These rockets can also return to Phoebe at high speeds to launch more mass with 
 
 While Phoebe’s low gravity may pose challenges for mining and anchoring infrastructure, the more massive Iapetus is also a good option. Similarly, Jupiter’s moon Himalia may support analogous maneuvers if exploration discovers  it has significant volatiles.    
 \subsection{Mining Helium-3}
-Helium-3 for aneutronic fusion may be available on the Earth's moon \cite{esa_helium3_mining}, but likely not in quantities to support large scale fast interplanetary transport like discussed in \autoref{sec:epstein_drives}.   The gas giants likely contain inexhaustible supplies of helium-3 \cite{palaszewski2005atmospheric}.   A nuclear thermal rocket or scram jet could extract helium 3 and hydrogen while flying in Saturns atmosphere and then jump a few thousand kilometers above the atmosphere.  It could then separate from a payload carrying Helium3, falling back to mine more helium3.  An accident on such a rocket would cause no harm, because waste would simply fall into Saturn's core. Propulsion balloons from Phoebe could then send Helium 3 into the inner solar system for use in fusion rockets.
+Helium-3 for aneutronic fusion may be available on the Earth's moon \cite{esa_helium3_mining}, but likely not in quantities to support large scale fast interplanetary transport like discussed in \autoref{sec:epstein_drives}.   However, the gas giants likely contain inexhaustible supplies of helium-3 \cite{palaszewski2005atmospheric}.   A nuclear thermal rocket or scram jet could extract helium 3 and hydrogen while flying in Saturn's atmosphere and then jump a few thousand kilometers above the atmosphere.  It could then separate from a payload carrying Helium3, falling back to mine more helium-3.  An accident on such a rocket would cause no harm, because waste would simply fall into Saturn's core. Propulsion balloons from Phoebe could then send the Helium-3 into the inner solar system for use in fusion rockets.  
+
+If fission rockets prove politically unpalatable, chemical rockets may also work.   Rocket fuel powers a motor in Saturn's atmosphere for the energy to mine helium-3, and then power above Earth's atmosphere.   Propulsion balloons push the rocket into a stable orbit where it is refueled, and then new propulsion rockets decelerate it so that it falls into Saturn's atmosphere for another mining round.
 
 
 \section{War, Policy, and Pulsed Propulsion}
 \subsection{Fusion Rockets and the Outerspace Treaty}
-The Outerspace Treaty \cite{outer_space_treaty} prevents nuclear explosions in space.  The legality of pure fusion rockets discussed in \autoref{sec:epstein_drives} may need clarification.
+The Outer Space Treaty \cite{outer_space_treaty} prohibits nuclear weapons in space, so the legality of pure fusion rockets, detailed in \autoref{sec:epstein_drives}, requires clarification.
 
 \subsection{Hackers Must Be Prevented from Causing Catastrophic Explosions}
-As previously discussed, the energy projectiles for the \textit{Death Star} discussed in \autoref{sec:death_star} are intentionally designed to burn up high in the atmosphere without causing damage in case of a mishap.  However, there is a danger a hacker could manipulate microthrusters on the projectiles to enter the atmosphere simultaneously rather than in sequence, leading to larger Tunguska \cite{longo2007tunguska} sized explosions.  We can mitigate this risk with standard practices like using memory safe languages and authenticated communication.
+As previously discussed, the energy projectiles for the \textit{Death Star} discussed in \autoref{sec:death_star} are intentionally designed to burn up high in the atmosphere without causing damage in case of a mishap.  However, there is a danger a hacker could manipulate microthrusters on the projectiles to enter the atmosphere simultaneously rather than in sequence, leading to larger Tunguska \cite{longo2007tunguska} sized explosions.  We can mitigate this risk with standard software security practices like using memory safe languages and authenticated communication.
 
 \subsection{Risk of Balloon Sabotage}
-External pulsed propulsion might be useful for launching military assets like Golden Dome \cite{lockheed_martin_golden_dome} or the Brilliant Boulders \cite{brilliant_boulders} discussed on the blog related to this paper.   The balloons described in \autoref{sec:lunar_rockets_no_fuel} are likely vulnerable to rupture from high powered terrestrial lasers by a military adversary.  Potentially a thin reflective shield should be attached to the balloon and discarded along with other solid componenets right before impact.   Eventually, militaries will need to defend their payloads by destroying sabotage weapons however.
+External pulsed propulsion might be useful for launching military assets like Golden Dome \cite{lockheed_martin_golden_dome} or the Brilliant Boulders \cite{brilliant_boulders} discussed on the blog related to this paper \cite{aim2024}.   The balloons described in \autoref{sec:lunar_rockets_no_fuel} are likely vulnerable to rupture from high powered terrestrial lasers by a military adversary.  A thin reflective shield could be attached to the balloon and discarded along with other solid components right before impact.  Instead of balloons, less fragile explosive bricks could detonate just before impacting the pusher plate. In the long run, nations will need to defend their payloads by destroying sabotage weapons however.
 
+\section{Conclusion and Future Directions}
+This paper has introduced the transformative potential of externally pulsed propulsion. We've demonstrated how its intricate navigation, made viable by advancements in neural networks and CubeSat formation flying, could revolutionize hypersonic intercity transport, offer a novel approach to reverse global warming, provide limitless affordable power, and even enable human colonization of the solar system with fusion power. 
+
+Our next steps involve simulating the fundamental physics and prototyping the control software for externally pulsed propulsion, ensuring the most accurate simulations possible. We also plan to solicit feedback on current challenges impeding these concepts and assess their economic and technical surmountability.
 
 \appendix 
 \section{Derivation of Balloon Mass/Rocket Mass Continous Approximation}\label{sec:balloon_ratio_approximation}  We want to approximate the ratio of the total balloon mass \(m_b\) all traveling at velocity \(v_b\) for a sequence of balloons to push a rocket with mass \(m_r\) with initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   Let's initially naively assume every collision is perfectly elastic in one dimension.   We'll use calculus to get a  closed form expression by solving for a rocket  continously bombarded by infinitestimal balloons each with mass \(dm_b\).   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
@@ -531,6 +562,11 @@ Let $v_g$ be gas exhaust velocity expelled from the rocket, and assume this mass
  v_g = v,
  v_e= \frac{v}{2}
  \end{equation}
+
+ \section{AI and Citations Transparency Acknowledgement}
+ The ideas in this paper come from the author.  However, some artwork was created with AI tools.  AI tools also helped suggest writing improvements.  It's possible the AI training might regurgitate writing from other authors.   Please inform me if you see this, so I can add citations.  
+
+ More generally, I am not an expert in the field, so it's possible I failed to cite prior work for some of the ideas presented.   Please let me know if I inadvertantly present any novel concepts that are actually from others, so I may cite relevant work.
  
 %Bibliography
 \bibliographystyle{unsrt}  
