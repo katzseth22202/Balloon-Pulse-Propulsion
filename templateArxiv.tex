@@ -60,6 +60,9 @@
 
 \begin{document}
 \maketitle
+\newpage
+\tableofcontents
+\newpage
 
 \begin{abstract}\label{sec:abstract}
  
@@ -281,19 +284,19 @@ If our propulsion balloons can reach high enough velocities, we could directly l
 \subsection{Radiative Differences from Project Orion}
 Project Orion required shaped explosives to redirect plasma towards the pusher plate because 80\% of the bombs' energy became black body X-ray thermal radiation \cite{toughsf_cassaba_howitzer}.  In contrast, our proposed system anticipates minimal radiative losses from collisions, even at speeds matching the Parker Solar Probe. Though detailed computer analysis is needed for full confirmation, our reasoning for this low loss stems from
 \begin{itemize}
-    \item The much lower atomic mass of the colliding atoms compared to fissile atoms, leading to proportionally lower temperatures at equivalent velocities.
-    \item The mean velocity of colliding atoms is likely about $\frac{1}{5}$ that of atoms in an inefficient 1\% yield bomb, generating peak temperatures at least 25 times lower
+    \item The colliding atoms in our system have a much lower atomic mass than fissile atoms. For a given total kinetic energy, this means the energy is distributed among a greater number of particles, resulting in a significantly lower average kinetic energy per particle, which directly translates to lower plasma temperatures. Additionally, plasmas formed from lighter elements generally have a higher specific heat capacity, meaning they absorb more energy for a given temperature increase. 
+    \item The mean velocity of colliding atoms is likely about $\frac{1}{5}$ that of atoms in an inefficient 1\% yield bomb.  Since kinetic energy is proportional to the square of velocity, this alone suggests peak temperatures at least 25 times lower.
     \item Combined, lower mean velocity and atomic mass imply temperatures might be 200 times less in our collision than in a bomb.  Radiative power rises with the fourth power of temperature ($T^4$), so peak radiation flux is likely around 1 billion times less than the least efficient nuclear bombs.
-    \item The colliding masses should be much smaller than a nuclear bomb, with a lower radiative surface area.   As the collision plasma expands adiabatically, its volume increases proportionally faster than a larger bomb plasma would at the same linear expansion velocity.  Temperature would decrease faster due to this faster proportional change in volume. 
+    \item The colliding masses should be much smaller than a nuclear bomb, with a lower radiative surface area.   As the collision plasma expands adiabatically, its volume increases proportionally faster relative to its initial volume compared to a larger bomb plasma for a given absolute linear expansion. This more rapid proportional change in volume leads to a quicker and more substantial decrease in temperature, further reducing radiative output.
 \end{itemize}
 
 Lower temperatures generate longer-wavelength blackbody X-rays compared to those from bombs. This means materials with lower atomic numbers (lower Z) can absorb this radiation and keep the plasma opaque. While Project Orion favored expensive and difficult to work with tungsten \cite{toughsf_cassaba_howitzer}, these longer wavelengths should allow for the use of cheaper elements to achieve opaque plasma.
 
-\subsection{Solids Rather than Low Density Balloons}\label{sec:solid_balloons}
+\subsection{Solids Projectiles Rather than Low Density Balloons}\label{sec:solid_balloons}
 Given the extreme velocities at periapsis, we no longer collide low density balloons because solid objects vaporize into opaque plasma.   The real-world efficiency of these plasma explosions is likely high because the extreme temperatures should bring the entire plasma to thermal equilibrium before significant expansion occurs.
 
-We'd make these solid "balloons" primarily from cheap low atomic number (low Z) materials like boron nitride, motor oil, and graphite.  A small amount of cheap higher Z materials like iron would be included to ensure opacity to the blackbody X-rays produced.  
-All the balloon's mass contributes to propulsion, irrespective of its composition.  The balloons can contain electronics, heat shielding, and some liquid that passively or actively cools the skin through convection.     They can also partially be made from batteries so that solar power is not needed too close to the Sun.    
+We'd make these solid projectiles primarily from cheap low atomic number (low Z) materials like boron nitride, motor oil, and graphite.  A small amount of cheap higher Z materials like iron would be included to ensure opacity to the blackbody X-rays produced.  
+All the projectiles's mass contributes to propulsion, irrespective of its composition.  The projectiles can contain electronics, heat shielding, and some liquid that passively or actively cools the skin through convection.     They can also partially be made from batteries so that solar power is not needed too close to the Sun.    
 
 \subsection{Navigation Challenges Near Periapsis}\label{sec:periapsis_challenges}
 Close solar periapsis involves some unique challenges.   Obviously, any sensor dependent on visible light will need to filter interfering solar illumination.   Instruments will need to handle heat and solar wind.  Relativisitic influences preturb the craft more than they would on Earth.  High collision speeds demand extremely accurate navigation.   The pulsed propulsion chamber may ablate slightly on each pulse.  The impacting projectiles must be miniaturized to at most a few kilograms to contain the immense energy from explosions at these velocities. 
@@ -374,7 +377,7 @@ Batteries are environmentally attractive, but our world still depends heavily on
 Though the power plant and distribution infrastructure would cost billions to construct and operate, the revenue generated is staggering. Ultimately, we'd spend billions to make trillions annually from a planetary-scale plant.  Turns out, if  \textit{Superman} wants to be as rich as \textit{Lex Luthor}, he should get limitless energy not from the light of a yellow sun, but from its gravity \cite{superman2025}.
 
 \subsection{To Solve Climate Change, Make The Earth A Death Star}\label{sec:death_star}
-A Death Star \cite{death_star} is a giant sphere with a  narrow 1 meter opening you can shoot something down to create an explosion inside the main reactor.   Building a Death Star from scratch  would be a huge undertaking.   Fortunately, if we build the Straw Way To Heaven described in \autoref{sec:straw_way_to_heaven}, we're living on one.  Although our Straw Way generator produces clean energy from incoming projectiles, it's power production is restricted to daytime hours when the straw can face the sun.   Also, a limitless clean energy source would only slow climate change.   Industrial carbon emissions from steel, cement, agriculture, and other processes would still heat the planet \cite{steel_and_cement}.   
+A Death Star \cite{death_star} is a giant sphere with a  narrow 1 meter opening you can shoot something down to create an explosion inside the main reactor.   Building a Death Star from scratch  would be a huge undertaking.   Fortunately, if we build the Straw Way To Heaven described in \autoref{sec:straw_way_to_heaven}, we're living on one (although perhaps calling it a Death Star is wrong since we're saving rather than destroying our planet.  Maybe we can call it a Seth Star, after the author of this paper).  Although our Straw Way generator produces clean energy from incoming projectiles, it's power production is restricted to daytime hours when the straw can face the sun.   Also, a limitless clean energy source would only slow climate change.   Industrial carbon emissions from steel, cement, agriculture, and other processes would still heat the planet \cite{steel_and_cement}.   
 
 \subsubsection{That's No Moon.  Oh Wait, It's Literally Our Moon}\cite{starwars1977}
 Projectiles made from lunar materials could enter a terrestrial Straw Way from high angles of attack around the clock.  Lunar regolith is primarily carbon depleted rock \cite{mckay1991lunar}.  If this rock was heated, vaporized, and pressurized as it fell into deep ocean water, it would rapidly absorb carbon dioxide to form carbonates that  negate industrial carbon pollution.
@@ -392,12 +395,10 @@ The fast projectiles from \autoref{sec:no_isru_rocket} could propel a spacecraft
 \end{figure}
 
 A 1979 Los Alamos Impact Fusion workshop concluded speeds of just \SI{200}{\kilo\meter\per\second} might be sufficient for precompressed gram sized fusion fuel projectiles to ignite \cite{impactfusion1979}.   Larger projectiles would likely be easier to confine long enough for high fusion energy gain.   A lead tamper, as depicted in \autoref{fig:fusion_tamper} surrounding a few hundred grams of fusion fuel could ignite fusion explosions and trigger immense exhaust velocities from a pulsed propulsion chamber.  
-They could propel projectiles towards spacecraft at velocities of up to \SI{20,000}{\kilo\meter\per\second} if the fusion fuel is mostly aneutronic.   A seed of deuterium-tritium could ignite a larger deuterium and helium-3 mixture to maximize thrust.   As the spacecraft accelerates, it can also reach speeds where it trigger fusion by crashing into slower moving fusion fuel targets.   If carefully planned, these chains of fast-moving projectiles could essentially create interplanetary highways, allowing people to travel between planets under comfortable Earth gravity in time frames comparable to ocean liners crossing the Atlantic. 
+With mostly aneutronic fusion fuel, projectiles could achieve velocities up to $\SI{20,000}{\kilo\meter\per\second}$, as this directly converts energy into charged particle kinetic energy, bypassing the mass penalty of neutron shielding.  A seed of deuterium-tritium could ignite a larger deuterium and helium-3 mixture to maximize thrust.   As the spacecraft accelerates, it can also reach speeds where it trigger fusion by crashing into slower moving fusion fuel targets.   If carefully planned, these chains of fast-moving projectiles could essentially create interplanetary highways, allowing people to travel between planets under comfortable Earth gravity in time frames comparable to ocean liners crossing the Atlantic. 
 
 \subsection{The Sixth Question For Climate Change}\label{sec:sith_question}
-Bill Gates' excellent book, \textit{How to Avoid a Climate Disaster} \cite{gates2021avoid}, details five practical questions \cite{breakthroughenergy_2021_five} any effective climate solution must address. However, perhaps the truly successful solution will be one that inspires the public by giving humanity fundamentally new abilities.
-
-Our Straw Way to Heaven (see \autoref{sec:straw_way_to_heaven}) addresses Gates' questions better than other alternatives. It completely negates carbon emissions, reverses cement emissions, provides indefinite global power, occupies minimal space, and boasts marginal costs that decline rapidly with output.
+Bill Gates' excellent book, \textit{How to Avoid a Climate Disaster} \cite{gates2021avoid}, details five practical questions \cite{breakthroughenergy_2021_five} any effective climate solution must address. Our Straw Way to Heaven (see \autoref{sec:straw_way_to_heaven}) addresses Gates' questions better than other alternatives. It completely negates carbon emissions, reverses cement emissions, provides indefinite global power, occupies minimal space, and boasts marginal costs that decline rapidly with output.
 
 Yet, I respectfully propose a sixth crucial question for public acceptance of any global warming solution: Beyond just reducing our electric bills, how will this breakthrough drastically improve daily life? An investment on the scale required to solve climate change should ideally grant human society new abilities, such as hypervelocity transport and affordable space travel. Externally pulsed propulsion can achieve all of these things.  
 
@@ -422,18 +423,35 @@ If fission rockets prove politically unpalatable, chemical rockets may also work
 
 \section{War, Policy, and Pulsed Propulsion}
 \subsection{Fusion Rockets and the Outerspace Treaty}
-The Outer Space Treaty \cite{outer_space_treaty} prohibits nuclear weapons in space, so the legality of pure fusion rockets, detailed in \autoref{sec:epstein_drives}, requires clarification.
+The Outer Space Treaty \cite{outer_space_treaty}prohibits nuclear weapons in space, so the legality of pure fusion rockets like those discussed in \autoref{sec:epstein_drives}, which rely on controlled nuclear reactions but are not weapons, requires clarification, likely through international dialogue and new legal frameworks.
 
 \subsection{Hackers Must Be Prevented from Causing Catastrophic Explosions}
 As previously discussed, the energy projectiles for the \textit{Death Star} discussed in \autoref{sec:death_star} are intentionally designed to burn up high in the atmosphere without causing damage in case of a mishap.  However, there is a danger a hacker could manipulate microthrusters on the projectiles to enter the atmosphere simultaneously rather than in sequence, leading to larger Tunguska \cite{longo2007tunguska} sized explosions.  We can mitigate this risk with standard software security practices like using memory safe languages and authenticated communication.
 
 \subsection{Risk of Balloon Sabotage}
-External pulsed propulsion might be useful for launching military assets like Golden Dome \cite{lockheed_martin_golden_dome} or the Brilliant Boulders \cite{brilliant_boulders} discussed on the blog related to this paper \cite{aim2024}.   The balloons described in \autoref{sec:lunar_rockets_no_fuel} are likely vulnerable to rupture from high powered terrestrial lasers by a military adversary.  A thin reflective shield could be attached to the balloon and discarded along with other solid components right before impact.  Alterenatively, we can replace balloons with less fragile explosive bricks could detonate just before impacting the pusher plate. In the long run, nations will need to defend their payloads by destroying sabotage weapons.
+External pulsed propulsion might be useful for launching military assets like Golden Dome \cite{lockheed_martin_golden_dome} or the Brilliant Boulders \cite{brilliant_boulders} discussed on the blog related to this paper \cite{aim2024}.   The balloons described in \autoref{sec:lunar_rockets_no_fuel} are likely vulnerable to rupture from high powered terrestrial lasers by a military adversary.  A thin reflective shield could be attached to the balloon and discarded along with other solid components right before impact.  Alterenatively, we can replace balloons with less fragile solids made from chemical explosives could detonate just before impacting the pusher plate. In the long run, nations will need to defend their payloads by destroying sabotage weapons.
 
 \section{Conclusion and Future Directions}
 This paper has introduced the transformative potential of externally pulsed propulsion. We've demonstrated how its intricate navigation, made viable by advancements in neural networks and CubeSat formation flying, could revolutionize hypersonic intercity transport, offer a novel approach to reverse global warming, provide limitless affordable power, and even enable human colonization of the solar system with fusion power. 
 
 Our next steps involve simulating the fundamental physics and prototyping the control software for externally pulsed propulsion, ensuring the most accurate simulations possible. We also plan to solicit feedback on current challenges impeding these concepts and assess their economic and technical surmountability.
+
+If the basic physics of externally pulsed propulsion work, we'd likely proceed with different technologies in different time frames.  A guess on when each technology should be fully developed is proposed in \autoref{tab:schedule_future_work}.
+
+
+\begin{table}[htpb]
+    \centering
+    \begin{tabularx}{\textwidth}{|c|L|}\hline
+        \textbf{Time frame} & \textbf{Action} \\\hline
+        Now & Prototype satellite launch and hypersonic travel using externally pulsed propulsion from balloons launched by large reusable rockets\\\hline
+        Near Term & Prototype launches using lunar volatiles or mined lunear oxygen instead of large reusable rockets. \\\hline
+        Mid Term & Prototype leveraging close solar approaches or material from Phoebe/Saturn for externally  pulsed propulsion \\\hline
+        Long Term & Prototype constructing a Straw Way to Heaven and energy infrastructure based on it \\\hline
+        After the Singularity (ie, Far Distant Future) & Prototype fusion rockets and interplanetary highways \\\hline
+    \end{tabularx}
+    \caption{Proposed Schedule for Future Work}
+    \label{tab:schedule_future_work}
+\end{table}
 
 \appendix 
 \section{Derivation of Balloon Mass/Rocket Mass Continous Approximation}\label{sec:balloon_ratio_approximation}  We want to approximate the ratio of the total balloon mass \(m_b\) all traveling at velocity \(v_b\) for a sequence of balloons to push a rocket with mass \(m_r\) with initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   Let's initially naively assume every collision is perfectly elastic in one dimension.   We'll use calculus to get a  closed form expression by solving for a rocket  continously bombarded by infinitestimal balloons each with mass \(dm_b\).   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
