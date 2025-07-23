@@ -314,6 +314,11 @@ A final issue is placing the initial payload in a retrograde low periapsis solar
 
 Optionally we can push more mass into the initial orbit by using Jupiter gravity assist (possibly with a burn at Jupiter to leverage its Oberth effect) to place propulsion balloons into a retrograde Hohmann trajectory back to Earth.   They would cross Earth at around \SI{69}{\kilo\meter\per\second}, which could push a larger terrestrial payload onto  prograde and retrograde colliding trajectories at low solar periapsis.
 
+\subsection{Jupiter Only Exponential Launch Growth}\label{sec:jupiter_only_growth}
+A simpler way to bootstrap an exponential launch cycle is to use the reverse Hohmann trajectory from Jupiter described in \autoref{sec:jupiter_gravity_initial} without close solar approaches.   Balloons returning from Jupiter can push perhaps 8 times their weight into a highly eccentric orbit around Earth.   A small conventional burn coupled with solar electric engines and gravity assists with the inner planets can return this payload to Jupiter and restart the cycle.   This multiplies payload capacity by a factor of 8 roughly every 6 years.   The growth is slow compared to other proposals but may provide sufficient launch capacity to supply the satellite market in a little more than a decade. 
+
+We can also combine this Jupiter launch cycle with reusable rockets or the lunar ices based cycle of \autoref{sec:lunar_rockets_no_fuel}.  This increases our initial payload sent to Jupiter, so that the slow exponential growth rate doesn't limit us from using it for larger markets like intercity transport or energy generation.
+
 \section{One Hiroshima Per Second. The World Set Free}\label{sec:world_set_free}
 In \autoref{sec:no_isru_rocket}, we propelled balloons to \SI{150}{\kilo\meter\per\second} at \SI{1}{\astronomicalunit} using solar gravity and externally pulsed propulsion. A \SI{60}{\tera\watt} pulsed heat source, which is equivalent to one Hiroshima bomb per second \cite{hiroshima}, requires harnessing the kinetic energy of just \SI{5.3}{\tonne\per\second} of propulsion mass at these speeds. For context, humanity's total power consumption is approximately \SI{20}{\tera\watt} \cite{owid-energy-production-consumption}. Given that typical power plants are roughly one-third efficient, a single one of these pulsed heat sources could meet the energy needs of all human civilization.  Remarkably, this concept evokes H.G. Wells's prophetic vision in his 1913 novel, \textit{The World Set Free}, where he imagined atomic bombs as a "blazing continual explosion" \cite{wells1914world}.  
 
@@ -446,6 +451,7 @@ If the basic physics of externally pulsed propulsion work, we'd likely proceed w
     \begin{tabularx}{\textwidth}{|c|L|}\hline
         \textbf{Time frame} & \textbf{Action} \\\hline
         Now & Prototype satellite launch and hypersonic travel using externally pulsed propulsion from balloons launched by large reusable rockets\\\hline
+        Now & Prototype satellite launch using reverse Hohmann transfer from Jupiter as described in \autoref{sec:jupiter_only_growth} \\\hline
         Near Term & Prototype launches using lunar volatiles or mined lunar oxygen instead of large reusable rockets \\\hline
         Mid Term & Prototype leveraging close solar approaches or material from Phoebe/Saturn for externally  pulsed propulsion \\\hline
         Mid to Long Term & Prototype constructing a Straw Way to Heaven and energy infrastructure based on it \\\hline
