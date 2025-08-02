@@ -1,9 +1,10 @@
 \documentclass{article}
 
-
 \usepackage{PRIMEarxiv}
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[style=numeric-comp, backend=biber]{biblatex}
+\addbibresource{references.bib}
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 \usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
@@ -608,8 +609,7 @@ Let $v_g$ be gas exhaust velocity expelled from the rocket, and assume this mass
 
  
 %Bibliography
-\bibliographystyle{unsrt}  
-\bibliography{references}  
+\printbibliography 
 
 
 \end{document}
