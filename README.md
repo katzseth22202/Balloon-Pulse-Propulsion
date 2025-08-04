@@ -4,15 +4,17 @@
 
 This repository contains the raw LaTeX assets for the paper associated with the research project "Aim Is All You Need". This is an Overleaf-authored GitHub export of the raw assets for the paper.
 
-**Associated Paper And Supporting Software:** @software{Katz_aim_is_all_you_need_2025,
-author = {Katz, Seth},
-doi = {10.5281/zenodo.16718455},
-month = aug,
-title = {{aim\_is\_all\_you\_need}},
-url = {https://github.com/katzseth22202/aim_is_all_you_need},
-year = {2025}
+**Associated Paper And Supporting Software:** 
+```bibtex
+@software{Katz_aim_is_all_you_need_2025,
+    author = {Katz, Seth},
+    doi = {10.5281/zenodo.16718455},
+    month = aug,
+    title = {{aim\_is\_all\_you\_need}},
+    url = {https://github.com/katzseth22202/aim_is_all_you_need},
+    year = {2025}
 }
-
+```
 ## License
 
 **IMPORTANT:** Please check the [LICENSE](LICENSE) file for the complete license terms. This software is provided under "All Rights Reserved" terms.
