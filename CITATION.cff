@@ -1,18 +1,18 @@
 cff-version: 1.2.0
-message: "Raw latex assets of paper. Please cite it as below.  Copyright 2025.  All Rights Reserved.
+message: "Raw latex assets of paper. Please cite it as below. Copyright 2025. All Rights Reserved."
 authors:
-- given-names: "Seth"
-  family-names: "Katz"
-  orcid: "https://orcid.org/0009-0007-0277-4359"
+  - given-names: "Seth"
+    family-names: "Katz"
+    orcid: "https://orcid.org/0009-0007-0277-4359"
 title: "aim_is_all_you_need"
 url: "https://github.com/katzseth22202/Balloon-Pulse-Propulsion"
 preferred-citation:
   type: generic
   title: "Balloon-Pulse-Propulsion"
   authors:
-  - given-names: "Seth"
-    family-names: "Katz"
-    orcid: "https://orcid.org/0009-0007-0277-4359"
+    - given-names: "Seth"
+      family-names: "Katz"
+      orcid: "https://orcid.org/0009-0007-0277-4359"
   url: "https://github.com/katzseth22202/Balloon-Pulse-Propulsion"
   doi: "https://doi.org/10.5281/zenodo.16740748"
-  date-released: "2025-08-04" 
+  date-released: "2025-08-04"
