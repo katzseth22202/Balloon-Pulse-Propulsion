@@ -4,7 +4,7 @@
 
 This repository contains the raw LaTeX assets for the paper associated with the research project "[Aim Is All You Need](https://doi.org/10.5281/zenodo.16741183)". This is an Overleaf-authored GitHub export of the raw assets for the paper.
 
-**Associated Paper And Supporting Software:** 
+**Git Repo with supporting calculations:** 
 ```bibtex
 @software{Katz_aim_is_all_you_need_2025,
     author = {Katz, Seth},
