@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the raw LaTeX assets for the paper associated with the research project "Aim Is All You Need". This is an Overleaf-authored GitHub export of the raw assets for the paper.
+This repository contains the raw LaTeX assets for the paper associated with the research project "[Aim Is All You Need](https://doi.org/10.5281/zenodo.16741183)". This is an Overleaf-authored GitHub export of the raw assets for the paper.
 
 **Associated Paper And Supporting Software:** 
 ```bibtex
@@ -13,6 +13,21 @@ This repository contains the raw LaTeX assets for the paper associated with the 
     title = {{aim\_is\_all\_you\_need}},
     url = {https://github.com/katzseth22202/aim_is_all_you_need},
     year = {2025}
+}
+```
+
+**Standalone Paper:**
+```bibtex
+@misc{katz_2025_16741183,
+  author       = {Katz, Seth},
+  title        = {Aim Is All You Need - A Speculative White Paper on
+                   Externally Pulsed Propulsion
+                  },
+  month        = aug,
+  year         = 2025,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.16741183},
+  url          = {https://doi.org/10.5281/zenodo.16741183},
 }
 ```
 ## License
