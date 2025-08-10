@@ -1,12 +1,14 @@
 \documentclass{article}
 
 \usepackage{PRIMEarxiv}
-
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[style=numeric-comp, backend=biber]{biblatex}
 \addbibresource{references.bib}
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 \usepackage{hyperref}       % hyperlinks
+\renewcommand{\subsubsectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\sectionautorefname}{Section}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
@@ -83,7 +85,7 @@ This paper's goal is to enable our progress in physical realms to catch up with 
     \label{fig:PuffSat_impact}
 \end{figure}
 
-Consider a “PuffSat," a single-use device that, when triggered, rapidly converts nearly all its mass into a low-density gas.  The PuffSat can generate gas explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}).  The PuffSat can perform small navigation adjustments using ultra lightweight microthrusters and electronics.
+Consider a “PuffSat," a single use device that, when triggered, rapidly converts nearly all its mass into a low density gas.  The PuffSat can generate gas explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}).  The PuffSat can perform small navigation adjustments using ultra lightweight microthrusters and electronics.
 
 Now, envision a scenario with two rockets. The first rocket deploys a series of these fast moving PuffSats. As shown in \autoref{fig:PuffSat_impact}, the deployed PuffSats precisely follow a path to sequentially gasify and impact a shock absorbing momentum pusher plate on a separate target rocket. These collisions deliver high density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}). 
 
@@ -127,7 +129,7 @@ Our hypervelocity PuffSats employ formation flying algorithms for precise positi
 
 To maximize gas mass while minimizing the non-volatile solid mass in the mini-thrusters and electronics, a small number of coordinator satellites with enhanced computing power will track the PuffSats' positions and relay adjustment commands. As shown in \autoref{fig:coordinator-nodes}, these heavier coordinator nodes fly alongside the PuffSats but do not impact the target rocket. The PuffSats themselves carry only simple, low-mass electronics. Because hundreds of PuffSats are required per mission, mass production will help reduce overall costs.
 
-Each PuffSat carries perhaps 100 grams of non-volatile solid mass, including sensors, power systems, microthrusters, and low-bandwidth communication links to the coordinator nodes. To prevent this mass from impacting the rocket, we propose several disposal strategies
+Each PuffSat carries perhaps 100 grams of non-volatile solid mass, including sensors, power systems, microthrusters, and low bandwidth communication links to the coordinator nodes. To prevent this mass from impacting the rocket, we propose several disposal strategies
 \begin{itemize}
     \item \textbf{Active Elimination:} Equipment on the target rocket could obliterate the non-volatile solids via electric discharges, directed energy beams, or sprays of material that hit the incoming PuffSat solids before pusher plate impact.
     \item \textbf{Passive Routing:} The non-volatile solid components could pass harmlessly through a small aperture in the pusher plate.
@@ -152,11 +154,11 @@ After each PuffSat impacts the rocket, we'll need to rapidly adjust for any disp
 \subsection{PuffSat Design And Gas Generation Details}\label{sec:puffsat_design}
 The optimal PuffSat design depends on the launch scenario and mission requirements.
 \subsubsection{Explosive PuffSats} \label{sec:explosive_puffsat}
-Explosive PuffSats are timed to detonate at a precise standoff distance from the pusher plate, rapidly converting their mass into a high-velocity gas disk for maximum momentum transfer. A small shaped section of the PuffSat's explosive charge can also eject solid debris away from the rocket before impact, as described in \autoref{item:discard_before_impact}.  A failure to detonate at the intended moment could damage the pusher plate or the rocket, so redundant initiation systems are essential.
+Explosive PuffSats are timed to detonate at a precise standoff distance from the pusher plate, rapidly converting their mass into a high-velocity gas disk for maximum momentum transfer. A small shaped section of the PuffSat's explosive charge can also eject non-volatile solid components away from the rocket before impact, as described in \autoref{item:discard_before_impact}.  A failure to detonate at the intended moment could damage the pusher plate or the rocket, so redundant initiation systems are essential.
 
 As shown in \autoref{fig:explosive_puffsat}, each PuffSat carries an onboard detonation mechanism. To ensure reliable detonation, the rocket also releases a microns-thick layer of volatile material, such as water ice, a few meters in front of the pusher plate just before each PuffSat's arrival. The resulting impact shock ensures the PuffSat’s explosive charge detonates. The ice sheet’s geometry guarantees that a PuffSat cannot hit the rocket without first passing through it.  The ice sheet can be a mostly empty grid or lattice, reducing areal density significantly.
 
-If frozen materials prove impractical, the grid could instead be constructed from low-mass plastic explosives, designed to detonate on PuffSat impact. In the event of a missed PuffSat interception, this explosive grid would unfortunately persist as space debris for hours or days until eroded by atomic oxygen or decelerated by atmospheric drag. Another alternative is to replace ice lattices with liquid sprays that induce a shock detonation of the PuffSat’s explosives upon impact.
+If frozen materials prove impractical, the grid could instead be constructed from low mass plastic explosives, designed to detonate on PuffSat impact. In the event of a missed PuffSat interception, this explosive grid would unfortunately persist as space debris for hours or days until eroded by atomic oxygen or decelerated by atmospheric drag. Another alternative is to replace ice lattices with liquid sprays that induce a shock detonation of the PuffSat’s explosives upon impact.
 
 \begin{figure}
     \centering
@@ -165,27 +167,26 @@ If frozen materials prove impractical, the grid could instead be constructed fro
     \label{fig:explosive_puffsat}
 \end{figure}
 
-To prevent outgassing, the explosive materials are encased in very thin layers of high-performance polymers or metals. These liners can also reflect sunlight, further reducing temperatures to minimize the escape of volatile materials. Explosive PuffSats are ideal for terrestrial launches, where the necessary chemicals are relatively easy to manufacture.
+To prevent outgassing, the explosive materials are encased in very thin layers of high performance polymers or metals. These liners can also reflect sunlight, further reducing temperatures to minimize the escape of volatile materials. Explosive PuffSats are ideal for terrestrial launches, where the necessary chemicals are relatively easy to manufacture.
 
 \subsubsection{Solid Ice Based PuffSats} \label{sec:icy_puffsat}
-PuffSats filled with lunar ISRU ice do not primarily rely on chemical reactions to gasify. Their high-tensile skins absorb sunlight, melting the ice to water under mild pressure. Small explosives or an ice grid impactor, as described in \autoref{sec:explosive_puffsat}, rupture the skin to release the water. However, this process is too slow to fully vaporize the water before impact, and rapid vaporization would cool the stream so quickly that ice crystals reform.
+PuffSats filled with lunar ISRU ice do not primarily rely on chemical reactions to produce gas. Their high tensile skins absorb sunlight, melting the ice to water under mild pressure. Small explosives or an ice grid impactor (see \autoref{sec:explosive_puffsat}) rupture the skin to release the water. However, this release is too slow for complete vaporization before impact, and full vaporization would cool the steam so rapidly that ice crystals would reform.
 
-Instead, we atomize the water into fine droplets, a process that requires far less energy than full vaporization. Atomization occurs via a combination of explosive detonation and aerodynamic shear as the PuffSat ruptures and collides with the ice sheet. To enhance this process, we suspend microscopic explosive particles in the water. These particles could be dispersed as a colloidal slurry or encapsulated in microbubbles to ensure uniform distribution.  We select micro explosives with calibrated shock sensitivity, designed to reliably detonate upon high velocity impact with the ice sheet or in response to the primary detonation charges that rupture the PuffSat skin.  While likely imported from Earth due to manufacturing complexity, the suspended micro explosive mass is small compared to the bulk water payload.
+Instead, the water is atomized into fine droplets, a process requiring much less energy than vaporization. To drive atomization, microscopic explosive particles are suspended in the water, either as a colloidal slurry or encapsulated in microbubbles. In microgravity, thermal agitation induces Brownian motion, naturally yielding a stochastically mixed, quasi-uniform explosive particle distribution. These micro explosives are chosen for precise shock sensitivity, ensuring they detonate upon high velocity impact with the incoming ice grid or in response to the main rupture charges. While likely imported from Earth due to manufacturing complexity, the micro explosives' total mass is small compared to the bulk water payload.
 
-Additional ice particles injected by the rocket into the oncoming plume can mix with the atomized stream.  
-This injected ice promotes further atomization and partial vaporization before plate contact.
+After rupture, the rocket injects additional ice particles into the oncoming plume. Aerodynamic shear from these ice particles, combined with the micro explosive detonations, fully atomizes the water before it hits the rocket's pusher plate.
 
 \subsubsection{Liquid Oxygen PuffSats}
 PuffSats filled with lunar oxygen (see \autoref{sec:lunar_mining}) must also atomize before reaching the pusher plate. To retain liquid oxygen during orbital transit, these PuffSats require thicker skins capable of withstanding elevated internal pressures. Highly reflective coatings help maintain cryogenic temperatures even in direct sunlight, minimizing boil-off of the pressurized liquid oxygen.
 
 Upon rupture, however, the thicker balloon skin risks becoming hazardous shrapnel. To mitigate this, the rocket releases a denser intercepting ice sheet that fragments the skin on impact in a process analogous to how Whipple shielding breaks up space debris into less threatening dust \cite{whipple_shield}.
 
-As with the icy PuffSats discussed in \autoref{sec:icy_puffsat}, the liquid oxygen is atomized through a combination of micro explosive detonation, aerodynamic shear, and shock interaction with the ice sheet. Microscopic explosive particles are again suspended in the oxygen to disperse the fluid into fine droplets. 
+As with the icy PuffSats discussed in \autoref{sec:icy_puffsat}, the liquid oxygen is atomized through a combination of micro explosive detonation, aerodynamic shear, and shock interaction with the ice sheet.
 
 \subsubsection{Balloons PuffSats}
-Inflated balloon PuffSats avoid the catastrophic risk of failed detonations.  When filled with gaseous water vapor or oxygen, balloon PuffSats can operate without advanced reflective cooling. Project Echo \cite{JPL_EchoQL2010} demonstrated that large orbital balloons can be built from low-cost materials such as metallized mylar.
+Inflated balloon PuffSats avoid the catastrophic risk of failed detonations.  When filled with gaseous water vapor or oxygen, balloon PuffSats can operate without advanced reflective cooling. Project Echo \cite{JPL_EchoQL2010} demonstrated that large orbital balloons can be built from low cost materials such as metallized mylar.
 
-At low periapsis, however, drag, debris impacts, and radiation pressure make control difficult. Large balloon surface area also demands more polymer, increasing costs significantly. If high-performance polymer costs drop substantially, balloon PuffSats could become a favorable option.
+At low periapsis, maintaining balloon navigation control and structural integrity is difficult because of  atmospheric drag, debris impacts, and radiation pressure. Large balloon surface area also demands more polymer, increasing costs significantly. If high performance polymer costs drop substantially, balloon PuffSats could become a favorable option.
 
 \subsection{Comparison To Pellet Beam Propulsion Prior Art}
 In 2001, Gerald Nordley proposed an externally pulsed propulsion system in which hypervelocity pellets, capable of self steering, transfer momentum to a spacecraft via impact with a pusher plate \cite{nordley2001interstellar}. This concept built upon earlier work by Clifford Singer \cite{singer1979interstellar}, who envisioned unguided macroscopic projectiles launched at extreme velocities. 
@@ -197,7 +198,7 @@ These pellet stream propulsion ideas often prioritized interstellar speeds over 
 Although our PuffSats contain electronics, the majority of their mass consists of inexpensive explosives or ices. This composition enables comparable propulsion at significantly lower cost than systems dominated by electronics or solar sail material. Water ice, in particular, is abundant and mineable throughout the solar system.  Larger PuffSats can afford heavier electronics than Nordley's snowflake sized guided pellets.  While PuffSats could, in principle, interact with magnetic pusher plates, their largely gaseous composition (after gas generation) may make direct kinetic collision a simpler and more robust mechanism for momentum transfer. 
 
 \subsection{Mass Fraction Of Rocket To PuffSat Mass}
-For PuffSat pulsed propulsion to be a viable option, the ratio of PuffSat gas mass to target rocket mass must be low for relevant rocket velocity changes. We develop a closed-form approximation for this ratio ( \autoref{eq:PuffSat_ratio} in {\autoref{sec:PuffSat_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," \(e\).  Justification for a high \(e\) comes from Project Orion's findings \cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Pusher plate durability and opacity could be further enhanced by spraying a thin layer of oil on the plate between impacts.   Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a high  \(e=0.8\).   
+For PuffSat pulsed propulsion to be a viable option, the ratio of PuffSat gas mass to target rocket mass must be low for relevant rocket velocity changes. We develop a closed form approximation for this ratio ( \autoref{eq:PuffSat_ratio} in {\autoref{sec:PuffSat_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," \(e\).  Justification for a high \(e\) comes from Project Orion's findings \cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Pusher plate durability and opacity could be further enhanced by spraying a thin layer of oil on the plate between impacts.   Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a high  \(e=0.8\).   
 
 Relevant mass ratios and mission scenarios are summarized in \autoref{tab:mass_scenarios}. This table clearly shows that PuffSat pulsed propulsion can lift significant mass into orbit. For instance, if a reusable rocket like SpaceX Starship \cite{starship} lifts \SI{25}{\tonne} of PuffSats into a trans-lunar orbit, they can propel a  \SI{32}{\tonne} target craft into low Earth orbit. This exceeds the Space Shuttle's maximum capacity \cite{space_shuttle_program} or the zero fuel mass of smaller regional jets like the Embraer E170 \cite{embraer_e170}.
 
@@ -260,7 +261,7 @@ Although many satellites might be too small to fill up Starship, they can still 
 Safety and reliability will continue to be overarching concerns, suggesting excellent execution will be table stakes for a competitive launch company. \cite{mckinsey_reliability}
 \end{quote}
 
-Once rockets start ferrying astronauts, reliability becomes even more emphatically non-negotiable. Fully stacked, Starship weighs \SI{5}{\kilo\tonne} at launch \cite{starship}, yet its empty mass is only \SI{300}{\tonne}. That’s an awfully thin soda can strapped to a \SI{5}{\kilo\tonne} bomb that we're entrusting with billion-dollar satellites or human passengers.
+Once rockets start ferrying astronauts, reliability becomes even more emphatically non-negotiable. Fully stacked, Starship weighs \SI{5}{\kilo\tonne} at launch \cite{starship}, yet its empty mass is only \SI{300}{\tonne}. That’s an awfully thin soda can strapped to a \SI{5}{\kilo\tonne} bomb that we're entrusting with billion dollar satellites or human passengers.
 
 By contrast, a suborbital rocket that merely reaches \SI{200}{\kilo\meter} in altitude might have a propellant mass fraction under 50 percent. This greater structural margin allows for more robust, reliable engines and extensive payload protection systems. Of course, such a suborbital rocket cannot reach orbit on its own.  It needs Starship to "push" it with PuffSat pulsed propulsion.
 
@@ -326,7 +327,7 @@ However, we ideally don't want to make any chemical rocket fuel at all.   Let's 
 
 If our colliding PuffSats each travel at $v=\SI{11}{\kilo\meter\per\second}$, then from \autoref{eq:max_m_rp} derived in \autoref{sec:dv_effective},  the maximum theoretical combined effective exhaust velocity is $v_e = \frac{1}{2}v = \SI {5.5}{\kilo\meter\per\second}$.  Suppose this pulsed explosion has significant real world losses for an effective exhaust of $v_e = \SI{3}{\kilo\meter\per\second}$.   If the main rocket accelerates at its Earth periapsis with a burn of \SI{1.9}{\kilo\meter\per\second} it will reach the moon at \SI{7.2}{\kilo\meter\per\second} \cite{Katz_aim_is_all_you_need_2025}.   If the rocket deploys propulsion PuffSats on lunar approach, they can push another rocket off the moon with a mass greater than the incoming PuffSats. Specifically, the incoming propulsion PuffSats have enough momentum to start an exponential growth cycle where each loop around the moon launches about 1.455 times the starting mass.   If we do this once per lunar month, we have increased our initial launch mass capacity by a factor of 1 million in about 2.8 years \cite{Katz_aim_is_all_you_need_2025}. 
 
-\subsection{Lunar Oxygen Has Mass And All It Needs}\label{sec:lunar_mining}
+\subsection{Lunar Oxygen Has Mass And That Is All It Needs}\label{sec:lunar_mining}
 Lunar volatiles like water ice are ideal for filling PuffSats, but they are scarce.   However, oxygen is very common in lunar surface minerals.   Using solar energy and mining rovers derived from platforms like the IPex Pilot Excavator \cite{ipex_pilot_excavator}, we can produce oxygen.  On the volatile-depleted sunlit lunar surface, finding something to burn oxygen with for rocket propulsion is hard.   However, PuffSat pulsed propulsion does not require oxygen combustion, just gas momentum.  In shadowed craters or artificial shade, lunar derived oxygen will liquify and perhaps even solidify for storage.  
 
 We use some of our lunar PuffSats for the pulsed propulsion to lift terrestrial suborbital supply rockets into low Earth orbit.  The supplies include solar panels, pusher plates, PuffSat skins, electronics, and rovers. These supply rockets then use conventional engines to gain \(\Delta V\) so they can resupply our lunar surface operations.   When they reach the moon, we also use PuffSat pulsed propulsion to decelerate for lunar landing.  The deceleration propulsion PuffSats would previously have been launched from the moon's surface into an eccentric lunar orbit opposite to the incoming supplies' velocity.   We can optionally reduce terrestrial resupply requirements by embracing basic lunar manufacturing using metals like iron that are byproducts of lunar oxygen production.  These lunar metals could be shaped into pusher plate and pulsed propulsion chamber components.  
@@ -355,7 +356,7 @@ Lower temperatures generate longer-wavelength blackbody X-rays compared to those
 Given the extreme velocities at periapsis, we no longer collide low density PuffSat produced gases because solid objects vaporize into opaque plasma.   The real-world efficiency of these plasma explosions is likely high because the extreme temperatures should bring the entire plasma to thermal equilibrium before significant expansion occurs.
 
 We'd make these solid projectiles primarily from cheap low atomic number (low Z) materials like boron nitride, motor oil, and graphite.  A small amount of cheap higher Z materials like iron would be included to ensure opacity to the blackbody X-rays produced.  
-All the projectile's mass contributes to propulsion, irrespective of its composition.  As shown in \autoref{fig:parker_cross_section}, the projectiles can contain electronics, heat shielding, and some liquid that passively or actively cools the skin through convection.     They can also partially be made from batteries so that solar power is not needed too close to the Sun.    
+All the projectile's mass contributes to propulsion, irrespective of its composition.  As shown in \autoref{fig:parker_cross_section}, the projectiles can contain electronics, heat shielding, and some liquid that passively or actively cools the skin through a centrifugally driven convection cycle.     They can also partially be made from batteries so that solar power is not needed too close to the Sun.    
 
 \begin{figure}
     \centering
@@ -485,7 +486,7 @@ In \autoref{sec:no_isru_rocket} we discussed using Sun grazing Oberth maneuvers 
 
 Orbits with higher apoapsis require less $\Delta V$ to shed orbital angular momentum and significantly lower their periapsis. For example, transferring to a solar impact trajectory from Saturn requires only about \SI{10}{\kilo\meter\per\second}, compared to roughly \SI{30}{\kilo\meter\per\second} from Earth. This makes Saturn a more efficient departure point for reaching the inner solar system or the Sun.  
 
-Saturn’s irregular moon Phoebe lies just $\SI{180}{\degree} - \SI{173.4}{\degree} = \SI{6.6}{\degree}$ off the solar ecliptic \cite{phoebe}, making it well aligned for interplanetary transfers. It orbits at high elevation with a relatively slow velocity relative to Saturn, offering low $\Delta V$ transfers to orbits reaching close to Saturn. A prograde rocket launched from Phoebe could collide with retrograde payloads also launched from Phoebe. These collisions could occur in a pulsed propulsion chamber near Saturn, enabling high efficiency Oberth maneuvers. With precise planning to avoid Saturn’s rings, this method could launch spacecraft toward the inner solar system.
+Saturn’s irregular moon Phoebe lies just $\SI{180}{\degree} - \SI{173.4}{\degree} = \SI{6.6}{\degree}$ off the solar ecliptic \cite{phoebe}, making it well aligned for interplanetary transfers. It orbits at high elevation with a relatively slow velocity relative to Saturn, offering low $\Delta V$ transfers to orbits reaching close to Saturn. A prograde rocket launched from Phoebe could collide with retrograde payloads also launched from Phoebe. These collisions could occur in a pulsed propulsion chamber near Saturn, enabling high efficiency Oberth maneuvers. With precise planning to avoid Saturn’s rings, this method could launch spacecraft toward the inner solar system.  PuffSats from Saturn launched towards Earth can power a Death Star generator (See \autoref{sec:death_star}) or launch suborbital rockets into orbit (See \autoref{sec:200_mile_high}.
 
 These rockets can also return to Phoebe at high speeds to launch more mass towards Saturn with pulsed propulsion, enabling a bootstrapped launch mass growth cycle similar to the terrestrial moon  cycle discussed in \autoref{sec:lunar_rockets_no_fuel}. Power for mining Phoebe can come from solar energy concentrated from lenses built with Phoebe’s native ice or from plastic made on Phoebe.  Alternatively, thermal energy generated by returning impactors could power mining on Phoebe.
 
@@ -512,11 +513,11 @@ Since the Straw Way To Heaven (see \autoref{sec:straw_way_to_heaven}) is a fixed
 
 
 \section{Conclusion And Future Directions}
-This paper has introduced the transformative potential of PuffSat pulsed propulsion. We've demonstrated how its intricate navigation, made viable by advancements in neural networks and CubeSat formation flying, could revolutionize hypersonic intercity transport.  It also offers a novel approach to reverse global warming, provide limitless affordable power, and even enable human colonization of the solar system with fusion power. 
+This paper has introduced the transformative potential of PuffSat pulsed propulsion. We've demonstrated how a PuffSat's intricate navigation, made viable by advancements in neural networks and CubeSat formation flying, could revolutionize hypersonic intercity transport.  PuffSats also offers a novel approach to reverse global warming, provide limitless affordable power, and even enable human colonization of the solar system with fusion power. 
 
 Our next steps involve simulating the fundamental physics and prototyping the control software for PuffSat pulsed propulsion, ensuring the most accurate simulations possible. We also plan to solicit feedback on current challenges impeding these concepts and assess their economic and technical surmountability.
 
-If the basic physics of PuffSat pulsed propulsion work, we'd likely proceed with different technologies in different time frames.  A asprirational "Elon time" \cite{wiktionary_elon_time} roadmap of when each technology could be  developed is proposed in \autoref{tab:schedule_future_work}.
+If the basic physics of PuffSat pulsed propulsion work, we'd likely proceed with different technologies in different time frames.  An asprirational "Elon time" \cite{wiktionary_elon_time} roadmap of when each technology could be  developed is proposed in \autoref{tab:schedule_future_work}.
 
 
 \begin{table}[htpb]
