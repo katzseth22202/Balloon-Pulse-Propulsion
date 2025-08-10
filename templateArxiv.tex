@@ -70,7 +70,7 @@
 
 \begin{abstract}\label{sec:abstract}
  
-In 2017, Google Research published \textit{Attention Is All You Need} \cite{vaswani2023attentionneed}.  Their paper introduced the Transformer, which let neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that resemble hypothetical early prototypes of the computers in Star Trek \cite{startrek}.
+In 2017, Google Research published \textit{Attention Is All You Need} \cite{vaswani2023attentionneed}.  Their paper introduced the Transformer, which let neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that catapulted AI towards mainstream adoption.
 
 But here's the bittersweet truth:  While our screens flicker with progress, the tangible realms of space, energy, and paleontology remain comparatively stagnant.
 
@@ -78,16 +78,16 @@ But here's the bittersweet truth:  While our screens flicker with progress, the 
 
 This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   
 
+Consider a “PuffSat," a single use device that, when triggered, rapidly converts nearly all its mass into a low density gas.  The PuffSat can generate gas explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}).  The PuffSat can perform small navigation adjustments using ultra lightweight microthrusters and electronics.
+
+Now, envision a scenario with two rockets. The first rocket deploys a series of these fast moving PuffSats. As shown in \autoref{fig:PuffSat_impact}, the deployed PuffSats precisely follow a path to sequentially gasify and impact a shock absorbing momentum pusher plate on a separate target rocket. These collisions deliver high density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}). 
+
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
     \caption{PuffSats from a first rocket (not shown) crash their gas puffs into a second target rocket, transferring momentum for propulsion. \cite{earth_image}}
     \label{fig:PuffSat_impact}
 \end{figure}
-
-Consider a “PuffSat," a single use device that, when triggered, rapidly converts nearly all its mass into a low density gas.  The PuffSat can generate gas explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}).  The PuffSat can perform small navigation adjustments using ultra lightweight microthrusters and electronics.
-
-Now, envision a scenario with two rockets. The first rocket deploys a series of these fast moving PuffSats. As shown in \autoref{fig:PuffSat_impact}, the deployed PuffSats precisely follow a path to sequentially gasify and impact a shock absorbing momentum pusher plate on a separate target rocket. These collisions deliver high density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of groundbreaking applications (See \autoref{tab:applications}). 
 
 Paralleling their role in consumer AI, neural networks offer a promising avenue to extend current CubeSat formation flying algorithms with the precise control required for this PuffSat pulsed propulsion (see \autoref{sec:neural_navigation}).
 
@@ -143,7 +143,7 @@ Each PuffSat carries perhaps 100 grams of non-volatile solid mass, including sen
     \label{fig:coordinator-nodes}
 \end{figure}
 
-Instead of relying on non-volatile solid components, radiation pressure could directly manipulate PuffSats. Coordinator nodes might employ kilowatt-class lasers to adjust PuffSat trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the PuffSat's skin, altering its shape or color. If these changes briefly persist, the altered solar radiation pressure would magnify PuffSat trajectory changes compared to the laser's radiation pressure alone. Eliminating non-volatile solid components on PuffSats  reduces the risk of pusher plate damage in an accident.  The PuffSats cost less if they don't include microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the PuffSats, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology.  
+Instead of relying on non-volatile solid components, radiation pressure could directly manipulate PuffSats. Coordinator nodes might employ kilowatt-class lasers to adjust PuffSat trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the PuffSat's skin, altering its shape or color. If these changes briefly persist, the altered solar radiation pressure would magnify PuffSat trajectory changes compared to the laser's radiation pressure alone. Eliminating non-volatile solid components on PuffSats  reduces the risk of pusher plate damage in an accident.  The PuffSats cost less without microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the PuffSats, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology.  
 
 Equipped with a high performance rocket based reaction control system, the target craft precisely adjusts its trajectory to intercept each PuffSat in the formation. To achieve the required millimeter scale precision, we use an Unscented Kalman Filter (UKF) \cite{wan2000unscented} to estimate each PuffSat’s position and velocity under the nonlinear dynamics of orbital motion. The UKF is well suited to systems with known dynamics and Gaussian noise, as it efficiently propagates uncertainty through nonlinear models. In this context, the large number of PuffSats provides a dense stream of relative measurements, which improves filter accuracy. However, UKF performance can degrade in the presence of unmodeled perturbations, non Gaussian noise, or intermittent sensor dropout.  Those conditions are frequently encountered in low Earth orbit.
 
@@ -158,7 +158,7 @@ Explosive PuffSats are timed to detonate at a precise standoff distance from the
 
 As shown in \autoref{fig:explosive_puffsat}, each PuffSat carries an onboard detonation mechanism. To ensure reliable detonation, the rocket also releases a microns-thick layer of volatile material, such as water ice, a few meters in front of the pusher plate just before each PuffSat's arrival. The resulting impact shock ensures the PuffSat’s explosive charge detonates. The ice sheet’s geometry guarantees that a PuffSat cannot hit the rocket without first passing through it.  The ice sheet can be a mostly empty grid or lattice, reducing areal density significantly.
 
-If frozen materials prove impractical, the grid could instead be constructed from low mass plastic explosives, designed to detonate on PuffSat impact. In the event of a missed PuffSat interception, this explosive grid would unfortunately persist as space debris for hours or days until eroded by atomic oxygen or decelerated by atmospheric drag. Another alternative is to replace ice lattices with liquid sprays that induce a shock detonation of the PuffSat’s explosives upon impact.
+If frozen materials prove impractical, the grid could instead be constructed from low-mass plastic explosives, designed to detonate on PuffSat impact. In the event of a missed PuffSat interception, this explosive grid would unfortunately persist as space debris for hours or days until eroded by atomic oxygen or decelerated by atmospheric drag. Another alternative is to replace ice lattices with liquid sprays that induce a shock detonation of the PuffSat’s explosives upon impact.
 
 \begin{figure}
     \centering
@@ -334,8 +334,10 @@ We use some of our lunar PuffSats for the pulsed propulsion to lift terrestrial 
 
 We use the rest of our lunar PuffSats to exponentially grow our PuffSat mass capacity in orbit using the Oberth cycle discussed in \autoref{sec:lunar_rockets_no_fuel}.  Oxygen production is very energy intensive and lunar regolith will likely degrade machinery somewhat faster than equipment would degrade on Earth.  Nevertheless, regolith resistant machines  may still enable propulsion at costs that make hypersonic travel scalable.
 
-\subsection{Lunar Paleontology: Ancient DNA From Lunar Volatiles}\label{sec:jurassic_dark}
-In \autoref{sec:lunar_rockets_no_fuel}, we explored using lunar volatiles from permanently shadowed craters for PuffSat pulsed propulsion. These extremely cold craters could also indefinitely preserve DNA and other biomolecules from Earth impact ejecta \cite{dino_dna}. We could check the volatiles we're extracting to see if they contain homochiral organic molecules, which are only produced by living organisms.   Studying samples that contain homochiral molecules would offer a unique window into Earth's entire biological history, potentially revealing how life began. And, of course, the discovery of dinosaur DNA would surely delight \textit{Jurassic Park} \cite{jurassic_park} fans.
+\subsection{Jurassic Dark: Lunar Cold Trap Paleontology and PuffSat Mining Ethics}\label{sec:jurassic_dark}
+In \autoref{sec:lunar_rockets_no_fuel}, we explored using lunar volatiles from permanently shadowed craters for PuffSat pulsed propulsion. These extremely cold craters could also indefinitely preserve DNA and other biomolecules from Earth impact ejecta \cite{dino_dna}. While speculative, the potential scientific value of lunar cold trap paleontology obligates us to check for frozen fossil biomarkers as we mine lunar ice for PuffSat propulsion.
+
+We could analyze the volatiles we're extracting to see if they contain homochiral organic molecules, which are only produced by living organisms.   Studying samples that contain homochiral molecules would offer a unique window into Earth's entire biological history, potentially revealing how life began. And, of course, the discovery of dinosaur DNA would surely delight \textit{Jurassic Park} \cite{jurassic_park} fans.
 
 \section{Sorry, I Don't Need ISRU}
 \subsection{The Need For Speed \cite{topgun1986needforspeed}}\label{sec:no_isru_rocket}
@@ -411,7 +413,7 @@ A heavy lift rocket, such as SpaceX's Super Heavy \cite{spacex_super_heavy}, lif
 In reality, energy losses would reduce thrust.   For robust operations, we would need to lift redundant anchor points and vacuum tubes.  Together, redundancy and energy losses imply we will need additional PuffSat propulsion collision mass per second.  Nevertheless, lifting a few tons per second of propulsion PuffSat mass from Earth (as in \autoref{sec:200_mile_high}) or the moon (as in \autoref{sec:lunar_rockets_no_fuel}) seems economically viable if we use our vacuum tube to cleanly produce all the energy required by mankind. 
 
 \subsection{Vacuum Tube Details}
-To mitigate micrometeorite risk in the upper atmosphere, the vacuum tube incorporates sacrificial shielding or modular, swappable segments. Redundant parallel tubes may also be deployed to ensure continuous operation despite localized damage. The tube’s walls taper with altitude, reflecting the reduced structural demands of maintaining vacuum at high elevations  The tube's optimal form will be maintained by cables with adjustable lengths connected to a central anchor point. The tube can curve to compensate for Coriolis forces during projectile flight. The anchor point itself will rotate throughout the day to track the Sun.
+To mitigate micrometeorite risk in the upper atmosphere, the vacuum tube incorporates sacrificial shielding or modular, swappable segments. Redundant parallel tubes may also be deployed to ensure continuous operation despite localized damage. The tube’s walls taper with altitude, reflecting the reduced structural demands of maintaining vacuum at high elevations.  The tube's optimal form will be maintained by cables with adjustable lengths connected to a central anchor point. The tube can curve to compensate for Coriolis forces during projectile flight. The anchor point itself will rotate throughout the day to track the Sun.
 
 To keep the vacuum tube aloft, PuffSat propulsion will be employed, even during inactive nighttime hours. Alternatively, for maintenance, the tube could be lowered at night and then re-hoisted by a heavy-lift rocket the following day.
 
@@ -488,7 +490,7 @@ Orbits with higher apoapsis require less $\Delta V$ to shed orbital angular mome
 
 Saturn’s irregular moon Phoebe lies just $\SI{180}{\degree} - \SI{173.4}{\degree} = \SI{6.6}{\degree}$ off the solar ecliptic \cite{phoebe}, making it well aligned for interplanetary transfers. It orbits at high elevation with a relatively slow velocity relative to Saturn, offering low $\Delta V$ transfers to orbits reaching close to Saturn. A prograde rocket launched from Phoebe could collide with retrograde payloads also launched from Phoebe. These collisions could occur in a pulsed propulsion chamber near Saturn, enabling high efficiency Oberth maneuvers. With precise planning to avoid Saturn’s rings, this method could launch spacecraft toward the inner solar system.  PuffSats from Saturn launched towards Earth can power a Death Star generator (See \autoref{sec:death_star}) or launch suborbital rockets into orbit (See \autoref{sec:200_mile_high}.
 
-These rockets can also return to Phoebe at high speeds to launch more mass towards Saturn with pulsed propulsion, enabling a bootstrapped launch mass growth cycle similar to the terrestrial moon  cycle discussed in \autoref{sec:lunar_rockets_no_fuel}. Power for mining Phoebe can come from solar energy concentrated from lenses built with Phoebe’s native ice or from plastic made on Phoebe.  Alternatively, thermal energy generated by returning impactors could power mining on Phoebe.
+These rockets can also return to Phoebe at high speeds to launch more mass towards Saturn with pulsed propulsion.  This bootstrapped launch cycle from Phoebe mirrors the lunar exponential growth loop discussed in \autoref{sec:lunar_rockets_no_fuel}. Power for mining Phoebe can come from solar energy concentrated from lenses built with Phoebe’s native ice or from plastic made on Phoebe.  Alternatively, thermal energy generated by returning impactors could power mining on Phoebe.
 
 If Phoebe’s low gravity poses excessive challenges for keeping mining infrastructure grounded, Iapetus is a backup alternative. Similarly, Jupiter’s moon Himalia may support analogous maneuvers if exploration discovers  it has significant volatiles.  
 
