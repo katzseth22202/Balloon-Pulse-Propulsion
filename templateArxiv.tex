@@ -202,13 +202,13 @@ These pellet stream propulsion ideas often prioritized interstellar speeds over 
 Although our PuffSats contain electronics, the majority of their mass consists of inexpensive explosives or ices. This composition enables comparable propulsion at significantly lower cost than systems dominated by electronics or solar sail material. Water ice, in particular, is abundant and mineable throughout the solar system.  Larger PuffSats can afford heavier electronics than Nordley's snowflake sized guided pellets.  While PuffSats could, in principle, interact with magnetic pusher plates, their largely gaseous composition (after gas generation) may make direct kinetic collision a simpler and more robust mechanism for momentum transfer. 
 
 \subsection{Mass Fraction Of Rocket To PuffSat Mass}
-For PuffSat pulsed propulsion to be a viable option, the ratio of PuffSat gas mass to target rocket mass must be low for relevant rocket velocity changes. We develop a closed form approximation for this ratio ( \autoref{eq:PuffSat_ratio} in {\autoref{sec:PuffSat_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," \(e\).  Justification for a high \(e\) comes from Project Orion's findings \cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Pusher plate durability and opacity could be further enhanced by spraying a thin layer of oil on the plate between impacts.   Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a high  \(e=0.8\).   
+For PuffSat pulsed propulsion to be a viable option, the ratio of PuffSat gas mass to target rocket mass must be low for relevant rocket velocity changes. We develop a closed form approximation for this ratio ( \autoref{eq:PuffSat_ratio} in {\autoref{sec:PuffSat_ratio_approximation}). Since real collisions are not perfectly elastic, our approximation includes an energy loss "fudge factor," $f$.  Justification for a high $f$ comes from Project Orion's findings \cite{orion_reflections}.   The Orion team found that pusher plate collisions could be opaque. This opacity implied minimal kinetic energy loss to pusher plate heating, resulting in a more elastic impact. Pusher plate durability and opacity could be further enhanced by spraying a thin layer of oil on the plate between impacts.   Additionally, a curved, roughly parabolic pusher plate would produce a  highly collimated gas reflection. Therefore, we select a high  $f=0.8$.   
 
 Relevant mass ratios and mission scenarios are summarized in \autoref{tab:mass_scenarios}. This table clearly shows that PuffSat pulsed propulsion can lift significant mass into orbit. For instance, if a reusable rocket like SpaceX Starship \cite{starship} lifts \SI{25}{\tonne} of PuffSats into a trans-lunar orbit, they can propel a  \SI{32}{\tonne} target craft into low Earth orbit. This exceeds the Space Shuttle's maximum capacity \cite{space_shuttle_program} or the zero fuel mass of smaller regional jets like the Embraer E170 \cite{embraer_e170}.
 
 \begin{table}[!htpb] % tabularx should be inside a table environment
     \centering
-    \caption{Mass ratio of rocket to PuffSat with fudge factor \(e=0.8\) \cite{Katz_aim_is_all_you_need_2025}}
+    \caption{Mass ratio of rocket to PuffSat with fudge factor \(f=0.8\) \cite{Katz_aim_is_all_you_need_2025}}
     \label{tab:mass_scenarios}
     \begin{tabularx}{\textwidth}{|p{4em}|p{4em}|p{4em}|p{6em}|L|}\hline
         \textbf{Rocket
@@ -527,7 +527,7 @@ This paper has introduced the transformative potential of PuffSat pulsed propuls
 
 Our next steps involve simulating the fundamental physics and prototyping the control software for PuffSat pulsed propulsion, ensuring the most accurate simulations possible. We also plan to solicit feedback on current challenges impeding these concepts and assess their economic and technical surmountability.
 
-If the basic physics of PuffSat pulsed propulsion work, we'd likely proceed with different technologies in different time frames.  An asprirational "Elon time" \cite{wiktionary_elon_time} roadmap of when each technology could be  developed is proposed in \autoref{tab:schedule_future_work}.
+If the basic physics of PuffSat pulsed propulsion work, we'd likely proceed with different technologies in different time frames.  An aspirational "Elon time" \cite{wiktionary_elon_time} roadmap of when each technology could be  developed is proposed in \autoref{tab:schedule_future_work}.
 
 
 \begin{table}[htpb]
@@ -643,9 +643,9 @@ m_p = \frac{m_r}{2} \ln \left( \frac{v_p - v_{ri}}{v_p - v_{rf}} \right)
 \]
 \subsection{Compute PuffSat To Rocket Mass Ratio, With A Fudge Factor For Real World Losses}
 
-We can then solve for the total PuffSat to rocket ratio, with a fudge factor e between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate.   Let's naively assume this fudge factor is the same for each collision even though in practice it would likely vary as the relative velocity of the PuffSats and the rocket change.
+We can then solve for the total PuffSat to rocket ratio, with a fudge factor $f$ between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate.   Let's naively assume this fudge factor is the same for each collision even though in practice it would likely vary as the relative velocity of the PuffSats and the rocket change.
 \begin{equation}
-\frac{m_r}{m_p} = \frac{2e}{ln(\frac{v_p-v_{ri}}{v_p-v_{rf}})}\label{eq:PuffSat_ratio}
+\frac{m_r}{m_p} = \frac{2f}{ln(\frac{v_p-v_{ri}}{v_p-v_{rf}})}\label{eq:PuffSat_ratio}
 \end{equation}
 
 \section{Deriving Effective Exhaust Velocity for Idealized 100\% Efficient Prograde/Retrograde PuffSat Collision Rocket Thrust}\label{sec:dv_effective}
