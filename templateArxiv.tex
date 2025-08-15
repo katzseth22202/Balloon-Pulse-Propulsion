@@ -77,7 +77,7 @@ But here's the bittersweet truth:  While our screens flicker with progress, brea
 
 \textbf{Dude, Where's My Spaceship?}
 
-This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention - aim.   
+This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention -- \textit{aim}.   
 
 Consider a “PuffSat," a single use device that, when triggered, rapidly converts nearly all its mass into a low density gas.  The PuffSat can generate gas explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}).  The PuffSat can perform small navigation adjustments using ultra lightweight microthrusters and electronics.
 
@@ -150,7 +150,7 @@ PuffSat interceptions, however, may occur near low periapsis in denser atmospher
 
 Verifiable, data-efficient, interpretable techniques like model predictive control (MPC) can replan trajectories to correct for momentum prediction errors after PuffSat impacts.  Neural networks can  warm start conventional tools with good initial guesses to reduce solve times, \cite{guffanti2024transformerstrajectoryoptimizationapplication} especially when there are many real-time constraints  \cite{briden_constraint}.  However, the control law itself could remain grounded in well-understood optimization and stability guarantees.     Additionally, reinforcement learning shows promise for developing fast space trajectory recovery algorithms for anomalies like lost PuffSats \ \cite{zavoli2021reinforcement}.  
 
-While PuffSat navigation enables millimeter-scale centering in front of the pusher plate prior to detonation, gas generation unfolds over a finite duration and lacks comparable precision along the thrust axis. Nevertheless, sub-centimeter lateral positioning ensures that the plume impinges symmetrically to preserving the target vehicle’s inertial stability.
+While PuffSat navigation enables millimeter-scale centering in front of the pusher plate prior to detonation, gas generation unfolds over a finite duration and lacks comparable precision along the thrust axis. Nevertheless, sub-centimeter lateral positioning ensures that the plume impinges symmetrically--preserving the target vehicle’s inertial stability.
 
 \subsubsection{Steering PuffSats With High Powered Lasers}
 Instead of relying on non-volatile solid components, radiation pressure could directly manipulate PuffSats. Coordinator nodes might employ kilowatt-class lasers to adjust PuffSat trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the PuffSat's skin, altering its shape or color. If these changes briefly persist, the altered solar radiation pressure would magnify PuffSat trajectory changes compared to the laser's radiation pressure alone. Eliminating non-volatile solid components on PuffSats  reduces the risk of pusher plate damage in an accident.  The PuffSats cost less without microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the PuffSats, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology. 
