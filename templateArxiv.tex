@@ -17,6 +17,7 @@
 \usepackage{siunitx}
 \usepackage{titling}
 \usepackage{hyperref}
+\usepackage[none]{hyphenat}
 \usepackage{ragged2e}
 \sisetup{per-mode=symbol}
 \usepackage{lipsum}
@@ -70,9 +71,9 @@
 
 \begin{abstract}\label{sec:abstract}
  
-In 2017, Google Research published \textit{Attention Is All You Need} \cite{vaswani2023attentionneed}.  Their paper introduced the Transformer, which let neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that catapulted AI into mainstream adoption.
+In 2017, Google Research published \textit{Attention Is All You Need} \cite{vaswani2023attentionneed}.  Their paper introduced the Transformer, which revolutionized how neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that catapulted AI into mainstream adoption.
 
-But here's the bittersweet truth:  While our screens flicker with progress, the tangible realms of space, energy, and paleontology remain comparatively stagnant.
+But here's the bittersweet truth:  While our screens flicker with progress, breakthroughs in space travel and clean energy advance at a slower pace.
 
 \textbf{Dude, Where's My Spaceship?}
 
@@ -89,7 +90,7 @@ Now, envision a scenario with two rockets. The first rocket deploys a series of 
     \label{fig:PuffSat_impact}
 \end{figure}
 
-Recent missions such as Proba-3 \cite{esa_proba_3} demonstrate that millimeter-scale formation flying works in high-altitude orbits. This indicates that most PuffSat navigation and control tasks can be handled with robust model predictive control (MPC) and Kalman filtering (see \autoref{sec:neural_navigation}).  These classical techniques are data-efficient, easy to interpret, enable clear reasoning about system behavior, and offer formal performance and safety guarantees. For the more demanding conditions near low periapsis, classical control methods can be augmented with neural networks that warm-start control algorithms and learn from residual errors (see \autoref{sec:neural_navigation}).
+Recent missions such as Proba-3 \cite{esa_proba_3} demonstrate that millimeter-scale formation flying works--at least in high-altitude orbits. Therefore, most PuffSat navigation and control tasks can be handled with robust model predictive control (MPC) and Kalman filtering (see \autoref{sec:neural_navigation}).  These classical techniques are data-efficient, easy to interpret, enable clear reasoning about system behavior, and offer formal performance and safety guarantees. For the more demanding conditions near low periapsis, classical control methods can be augmented with neural networks that warm-start control algorithms and learn from residual errors (see \autoref{sec:neural_navigation}).
 
 This speculative white paper is a brainstorming exploration that could be followed by more rigorous analysis. If the ideas prove too advanced for near term implementation, they can instead serve as fodder for hard science fiction. The paper summarizes and updates some of the writings from the author's own blog, "Aim Is All You Need."\cite{aim2024}
 
@@ -117,13 +118,13 @@ Conceived in the 1950s and later popularized by \textit{The Three-Body Problem} 
 
 Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas puffs from specialized "PuffSat" CubeSats (see \autoref{sec:puffsat_design}) sequentially impacting a rocket's pusher plate. These gas puffs can be downscaled to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed propulsion chamber.
 
-Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity PuffSat impacts could achieve high energy densities and specific impulses.  Conventional control and estimation methods, which offer dependable navigation assurances, can form the backbone of PuffSat guidance algorithms.  Neural networks optionally augment these systems by adjusting for unmodeled dynamics in complex orbital regimes and by reducing computational latency (see \autoref{sec:neural_navigation}).  
+Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity PuffSat impacts could achieve high energy densities and specific impulses.  Conventional control and estimation methods, which offer dependable results, can form the backbone of PuffSat guidance algorithms.  Neural networks optionally augment these systems by adjusting for unmodeled dynamics in complex orbital regimes and by reducing computational latency (see \autoref{sec:neural_navigation}).  
 
 This speculative white paper presents a preliminary back of the envelope analysis of what are clearly very ambitious ideas. While rigorous, high fidelity modeling is left for future work, our aim is to stimulate fresh thinking and new research directions. Whether this concept remains a provocative thought experiment, inspires science fiction, or evolves into a transformative 21st-century technology, it underscores bold and novel applications of emerging formation flying capabilities. 
 
 \section{Groundwork And Prior Work For PuffSat Pulsed Propulsion}
 \subsection{Navigation For PuffSat Pulsed Propulsion}\label{sec:neural_navigation}
-Millimeter accuracy CubeSat formation flying is rapidly advancing. The European Space Agency's (ESA) Proba-3 mission recently demonstrated this capability by creating artificial solar eclipses with a precise two satellite formation \cite{esa_proba_3}. The Stanford Space Rendezvous Laboratory's VISORS mission, nearing flight readiness (as of August 2025), will further showcase precise formation flying with CubeSat sized craft \cite{guffanti2023autonomous}.  
+Millimeter-accuracy CubeSat formation flying is rapidly advancing. The European Space Agency's (ESA) Proba-3 mission recently demonstrated this capability by creating artificial solar eclipses with a precise two satellite formation \cite{esa_proba_3}. The Stanford Space Rendezvous Laboratory's VISORS mission, nearing flight readiness (as of August 2025), will further showcase precise formation flying with CubeSat sized craft \cite{guffanti2023autonomous}.  
 
 Our hypervelocity PuffSats employ formation flying algorithms for precise positioning.  Unlike Proba-3 and VISORS, our formation lasts a single orbit. This means our PuffSat microthrusters face less demanding fuel efficiency requirements.
 
@@ -139,23 +140,23 @@ Each PuffSat carries perhaps 100 grams of non-volatile solid mass, including sen
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.5\linewidth]{images/Coordinator Nodes.png}
-    \caption{Coordinator nodes (non-impacting) handle measurement and computation; PuffSat solids detach or pass through a pusher plate aperture before impact.”}
+    \caption{Coordinator nodes (non-impacting) handle measurement and computation; PuffSat solids detach or pass through the pusher plate's aperture before impact.}
     \label{fig:coordinator-nodes}
 \end{figure} 
 
-The target spacecraft’s reaction control system would handle fine-scale interception. For this, a standard Unscented Kalman Filter (UKF) \cite{wan2000unscented} offers robust state estimation when dynamics are well-modeled and noise is Gaussian.  Proba-3's \cite{esa_proba_3} high apoapsis formations support high fidelity orbital models. The large formation of PuffSats provides a dense measurement stream, further improving filter performance.  
+To ensure a precise interception of the next PuffSat, the spacecraft's rocket based reaction control system must rapidly adjust its trajectory. It must do this within fractions of a second after each impact, correcting for the difference between the expected and actual momentum transfer from the previous PuffSat.  A prerequisite for these hypervelocity PuffSat rendezvous is accurately capturing the position and velocity of the PuffSats.  For this, a standard Unscented Kalman Filter (UKF) \cite{wan2000unscented} offers robust state estimation when dynamics are well-modeled and noise is Gaussian.  The large formation of PuffSats provides a dense measurement stream, further improving filter performance.  
 
-PuffSat interceptions, however, may occur near low periapsis in denser atmospheric layers where drag, gravitational anomalies, sensor dropouts, and outliers challenge UKF's assumptions and accuracy.  When such effects become significant, state estimation could be improved with hybrid approaches that augment the UKF with neural networks that learn residuals on real and simulated orbital data \cite{takigawa2023comparison}.  For example, methods like KalmanNet \cite{revach_2022_kalmannet} \cite{revach2022unsupervised} have shown robustness to unmodeled disturbances in simulations.  Neural estimators may also support more frequent updates in large PuffSat formation.  Neural inference scales favorably compared to Kalman filtering, especially as the number of states estimated grows.
+PuffSat interceptions, however, may occur near low periapsis in denser atmospheric layers where drag, gravitational anomalies, sensor dropouts, and outliers challenge UKF's assumptions and accuracy.  When such effects become significant, state estimation could be improved with hybrid approaches that augment the UKF with neural networks that learn residuals on real and simulated orbital data \cite{takigawa2023comparison}.  For example, methods like KalmanNet \cite{revach_2022_kalmannet} \cite{revach2022unsupervised} have shown robustness to unmodeled disturbances in simulations.  Neural inference scales favorably compared to Kalman filtering, especially as the number of states estimated grows.  As a result, neural estimators may support more frequent updates in a large PuffSat formation.  
 
-Verifiable, data-efficient, interpretable techniques like model predictive control (MPC) can replan trajectories to correct for momentum prediction errors after PuffSat impacts.  Neural networks can  warm start conventional tools with good initial guesses to reduce solve times \cite{guffanti2024transformerstrajectoryoptimizationapplication} especially when there are many real-time constraints  \cite{briden_constraint}.  However, the control law itself could remain grounded in well-understood optimization and stability guarantees.     Additionally, reinforcement learning shows promise for developing fast space trajectory recovery algorithms for anomalies like lost PuffSats \ \cite{zavoli2021reinforcement}.   
+Verifiable, data-efficient, interpretable techniques like model predictive control (MPC) can replan trajectories to correct for momentum prediction errors after PuffSat impacts.  Neural networks can  warm start conventional tools with good initial guesses to reduce solve times, \cite{guffanti2024transformerstrajectoryoptimizationapplication} especially when there are many real-time constraints  \cite{briden_constraint}.  However, the control law itself could remain grounded in well-understood optimization and stability guarantees.     Additionally, reinforcement learning shows promise for developing fast space trajectory recovery algorithms for anomalies like lost PuffSats \ \cite{zavoli2021reinforcement}.  
 
-In short, PuffSat navigation can be built primarily on proven estimation and control methods, with machine learning applied when environmental complexity or time constraints push classical tools to their limits.
+While PuffSat navigation enables millimeter-scale centering in front of the pusher plate prior to detonation, gas generation unfolds over a finite duration and lacks comparable precision along the thrust axis. Nevertheless, sub-centimeter lateral positioning ensures that the plume impinges symmetrically to preserving the target vehicle’s inertial stability.
 
-\subsubsection{Steering Lasers With High Powered Lasers}
+\subsubsection{Steering PuffSats With High Powered Lasers}
 Instead of relying on non-volatile solid components, radiation pressure could directly manipulate PuffSats. Coordinator nodes might employ kilowatt-class lasers to adjust PuffSat trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the PuffSat's skin, altering its shape or color. If these changes briefly persist, the altered solar radiation pressure would magnify PuffSat trajectory changes compared to the laser's radiation pressure alone. Eliminating non-volatile solid components on PuffSats  reduces the risk of pusher plate damage in an accident.  The PuffSats cost less without microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the PuffSats, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology. 
 
 \subsection{PuffSat Design And Gas Generation Details}\label{sec:puffsat_design}
-The optimal PuffSat design depends on the launch scenario and mission requirements.
+The optimal PuffSat design depends on the launch scenario and mission requirements.  
 \subsubsection{Explosive PuffSats} \label{sec:explosive_puffsat}
 Explosive PuffSats are timed to detonate at a precise standoff distance from the pusher plate, rapidly converting their mass into a high-velocity gas disk for maximum momentum transfer. A small shaped section of the PuffSat's explosive charge can also eject non-volatile solid components away from the rocket before impact, as described in \autoref{item:discard_before_impact}.  A failure to detonate at the intended moment could damage the pusher plate or the rocket, so redundant initiation systems are essential.
 
