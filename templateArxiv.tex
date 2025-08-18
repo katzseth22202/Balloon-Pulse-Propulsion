@@ -424,13 +424,11 @@ In reality, energy losses would reduce thrust.   For robust operations, we would
 \subsection{Vacuum Tube Details}
 To mitigate micrometeorite risk in the upper atmosphere, the vacuum tube incorporates sacrificial shielding or modular, swappable segments. A thin wire mesh embedded in the tube wall could detect conductivity changes caused by tears or punctures. Briefly increasing the current through these wires would cause localized heating, melting the surrounding material and heat-sealing small breaches. Redundant parallel tubes may also be deployed to ensure continuous operation despite localized damage. 
 
-The tube’s walls taper with altitude, reflecting the reduced structural demands of maintaining vacuum at high elevations.  The tube's optimal form will be maintained by cables with adjustable lengths connected to a central anchor point. The tube can curve to compensate for Coriolis forces during projectile flight. The anchor point itself will rotate throughout the day to track the Sun.  Sensors along the vacuum tube measure and broadcast the tube's position and shape, allowing incoming projectiles to navigate through it accurately.
+The tube’s walls taper with altitude, reflecting the reduced structural demands of maintaining vacuum at high elevations.  At lower altitudes, ribbed or corrugated designs  keep the tube lightweight and flexible.  The tube's optimal form will be maintained by cables with adjustable lengths connected to a central anchor point. The tube can curve to compensate for Coriolis forces during projectile flight. The anchor point itself will rotate throughout the day to track the Sun.  Sensors along the vacuum tube measure and broadcast the tube's position and shape, allowing incoming projectiles to navigate through it accurately.
 
 To keep the vacuum tube aloft, PuffSat propulsion will be employed, even during inactive nighttime hours. Alternatively, for maintenance, the tube could be lowered at night and then re-hoisted by a heavy-lift rocket the following day.
 
-Creating a high vacuum in long tunnels presents a challenge, though it's successfully achieved in facilities like the Large Hadron Collider. Fortunately, our system benefits from the projectiles themselves acting as a natural vacuum pump. Stray atoms will tend to be bounced downwards by  projectile collisions. While some atoms may sputter off the projectiles, these will also be directed downwards. Ultra high vacuum equipment at the bottom of the tunnel will effectively remove these atoms, ensuring the vacuum remains strong.  
-
-High vacuum can be also maintained using NEG (non-evaporable getter) \cite{neg_coatings} thin film coatings placed at intervals along the tube, which chemically absorb reactive atoms. To achieve low temperatures at high altitudes, small tube sections can leverage both passive radiative cooling via high-albedo “solar white” films \cite{ted_ed_2025_how_close} and active refrigeration from ultralight solar-powered units.  At these cold spots, we use small-scale cryopumping to remove noble gases like argon and other chemicals that NEG coatings can't adsorb.
+Creating and maintaining a high vacuum in long tunnels is no simple task, but facilities like the Large Hadron Collider (LHC) prove it's feasible. Our tube, like the LHC's, uses non-evaporable getter (NEG) \cite{neg_coatings} thin-film coatings placed at intervals to chemically scavenge most atmospheric gases. These coatings, however, are ineffective against noble gases like argon. While we could embed cryopumps throughout the tube, that would introduce significant complexity and mass. Fortunately, when our projectiles collide with residual argon atoms, the atoms rebound at extreme velocities, driving them deep into the vacuum walls. These impacts also sputter atoms from both the walls and the projectiles. The NEG coatings then scavenge the volatile species, while non-volatile atoms recondense onto the tube interior, preserving the vacuum's integrity. Scheduled tube refurbishment or replacement will be necessary due to wear from micrometeorites, argon sputtering, and NEG chemical consumption. Even if we pessimistically need a replacement once per month, the costs are minor compared to the revenue from global power generation.
 
 Projectiles that catastrophically miss the vacuum tube cause only moderate Chelyabinsk level \cite{popova2021chelyabinsk} ground effects because their extreme velocity guarantees they burn up at high altitudes.   Assuming our vacuum tubes are in remote areas, this causes minimal disturbances to population centers.   The vacuum tube itself is likely destroyed, but redundant vacuum tubes would then be moved into place.
 
@@ -450,7 +448,30 @@ However, considering the limited marine life found far above the ocean floor and
     \label{fig:power_plant_vacuum_exchange}
 \end{figure}
 
-An air lock separates the steam chamber from the rest of the tunnel as shown in \autoref{fig:power_plant_vacuum_exchange}.   A spinning door with a tip speed of \SI{300}{\meter\per\second} could close a \SI{30}{\centi\meter} diameter aperture in \SI{1}{\milli\second}.  Even a \SI{5}{\meter} long air lock is long enough to prevent steam molecules from traversing the air lock in this short time.   We swap in a new air lock segment between kinetic projectile impacts.  This gives us time to restore the high vacuum in the airlock segment before it's used again.   
+Projectiles made from carbon composites and polymers would vaporize to gases like carbon dioxide, water vapor, nitrogen, and hydrogen.  Temperatures near the projectile turns carbon to superheated plasma, and steam decomposes to release oxygen that, along with oxygen from air in the steam chamber already, combusts carbon.  Under these conditions, little carbon soot would form before the carbon turns to carbon dioxide, but soot can still be with filtered with charcoal screens before reaching the turbines.  The remaining gases would travel with steam through turbines and could be released or sequestered as steam is cycled through the system.   Solid residues that precipitate on chamber walls could be cleaned off either continuously or during maintenance windows.  Continuous processes might rely on trapping solids in cheap viscous liquids like silicone fluids, motor oils, or molten salts that slowly ooze down chamber walls and drain at the bottom.  
+
+An air lock separates the steam chamber from the rest of the tunnel as shown in \autoref{fig:power_plant_vacuum_exchange}.   A door with a closing speed of \SI{300}{\meter\per\second} could close a \SI{30}{\centi\meter} diameter aperture in \SI{1}{\milli\second}.  Even a \SI{5}{\meter} long air lock is long enough to prevent steam molecules from traversing the air lock in this short time.  
+
+Designing an airtight door that can open and close at the necessary speeds is beyond current technology. However, a system of rapidly rotating disks with strategically placed apertures can create a quick-closing, leaky seal.
+
+This system works like this:
+
+\begin{itemize}
+\item Two or more pressure-resistant disks with identical radii of perhaps \SI{10}{\meter} are closely mounted on an axial shaft.
+
+\item These disks spin at slightly different speeds, and each has a \SI{30}{\centi\meter} opening near their outer edge.
+
+\item We add mass along the radial line of the disk opening to keep the rotating disks balanced
+
+\item When the openings don't overlap, they block the vacuum tube and prevent steam from entering.
+
+\item The apertures align every few seconds over the air lock opening.   This gives us time to close a second air-tight door over the air lock opening. 
+
+\item The disk apertures may align more frequently that projectile arrivals.  Since arrivals might only arrive every \SI{10}{\second}, it's tricky to design fast spinning disks that only overlap at this low frequency.  As long as the secondary door can close between alignments, and the alignments are synchronized with projectile arrivals, the air lock system meets its operational requirements.
+
+This rotating disk system offloads handling the pressure differential between steam and vacuum.  That simplifies the design for a separate, high-performance airtight door that seals the vacuum completely. The air-tight door is still fast, closing on the order of a few hundred milliseconds.  Before the door closes, steam leaks through the clearance between the disk and the air-lock.  This clearance is likely at least a millimeter since we must handle vibrations.  To further mitigate steam ingress, chemical dessicants are embedded in the disk housing, airlock walls, and in thin films along the first kilometer or so of the vacuum tube.  The disk housing and airlock walls might also be cooled to freeze or at least slow steam atoms.
+
+We swap in a new air lock segment between kinetic projectile impacts.  This gives us time to restore the high vacuum in the airlock segment before it's used again.   
 
 
 \subsection{With Economies Of Scale, Our Ambitions Can Scale Too}\label{sec:strawway_economics}
