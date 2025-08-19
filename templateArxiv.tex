@@ -21,7 +21,7 @@
 \usepackage{ragged2e}
 \sisetup{per-mode=symbol}
 \usepackage{lipsum}
-\usepackage{parskip}
+% \usepackage{parskip}
 \usepackage{tabularx}
 \usepackage{fancyhdr}       % header
 \usepackage{graphicx}       % graphics
@@ -110,7 +110,6 @@ This speculative white paper is a brainstorming exploration that could be follow
         \textbf{Cosmic Commutes} & We'll  build fusion powered spaceships with Earth-like artificial gravity that travel on brachistochrone trajectories with constant acceleration and deceleration between destinations.  \autoref{sec:epstein_drives}\\\hline
     \end{tabularx}
 \end{table}
-
 \end{abstract}.  
 
 \section{Introduction}
@@ -123,7 +122,7 @@ Leveraging gravity assists and the Oberth effect \cite{oberth_effect}, hypervelo
 This speculative white paper presents a preliminary back of the envelope analysis of what are clearly very ambitious ideas. While rigorous, high fidelity modeling is left for future work, our aim is to stimulate fresh thinking and new research directions. Whether this concept remains a provocative thought experiment, inspires science fiction, or evolves into a transformative 21st-century technology, it underscores bold and novel applications of emerging formation flying capabilities. 
 
 \section{Groundwork And Prior Work For PuffSat Pulsed Propulsion}
-\subsection{Navigation For PuffSat Pulsed Propulsion}\label{sec:neural_navigation}
+\subsection{PuffSat Formation Hardware and Pusher Plate Impact Mitigation}
 Millimeter-accuracy CubeSat formation flying is rapidly advancing. The European Space Agency's (ESA) Proba-3 mission recently demonstrated this capability by creating artificial solar eclipses with a precise two satellite formation \cite{esa_proba_3}. The Stanford Space Rendezvous Laboratory's VISORS mission \cite{guffanti2023autonomous}, nearing flight readiness (as of August 2025), will showcase millimeter-precision formation flying with 6U CubeSats for 10-second durations at a \SI{600}{\kilo\meter} altitude \cite{visors_formation_flying}.
 
 Our hypervelocity PuffSats also employ formation flying algorithms for precise positioning.    Both VISORS and Proba-3 require sub-arcsecond pointing alignment for science imaging.   PuffSats can tolerate wider rotational misalignment, which relaxes the control problem.  Unlike Proba-3 and VISORS, the PuffSat formation is limited to a single orbit. This short duration profile allows us to budget more micro-thruster fuel specifically for correcting stronger perturbations near the PuffSats' lower (\SI{200}{\kilo\meter}) interception altitude. VISORS relies exclusively on cold gas thrusters, but the PuffSats' more dynamic orbital regime may require a hybrid propulsion system--combining more powerful chemical micro-thrusters for primary maneuvers with more responsive cold gas actuators for fine-tuned adjustments.  The probability distributions for low-altitude orbital disturbances are similar over minutes-long time frames. This means real-time observations of each PuffSat’s perturbed path can refine the initial trajectory guesses used to control later PuffSats.  If control remains impractical, we can simplify by increasing the PuffSat interception altitude.  If we raise interception to \SI{300}{\kilo\meter}, a reusable suborbital target rocket (see \autoref{sec:200_mile_high}) would require somewhat higher propellant mass fractions, suffers marginally greater re-entry heating, and benefits slightly less from PuffSat velocity.   However, raising interception height may be an acceptable compromise if lower altitudes near \SI{200}{\kilo\meter} simply prove unmanageable. 
@@ -138,7 +137,7 @@ Inspired by the smallest PocketQube pico-satellite designs \cite{pocketqube_mass
     \item \textbf{Passive Routing:} The dry mass components could pass harmlessly through a small aperture in the pusher plate.
 \end{itemize} 
 
-All of these impact mitigation techniques would occasionally fail.  In this case, the pusher plate itself serves as a last line of defense.   A strong, heat tolerant, Kevlar backed pusher plate structurally resembles  Whipple shielding \cite{whipple_shield}.  The pusher plate would pulverize the non-volatile solids and prevent catastrophic damage to crewed compartments or high value satellites.  The target rocket would then ideally steer out of the PuffSat stream and abort.  If carrying people, the target rocket survives reentry with single use but reliable ablative heat shields.  The target rocket might carry swappable, redundant pusher plates to allow for mission continuation following a single component failure.  Even with redundancy, we retain the capability for reentry in a  worst-case multiple-failure scenario.
+All of these impact mitigation techniques would occasionally fail.  In this case, the pusher plate itself serves as a last line of defense.   A strong, heat tolerant, Kevlar backed pusher plate structurally resembles  Whipple shielding \cite{whipple_shield}.  The pusher plate would pulverize the non-volatile solids and prevent catastrophic damage to crewed compartments or high value satellites.  The target rocket would then ideally steer out of the PuffSat stream and abort.  If carrying people, the target rocket survives reentry with single-use but reliable ablative heat shields.  The target rocket might carry swappable, redundant pusher plates to allow for mission continuation following a single component failure.  Even with redundancy, we retain the capability for reentry in a  worst-case multiple-failure scenario.
 
 \begin{figure}[htpb]
     \centering
@@ -147,6 +146,10 @@ All of these impact mitigation techniques would occasionally fail.  In this case
     \label{fig:coordinator-nodes}
 \end{figure} 
 
+\subsubsection{Steering PuffSats With High Powered Lasers}
+Instead of relying on non-volatile solid components, radiation pressure could directly manipulate PuffSats. Coordinator nodes might employ kilowatt-class lasers to adjust PuffSat trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the PuffSat's skin, altering its geometry or albedo. If these changes briefly persist, the altered solar radiation pressure would magnify PuffSat trajectory changes compared to the laser's radiation pressure alone. Eliminating non-volatile solid components on PuffSats  reduces the risk of pusher plate damage in an accident.  The PuffSats cost less without microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the PuffSats, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology. 
+
+\subsection{A Rough Sketch Of The Software Guidance for PuffSat Interception}\label{sec:neural_navigation}
 To ensure a precise interception of the next PuffSat, the target spacecraft's rocket based reaction control system must rapidly adjust its trajectory. It must do this within fractions of a second after each impact, correcting for the difference between the expected and actual momentum transfer from the previous PuffSat.  A prerequisite for these hypervelocity PuffSat rendezvous is accurately capturing the position and velocity of the PuffSats.  For this, a standard Unscented Kalman Filter (UKF) \cite{wan2000unscented} offers robust state estimation when dynamics are well-modeled and noise is Gaussian.  The large formation of PuffSats provides a dense measurement stream, further improving filter performance.  
 
 PuffSat interceptions, however, may occur near low periapsis in denser atmospheric layers where drag, gravitational anomalies, sensor dropouts, and outliers challenge UKF's assumptions and accuracy.  When such effects become significant, state estimation could be improved with hybrid approaches that augment the UKF with neural networks that learn residuals on real and simulated orbital data \cite{takigawa2023comparison}.  For example, methods like KalmanNet \cite{revach_2022_kalmannet} \cite{revach2022unsupervised} have shown robustness to unmodeled disturbances in simulations.  Neural inference scales favorably compared to Kalman filtering, especially as the number of states estimated grows.  As a result, neural estimators may support more frequent updates in a large PuffSat formation.  
@@ -154,9 +157,6 @@ PuffSat interceptions, however, may occur near low periapsis in denser atmospher
 Verifiable, data-efficient, interpretable techniques like model predictive control (MPC) can replan trajectories to correct for momentum prediction errors after PuffSat impacts.  Neural networks can  warm start conventional tools with good initial guesses to reduce solve times, \cite{guffanti2024transformerstrajectoryoptimizationapplication} especially when there are many real-time constraints  \cite{briden_constraint}.  However, the control law itself could remain grounded in well-understood optimization and stability guarantees.     Additionally, reinforcement learning shows promise for developing fast space trajectory recovery algorithms for anomalies like lost PuffSats \ \cite{zavoli2021reinforcement}.  
 
 While PuffSat navigation enables millimeter-scale centering in front of the pusher plate prior to detonation, gas generation unfolds over a finite duration and lacks comparable precision along the thrust axis. Nevertheless, sub-centimeter lateral positioning ensures that the plume impinges symmetrically--preserving the target vehicle’s inertial stability.  The target rocket's reaction control system would still need high performance to cancel undesirable torques from the occasional PuffSat that hits the pusher plate significantly off-center.
-
-\subsubsection{Steering PuffSats With High Powered Lasers}
-Instead of relying on non-volatile solid components, radiation pressure could directly manipulate PuffSats. Coordinator nodes might employ kilowatt-class lasers to adjust PuffSat trajectories. The intense laser light could also induce temporary thermal or photochromic changes in the PuffSat's skin, altering its geometry or albedo. If these changes briefly persist, the altered solar radiation pressure would magnify PuffSat trajectory changes compared to the laser's radiation pressure alone. Eliminating non-volatile solid components on PuffSats  reduces the risk of pusher plate damage in an accident.  The PuffSats cost less without microthrusters and electronics. However, space lasers present several drawbacks compared to microthrusters. They exert weak forces on the PuffSats, demand substantial power sources for coordinator nodes, and are not yet a fully mature technology. 
 
 \subsection{PuffSat Design And Gas Generation Details}\label{sec:puffsat_design}
 The optimal PuffSat design depends on the launch scenario and mission requirements.  
@@ -188,7 +188,7 @@ PuffSats filled with lunar oxygen (see \autoref{sec:lunar_mining}) must also ato
 
 Upon rupture, the thicker balloon skin risks becoming hazardous shrapnel. While PuffSat skins are engineered to retain cryogenic LOX under elevated internal pressure, they need not be shock-resistant. In fact, selecting materials prone to brittle fracture at low temperatures may enhance debris mitigation by ensuring the skin fragments on impact. The rocket releases a denser intercepting ice sheet that shatters the brittle skin in a process analogous to how Whipple shielding breaks up space debris into less threatening dust \cite{whipple_shield}.
 
-As with the icy PuffSats discussed in \autoref{sec:icy_puffsat}, the liquid oxygen is atomized through a combination of micro explosive detonation, aerodynamic shear, and shock interaction with the ice sheet.
+As with the icy PuffSats discussed in \autoref{sec:icy_puffsat}, the liquid oxygen is atomized through a combination of micro explosive detonation, aerodynamic shear, and shock interaction with the ice sheet.  Note that the pusher plate for liquid oxygen PuffSats must be lined with a non-combustible material.
 
 \subsubsection{Balloons PuffSats}
 Inflated balloon PuffSats avoid the catastrophic risk of failed detonations.  When filled with gaseous water vapor or oxygen, balloon PuffSats can operate without advanced reflective cooling. Project Echo \cite{JPL_EchoQL2010} demonstrated that large orbital balloons can be built from low-cost materials such as metallized mylar.
@@ -236,7 +236,7 @@ Relevant mass ratios and mission scenarios are summarized in \autoref{tab:mass_s
 \end{table}
 
 \subsection{Handling Space Debris} \label{sec:handling_space_debris}
-The dry mass components of each PuffSat risk becoming space debris. To avoid this, we can intercept the PuffSats prior to their orbital periapsis.  For example, a PuffSat interception at a \SI{200}{\kilo\meter} altitude likely follows a predictable trajectory with negligible atmospheric drag.   If the PuffSat periapsis is near \SI{50}{\kilo\meter}, this likely deorbits any dry mass components.   They ideally then burn up or fall over remote oceans.  PuffSats that miss their target rockets either boil or explode from reentry heating, eliminating the risk of heavy debris reaching the ground. Two other techniques prevent long lasting space debris:
+The dry mass components of each PuffSat risk becoming space debris. To avoid this, we can intercept the PuffSats prior to their orbital periapsis.   For example, a PuffSat interception at a \SI{200}{\kilo\meter} altitude likely follows a predictable trajectory with negligible atmospheric drag.   If the PuffSat periapsis is near \SI{50}{\kilo\meter}, this likely deorbits any dry mass components.   They ideally then burn up or fall over remote oceans.  PuffSats that miss their target rockets either boil or explode from reentry heating, eliminating the risk of heavy debris reaching the ground. Two other techniques prevent long lasting space debris:
 
 \begin{itemize}
 \item The J2 perturbation induces a changing argument of periapsis. Any PuffSat orbit designed to avoid specific critical angles will eventually have a periapsis over the equator.  Since the Earth is wider at the equator, periapsis will be at a lower atmospheric altitude with much more drag.
@@ -462,17 +462,18 @@ This system works like this:
 \begin{itemize}
 \item Two or more pressure-resistant disks with identical radii of perhaps \SI{10}{\meter} are closely mounted on an axial shaft.
 
-\item These disks spin at slightly different speeds, and each has a \SI{30}{\centi\meter} opening near their outer edge.
+\item These disks spin at slightly different speeds, and each has a \SI{30}{\centi\meter} aperture near their outer edge.
 
-\item We add mass along the radial line of the disk opening to keep the rotating disks balanced
+\item We add mass along the radial line of each disk's aperture to keep the rotating disks balanced
 
-\item When the openings don't overlap, they block the vacuum tube and prevent steam from entering.
+\item When the apertures don't overlap, they block the vacuum tube and prevent steam from entering.
 
 \item The apertures align every few seconds over the air lock opening.   This gives us time to close a second air-tight door over the air lock opening. 
 
 \item The disk apertures may align more frequently than projectile arrivals.  Since arrivals might only arrive every \SI{10}{\second}, it's tricky to design fast spinning disks that only overlap at this low frequency.  As long as the secondary door can close between alignments, and the alignments are synchronized with projectile arrivals, the air lock system meets its operational requirements.
+\end{itemize}
 
-This rotating disk system offloads handling the pressure differential between steam and vacuum.  That simplifies the design for a separate, high-performance airtight door that seals the vacuum completely. The air-tight door is still fast, closing on the order of a few hundred milliseconds.  Before the door closes, steam leaks through the clearance between the disk and the air-lock.  This clearance is likely at least a millimeter since we must handle vibrations.  To further mitigate steam ingress, chemical desiccants are embedded in the disk housing and airlock walls. Thin films of desiccants are also used along the first kilometer or so of the vacuum tube.  The disk housing and airlock walls might also be cooled to freeze or at least slow steam atoms.
+This rotating disk system offloads handling the pressure differential between steam and vacuum.  That simplifies the design for the separate, high-performance airtight door that seals the vacuum completely. The air-tight door is still fast, closing on the order of a few hundred milliseconds.  Before this door closes, steam leaks through the clearance between the disks and the air-lock.  This clearance is likely at least a millimeter since we must handle vibrations.  To further mitigate steam ingress, chemical desiccants are embedded in the disk housing and airlock walls. Thin films of desiccants are also used along the first kilometer or so of the vacuum tube.  The disk housing and airlock walls might also be cooled to freeze or at least slow steam atoms.
 
 We swap in a new air lock segment between kinetic projectile impacts.  This gives us time to restore the high vacuum in the airlock segment before its next use.
 
