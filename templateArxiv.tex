@@ -454,7 +454,7 @@ Creating and maintaining a high vacuum in long tunnels is no simple task, but fa
 
 Projectiles that catastrophically miss the vacuum tube cause only moderate Chelyabinsk-level \cite{popova2021chelyabinsk} ground effects because their extreme velocity guarantees they burn up at high altitudes.   Assuming our vacuum tubes are in remote areas, this causes minimal disturbances to population centers.   The vacuum tube itself is likely destroyed, but redundant vacuum tubes would then be moved into place.
 
-\subsection{Power Plant And Vacuum Air Lock Exchange Details}
+\subsection{Power Plant Chamber Details}
 Beneath the vacuum tube, we propose excavating a massive steam chamber designed to vaporize incoming projectiles. These chambers would be substantial construction projects, engineered to withstand sudden changes in pressure and temperature.  The chamber walls would be lined  with steel backed by bunker-grade reinforced concrete, while internally mounted spring-loaded metal plates would absorb shock and mitigate structural stress.  
 
 Suppose a \SI{0.1}{\cubic\kilo\meter} steam chamber containing \SI{50}{\kilo\gram\per\cubic\meter} steam receives a \SI{600}{\tera\joule} kinetic impact.   As a simplification, let's say the steam has a constant specific heat of \SI{3.5}{\kilo\joule\per(\kilo\gram\celsius)}.  In this case the temperature change is 
@@ -464,6 +464,10 @@ Releasing large amounts of heat into the atmosphere would lead to unacceptable l
 
 However, considering the limited marine life found far above the ocean floor and below the sunlit zone, the broader deep sea ecology beyond the directly heated zone would remain stable. When compared to the widespread impacts of global anthropogenic climate change or even the significant displacement of wildlife from building solar farms, the environmental harm from this specific heat rejection method appears relatively modest.
 
+Projectiles made from carbon composites and polymers would vaporize to gases like carbon dioxide, water vapor, nitrogen, and hydrogen.  Temperatures near the projectile turn carbon to superheated plasma. Steam decomposes to release oxygen that, along with air in the steam chamber already, combusts carbon.  Under these conditions, little carbon soot would form before the carbon turns to carbon dioxide, but soot can still be filtered with charcoal screens before reaching the turbines.  The remaining gases are released or sequestered as they travel along with the steam cycling through the system.   Solid residues that precipitate on chamber walls could be cleaned off either continuously or during maintenance windows.  Continuous processes might rely on trapping solids in cheap viscous liquids like silicone fluids, organic oils, or molten salts that slowly ooze down chamber walls and drain at the bottom.  
+
+\subsection{Vacuum Exchange And Air Lock Details}
+An air lock separates the steam chamber from the rest of the tunnel as shown in \autoref{fig:power_plant_vacuum_exchange}.   A door with a closing speed of \SI{300}{\meter\per\second} could close a \SI{30}{\centi\meter} diameter aperture in \SI{1}{\milli\second}.  Even a \SI{5}{\meter} long air lock is long enough to prevent steam molecules from traversing the air lock in this short time.  
 
 \begin{figure}[htpb]
     \centering
@@ -471,10 +475,6 @@ However, considering the limited marine life found far above the ocean floor and
     \caption{Diagram of the power plant and vacuum air lock system; new air lock segments are rotated in between impacts.}
     \label{fig:power_plant_vacuum_exchange}
 \end{figure}
-
-Projectiles made from carbon composites and polymers would vaporize to gases like carbon dioxide, water vapor, nitrogen, and hydrogen.  Temperatures near the projectile turn carbon to superheated plasma. Steam decomposes to release oxygen that, along with air in the steam chamber already, combusts carbon.  Under these conditions, little carbon soot would form before the carbon turns to carbon dioxide, but soot can still be filtered with charcoal screens before reaching the turbines.  The remaining gases are released or sequestered as they travel along with the steam cycling through the system.   Solid residues that precipitate on chamber walls could be cleaned off either continuously or during maintenance windows.  Continuous processes might rely on trapping solids in cheap viscous liquids like silicone fluids, organic oils, or molten salts that slowly ooze down chamber walls and drain at the bottom.  
-
-An air lock separates the steam chamber from the rest of the tunnel as shown in \autoref{fig:power_plant_vacuum_exchange}.   A door with a closing speed of \SI{300}{\meter\per\second} could close a \SI{30}{\centi\meter} diameter aperture in \SI{1}{\milli\second}.  Even a \SI{5}{\meter} long air lock is long enough to prevent steam molecules from traversing the air lock in this short time.  
 
 Designing an airtight door that can open and close at the necessary speeds is beyond current technology. However, a system of rapidly rotating disks with strategically placed apertures can create a quick-closing, leaky seal.
 
@@ -496,7 +496,9 @@ This system works like this:
 
 This rotating disk system offloads handling the pressure differential between steam and vacuum.  That simplifies the design for the separate, high-performance airtight door that seals the vacuum completely. The air-tight door is still fast, closing on the order of a few hundred milliseconds.  Before this door closes, steam leaks through the clearance between the disks and the air-lock.  This clearance is likely at least a millimeter since we must handle vibrations.  To further mitigate steam ingress, chemical desiccants are embedded in the disk housing and airlock walls. Thin films of desiccants are also used along the first kilometer or so of the vacuum tube.  The disk housing and airlock walls might also be cooled to freeze or at least slow steam atoms.
 
-We swap in a new air lock segment between kinetic projectile impacts.  This gives us time to restore the high vacuum in the airlock segment before its next use.
+A new air lock segment is swapped in between kinetic projectile impacts, providing time to restore the high vacuum before its next use. At the bottom of the air lock, the projectile releases enormous heat on contact with steam. Asteroid air-burst simulations suggest the vast majority of this energy is directed in the projectile's direction of travel, away from the air lock and the closest chamber walls \cite{tunguska_downwards}.
+
+If still needed to handle the high initial heat, sacrificial plastic segments can form the bottom part of the air-lock pipe. These plastics should be strong at low temperatures but vaporize easily to avoid creating shrapnel. Their brief exposure to steam before projectile impact can be buffered by a coat of ice, which forestalls heating. To prevent the production of highly toxic gases when they decompose, the plastic should not be halogenated. Cheap polyethylene pipes may satisfy all these requirements.  The pipe can be ribbed for strength and corrugated to stop buckling under the steam's pressure.  These techniques reduce the pipe mass needed to withstand the steam's inward force. An added benefit of these sacrificial segments is that they lengthen the time the air-lock door has to seal before steam can travel far enough to enter the vacuum tube.
 
 
 \subsection{With Economies Of Scale, Our Ambitions Can Scale Too}\label{sec:strawway_economics}
