@@ -4,12 +4,12 @@
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[style=numeric-comp, backend=biber]{biblatex}
 \addbibresource{references.bib}
-\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage[T1]{fontenc}
 \usepackage{hyperref}       % hyperlinks
 \renewcommand{\subsubsectionautorefname}{Section}
 \renewcommand{\subsectionautorefname}{Section}
 \renewcommand{\sectionautorefname}{Section}
-\usepackage[version=4.0]{mhchem}
+\usepackage{amsmath}
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
@@ -37,19 +37,19 @@
 \fancyhead[LO]{Aim Is All You Need}
 % \fancyhead[RE]{Firstauthor and Secondauthor} % Firstauthor et al. if more than 2 - must use \documentclass[twoside]{article}
 
-% Define the subtitle command
+\newcommand{\subtitle}[1]{\def\thesubtitle{#1}}
+
 \pretitle{%
   \begin{center}
   \LARGE
 }
 \posttitle{%
   \par\vskip0.5em%
-  \begin{large}
-  \textsl{\thesubtitle}%  This prints the subtitle
-  \end{large}\par\end{center}%
+  {\large\textsl{\thesubtitle}}%
+  \end{center}%
   \vskip1.5em
 }
-\newcommand{\subtitle}[1]{\def\thesubtitle{#1}}
+
   
 %% Title
 \title{Aim Is All You Need}
@@ -126,17 +126,17 @@ This speculative white paper presents a preliminary back of the envelope analysi
 \subsection{PuffSat Formation Challenges Compared To Current Missions}\label{sec:formation_challenges_current_missions}
 Centimeter-accuracy CubeSat formation flying is rapidly advancing. The European Space Agency's (ESA) Proba-3 mission recently demonstrated this capability by creating artificial solar eclipses with a precise two-satellite formation \cite{esa_proba_3}. The Stanford Space Rendezvous Laboratory's VISORS mission \cite{guffanti2023autonomous}, nearing flight readiness (as of September 2025), will showcase centimeter-precision formation flying with 6U CubeSats for \SI{10}{\second} durations at a \SI{600}{\kilo\meter} altitude \cite{visors_formation_flying}.
 
-Our hypervelocity PuffSats employ formation-flying algorithms for precise positioning, but with a greater margin for error than VISORS or Proba-3. Those missions demanded sub-arcsecond pointing for imaging, whereas PuffSats can tolerate wider rotational misalignments and still satisfy mission objectives. Similarly, a formation in which 90% of units remain within \SI{5}{\centi\meter} of the pusher-plate center may be acceptable, relaxing lateral control requirements.
+Our hypervelocity PuffSats employ formation-flying algorithms for precise positioning, but with a greater margin for error than VISORS or Proba-3. Those missions demanded sub-arcsecond pointing for imaging, whereas PuffSats can tolerate wider rotational misalignments and still satisfy mission objectives. Similarly, a formation in which 90\% of units remain within \SI{5}{\centi\meter} of the pusher-plate center may be acceptable, relaxing lateral control requirements.
 
 Operating at a lower interception altitude (\SI{200}{\kilo\meter}) introduces stronger and more variable drag perturbations than at VISORS' \SI{600}{\kilo\meter} orbit. VISORS maintains a near-circular sun-synchronous orbit and is therefore continuously exposed to peak drag, whereas PuffSats spend only minutes below VISORS' altitude. While PuffSats traverse low altitudes at higher speeds, their brief dwell time at these heights limits the accumulation of drag-induced drift.
 
 GOCE, a substantially larger satellite, achieved full drag compensation at \SI{250}{\kilo\meter} using a streamlined aerodynamic profile coupled with ion thrusters \cite{goce_dragfree}. Though electric propulsion for CubeSats is actively being developed \cite{busek_iodine}, adapting GOCE's ion propulsion system for a PuffSat remains unrealistic due to mass and power constraints. However, PuffSats could be elongated like GOCE to reduce drag. Torque could be mitigated by modest spin stabilization or GOCE-like fins, combined with cold gas or small chemical thrusters for fine control.
 
-GOCE demonstrated that small accelerometers can accurately measure atmospheric drag, enabling precise corrective maneuvers. Based on the crude GOCE-derived modeling discussed in \autoref{sec:estimate_cold_gas}, PuffSats using cold gas thrusters would expend only \SI{400}{\gram} of propellant during descent through denser atmospheric layers below \SI{600}{\kilo\meter}, even with pessimistic assumptions. Estimated peak thrust requirements of approximately \SI{400}{\milli\newton} appear sufficient to counteract drag forces below VISORS' operational altitude. This conservative “back-of-the-napkin” estimate provides a very rough upper bound, with propellant for low-altitude drag cancellation comprising less than 2% of PuffSat's total mass.
+GOCE demonstrated that small accelerometers can accurately measure atmospheric drag, enabling precise corrective maneuvers. Based on the crude GOCE-derived modeling discussed in \autoref{sec:estimate_cold_gas}, PuffSats using cold gas thrusters would expend only \SI{400}{\gram} of propellant during descent through denser atmospheric layers below \SI{600}{\kilo\meter}, even with pessimistic assumptions. Estimated peak thrust requirements of approximately \SI{400}{\milli\newton} appear sufficient to counteract drag forces below VISORS' operational altitude. This conservative “back-of-the-napkin” estimate provides a very rough upper bound, with propellant for low-altitude drag cancellation comprising less than 2\% of PuffSat's total mass.
 
 Cold gas thrusters, like all PuffSat components, must minimize dry mass to reduce impact risk with the pusher plate (see \autoref{sec:coordinator_node_dry_mass_disposal}). A conventional cold gas storage tank would likely need to be embedded within the PuffSat to protect it from micrometeoroid damage, which increases both volume and drag. These tanks are also typically expensive to manufacture, and avoiding impacts with the pusher remains a critical constraint.
 
-An alternative approach is to replace the bulky tank with lightweight, thin bladders supplied by metered valves that release small amounts of gas-generating liquids. Each bladder would transiently store gram-scale quantities of gas, providing propellant for fine-control thrusters. For example, a gram of water mixed with milligrams of green propellant could generate moderately heated, pressurized steam for cold gas thrusting. Small amounts of fuel may be added both to supply additional thermal energy and to react with corrosive oxidizers in the exhaust stream.  Corrosion and residue are issues in microfluidics, but the very short low altitude operating times partially mitigates these risks.  We can also implement a hybrid architecture where green propellants could directly provide short thrust bursts without intermediate bladders when thrust requirement creep towards the maximum \SI{400}{\milli\newton} required.
+An alternative approach is to replace the bulky tank with lightweight, thin bladders supplied by metered valves that release small amounts of gas-generating liquids. Each bladder would transiently store gram-scale quantities of gas, providing propellant for fine-control thrusters. For example, a gram of water mixed with milligrams of green propellant could generate moderately heated, pressurized steam for cold gas thrusting. Small amounts of fuel may be added both to supply additional thermal energy and to react with harsh oxidizers in the exhaust stream.  Corrosion and residue are challenges in microfluidics. Fortunately, the very short, low-altitude operating times of the system partially mitigate these risks. We can also implement a hybrid architecture, where green propellants directly provide supplemental thrust bursts without intermediate bladders when thrust requirements approach the maximum of \SI{400}{\milli\newton}.
 
 If the plumbing and support hardware for this microfluidic system weigh no more than \SI{50}{\gram}, the total dry mass would likely be lower than that of a standard \SI{400}{\gram} nitrogen tank. The compact geometry also reduces drag and makes ejection ahead of pusher contact more straightforward. As the thin polymer bladder skin fragments travel through the gas plume toward the pusher, they are decelerated and ablated, likely limiting impact damage to the pusher's ablative layers.  The increased complexity of microfluidics introduces the risk of catastrophic PuffSat failures. However, the system must already be resilient to PuffSat losses, given many are used on each launch.
 
@@ -646,7 +646,7 @@ Marc Andreessen once said "software is eating the world" \cite{andreessen_softwa
 A rough, intentionally pessimistic upper-bound for cold-gas propellant needs is obtained by scaling GOCE to a geometrically similar, \(\SI{25}{\kg}\) PuffSat composed of ANFO.  We model GOCE as a cylinder and assume, for simplicity, that drag scales (first order) with surface area.  We explicitly list conservative multiplicative assumptions below.
 
 \subsection*{Geometry and geometric scaling}
-Model GOCE as a cylinder with diameter \(D_0=\SI{1.0}{\m}\) and length \(L_0=\SI{4.0}{\m}\).  Then the radius \(r_0=\tfrac{D_0}{2}=\SI{0.5}{\m}\), and
+Model GOCE as a cylinder with diameter \(D_0=\SI{1.0}{\m}\) and length \(L_0=\SI{4.0}{\meter}\).  Then the radius \(r_0=\tfrac{D_0}{2}=\SI{0.5}{\meter}\), and
 \[
 V_0 = \pi r_0^2 L_0 = \pi\cdot(0.5)^2\cdot 4 = \pi\ \mathrm{m^3},
 \qquad
