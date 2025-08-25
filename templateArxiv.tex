@@ -128,19 +128,27 @@ Centimeter-accuracy CubeSat formation flying is rapidly advancing. The European 
 
 Our hypervelocity PuffSats employ formation-flying algorithms for precise positioning, but with a greater margin for error than VISORS or Proba-3. Those missions demanded sub-arcsecond pointing for imaging, whereas PuffSats can tolerate wider rotational misalignments and still satisfy mission objectives. Similarly, a formation where 90\% of units remain within \SI{5}{\centi\meter} of the pusher-plate center may be acceptable, relaxing the lateral control challenge.
 
-Operating at a lower interception altitude (\SI{200}{\kilo\meter}) introduces stronger and more variable drag perturbations than at VISORS' \SI{600}{\kilo\meter} orbit.  GOCE, a substantially larger satellite, achieved full drag compensation at \SI{250}{\kilo\meter} using a streamlined aerodynamic profile coupled with ion thrusters \cite{goce_dragfree}. Though electric propulsion for CubeSats is actively being developed \cite{busek_iodine}, adapting GOCE's ion propulsion system for a PuffSat might still be unrealistic due to its mass and power constraints.  However, PuffSats could be stretched like GOCE to reduce drag. Torque could be mitigated by modest spin stabilization or GOCE-like fins and combined with cold gas or small chemical thrusters for fine control. Because PuffSats are single-use and operate for only one half of a single orbit, we can budget more propellant for aggressive drag and torque correction.   
+Operating at a lower interception altitude (\SI{200}{\kilo\meter}) introduces stronger and more variable drag perturbations than at VISORS' \SI{600}{\kilo\meter} orbit.  VISORS has a near circular sun-synchronous orbit so is continously exposed to peak drag, while PuffSats benefit from only spending minutes below this altitude.  While PuffSats traverse low altitudes at higher speeds than VISORS, their short time at these heights limits the accumulation of drag-induced drift.  GOCE, a substantially larger satellite, achieved full drag compensation at \SI{250}{\kilo\meter} using a streamlined aerodynamic profile coupled with ion thrusters \cite{goce_dragfree}. Though electric propulsion for CubeSats is actively being developed \cite{busek_iodine}, adapting GOCE's ion propulsion system for a PuffSat might still be unrealistic due to its mass and power constraints.  However, PuffSats could be stretched like GOCE to reduce drag.
+
+GOCE demonstrated that small accelerometers can accurately measure atmospheric drag, enabling precise corrective maneuvers. Torque could be mitigated by modest spin stabilization or GOCE-like fins, combined with cold gas or small chemical thrusters for fine control.
+
+Because PuffSats are single-use and operate for only one half of a single orbit, we can budget more propellant for aggressive drag and torque correction. For PuffSats, overestimating propellant needs is wise. Unused gas hits the pusher plate, so it is not wasted—though variability in this leftover gas propulsion slightly complicates the intercepting rocket’s trajectory control adjustment between impacts.
+
+Based on crude GOCE-based modeling discussed in \autoref{sec:estimate_gold_gas}, our PuffSat uses only \SI{400}{\gram} of gas, and maximum forces of approximately \SI{400}{\milli\newton} are sufficient to cancel drag forces below VISORS' altitude before impact. This is likely acceptable, since propellant represents less than 2\% of total PuffSat mass under this "back of the napkin" propellant modeling. 
+
+Cold gas thrusters, like all PuffSat components, must minimize dry mass to reduce impact risk with the pusher plate (see \autoref{sec:coordinator_node_dry_mass_disposal}). One option is to store nitrogen in \SI{100}{\micro\meter}-thin, low-density, high-tensile bladders rather than rigid canisters.   The bladders would travel through the generated gas plume on their way to the pusher plate, both ablating and decelerating them so that pusher plate impact produces no damage beyond the pusher's thin ablative layer (see \autoref{sec:lightweight_pusher_plates}). 
 
 The first few PuffSats to intercept the target rocket will have the lowest altitudes (closest to  \SI{200}{\kilo\meter}) before the rocket rises slightly as it accelerates towards orbit (see \autoref{sec:leo_orbit_details}). To optimize propellant usage, we can equip these initial units with a bit more propellant  to compensate for their more challenging trajectory.
 
 If control remains impractical, we can simplify by increasing the PuffSat interception altitude.  If we raise interception to \SI{300}{\kilo\meter}, a reusable suborbital target rocket (see \autoref{sec:200_mile_high}) would require somewhat higher propellant mass fractions, suffers marginally greater re-entry heating, and benefits slightly less from PuffSat velocity.   However, raising interception height may be an acceptable compromise if lower altitudes near \SI{200}{\kilo\meter} simply prove unmanageable. 
 
-\subsection{Coordinator Node Architecture And Dry Mass Disposal}
+\subsection{Coordinator Node Architecture And Dry Mass Disposal}\label{sec:coordinator_node_dry_mass_disposal}
 To maximize gas mass while minimizing the non-volatile solid mass of the mini-thrusters and electronics, a small number of coordinator satellites with enhanced computing power will track the PuffSats' positions and relay adjustment commands.  The coordinator nodes will account for communications and PuffSat actuator latencies when determining PuffSat control trajectories.  As shown in \autoref{fig:coordinator-nodes}, these heavier coordinator nodes fly alongside the PuffSats but do not impact the target rocket. The PuffSats themselves carry only simple, low-mass electronics. Because hundreds of PuffSats are required per mission, mass production will help reduce overall costs.
 
 Inspired by the smallest PocketQube pico-satellite designs \cite{pocketqube_mass_reference}, each PuffSat carries no more than \SI{250}{\gram} of dry mass.  This dry mass includes sensors, power systems, microthrusters, and low bandwidth communication links to the coordinator nodes.  If typical PuffSats carry more than \SI{25}{\kilo\gram} of fuel and propulsion mass, non-volatile solids constitute less than 1\% of their total mass. To prevent this dry mass from impacting the rocket, we propose several disposal strategies:
 
 \begin{itemize}
-    \item \textbf{Discard Before Impact:}  The dry mass components could launch slightly away from the rocket just before impact. If explosives are used to gasify the PuffSat (see \autoref{sec:explosive_puffsat}), shaped explosive sections can direct and accelerate the non-volatile solids radially outward at high speed.   The shaped explosives ensure the non-volatile solids  outrun the expanding gas envelope and clear the target radius prior to impact.  \label{item:discard_before_impact}
+    \item \textbf{Discard Before Impact:}  The dry mass components could launch slightly away from the rocket just before impact. If explosives are used to gasify the PuffSat (see \autoref{sec:explosive_puffsat}), shaped explosive sections can direct and accelerate the non-volatile solids radially outward at high speed.   The shaped explosives ensure the non-volatile solids  outrun the expanding gas envelope and clear the target radius prior to impact.  The shaped explosives also partially decelerate the solids, lowering their perigee to further reduce the risk of creating space debris (see \autoref{sec:handling_space_debris}). \label{item:discard_before_impact}
     \item \textbf{Active Elimination:} Equipment on the target rocket could obliterate the dry mass via electric discharges, directed energy beams, or sprays of material that hit the incoming PuffSat solids before pusher plate impact.
     \item \textbf{Passive Routing:} The dry mass components could pass harmlessly through a small aperture in the pusher plate.
 \end{itemize} 
@@ -630,6 +638,120 @@ If the basic physics of PuffSat pulsed propulsion work, we'd likely proceed with
 Marc Andreessen once said "software is eating the world" \cite{andreessen_software}.   If control software enables PuffSat pulsed propulsion, it will devour the solar system as well.
 
 \appendix 
+
+\section{PuffSat cold-gas propellant: pessimistic upper-bound estimate}\label{sec:estimate_cold_gas}
+
+A rough, intentionally pessimistic upper-bound for cold-gas propellant needs is obtained by scaling GOCE to a geometrically similar, \(\SI{25}{\kg}\) PuffSat composed of ANFO.  We model GOCE as a cylinder and assume, for simplicity, that drag scales (first order) with surface area.  We explicitly list conservative multiplicative assumptions below.
+
+\subsection*{Geometry and geometric scaling}
+Model GOCE as a cylinder with diameter \(D_0=\SI{1.0}{\m}\) and length \(L_0=\SI{4.0}{\m}\).  Then the radius \(r_0=\tfrac{D_0}{2}=\SI{0.5}{\m}\), and
+\[
+V_0 = \pi r_0^2 L_0 = \pi\cdot(0.5)^2\cdot 4 = \pi\ \mathrm{m^3},
+\qquad
+S_0 = 2\pi r_0 L_0 + 2\pi r_0^2 = \tfrac{9}{2}\pi\ \mathrm{m^2}.
+\]
+
+Let the PuffSat mass be \(m=\SI{25}{\kg}\) and assume an ANFO density
+\(\rho=\SI{840}{\kg\per\m^3}\).  The PuffSat volume is
+\[
+V=\frac{m}{\rho}.
+\]
+
+If the PuffSat is geometrically similar to GOCE, the linear scale factor \(s\) satisfies
+\[
+V = s^3 V_0
+\quad\Longrightarrow\quad
+s = \left(\frac{V}{V_0}\right)^{1/3}.
+\]
+Surface area scales as \(S = s^2 S_0\), so the area ratio is
+\[
+\frac{S}{S_0} = s^2 = \left(\frac{m/\rho}{V_0}\right)^{2/3}.
+\]
+
+\paragraph{Numeric evaluation (ANFO, \(\rho=\SI{840}{\kg\per\m^3}\)).}
+\[
+\begin{aligned}
+V &= \frac{25}{840}\ \mathrm{m^3} \approx 0.0297619\ \mathrm{m^3},\\[4pt]
+s &= \left(\frac{0.0297619}{\pi}\right)^{1/3} \approx 0.2160,\\[4pt]
+\frac{S}{S_0} &= s^2 \approx 0.0447721 \quad(\text{PuffSat area } \approx 4.48\%\ \text{of GOCE}),\\[4pt]
+\text{Equivalently: } & S_0 \approx 22.335 \times S.
+\end{aligned}
+\]
+
+\noindent\textbf{Remark:} geometric scaling predicts \(\sim22\times\) reduction in area.  To remain conservative we \emph{assume} only a \(\times 10\) reduction in drag (explicitly: although area scales \(\approx22\times\) smaller, we pessimistically take drag to be only \(10\times\) smaller).
+
+\subsection*{Baseline thrust assumption}
+GOCE used up to \(\SI{20}{\milli\newton}\) for drag free control (solar minimum).  We conservatively allow up to \(\times 10\) larger thrust during solar maximum, giving \(\SI{200}{\milli\newton}\) as a worst-case GOCE-equivalent number.  Applying the pessimistic \(\times 10\) weaker drag for the PuffSat (above) yields a continuous required thrust of
+\[
+F_1 = \frac{\SI{200}{\milli\newton}}{10} = \SI{20}{\milli\newton}
+\]
+at the representative altitude (\(\sim\)\SI{250}{\kilo\metre}) used in this estimate.
+
+We further impose a short-duration surge case: an instantaneous (very conservative) increase in drag by a factor of \(20\) for \(t_2=\SI{30}{\s}\) between \(\SI{250}{\kilo\metre}\) and \(\SI{200}{\kilo\metre}\), which requires
+\[
+F_2 = 20\times F_1 = \SI{400}{\milli\newton}
+\]
+for \(t_2=\SI{30}{\s}\).  (Label this a \emph{very conservative} worst case.)
+
+\subsection*{Cold-gas mass flow}
+For a thruster with specific impulse \(I_{\mathrm{sp}}\) (seconds) and \(g_0=\SI{9.80665}{\m\per\s^2}\),
+\[
+\dot m = \frac{F}{I_{\mathrm{sp}} g_0}.
+\]
+Using a pessimistic \(I_{\mathrm{sp}}=\SI{25}{\s}\) (about half a typical CubeSat cold-gas value to account for miniaturization losses),
+\[
+\dot m_{\text{per }1\ \mathrm{mN}} = \frac{1\times 10^{-3}}{25\cdot 9.80665}
+\approx 4.079\times 10^{-6}\ \mathrm{kg/s} \approx 4.079\ \mathrm{mg/s}.
+\]
+
+\subsection*{Fuel required for the two intervals}
+\paragraph{Continuous interval.}
+Required thrust \(F_1=\SI{20}{\milli\newton}\) sustained for \(t_1=\SI{300}{\s}\):
+\[
+m_1 = \frac{F_1 t_1}{I_{\mathrm{sp}} g_0}
+= \frac{(20\times 10^{-3})(300)}{25\cdot 9.80665}
+\approx \SI{24.473}{\g}.
+\]
+
+\paragraph{Short surge interval.}
+Surge thrust \(F_2=\SI{400}{\milli\newton}\) sustained for \(t_2=\SI{30}{\s}\):
+\[
+m_2 = \frac{F_2 t_2}{I_{\mathrm{sp}} g_0}
+= \frac{(400\times 10^{-3})(30)}{25\cdot 9.80665}
+\approx \SI{48.946}{\g}.
+\]
+
+\paragraph{Baseline propellant:}
+\[
+m_{\mathrm{base}} = m_1 + m_2 \approx \SI{73.4196}{\g}.
+\]
+
+\subsection*{Margins and final rounding}
+Apply the user-prescribed margins:
+\begin{enumerate}
+  \item Add \(\SI{20}{\g}\) for attitude/torque control: \(m_{\mathrm{a}} = m_{\mathrm{base}} + \SI{20}{\g} \approx \SI{93.4196}{\g}.\)
+  \item Double for pulsing inefficiencies and other control limitations: \(m_{\mathrm{b}} = 2 m_{\mathrm{a}} \approx \SI{186.8392}{\g}.\)
+  \item Apply an additional doubling factor to account for drag at PuffSat’s higher velocity, which scales as \(v^2\) (since \(\frac{11^2}{8^2} \approx 2\)): \(m_{\mathrm{c}} = 2 m_{\mathrm{b}} \approx \SI{373.6784}{\g}.\)
+
+\end{enumerate}
+
+Round up for presentation/engineering margin:
+\[
+\boxed{m_{\mathrm{req}} \approx \SI{374}{\g}\ \text{(precise computed); rounded to }\SI{400}{\g}\ \text{for conservative margin}.}
+\]
+
+\subsection*{Notes and explicit assumptions}
+\begin{itemize}
+  \item We explicitly made two large conservative choices: (1) although geometric area scaling predicts \(\sim22\times\) lower drag, we assume only a \(10\times\) reduction (pessimistic), and (2) we include an extreme short-duration surge of \(20\times\) the baseline drag for \(\SI{30}{\s}\).  Both are deliberate worst-case assumptions to bound possible needs.
+  \item The specific impulse \(I_{\mathrm{sp}}=\SI{25}{\s}\) is pessimistic. A higher \(I_{\mathrm{sp}}\) reduces propellant need proportionally.
+  \item The final \(\SI{400}{\g}\) figure is a rounded engineering margin. The computed baseline with margins is \(\approx\SI{374}{\g}\).
+  \item This estimate neglects many second-order effects and is intended as a conservative "back of the napkin" upper bound only.
+  \item \textbf{Acknowledgement:} ChatGPT extensively helped with this derivation and much of the text is copied from it verbatim \cite{chatgpt}.
+\end{itemize}
+% --- end ---
+
+
+
 \section{Derivation Of PuffSat Mass/Rocket Mass Continuous Approximation}\label{sec:PuffSat_ratio_approximation}  We want to approximate the ratio of the total PuffSat mass \(m_p\) with all PuffSats traveling at velocity \(v_p\) for a sequence of PuffSats to push a rocket with mass \(m_r\) with initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   Let's initially naively assume every collision is perfectly elastic in one dimension.   We'll use calculus to get a  closed form expression by solving for a rocket  continuously bombarded by infinitesimal PuffSats each with mass \(dm_p\).   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
 
 The initial velocities are
@@ -725,7 +847,7 @@ m_p = \frac{m_r}{2} \ln \left( \frac{v_p - v_{ri}}{v_p - v_{rf}} \right)
 \]
 \subsection{Compute PuffSat To Rocket Mass Ratio, With A Fudge Factor For Real World Losses}
 
-We can then solve for the total PuffSat to rocket ratio, with a fudge factor $f$ between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate.   Let's naively assume this fudge factor is the same for each collision even though in practice it would likely vary as the relative velocity of the PuffSats and the rocket change.
+We can then solve for the total PuffSat to rocket ratio, with a fudge factor $f$ between 0 and 1 to account for the coefficient of restitution and imperfect spread of gaseous volatiles off the pusher plate.   Let's naively assume this fudge factor is the same for each collision even though in practice it would likely vary as the relative velocity of the PuffSats and the rocket change.  Note that in practice balloon sizes may vary because more mass is needed to produce the same acceleration as the rocket accelerates closer to the balloon speed.
 \begin{equation}
 \frac{m_r}{m_p} = \frac{2f}{ln(\frac{v_p-v_{ri}}{v_p-v_{rf}})}\label{eq:PuffSat_ratio}
 \end{equation}
