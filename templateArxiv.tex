@@ -131,7 +131,7 @@ Our hypervelocity PuffSats employ formation-flying algorithms for precise positi
 
 Operating at a lower interception altitude (\SI{200}{\kilo\meter}) introduces stronger and more variable drag perturbations than at VISORS' \SI{600}{\kilo\meter} orbit. VISORS maintains a near-circular sun-synchronous orbit and is therefore continuously exposed to peak drag, whereas PuffSats spend only minutes below VISORS' altitude. While PuffSats traverse low altitudes at higher speeds, their brief dwell time at these heights limits the accumulation of drag-induced drift.  Timing PuffSat interceptions at night, in colder regions, near solar minimum activity can also reduce atmospheric activity the PuffSats encounter on their descent.
 
-GOCE, a substantially larger satellite, achieved full drag compensation at \SI{250}{\kilo\meter} using a streamlined aerodynamic profile coupled with ion thrusters \cite{goce_dragfree}. Though electric propulsion for CubeSats is actively being developed \cite{busek_iodine}, adapting GOCE's ion propulsion system for a PuffSat remains unrealistic due to mass and power constraints. However, PuffSats could be elongated like GOCE to reduce drag. Torque could be mitigated by modest spin stabilization or GOCE-like fins, combined with cold gas or small chemical thrusters for fine control.
+GOCE, a substantially larger satellite, achieved full drag compensation at altitudes as low as  \SI{229}{\kilo\meter} using a streamlined aerodynamic profile coupled with \SI{20}{\milli\newton} ion thrusters \cite{goce_dragfree, goce_229km}. Though electric propulsion for CubeSats is actively being developed \cite{busek_iodine}, adapting GOCE's ion propulsion system for a PuffSat remains unrealistic due to mass and power constraints. However, PuffSats could be elongated like GOCE to reduce drag. Torque could be mitigated by modest spin stabilization or GOCE-like fins, combined with cold gas or small chemical thrusters for fine control.
 
 GOCE demonstrated that small accelerometers can accurately measure atmospheric drag, enabling precise corrective maneuvers. Based on the crude GOCE-derived modeling discussed in \autoref{sec:estimate_cold_gas}, PuffSats using cold gas thrusters would expend only \SI{400}{\gram} of propellant during descent through denser atmospheric layers below \SI{600}{\kilo\meter}, even with pessimistic assumptions. Estimated peak thrust requirements of approximately \SI{400}{\milli\newton} appear sufficient to counteract drag forces below VISORS' operational altitude. This conservative “back-of-the-napkin” estimate provides a very rough upper bound, with propellant for low-altitude drag cancellation comprising less than 2\% of PuffSat's total mass.
 
@@ -688,7 +688,7 @@ GOCE used up to \(\SI{20}{\milli\newton}\) for drag free control (solar minimum)
 \[
 F_1 = \frac{\SI{200}{\milli\newton}}{10} = \SI{20}{\milli\newton}
 \]
-at the representative altitude (\(\sim\)\SI{250}{\kilo\metre}) used in this estimate.
+at the representative altitude (\(\sim\)\SI{250}{\kilo\metre}) used in this estimate. 
 
 We further impose a short-duration surge case: an instantaneous (conservative) increase in drag by a factor of \(20\) for \(t_2=\SI{30}{\s}\) between \(\SI{250}{\kilo\metre}\) and \(\SI{200}{\kilo\metre}\), which requires
 \[
@@ -732,6 +732,7 @@ m_{\mathrm{base}} = m_1 + m_2 \approx \SI{73.4196}{\g}.
 \subsection*{Margins and final rounding}
 Apply the user-prescribed margins:
 \begin{enumerate}
+  \item GOCE operated at a representative altitude of $\approx \SI{250}{\kilo\meter}$ and successfully descended to as low as $\SI{229}{\kilo\meter}$ \cite{goce_229km}. Due to the sharp increase in atmospheric density at lower altitudes, we model an instantaneous increase in drag force as PuffSat descends from $\SI{250}{\kilo\meter}$ to our target altitude of \SI{200}{\kilo\meter}. The $\SI{250}{\kilo\meter}$ altitude was considered nominal by GOCE’s designers, as it offered more reliable operational conditions. Since our objective is to estimate conservative upper bounds on fuel consumption, we adopt this higher altitude as the baseline for our analysis.
   \item Add \(\SI{20}{\g}\) for attitude/torque control: \(m_{\mathrm{a}} = m_{\mathrm{base}} + \SI{20}{\g} \approx \SI{93.4196}{\g}.\)
   \item Double for pulsing inefficiencies and other control limitations: \(m_{\mathrm{b}} = 2 m_{\mathrm{a}} \approx \SI{186.8392}{\g}.\)
   \item Apply an additional doubling factor to account for drag at PuffSat’s higher velocity, which scales as \(v^2\) (since $\frac{(\text{PuffSat's speed})^2}{(\text{GOCE's speed})^2} = \frac{\left(\SI{11}{\kilo\meter\per\second}\right)^2}{\left(\SI{8}{\kilo\meter\per\second}\right)^2}
