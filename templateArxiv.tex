@@ -734,7 +734,8 @@ Apply the user-prescribed margins:
 \begin{enumerate}
   \item Add \(\SI{20}{\g}\) for attitude/torque control: \(m_{\mathrm{a}} = m_{\mathrm{base}} + \SI{20}{\g} \approx \SI{93.4196}{\g}.\)
   \item Double for pulsing inefficiencies and other control limitations: \(m_{\mathrm{b}} = 2 m_{\mathrm{a}} \approx \SI{186.8392}{\g}.\)
-  \item Apply an additional doubling factor to account for drag at PuffSat’s higher velocity, which scales as \(v^2\) (since \(\frac{11^2}{8^2} \approx 2\)): \(m_{\mathrm{c}} = 2 m_{\mathrm{b}} \approx \SI{373.6784}{\g}.\)
+  \item Apply an additional doubling factor to account for drag at PuffSat’s higher velocity, which scales as \(v^2\) (since $\frac{(\text{PuffSat's speed})^2}{(\text{GOCE's speed})^2} = \frac{\left(\SI{11}{\kilo\meter\per\second}\right)^2}{\left(\SI{8}{\kilo\meter\per\second}\right)^2}
+ \approx 2$): \(m_{\mathrm{c}} = 2 m_{\mathrm{b}} \approx \SI{373.6784}{\g}.\)
 
 \end{enumerate}
 
