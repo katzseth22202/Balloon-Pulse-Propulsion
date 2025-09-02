@@ -487,6 +487,22 @@ Creating and maintaining a high vacuum in long tunnels is no simple task, but fa
 
 Projectiles that catastrophically miss the vacuum tube cause only moderate Chelyabinsk-level \cite{popova2021chelyabinsk} ground effects because their extreme velocity guarantees they burn up at high altitudes.   Assuming our vacuum tubes are in remote areas, this causes minimal disturbances to population centers.   The vacuum tube itself is likely destroyed, but redundant vacuum tubes would then be moved into place.
 
+\subsection{Tether Tapering And Countering Extreme Drag}
+For incoming projectiles, the relative atmospheric drag scales as $v^2 = \frac{(\text{projectile speed})^2}{(\text{trans-lunar PuffSat speed})^2} = \frac{\left(\SI{150}{\kilo\meter\per\second}\right)^2}{\left(\SI{11}{\kilo\meter\per\second}\right)^2} \approx 185$
+ times greater than the drag analyzed in \autoref{sec:estimate_cold_gas}.
+
+Because projectiles spend only \SIrange{1}{2}{\second}
+at lower altitudes when arriving at such extreme velocities, we may be able to counteract the resulting terminal forces by briefly firing small chemical thrusters and vectoring their thrust. Thermal loads from drag could be mitigated if the projectile skin is thin and highly conductive, with underlying materials—such as water—absorbing heat via convection and phase change (e.g., boiling).
+
+This challenge is significantly reduced if the projectile enters the tube at \SIrange{300}{400}{\kilo\meter} altitude, rather than the \SI{200}{\kilo\meter} baseline used in \autoref{sec:formation_challenges_current_missions}. These higher altitudes slightly exceed the breaking length of commercially available materials like Kevlar or SK99 Dyneema (modified with carbon for creep resistance) \cite{wiki:specific_strength, sk99_tension}.
+
+Given that the PuffSats anchoring the tube travel at only \SI{11}{\kilo\meter\per\second}, we can place one anchor at the lower \SI{200}{\kilo\meter} altitude and connect the upper portion of the tube to a second anchor at higher altitude. Shorter cables, anchored to surface vessels, can serve as guy wires on the lower \SI{20}{\kilo\meter} of the tube exposed to atmospheric winds.  The guy wires can be actively winched to adjust tension and reduce wind-induced loads on the primary structure.
+
+Despite these mitigations, our current cable designs still lack sufficient engineering safety margin. Tapered cables offer a promising solution.  The mass-optimal cross-sectional tapered cable area at distance $x$ from the anchor scales as $A(x) = Ce^{-\frac{x}{b}},$ where $b$ is the material’s breaking length and $C$ is a constant (see \autoref{sec:breaking_length_derived}).
+
+To maintain an engineering safety factor of 3 across a cable stretched to its full breaking length, the cross-sectional area at the anchor must be roughly 20 times greater than at the point where the cable connects to the tube. Fortunately, this tapering requirement aligns with our existing structural strategy: we already deploy thin control wires every few meters along the tube. By progressively merging and reinforcing these wires as they approach the anchor altitude, we can achieve the necessary increase in cross-sectional area without introducing significant additional mass beyond what’s already budgeted.
+ 
+
 \subsection{Power Plant Chamber Details}
 Beneath the vacuum tube, we propose excavating a massive steam chamber designed to vaporize incoming projectiles. These chambers would be substantial construction projects, engineered to withstand sudden changes in pressure and temperature.  The chamber walls would be lined  with steel backed by bunker-grade reinforced concrete, while internally mounted spring-loaded metal plates would absorb shock and mitigate structural stress.  
 
@@ -868,6 +884,75 @@ We can then solve for the total PuffSat to rocket ratio, with a fudge factor $f$
 \begin{equation}
 \frac{m_r}{m_p} = \frac{2f}{ln(\frac{v_p-v_{ri}}{v_p-v_{rf}})}\label{eq:PuffSat_ratio}
 \end{equation}
+
+\section{Exponential Tapering Of A Tensile Cable Under Uniform Body Force}\label{sec:breaking_length_derived}
+
+\paragraph{AI Acknowledgement}
+Note this derivation is copied nearly verbatim from ChatGPT prompts \cite{chatgpt}
+
+\paragraph{Setup and assumptions.}
+Consider a slender tensile cable of density \(\rho\) and allowable (design) stress \(\sigma_{\text{allow}}\) subjected to a uniform body force per unit mass \(a\) (e.g., gravity). Let \(x\) measure distance \emph{upward} from the lower anchor along the cable centerline, and let \(A(x)\) and \(T(x)\) denote the local cross-sectional area and axial tension, respectively.
+
+\paragraph{Force balance.}
+A free-body cut of an infinitesimal segment shows that tension decreases with height due to the weight of the cable above:
+
+
+\[
+\frac{\mathrm{d}T}{\mathrm{d}x} \;=\; -\,\rho \cdot a \cdot A(x).
+\]
+
+
+
+\paragraph{Optimality condition (constant allowable stress).}
+In a minimum-mass design with a stress constraint \(T(x) \le \sigma_{\text{allow}}\,A(x)\), any region with strict inequality can be made lighter by reducing \(A\) until the constraint is active. Hence, at optimum (away from end effects),
+
+
+\[
+T(x) \;=\; \sigma_{\text{allow}} \, A(x).
+\]
+
+
+
+\paragraph{Governing differential equation and solution.}
+Differentiating \(T(x)=\sigma_{\text{allow}} A(x)\) and substituting the force balance gives
+
+
+\[
+\sigma_{\text{allow}} \,\frac{\mathrm{d}A}{\mathrm{d}x} \;=\; -\,\rho \cdot a \cdot A(x),
+\qquad\Rightarrow\qquad
+\frac{1}{A(x)}\,\frac{\mathrm{d}A}{\mathrm{d}x} \;=\; -\,\frac{\rho \cdot a}{\sigma_{\text{allow}}}.
+\]
+
+
+Integrating,
+
+
+\[
+\ln A(x) \;=\; -\,\frac{\rho \cdot a}{\sigma_{\text{allow}}}\,x \;+\; \text{const},
+\qquad\Rightarrow\qquad
+A(x) \;=\; C \, \exp\!\left(-\frac{x}{b}\right),
+\]
+
+
+where the constant \(C>0\) is set by boundary conditions (e.g., anchor sizing) and
+
+
+\[
+b \;\equiv\; \frac{\sigma_{\text{allow}}}{\rho \cdot a}
+\]
+
+
+is the material \emph{breaking length} associated with the allowable stress. The corresponding tension profile is
+
+
+\[
+T(x) \;=\; \sigma_{\text{allow}}\,A(x) \;=\; \sigma_{\text{allow}}\,C \,\exp\!\left(-\frac{x}{b}\right).
+\]
+
+
+
+\paragraph{Notes.}
+If a safety factor \(S\) is applied to a material with ultimate strength \(\sigma_u\), use \(\sigma_{\text{allow}}=\sigma_u/S\), which yields \(b=\sigma_u/(\,S\,\rho \cdot a\,)\). The same derivation holds for any uniform effective specific load \(a\) (e.g., gravity \(\,g\), centrifugal loading, or a constant-acceleration environment).
 
 \section{Deriving Effective Exhaust Velocity for Idealized 100\% Efficient Prograde/Retrograde PuffSat Collision Rocket Thrust}\label{sec:dv_effective}
 Suppose a retrograde PuffSat with $m_{rp}$ and a prograde PuffSat with $m_{pp}$ collide in a pulsed rocket propulsion chamber, as depicted in \autoref{tab:pulsed_combustion_illustration}.  We want to find the maximum exhaust velocity $v_e$ for the prograde rocket  when engine efficiency is 100\% and we expel all the combined gas behind us (in the retrograde direction).   For simplicity we say 
