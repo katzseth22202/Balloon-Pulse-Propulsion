@@ -16,14 +16,14 @@
       howpublished={\url{https://arxiv.org/abs/2310.13831}}, 
 }
 
-@misc{vaswani2023attentionneed,
-      title={Attention Is All You Need}, 
+@misc{vaswani2017attentionneed,
+      title={Attention Is All You Need},
       author={Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and Aidan N. Gomez and Lukasz Kaiser and Illia Polosukhin},
-      year={2023},
+      year={2017},
       eprint={1706.03762},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
-      howpublished={\url{https://arxiv.org/abs/1706.03762}}, 
+      howpublished={\url{https://arxiv.org/abs/1706.03762}},
 }
 
 @misc{chatgpt,
@@ -495,14 +495,28 @@
   year={2011}
 }
 
-@book{rybicki_lightman_radiative,
-  author    = {Rybicki, George B. and Lightman, Alan P.},
-  title     = {Radiative Processes in Astrophysics},
-  year      = {1979},
-  publisher = {Wiley-Interscience},
+@book{hansen_kawaler_trimble_stellar_interiors,
+  author    = {Hansen, Carl J. and Kawaler, Steven D. and Trimble, Virginia},
+  title     = {Stellar Interiors: Physical Principles, Structure, and Evolution},
+  year      = {2004},
+  edition   = {2},
+  publisher = {Springer-Verlag},
   address   = {New York},
-  isbn      = {9780471827597},
-  note      = {Standard graduate textbook covering radiative transfer, bremsstrahlung, and bound-free/free-free opacity (Kramers' law).}
+  isbn      = {9780387200897},
+  doi       = {10.1007/978-1-4419-9110-2},
+  note      = {Graduate stellar-structure textbook; treats Kramers' bound-free and free-free opacity law $\kappa \propto \rho\, T^{-7/2}$ by name.}
+}
+
+@book{kippenhahn_weigert_weiss_stellar,
+  author    = {Kippenhahn, Rudolf and Weigert, Alfred and Weiss, Achim},
+  title     = {Stellar Structure and Evolution},
+  year      = {2012},
+  edition   = {2},
+  publisher = {Springer-Verlag},
+  address   = {Berlin, Heidelberg},
+  isbn      = {9783642303043},
+  doi       = {10.1007/978-3-642-30304-3},
+  note      = {Canonical stellar-structure reference; Chapter 17 treats Kramers' opacity law for bound-free and free-free absorption.}
 }
 
 @misc{pols2011stellar,
@@ -573,6 +587,58 @@
   publisher = {Taylor \& Francis},
   doi     = {10.1080/09506608.2019.1652006},
   note    = {Comprehensive peer-reviewed review of ultra-high-temperature ceramic matrix composites for hypersonic, rocket nozzle, and leading-edge applications.}
+}
+
+@article{nextel_720_fiber,
+  title   = {Microstructural stability and room temperature mechanical properties of the {Nextel} 720 fibre},
+  author  = {Del{\'e}glise, F. and Berger, M.H. and Jeulin, D. and Bunsell, A.R.},
+  journal = {Journal of the European Ceramic Society},
+  volume  = {21},
+  number  = {5},
+  pages   = {569--580},
+  year    = {2001},
+  publisher = {Elsevier},
+  doi     = {10.1016/S0955-2219(00)00249-1},
+  note    = {Peer-reviewed characterization of the alumina-mullite Nextel 720 fibre used in flexible high-temperature ceramic textiles.}
+}
+
+@article{hi_nicalon_sic,
+  title   = {Tensile creep behavior of {SiC}-based fibers with a low oxygen content},
+  author  = {Sauder, Cedric and Lamon, Jacques},
+  journal = {Journal of the American Ceramic Society},
+  volume  = {90},
+  number  = {4},
+  pages   = {1146--1156},
+  year    = {2007},
+  publisher = {Wiley},
+  doi     = {10.1111/j.1551-2916.2007.01535.x},
+  note    = {Peer-reviewed creep and strength characterization of Hi-Nicalon, Hi-Nicalon Type S, and Tyranno SA3 SiC fibers up to 1700~$^{\circ}$C.}
+}
+
+@article{ebc_review,
+  title   = {A review on environmental barrier coatings: history, current state of the art and future developments},
+  author  = {Tejero-Martin, D. and Bennett, C. and Hussain, T.},
+  journal = {Journal of the European Ceramic Society},
+  volume  = {41},
+  number  = {3},
+  pages   = {1747--1768},
+  year    = {2021},
+  publisher = {Elsevier},
+  doi     = {10.1016/j.jeurceramsoc.2020.10.057},
+  note    = {Open-access review of environmental barrier coatings (silicates, mullite, silicon-based layers) protecting SiC/SiC CMCs from oxidizing and steam-laden atmospheres.}
+}
+
+@article{bn_oxidation,
+  title   = {High-temperature oxidation of boron nitride: {I}, monolithic boron nitride},
+  author  = {Jacobson, Nathan and Farmer, Serene and Moore, Arthur and Sayir, Hasan},
+  journal = {Journal of the American Ceramic Society},
+  volume  = {82},
+  number  = {2},
+  pages   = {393--398},
+  year    = {1999},
+  publisher = {Wiley},
+  doi     = {10.1111/j.1551-2916.1999.tb20075.x},
+  note    = {Peer-reviewed study of hexagonal boron nitride oxidation kinetics, showing B$_2$O$_3$ formation and volatilization that limits BN use in oxidizing atmospheres above $\sim$1200~$^{\circ}$C.}
 }
 
 @article{silicon_coatings,
@@ -909,15 +975,17 @@
   year={2014}
 }
 
-@inproceedings{inconel_718_strong,
-  title={Thermophysical properties of Inconel 718 alloy},
-  author={Agazhanov, A Sh and Samoshkin, DA and Kozlovskii, Yu M},
-  booktitle={Journal of Physics: Conference Series},
-  volume={1382},
-  number={1},
-  pages={012175},
-  year={2019},
-  organization={IOP Publishing}
+@techreport{inconel_718_strong,
+  author       = {Muraca, R. F. and Whittick, J. S.},
+  title        = {Materials Data Handbook: {Inconel} Alloy 718},
+  institution  = {Western Applied Research and Development, Inc. (prepared for NASA George C. Marshall Space Flight Center)},
+  year         = {1972},
+  month        = {4},
+  edition      = {2},
+  number       = {NASA-CR-123774},
+  address      = {San Carlos, CA, USA},
+  howpublished = {\url{https://ntrs.nasa.gov/citations/19720022810}},
+  note         = {NASA-contracted comprehensive materials data handbook documenting Inconel 718 mechanical properties (tensile, yield, creep, fatigue) at cryogenic, ambient, and elevated temperatures up to $\sim 700^\circ$C, plus metallurgy, fabrication, and environmental behavior. NTRS ID 19720022810.}
 }
 
 @misc{davoyan2023pelletbeam,
@@ -1151,12 +1219,16 @@
 }
 
 
-@misc{space_shuttle_program,
-    author={{NASA}},
-    title={Space Shuttle},
-    year = {2023},
-    howpublished={\url{https://www.nasa.gov/space-shuttle/}},
-    note = {NASA official Space Shuttle program page. Accessed: 2025-06-10}
+@book{nasa_wings_in_orbit,
+    editor       = {Lane, Helen W. and Hale, Wayne and Chapline, Gail and Lulla, Kamlesh},
+    title        = {Wings in Orbit: Scientific and Engineering Legacies of the Space Shuttle, 1971--2010},
+    publisher    = {National Aeronautics and Space Administration},
+    year         = {2011},
+    number       = {NASA SP-2010-3409},
+    address      = {Washington, DC, USA},
+    isbn         = {978-0-16-086846-7},
+    howpublished = {\url{https://ntrs.nasa.gov/citations/20110011792}},
+    note         = {NASA-published comprehensive technical and historical reference for the Space Shuttle program; documents Orbiter payload-to-orbit capabilities (max $\approx 25$~tonne to LEO depending on orbiter and altitude). NTRS ID 20110011792.}
 }
 
 @misc{oberth_effect,
@@ -1199,12 +1271,23 @@
   note         = {DOE OpenNet declassified history. Accessed: 2025-08-13},
 }
 
-@misc{verdict_elon_missed_deadlines,
-  title = {Elon {Musk} Is on Track to Miss Another Deadline},
-  author = {{Verdict}},
-  year = {2023},
-  howpublished = {\url{https://www.verdict.co.uk/analyst-comment/elon-musk-missed-deadlines-history/}},
-  note = {Documents Musk's history of missed deadlines across Tesla, SpaceX, and other ventures. Accessed: 2025-08-09},
+@book{isaacson2023musk,
+  author    = {Isaacson, Walter},
+  title     = {Elon {Musk}},
+  publisher = {Simon \& Schuster},
+  address   = {New York},
+  year      = {2023},
+  isbn      = {978-1-9821-8128-4},
+  note      = {Authoritative biography by the former CEO of CNN and biographer of Steve Jobs, Benjamin Franklin, and Albert Einstein. Documents at length Musk's pattern of deliberately aggressive ``surge'' deadlines across Tesla, SpaceX, Twitter/X, and Neuralink---the colloquial source of the ``Elon time'' framing.}
+}
+
+@misc{benzinga2023elontime,
+  author       = {{Benzinga}},
+  title        = {Elon {Musk} Has Been Running On `{Elon Time}' Since He Was A Kid --- `I Think I Do Have An Issue With Time' -- But It's Not Good For {Tesla}},
+  year         = {2023},
+  month        = {8},
+  howpublished = {Originally published on \emph{Benzinga}; republished by \emph{Yahoo Finance}, \url{https://finance.yahoo.com/news/elon-musk-running-elon-time-211311914.html}},
+  note         = {Article explicitly uses the colloquial phrase ``Elon time'' in its headline and body, and quotes Musk's 2018 admission ``I think I do have an issue with time''. Documents the Tesla and SpaceX missed-deadline pattern. Accessed: 2026-05-21.}
 }
 
 @techreport{whipple_shield,
@@ -1216,7 +1299,7 @@
   note = {NASA Technical Reports Server. Accessed: 2025-08-08}
 }
 
-@techreport{JPL_EchoQL2010,
+@techreport{nasa_echo_ii_1966,
   author       = {Staugaitis, C. L. and Kobren, L.},
   title        = {Mechanical and Physical Properties of the {Echo II} Metal-Polymer Laminate},
   institution  = {NASA Goddard Space Flight Center},
@@ -1225,6 +1308,29 @@
   number       = {NASA TN D-3409},
   howpublished = {\url{https://ntrs.nasa.gov/citations/19660025569}},
   note         = {NASA Technical Note documenting the aluminum-mylar-aluminum laminate used to construct the Echo II passive communications balloon satellite. NTRS ID: 19660025569.}
+}
+
+@article{brouwer1959satellite,
+  author    = {Brouwer, Dirk},
+  title     = {Solution of the Problem of Artificial Satellite Theory Without Drag},
+  journal   = {The Astronomical Journal},
+  volume    = {64},
+  pages     = {378--397},
+  year      = {1959},
+  publisher = {American Astronomical Society},
+  doi       = {10.1086/107958},
+  note      = {Foundational peer-reviewed derivation of the secular perturbations of artificial-satellite orbits by Earth's oblateness, including the secular drift of the argument of perigee due to $J_2$ (vanishing only at the critical inclination $i \approx 63.4^\circ$). Open access via NASA ADS.}
+}
+
+@techreport{nima_wgs84,
+  author       = {{National Imagery and Mapping Agency}},
+  title        = {Department of Defense World Geodetic System 1984: Its Definition and Relationships With Local Geodetic Systems},
+  institution  = {National Imagery and Mapping Agency},
+  year         = {2000},
+  number       = {NIMA TR8350.2, 3rd Edition},
+  address      = {Bethesda, MD, USA},
+  howpublished = {\url{https://nsgreg.nga.mil/doc/view?i=4085}},
+  note         = {Authoritative U.S. government reference defining the WGS-84 ellipsoid: equatorial radius $a = 6378137$~m, polar radius $b \approx 6356752$~m. The $\approx 21$~km equatorial bulge causes a satellite at fixed geocentric radius to fly $\approx 21$~km lower above the geoid at the equator than over the poles.}
 }
 
 @article{malaviya2022comprehensive,
