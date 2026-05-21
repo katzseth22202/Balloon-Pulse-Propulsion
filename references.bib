@@ -53,7 +53,7 @@
 }
 
 @inproceedings{projorion,
-  author = {Schmidt, George R. and Bonometti, Joseph A. and Irvine, Carl A.},
+  author = {Schmidt, George R. and Bonometti, Joseph A. and Morton, Carl A.},
   title = {Project {Orion} and Future Prospects for Nuclear Pulse Propulsion},
   booktitle = {36th AIAA/ASME/SAE/ASEE Joint Propulsion Conference and Exhibit},
   year = {2000},
@@ -166,7 +166,7 @@
 
 @misc{grok,
     author = {{XAI}},
-    title = {x.ai},
+    title = {Grok},
     year = {2025},
     howpublished = {\url{https://x.ai/}},
     note = {Accessed: 2025-06-15}
@@ -207,7 +207,7 @@
 @misc{mckinsey_reliability,
     author = {Chris Daehnick},
     title = {Space Launch - Are we heading for oversupply or a shortfall},
-    year = {2021},
+    year = {2023},
     howpublished = {\url{https://www.mckinsey.com/industries/aerospace-and-defense/our-insights/space-launch-are-we-heading-for-oversupply-or-a-shortfall}},
     note = {Accessed: 2025-06-01}
 }
@@ -393,6 +393,18 @@
   note      = {Peer-reviewed Cassini VIMS characterization of Phoebe's surface composition (water ice, ferrous-iron minerals, CO2, phyllosilicates, organics) and orbital configuration.}
 }
 
+@article{castillo_rogez2012_phoebe,
+  author    = {Castillo-Rogez, J. C. and Johnson, T. V. and Thomas, P. C. and Choukroun, M. and Matson, D. L. and Lunine, J. I.},
+  title     = {Geophysical evolution of {Saturn's} satellite {Phoebe}, a large planetesimal in the outer {Solar} {System}},
+  journal   = {Icarus},
+  volume    = {219},
+  number    = {1},
+  pages     = {86--109},
+  year      = {2012},
+  doi       = {10.1016/j.icarus.2012.02.002},
+  note      = {Bulk-density and shape-based geophysical modelling that constrains Phoebe's ice-mass fraction to roughly 50\%.}
+}
+
 @article{pearson1975orbital_tower,
   author    = {Pearson, Jerome},
   title     = {The Orbital Tower: A Spacecraft Launcher Using the {Earth's} Rotational Energy},
@@ -536,10 +548,26 @@
   note         = {Chapter 5 derives Kramers' bound-free and free-free opacity law $\kappa \propto \rho\, T^{-7/2}$. Open access. Accessed: 2026-05-17}
 }
 
-@techreport{silicon_nitride_gun,
-  title={Evaluation of a foreign silicon nitride as a potential gun barrel liner},
-  author={Swab, Jeffrey J and Danna, Dominic and Leveritt, Charles and Piraino, Stephanie},
-  year={2010}
+@article{si3n4_gun_liner,
+  title={Fabrication of {Si\textsubscript{3}N\textsubscript{4}} Gun Barrel Liners for Very High Temperature Erosion Resistant Gun Barrels},
+  author={Storm, R. and Withers, J. C. and Ramos, Rick and Loutfy, R. O.},
+  journal={Materials and Manufacturing Processes},
+  volume={27},
+  number={8},
+  pages={875--877},
+  year={2012},
+  doi={10.1080/10426914.2011.648697}
+}
+
+@article{silicon_ceramic_oxidation,
+  title={Corrosion of Silicon-Based Ceramics in Combustion Environments},
+  author={Jacobson, Nathan S.},
+  journal={Journal of the American Ceramic Society},
+  volume={76},
+  number={1},
+  pages={3--28},
+  year={1993},
+  doi={10.1111/j.1151-2916.1993.tb03684.x}
 }
 
 @article{solem_medusa,
@@ -552,25 +580,28 @@
   year={1993}
 }
 
-@article{picax_ablator,
+@article{pica_ablator_milos2010,
   title={Ablation and thermal response property model validation for phenolic impregnated carbon ablator},
-  author={Milos, Frank S and Chen, Y-K},
+  author={Milos, Frank S. and Chen, Y.-K.},
   journal={Journal of Spacecraft and Rockets},
   volume={47},
   number={5},
   pages={786--805},
-  year={2010}
+  year={2010},
+  doi={10.2514/1.42949},
+  note={Covers generic NASA PICA, not SpaceX's PICA-X variant.}
 }
 
-@article{picax_flame_resistance,
-  title={Oxidation Resistance, Ablation Resistance, and Ablation Mechanism of HfC--B4C-Modified Carbon Fiber/Boron Phenolic Resin Ceramizable Composites},
+@article{phenolic_oxidation_hfc_b4c,
+  title={Oxidation Resistance, Ablation Resistance, and Ablation Mechanism of {HfC}--{B$_4$C}-Modified Carbon Fiber/Boron Phenolic Resin Ceramizable Composites},
   author={Wen, Hairun and Zhang, Wei and Deng, Zongyi and Yang, Xueyuan and Huang, Wenchao},
   journal={Polymers},
   volume={17},
   number={10},
   pages={1412},
   year={2025},
-  publisher={MDPI}
+  publisher={MDPI},
+  doi={10.3390/polym17101412}
 }
 
 @article{hitec_solar_salt,
@@ -584,7 +615,7 @@
   publisher={Springer}
 }
 
-@article{flexible_ceramic_composites,
+@article{uhtcmc_review,
   title   = {Selection, processing, properties and applications of ultra-high temperature ceramic matrix composites, {UHTCMCs} -- a review},
   author  = {Binner, Jon and Porter, Matt and Baker, Ben and Zou, Ji and Venkatachalam, Vinothini and Rubio Diaz, Virtudes and D'Angio, Andrea and Ramanujam, Prabhu and Zhang, Tailin and Murthy, T. S. R. C.},
   journal = {International Materials Reviews},
@@ -594,7 +625,7 @@
   year    = {2020},
   publisher = {Taylor \& Francis},
   doi     = {10.1080/09506608.2019.1652006},
-  note    = {Comprehensive peer-reviewed review of ultra-high-temperature ceramic matrix composites for hypersonic, rocket nozzle, and leading-edge applications.}
+  note    = {Comprehensive peer-reviewed review of ultra-high-temperature ceramic matrix composites for hypersonic, rocket nozzle, and leading-edge applications. Used here for the BN compliant-interphase claim, which the review covers.}
 }
 
 @article{nextel_720_fiber,
@@ -691,15 +722,28 @@
   year={2021}
 }
 
-@article{ceres_carbon_nitrogen,
+@article{marchi2019_ceres_carbon,
   title={An aqueously altered carbon-rich Ceres},
-  author={Marchi, S and Raponi, Andrea and Prettyman, TH and De Sanctis, MARIA CRISTINA and Castillo-Rogez, J and Raymond, CA and Ammannito, E and Bowling, T and Ciarniello, M and Kaplan, H and others},
+  author={Marchi, S. and Raponi, A. and Prettyman, T. H. and De Sanctis, M. C. and Castillo-Rogez, J. and Raymond, C. A. and Ammannito, E. and Bowling, T. and Ciarniello, M. and Kaplan, H. and others},
   journal={Nature Astronomy},
   volume={3},
   number={2},
   pages={140--145},
   year={2019},
+  doi={10.1038/s41550-018-0656-0},
   publisher={Nature Publishing Group UK London}
+}
+
+@article{desanctis2015_ceres_ammoniated_phyllosilicates,
+  title={Ammoniated phyllosilicates with a likely outer Solar System origin on (1) {Ceres}},
+  author={De Sanctis, M. C. and Ammannito, E. and Raponi, A. and Marchi, S. and McCord, T. B. and McSween, H. Y. and Capaccioni, F. and Capria, M. T. and Carrozzo, F. G. and Ciarniello, M. and Longobardo, A. and Tosi, F. and Fonte, S. and Formisano, M. and Frigeri, A. and Giardino, M. and Magni, G. and Palomba, E. and Turrini, D. and Zambon, F. and Combe, J.-P. and Feldman, W. and Jaumann, R. and McFadden, L. A. and Pieters, C. M. and Prettyman, T. and Toplis, M. and Raymond, C. A. and Russell, C. T.},
+  journal={Nature},
+  volume={528},
+  number={7581},
+  pages={241--244},
+  year={2015},
+  doi={10.1038/nature16172},
+  publisher={Nature Publishing Group}
 }
 
 @inproceedings{sk99_tension,
@@ -708,7 +752,27 @@
   booktitle={Oceans 2017-Aberdeen},
   pages={1--8},
   year={2017},
-  organization={IEEE}
+  organization={IEEE},
+  note={Supports the carbon-modified HMPE creep-resistance claim; not a source for SK99 breaking-length values or tapered orbital tethers.}
+}
+
+@misc{dyneema_sk99_datasheet,
+  author       = {{DSM Dyneema}},
+  title        = {{Dyneema SK99}: Product Information Sheet (UHMWPE Fiber)},
+  year         = {2013},
+  howpublished = {DSM Dyneema BV (now Avient Protective Materials), Heerlen, The Netherlands. Press release and product launch via Textile World: \url{https://www.textileworld.com/textile-world/textile-news/2013/10/dyneema-sk99-for-running-rigging-the-winning-innovation-for-performance-yachts/}},
+  note         = {Quotes tenacity 20\% higher than SK78 and modulus 35\% higher than SK75/SK78, used here for SK99 specific-strength estimates. Accessed: 2026-05-21}
+}
+
+@techreport{hastol_phase_ii,
+  author      = {Bogar, Thomas J. and Bangham, Michal E. and Forward, Robert L. and Hoyt, Robert P.},
+  title       = {Hypersonic Airplane Space Tether Orbital Launch ({HASTOL}) Architecture Study: Phase {II} Final Report},
+  institution = {The Boeing Company / Tethers Unlimited, Inc.},
+  year        = {2001},
+  month       = {October},
+  number      = {NIAC Phase {II} Grant 07600-039},
+  howpublished = {NASA Institute for Advanced Concepts (NIAC) final report, \url{https://www.niac.usra.edu/files/studies/final_report/391Grant.pdf}},
+  note        = {Defines a 600-km tapered HMPE tether spinning to a $\sim$3.5 km/s tip speed and the surrounding launch architecture. Accessed: 2026-05-21}
 }
 
 @article{benkhoff2021bepicolombo,
@@ -919,17 +983,16 @@
   note    = {Seminal review by Lord Corporation on magnetorheological fluids, foams, and elastomers for vibration damping and controllable-stiffness applications.}
 }
 
-@article{kevlar_spall_liner,
-  title        = {Effect of fibre orientations on the mechanical properties of kenaf--aramid hybrid composites for spall-liner application},
-  author       = {Yahaya, R. and Sapuan, S. M. and Jawaid, M. and Leman, Z. and Zainudin, E. S.},
-  journal      = {Defence Technology},
-  volume       = {12},
-  number       = {1},
-  pages        = {52--58},
-  year         = {2016},
-  doi          = {10.1016/j.dt.2015.08.005},
-  howpublished = {\url{https://doi.org/10.1016/j.dt.2015.08.005}},
-  note         = {Open access via KeAi/Elsevier. Characterizes aramid (Kevlar)-reinforced spall-liner laminates for armoured vehicle applications. Accessed: 2026-05-17}
+@article{aramid_ballistic_review,
+  title   = {Ballistic impact into fabric and compliant composite laminates},
+  author  = {Cheeseman, B. A. and Bogetti, T. A.},
+  journal = {Composite Structures},
+  volume  = {61},
+  number  = {1--2},
+  pages   = {161--173},
+  year    = {2003},
+  doi     = {10.1016/S0263-8223(03)00029-1},
+  note    = {Reviews ballistic-impact mechanics of woven aramid (Kevlar) fabrics and aramid-matrix laminates used in spall liners and body armour.}
 }
 
 @article{titanium_m777,
@@ -955,7 +1018,7 @@
 }
 
 @article{fabin2021anfo,
-  author       = {Fabin, Micha{\l} and Jarosz, Tomasz},
+  author       = {Fabin, Magdalena and Jarosz, Tomasz},
   title        = {Improving {ANFO}: Effect of Additives and Ammonium Nitrate Morphology on Detonation Parameters},
   journal      = {Materials},
   volume       = {14},
@@ -1048,17 +1111,17 @@
   publisher={Multidisciplinary Digital Publishing Institute}
 }
 
-@inproceedings{neg_coatings,
-  title        = {{NEG} Thin Film Coating Development for the {MAX IV} Vacuum System},
-  author       = {Grabski, Marek and Costa Pinto, Pedro and Chiggiato, Paolo and Fernandes Tavares, Pedro and Al-Dmour, Eshraq and Ahlb{\"a}ck, Jonny and Calatroni, Sergio and Taborelli, Mauro},
-  booktitle    = {Proceedings of the 4th International Particle Accelerator Conference ({IPAC} 2013)},
-  pages        = {3473--3475},
-  address      = {Shanghai, China},
-  year         = {2013},
-  publisher    = {JACoW},
-  isbn         = {978-3-95450-122-9},
-  howpublished = {Paper THPFI044, \url{https://accelconf.web.cern.ch/accelconf/IPAC2013/papers/thpfi044.pdf}},
-  note         = {Peer-reviewed conference paper describing non-evaporable getter (NEG) thin-film coatings for the MAX IV synchrotron storage ring vacuum system.}
+@article{neg_coatings,
+  title    = {Vacuum properties of {TiZrV} non-evaporable getter films},
+  author   = {Benvenuti, C. and Chiggiato, P. and Costa Pinto, P. and Escudeiro Santana, A. and Hedley, T. and Mongelluzzo, A. and Ruzinov, V. and Wevers, I.},
+  journal  = {Vacuum},
+  volume   = {60},
+  number   = {1--2},
+  pages    = {57--65},
+  year     = {2001},
+  publisher = {Elsevier},
+  doi      = {10.1016/S0042-207X(00)00246-3},
+  note     = {CERN paper introducing the TiZrV non-evaporable getter thin-film technology subsequently deployed in the LHC vacuum system.}
 }
 
 @techreport{balcomb1970nuclear,
@@ -1070,6 +1133,16 @@
   doi         = {10.2172/4444283},
   howpublished = {\url{https://www.osti.gov/servlets/purl/4444283}},
   note        = {Declassified technical report covering nuclear pulse propulsion physics, energy fractions, and charge design. OSTI ID: 4444283. Accessed: 2026-05-16}
+}
+
+@book{dyson2002project_orion,
+  author    = {Dyson, George},
+  title     = {Project {Orion}: The True Story of the Atomic Spaceship},
+  publisher = {Henry Holt and Company},
+  address   = {New York},
+  year      = {2002},
+  isbn      = {978-0-8050-5985-4},
+  note      = {Insider history of Project Orion; documents the tungsten flat-plate propellant slab used in the shaped nuclear charges to direct opaque plasma at the pusher plate.}
 }
     
 
@@ -1240,9 +1313,10 @@
 }
 
 @misc{oberth_effect,
-    author={Mungan, Carl E.},
+    author={Blanco, Philip and Mungan, Carl E.},
     title={Rocket Propulsion, Classical Relativity, and the {Oberth} Effect},
-    year={2009},
+    year={2019},
+    doi={10.1119/1.5126818},
     howpublished={\url{https://www.usna.edu/Users/physics/mungan/_files/documents/Publications/TPT46.pdf}},
     note = {Published in \textit{The Physics Teacher}. Open access via U.S. Naval Academy. Accessed: 2024-09-27}
 }
@@ -1259,7 +1333,8 @@
     author={{Keith Lofstrom}},
     title={The Launch Loop - A low cost earth-to-high-orbit launch system},
     howpublished={\url{https://arc.aiaa.org/doi/10.2514/6.1985-1368}},
-    year={2012}
+    year={1985},
+    number={AIAA 85-1368}
 }
 
 @inproceedings{revach2022unsupervised,
@@ -1300,11 +1375,11 @@
 
 @techreport{whipple_shield,
   title = {Performance of {Whipple} Shields at Impact Velocities above 9 km/s},
-  author = {{NASA Johnson Space Center}},
+  author = {Piekutowski, A. J. and Poormon, K. L. and Christiansen, E. L. and Davis, B. A.},
   institution = {NASA},
   year = {2009},
   howpublished = {\url{https://ntrs.nasa.gov/citations/20090024821}},
-  note = {NASA Technical Reports Server. Accessed: 2025-08-08}
+  note = {NASA Technical Reports Server. Accessed: 2025-08-08. Published version: \textit{Int. J. Impact Eng.} \textbf{38}(6), 495--503 (2011), doi:10.1016/j.ijimpeng.2010.10.021.}
 }
 
 @techreport{nasa_echo_ii_1966,
