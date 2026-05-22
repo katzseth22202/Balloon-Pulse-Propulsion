@@ -36,6 +36,12 @@ pdflatex templatePRIME.tex
 pdflatex templatePRIME.tex
 ```
 
+## Bibliography Rules
+
+- **No Wikipedia articles as scholarly or pop-culture citations.** Do not add `references.bib` entries that point to `*.wikipedia.org`, and do not link to Wikipedia from inline prose in `templateArxiv.tex`. When a claim needs a citation, find the primary literature, a peer-reviewed paper, a textbook, a government/agency report, a news article of record, or a directly attributable industry/institutional publication. Even pop-culture or framing cites should point to the actual work itself (e.g. IMDb for a film, the publisher/Goodreads for a novel, the studio page for a video game), never to a Wikipedia summary.
+- **Wikimedia Commons is fine for public-domain image attribution.** Entries that credit `commons.wikimedia.org` for a figure's source image (e.g. NASA-derived Earth or Moon imagery rehosted there under public-domain license) are acceptable, because they're crediting the file, not citing Wikipedia as a source of facts.
+- When in doubt, ask before adding a cite that points at any Wikimedia property.
+
 ## Writing Style
 
 When drafting or editing prose in this paper, avoid the patterns that read as AI-generated:
