@@ -19,3 +19,6 @@
 
 # Claude Code
 .claude/
+
+# Scratch / working documents (todo lists, audit summaries, restart handoffs)
+todos/

@@ -42,6 +42,17 @@ pdflatex templatePRIME.tex
 - **Wikimedia Commons is fine for public-domain image attribution.** Entries that credit `commons.wikimedia.org` for a figure's source image (e.g. NASA-derived Earth or Moon imagery rehosted there under public-domain license) are acceptable, because they're crediting the file, not citing Wikipedia as a source of facts.
 - When in doubt, ask before adding a cite that points at any Wikimedia property.
 
+## Scratch Files and Working Documents
+
+When writing ephemeral working documents (todo lists, audit summaries, restart-handoff snapshots, draft analysis notes, anything that isn't part of the paper deliverable or persistent project configuration), put them in `todos/` rather than the repo root. The `todos/` directory is gitignored, so anything inside is safe from accidental commit.
+
+Examples:
+- `todos/citation_audit_2026-05-22.md` instead of `CITATION_AUDIT.md` at root
+- `todos/restart_handoff.md` instead of `HANDOFF.md` at root
+- `todos/todo.md` for in-progress task lists
+
+Create the `todos/` directory on demand if it does not exist. Never write working documents to the repo root. If a working document needs to be committed (rare), the user will explicitly ask you to move it out of `todos/` and track it.
+
 ## Writing Style
 
 When drafting or editing prose in this paper, avoid the patterns that read as AI-generated:
