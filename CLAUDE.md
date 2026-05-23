@@ -55,14 +55,23 @@ Create the `todos/` directory on demand if it does not exist. Never write workin
 
 ## Writing Style
 
-When drafting or editing prose in this paper, avoid the patterns that read as AI-generated:
+When drafting or editing prose in this paper, avoid the patterns that read as AI-generated. The list below is the enforceable blocklist; the principle above it is so you can extrapolate to novel tells not yet enumerated. When in doubt, prefer the plainer word and the shorter sentence.
 
 - **No em-dashes (`---`).** Break the thought into separate sentences, or use a comma, colon, semicolon, or parentheses if a connector is genuinely needed. En-dashes (`--`) are fine for compound modifiers (e.g. `alumina--mullite`) and number ranges.
-- **Avoid stock AI vocabulary.** Do not use *delve*, *delve into*, *navigate the landscape*, *tapestry*, *crucial*, *pivotal*, *furthermore*, *moreover*, *in conclusion*, *it is important to note*, *leverage* (as a verb), *robust*, *seamless*, *underscore*, *underpin*, *commendable*, *meticulous*, or *realm*. Reach for the plainer word.
-- **Avoid the "not only X but also Y" and "X is more than just Y" constructions.** They are tells.
+- **Avoid stock AI vocabulary.** Do not use *delve*, *delve into*, *navigate the landscape*, *tapestry*, *crucial*, *pivotal*, *furthermore*, *moreover*, *in conclusion*, *it is important to note*, *it is worth noting*, *it should be emphasized*, *keep in mind*, *leverage* (as a verb), *robust*, *seamless*, *underscore*, *underpin*, *commendable*, *meticulous*, *realm*, *in the realm of*, *in light of*, *given the fact that*, *a myriad of*, *a host of*, *a wealth of*, *a testament to*, *stands as*, *serves as*, *at the heart of*, *at its core*, *in essence*, *essentially*, *transformative*, *groundbreaking*, *revolutionary*, *game-changer*, *showcase*, *highlight* (as a verb where "show" works), *aim to*, *seek to*, *strive to*. Reach for the plainer word.
+- **Avoid padding adverbs.** *remarkably*, *incredibly*, *profoundly*, *vastly*, *fundamentally*, *ultimately*, *arguably*. Cut them; if the claim needs support, give a number or a citation.
+- **Avoid sentence-initial throat-clearing.** *Indeed*, *Notably*, *Interestingly*, *Importantly*, *Additionally*, *Subsequently*, *Consequently* at the start of a sentence. If the connection matters, make it with a real clause; otherwise just state the next thing.
+- **Avoid the "not only X but also Y", "X is more than just Y", and "This isn't just X --- it's Y" constructions.** They are tells, all from the same family.
+- **Avoid rule-of-three lists.** AI reaches reflexively for tricolons (three adjectives, three parallel phrases). Use two, or four, or whatever the content actually calls for. If you find yourself writing "efficient, scalable, and robust", cut at least one.
+- **Avoid hollow openers.** "In the modern era of...", "As X continues to evolve...", "In today's landscape of..." Cut to the actual claim.
+- **Avoid recap closers.** Do not end sections by restating what was just said ("By doing X, we have shown Y..."). Stop when the argument stops.
+- **Avoid "from X to Y" range-gesturing** without specifics ("from theory to practice", "from concept to reality"). Either name the actual range with endpoints, or drop the construction.
+- **Avoid passive throat-clearing.** "It can be observed that...", "It is the case that...", "It has been shown that..." State the observation directly, or attribute it.
+- **Quantify, don't hedge.** "Significant improvement", "substantial gains", "a wide range of", "various", "a number of", "potentially" are placeholders for missing numbers. In a physics/engineering paper, this is especially bad. Give the value, the order of magnitude, or the citation.
 - **Keep sentences short.** If a sentence runs longer than ~30 words or stacks more than two subordinate clauses, split it. One idea per sentence is the default.
 - **Drop interruptive asides.** Em-dash and parenthetical interjections that interrupt the main clause make sentences dense. Put the aside in its own sentence instead.
-- **Prefer concrete, technical phrasing** over hedged, qualifier-heavy prose ("a wide range of", "various", "a number of", "potentially", "it should be noted that").
+
+**Direct quotations are off-limits to this stylebook.** If a passage is in quotation marks and attributed to a person (interview, talk, email, published source, transcript, social-media post), do not "fix" it for AI-style tells. Quote the speaker as they spoke, even if the prose contains em-dashes, *delve*, *crucial*, tricolons, or anything else banned above. The style rules apply to my authorial prose, not to material reproduced verbatim from a source. The same applies inside `\textquote{}`, blockquotes, and figure-caption quotations.
 
 ## License
 
