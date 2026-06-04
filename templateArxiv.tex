@@ -75,15 +75,15 @@
  
 In 2017, Google Research published \textit{Attention Is All You Need} \cite{vaswani2017attentionneed}.  Their paper introduced the Transformer, which revolutionized how neural networks capture long range dependencies.   Just a few years later, OpenAI developed tools like ChatGPT \cite{chatgpt} that catapulted AI into mainstream adoption.
 
-But here's the bittersweet truth:  While our screens flicker with progress, breakthroughs in space travel and clean energy advance at a slower pace.
+But here's the bittersweet truth:  While our screens flicker with progress, space travel and clean energy still crawl.
 
 \textbf{Dude, Where's My Spaceship?}
 
-This paper's goal is to enable our progress in physical realms to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention.  We call it \textit{aim}.   
+This paper's goal is to enable our progress in the physical world to catch up with our progress online.  Our journey requires applying a single unifying idea that is much simpler than attention.  We call it \textit{aim}.   
 
-Consider a "PuffSat," a single-use microsatellite with a mass of roughly 25–100 kilograms, comparable to the unofficial mass of a 27U CubeSat \cite{cubesat_advanced_standard}.  When triggered, a PuffSat rapidly converts nearly all its mass into a low density gas.  The PuffSat can generate gas explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}).  The PuffSat can perform small navigation adjustments using ultra lightweight microthrusters and electronics.
+Consider a "PuffSat," a single-use microsatellite with a mass of roughly 25–100 kilograms, comparable to the unofficial mass of a 27U CubeSat \cite{cubesat_advanced_standard}.  When triggered, a PuffSat rapidly converts nearly all its mass into a low density gas, generated explosively or by atomizing cold solids or liquids (see \autoref{sec:puffsat_design}). Ultra lightweight microthrusters and electronics let it make small navigation adjustments.
 
-Picture two rockets. The first rocket deploys a series of these fast moving PuffSats. As shown in \autoref{fig:PuffSat_impact}, the deployed PuffSats precisely follow a path to sequentially gasify and impact a shock-absorbing momentum pusher plate (see \autoref{sec:lightweight_pusher_plates}) on a separate target rocket. These collisions deliver high-density jolts of pulsed energy and momentum to the target vehicle, enabling a surprisingly broad range of applications (See \autoref{tab:applications}). 
+Picture two rockets. The first rocket deploys a series of these fast moving PuffSats. As shown in \autoref{fig:PuffSat_impact}, the deployed PuffSats follow precise paths to a shock-absorbing pusher plate (see \autoref{sec:lightweight_pusher_plates}) on a separate target rocket. Each one gasifies and strikes the plate in sequence. These collisions deliver concentrated pulses of energy and momentum to the target vehicle (see the applications in \autoref{tab:applications}). 
 
 \begin{figure}[htpb]
     \centering
@@ -115,13 +115,11 @@ This speculative white paper is a brainstorming exploration that could be follow
 \end{abstract}.  
 
 \section{Introduction}
-Conceived in the 1950s and later popularized by \textit{The Three-Body Problem} \cite{liu2014three}, Project Orion remains one of the most compelling rockets ever proposed. It uniquely offers specific impulses surpassing those of electric propulsion while delivering thrust levels on par with chemical rockets \cite{projorion}.   Orion would propel a spacecraft by directing hypervelocity plasma from nuclear explosions onto a pusher plate. Despite its theoretical promise, Orion faced insurmountable challenges related to political feasibility, radioactive fallout, and the impractical mass requirements stemming from the high minimum yield of nuclear explosions \cite{balcomb1970nuclear}. Nevertheless, Orion conceptually validated the physics of hypervelocity pulsed propulsion.   
+Conceived in the 1950s and later popularized by \textit{The Three-Body Problem} \cite{liu2014three}, Project Orion remains one of the most compelling rockets ever proposed. It uniquely offers specific impulses surpassing those of electric propulsion while delivering thrust levels on par with chemical rockets \cite{projorion}.   Orion would propel a spacecraft by directing hypervelocity plasma from nuclear explosions onto a pusher plate. Despite its theoretical promise, Orion faced insurmountable challenges related to political feasibility, radioactive fallout, and the impractical mass requirements stemming from the high minimum yield of nuclear explosions \cite{balcomb1970nuclear}. Orion still validated the physics of hypervelocity pulsed propulsion.   
 
-Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas puffs from specialized "PuffSat" microsatellites (see \autoref{sec:puffsat_design}) sequentially impacting a rocket's pusher plate.  These gas puffs can be scaled down to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed propulsion chamber.
+Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas puffs from specialized "PuffSat" microsatellites (see \autoref{sec:puffsat_design}) sequentially impacting a rocket's pusher plate.  These gas puffs can be scaled down to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed propulsion chamber. With gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity PuffSat impacts could achieve energy densities and specific impulses well above those of chemical rockets.  
 
-With gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity PuffSat impacts could achieve high energy densities and specific impulses.  Conventional control and estimation methods, which offer dependable results, can handle most of PuffSat guidance.  Neural networks optionally augment these systems by adjusting for unmodeled dynamics in complex orbital regimes and by reducing computational latency (see \autoref{sec:neural_navigation}).  
-
-This speculative white paper presents a preliminary back of the envelope analysis of what are clearly very ambitious ideas. While rigorous, high fidelity modeling is left for future work, our goal is to stimulate fresh thinking and new research directions. Whether this concept remains a provocative thought experiment, inspires science fiction, or evolves into a real 21st-century technology, it suggests new uses of formation flying.
+Our goal is to stimulate fresh thinking and new research directions. At minimum, the concept suggests new uses of formation flying.
 
 The sections that follow open with the business case (\autoref{sec:business_case}), then explain how PuffSats work (\autoref{sec:how_puffsats_work}) and survey applications. The feasibility analysis for the near-term architecture is gathered in \autoref{sec:engineering}. 
 
