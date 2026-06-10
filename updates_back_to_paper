@@ -3,3 +3,4 @@
 ## active transponder on PuffSat.  Measures both distance and doppler velocity shifts
 ## at least 4 coordinator nodes, with both perigee and apogee updated.   Consider also using GNSS signal below geostationary orbit.
 ## Big one.  GOCE level accelerometer is kilogram scale technology and is not something that fits on a PuffSat.  Probably why we can't get millimeter scale PuffSat working.
+## We only target Puffsat accuracy to 1 meter.  Assumption is pusher plate can move, shock absorber can reshape to keep pulse centered.  Rockets on main craft also help.
