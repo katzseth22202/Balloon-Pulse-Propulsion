@@ -4,3 +4,6 @@
 ## at least 4 coordinator nodes, with both perigee and apogee updated.   Consider also using GNSS signal below geostationary orbit.
 ## Big one.  GOCE level accelerometer is kilogram scale technology and is not something that fits on a PuffSat.  Probably why we can't get millimeter scale PuffSat working.
 ## We only target Puffsat accuracy to 1 meter.  Assumption is pusher plate can move, shock absorber can reshape to keep pulse centered.  Rockets on main craft also help.
+## Van Allen radiation shielding is provided by Puffsat itself.
+## torque but if spacecraft is long, force may be small for reaction wheels - when there is an off center impact.
+## is it easier to do 1m*1m*50m uncertainty of 2m sphere uncertainty and which is relevant?
