@@ -16,6 +16,9 @@
 * note the plane can adjust its starting point by 10s of kilometers, so if there is systemic drift in PuffSats is OK as long as PuffSat formation shape is good looking.
 * Explain issues with Medussa large strechy parachute, but possibility to do at sides.   
 * explain possibility of 1/1 pusher plate
+* explain hardware encryption of repeated signal.  Question need for coordinator nodes.  Two telescopes on opposite side of rockets, 10 microradians, satellites may only be hundres of kilometers apart in orbit even though the distance grows much larger at perigee.  At around 2500 km, bigger satellite changes orbits to raise perigee, come around one more time for its landing spot with another apogee burn.
+* brief note about geopolitcal overflight risks of PuffSat suborbital travel
+* slow down PuffSat can't be purely low Earth orbit because of atmospheric drag.
 
 ---
 
