@@ -19,6 +19,7 @@
 * explain hardware encryption of repeated signal.  Question need for coordinator nodes.  Two telescopes on opposite side of rockets, 10 microradians, satellites may only be hundres of kilometers apart in orbit even though the distance grows much larger at perigee.  At around 2500 km, bigger satellite changes orbits to raise perigee, come around one more time for its landing spot with another apogee burn.
 * brief note about geopolitcal overflight risks of PuffSat suborbital travel
 * slow down PuffSat can't be purely low Earth orbit because of atmospheric drag.
+* space only GNSS.   ka-band higher frequency helps doppler and range accuracy.  Verifying no coordinator nodes needed. 
 
 ---
 
