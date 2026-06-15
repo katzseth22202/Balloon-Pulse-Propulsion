@@ -19,7 +19,8 @@
 * explain hardware encryption of repeated signal.  Question need for coordinator nodes.  Two telescopes on opposite side of rockets, 10 microradians, satellites may only be hundres of kilometers apart in orbit even though the distance grows much larger at perigee.  At around 2500 km, bigger satellite changes orbits to raise perigee, come around one more time for its landing spot with another apogee burn.
 * brief note about geopolitcal overflight risks of PuffSat suborbital travel
 * slow down PuffSat can't be purely low Earth orbit because of atmospheric drag.
-* space only GNSS.   ka-band higher frequency helps doppler and range accuracy.  Verifying no coordinator nodes needed. 
+* space only GNSS.   ka-band higher frequency helps doppler and range accuracy.  Verifying no coordinator nodes needed.
+* for shock physics, higher atmosphere - string of pearls shaping to elongate the design 
 
 ---
 
@@ -177,3 +178,172 @@ Nothing in this note is in the paper yet. Resolve these four, then turn the note
 2. **Front-vs-rear safety argument:** short paragraph in the body, or appendix-only? It is the strongest design rationale (overtaking kinematics, fail-safe shielding), so it could earn body space. Currently slotted in the appendix.
 3. **Worked example (4 Hz / 4.6 m / 3.2 t):** put one concrete number set in the body as an anchor, or keep it appendix-only? Body lands the concept; appendix-only keeps the body clean.
 4. **Reframe lines 630 and 692 (needs explicit OK, changes already-committed text):** from "about 5 cm std-dev centering" to "about 2 m required laterally on the 5 m plate, cm achievable." This deliberately loosens a stated assumption (see Part D.1). 
+
+# Proposed sharpening of §"Navigation Challenges Near Periapsis" (sec:periapsis_challenges)
+
+*Blurb to append to `updates_back_to_paper.md` in the Balloon-Pulse-Propulsion repo.*
+*Refines the "Like Proba-3, we target millimeter-scale precision" claim in
+`sec:solid_PuffSats` and the nav discussion in `sec:periapsis_challenges`.
+Derived in a design grilling session 2026-06-15; numbers are order-of-magnitude
+sizing, not a simulation result.*
+
+---
+
+## The "like Proba-3" claim needs a scale correction
+
+Proba-3 achieves millimetre relative precision at a separation of **~144 m**, where
+1 mm corresponds to an angular precision of **~7 µrad** — easy for an optical
+metrology instrument. For prograde/retrograde projectiles converging at Parker-class
+periapsis, the geometry the precision must be established over is **hundreds of km**,
+not 144 m. At a 300 km baseline, 1 mm corresponds to **~3 nrad**. That is *not*
+reachable by angular measurement (astrometry / star tracker):
+
+| target angular precision | diffraction-limited aperture (λ = 500 nm) |
+|---|---|
+| 5 µrad (≈ 1 arcsec, ordinary star tracker) | ~12 cm |
+| 1 µrad | ~0.6 m |
+| 100 nrad | ~6 m |
+| **3 nrad (= 1 mm at 300 km)** | **~200 m** |
+
+A 200 m telescope on a projectile is absurd, and star-referenced astrometry is in any
+case capped by a focal-plane **distortion floor** (a ~µrad-class systematic that more
+photons cannot beat). So at this scale the precision lever **cannot** be "like
+Proba-3" angular metrology. It must be ranging.
+
+## The lever: differential ranging from a transverse node (good GDOP)
+
+The right architecture is a coordinator node placed **off to the side** (transverse
+to the line of flight, e.g. ~300 km off-axis) measuring **distances only** (laser or
+carrier-phase two-way) — not a star map, not angles.
+
+- **Why transverse.** Lateral position error from a range is
+  `σ_lateral ≈ σ_range / sin θ`, where θ is the angle the anchors subtend at the
+  target — the *Geometric Dilution of Precision* (GDOP). Anchors nearly **in line**
+  with the target (an along-track stream, or two head-on projectiles ranging each
+  other) give θ → 0 and `1/sin θ → ∞`: range is blind to the lateral. A **transverse**
+  node gives θ ≈ 45–90°, `1/sin θ ≈ 1`: a millimetre range becomes a millimetre
+  lateral. The node offset should be comparable to the sensing range for good GDOP.
+- **Why differential.** The node ranges *two* things at once — the controlled
+  projectile and a reference (the chamber beacon, or the opposing projectile) — and
+  uses the difference. This cancels the node's own position/clock error. (Near the Sun
+  there is no GNSS to pin the node absolutely; differencing makes that irrelevant.)
+- **Why ranging wins here when angle wins elsewhere.** Range precision (~mm via laser
+  carrier phase) is essentially **range-independent** and needs only a laser +
+  retroreflector, *not* a 200 m aperture; angular precision is distortion-floored and
+  aperture-limited. So at the mm / long-range scale the conclusion **inverts**
+  relative to ordinary close-formation flying: ranging is the practical lever, angle
+  is the impractical one. The work is **relative orbit determination over the
+  approach arc** (the geometry rotation builds the lateral), not a last-moment
+  snapshot.
+
+## Why ~mm ranging at hundreds of km is realistic (carrier phase)
+
+The architecture rests on ~mm-class *range* precision over hundreds of km, by
+carrier-phase ranging. This is not a stretch — it is well inside flight-proven
+capability, and the deep-space environment makes it *easier* than its terrestrial
+form:
+
+- **Raw phase precision is a small fraction of the wavelength, and range-independent.**
+  A carrier-phase observable is typically measured to ~1% of a cycle. At Ka-band
+  (~30 GHz, λ ≈ 1 cm) that is ~0.1 mm; at optical (laser, λ ≈ 1 µm) it is far finer.
+  Precision degrades only through SNR with range, not through range itself — so
+  hundreds of km is a link-budget question (solved with modest gain + a
+  retroreflector/transponder), not a precision wall.
+- **The integer-ambiguity problem is resolvable here, several ways at once.** Carrier
+  phase gives range modulo the wavelength; the whole-cycle integer must be fixed. It is
+  pinned by (a) a coarse **code / time-of-flight** range to within a few candidates,
+  (b) **dual-frequency wide-laning** (a long synthetic wavelength makes the integer
+  trivial, the fine carrier then supplies precision), (c) the **geometry rotation over
+  the approach arc** (the "500 measurements" over-determine the integers jointly with
+  the relative trajectory, as in kinematic GNSS / orbit determination), and (d)
+  **continuous phase tracking** once locked — the ambiguity is fixed *once* at
+  acquisition and then merely cycle-counted.
+- **Differential processing cancels the biases.** Single- and double-differenced
+  carrier phase (node-ranges-two-targets, differenced) removes clock and hardware
+  biases — the same CDGPS / satellite-laser-ranging heritage that delivers mm
+  relative positioning operationally.
+- **No atmosphere — the dominant terrestrial error sources are simply absent.** The
+  ionospheric and tropospheric delays that limit ground carrier-phase ranging do not
+  exist in the coast regime or near the Sun. The corona carries some dispersive plasma,
+  but it is tenuous and dual-frequency-removable. Vacuum is the *friendly* case.
+- **Flight precedent (the decisive point).** GRACE / GRACE-FO perform inter-satellite
+  ranging at ~220 km separation to ~1 µm (microwave K-band) and ~nm (the GRACE-FO
+  laser interferometer); satellite laser ranging routinely reaches mm-class to
+  spacecraft at hundreds–thousands of km; lunar laser ranging reaches cm-class at
+  ~3.8×10⁵ km. So **mm at hundreds of km is roughly three orders of magnitude inside
+  demonstrated inter-spacecraft ranging** — the requirement here is conservative, not
+  aggressive.
+
+## Control: two-tier, deterministic-coast — not terminal homing
+
+At ~400 km/s head-on closing, classical terminal homing is hopeless: the homing-miss
+floor scales as `σ_θ² v² / a_max`, so hitting mm would demand ~25 nrad nav. The escape
+is exactly the paper's own argument — the **predictable** corona environment lets the
+push be set up in advance:
+
+- **Gross setup, early.** A light (few-kg) projectile has ample lateral authority
+  (~50 m/s of Δv) to place itself in the path of the incoming opposing projectile.
+  Authority is *not* the binding constraint.
+- **Fine touch, late, fine precision.** The residual lateral miss is
+  `≈ δv_lateral · t_go`. So the *final* correction must be both **late** and executed
+  to **fine velocity precision**:
+
+  | final correction at t_go | required δv precision for 1 mm |
+  |---|---|
+  | 1 ms (≈ 400 m out) | 1 m/s |
+  | **1 s (≈ 400 km out)** | **1 mm/s** |
+  | 10 s | 0.1 mm/s |
+
+  i.e. ~mm/s execution (a micro-thruster impulse bit) applied ~1 s before impact —
+  *not* the ~1 m/s that suffices for the gross setup.
+- **Why this beats the v² floor.** That floor assumes fighting *nav noise* in the
+  endgame. In a deterministic environment you are instead nulling a **known,
+  slowly-evolving offset** that the differential-ranging arc has already measured to
+  mm. The binding number becomes `(mm/s execution) × (~1 s reaction) ≈ mm`, and the
+  high closing speed stops being the enemy.
+
+## SRP near the Sun: huge in absolute terms, irrelevant to the collision
+
+Absolute SRP at Parker periapsis (~9.86 R_sun ≈ 0.046 AU) is ~470× the 1 AU value:
+~15 µm/s² on a 1 kg projectile (A/m ≈ 0.005 m²/kg) → ~75 mm of displacement over a
+100 s arc. That is large and must be in the trajectory model. But what the collision
+cares about is the **relative** SRP between the two converging projectiles, and that
+stays sub-mm:
+
+- **Common-mode cancellation.** Both projectiles share the same heliocentric position
+  (same flux, same outward SRP direction) and — for thermal survival — must point heat
+  shields sunward, so they present the *same* sun-facing geometry. The absolute SRP
+  cancels in the difference; the residual scales with the *mismatch* (A/m,
+  reflectivity), ~1% at matched manufacturing → ~0.15 µm/s² → ~7.5 µm over 10 s,
+  ~0.08 µm over the 1 s final coast. The near-Sun environment that makes SRP large
+  also *enforces* the symmetry that cancels it.
+- **Track, don't predict.** Continuous differential ranging measures the actual
+  relative trajectory (incl. ablation-driven drift); only SRP during the short final
+  coast must be modelled, and over ~1 s even the *full* SRP moves <10 µm.
+- **Flux gradient** over the inter-projectile gap is negligible (~22 µm over 100 s
+  even at 1000 km separation; nothing at the meters-apart endgame).
+- **The one non-cancelling term** is velocity-dependent SRP (aberration /
+  Poynting–Robertson): prograde and retrograde velocities are opposite, so the
+  ~(v/c)·SRP tilt *differences* rather than cancels — ~2×10⁻⁸ m/s² → ~0.1 mm over
+  100 s. It is **deterministic** (fixed by known velocity), i.e. exactly the
+  "relativistic effects are predictable but must enter the trajectory calculations"
+  already flagged — bakeable, not a stochastic risk.
+- An on-board solar-intensity detector (sub-gram photodiode) is a useful third layer,
+  but its higher-value role is as a **sun sensor for attitude** (attitude sets A_eff,
+  the term that does *not* auto-cancel); the SRP-prediction problem itself mostly
+  dissolves under cancellation + tracking.
+
+## Net architecture for the chapter
+
+- **Lateral knowledge** → differential ranging from a transverse node (good GDOP),
+  *not* astrometry (which would need a ~200 m aperture at 300 km).
+- **Control** → two-tier (gross ~50 m/s early + ~mm/s fine at ~1 s t_go),
+  deterministic-coast, defeating the v² homing floor.
+- **Dominant residual risk** → SRP on the long arc (tracked out) + projectile
+  attitude/area matching (engineered); unpredictable solar luminosity is a ~0.1%-TSI
+  effect, smaller than the chapter currently implies.
+
+This is sharper and more defensible than "like Proba-3, mm precision": at the 300 km
+scale Proba-3's *angular* metrology cannot reach mm, so the precision lever is
+transverse-node differential **ranging** with good GDOP, with control made tractable
+by the deterministic-coast / early-correction structure the predictable corona allows.
