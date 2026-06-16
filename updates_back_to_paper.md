@@ -67,25 +67,40 @@ we edit; the items below are *what*.
 
 ## Decide before editing  (gates the edits below)
 
-These four are choices only Seth can make. Resolve them, then the flagged items
-downstream become writable.
+These four are choices only Seth can make. **All four resolved 2026-06-16** in a
+grilling session; resolutions recorded below. Downstream items flagged
+`(blocked on Dn)` are now writable per these answers.
 
-- [ ] **D1 — Appendix: one or two?** Put the rigid-plate derivation and the
-  Medusa sail/strut derivation in **one** appendix (two subsections) or **two**
-  separate appendices. *Lean: one* — both sit on the same buffer invariant
-  `m·s ≈ M a T²/4`, so they belong together.
-- [ ] **D2 — Front-vs-rear safety argument: body or appendix?** The overtaking
-  kinematics + fail-safe shielding rationale can earn body space, or stay in the
-  appendix. *Lean: a short body paragraph* — it is the strongest design rationale.
-- [ ] **D3 — Worked example (4 Hz / 4.6 m / 3.2 t): body anchor or appendix-only?**
-  One concrete number set in the body lands the concept; appendix-only keeps the
-  body clean. *Lean: appendix-only.*
-- [ ] **D4 — Reframe committed text (needs explicit OK).** In
+- [x] **D1 — Appendix: one or two?** → **TWO separate appendices** (overrode the
+  "one" lean). Appendix X = rigid pusher plate (invariant, 1/f², ripple, two-stage
+  absorber); Appendix Y = Medusa sail + struts (invariant restated, long stroke,
+  buckling). *Consequence:* the unifying "sail and rigid plate are the two ends of
+  one `m·s`" sentence moves to the **body**, at the point in
+  `sec:lightweight_pusher_plates` where the sail is introduced alongside the plate,
+  since neither appendix now owns both ends.
+- [x] **D2 — Front-vs-rear safety argument: body or appendix?** → **Short body
+  paragraph, ≤4 sentences, no figure** (matches lean). Body carries the rear-mount
+  fail-safe rationale (external reaction mass ⇒ approach from behind; rear sail
+  shields crew; misses fly off behind; silhouette ≥ craft). The `1/L²` buckling
+  *cost* stays in Appendix Y.
+- [x] **D3 — Worked example (4 Hz / 4.6 m / 3.2 t): body anchor or appendix-only?**
+  → **One-line anchor triple in the body** (refined past the "appendix-only" lean).
+  Body gets only the `(f, stroke, plate-fraction)` triple as a parenthetical
+  anchoring the 1/f² / ~10%-of-craft claim, e.g. "(at 4 Hz a 4.6 m stroke holds the
+  plate near 3.2 t, ~10% of a 32 t craft)". Full worked example (235 kN·s, 73 m/s,
+  60 g, 128 kg/m², survivability margin) stays **appendix-only** in Appendix X.
+- [x] **D4 — Reframe committed text (explicit OK given).** In
   `sec:formation_challenges_current_missions` (the `\SI{5}{\centi\meter}` std-dev
-  centring claim) and the related `sec:lightweight_pusher_plates` centimetre
-  claim: change "~5 cm required" to "~2 m required laterally on the 5 m plate,
-  cm achievable." This **deliberately loosens an already-stated assumption.**
-  Gates: Part-1 Item 1 criterion, Part-D.1 precision tiers, Item 9-optional framing.
+  centring claim) and the related `sec:lightweight_pusher_plates` centimetre claim:
+  change "~5 cm required" to "**~2 m required laterally on the 5 m plate**". **State
+  capability as ~10 cm robust / 5 cm stretch with metrology aids — NOT bare "cm
+  achievable"** (bare "cm" would contradict Item 9-optional's 10 cm-robust /
+  5 cm-stretch / 2 cm-not-claimed commitment). The body must also (a) state the
+  torque cost (a 2 m miss buys more RCS authority + plate inertia, per the appendix
+  off-center-torque note) and (b) say *why* the number changed: the earlier text
+  conflated achievable **capability** with the binding **requirement** (plate
+  capture). This unblocks Part-1 Item 1 criterion, Part-D.1 precision tiers, and the
+  walk-before-run staging.
 
 ---
 
@@ -791,12 +806,14 @@ appendix below.
 
 ## Appendix
 
-### → New appendix: "Buffer mass, stroke, and pulse frequency"  (blocked on D1, D2, D3)
+### → New appendices: "Rigid pusher plate" (X) and "Medusa sail and struts" (Y)  (D1 ✓ two appendices; D2 ✓ body; D3 ✓ body triple)
 
-One appendix (lean), two subsections, sharing the buffer invariant
-`m·s ≈ M a T²/4`. Carries the math so a skeptical reader can check it without
-bogging down the narrative. Unifying thread: the sail (long stroke, light) and the
-rigid plate (short stroke, heavy or fast) are the two ends of one `m·s` invariant.
+**TWO** separate appendices (D1 resolved), each restating the buffer invariant
+`m·s ≈ M a T²/4` briefly. They carry the math so a skeptical reader can check it
+without bogging down the narrative. The unifying thread — the sail (long stroke,
+light) and the rigid plate (short stroke, heavy or fast) are the two ends of one
+`m·s` invariant — moves to the **body** (per D1) rather than living in a shared
+appendix preamble. Appendix X = Subsection 1 below; Appendix Y = Subsection 2 below.
 
 - [ ] **Subsection 1 — the rigid plate: buffer invariant, 1/f² scaling, ripple, two-stage transmissibility** · `[sizing]`
   - [ ] Derive `m_p·s ≈ M a T²/4` and the 1/f² scaling
