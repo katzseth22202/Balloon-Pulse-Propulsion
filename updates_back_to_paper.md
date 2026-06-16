@@ -347,3 +347,353 @@ This is sharper and more defensible than "like Proba-3, mm precision": at the 30
 scale Proba-3's *angular* metrology cannot reach mm, so the precision lever is
 transverse-node differential **ranging** with good GDOP, with control made tractable
 by the deterministic-coast / early-correction structure the predictable corona allows.
+
+# White-paper architecture deltas — near-term LEO + near-Sun expansion
+
+*Hand-off list for the `Balloon-Pulse-Propulsion` repo. Each item is the **delta**
+between what the paper's architecture currently describes and what the closed-out
+control simulation now supports — a bulleted headline followed by a paragraph or
+two in the paper's voice, ready to fold into the document. Work through them there.*
+
+*Two parts. **Part 1 (near-term LEO)** numbers are **simulation results** from this
+repo (Rungs A–D, closed out 2026-06-15/16), not order-of-magnitude sizing. **Part 2
+(near-Sun)** is option-level sizing for the speculative chapter, same status as
+`paper_update_periapsis_nav.md`.*
+
+*Jargon convention: every specialist term is kept (the paper serves rigorous
+professionals) **and** glossed once in plain terms in italics, so a technically
+literate reader who is not a space-GNC specialist can follow — e.g. the
+**block-miss vs. common-mode** distinction in Item 2.*
+
+---
+
+## A 60-second terminology primer (recurs throughout)
+
+- **Common-mode vs. per-unit error** *(the "block-miss" idea).* When a whole group
+  of projectiles share the same error — they all drift the same way — that is a
+  *common-mode* error: the **block** slides as one. When each projectile differs
+  from its neighbours, that is *per-unit* scatter: the block **spreads**. The trick
+  that runs through the whole design is that a block-slide can be cancelled by
+  moving the aim point, whereas spread cannot — so the two need completely
+  different fixes.
+- **Catch radius** *(how close is "close enough").* The largest miss the projectile
+  can still correct in the final seconds. It is set by **engine strength**, not by
+  how well the projectile can see — a thrust limit, not a knowledge limit.
+- **σ_θ · R** *(angular precision × range = position error).* If you measure a
+  direction to an angular precision σ_θ and the target is a distance R away, your
+  sideways position error is σ_θ · R. The same angle that is precise up close is
+  sloppy far away — which is why range R matters as much as the sensor.
+- **Feed-forward** *(plan it, don't chase it).* Computing a disturbance in advance
+  and cancelling it on a schedule, instead of reacting to it after it has pushed you
+  off course.
+
+---
+
+## Part 1 — Near-term LEO interception architecture (the delta to add)
+
+### 1. The success criterion is *capturing the pusher plate*, not centimetre centring.
+
+- **Add/replace:** mission success = the projectile arriving within a **~5 m pusher
+  plate** with **≥99 %** probability (per-unit arrival scatter held to σ ≤ ~1.65 m,
+  arrival-timing error ≤ 10 ms). The earlier "few-centimetre terminal centring"
+  framing is retired as the *committed* requirement.
+
+The momentum transfer the mission exists to perform (paper §2) happens whenever the
+projectile lands on the plate; it does not require hitting a point. Re-stating the
+requirement as *plate capture* rather than *centimetre centring* is not a softening —
+it is the correct statement of what physically has to happen, and it is what the
+closed-loop simulation actually demonstrates. *In plain terms: the goal is to hit a
+dinner-plate-to-table-sized target reliably, not to thread a needle.* The
+centimetre-class number returns only as an **optional** later tightening (Item 9),
+not as the bar the baseline must clear.
+
+### 2. Block-miss vs. spread: the swarm's shared error is cancelled by re-aiming, only the per-unit scatter must fit the plate.
+
+- **Add:** treat the train of projectiles as a **block**. The part of the error that
+  is **common to all of them** (shared coefficient bias, the same atmosphere, a
+  deployer offset they all inherit) moves the whole block together and is removed by
+  **re-pointing the aim point** by up to ±2 km — essentially free. Only the
+  **per-unit scatter** — how the projectiles differ from *each other* — has to fit
+  inside the catch radius. This split is the single most important conceptual lever
+  in the architecture.
+
+*In plain terms: if every projectile is off by the same 1 km, you just aim the whole
+salvo 1 km the other way and they all land on target; you only have a real problem
+if they are scattered relative to one another.* Formally, the common-mode component
+is absorbed by a **centroid retarget** (shifting where the swarm is collectively
+told to go), so the binding requirement is not the absolute miss but the residual
+**per-unit dispersion** about that re-aimed centre. This is why a stochastic
+atmosphere and an uncertain drag coefficient — which hit all the projectiles
+nearly identically — turn out *not* to be the threat they first appear: they are
+mostly common-mode, and common-mode is cheap to cancel.
+
+### 3. The catch radius is a thrust-limited *funnel* (~475 m), set by the engine, not by the sensor.
+
+- **Add:** the terminal endgame can correct any miss up to a **catch radius of
+  ~475 m**, and that number is fixed by how far the engine can pull the projectile
+  sideways in the time remaining — the familiar ½·a·t² of constant acceleration —
+  *not* by navigation quality.
+
+Because the projectile is descending fast, the time-to-go shrinks continuously, and
+with it the reachable sideways distance: the correctable region is a **funnel** that
+closes toward the plate. *In plain terms: the closer you get, the less room you have
+to swerve, and the size of the last possible swerve is decided by your rocket, not
+your eyesight.* The practical consequence for the paper is a clean separation of
+concerns — **authority** (engine strength) sets *how big* a miss is recoverable, and
+the projectile arrives with margin to spare on that axis (the budgeted entry error is
+~2× inside the funnel). The limit lives elsewhere, in Item 4.
+
+### 4. The binding constraint is terminal cross-track *knowledge*, and it is a calibration *bias*, not random noise.
+
+- **Add:** the one quantity that actually decides success is **how accurately the
+  projectile knows its sideways position relative to the target in the last seconds**
+  — the cross-track error σ_θ · R. The simulation shows the requirement is an
+  effective **~3 µrad** angular precision on the target tracker, and crucially that
+  this is limited by a **fixed calibration bias** in the optics, *not* by random
+  noise.
+
+This distinction reorders the engineering priorities and is worth stating plainly in
+the paper. *In plain terms: the problem is not a shaky picture you can steady by
+taking more exposures — it is a ruler with a slightly bent end. Averaging more
+measurements cannot fix a bent ruler; only re-calibrating or cross-referencing it
+can.* Two whole families of "obvious" fixes therefore do **nothing** here — more
+engine, later burns, bigger thrusters (the limit is knowledge, not control) and
+longer integration, faster sensors, heavier filtering (the limit is a bias, not
+noise). The levers that *do* work are spatial and geometric: sharpen the angle
+(better calibration, or differencing against known stars) or shorten the range R.
+
+### 5. Terminal homing rides a *fused tracker array* (plus an optional close co-flyer), not a single sensor.
+
+- **Add:** the ~3 µrad effective grade is delivered not by one exquisite sensor but
+  by **fusing several cruder (~10 µrad) detectors** on the target plate, optionally
+  augmented by a **co-flying rocket** much closer to the action. The array beats a
+  single sensor by averaging independent errors (∝ 1/√N), and the co-flyer wins by
+  shortening the range R.
+
+Each detector does its own star-referenced measurement with its own separately
+calibrated optics, so their distortion biases are largely independent and partly
+average away — five 10 µrad detectors give ~1.6 µrad. *In plain terms: five ordinary
+cameras that each make their own small, different mistakes beat one expensive camera,
+because their mistakes partly cancel when you combine them.* The co-flyer contributes
+on the **other** handle in σ_θ · R: sitting closer to the converging projectiles, its
+modest angular precision still yields a small sideways error because R is small. The
+paper should present terminal navigation as this **redundant, fused** architecture —
+it is both more accurate and more robust than any single-sensor story, and the
+redundancy is what protects the result if the calibration of any one optic proves
+worse than hoped.
+
+### 6. Navigation is GNSS-free end-to-end: a Ka-band apogee constellation for the long coast, optical target-tracking for the endgame.
+
+- **Add:** there is **no GNSS** anywhere in the chain. Position knowledge during the
+  multi-day coast comes from a **Ka-band, authenticated ranging constellation**
+  parked near apogee (~150 000 km), and terminal knowledge comes from the optical
+  tracker array of Item 5. The midcourse correction is computed against this coast
+  solution; the endgame against the optical one.
+
+Relying on GNSS for a mission whose whole point is high-energy interception would be
+fragile and, near the Sun (Part 2), impossible. *In plain terms: the projectiles
+navigate by ranging off a small fleet of "lighthouse" satellites high up during the
+cruise, then switch to looking directly at the target for the final approach — no
+reliance on the GPS network at all.* The constellation is sized only to **match** the
+accuracy the coast actually needs (a few hundred metres of position knowledge at the
+hand-off), which a minimum of **3–4 members** supplies with large margin; it does not
+need to be a precision instrument. This is a genuine architectural addition — the
+current paper does not specify how the coast state is known.
+
+### 7. Atmospheric drag is *feed-forward-cancelled*, not fought in the loop; the real coefficient risk sits upstream in the coast.
+
+- **Add:** during the terminal descent, drag is removed by **computing it ahead of
+  time and thrusting against it on a schedule** (feed-forward), not by a reactive
+  drag-rejection loop. Drag does **not** set the terminal miss. The place where an
+  uncertain drag/solar-pressure coefficient *does* matter is far earlier — it
+  slightly biases the long coast, and that is handled by the midcourse correction
+  (Item 8), not the endgame.
+
+The simulation makes this concrete: an *entirely uncompensated* drag pass displaces
+the crossing by only ~8.5 cm (drag concentrates in the final seconds), and the
+feed-forward profile reduces even that to ~2 mm. *In plain terms: near the target the
+air is so thin that drag barely nudges you, and the small nudge it does give is
+predictable enough to cancel by planning, not by chasing.* The consequence for the
+paper is that the much-feared coefficient uncertainty is **not** a terminal-accuracy
+problem; it lives upstream as a small, mostly common-mode coast bias — which Item 2
+has already shown is cheap to absorb.
+
+### 8. The midcourse burn acts on a *ground prior* — no on-board estimator runs before it.
+
+- **Add:** because deployment, apogee, and the first correction burn all occur at
+  nearly the same time and place, **no in-flight navigation filter can usefully run
+  before the burn**. The midcourse correction is therefore planned against the
+  **ground-determined prior** (the best pre-flight estimate of state and
+  coefficients), and the simulation confirms this prior is more than good enough.
+
+This is a subtle but important honesty in the architecture. *In plain terms: the
+projectile does not get a chance to "figure out" its drag in flight before it must
+act — there isn't enough time or distance — so it uses the number measured on the
+ground, and that number turns out to have ample margin.* The measured tolerance is
+wide: the correction stays accurate across a coefficient error band ~34× larger than
+the ground prior's actual uncertainty. The paper can state plainly that **in-flight
+coefficient estimation is unnecessary for the midcourse**, which removes a whole
+speculative subsystem from the near-term story.
+
+### 9. Propellant stays under 2 %, and the low (~50 km) perigee is an *intended disposal feature*, not a failure.
+
+- **Add / reinforce:** the full closed-loop propellant budget — cruise corrections
+  plus the terminal aim — lands **under 2 % of the 25 kg projectile mass** even in
+  the worst sampled case. Separately, the deliberately **low perigee (~50–65 km)** is
+  a *designed* outcome: it de-orbits the spent projectile and burns up any unit that
+  misses, for clean debris disposal (paper §9). Low perigee is **good**, not a fault.
+
+The paper already claims <2 % propellant; the contribution here is that a *simulated
+closed loop* — corrector, terminal guidance, finite-thrust execution, dispersed
+environment — confirms it rather than asserting it. *In plain terms: the whole job
+costs less than one part in fifty of the projectile's mass in fuel, and a miss
+self-disposes by re-entry instead of becoming space junk.* It is worth making
+explicit in the text that perigee is a **diagnostic where lower is safer**, not a
+target to be hit — otherwise a reader sees "50 km perigee" and mistakes the disposal
+feature for a navigation error.
+
+### 9-optional. Optional stretch — *surveyor-anchored centring* shrinks the plate from 5 m toward ~10 cm.
+
+- **Add as an explicitly optional §2 tightening:** the plate can be shrunk roughly
+  **50×** (5 m → ~10 cm) by adding two metrology aids, *without* changing the
+  baseline above. (1) A **sacrificial "surveyor" projectile** whose true crossing is
+  measured by an **independent instrumented gate** (a "hoop" using laser or microwave
+  ranging — deliberately *not* the optical tracker, which would be checking itself,
+  and *not* a real impact, which would throw off-centre debris and glare) pins the
+  swarm's shared optical bias to the plate. (2) **Strobed, known-pattern LED
+  beacons** on each projectile let the units measure each other's relative positions
+  like a rigid body, driving the per-unit scatter to centimetres.
+
+This is firmly a **knowledge/metrology** upgrade, not a control one — the centimetre
+trims it asks for sit deep inside the 475 m thrust funnel, so the engine is never the
+limit. *In plain terms: one projectile is sacrificed as a "test shot" measured by an
+independent gauge to fix the whole group's aim, and the projectiles wear blinking
+markers so they can see exactly where each sits relative to the others — shrinking
+the plate without needing a better tracker or a bigger engine.* The achievable plate
+size is then set by two bench numbers: the gate's ranging precision (≤1 cm → a 5 cm
+plate; ~3 cm → a 10 cm plate) and the camera's own calibrated distortion floor. The
+honest committed claim is **10 cm (robust); 5 cm as a stretch** contingent on a ≤1 cm
+gate and a well-calibrated camera; a 2 cm plate is *not* claimed.
+
+---
+
+## Part 2 — Near-Sun / Parker-periapsis case: expansion options
+
+*Context: `paper_update_periapsis_nav.md` already corrects the "like Proba-3,
+millimetre precision" claim and establishes transverse-node differential ranging as
+the lateral-knowledge lever at the hundreds-of-km scale. The items below are the
+**menu of architectural options** to expand that chapter — what else the near-Sun
+case can use, and where the LEO logic inverts because there is no GNSS anchor and the
+projectiles' *spread* relative to each other becomes the whole game.*
+
+### A. Primary lever — transverse-node differential carrier-phase ranging (good GDOP).
+
+- **Restate as the chapter's baseline:** lateral knowledge near the Sun comes from a
+  coordinator node placed **off to the side** of the line of flight, measuring
+  **distances only** to both the controlled projectile and a reference, and using the
+  difference.
+
+The geometry term is **GDOP — geometric dilution of precision** — and it is the crux.
+*In plain terms: a distance measurement tells you a lot about sideways position only
+if the measuring station is off to the side; a station straight ahead or behind tells
+you almost nothing sideways, the way one eye gives poor depth perception.* A
+transverse node converts millimetre ranging into millimetre *lateral* knowledge;
+differencing two ranges from the same node cancels the node's own position and clock
+errors, which matters precisely because near the Sun there is no GNSS to pin the node
+absolutely. This is the option the chapter should lead with, because at the 300 km
+scale ordinary angular metrology would need an absurd ~200 m telescope.
+
+### B. Precision-boost option — a VLBI-style coherent-aperture swarm.
+
+- **Offer as an upgrade path:** several projectiles acting as one **synthetic
+  aperture** (the radio-astronomy "very-long-baseline interferometry" trick) can in
+  principle sharpen the relative-position fix beyond a single ranging node.
+
+*In plain terms: many small antennas spread out and combined can see as sharply as
+one impossibly large one.* This is the only option that could genuinely *beat* the
+single-node precision rather than merely match it. It is included here, rather than in
+the LEO chapter, for two honest reasons that the text should state: in LEO it would be
+insurance against a failure that the entry-limited capture analysis says does not
+bind, and its precision depends on knowing the **baseline orientation** between units
+to high accuracy — which ranging alone does not give (ranging measures baseline
+*length*, not its sideways tilt). Near the Sun, where relative geometry *is* the
+mission and there is no anchor floor, the trade is more attractive, so it belongs in
+this chapter as a stretch option.
+
+### C. Close-endgame option — optical LED-beacon cameras layered on RF ranging.
+
+- **Offer as the terminal collision sensor:** in the final approach, **strobed LED
+  beacons + small cameras** between the converging projectiles can supply the
+  last-instant relative bearing, on top of the RF differential ranging that does the
+  long-range work.
+
+Here the LEO logic **inverts**, and the chapter should say so explicitly. In LEO,
+inter-projectile cameras were the *wrong* tool — they measure how the swarm is spread
+relative to itself, which is already handled, and are blind to the block-slide that an
+external anchor must fix. *Near the Sun there is no external anchor, and the spread
+between two converging projectiles is exactly the quantity that decides the
+collision* — so the very sensor that was redundant in LEO becomes useful as the
+close-in collision sensor. *In plain terms: when two objects must hit each other and
+there is no outside referee, they are best off watching each other directly through
+the last stretch.* This is a layered backup to ranging, not a replacement for it.
+
+### D. Control structure — deterministic-coast, two-tier correction (defeats the v² homing floor).
+
+- **Restate as the control architecture:** a **gross early correction** (~tens of m/s
+  of Δv to get roughly into the path) plus a **fine, late, high-precision correction**
+  (~mm/s applied ~1 s before impact). Not last-moment terminal homing.
+
+At ~400 km/s head-on closing, classical homing is hopeless — its miss floor grows
+with closing speed squared. *In plain terms: you cannot "steer in" at the last second
+when you are closing this fast; instead you set up the shot early in a predictable
+environment and apply one tiny, precisely-timed nudge at the end.* The reason this
+works is that the corona environment is **predictable**, so the projectile is nulling
+a *known, already-measured* offset rather than fighting fresh sensor noise — which is
+what lets a millimetre-per-second nudge a second out translate to a millimetre miss.
+The chapter should frame the high closing speed as something the structure *defeats*,
+not something it fights.
+
+### E. Disturbance handling — solar-pressure common-mode cancellation, "track, don't predict."
+
+- **Offer as the SRP argument:** the enormous absolute solar radiation pressure near
+  the Sun (~470× its 1 AU value) is **largely irrelevant to the collision**, because
+  both converging projectiles share nearly the same sun-facing geometry and so feel
+  nearly the same push — it is **common-mode and cancels in the difference**.
+
+This is the Part 1 block-miss idea reappearing in a new setting, and the chapter can
+lean on it. *In plain terms: a strong wind that pushes both racers equally does not
+change who reaches the line first — only the difference between them matters, and that
+difference is small.* The residual scales with the *mismatch* in area and
+reflectivity (a percent at matched manufacturing), the actual relative trajectory is
+**measured continuously** by the ranging arc rather than predicted, and only the brief
+final coast must be modelled. The one term that does *not* cancel — a velocity-
+dependent relativistic tilt that differs between the prograde and retrograde
+projectiles — is **deterministic** and can be baked into the trajectory, not a
+stochastic risk.
+
+### F. Attitude aid — a sub-gram sun-sensor photodiode setting the effective area.
+
+- **Offer as a light third layer:** a tiny solar-intensity photodiode is most
+  valuable not as a navigation sensor but as a **sun sensor for attitude**, because
+  attitude sets the sun-facing area — the one solar-pressure term that does *not*
+  auto-cancel.
+
+*In plain terms: the cheapest way to keep the un-cancelled part of sunlight pressure
+under control is to keep the projectile pointed consistently, and a pinhead-sized
+light sensor is enough to do that.* It is worth one line in the chapter as the
+low-cost closure on the residual SRP term, distinct from the ranging and camera
+options above.
+
+---
+
+## Cross-reference for the other repo
+
+- Part 1 numbers trace to this repo's ADRs: criterion (0015/0016), catch-radius &
+  terminal guidance (0014), multi-tracker fusion (0019), apogee nav constellation
+  (0020), drag feed-forward (0021), coefficient prior (0013), Rung-D closeout (0018).
+- Part 2 traces to `todos/paper_update_periapsis_nav.md` (the differential-ranging
+  chapter) plus the near-Sun inversions noted in the relative-ranging and
+  optical-sensing design discussions.
+- The surveyor-anchored centring scheme (Item 9-optional) is documented as a CONTEXT
+  term in this repo; it is a paper-side option, deliberately not built in simulation.
+
