@@ -21,6 +21,50 @@ original handoff notes; style cleanup happens when each lands in the paper.
 
 ---
 
+## When you sit down to write
+
+Standing instructions for turning a checked item into paper prose. These are *how*
+we edit; the items below are *what*.
+
+- **Voice — define, then use.** Pair each technical term with a plain-language gloss
+  on its *first use*, then keep the precise term and the math. The goal is a
+  blog-readable explanation that loses no rigor (e.g. "periapsis, the orbit's low
+  point where the probe skims closest to the Sun and moves fastest"). Applies to
+  prose we add and to any paragraph we are already editing — not to untouched
+  sections.
+- **Citations — chase them, for outside-world facts.** When a claim is about the
+  external world (a prior mission, a physical constant, a cost, a date, a material
+  property), find a real source and cite it. Do *not* attach citations to our own
+  sizing/derivations or `[SIM]` numbers; those point to the companion calc repo
+  (`katzseth22202/aim_is_all_you_need`) or stay labelled as speculative. If no
+  credible source exists, leave an inline `% TODO-CITE: ...` marker — never
+  fabricate one. No Wikipedia (see the `CLAUDE.md` bibliography rules).
+- **AI smells — see `CLAUDE.md`.** The writing-style blocklist (no em-dashes in the
+  paper, banned vocabulary, no rule-of-three, short sentences, quantify don't hedge)
+  lives in `CLAUDE.md`. Follow it there; do not duplicate it here.
+- **Match the claim to its tag.** This is a *speculative* white paper, so keep the
+  epistemic status visible: `[SIM]` → "the closed-loop simulation shows",
+  `[sizing]` → "a first-order estimate gives", `[raw]` → "we expect / we speculate".
+  Never let a sizing argument read like a measured result.
+- **Use the canonical terms.** Draft with the canonical names from `CONTEXT.md` and
+  avoid the listed aliases — "PuffSat" not "pellet"; "plate capture" (≈ 2 m on the
+  5 m plate) as the committed bar, not "centimetre centring".
+- **Figures — only where a drawing beats a paragraph.** Suggest one sparingly, with a
+  one-line note on what it must show. Highest-value candidates already visible:
+  - front-vs-rear overtaking geometry + fail-safe shielding (why the buffer rides
+    behind the rocket);
+  - common-mode block-slide (cancelled by a centroid retarget) vs per-unit scatter
+    that must fit inside the catch radius;
+  - transverse-node GDOP near the Sun (anchor off to the side; σ_lateral ≈
+    σ_range / sin θ).
+- **Build before you check the box.** After an edit lands, run `./build.sh` and
+  confirm it compiles before marking the item done.
+- **Mark where each item landed.** When you check a box, append where it went
+  (`→ sec:foo`, short commit ref) instead of deleting the prose, so this file stays
+  an audit trail of what changed and where.
+
+---
+
 ## Decide before editing  (gates the edits below)
 
 These four are choices only Seth can make. Resolve them, then the flagged items
