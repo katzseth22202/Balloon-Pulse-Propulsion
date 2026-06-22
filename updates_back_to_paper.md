@@ -104,6 +104,48 @@ grilling session; resolutions recorded below. Downstream items flagged
 
 ---
 
+## §How PuffSats Work → Mass Fraction Of Rocket To PuffSat Mass (fudge-factor `f`)
+
+The fudge-factor passage (paper subsection "Mass Fraction Of Rocket To PuffSat Mass":
+the `f` definition and the "Project Orion's findings justify a high `f`" paragraph;
+derivation in `sec:PuffSat_ratio_approximation`). This **reframes committed text**, so
+treat it like a D4 edit: it changes what the paper already says about Orion, not just an
+addition. Cross-links to `sec:radiative_differences` (Orion's shaped charges) and
+`sec:lightweight_pusher_plates` (curved plate, Medusa).
+
+- [ ] **Disentangle `f`: opacity sets restitution, plate/source shape sets direction** · `[sizing]`
+  - [ ] Split the two roles `f` currently bundles. Restitution (the 0.5→1 axis: how elastic the bounce is, energy kept as kinetic vs lost to heating the plate) is what opacity governs (Kramers' law). Direction/capture (what drops `f` below 0.5: whether the rebounded momentum goes forward vs scatters sideways or spills past the plate) is pure geometry. The current text pins Orion's high `f` on opacity alone, which conflates the two.
+  - [ ] Fix the Orion claim. Opacity only buys restitution; turning that into ~2× forward thrust needs the rebound collimated. A flat plate reflects efficiently only near normal incidence, so Orion was forced to collimate the source with shaped charges (the paper already says this in `sec:radiative_differences`). Orion's `f` was high, but the directionality came from flat-plate-plus-shaped-charge geometry, not from opacity. Do not write this as knocking Orion.
+  - [ ] State Medusa's geometric advantage. A dished sail wrapping around the blast (concave toward the explosion, convex from the payload side) catches a large solid angle of the divergent spherical expansion and reflects each element forward, with no shaped charge. That curvature matching the blast shape is a real design advantage of Medusa.
+  - [ ] State the PuffSat thesis. A gas puff is divergent, so a flat plate would scatter and spill (`f` < 0.5). Because PuffSat pulses are orders of magnitude gentler than nuclear blasts, we can afford to curve either plate style (rigid plate or Medusa-style sail) to collimate the rebound geometrically, getting directionality from a divergent puff without aggressive source-shaping. This raises the effective `f` for both styles.
+  - [ ] Cite-check the outside-world facts when folding in: Orion's plate was flat, Medusa's pusher was a dished/parachute sail, and Orion used shaped charges to direct the plasma. The shaped-charge fact is already cited (`balcomb1970nuclear`, `dyson2002project_orion`); find sources for the plate shapes.
+  - [ ] Note the shared lever with the down-push item under `sec:lightweight_pusher_plates`: the same curvature that collimates the rebound forward (raising `f`) is what lets the rebound carry the descending PuffSat's downward momentum out. One plate-shape decision, two payoffs.
+
+  The paper's `f` quietly bundles two independent things. The first is restitution: how
+  elastic the impact is, set by whether the impact energy stays kinetic or is lost to
+  heating the plate. This is the 0.5-to-1 axis, and it is what opacity (Kramers' law)
+  governs, for Orion and for PuffSats alike. The second is direction and capture: whether
+  the rebounded momentum actually goes forward, or scatters sideways or spills past the
+  plate edge. This is what pushes `f` below 0.5, and it is pure geometry. The current text
+  pins Orion's high `f` on opacity alone, which is the slip to fix.
+
+  Opacity only buys restitution. Turning a near-elastic bounce into ~2× forward thrust
+  needs the rebound collimated, and there are two ways to get it. Orion collimated the
+  source: a flat plate reflects efficiently only near normal incidence, so Orion shaped the
+  blast into a directed jet with shaped charges (already stated in
+  `sec:radiative_differences`). Its `f` was high, but from flat-plate-plus-shaped-charge
+  geometry, not from opacity. Medusa instead shaped the plate: a dished sail wrapping the
+  blast catches a large solid angle of the divergent expansion and reflects it forward with
+  no shaped charge, a genuine advantage of that design. PuffSats follow Medusa's route
+  cheaply. A gas puff is divergent, so a flat plate would scatter and spill, but because
+  PuffSat pulses are orders of magnitude gentler than nuclear blasts we can curve either
+  plate style to collimate the rebound geometrically, raising the effective `f` without
+  aggressive source-shaping. The same curvature also carries the descending PuffSat's
+  downward momentum out (the down-push item under `sec:lightweight_pusher_plates`), so it
+  is one plate-shape decision with two payoffs.
+
+---
+
 ## §Sorry, I Don't Need ISRU → `sec:solid_PuffSats`
 
 The "Like Proba-3, we target millimeter-scale precision" claim (paper line at
@@ -795,6 +837,32 @@ appendix below.
   isolates the crew. (Full derivation, tables, and the worked example live in the new
   appendix below. This supersedes the worst-case "1/1 pusher plate" idea in the raw
   notes — we can reach ~10 % of craft mass or less.)
+
+- [ ] **Down-push from descending-leg interception, cancelled by the plate's rebound geometry** · `[sizing]`
+  - [ ] State the premise (set up by the `sec:handling_space_debris` ~50 km disposal item): PuffSats are caught on the descending leg, falling toward the ~50 km disposal perigee, so their velocity relative to the craft carries a downward (radially-inward) component. Each pulse delivers forward thrust plus a downward kick of about `sin γ` of the impulse (γ = the PuffSat's flight-path angle below the craft's velocity), order ~10–25%. Pull γ from the trajectory design; do not invent it. Same sign every pulse, so it is cumulative and bends the trajectory Earthward if left uncorrected.
+  - [ ] State the primary fix (orientation/shape, not active down-throwing): the net force on the craft is set by the plate's orientation relative to the **thrust axis**, not relative to the incoming-PuffSat line. A plate whose normal lies along the thrust axis reverses only the forward component of the gas and lets the downward component pass back out, so the rebound carries the PuffSat's downward momentum away and the craft feels pure forward thrust. A plate squared-on to the incoming PuffSat does the opposite and doubles the down-kick.
+  - [ ] State the secondary trim (biased loss): for the fraction that spills rather than reflecting cleanly, bias the loss downward (more lost down than up) so even the spill gives a small upward reaction `F_up` instead of a random one.
+  - [ ] State the zero-torque placement (the appendix math): a net upward trim `F_up` applied at the rear plate (distance `d` behind the CoM) would pitch the craft. Putting the impact point a height `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel it, so the resultant points through the CoM and the trim costs nothing in attitude. This is the vertical, by-design cousin of the lateral off-center-torque note in Appendix X. Put the derivation in Appendix X beside that note; keep a one-line statement in the body.
+  - [ ] Note the shared lever with the fudge-factor item (§How PuffSats Work → Mass Fraction): a curved plate that wraps the divergent puff both raises `f` (collimates the rebound forward) and is what lets the rebound carry the down-momentum out. One plate-shape decision, two payoffs.
+
+  Because PuffSats are caught while falling toward their ~50 km disposal perigee, the
+  momentum each one delivers is not purely forward. It carries a downward component of
+  about `sin γ` (γ is the flight-path angle below the craft's velocity, order 10–25% from
+  the interception geometry). That component has the same sign every pulse, so it
+  accumulates and pushes the craft Earthward unless the plate cancels it. The cancellation
+  is mostly free and geometric. The net force on the craft is set by the plate's
+  orientation relative to the thrust axis, not relative to the line back to the PuffSat: a
+  plate normal to the thrust axis reverses the gas's forward component and lets its
+  downward component pass straight back out, so the rebound carries the unwanted
+  down-momentum away and the craft feels only forward thrust. (A plate aimed square at the
+  incoming PuffSat would instead double the down-kick.) For the gas that spills rather than
+  reflecting cleanly, bias the loss downward so the spill adds a small upward trim `F_up`
+  rather than a random force. Any such upward trim, applied at the rear plate a distance
+  `d` behind the CoM, would pitch the craft; placing the impacts a height
+  `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel that
+  pitch, so the resultant passes through the CoM. The curvature that does this is the same
+  curvature the fudge-factor item wants for collimating the rebound, so the down-push fix
+  and the high-`f` argument are one plate-shape decision.
 
 - [ ] torque but if spacecraft is long, force may be small for reaction wheels - when there is an off center impact. · `[raw]`
 - [ ] We should discuss that for 5 meter wide plate, its OK because plate needs some mass anyway to smooth acceleration without unreasonably long shock absorber. · `[raw]`
