@@ -439,6 +439,15 @@ projectiles' *spread* relative to each other becomes the whole game.
   there is no outside referee, they are best off watching each other directly through
   the last stretch.* This is a layered backup to ranging, not a replacement for it.
 
+  On power, the watt-class beacon budget that closes the formation-scale centring case
+  (the surveyor-anchored item under `sec:formation_challenges_current_missions`) does
+  *not* carry over to this geometry. At hundreds of km of closing range and against
+  coronal glare, a 1 W omnidirectional beacon puts under one photoelectron per strobe
+  on the camera. Bearing from the beacons becomes usable only once the gap has closed
+  to formation scale, which at ~400 km/s is the last few milliseconds. The long-range
+  work stays with ranging; the optical layer is a very-late-endgame add, not a
+  hundreds-of-km sensor.
+
 - [ ] **Option D — deterministic-coast two-tier correction (defeats the v² floor)** · `[sizing]`
 
   Restate as the control architecture: a **gross early correction** (~tens of m/s of Δv
@@ -566,6 +575,7 @@ glossed once where the section introduces the guidance concepts (likely
   - [ ] Add as an explicitly optional §2 tightening, without changing the baseline
   - [ ] (1) sacrificial "surveyor" projectile measured by an independent instrumented gate (laser/microwave hoop, not the optical tracker, not a real impact) pins the swarm's shared optical bias
   - [ ] (2) strobed known-pattern LED beacons on each projectile drive per-unit scatter to centimetres
+  - [ ] Beacon power: ~1 W peak optical (tens of mW average at low strobe duty) is ample at formation range; the photon SNR runs in the hundreds, so the cm floor stays the camera's distortion bias, not brightness. The old "kilowatt" scale was the radiation-pressure laser, a different device.
   - [ ] State the honest committed claim: 10 cm (robust); 5 cm as a stretch contingent on a ≤1 cm gate and a well-calibrated camera; 2 cm not claimed
 
   The plate can be shrunk roughly **50×** (5 m → ~10 cm) by adding two metrology aids,
@@ -576,6 +586,18 @@ glossed once where the section introduces the guidance concepts (likely
   and glare) pins the swarm's shared optical bias to the plate. (2) **Strobed,
   known-pattern LED beacons** on each projectile let the units measure each other's
   relative positions like a rigid body, driving the per-unit scatter to centimetres.
+
+  The beacons are cheap on power. A strobed near-infrared LED at roughly 1 W peak
+  optical output, pulsed at a low enough duty that the average draw is tens of
+  milliwatts, lands on the order of 10^5 to 10^6 photoelectrons per frame onto a
+  centimetre-aperture camera at formation range (the ~144 m Proba-3 baseline, out to
+  ~1 km). That is a photon signal-to-noise ratio in the hundreds, so brightness is
+  never the binding term. The centimetre floor stays the camera's distortion
+  calibration, the same bias named above, not how hard the beacon shines. Even
+  ~1 mW peak would still clear detection, so the watt is margin, not a requirement.
+  The "kilowatt" scale belongs to the radiation-pressure laser on a coordinator node
+  (a device that *pushes* PuffSats), not to a beacon that only has to be seen. This is
+  an order-of-magnitude link budget, not a simulation result.
 
   This is firmly a **knowledge/metrology** upgrade, not a control one — the centimetre
   trims it asks for sit deep inside the 475 m thrust funnel, so the engine is never the
