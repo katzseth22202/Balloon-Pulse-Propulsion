@@ -496,6 +496,124 @@ projectiles' *spread* relative to each other becomes the whole game.
 
 ---
 
+## §Sorry, I Don't Need ISRU → `sec:periapsis_challenges` (near-Sun absorbing nozzle / chamber)
+
+The near-Sun absorbing structure that catches each prograde/retrograde collision.
+The paper already gestures at it in `sec:periapsis_challenges` ("the pulsed propulsion
+chamber may ablate slightly on each pulse, and the projectiles must be miniaturized to
+at most a few kilograms to contain the immense energy"). These items put numbers behind
+that sentence and add the magnetic-nozzle option. Cross-links to
+`sec:radiative_differences` (opacity only buys restitution, not size) and
+`sec:lightweight_pusher_plates` (the magnetic-damper / Medusa hardware lineage).
+Hand-derived order-of-magnitude sizing from a design grilling session (2026-06-22).
+Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
+~300 km/s each (600 km/s closing), per the appendix optimal 1:3 split.
+
+- [ ] **The absorbing structure has a minimum size set by per-pulse energy; the near-Sun rocket is large** · `[sizing]`
+  - [ ] State the energy per pulse: in the center-of-mass frame `E = ½ μ v_rel²` with reduced mass `μ = m_pro m_retro / (m_pro + m_retro) = 1.875 kg` and `v_rel = 600 km/s`, giving `E ≈ 340 GJ ≈ 81 tons TNT`, plasma ~4–5 MK. This is the number the structure must survive every pulse.
+  - [ ] State the size floor and how it scales. For an ablative/contact chamber the wall is thermal-fluence-limited: `R ≈ √(f_wall E / (2π F_max))`, so `R ∝ √E ∝ √m` at fixed closing speed. Worst case (`f_wall = 1`, all energy into the wall) is ~73 m; with an open sail that reflects/expels most of the plasma the realistic floor is ~15–20 m.
+  - [ ] Draw the consequence the paper should state: there is a hard minimum mass and size to the absorbing structure, and it shrinks only as `√(per-pulse mass)`. Cutting the radius 4× (≈20 m → 5 m) needs ~16× less mass per pulse (10 kg → ~0.6 kg) and ~16× more pulses for the same total impulse. So unless the projectiles are miniaturized to a very high degree, the rocket operating near the Sun is inherently large. This sharpens the existing "miniaturized to a few kilograms to contain the immense energy" line rather than contradicting it.
+  - [ ] Tie to the radiative argument: opacity (the `sec:radiative_differences` win) only governs restitution / the radiative channel. It does not shrink the structure, because the bulk convective momentum load that sets the size is opacity-blind. Keep these separate so a reader does not think low radiative loss buys a small chamber.
+
+  The thing the near-Sun chamber must survive every pulse is set by the closing energy.
+  In the center-of-mass frame `E = ½ μ v_rel²`, with reduced mass
+  `μ = m_pro m_retro / (m_pro + m_retro) = (2.5)(7.5)/10 = 1.875 kg` and `v_rel = 600 km/s`,
+  so `E ≈ 3.4×10¹¹ J ≈ 340 GJ ≈ 81 tons of TNT`, releasing a plasma at roughly 4–5 MK.
+  A contact wall is thermal-fluence-limited, `R ≈ √(f_wall E / (2π F_max))`, so the radius
+  grows as `√E ∝ √m` at fixed closing speed. The worst case, the whole 340 GJ loading the
+  wall, gives ~73 m; an open sail that reflects or expels most of the plasma pulls the
+  realistic floor to ~15–20 m. Either way there is a hard minimum, and it shrinks only as
+  the square root of per-pulse mass: a 4× smaller radius costs ~16× less mass per pulse and
+  ~16× more pulses for the same total impulse. The honest takeaway for the paper is that
+  unless the projectiles are miniaturized to a very high degree, the rocket near the Sun is
+  inherently large. This is the same point `sec:periapsis_challenges` already makes ("a few
+  kilograms to contain the immense energy"), now with the scaling attached. Note that the
+  low radiative loss argued in `sec:radiative_differences` does not help here: opacity buys
+  restitution and blocks the radiative channel, but the bulk convective load that sets the
+  size is opacity-blind.
+
+- [ ] **A magnetic nozzle avoids contact and ablation, but trades problems rather than removing them** · `[sizing]`
+  - [ ] State the appeal: a magnetic nozzle reflects the conductive collision plasma off a field with no material contact, so there is no ablation limit and no thermal-fluence size floor. The plasma is a near-perfect conductor here (magnetic Reynolds number `Rm = μ₀ σ L v ~ 10⁷` at 4–5 MK), so it excludes and compresses field lines (frozen-flux / diamagnetic exclusion) and bounces off.
+  - [ ] State that the field can be self-powered by the expansion. The field acts as a conservative spring: a persistent superconducting current holds it with zero per-pulse energy, and the work of redirecting the plasma comes from the plasma's own thermal/kinetic energy. Flux compression lets a modest seed field be transiently amplified by the expanding plasma (Sakharov MK-generator physics), so you need not hold the full peak field statically. (A static 10 T field over a ~20 m bubble already stores ~1.3 TJ, far above one pulse, so flux compression matters.)
+  - [ ] State the honest catch: the impulse does not go away. The full thrust still reacts as J×B force on the coil and its support, so the tensile/hoop-stress and minimum-size story carries straight over to the coil. The magnetic nozzle removes ablation and the thermal-fluence floor; it does not remove the momentum floor. Net thrust also needs an open, asymmetric nozzle geometry, not a symmetric mirror.
+  - [ ] **Pulsed magnetic nozzle: possible, but complex whether it helps.** A pulsed / flux-compression nozzle buys a smaller seed field and lighter coil by letting the plasma amplify the field, at the cost of switching, arming-within-microseconds timing, and recovery efficiency. A persistent DC superconducting field is simpler and already near-zero per-pulse energy. State it as a real option with an unsettled trade, not a clear win.
+  - [ ] **Sun shielding is probably lighter for a magnetic nozzle, but not guaranteed.** Being mostly open, a magnetic nozzle presents far less solid area to shield from the Sun than a closed chamber or solid plate. Caveat to keep: a REBCO coil is cryogenic (~20–77 K) and is harder to shield per unit area than a passive hot refractory wall, since near the Sun the environment is ~3.9 MW/m² at 4 R_sun (~2900 K blackbody equilibrium). The reduced area probably wins, but the cryo penalty can eat part of it.
+  - [ ] **At Earth distance the magnetic-nozzle case is lighter on two counts.** First, the solar flux is ~2900× lower (1361 W/m² at 1 AU), so no Parker-class heat shield is needed (a REBCO coil still wants MLI + radiators for cryo, but not a heavy sunshade). Second, the Earth-crossing collision speeds are lower than near the Sun, so the per-pulse energy and the nozzle floor are both smaller. If magnetic nozzles are used for the Earth-distance collisions they can be markedly lighter than the near-Sun version.
+
+  The lever that escapes the contact-wall size floor is a magnetic nozzle: reflect the
+  conductive collision plasma off a magnetic field with no material touching it, so there
+  is no ablation and no thermal-fluence radius. The plasma cooperates because it is a
+  near-perfect conductor at 4–5 MK (magnetic Reynolds number `Rm = μ₀ σ L v ~ 10⁷`), so it
+  excludes and compresses field lines and bounces. The field can largely power itself: a
+  persistent superconducting current holds it for free, the field behaves as a conservative
+  spring, and the work of turning the plasma comes from the plasma's own energy. Flux
+  compression even lets a modest seed field be transiently amplified by the expansion
+  (the Sakharov flux-compression-generator effect), which matters because a static 10 T
+  field over a ~20 m bubble already stores ~1.3 TJ, far more than a single 340 GJ pulse.
+  The catch to state plainly: the impulse does not vanish. The full thrust reacts as J×B
+  force on the coil and its structure, so the minimum-mass and hoop-stress story carries
+  over to the coil. The magnetic nozzle removes ablation and the thermal floor, not the
+  momentum floor, and net thrust needs an open asymmetric geometry rather than a symmetric
+  mirror.
+
+  Three takeaways follow that the paper should state as honest, not oversold. A *pulsed*
+  magnetic nozzle is possible but it is genuinely unclear whether pulsing helps: flux
+  compression buys a smaller seed field and lighter coil, but adds switching, microsecond
+  arming, and energy-recovery complexity that a simpler persistent DC field avoids.
+  Shielding is probably lighter for a magnetic nozzle because its open geometry presents
+  little solid area to the Sun, though the caveat is real: a cryogenic REBCO coil
+  (~20–77 K) is harder to shield per unit area than a passive hot wall, against the
+  ~3.9 MW/m² flux at 4 solar radii. And at Earth distance the magnetic-nozzle case is
+  lighter twice over: the solar flux is ~2900× weaker so no Parker-class sunshade is needed
+  (only MLI and radiators for cryo), and the lower Earth-crossing collision speeds drop the
+  per-pulse energy and the nozzle floor as well.
+
+- [ ] **Stage the large near-Sun ship: peel off payload chunks so delivery is metered, not a single slug** · `[sizing]`
+  - [ ] State the motivation: a large near-Sun ship (thousands of tons) amortizes the fixed ~100 t nozzle/shield over a big payload, but you do not want to fly the whole slug to the destination, and the destinations want metered delivery anyway.
+  - [ ] State the mechanism: the nozzle doubles as a serial accelerator. Bring the stack up to speed, peel off ~50 t chunks, keep pushing the remainder. Shed chunks coast to the target independently. Each pulse adds `Δv = J / M_remaining`, so the lighter remnant accelerates faster as mass leaves.
+  - [ ] State the Section 6 payoff (the strongest reason to stage): a metered stream turns the impactor concept from a single catastrophic event into a throttle. 50 t every 10 s is a power plant; 5000 t at once is a bomb. Cross-link `sec:world_set_free`.
+  - [ ] State the Section 5 payoff: chunking sizes secondary-payload insertions into elliptical orbits sanely, instead of delivering one giant object. Cross-link the orbital-lift text in `sec:no_isru_rocket` / Section 5.
+  - [ ] Quantify the metering (it is cheap): a ~1 AU coast at ~200 km/s is ~8.7 days, and arrival timing scales as `dt/t = dv/v`. So 10 s spacing between 50 t chunks needs only ~3 m/s of relative trim, and an hour-wide stream is a ~1 km/s spread on a ~200 km/s bulk velocity, under a percent.
+  - [ ] Correct the efficiency framing (decouple two levers): arrival spread and mass efficiency are not the same lever. Accelerate the full stack together, then peel chunks with sub-percent trims, and the overhead stays at roughly the nozzle-to-total fraction. The "less efficient as you accelerate smaller chunks" penalty bites only for wide velocity spreads or when you keep flogging the nearly-empty tail.
+  - [ ] State that staging does not shrink the nozzle: its size is set by per-pulse energy (projectile mass × collision v²), not ship mass. Staging changes the delivery pattern and the dead-mass fraction, not the nozzle. It stays a fixed ~100 t overhead.
+  - [ ] State the nozzle-fate fork (the real open decision): expend it (Section 6) and it becomes the fastest, last impactor, so waste ≈ 0; reuse it (Section 5, or amortize over runs) and you no longer want it at v_final, but external pulses push the whole assembly forward, so recovery costs deceleration pulses or a return leg, ~100 t × v_final of momentum. "Only the nozzle mass is wasted" is the reusable case.
+  - [ ] State the heat-shield-as-impactor handling: passive is free (the shield was already accelerated at periapsis, so leave it attached and let it hit the target, no extra pulses); active re-acceleration far from the Sun costs weak pulses (slower collisions, less Δv per pulse) and is only worth it if the shield must move faster than periapsis left it. The shield is load-bearing during the high-energy pulses near the Sun, so the conversion to impact mass is post-periapsis only.
+
+  Because the near-Sun rocket is inherently large (previous item), it is worth amortizing the
+  fixed ~100 t nozzle and shield over a large payload (thousands of tons) and then staging the
+  delivery rather than flying the whole slug to the target. The nozzle doubles as a serial
+  accelerator: bring the stack up to speed, peel off ~50 t chunks, and keep pushing the
+  remainder, each pulse adding `Δv = J / M_remaining` so the lighter remnant accelerates
+  faster. Shed chunks coast to the destination on their own. The payoff is metered delivery.
+  For the impactor concept (`sec:world_set_free`) this is the difference between a power plant
+  and a bomb: 50 t every 10 s is a throttle, 5000 t at once is a single catastrophic impact.
+  For Section 5 it sizes secondary-payload orbital insertions sanely instead of delivering one
+  giant object.
+
+  The metering is cheap. A ~1 AU coast at ~200 km/s takes ~8.7 days, and arrival timing scales
+  as `dt/t = dv/v`, so 10 s spacing between 50 t chunks needs only ~3 m/s of relative trim, and
+  an hour-wide stream is a ~1 km/s spread on a ~200 km/s bulk velocity (under a percent). This
+  decouples two levers that are easy to conflate: arrival spread and mass efficiency are not
+  the same. Accelerate the full stack together, then peel chunks with sub-percent trims, and
+  the overhead stays at roughly the nozzle-to-total fraction; the "less efficient as you
+  accelerate smaller chunks" penalty bites only for wide velocity spreads or when you keep
+  accelerating the nearly-empty tail.
+
+  Two things to keep honest. Staging does not shrink the nozzle: its size is set by per-pulse
+  energy (projectile mass times collision v²), not by ship mass, so it stays a fixed ~100 t
+  overhead however the payload is chunked. And the nozzle's fate is the real open decision.
+  Expended (the impactor case) it becomes the fastest, last shot in the stream, so nothing is
+  wasted; reused (the orbital case, or to amortize over many runs) you no longer want it at
+  final velocity, but external pulses push the whole assembly forward, so recovering it costs
+  deceleration pulses or a return leg, of order 100 t × v_final in momentum. So "only the
+  nozzle mass is wasted" is the reusable case; for impactors the waste is closer to zero. The
+  heat shield follows the same logic: leave it attached and it rides to the target as free
+  impact mass (already accelerated at periapsis), or re-accelerate it far from the Sun at the
+  cost of weaker pulses. It cannot be shed near the Sun, where it is load-bearing during the
+  high-energy pulses, so the conversion is post-periapsis only.
+
+---
+
 ## §War, Policy, And Pulsed Propulsion → `sec:overflight_politics`
 
 - [ ] brief note about geopolitcal overflight risks of PuffSat suborbital travel · `[raw]`
@@ -1061,3 +1179,7 @@ appendix preamble. Appendix X = Subsection 1 below; Appendix Y = Subsection 2 be
 - The Medusa/pusher-plate trades and the periapsis-nav sharpening are **hand-derived
   order-of-magnitude sizing** from design grilling sessions (2026-06-12 and 2026-06-15),
   not simulation results.
+- The **near-Sun absorbing nozzle / chamber sizing** (size floor `R ∝ √m`, energy per
+  pulse, magnetic-nozzle option, staged/metered delivery) is hand-derived
+  order-of-magnitude sizing from a design grilling session (2026-06-22), not a simulation
+  result.
