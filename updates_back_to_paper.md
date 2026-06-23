@@ -448,6 +448,48 @@ projectiles' *spread* relative to each other becomes the whole game.
   work stays with ranging; the optical layer is a very-late-endgame add, not a
   hundreds-of-km sensor.
 
+  - [ ] **UV-C beacon for relative orbit determination at ~300 km, seen against the
+    coronal glare** · `[sizing]` — move the beacon and the camera's bandpass into the
+    deep ultraviolet (UV-C, ~250–280 nm), where the scattered-light coronal background
+    is dimmer than the visible glare that washes out a near-IR beacon. Use case is
+    relative orbit determination between PuffSats ~300 km apart at low relative velocity,
+    not the last-millisecond terminal sensor of the parent option. (This re-scopes the
+    optical layer: it is a ~300 km metrology aid, so the parent's "last few milliseconds"
+    framing does not apply to it.)
+
+    **Does the corona pass UV-C? Yes, for propagation.** The coronal plasma cannot block
+    it. Even at a generous n_e ~ 10⁹ cm⁻³ near the coronal base, the plasma cutoff is
+    f_p ≈ 8.98×10³·√n_e ≈ 284 MHz, against ~1.13×10¹⁵ Hz for 265 nm light — higher by
+    ~4×10⁶ (more than six orders of magnitude), so the refractive index is 1 − ~3×10⁻¹⁴:
+    no cutoff, no meaningful bending. Thomson scattering off the free electrons over a
+    300 km path is optically thin to τ = σ_T·n_e·L ≈ 2×10⁻⁸ and is wavelength-flat, so
+    it costs nothing. The gas is fully ionized, so neutral photoabsorption is negligible.
+    UV-C crosses 300 km of corona essentially loss-free. (Real densities at a near-Sun
+    periapsis of several R_sun are lower than 10⁹ cm⁻³, so this is the conservative case.)
+
+    **The open question is the background, not transparency.** "Solar-blind" works on the
+    ground because ozone removes the solar UV-C; in space there is no ozone, and the glare
+    here is the corona's own brightness. The scattered-light (K/F) corona follows the
+    photospheric colour, which is genuinely down in the UV-C, so that piece is dimmer. But
+    the corona is a million-K plasma that *emits* its own UV/EUV lines, so the chosen band
+    (~255–265 nm) must dodge coronal and chromospheric emission lines. That needs the
+    coronal UV surface-brightness spectrum, not just the photospheric continuum (needs a
+    citation). Hardware also needs a real UV-C emitter, e.g. an AlGaN LED (needs a citation
+    on pulsed output and space-qualification).
+
+    **Link budget — is a few watts enough at 300 km?** Order-of-magnitude: a 3 W peak
+    source pulsed 1 ms once per second puts 3 mJ ≈ 4×10¹⁵ photons (4.7 eV each) into each
+    pulse. A 10 cm receive aperture at 300 km subtends a geometric fraction ~7×10⁻¹⁵ of a
+    full sphere, so an *isotropic* beacon delivers ~28 photons/pulse — about 1–2
+    photoelectrons after filter throughput (~0.3) and detector QE (~0.2): marginal. The
+    relative geometry is known to far better than a degree at 300 km, so beam the beacon: a
+    tens-of-degrees cone gives ~50–500× gain and ~10²–10³ photoelectrons/pulse, a strong
+    fix in a 1 ms gate. *In plain terms: pick a colour the Sun is dim in, point the beacon
+    at the partner instead of lighting the whole sky, and a few watts is plenty.* So a few
+    watts closes the 300 km link **only if the beacon is beamed** (or the aperture is
+    ~20 cm) with a solar-blind photon-counting detector; an isotropic few-watt beacon does
+    not.
+
 - [ ] **Option D — deterministic-coast two-tier correction (defeats the v² floor)** · `[sizing]`
 
   Restate as the control architecture: a **gross early correction** (~tens of m/s of Δv
@@ -774,6 +816,7 @@ glossed once where the section introduces the guidance concepts (likely
   - [ ] Add: no GNSS anywhere; coast position knowledge from a Ka-band authenticated ranging constellation near apogee (~150 000 km)
   - [ ] Terminal knowledge comes from the optical tracker array (see `sec:neural_navigation`); midcourse computed against the coast solution, endgame against the optical one
   - [ ] Size the constellation only to *match* the coast accuracy needed (a few hundred metres at hand-off); 3–4 members supply it with large margin
+  - [ ] **Dual use:** the same Earth-apogee constellation also covers the near-Sun (Parker) scenario, because an Earth→Sun transfer has its departure apoapsis at Earth · `[raw]` (cross-link `sec:periapsis_challenges`)
 
   There is **no GNSS** anywhere in the chain. Position knowledge during the multi-day
   coast comes from a **Ka-band, authenticated ranging constellation** parked near apogee
@@ -790,6 +833,18 @@ glossed once where the section introduces the guidance concepts (likely
   which a minimum of **3–4 members** supplies with large margin; it does not need to be
   a precision instrument. This is a genuine architectural addition — the current paper
   does not specify how the coast state is known.
+
+  The same constellation does double duty for the near-Sun chapter. An Earth→Sun
+  transfer departs from Earth, so the orbit's apoapsis at departure — its slow, far
+  point from the Sun, where the probe lingers longest — sits at Earth's orbital radius,
+  right where this fleet is parked. The apogee ranging that fixes the coast state for
+  the Earth-interception case therefore carries straight over to the heliocentric,
+  Parker-style trajectory: the probe is still near Earth, and still slow, at that first
+  apoapsis, exactly when the constellation can range it. It only stops being useful as
+  the probe falls inward toward periapsis, which is the regime the near-Sun options in
+  `sec:periapsis_challenges` (ranging nodes, optical endgame) exist to cover. *In plain
+  terms: the lighthouse fleet built for Earth apogees also lights the start of the run
+  to the Sun, because that run begins at Earth.*
 
 - [ ] active transponder on PuffSat. Measures both distance and doppler velocity shifts · `[raw]`
 - [ ] at least 4 coordinator nodes, with both perigee and apogee updated. Consider also using GNSS signal below geostationary orbit. · `[raw]`
