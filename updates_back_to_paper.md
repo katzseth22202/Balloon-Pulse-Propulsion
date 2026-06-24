@@ -1118,7 +1118,8 @@ appendix below.
 - [ ] **Down-push from descending-leg interception, cancelled by the plate's rebound geometry** · `[sizing]`
   - [ ] State the premise (set up by the `sec:handling_space_debris` ~50 km disposal item): PuffSats are caught on the descending leg, falling toward the ~50 km disposal perigee, so their velocity relative to the craft carries a downward (radially-inward) component. Each pulse delivers forward thrust plus a downward kick of about `sin γ` of the impulse (γ = the PuffSat's flight-path angle below the craft's velocity), order ~10–25%. Pull γ from the trajectory design; do not invent it. Same sign every pulse, so it is cumulative and bends the trajectory Earthward if left uncorrected.
   - [ ] State the primary fix (orientation/shape, not active down-throwing): the net force on the craft is set by the plate's orientation relative to the **thrust axis**, not relative to the incoming-PuffSat line. A plate whose normal lies along the thrust axis reverses only the forward component of the gas and lets the downward component pass back out, so the rebound carries the PuffSat's downward momentum away and the craft feels pure forward thrust. A plate squared-on to the incoming PuffSat does the opposite and doubles the down-kick.
-  - [ ] State the secondary trim (biased loss): for the fraction that spills rather than reflecting cleanly, bias the loss downward (more lost down than up) so even the spill gives a small upward reaction `F_up` instead of a random one.
+  - [ ] State why the trim rides on the reflected momentum, not on spill: the plate is opaque (the same opacity result behind the high `f`), so little gas escapes sideways past it, and we want to keep that spill small anyway to hold `f` high. If an active upward trim `F_up` is wanted beyond just neutralizing the kick, get it by tilting the plate slightly further off the thrust axis so the reflected gas is thrown a little downward, giving an upward reaction scaled by the full rebounded momentum rather than by a small spill fraction. (Drops the earlier biased-spill variant, which tried to harvest sideways-escaping gas; an opaque plate reflects rather than letting gas escape past the edge.)
+  - [ ] Cite-check the "opaque plate reflects rather than spilling sideways" claim — do **not** lean on Balcomb for the geometry. `balcomb1970nuclear` supports the opacity→restitution result (radiation reflected, near-elastic bounce), not the geometric capture/no-spill. For the geometry cite `solem_medusa` (Solem's Medusa: a concave sail wrapping the divergent expansion and reflecting it forward is the direct PuffSat analog), with `projorion` (Schmidt et al., peer-reviewed *J. Propulsion and Power*) as a secondary for pusher-plate momentum coupling. Both keys already exist in `references.bib` and are cited elsewhere. Verify Solem actually states the capture/no-spill geometry, not just the sail *shape*; if he only describes the shape, fall back to the original GA/Orion impulse-coupling reports for the momentum claim. Same caveat applies to the fudge-factor item's plate-shape cite-check (§How PuffSats Work → Mass Fraction).
   - [ ] State the zero-torque placement (the appendix math): a net upward trim `F_up` applied at the rear plate (distance `d` behind the CoM) would pitch the craft. Putting the impact point a height `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel it, so the resultant points through the CoM and the trim costs nothing in attitude. This is the vertical, by-design cousin of the lateral off-center-torque note in Appendix X. Put the derivation in Appendix X beside that note; keep a one-line statement in the body.
   - [ ] Note the shared lever with the fudge-factor item (§How PuffSats Work → Mass Fraction): a curved plate that wraps the divergent puff both raises `f` (collimates the rebound forward) and is what lets the rebound carry the down-momentum out. One plate-shape decision, two payoffs.
 
@@ -1132,14 +1133,21 @@ appendix below.
   plate normal to the thrust axis reverses the gas's forward component and lets its
   downward component pass straight back out, so the rebound carries the unwanted
   down-momentum away and the craft feels only forward thrust. (A plate aimed square at the
-  incoming PuffSat would instead double the down-kick.) For the gas that spills rather than
-  reflecting cleanly, bias the loss downward so the spill adds a small upward trim `F_up`
-  rather than a random force. Any such upward trim, applied at the rear plate a distance
+  incoming PuffSat would instead double the down-kick.) Because the plate is opaque, little
+  of the gas escapes sideways past it, and we want to keep that spill small anyway to hold
+  `f` high, so the trim rides on the reflected momentum rather than on a biased loss.
+  Neutralizing the kick this way is usually enough; if a steady upward trim `F_up` is
+  wanted on top of it, tilt the plate slightly further off the thrust axis so the reflected
+  gas is thrown a little downward and the craft feels an upward reaction set by the full
+  rebounded momentum. Any such upward trim, applied at the rear plate a distance
   `d` behind the CoM, would pitch the craft; placing the impacts a height
   `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel that
   pitch, so the resultant passes through the CoM. The curvature that does this is the same
   curvature the fudge-factor item wants for collimating the rebound, so the down-push fix
-  and the high-`f` argument are one plate-shape decision.
+  and the high-`f` argument are one plate-shape decision. (This drops an earlier variant
+  that tried to harvest sideways-spilling gas for the trim: with an opaque plate the gas
+  reflects rather than escaping past the edge, so the trim must ride on the reflected
+  momentum.)
 
 - [ ] torque but if spacecraft is long, force may be small for reaction wheels - when there is an off center impact. · `[raw]`
 - [ ] We should discuss that for 5 meter wide plate, its OK because plate needs some mass anyway to smooth acceleration without unreasonably long shock absorber. · `[raw]`
