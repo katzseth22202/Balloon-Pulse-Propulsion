@@ -474,8 +474,18 @@ projectiles' *spread* relative to each other becomes the whole game.
     the corona is a million-K plasma that *emits* its own UV/EUV lines, so the chosen band
     (~255–265 nm) must dodge coronal and chromospheric emission lines. That needs the
     coronal UV surface-brightness spectrum, not just the photospheric continuum (needs a
-    citation). Hardware also needs a real UV-C emitter, e.g. an AlGaN LED (needs a citation
-    on pulsed output and space-qualification).
+    citation). Hardware also needs a real UV-C emitter, and there are three candidates with
+    different trade-offs: an **AlGaN UV-C LED** (~255–280 nm, narrow-band and efficient, but
+    low peak power per device, so an isotropic beacon wants an array); a **frequency-quadrupled
+    solid-state laser** (266 nm from the 1064 nm Nd:YAG line, high peak power and a single
+    clean line good for beaming and for dodging a coronal emission line, but directional, so it
+    must be pointed); and a **xenon flashlamp** (an intense broadband pulse reaching well into
+    the UV-C through a UV-grade fused-silica envelope, inherently omnidirectional and high in
+    peak power, the cheap rugged strobe option — at the cost of wasting most of its photons
+    outside the solar-blind band and solarizing its envelope over time). All three need a
+    citation on pulsed UV-C output and space-qualification. The flashlamp is the natural emitter
+    for an *isotropic* artificial-star beacon meant to be seen by several nodes at once; the
+    laser suits a *beamed* point-to-point link (see the artificial-star item below).
 
     **Link budget — is a few watts enough at 300 km?** Order-of-magnitude: a 3 W peak
     source pulsed 1 ms once per second puts 3 mJ ≈ 4×10¹⁵ photons (4.7 eV each) into each
@@ -489,6 +499,78 @@ projectiles' *spread* relative to each other becomes the whole game.
     watts closes the 300 km link **only if the beacon is beamed** (or the aperture is
     ~20 cm) with a solar-blind photon-counting detector; an isotropic few-watt beacon does
     not.
+
+  - [ ] **Artificial-star UV-C beacons beyond the corona: a two-stage attitude reference
+    for the Parker regime** · `[sizing]` — a second, distinct use for the UV-C beacon. The
+    item above solves *relative* geometry between two nearby PuffSats at ~300 km. This one
+    solves *absolute attitude* (which way a node is pointed) deep inside the corona, where a
+    conventional star tracker is starved of stars. Put the references where they can survive
+    and self-locate, and let the deep-diving nodes treat them as bright, known stars.
+    (Cross-link `sec:neural_navigation`'s optical tracker array and the coordinator-node
+    ranging fleet.)
+
+    **The problem.** A star tracker fixes attitude by matching a field of faint natural stars
+    (visual magnitude ~2–6) against a catalog. At a Parker periapsis of ~9.86 R_sun the
+    diffuse K/F-corona surface brightness and stray light raise the background enough to wash
+    those stars out, so the tracker's accuracy and update rate degrade right where the
+    converging-collision geometry wants its tightest, fastest, *shared* angular reference.
+    (Parker's own trackers do operate, shielded behind the heat shield, so the honest claim is
+    degradation and insufficiency, not total failure — needs a citation on near-Sun
+    star-tracker performance and on the coronal surface-brightness profile.)
+
+    **The two-stage fix.** Stage one: a small constellation of beacon-sats parked *beyond* the
+    bright inner corona, at a survivable distance — ~0.1 AU (≈ 21.5 R_sun) is a reasonable
+    first guess. There the solar flux is ~136 kW/m² (~100 suns), against ~640 kW/m² (~470 suns)
+    at Parker periapsis, so a Parker-class shield has large margin, and a star tracker pointed
+    anti-sunward sees a sky dark enough to fix the beacon's own attitude. Each beacon-sat
+    self-locates: its own star tracker gives attitude, and the ranging fabric (the same
+    Ka-band / laser nodes already in the architecture) gives position. Stage two: the beacon
+    pulses a bright UV-C flash — an *artificial star* — and broadcasts its own position and
+    time. A deep node (the main spacecraft, a co-flyer, a coordinator node, possibly a PuffSat)
+    measures the *direction* to each beacon on its solar-blind focal plane and, knowing the
+    beacon's broadcast position and its own position, computes the attitude. *In plain terms:
+    when the real stars are drowned out, fly your own brighter stars to a place where they can
+    still see the sky, have them announce exactly where they are, and aim off them instead.*
+
+    **Why UV-C, not an RF beacon.** Same band logic as the relative-OD item: UV-C sits ~6
+    orders of magnitude above the coronal plasma frequency, so it suffers none of the
+    refraction or scintillation that wrecks radio links near solar conjunction. The angular
+    reference stays geometrically clean exactly where an RF one would be smeared. The
+    solar-blind band plus a pulsed emitter (LED array, 266 nm laser, or xenon flashlamp; see
+    the emitter note above) let a temporal/spectral gate pull the flash out of the coronal
+    background.
+
+    **Caveats, all resolvable.**
+    - *Angle needs position, and it is a joint solve.* Turning a measured bearing into an
+      attitude presupposes you know both the beacon's position and your own. Two non-collinear
+      artificial stars give 3-axis attitude; a single one leaves roll about its line unfixed,
+      so this is a *constellation*, not one beacon. With enough beacons of known position the
+      node solves attitude *and* position together, GPS-style — which is why these beacons
+      should be the *same* transverse ranging nodes already sized for GDOP, not a separate
+      fleet.
+    - *Light-time latency.* The beacon is tens of seconds away at light speed (~0.05 AU of
+      separation ≈ 25 s one-way; a range round-trip is a minute or two). The *bearing* is
+      instantaneous — you measure the photon's arrival direction now — but the broadcast
+      position is stale by the light-time, so it must be propagated forward on the beacon's
+      ephemeris. Near the Sun the dynamics are deterministic (the chapter's recurring theme),
+      so propagating a known heliocentric orbit over a minute to well under a kilometre is easy.
+    - *Aberration.* At ~190 km/s (Parker periapsis) stellar aberration tilts every bearing by
+      ~130 arcsec, far above the µrad target; at ~400 km/s closing it is ~270 arcsec.
+      Artificial stars do not escape it. But aberration is deterministic in the velocity, which
+      is measured, so it is corrected, not feared — the same as for a natural-star tracker.
+
+    **Link budget — isotropic is hopeless at this range, so beam, but the consumers are
+    bunched.** This is the relative-OD budget rescaled from 300 km to ~0.05 AU: inverse-square
+    is ~(7.5×10⁶ km / 300 km)² ≈ 6×10⁸ harsher, so an isotropic few-watt flash falls ~9 orders
+    short and cannot close. The fix is to beam, and the geometry permits it: every consumer
+    (spacecraft, co-flyers, coordinator nodes, PuffSats) is clustered within ~hundreds of km of
+    the collision point, which subtends only arcseconds from a beacon 0.05 AU away, so *one*
+    modest beam lights the whole cluster at once — beamed and seen-by-everyone are not in
+    conflict here. A beam aimed to ~0.1° (the cluster position is known far better than that)
+    buys ~10⁶× over isotropic, bringing a joules-to-kilojoules UV pulse — a xenon flashlamp's
+    or pumped laser's natural regime, not milliwatts — into a strong photon-counted fix. The
+    exact per-pulse energy, beam width, and pulse cadence need a proper budget (flagged as the
+    open sizing question for this item).
 
 - [ ] **Option D — deterministic-coast two-tier correction (defeats the v² floor)** · `[sizing]`
 
