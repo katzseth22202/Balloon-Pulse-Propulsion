@@ -78,6 +78,14 @@ grilling session; resolutions recorded below. Downstream items flagged
   one `m·s`" sentence moves to the **body**, at the point in
   `sec:lightweight_pusher_plates` where the sail is introduced alongside the plate,
   since neither appendix now owns both ends.
+  - **SUPERSEDED 2026-06-29 (grill).** Appendix X is killed: the rigid-plate
+    invariant, ripple, and two-stage absorber **fold into the body** as two compact
+    paragraphs (see the rewritten body item below). Reason: the rigid-plate headline
+    (`m·s ∝ 1/f²`) is a one-line result, and its two trade tables + full worked
+    example were detail dressing a one-liner. Appendix Y (Medusa sail + struts) is
+    **deferred** to a later Medusa-focused grill, not resolved here. So D1's "two
+    appendices" is now **zero for the plate, Y pending** — there is no shared
+    appendix preamble to write.
 - [x] **D2 — Front-vs-rear safety argument: body or appendix?** → **Short body
   paragraph, ≤4 sentences, no figure** (matches lean). Body carries the rear-mount
   fail-safe rationale (external reaction mass ⇒ approach from behind; rear sail
@@ -89,6 +97,12 @@ grilling session; resolutions recorded below. Downstream items flagged
   anchoring the 1/f² / ~10%-of-craft claim, e.g. "(at 4 Hz a 4.6 m stroke holds the
   plate near 3.2 t, ~10% of a 32 t craft)". Full worked example (235 kN·s, 73 m/s,
   60 g, 128 kg/m², survivability margin) stays **appendix-only** in Appendix X.
+  - **SUPERSEDED 2026-06-29 (grill).** With Appendix X killed, the full worked
+    example is **dropped**, not relocated. What survives into the body is the triple
+    *(4 Hz, 4.6 m, ~3.2 t ≈ 10% of a 32 t craft)* plus **one** honesty clause: the
+    survivability floor (~10–50 kg/m², far below Orion's regime) sits several × below
+    the worked plate, so dynamics — not survival — set the ~10%. Everything else
+    (235 kN·s, 73 m/s, 60 g, 128 kg/m²) goes.
 - [x] **D4 — Reframe committed text (explicit OK given).** In
   `sec:formation_challenges_current_missions` (the `\SI{5}{\centi\meter}` std-dev
   centring claim) and the related `sec:lightweight_pusher_plates` centimetre claim:
@@ -1102,25 +1116,20 @@ appendix below.
   lost vehicle, not lost lives (connects to the "Medussa parachute / possibility at
   sides" raw note below and the cargo case).
 
-- [ ] **Body: a lighter plate via higher pulse frequency, smoothed by an Orion-style two-stage absorber** · `[sizing]`  (blocked on D3)
-  - [ ] State that more frequent pulses let the plate be lighter; plate mass falls as 1/f² at fixed stroke, so we are not forced into an Orion-scale plate
-  - [ ] State a two-stage absorber as in Orion smooths the ride (stiff short-stroke first stage catches the per-pulse blow; soft long-stroke second stage with natural frequency well below the pulse rate isolates the crew); cite Orion
-  - [ ] Slot this where the subsection already lists MR fluids, magnetic braking, springs, hydraulics
-
-  More frequent pulses let the plate be lighter; plate mass falls as 1/f² at fixed
-  stroke, so we are not forced into an Orion-scale plate. A two-stage absorber as in
-  Orion smooths the ride: a stiff short-stroke first stage catches the per-pulse blow,
-  and a soft long-stroke second stage with natural frequency well below the pulse rate
-  isolates the crew. (Full derivation, tables, and the worked example live in the new
-  appendix below. This supersedes the worst-case "1/1 pusher plate" idea in the raw
-  notes — we can reach ~10 % of craft mass or less.)
+- [ ] **Body: the plate has no Orion-style critical mass — two compact paragraphs, no appendix** · `[sizing]`  (D1/D3 superseded 2026-06-29; replaces the killed Appendix X)
+  - [ ] Slot both paragraphs near the existing shock-absorber discussion (`sec:lightweight_pusher_plates`, the MR-fluid / magnetic-braking paragraph, line ~739 of `templateArxiv.tex`, which already hooks "deliberately reduce acceleration per pulse... relaxing shock absorber requirements")
+  - [ ] **Paragraph 1 — the minimization argument (the spine).** Lead with the Orion contrast: Orion's plate was forced huge by the kiloton *yield floor* (no arbitrarily small bomb), whereas PuffSat pulse energy scales down smoothly — no critical mass. Then the mechanism, stated **as a trade, not a double win**: the buffer product `m_p·s ≈ M a /(4 f²)` falls as 1/f², so smaller, more frequent pulses buy either a lighter plate at fixed stroke or a shorter stroke at fixed mass — one quadratic dividend to allocate, *not* both shrinking quadratically at once. Anchor with the D3 triple: *at 4 Hz a 4.6 m stroke holds the plate near 3.2 t, ~10% of a 32 t craft.* Close with the honesty clause: floors remain but are gentle — a survivability floor of ~10–50 kg/m² (far below Orion's regime) eventually binds, but in the worked case it is the `m·s` dynamics, not survival, that set the ~10% plate (several-× margin). Cite Orion for the yield-floor contrast.
+  - [ ] **Paragraph 2 — the ripple cost and its fix (the load-bearing half).** Higher f drives the ripple into the worst whole-body-vibration band: a plain absorber swings the craft 0–6 g at 4 Hz (4–8 Hz is the ISO 2631 worst band). A two-stage absorber (Orion heritage) fixes it: stiff short-stroke first stage catches the per-pulse blow, soft second stage with natural frequency well below the pulse rate isolates the crew. Carry **one** representative number inline instead of the transmissibility table, e.g. *a ~0.7 Hz second stage cuts the ripple ~30×, leaving 3 g ± 0.1 g.* Cite Orion + ISO 2631.
+  - [ ] **Dropped:** both mass-trade tables; the full worked example (235 kN·s, 73 m/s, 60 g, 128 kg/m²); the three-row transmissibility table. Net: ~80 appendix lines → ~12 body lines. Keep the paragraphs genuinely compact — do not let the tables creep back as prose.
+  - [ ] **Wording guard:** never write "plate mass *and* stroke both fall quadratically" — that is a factor-f² overclaim. It is the *product* `m_p·s` that scales as 1/f².
+  - [ ] This supersedes the worst-case "1/1 pusher plate" raw note — the plate reaches ~10% of craft, not 1/1.
 
 - [ ] **Down-push from descending-leg interception, cancelled by the plate's rebound geometry** · `[sizing]`
   - [ ] State the premise (set up by the `sec:handling_space_debris` ~50 km disposal item): PuffSats are caught on the descending leg, falling toward the ~50 km disposal perigee, so their velocity relative to the craft carries a downward (radially-inward) component. Each pulse delivers forward thrust plus a downward kick of about `sin γ` of the impulse (γ = the PuffSat's flight-path angle below the craft's velocity), order ~10–25%. Pull γ from the trajectory design; do not invent it. Same sign every pulse, so it is cumulative and bends the trajectory Earthward if left uncorrected.
   - [ ] State the primary fix (orientation/shape, not active down-throwing): the net force on the craft is set by the plate's orientation relative to the **thrust axis**, not relative to the incoming-PuffSat line. A plate whose normal lies along the thrust axis reverses only the forward component of the gas and lets the downward component pass back out, so the rebound carries the PuffSat's downward momentum away and the craft feels pure forward thrust. A plate squared-on to the incoming PuffSat does the opposite and doubles the down-kick.
   - [ ] State why the trim rides on the reflected momentum, not on spill: the plate is opaque (the same opacity result behind the high `f`), so little gas escapes sideways past it, and we want to keep that spill small anyway to hold `f` high. If an active upward trim `F_up` is wanted beyond just neutralizing the kick, get it by tilting the plate slightly further off the thrust axis so the reflected gas is thrown a little downward, giving an upward reaction scaled by the full rebounded momentum rather than by a small spill fraction. (Drops the earlier biased-spill variant, which tried to harvest sideways-escaping gas; an opaque plate reflects rather than letting gas escape past the edge.)
   - [ ] Cite-check the "opaque plate reflects rather than spilling sideways" claim — do **not** lean on Balcomb for the geometry. `balcomb1970nuclear` supports the opacity→restitution result (radiation reflected, near-elastic bounce), not the geometric capture/no-spill. For the geometry cite `solem_medusa` (Solem's Medusa: a concave sail wrapping the divergent expansion and reflecting it forward is the direct PuffSat analog), with `projorion` (Schmidt et al., peer-reviewed *J. Propulsion and Power*) as a secondary for pusher-plate momentum coupling. Both keys already exist in `references.bib` and are cited elsewhere. Verify Solem actually states the capture/no-spill geometry, not just the sail *shape*; if he only describes the shape, fall back to the original GA/Orion impulse-coupling reports for the momentum claim. Same caveat applies to the fudge-factor item's plate-shape cite-check (§How PuffSats Work → Mass Fraction).
-  - [ ] State the zero-torque placement (the appendix math): a net upward trim `F_up` applied at the rear plate (distance `d` behind the CoM) would pitch the craft. Putting the impact point a height `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel it, so the resultant points through the CoM and the trim costs nothing in attitude. This is the vertical, by-design cousin of the lateral off-center-torque note in Appendix X. Put the derivation in Appendix X beside that note; keep a one-line statement in the body.
+  - [ ] State the zero-torque placement (the appendix math): a net upward trim `F_up` applied at the rear plate (distance `d` behind the CoM) would pitch the craft. Putting the impact point a height `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel it, so the resultant points through the CoM and the trim costs nothing in attitude. This is the vertical, by-design cousin of the lateral off-center-torque note. **(Stale routing, 2026-06-29: Appendix X is killed and the off-center-torque note is deferred to the Medusa grill; this zero-torque derivation's home is reopened with it. Keep the one-line body statement; decide its appendix-vs-body home alongside the deferred off-center-torque note, not in Appendix X.)**
   - [ ] Note the shared lever with the fudge-factor item (§How PuffSats Work → Mass Fraction): a curved plate that wraps the divergent puff both raises `f` (collimates the rebound forward) and is what lets the rebound carry the down-momentum out. One plate-shape decision, two payoffs.
 
   Because PuffSats are caught while falling toward their ~50 km disposal perigee, the
@@ -1152,27 +1161,37 @@ appendix below.
 - [ ] torque but if spacecraft is long, force may be small for reaction wheels - when there is an off center impact. · `[raw]`
 - [ ] We should discuss that for 5 meter wide plate, its OK because plate needs some mass anyway to smooth acceleration without unreasonably long shock absorber. · `[raw]`
 - [ ] Explain issues with Medussa large strechy parachute, but possibility to do at sides. · `[raw]`
-- [ ] explain possibility of 1/1 pusher plate · `[raw]`  *(superseded by the buffer-invariant appendix item: plate reaches ~10 % of craft mass, not 1/1)*
+- [ ] explain possibility of 1/1 pusher plate · `[raw]`  *(superseded by the body buffer-invariant paragraph — Appendix X folded into body 2026-06-29: plate reaches ~10 % of craft mass, not 1/1)*
 - [ ] for shock physics, higher atmosphere - string of pearls shaping to elongate the design · `[raw]`
 
 ---
 
 ## Appendix
 
-### → New appendices: "Rigid pusher plate" (X) and "Medusa sail and struts" (Y)  (D1 ✓ two appendices; D2 ✓ body; D3 ✓ body triple)
+### → New appendices: "Rigid pusher plate" (X) and "Medusa sail and struts" (Y)  (D1/D3 SUPERSEDED 2026-06-29)
 
-**TWO** separate appendices (D1 resolved), each restating the buffer invariant
-`m·s ≈ M a T²/4` briefly. They carry the math so a skeptical reader can check it
-without bogging down the narrative. The unifying thread — the sail (long stroke,
-light) and the rigid plate (short stroke, heavy or fast) are the two ends of one
-`m·s` invariant — moves to the **body** (per D1) rather than living in a shared
-appendix preamble. Appendix X = Subsection 1 below; Appendix Y = Subsection 2 below.
+> **STATUS 2026-06-29 (grill).** The "two appendices" plan is overridden.
+> **Appendix X (rigid plate) is killed and folded into the body** as two compact
+> paragraphs — see the rewritten body item "Body: the plate has no Orion-style
+> critical mass" above; that item is the authoritative spec. The numbers below are
+> kept only as source material for writing those paragraphs (the invariant, the
+> survivability floor, the one transmissibility figure); the trade tables and full
+> worked example below are **dropped**, not transcribed.
+> **Appendix Y (Medusa sail + struts) is DEFERRED** to a later Medusa-focused grill —
+> do not write it from this spec yet.
 
-- [ ] **Subsection 1 — the rigid plate: buffer invariant, 1/f² scaling, ripple, two-stage transmissibility** · `[sizing]`
-  - [ ] Derive `m_p·s ≈ M a T²/4` and the 1/f² scaling
-  - [ ] Include the two trade tables (plate mass vs stroke; stroke vs frequency)
-  - [ ] Include the 4 Hz / 4.6 m / 3.2 t worked example with derived quantities and survivability-floor margin (D3 decides whether a copy also anchors the body)
-  - [ ] Include the ripple analysis and the two-stage transmissibility table
+The original "two appendices" rationale (now historical): each appendix would restate
+the buffer invariant `m·s ≈ M a T²/4` briefly, carrying the math so a skeptical reader
+could check it without bogging down the narrative. The unifying thread — the sail
+(long stroke, light) and the rigid plate (short stroke, heavy or fast) are the two
+ends of one `m·s` invariant — moves to the **body**. Appendix X = Subsection 1 below;
+Appendix Y = Subsection 2 below.
+
+- [x] ~~**Subsection 1 — the rigid plate: buffer invariant, 1/f² scaling, ripple, two-stage transmissibility**~~ · `[sizing]`  **SUPERSEDED 2026-06-29 → folded into the body item above (no appendix).** Source numbers retained below; trade tables and full worked example dropped.
+  - [x] Derive `m_p·s ≈ M a T²/4` and the 1/f² scaling — **kept**, stated in body Paragraph 1 as a trade
+  - [ ] ~~Include the two trade tables (plate mass vs stroke; stroke vs frequency)~~ — **dropped**
+  - [ ] ~~Include the 4 Hz / 4.6 m / 3.2 t worked example with derived quantities~~ — **dropped** except the D3 triple + the survivability-floor clause, which go in body Paragraph 1
+  - [x] Ripple analysis + two-stage absorber — **kept**, in body Paragraph 2, with one representative transmissibility number replacing the table
 
   **The buffer invariant.** A rigid plate on a shock absorber is a momentum buffer. To
   give the craft acceleration a, the average force is F = M a, so each pulse carries
@@ -1248,7 +1267,7 @@ appendix preamble. Appendix X = Subsection 1 below; Appendix Y = Subsection 2 be
   one transmits the jolt. With a good two-stage absorber, the duty-cycle skew (long push,
   quick re-cock) and multi-plate phasing become optional refinements, not necessities.
 
-- [ ] **Subsection 2 — the Medusa sail and struts: same invariant at long stroke, buckling-limited struts** · `[sizing]`
+- [ ] **Subsection 2 — the Medusa sail and struts: same invariant at long stroke, buckling-limited struts** · `[sizing]`  **DEFERRED 2026-06-29 → resolve in a later Medusa-focused grill (scope, body vs appendix, how many numbers all open; do not write from this spec yet).**
   - [ ] Same invariant at long stroke gives the ~100 kg sail (~4 kg/m² over 25 m², coinciding with the thermal floor)
   - [ ] Strut buckling numbers: monolithic CFRP ~10–12 t (too heavy); guyed/lattice CF boom ~1.5–2 t (viable); the √(E)/ρ figure of merit; steel's 4–5× penalty; titanium/steel only at joints
   - [ ] The telescoping-helps-buckling point (peak force at max compression / shortest length)
@@ -1286,7 +1305,7 @@ appendix preamble. Appendix X = Subsection 1 below; Appendix Y = Subsection 2 be
   - Net pusher assembly: order 1.5 to 2 t of structure plus 0.1 to 0.3 t of sail, a few
     percent of a 32 t craft.
 
-- [ ] **Subsection note — off-center torque and rotational inertia (the forgiving-plate consequence)** · `[sizing]`
+- [ ] **Subsection note — off-center torque and rotational inertia (the forgiving-plate consequence)** · `[sizing]`  **DEFERRED 2026-06-29 → revisit with the Medusa grill; it leans on the dropped appendix off-center-torque math, so its home (body vs appendix) is reopened.**
   - [ ] Add the off-center-torque and rotational-inertia argument: accepting up to a 2 m lateral miss applies a torque; a larger/heavier 5 m plate resists tip-over and a longer stroke buys time to recenter and let the RCS cancel the moment
   - [ ] Note heavier-plate-plus-longer-stroke sits above the m_p·s minimum, so it costs nothing in feasibility — we trade mass-optimality for forgiveness deliberately
 
