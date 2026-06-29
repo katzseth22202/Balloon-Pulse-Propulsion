@@ -34,6 +34,18 @@ mass `M`, acceleration `a`, and pulse period `T = 1/f`. The shared law behind bo
 rigid plate (short stroke, heavy or high-frequency) and the Medusa sail (long stroke,
 light).
 
+**Fudge factor (`f`)**:
+The energy-loss factor in the PuffSat-to-rocket mass-ratio law (`eq:PuffSat_ratio`): the
+axial momentum a gas pulse delivers to the pusher plate as a fraction of the
+full-capture, perfect-bounce ideal. Ranges `0.5` (perfectly inelastic, gas sticks) to `1`
+(perfectly elastic, gas rebounds and pushes about twice as hard), and below `0.5` if some
+gas misses the plate. The paper selects `f = 0.8`. A preliminary single-code hydrodynamic
+simulation (companion repo `puffsat_impact_simulation`) finds `f ≈ 0.8` reasonable across
+the 3.2–16 km/s gas-collision envelope; the result is *not yet independently validated*, so
+the paper cites it as plausible, not confirmed (see Flagged ambiguities).
+_Avoid_: presenting `f = 0.8` as validated/confirmed; the symbol `f` also denotes pulse
+frequency in the buffer invariant (`T = 1/f`), a distinct quantity.
+
 ### Interception navigation (near-term LEO)
 
 **Common-mode error**:
