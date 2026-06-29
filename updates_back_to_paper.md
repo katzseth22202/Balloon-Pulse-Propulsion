@@ -91,6 +91,12 @@ grilling session; resolutions recorded below. Downstream items flagged
   fail-safe rationale (external reaction mass ⇒ approach from behind; rear sail
   shields crew; misses fly off behind; silhouette ≥ craft). The `1/L²` buckling
   *cost* stays in Appendix Y.
+  - **REFINED 2026-06-29 (Medusa grill).** Appendix Y is killed, so the `1/L²` buckling
+    cost no longer goes there: it stays in the body as a qualitative one-liner plus ONE
+    rescued mitigation clause (sailboat-mast bracing + telescoping), all strut numbers
+    dropped. Also keep one buffer-invariant unification sentence and a half-sentence
+    concave-face cross-ref to §Mass Fraction. The LEO-drag idea was considered and dropped
+    (~3 N at the 200 km boost altitude).
 - [x] **D3 — Worked example (4 Hz / 4.6 m / 3.2 t): body anchor or appendix-only?**
   → **One-line anchor triple in the body** (refined past the "appendix-only" lean).
   Body gets only the `(f, stroke, plate-fraction)` triple as a parenthetical
@@ -1087,10 +1093,28 @@ Beyond Orion") is the destination for the Medusa-geometry and pusher-plate trade
 The body gets the conceptual claims (2–3 sentences each); the math goes to the new
 appendix below.
 
-- [ ] **Body: our Medusa-style sail is behind the rocket (compression), unlike real Medusa (tension)** · `[sizing]`  (blocked on D2)
-  - [ ] State the sail is mounted behind the rocket, so its struts carry compression, unlike real Medusa's tension cables, and compression members buckle (the L² penalty)
+- [ ] **Body: our Medusa-style sail is behind the rocket (compression), unlike real Medusa (tension)** · `[sizing]`  (D2 resolved; refined by the 2026-06-29 Medusa grill — now the authoritative Medusa-structural body item; Appendix Y killed)
+
+  > **STATUS 2026-06-29 (Medusa grill).** Appendix Y is killed; its content collapses into
+  > this body item plus re-homing. Decisions: (1) keep the full rear-mount fail-safe
+  > paragraph (compression + crew-shielding + cargo fork) — sub-bullets and prose below;
+  > (2) rescue ONE buckling-mitigation clause into the body (guyed by tension stays like a
+  > sailboat mast, telescoped so peak load hits at short length), drop all strut numbers
+  > (10–12 t / 1.5–2 t / √E·ρ⁻¹); (3) keep ONE qualitative buffer-invariant unification
+  > sentence (sail and rigid plate are the two ends of one `m·s` law); (4) add a
+  > half-sentence cross-ref to §Mass Fraction for the concave-face momentum point, do NOT
+  > re-derive it here; (5) the LEO-drag idea was considered and dropped (~3 N on a 200 m²
+  > sail at 200 km, negligible vs thrust); (6) the off-center-torque note and the
+  > zero-torque down-push placement are re-homed outside the Medusa section (see those
+  > items); (7) fold the parked `:1168` "possibility at sides" raw note into the body
+  > cargo-fork as ONE hedged sentence (side-split front/tension sail kept on-axis by a
+  > paired or annular layout, only partially fail-safe, harder aiming).
+  - [ ] State the sail is mounted behind the rocket, so its struts carry compression, unlike real Medusa's tension cables, and compression members buckle (the L² penalty). Add the one-clause mitigation: the strut is braced by tension stays like a sailboat mast and telescoped so peak compression coincides with its shortest length. No numbers.
   - [ ] State the rear mount is a deliberate fail-safe: the expendable sail shields the crew and overshoots fly off behind, whereas a front/tension sail would force every PuffSat past the crew cabin
-  - [ ] One sentence: the front/tension variant suits uncrewed cargo. Keep all buckling numbers out of the body (they go to the appendix)
+  - [ ] One sentence: the front/tension variant suits uncrewed cargo. Drop all buckling numbers entirely (Appendix Y killed — the qualitative L² point plus the mitigation clause carry the argument)
+  - [ ] Add ONE qualitative buffer-invariant unification sentence where the sail is introduced alongside the plate: the sail and the rigid plate are the two ends of one `m·s` law — the sail trades a long stroke for a light buffer, the plate a short stroke for a heavy one. No numbers. (Lands with the pending rigid-plate body paragraph; the only Appendix Y content that survives.)
+  - [ ] Add a half-sentence cross-ref to §Mass Fraction for the shape/momentum point: the sail's concave gas-facing face wraps the divergent puff and collimates the rebound forward, the same curvature lever that raises effective `f`. Fix the wording — it is the **concave** face (convex is the payload side), and it helps the **direction** half of `f`, not the restitution. Do not re-derive the opacity-vs-geometry split; point to the fudge-factor item (`:130–135`).
+  - [ ] Add ONE hedged sentence extending the cargo fork (folds in the parked `:1168` "possibility at sides" raw note): a front/tension sail split symmetrically to the sides (paired or annular, thrust on-axis) routes PuffSats up the flanks and can keep even a crewed cabin off the centerline, recovering the no-buckling tension advantage — but it is only partially fail-safe (a miss can clip the flank, not fly off behind) and costs harder off-axis aiming.
 
   *Resolved context (behind = compression).* The behind-mounted sail puts the struts in
   **compression** (tension is real Medusa, sail in front). Real Project Medusa: sail
@@ -1101,7 +1125,10 @@ appendix below.
   **compression**, and compression members buckle. Euler critical load
   P_cr = π² E I / (K L)² falls as 1/L², so a ~100 m compression strut is a far harder
   structural problem than a 100 m Medusa tether. That is the real, substantive
-  difference between our concept and Medusa.
+  difference between our concept and Medusa. The penalty is paid down, not eliminated. A
+  compression boom braced by tension stays, on the sailboat-mast principle, and telescoped
+  so its peak load falls at its shortest length, stays buildable, which is why the concept
+  survives the L² cost.
 
   *Why keep the sail behind anyway (the rationale to state).* Forward acceleration with
   *external* reaction mass forces the source PuffSat to approach from behind and overtake
@@ -1113,8 +1140,20 @@ appendix below.
   expendable membrane always shields the crew. So the compression/buckling mass penalty
   is the price of keeping humans out of the firing line. Fork for uncrewed cargo:
   front/tension (light tethers, no buckling) becomes attractive when a rare strike is a
-  lost vehicle, not lost lives (connects to the "Medussa parachute / possibility at
-  sides" raw note below and the cargo case).
+  lost vehicle, not lost lives. A side-split variant could narrow that gap. A front/tension
+  sail divided symmetrically to the sides, paired or annular so the thrust stays on the
+  axis, routes the PuffSats up the flanks and keeps even a crewed cabin off the centerline,
+  recovering the no-buckling tension advantage. It is only partially fail-safe, because a
+  mis-aimed solid can still clip the flank rather than flying off behind, and it costs
+  harder off-axis aiming.
+
+  *Buffer-invariant unification (one sentence, with the rigid-plate paragraph).* The sail
+  and the rigid plate are the two ends of one `m·s` law: the sail trades a long stroke for
+  a light buffer, the rigid plate a short stroke for a heavy one.
+
+  *Shape and momentum (half-sentence cross-ref).* The sail's concave gas-facing face wraps
+  the divergent puff and collimates the rebound forward, the same curvature lever the
+  fudge-factor discussion uses to raise the effective `f` (see §Mass Fraction).
 
 - [ ] **Body: the plate has no Orion-style critical mass — two compact paragraphs, no appendix** · `[sizing]`  (D1/D3 superseded 2026-06-29; replaces the killed Appendix X)
   - [ ] Slot both paragraphs near the existing shock-absorber discussion (`sec:lightweight_pusher_plates`, the MR-fluid / magnetic-braking paragraph, line ~739 of `templateArxiv.tex`, which already hooks "deliberately reduce acceleration per pulse... relaxing shock absorber requirements")
@@ -1124,12 +1163,13 @@ appendix below.
   - [ ] **Wording guard:** never write "plate mass *and* stroke both fall quadratically" — that is a factor-f² overclaim. It is the *product* `m_p·s` that scales as 1/f².
   - [ ] This supersedes the worst-case "1/1 pusher plate" raw note — the plate reaches ~10% of craft, not 1/1.
 
-- [ ] **Down-push from descending-leg interception, cancelled by the plate's rebound geometry** · `[sizing]`
+- [ ] **Down-push from descending-leg interception, cancelled by the plate's rebound geometry** · `[sizing]` `[SIM]`
   - [ ] State the premise (set up by the `sec:handling_space_debris` ~50 km disposal item): PuffSats are caught on the descending leg, falling toward the ~50 km disposal perigee, so their velocity relative to the craft carries a downward (radially-inward) component. Each pulse delivers forward thrust plus a downward kick of about `sin γ` of the impulse (γ = the PuffSat's flight-path angle below the craft's velocity), order ~10–25%. Pull γ from the trajectory design; do not invent it. Same sign every pulse, so it is cumulative and bends the trajectory Earthward if left uncorrected.
   - [ ] State the primary fix (orientation/shape, not active down-throwing): the net force on the craft is set by the plate's orientation relative to the **thrust axis**, not relative to the incoming-PuffSat line. A plate whose normal lies along the thrust axis reverses only the forward component of the gas and lets the downward component pass back out, so the rebound carries the PuffSat's downward momentum away and the craft feels pure forward thrust. A plate squared-on to the incoming PuffSat does the opposite and doubles the down-kick.
-  - [ ] State why the trim rides on the reflected momentum, not on spill: the plate is opaque (the same opacity result behind the high `f`), so little gas escapes sideways past it, and we want to keep that spill small anyway to hold `f` high. If an active upward trim `F_up` is wanted beyond just neutralizing the kick, get it by tilting the plate slightly further off the thrust axis so the reflected gas is thrown a little downward, giving an upward reaction scaled by the full rebounded momentum rather than by a small spill fraction. (Drops the earlier biased-spill variant, which tried to harvest sideways-escaping gas; an opaque plate reflects rather than letting gas escape past the edge.)
-  - [ ] Cite-check the "opaque plate reflects rather than spilling sideways" claim — do **not** lean on Balcomb for the geometry. `balcomb1970nuclear` supports the opacity→restitution result (radiation reflected, near-elastic bounce), not the geometric capture/no-spill. For the geometry cite `solem_medusa` (Solem's Medusa: a concave sail wrapping the divergent expansion and reflecting it forward is the direct PuffSat analog), with `projorion` (Schmidt et al., peer-reviewed *J. Propulsion and Power*) as a secondary for pusher-plate momentum coupling. Both keys already exist in `references.bib` and are cited elsewhere. Verify Solem actually states the capture/no-spill geometry, not just the sail *shape*; if he only describes the shape, fall back to the original GA/Orion impulse-coupling reports for the momentum claim. Same caveat applies to the fudge-factor item's plate-shape cite-check (§How PuffSats Work → Mass Fraction).
-  - [ ] State the zero-torque placement (the appendix math): a net upward trim `F_up` applied at the rear plate (distance `d` behind the CoM) would pitch the craft. Putting the impact point a height `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel it, so the resultant points through the CoM and the trim costs nothing in attitude. This is the vertical, by-design cousin of the lateral off-center-torque note. **(Stale routing, 2026-06-29: Appendix X is killed and the off-center-torque note is deferred to the Medusa grill; this zero-torque derivation's home is reopened with it. Keep the one-line body statement; decide its appendix-vs-body home alongside the deferred off-center-torque note, not in Appendix X.)**
+  - [ ] State why the trim rides on the reflected momentum, not on spill: the plate is opaque (the same opacity result behind the high `f`), so little gas escapes sideways past it (now backed by our hydrocode — see the support bullet below), and we want to keep that spill small anyway to hold `f` high. If an active upward trim `F_up` is wanted beyond just neutralizing the kick, get it by tilting the plate slightly further off the thrust axis so the reflected gas is thrown a little downward, giving an upward reaction scaled by the full rebounded momentum rather than by a small spill fraction. (Drops the earlier biased-spill variant, which tried to harvest sideways-escaping gas; an opaque plate reflects rather than letting gas escape past the edge.)
+  - [ ] Support (resolved 2026-06-29): the empirical "little gas spills sideways" claim now rests on our own hydrocode, not on a contested reading of Solem. A preliminary single-code hydrodynamic analysis (companion repo `puffsat_impact_simulation`, `Katz_puffsat_impact_sim_2026`) finds **sideways escape** is a subdominant loss channel across the LEO insertion band, below the condensation/conduction channels even at the cool 3.2 km/s water worst case. Cite it with the same "preliminary single-code, not yet validated" caveat the paper already uses for `f=0.8` (`templateArxiv.tex:253`). `[SIM]` fill in the actual sideways-escape fraction (and its velocity anchor) from the loss-decomposition output once it is in hand; until then state the claim qualitatively (subdominant), not with a number.
+  - [ ] Cite roles now that the sim is primary: `solem_medusa` (concave sail wrapping the divergent expansion) and `projorion` (pusher-plate momentum coupling) demote to **design heritage** — cited for *why* the plate is shaped to collimate the rebound, not as the load-bearing no-spill proof. That makes the old "verify Solem actually states the capture/no-spill *geometry*, not just the sail *shape*" worry a non-blocker: we now cite Solem only for the shape/lineage, which he plainly describes. `balcomb1970nuclear` is unchanged — opacity→restitution only, never the geometry. Note: the parallel fudge-factor item (§How PuffSats Work → Mass Fraction) still carries the original Solem caveat; it was left untouched in this pass and should be reconciled the same way later.
+  - [ ] State the zero-torque placement (the appendix math): a net upward trim `F_up` applied at the rear plate (distance `d` behind the CoM) would pitch the craft. Putting the impact point a height `h = d·(F_up/F_fwd)` below the centerline makes the forward thrust's couple cancel it, so the resultant points through the CoM and the trim costs nothing in attitude. This is the vertical, by-design cousin of the lateral off-center-torque note. **(Routing resolved 2026-06-29, Medusa grill: keep ONLY the one-line body statement of the placement in this down-push item's body prose; the full `h = d·(F_up/F_fwd)` derivation is dropped with the killed appendices. The off-center-torque note it referenced now folds into the D4 body clause.)**
   - [ ] Note the shared lever with the fudge-factor item (§How PuffSats Work → Mass Fraction): a curved plate that wraps the divergent puff both raises `f` (collimates the rebound forward) and is what lets the rebound carry the down-momentum out. One plate-shape decision, two payoffs.
 
   Because PuffSats are caught while falling toward their ~50 km disposal perigee, the
@@ -1143,8 +1183,12 @@ appendix below.
   downward component pass straight back out, so the rebound carries the unwanted
   down-momentum away and the craft feels only forward thrust. (A plate aimed square at the
   incoming PuffSat would instead double the down-kick.) Because the plate is opaque, little
-  of the gas escapes sideways past it, and we want to keep that spill small anyway to hold
-  `f` high, so the trim rides on the reflected momentum rather than on a biased loss.
+  of the gas escapes sideways past it. A preliminary single-code hydrodynamic analysis
+  (`Katz_puffsat_impact_sim_2026`) backs this. Its loss decomposition puts sideways escape
+  below the condensation and conduction channels across the LEO insertion band, including the
+  cool 3.2 km/s worst case. The down-component therefore reflects cleanly rather than leaking
+  past the edge. We want to keep that spill small anyway to hold `f` high, so the trim rides
+  on the reflected momentum rather than on a biased loss.
   Neutralizing the kick this way is usually enough; if a steady upward trim `F_up` is
   wanted on top of it, tilt the plate slightly further off the thrust axis so the reflected
   gas is thrown a little downward and the craft feels an upward reaction set by the full
@@ -1160,7 +1204,7 @@ appendix below.
 
 - [ ] torque but if spacecraft is long, force may be small for reaction wheels - when there is an off center impact. · `[raw]`
 - [ ] We should discuss that for 5 meter wide plate, its OK because plate needs some mass anyway to smooth acceleration without unreasonably long shock absorber. · `[raw]`
-- [ ] Explain issues with Medussa large strechy parachute, but possibility to do at sides. · `[raw]`
+- [x] ~~Explain issues with Medussa large strechy parachute, but possibility to do at sides.~~ · `[raw]`  **RESOLVED 2026-06-29 (Medusa grill).** (a) The "large stretchy parachute" issues are already handled by the existing taut-net design (`templateArxiv.tex:723`: the Vectran net keeps the sail taut, not billowing, so it holds its concave collimating shape). (b) "Possibility at sides" = a front/tension sail split symmetrically to the sides so PuffSats route up the flanks and keep a crewed cabin off the centerline; folded into the body item's cargo fork as ONE hedged sentence (on-axis via a paired/annular layout; only partially fail-safe; harder aiming).
 - [ ] explain possibility of 1/1 pusher plate · `[raw]`  *(superseded by the body buffer-invariant paragraph — Appendix X folded into body 2026-06-29: plate reaches ~10 % of craft mass, not 1/1)*
 - [ ] for shock physics, higher atmosphere - string of pearls shaping to elongate the design · `[raw]`
 
@@ -1177,8 +1221,11 @@ appendix below.
 > kept only as source material for writing those paragraphs (the invariant, the
 > survivability floor, the one transmissibility figure); the trade tables and full
 > worked example below are **dropped**, not transcribed.
-> **Appendix Y (Medusa sail + struts) is DEFERRED** to a later Medusa-focused grill —
-> do not write it from this spec yet.
+> **Appendix Y (Medusa sail + struts) is KILLED 2026-06-29 (Medusa grill).** No appendix.
+> Its content collapses into the body item "our Medusa-style sail is behind the rocket"
+> above: the rear-mount fail-safe paragraph stays, ONE buckling-mitigation clause and ONE
+> buffer-invariant unification sentence are rescued to the body, and all strut numbers are
+> dropped. See that item's STATUS block for the full routing.
 
 The original "two appendices" rationale (now historical): each appendix would restate
 the buffer invariant `m·s ≈ M a T²/4` briefly, carrying the math so a skeptical reader
@@ -1267,7 +1314,7 @@ Appendix Y = Subsection 2 below.
   one transmits the jolt. With a good two-stage absorber, the duty-cycle skew (long push,
   quick re-cock) and multi-plate phasing become optional refinements, not necessities.
 
-- [ ] **Subsection 2 — the Medusa sail and struts: same invariant at long stroke, buckling-limited struts** · `[sizing]`  **DEFERRED 2026-06-29 → resolve in a later Medusa-focused grill (scope, body vs appendix, how many numbers all open; do not write from this spec yet).**
+- [x] ~~**Subsection 2 — the Medusa sail and struts: same invariant at long stroke, buckling-limited struts**~~ · `[sizing]`  **KILLED 2026-06-29 (Medusa grill) → no appendix.** What survives, all in the body item above: the fail-safe paragraph (kept), ONE buckling-mitigation clause (sailboat-mast bracing + telescoping, no numbers), ONE qualitative buffer-invariant unification sentence. **Dropped:** every strut number below (10–12 t / 1.5–2 t / √E·ρ⁻¹ / steel 4–5×), the ~100 kg sail-floor number, the net-assembly tonnage. Source numbers retained below for reference only; do not transcribe.
   - [ ] Same invariant at long stroke gives the ~100 kg sail (~4 kg/m² over 25 m², coinciding with the thermal floor)
   - [ ] Strut buckling numbers: monolithic CFRP ~10–12 t (too heavy); guyed/lattice CF boom ~1.5–2 t (viable); the √(E)/ρ figure of merit; steel's 4–5× penalty; titanium/steel only at joints
   - [ ] The telescoping-helps-buckling point (peak force at max compression / shortest length)
@@ -1305,7 +1352,7 @@ Appendix Y = Subsection 2 below.
   - Net pusher assembly: order 1.5 to 2 t of structure plus 0.1 to 0.3 t of sail, a few
     percent of a 32 t craft.
 
-- [ ] **Subsection note — off-center torque and rotational inertia (the forgiving-plate consequence)** · `[sizing]`  **DEFERRED 2026-06-29 → revisit with the Medusa grill; it leans on the dropped appendix off-center-torque math, so its home (body vs appendix) is reopened.**
+- [x] ~~**Subsection note — off-center torque and rotational inertia (the forgiving-plate consequence)**~~ · `[sizing]`  **RESOLVED 2026-06-29 (Medusa grill) → folds into the D4 body clause, not the Medusa section.** The 2 m-miss torque cost already goes to the body via D4 ("a 2 m miss buys more RCS authority + plate inertia"); add the half-idea that a longer absorber stroke buys time to recenter between pulses. Drop the appendix torque/rotational-inertia derivation below (kept only as source). Not Medusa content.
   - [ ] Add the off-center-torque and rotational-inertia argument: accepting up to a 2 m lateral miss applies a torque; a larger/heavier 5 m plate resists tip-over and a longer stroke buys time to recenter and let the RCS cancel the moment
   - [ ] Note heavier-plate-plus-longer-stroke sits above the m_p·s minimum, so it costs nothing in feasibility — we trade mass-optimality for forgiveness deliberately
 
