@@ -79,8 +79,58 @@ The mission-success criterion: a PuffSat landing anywhere within the ~5 m plate
 (≥99 % probability), not hitting a precise point.
 _Avoid_: "centimetre centring" as the *committed* requirement (see Flagged ambiguities).
 
-**Coordinator node**:
-A support satellite supplying ranging or metrology to an interception.
+**Feasibility tiers**:
+The three confidence levels the interception claim is carried at, kept deliberately
+separate. Tier 1: a 5 m plate capture, closed-loop simulated (companion repo
+`puffsat_control_simulation`). Tier 2: a ~10 cm plate, argued and sized
+(**surveyor-anchored centring**), not simulated. Tier 3: a near-Sun/Parker extension,
+an architectural sketch with open numbers. Only Tier 1 is a simulation result.
+
+**Off-board nav assets (LEO)**:
+The interception's support hardware, redistributed from the paper's original single
+**coordinator node** into the three roles below. No dedicated per-mission co-flying
+coordinator satellite is needed for LEO; the tracking-and-relay role is carried by
+permanent infrastructure plus assets already in the architecture (the target, the reused
+launch rocket).
+
+**Apogee nav constellation**:
+A permanent ~150,000 km Ka-band, authenticated *one-way broadcast* network that pins the
+PuffSat's coast/apogee position; the PuffSat is a passive receiver. Sized to *match* (not
+beat) the coast accuracy the corrector needs; ~3 members suffice.
+_Avoid_: "GNSS at apogee" (there is none; GPS reaches only ~20,200 km and the geometry
+differs); "coordinator node" (this is permanent infra, not a co-flyer).
+
+**Target-side tracker array**:
+The load-bearing terminal sensor: several (~5) independent, separately bench-calibrated
+detectors on the target that image each PuffSat's optical beacon against a reference-star
+field. Fusing them beats one detector by √N down to a common-mode floor (~1.6 µrad).
+_Avoid_: calling it a coordinator node; expecting *ranging* to sharpen the lateral (angle
+does the cross-track work).
+
+**Co-flying tracker**:
+The reused launch rocket serving as a closer terminal vantage (shorter range `R`, so
+smaller `σ_θ · R`); a redundant hedge, *not* required for the 5 m capture verdict.
+_Avoid_: treating it as a dedicated new satellite (it is the launch rocket, reused).
+
+**Differential astrometry** (star-differencing, the "Gaia trick"):
+Measuring a beacon's bearing relative to reference stars in the *same* exposure, so the
+focal-plane distortion common to beacon and nearby stars cancels. This is what "star maps"
+buy: they attack the binding **cross-track knowledge** error, which is a fixed optical
+*calibration bias*, not random noise.
+
+**PuffSat self-homing** (redundancy layer, not yet simulated):
+An optional autonomy layer: each PuffSat also carries a few-gram camera to image a bright
+target beacon against stars and run its own terminal guidance, fused with the target-side
+measurement. Strengthens the no-co-flyer story; costs a little non-volatile dry mass to
+dispose of before impact. The sim modeled only the target-side path, so this is a
+speculative addition, not a simulation result.
+_Avoid_: presenting it as the load-bearing baseline (the **target-side tracker array** is).
+
+**Coordinator node** (legacy framing, superseded for LEO):
+The paper's original picture in `sec:coordinator_node_dry_mass_disposal`: a co-flying
+satellite that tracks each PuffSat and uplinks commands. Superseded for LEO by the
+**off-board nav assets** above; retained only until that section is rewritten.
+_Avoid_: using it for the new architecture (name the specific asset instead).
 
 **Surveyor-anchored centring**:
 An optional metrology upgrade (a sacrificial "surveyor" projectile measured by an
@@ -151,10 +201,16 @@ atomization and over-pressurizes the liner if it dissociates while confined.
   absorber obey the **buffer invariant**.
 - **Common-mode error** is cancelled by a **centroid retarget**; only **per-unit
   scatter** must fit inside the **catch radius**.
-- **Plate capture** is the success criterion; **surveyor-anchored centring** is the
-  optional path that shrinks the plate.
+- **Plate capture** is the success criterion. The claim runs in **feasibility tiers**:
+  Tier 1 (5 m) is simulated; **surveyor-anchored centring** is the Tier 2 (~10 cm) path,
+  argued not simulated.
+- For LEO, the **apogee nav constellation** pins the coast; the **target-side tracker
+  array** (plus the **co-flying tracker**, and optionally **PuffSat self-homing**) does
+  terminal homing via **differential astrometry**. Together these are the **off-board nav
+  assets** that replace the dedicated **coordinator node** of the original paper.
 - Near the Sun, lateral knowledge comes from **transverse-node differential ranging**
-  with good **GDOP**; control is **deterministic-coast correction**.
+  with good **GDOP**; control is **deterministic-coast correction**. The **apogee nav
+  constellation** does double duty here, since an Earth-to-Sun transfer departs from Earth.
 - Heliocentric distance sets the cryogen via the **passive-shielding temperature law**:
   LOX/methalox inside the **passive-LH₂ threshold** (~1.5 AU), LH₂/LOX beyond it; where a
   stored cryogen is unwanted, **on-demand electrolysis propellant** carries water instead.
@@ -176,10 +232,14 @@ atomization and over-pressurizes the liner if it dissociates while confined.
   on the 5 m plate) is the *committed* requirement; centimetre precision is achievable
   *capability* and an optional later tightening (surveyor-anchored centring), not the bar
   the baseline must clear.
-- **"coordinator node" — still open.** The architecture is actively questioning whether
-  dedicated coordinator nodes are needed at all, versus ranging off ground/rocket
-  infrastructure or a space-only GNSS. Use the term, but do not assume coordinator nodes
-  are settled.
+- **"coordinator node" — resolved 2026-06-30 (grill).** No dedicated per-mission co-flying
+  coordinator satellite is needed for LEO. The role is redistributed into the **off-board
+  nav assets**: a permanent **apogee nav constellation** (one-way broadcast) for the coast,
+  and a **target-side tracker array** + reused-rocket **co-flying tracker** for terminal
+  homing, optionally backed by **PuffSat self-homing**. The companion control sim closed
+  this at the 5 m (Tier 1) level. "Coordinator node" is now a *legacy* term for the original
+  co-flying-brain framing; name the specific asset instead. `sec:coordinator_node_dry_mass_disposal`
+  is slated for rewrite.
 - **Medusa "behind" = tension** was a slip; the behind-mounted sail is in
   **compression**. Real Medusa (front-mounted) is tension.
 - **"hydrolyze" → "photodissociate"** (resolved 2026-06-30, §8 ozone subsection

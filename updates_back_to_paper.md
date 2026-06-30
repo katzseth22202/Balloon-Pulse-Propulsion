@@ -1020,6 +1020,43 @@ glossed once where the section introduces the guidance concepts (likely
 >   and cancelling it on a schedule, instead of reacting to it after it has pushed you
 >   off course.
 
+### → `sec:engineering` (new section-intro overview)
+
+- [ ] **"LEO at a glance": the near-term architecture and its confidence ladder, in one place** · `[SIM]` (Tier-1 spine; Tiers 2/3 are `[sizing]`/`[raw]`)
+  - [ ] Open the section with a compact overview a reader grasps before the subsection detail
+  - [ ] State the GOCE-upgrade up front: navigation feasibility no longer rests on the GOCE analogy; a preliminary closed-loop Monte Carlo (companion repo `puffsat_control_simulation`) now models the full apogee-to-interception problem
+  - [ ] Name the three off-board nav assets (apogee nav constellation; target-side tracker array; co-flying tracker) and that no dedicated co-flying coordinator satellite is needed
+  - [ ] Carry the explicit three-tier confidence ladder (Tier 1 simulated 5 m; Tier 2 argued ~10 cm; Tier 3 near-Sun sketch)
+  - [ ] Hold the umbrella register at "preliminary + conditional"
+
+  A preliminary closed-loop Monte Carlo simulation (companion repo
+  `puffsat_control_simulation`) models the full path a PuffSat flies, from deployment near
+  apogee (~150,000 km) down to interception near perigee (200 km), and finds that capturing
+  a 5 m pusher plate is feasible under the modeled dispersions. The result is conditional on
+  the sensor and thruster grades the simulation takes as inputs, uses a conservative
+  cannonball drag shape, and is not yet cross-checked against an independent astrodynamics
+  tool. It is a simulation result, not a flight result. What it buys the paper is concrete:
+  the navigation problem is no longer argued only by analogy to GOCE.
+
+  The near-term LEO implementation uses three off-board navigation assets, none of them a
+  dedicated co-flying "coordinator" satellite. (1) A permanent **apogee nav constellation**:
+  a small (~3-member) Ka-band network near apogee that broadcasts a one-way authenticated
+  nav signal, which the passive PuffSat receives to fix its coast position. This is not GNSS;
+  GPS reaches only ~20,200 km, well below apogee. (2) A **target-side tracker array**:
+  several independently calibrated cameras on the target that image each PuffSat's optical
+  beacon against the star field and drive its terminal homing. (3) A **co-flying tracker**:
+  the reused launch rocket, a closer vantage that adds margin but is not required. The
+  original paper's co-flying coordinator nodes, which were to track each PuffSat and uplink
+  commands, are not needed for LEO. The target itself and the reused launch rocket carry that
+  role.
+
+  The feasibility claim runs in three tiers, kept separate on purpose. Tier 1, a 5 m plate
+  capture, is the closed-loop simulation result above. Tier 2, shrinking the plate toward
+  ~10 cm with surveyor-anchored centring, is argued and sized but not simulated. Tier 3,
+  extending the same pattern to a near-Sun (Parker-class) trajectory, is an architectural
+  sketch with two open sizing numbers. Only Tier 1 is a simulation result; Tiers 2 and 3 are
+  labeled as extrapolations.
+
 ### → `sec:formation_challenges_current_missions`
 
 - [ ] **Success criterion = capturing the pusher plate, not centimetre centring** · `[SIM]`  (blocked on D4)
@@ -1137,12 +1174,63 @@ glossed once where the section introduces the guidance concepts (likely
 - [ ] star maps may be enough for necessary angular resolution estimated at 10 micro-rad on the main plane · `[raw]`
 - [ ] note the plane can adjust its starting point by 10s of kilometers, so if there is systemic drift in PuffSats is OK as long as PuffSat formation shape is good looking. · `[raw]`
 
+- [ ] **GOCE, re-divided: keep it for drag/thrust sizing and as a flown drag precedent; navigation feasibility graduates to the closed-loop sim** · `[SIM]`/`[sizing]`
+  - [ ] Keep GOCE as the source of the ~400 mN peak-thrust and <2% cold-gas sizing (`sec:estimate_cold_gas`), now corroborated by the sim's catch-radius and propellant budget
+  - [ ] Keep one sentence that GOCE flew drag-compensated at 229 km, as a precedent that controlled low-altitude flight is real
+  - [ ] Move the navigation/guidance feasibility claim onto the closed-loop sim; stop leaning on GOCE as the navigation analogy
+  - [ ] Dissolve the kg-accelerometer worry (this file, the line-1133 raw note): the sim needs no onboard precision accelerometer, because terminal drag is feed-forward-solved from a ground prior and the bar is a 5 m plate, not millimetres
+  - [ ] Drop or soften the "GOCE accelerometers enable precise corrective maneuvers" sentence accordingly
+
+  GOCE keeps two honest jobs and loses a third. It stays the source of the thrust and
+  propellant sizing: the ~400 mN peak thrust is the GOCE-scaled peak drag at 200 km
+  (`sec:estimate_cold_gas`), and the <2% cold-gas budget follows from it. The closed-loop
+  simulation now corroborates both, since the 400 mN actuator sets the ~475 m catch radius
+  and the full closed-loop propellant budget lands under 2%. GOCE also stays as a one-line
+  precedent that drag-compensated flight at ~229 km has actually been flown.
+
+  What GOCE no longer has to carry is the navigation argument. The earlier text leaned on
+  GOCE's drag-free control as evidence that PuffSat guidance would work, but GOCE never
+  demonstrated an interception. The closed-loop sim models that directly, so the
+  navigation-feasibility claim moves there. This also retires a liability: GOCE measured drag
+  with a kilogram-scale accelerometer that will not fit on a PuffSat. The sim shows no such
+  instrument is needed. Terminal drag is computed ahead of time and cancelled on a schedule
+  from a ground-measured coefficient prior, and the success bar is a 5 m plate, not a
+  millimetre point. The sentence crediting GOCE accelerometers with "precise corrective
+  maneuvers" should be dropped or softened to match.
+
 ### → `sec:fine_control_thrusters`
 
 - [ ] propose 3m/s omnidirectional thrust capability of rocket, Gaussian distributed with .5 m/s standard deviation, align once per second. · `[raw]`
 - [ ] torque correction is RCS + rocket engine - non,toxic fuel obviously · `[raw]`
 
 ### → `sec:coordinator_node_dry_mass_disposal`
+
+- [ ] **Rewrite the coordinator-node framing: no dedicated co-flying coordinator satellite for LEO; the role redistributes into three off-board nav assets** · `[SIM]`
+  - [ ] Replace "a small number of coordinator satellites ... fly alongside the formation ... track the PuffSats' positions and relay adjustment commands" with the redistributed architecture
+  - [ ] (1) apogee nav constellation (one-way Ka-band broadcast, passive PuffSat) for the coast; (2) target-side tracker array for terminal homing; (3) reused launch rocket as co-flying tracker (a hedge, not required)
+  - [ ] Keep the dry-mass-disposal content unchanged (discard/aperture/pulverize strategies, the Whipple-like plate as last line of defense): that argument does not depend on who does the tracking
+  - [ ] Flag, do not silently rename: the subsection title and the `images/Coordinator Nodes.png` caption need revising when this lands
+  - [ ] Fold the "GNSS-free coast" item below in here as the coast half of the story
+
+  The original section frames a small number of heavier coordinator satellites that fly
+  alongside the formation, track each PuffSat, and uplink corrections. The closed-loop sim
+  does not need them for LEO. The tracking-and-relay role splits across three assets, none of
+  them a dedicated co-flying satellite built to shepherd the swarm.
+
+  For the multi-day coast, a permanent **apogee nav constellation** pins position. It is a
+  small Ka-band network near apogee broadcasting a one-way authenticated signal that the
+  passive PuffSat receives. For terminal homing, a **target-side tracker array** (several
+  independently calibrated cameras on the target) images each PuffSat's beacon against the
+  stars and drives the final correction. The reused launch rocket adds a closer **co-flying
+  tracker** as a hedge. The target and the launch rocket are already in the architecture, so
+  the dedicated coordinator node is retired.
+
+  The dry-mass disposal argument is unchanged, because it does not depend on who tracks the
+  PuffSats. The PuffSat still carries little non-volatile solid, still sheds or routes it
+  before impact, and the plate still backstops a failed disposal like Whipple shielding. Two
+  housekeeping items: the subsection title and the "Coordinator Nodes" figure caption should
+  be revised when this lands, and the GNSS-free coast item below folds in here as the coast
+  half of the story.
 
 - [ ] **GNSS-free coast: a Ka-band, authenticated ranging constellation near apogee** · `[SIM]`
   - [ ] Add: no GNSS anywhere; coast position knowledge from a Ka-band authenticated ranging constellation near apogee (~150 000 km)
@@ -1287,6 +1375,8 @@ glossed once where the section introduces the guidance concepts (likely
   the ground prior's actual uncertainty. The paper can state plainly that **in-flight
   coefficient estimation is unnecessary for the midcourse**, which removes a whole
   speculative subsystem from the near-term story.
+
+- [ ] PuffSat self-homing as a redundancy layer: besides the load-bearing target-side tracker array, each PuffSat can carry a few-gram camera to image a bright target beacon against stars and run its own terminal guidance, fusing both bearing directions. Strengthens the no-coordinator story and the autonomy of the final correction. Costs a little non-volatile dry mass that must be disposed before impact (within the 250 g budget). Not yet simulated: the sim modeled only the target-side path, which stays the baseline. We expect it to help, not replace. · `[raw]`
 
 ### → `sec:handling_space_debris`
 
