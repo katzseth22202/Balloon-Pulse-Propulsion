@@ -858,6 +858,140 @@ Resolved in a grilling session (2026-06-30).
 
 - [ ] brief note about geopolitcal overflight risks of PuffSat suborbital travel · `[raw]`
 
+- [ ] **Ozone / stratosphere policy mention: avoidable reentry NOx, plus water worth monitoring at scale** · `[raw]` → **new subsection** in §War, Policy (`\label{sec:ozone_policy}`)
+  - [ ] add the new subsection (two short paragraphs, prose below)
+  - [ ] cross-ref `\autoref{sec:200_mile_high}` (where the retrograde reentry-PuffSat deceleration already lives)
+  - [ ] add the 8 `references.bib` entries (block below); verify the `% TODO-CITE`-flagged fields at fold-in
+  - [ ] leave the §3 "less pollution for a given ΔV" line (`templateArxiv.tex` ~L244) untouched, per decision
+
+  **Framing settled in the 2026-06-30 grill** (all three of Seth's points, with the honesty caveats agreed):
+  point 1 = reentry NOx is the dominant *avoidable* ozone term and we skip it by braking on PuffSats;
+  point 2 = ascent water is the residual worth monitoring at airline-replacement scale, but it clears in
+  years; point 3 = PuffSat water at 200 km photodissociates above the ozone layer. Keep the `[raw]`
+  epistemic voice ("worth watching", "deserves monitoring"); the policy ask is *measure-and-gate, not
+  pre-emptive caps*. NOTE: "hydrolyze" in the original idea was wrong; the upper-atmosphere mechanism is
+  **photodissociation** (see `CONTEXT.md` flagged ambiguity). There is **no Starship-specific reentry-NOx
+  study**; we apply the general reentry-NOx literature to a Starship-class E2E vehicle. Plain numbers/units
+  below get `\SI{}{}`-wrapped at fold-in (style cleanup happens in the paper, per the standing instructions).
+
+  Proposed prose:
+
+  > \subsection{Don't Sweat the Stratosphere (But Do Watch It)}\label{sec:ozone_policy}\cite{carlson1997smallstuff}
+  >
+  > SpaceX's Earth-to-Earth Starship (see \autoref{sec:200_mile_high}) brakes by hitting the atmosphere at
+  > orbital speed. The bow shock heats the surrounding air past several thousand kelvin and makes nitric
+  > oxide out of ordinary nitrogen and oxygen. Re-entry NOx is one of the largest ozone-depletion terms for
+  > present-day spaceflight, on par with the chlorine from solid rocket motors \cite{ryan2022rocket}. A
+  > PuffSat suborbital plane has another route. It sheds orbital velocity against a retrograde formation of
+  > reentry PuffSats (see \autoref{sec:200_mile_high}) and enters the air slowly, with a weaker shock and far
+  > less NOx. Those PuffSats gasify to water, nitrogen, oxygen, and carbon dioxide, so they also avoid the
+  > metal-oxide pathway flagged for re-entering satellites \cite{ferreira2024ozone, barker2026megaconstellation}.
+  > The braking is not free. The reentry PuffSats are extra mass that had to be launched, and a slow entry
+  > means much less NOx, not zero. Removing the dominant ozone term by design is still a real gain over
+  > aerobraking.
+  >
+  > Water is the residual worth watching. Both the suborbital rocket burn and the Starship that lofts the
+  > PuffSats inject water vapor into the stratosphere on the way up. At the scale of replacing airline travel,
+  > that input deserves monitoring. Stratospheric water mildly depletes ozone \cite{ryan2022rocket} and adds a
+  > modest greenhouse warming \cite{solomon2010stratospheric}, but it clears in a few years, up to about a
+  > decade for the highest injections \cite{hunga2026residence}. That is far below the roughly 50 to 100 year
+  > atmospheric lifetimes of the CFCs \cite{wmo2022ozone} and the centuries over which carbon dioxide persists
+  > \cite{ipcc2021ar6}. The water the PuffSats themselves release sits near 200 km, well above the 15 to 35 km
+  > ozone layer. There it photodissociates under solar ultraviolet into hydrogen and hydroxyl, and the light
+  > hydrogen escapes to space, so most of it never reaches the ozone below, though some may. The short
+  > residence time and the avoidable NOx point to one policy. Monitor the stratospheric water and NOx burden
+  > as suborbital traffic grows, and gate expansion to the measured impact rather than capping flights in
+  > advance.
+
+  Proposed `references.bib` entries (paste at fold-in; resolve `% TODO-CITE` first):
+
+  ```bibtex
+  @article{ryan2022rocket,
+    author  = {Ryan, Robert G. and Marais, Eloise A. and Balhatchet, Chloe J. and Eastham, Sebastian D.},
+    title   = {Impact of Rocket Launch and Space Debris Air Pollutant Emissions on Stratospheric Ozone and Global Climate},
+    journal = {Earth's Future},
+    volume  = {10},
+    number  = {6},
+    pages   = {e2021EF002612},
+    year    = {2022},
+    doi     = {10.1029/2021EF002612},
+  }
+
+  @article{ferreira2024ozone,
+    author  = {Ferreira, Jos\'e P. and others}, % TODO-CITE: confirm full author list
+    title   = {Potential Ozone Depletion From Satellite Demise During Atmospheric Reentry in the Era of Mega-Constellations},
+    journal = {Geophysical Research Letters},
+    volume  = {51},
+    number  = {11},
+    pages   = {e2024GL109280},
+    year    = {2024},
+    doi     = {10.1029/2024GL109280},
+  }
+
+  @article{barker2026megaconstellation,
+    author  = {Barker, Connor and others}, % TODO-CITE: confirm full author list
+    title   = {Radiative Forcing and Ozone Depletion of a Decade of Satellite Megaconstellation Missions},
+    journal = {Earth's Future},
+    year    = {2026},
+    doi     = {10.1029/2025EF007229},
+  }
+
+  @article{solomon2010stratospheric,
+    author  = {Solomon, Susan and Rosenlof, Karen H. and Portmann, Robert W. and Daniel, John S. and Davis, Sean M. and Sanford, Todd J. and Plattner, Gian-Kasper},
+    title   = {Contributions of Stratospheric Water Vapor to Decadal Changes in the Rate of Global Warming},
+    journal = {Science},
+    volume  = {327},
+    number  = {5970},
+    pages   = {1219--1223},
+    year    = {2010},
+    doi     = {10.1126/science.1182488},
+  }
+
+  @techreport{wmo2022ozone,
+    author      = {{World Meteorological Organization}},
+    title       = {Scientific Assessment of Ozone Depletion: 2022},
+    institution = {World Meteorological Organization},
+    type        = {GAW Report No. 278},
+    address     = {Geneva, Switzerland},
+    year        = {2022},
+    note        = {Annex lists CFC-11 and CFC-12 atmospheric lifetimes (~50 and ~100 yr). % TODO-CITE: pin exact annex values; csl.noaa.gov PDF is sandbox-blocked, verify on an allowed host},
+  }
+
+  @book{ipcc2021ar6,
+    author    = {{IPCC}},
+    title     = {Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change},
+    publisher = {Cambridge University Press},
+    address   = {Cambridge, United Kingdom and New York, NY, USA},
+    year      = {2021},
+    doi       = {10.1017/9781009157896},
+    note      = {CO2 has no single lifetime; a substantial fraction persists for centuries},
+  }
+
+  @article{hunga2026residence,
+    author  = {others}, % TODO-CITE: confirm authors
+    title   = {Residence Time of Hunga Stratospheric Water Vapour Perturbation Quantified at 9 Years},
+    journal = {Communications Earth \& Environment},
+    year    = {2026},
+    doi     = {10.1038/s43247-026-03216-5},
+  }
+
+  @book{carlson1997smallstuff,
+    author    = {Carlson, Richard},
+    title     = {Don't Sweat the Small Stuff ... and It's All Small Stuff: Simple Ways to Keep the Little Things from Taking Over Your Life},
+    publisher = {Hyperion},
+    address   = {New York},
+    year      = {1997},
+    isbn      = {9780786881857},
+    url       = {https://www.barnesandnoble.com/w/dont-sweat-the-small-stuff-and-its-all-small-stuff-richard-carlson/1101004106},
+  }
+  ```
+
+  Citation verification status (from the 2026-06-30 grill): DOIs/IDs confirmed via search for Ryan, Solomon,
+  Ferreira, Barker, Hunga; WMO 2022 and IPCC AR6 are real standard references; Carlson confirmed (Hyperion 1997,
+  ISBN 0786881852, B&N page above). Outstanding `% TODO-CITE`: full author lists for Ferreira / Barker / Hunga,
+  and the exact CFC-11/-12 annex lifetimes (write "~50 / ~100 yr" until pinned; NOAA/EPA/Wayback are all
+  sandbox-blocked here).
+
 ---
 
 ## §Engineering Feasibility of the Near-Term PuffSat Architecture (`sec:engineering`)

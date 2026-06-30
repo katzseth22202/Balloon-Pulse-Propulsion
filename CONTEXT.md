@@ -182,3 +182,9 @@ atomization and over-pressurizes the liner if it dissociates while confined.
   are settled.
 - **Medusa "behind" = tension** was a slip; the behind-mounted sail is in
   **compression**. Real Medusa (front-mounted) is tension.
+- **"hydrolyze" → "photodissociate"** (resolved 2026-06-30, §8 ozone subsection
+  `sec:ozone_policy`). Water released by PuffSats at ~200 km is destroyed by
+  **photodissociation / photolysis** (solar UV splits H2O into H + OH, the H escapes to
+  space), *not* hydrolysis. Use "photodissociate" for any upper-atmosphere water-breakup
+  claim. The ozone it could threaten sits in the stratosphere at 15--35 km, far below the
+  200 km release.
