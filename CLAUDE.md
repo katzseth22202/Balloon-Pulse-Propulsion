@@ -69,6 +69,7 @@ When drafting or editing prose in this paper, avoid the patterns that read as AI
 - **Avoid "from X to Y" range-gesturing** without specifics ("from theory to practice", "from concept to reality"). Either name the actual range with endpoints, or drop the construction.
 - **Avoid passive throat-clearing.** "It can be observed that...", "It is the case that...", "It has been shown that..." State the observation directly, or attribute it.
 - **Quantify, don't hedge.** "Significant improvement", "substantial gains", "a wide range of", "various", "a number of", "potentially" are placeholders for missing numbers. In a physics/engineering paper, this is especially bad. Give the value, the order of magnitude, or the citation.
+- **Gloss jargon at first use.** When a specialized term first appears (e.g. *common-mode*, *catch radius*), define it on the spot with a short appositive, not a paragraph later. For instance, "the catch radius, the largest miss the terminal guidance can still correct." Bind the label to its meaning where it is introduced. A term a domain reader plainly knows can stand, but when in doubt gloss it once, then use it freely.
 - **Keep sentences short.** If a sentence runs longer than ~30 words or stacks more than two subordinate clauses, split it. One idea per sentence is the default.
 - **Drop interruptive asides.** Em-dash and parenthetical interjections that interrupt the main clause make sentences dense. Put the aside in its own sentence instead.
 
