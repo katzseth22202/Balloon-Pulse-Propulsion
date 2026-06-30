@@ -164,12 +164,12 @@ carbonation as an atomization aid for icy PuffSats. Both resolved in a grilling 
 
 ### `sec:icy_puffsat` — carbonation as a speculative effervescent-atomization assist
 
-- [ ] **Mention dissolved carbonation briefly as an atomization aid for icy moons** · `[raw]` → `sec:icy_puffsat`
-  - [ ] Keep it brief (decided 2026-06-30): one or two sentences, do not develop the storage trade.
-  - [ ] Mechanism: dissolved CO₂ (soda model) exsolves on rupture and the expanding gas helps shatter the water into droplets, supercharged by the vacuum pressure ratio. Frame as a fourth mechanism that *trims* (does not replace) the micro-explosive load already in the section.
-  - [ ] Scope: viable only where carbon is abundant (Ceres ~20% carbon, Phoebe's CO₂ ice), **not** on the carbon-poor Moon. The exsolved CO₂ is biocompatible, a minor reaction-mass bonus.
-  - [ ] Rejected (do not propose): CO₂ clathrate hydrate. Its dissociation is endothermic and self-preserving, so it releases gas too slowly for millisecond atomization and can re-freeze the spray (the ice-crystal failure the section already warns about), and full dissociation while still confined over-pressurizes the liner.
-  - [ ] Cite an effervescent-atomization reference when this lands (e.g. a Lefebvre atomization text): `% TODO-CITE: effervescent atomization`.
+- [x] **Mention dissolved carbonation briefly as an atomization aid for icy moons** · `[raw]` → `sec:icy_puffsat` *(landed 2026-06-30: two-sentence note after the icy atomization para, before `sec:lox_puffsat`. Cited `marchi2019_ceres_carbon` (Ceres ~20% carbon) and `phoebe` (Cassini CO₂ ice); `% TODO-CITE: effervescent atomization` left inline. Clathrate-rejection sentence dropped to honor "one or two sentences / do not develop the storage trade".)*
+  - [x] Keep it brief (decided 2026-06-30): one or two sentences, do not develop the storage trade.
+  - [x] Mechanism: dissolved CO₂ (soda model) exsolves on rupture and the expanding gas helps shatter the water into droplets, supercharged by the vacuum pressure ratio. Frame as a fourth mechanism that *trims* (does not replace) the micro-explosive load already in the section.
+  - [x] Scope: viable only where carbon is abundant (Ceres ~20% carbon, Phoebe's CO₂ ice), **not** on the carbon-poor Moon. The exsolved CO₂ is biocompatible, a minor reaction-mass bonus. *(biocompatible/reaction-mass-bonus clause omitted for brevity.)*
+  - [ ] Rejected (do not propose): CO₂ clathrate hydrate. Its dissociation is endothermic and self-preserving, so it releases gas too slowly for millisecond atomization and can re-freeze the spray (the ice-crystal failure the section already warns about), and full dissociation while still confined over-pressurizes the liner. *(dropped from the paper per the brevity decision; kept here as rationale of record.)*
+  - [x] Cite an effervescent-atomization reference when this lands (e.g. a Lefebvre atomization text): `% TODO-CITE: effervescent atomization`.
 
   Where carbon is abundant, the icy PuffSat's meltwater can be lightly carbonated, so that
   on release the dissolved CO₂ comes out of solution and the expanding bubbles help atomize
