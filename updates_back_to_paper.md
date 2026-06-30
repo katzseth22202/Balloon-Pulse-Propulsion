@@ -1258,12 +1258,12 @@ glossed once where the section introduces the guidance concepts (likely
 - [ ] star maps may be enough for necessary angular resolution estimated at 10 micro-rad on the main plane · `[raw]`
 - [ ] note the plane can adjust its starting point by 10s of kilometers, so if there is systemic drift in PuffSats is OK as long as PuffSat formation shape is good looking. · `[raw]`
 
-- [ ] **GOCE, re-divided: keep it for drag/thrust sizing and as a flown drag precedent; navigation feasibility graduates to the closed-loop sim** · `[SIM]`/`[sizing]`
-  - [ ] Keep GOCE as the source of the ~400 mN peak-thrust and <2% cold-gas sizing (`sec:estimate_cold_gas`), now corroborated by the sim's catch-radius and propellant budget
-  - [ ] Keep one sentence that GOCE flew drag-compensated at 229 km, as a precedent that controlled low-altitude flight is real
-  - [ ] Move the navigation/guidance feasibility claim onto the closed-loop sim; stop leaning on GOCE as the navigation analogy
-  - [ ] Dissolve the kg-accelerometer worry (this file, the line-1133 raw note): the sim needs no onboard precision accelerometer, because terminal drag is feed-forward-solved from a ground prior and the bar is a 5 m plate, not millimetres
-  - [ ] Drop or soften the "GOCE accelerometers enable precise corrective maneuvers" sentence accordingly
+- [x] **GOCE, re-divided: keep it for drag/thrust sizing and as a flown drag precedent; navigation feasibility graduates to the closed-loop sim** · `[SIM]`/`[sizing]` → `sec:engineering` *(landed 2026-06-30: edited the GOCE paragraphs in `sec:engineering` [L648–650]. The ion-unrealistic-for-PuffSats point was already in the paper at L648. Replaced the overclaiming "GOCE accelerometers enable precise corrective maneuvers" sentence with the "encouraging precedent rather than a proof" framing per Seth: GOCE held altitude with ion thrusters + a kg-class accelerometer, neither of which a PuffSat carries, so the precision case rests on the preliminary closed-loop control sim (cite `Katz_aim_is_all_you_need_2025`, the sanctioned [SIM] companion-repo cite), which feed-forward-cancels terminal drag from a ground prior and needs no onboard accelerometer. GOCE's two honest jobs kept (400 mN / <2% sizing; the 229 km drag-compensated-flight precedent). Build clean.)*
+  - [x] Keep GOCE as the source of the ~400 mN peak-thrust and <2% cold-gas sizing (`sec:estimate_cold_gas`), now corroborated by the sim's catch-radius and propellant budget
+  - [x] Keep one sentence that GOCE flew drag-compensated at 229 km, as a precedent that controlled low-altitude flight is real
+  - [x] Move the navigation/guidance feasibility claim onto the closed-loop sim; stop leaning on GOCE as the navigation analogy
+  - [x] Dissolve the kg-accelerometer worry (this file, the line-1133 raw note): the sim needs no onboard precision accelerometer, because terminal drag is feed-forward-solved from a ground prior and the bar is a 5 m plate, not millimetres
+  - [x] Drop or soften the "GOCE accelerometers enable precise corrective maneuvers" sentence accordingly
 
   GOCE keeps two honest jobs and loses a third. It stays the source of the thrust and
   propellant sizing: the ~400 mN peak thrust is the GOCE-scaled peak drag at 200 km
@@ -1289,12 +1289,12 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:coordinator_node_dry_mass_disposal`
 
-- [ ] **Rewrite the coordinator-node framing: no dedicated co-flying coordinator satellite for LEO; the role redistributes into three off-board nav assets** · `[SIM]`
-  - [ ] Replace "a small number of coordinator satellites ... fly alongside the formation ... track the PuffSats' positions and relay adjustment commands" with the redistributed architecture
-  - [ ] (1) apogee nav constellation (one-way Ka-band broadcast, passive PuffSat) for the coast; (2) target-side tracker array for terminal homing; (3) reused launch rocket as co-flying tracker (a hedge, not required)
-  - [ ] Keep the dry-mass-disposal content unchanged (discard/aperture/pulverize strategies, the Whipple-like plate as last line of defense): that argument does not depend on who does the tracking
-  - [ ] Flag, do not silently rename: the subsection title and the `images/Coordinator Nodes.png` caption need revising when this lands
-  - [ ] Fold the "GNSS-free coast" item below in here as the coast half of the story
+- [x] **Rewrite the coordinator-node framing: no dedicated co-flying coordinator satellite for LEO; the role redistributes into three off-board nav assets** · `[SIM]` → `sec:coordinator_node_dry_mass_disposal` *(landed 2026-06-30: rewrote the first paragraph of `sec:coordinator_node_dry_mass_disposal` [L675]. ADAPTED from the backlog draft per Seth: KEPT the coordinator node as an OPTION rather than "retiring" it — the sim finds a dedicated coordinator is not required for LEO and the role can split across three off-board assets (apogee Ka-band ranging constellation, target-side tracker array, reused launch rocket hedge), but the coordinator "stays available where extra on-board computing or relay is wanted." Folded the GNSS-free coast item [:1319] in (no GNSS; Ka-band authenticated ranging near apogee ~150,000 km). Dry-mass-disposal content [L677+] left unchanged. Figure + subsection title KEPT (no rename, since the node stays an option). Cite `Katz_aim_is_all_you_need_2025`. Build clean. Minor follow-up: L677 still says "communication links to the coordinator nodes" — fine since the node remains an option, could be generalized later.)*
+  - [x] Replace "a small number of coordinator satellites ... fly alongside the formation ... track the PuffSats' positions and relay adjustment commands" with the redistributed architecture
+  - [x] (1) apogee nav constellation (one-way Ka-band broadcast, passive PuffSat) for the coast; (2) target-side tracker array for terminal homing; (3) reused launch rocket as co-flying tracker (a hedge, not required)
+  - [x] Keep the dry-mass-disposal content unchanged (discard/aperture/pulverize strategies, the Whipple-like plate as last line of defense): that argument does not depend on who does the tracking
+  - [x] Flag, do not silently rename: the subsection title and the `images/Coordinator Nodes.png` caption need revising when this lands
+  - [x] Fold the "GNSS-free coast" item below in here as the coast half of the story
 
   The original section frames a small number of heavier coordinator satellites that fly
   alongside the formation, track each PuffSat, and uplink corrections. The closed-loop sim
@@ -1316,8 +1316,8 @@ glossed once where the section introduces the guidance concepts (likely
   be revised when this lands, and the GNSS-free coast item below folds in here as the coast
   half of the story.
 
-- [ ] **GNSS-free coast: a Ka-band, authenticated ranging constellation near apogee** · `[SIM]`
-  - [ ] Add: no GNSS anywhere; coast position knowledge from a Ka-band authenticated ranging constellation near apogee (~150 000 km)
+- [x] **GNSS-free coast: a Ka-band, authenticated ranging constellation near apogee** · `[SIM]` → folded into `sec:coordinator_node_dry_mass_disposal` *(landed 2026-06-30 inside the coordinator-node rewrite [:1292]: no GNSS; coast position from a Ka-band authenticated ranging constellation near apogee (~150,000 km). NOT folded here: the dual-use / near-Sun cross-link [`sec:periapsis_challenges`] and the 3–4-member constellation-sizing detail — out of scope for this one paragraph; they remain available for the periapsis chapter or a fuller coast treatment.)*
+  - [x] Add: no GNSS anywhere; coast position knowledge from a Ka-band authenticated ranging constellation near apogee (~150 000 km)
   - [ ] Terminal knowledge comes from the optical tracker array (see `sec:neural_navigation`); midcourse computed against the coast solution, endgame against the optical one
   - [ ] Size the constellation only to *match* the coast accuracy needed (a few hundred metres at hand-off); 3–4 members supply it with large margin
   - [ ] **Dual use:** the same Earth-apogee constellation also covers the near-Sun (Parker) scenario, because an Earth→Sun transfer has its departure apoapsis at Earth · `[raw]` (cross-link `sec:periapsis_challenges`)
