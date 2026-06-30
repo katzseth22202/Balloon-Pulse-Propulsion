@@ -124,6 +124,65 @@ grilling session; resolutions recorded below. Downstream items flagged
 
 ---
 
+## §How PuffSats Work → PuffSat Design (`sec:lox_puffsat`, `sec:icy_puffsat`)
+
+Two additions to the gas-generation subsections. The first gives LOX PuffSats a
+flight-proven passive-cooling option (JWST-style detachable sunshade) and sets up the
+cryo-fuel reach used by the Ceres item below. The second is a short speculative note on
+carbonation as an atomization aid for icy PuffSats. Both resolved in a grilling session
+(2026-06-30); the cryo physics is shared with the `sec:ceresly_good` ISRU-propellant item.
+
+### `sec:lox_puffsat` — JWST-style detachable sunshade as a deep-cryo option
+
+- [ ] **Add the detachable standoff sunshade as a flight-proven cryo option beside the solar-white coating** · `[sizing]` → `sec:lox_puffsat`
+  - [ ] Cite JWST: a five-layer aluminized Kapton sunshield cools the cold side passively to ~40 K at ~1 AU (Sun-Earth L2). Flight proof that passive standoff shielding reaches deep cryo at Earth distance. Cites `jwst_sunshield`, `gardner2023jwst_mission`.
+  - [ ] Frame as existence-proof + headroom (decided): 40 K is *colder* than LOX wants (oxygen freezes at 54.4 K; liquid range 54–90 K), so for LOX tune a lighter shade to ~60–80 K (fewer layers). The full 40 K reach is the lever for LH₂ farther out (see the `sec:ceresly_good` ISRU-propellant item).
+  - [ ] Keep it an **option alongside** the existing solar-white coating + thick-skin design (decided 2026-06-29). Do **not** rewrite the "thicker skins for elevated internal pressure" claim; this is an addition, not a D4-style reframe.
+  - [ ] Detach handling (decided): the shade jettisons a short time before atomization, because it would foul the gas plume and a floppy multilayer cannot survive the collision. One-line aside on why we do *not* let it ride in as reaction mass: the benefit is sub-kg (~1–3% of a 25 kg PuffSat), and its Al/Si metallization would contaminate the non-combustible LOX plate; the case is worst at the cool ~3.2 km/s end, where the film may not fully self-vaporize and arrives as a short-pulse peak load.
+  - [ ] Thermal-margin note: "short time" is set by plume geometry, not boiloff. A reflective-coated ~25 kg LOX PuffSat unshaded at 1 AU absorbs only ~10–15 W, so it takes hours to warm 20 K; seconds-to-minutes of unshaded coast is thermally trivial.
+  - [ ] Disposal: ultralight Kapton (high area/mass) deorbits fast, like the existing ice-wire coatings, or goes via the dry-mass disposal channel (`item:discard_before_impact`).
+
+  The JWST sunshield is five layers of aluminized Kapton (the two sun-facing layers also
+  doped-silicon coated) and cools the observatory's cold side passively to about 40 K at
+  Sun-Earth L2 (~1.01 AU). That is direct flight evidence that a passive standoff shade
+  reaches deep cryogenic temperatures at Earth distance, with no active cooling. For a LOX
+  PuffSat it is an option beside the conformal solar-white coating already in the section.
+  The 40 K reach is actually colder than LOX needs, since oxygen freezes at 54.4 K and is
+  liquid only between 54 and 90 K, so a LOX shade is tuned lighter (fewer layers, ~60–80 K);
+  the full 40 K capability matters because it is what lets hydrogen stay liquid farther from
+  the Sun (the Ceres item). The shade is jettisoned a short time before the PuffSat is
+  atomized, both because a floppy multilayer cannot survive the collision and because it
+  would scatter the gas plume. We do not keep it as reaction mass: a 1–3 m² shade is only
+  ~0.2–0.6 kg (about 1–3% of a 25 kg PuffSat), and its aluminium and doped-silicon
+  metallization would contaminate the non-combustible LOX pusher plate, worst at the cool
+  ~3.2 km/s lunar end where the film may not fully vaporize on contact. The "short time"
+  before impact is set by plume geometry, not by thermal urgency: unshaded, the
+  reflective-coated PuffSat absorbs only ~10–15 W at 1 AU and takes hours to warm by 20 K,
+  so a coast of seconds to minutes barely touches the LOX. The discarded Kapton has a high
+  area-to-mass ratio and deorbits quickly, or it leaves on the existing dry-mass disposal
+  path (`item:discard_before_impact`).
+
+### `sec:icy_puffsat` — carbonation as a speculative effervescent-atomization assist
+
+- [ ] **Mention dissolved carbonation briefly as an atomization aid for icy moons** · `[raw]` → `sec:icy_puffsat`
+  - [ ] Keep it brief (decided 2026-06-30): one or two sentences, do not develop the storage trade.
+  - [ ] Mechanism: dissolved CO₂ (soda model) exsolves on rupture and the expanding gas helps shatter the water into droplets, supercharged by the vacuum pressure ratio. Frame as a fourth mechanism that *trims* (does not replace) the micro-explosive load already in the section.
+  - [ ] Scope: viable only where carbon is abundant (Ceres ~20% carbon, Phoebe's CO₂ ice), **not** on the carbon-poor Moon. The exsolved CO₂ is biocompatible, a minor reaction-mass bonus.
+  - [ ] Rejected (do not propose): CO₂ clathrate hydrate. Its dissociation is endothermic and self-preserving, so it releases gas too slowly for millisecond atomization and can re-freeze the spray (the ice-crystal failure the section already warns about), and full dissociation while still confined over-pressurizes the liner.
+  - [ ] Cite an effervescent-atomization reference when this lands (e.g. a Lefebvre atomization text): `% TODO-CITE: effervescent atomization`.
+
+  Where carbon is abundant, the icy PuffSat's meltwater can be lightly carbonated, so that
+  on release the dissolved CO₂ comes out of solution and the expanding bubbles help atomize
+  the water into fine droplets, an effect the vacuum pressure ratio makes strong even at a
+  soda-like gas load. This is a speculative assist that would trim the micro-explosive load
+  rather than replace it, and it is only free on the icy moons (Ceres is roughly 20% carbon
+  and Phoebe carries CO₂ ice), not on the carbon-poor Moon. Storing the CO₂ as a clathrate
+  hydrate was considered and rejected: clathrate dissociation is endothermic and
+  self-preserving, too sluggish for millisecond atomization, and it over-pressurizes the
+  liner if it lets go while still sealed.
+
+---
+
 ## §How PuffSats Work → Mass Fraction Of Rocket To PuffSat Mass (fudge-factor `f`)
 
 The fudge-factor passage (paper subsection "Mass Fraction Of Rocket To PuffSat Mass":
@@ -755,6 +814,43 @@ Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
   impact mass (already accelerated at periapsis), or re-accelerate it far from the Sun at the
   cost of weaker pulses. It cannot be shed near the Sun, where it is load-bearing during the
   high-energy pulses, so the conversion is post-periapsis only.
+
+---
+
+## §When We Get Greedy, We'll Go to Phoebe → `sec:ceresly_good` (ISRU propellant)
+
+Extends the Ceres "convert volatiles to fuel" loop with two propellant options that the
+passive-shielding physics unlocks: cryogenic LH₂/LOX where it can be kept cold, and
+on-demand water electrolysis everywhere else. Shares the cryo physics with the
+`sec:lox_puffsat` sunshade item above. Cross-links `sec:greedy_phoebe` (same logic for
+Phoebe/Saturn logistics and the He-3 miner under `sec:mining_helium_3`) and
+`sec:fine_control_thrusters` (the "propellant on demand, no pressurized tank" principle).
+Resolved in a grilling session (2026-06-30).
+
+- [ ] **LH₂/LOX as a cryo option beside methalox, plus on-demand electrolysis for closer-in needs** · `[sizing]` → `sec:ceresly_good`
+  - [ ] Passive-shielding temperature law: a shaded radiator sits at `T ∝ r^(−1/2)`. Anchored at JWST's ~40 K at 1 AU, that gives ~24 K at Ceres (2.77 AU) and ~13 K at Saturn/Phoebe (9.6 AU). Cites `jwst_sunshield`.
+  - [ ] Passive-LH₂ threshold ~1.5 AU: hydrogen's critical temperature is 33 K, so only beyond ~1.5 AU can a passive shield keep H₂ liquid. Inside it (Moon, Mercury) no shield works at any pressure; at Ceres LH₂ sits at a modest ~3–4 bar. This is the physics behind "Ceres and icy moons, not lunar."
+  - [ ] Burns are at the cold body: for an Earth-flyby trajectory from Ceres, the departure Δv (lowering perihelion) is applied at Ceres aphelion; the inner leg is ballistic or PuffSat-driven. So LH₂/LOX is made, stored, and burned cold, which dissolves the long-duration boiloff problem.
+  - [ ] Add LH₂/LOX as a higher-Isp **option alongside methalox** (the ISRU workhorse from Ceres carbon + water) for the local logistics rockets these scenarios already need: return trips, orbit maintenance, mining hold-down/retro, and the Saturn He-3 miner (`sec:mining_helium_3`). H₂ is propellant, **not** PuffSat puff gas (low molecular weight buys nothing for momentum transfer and a near-massless puff spills past the plate).
+  - [ ] On-demand electrolysis for closer-in / electric / no-cryo cases: store water and electrolyse it with onboard solar at the point of use. Pure-chemical variant = Imperial **ICE-Cube** (`imperial_ice_cube`); Hall-effect electric variant = Imperial **WET-HET** (`schwertheim2022wet_het`). Cross-link `sec:fine_control_thrusters`.
+
+  A shaded radiator equilibrates with the attenuated sunlight, so its temperature falls as
+  `r^(−1/2)` with heliocentric distance. Anchoring on the JWST sunshield's ~40 K at 1 AU,
+  that is ~24 K at Ceres and ~13 K out at Saturn. Because hydrogen's critical temperature is
+  33 K, passive shielding can hold hydrogen liquid only beyond about 1.5 AU: at the Moon or
+  Mercury no shield keeps it liquid at any pressure, but at Ceres liquid hydrogen sits at a
+  modest few bar. That threshold is exactly why this is a Ceres-and-beyond capability and not
+  a lunar one. It also matches where the propulsion happens: for an Earth-flyby trajectory
+  launched from Ceres, almost all of the chemical Δv is the departure burn at Ceres aphelion,
+  with the inner leg flown ballistically or by PuffSat collision, so the hydrogen is made,
+  stored, and burned at the cold body and never carried hot. Liquid hydrogen and oxygen then
+  become a higher-performance option beside methalox (which Ceres can make from its carbon and
+  water) for the local logistics rockets, the return trips, orbit maintenance, mining
+  hold-down and retro thrusters, and the Saturn helium-3 miner. Closer to the Sun, where a
+  cryogen cannot be passively stored, the same water serves through on-demand electrolysis
+  driven by onboard solar power, feeding either a chemical thruster (the Imperial ICE-Cube
+  design) or a Hall-effect thruster (the Imperial water electrolysis Hall thruster), the same
+  "make propellant on demand, no pressurized tank" idea as the PuffSat fine-control thrusters.
 
 ---
 

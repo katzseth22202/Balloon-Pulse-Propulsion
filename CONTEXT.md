@@ -104,6 +104,47 @@ Two-tier control (a gross early correction of ~tens of m/s plus a fine, late ~mm
 about 1 s before impact) that defeats the `v²` homing-miss floor by nulling a known,
 pre-measured offset rather than chasing fresh navigation noise.
 
+### Cryogenics, thermal, and ISRU propellant
+
+**Passive standoff sunshade**:
+A JWST-style detachable multilayer (aluminized Kapton) shade carried in front of a
+cryogenic PuffSat to block sunlight, distinct from the conformal solar-white coating on
+the skin. Tune the layer count to the target temperature (more layers, colder). Jettisoned
+a short time before impact so it does not foul the gas plume or have to survive the
+collision. Not retained as reaction mass: the benefit is sub-kg, and its metallization
+(Al, doped Si) would contaminate the non-combustible LOX pusher plate.
+_Avoid_: calling it a "heat shield" (that evokes the near-Sun ablative chamber and the
+Parker-class sunshade, which are different hardware).
+
+**Passive-shielding temperature law**:
+A shaded radiator equilibrates with the attenuated sunlight, so its temperature scales as
+`T ∝ r^(−1/2)` with heliocentric distance `r`. Anchored at JWST's ~40 K at ~1 AU, this
+gives ~24 K at Ceres (2.77 AU) and ~13 K at Saturn/Phoebe (9.6 AU). The 40 K reach is
+colder than LOX wants (oxygen freezes at 54.4 K), so for LOX use a lighter shade (~60–80 K);
+the full reach is the lever for storing LH₂ farther out.
+
+**Passive-LH₂ threshold**:
+The heliocentric distance (~1.5 AU) beyond which passive shielding can hold hydrogen below
+its 33 K critical temperature, so liquid hydrogen becomes storable. Inside it (Moon,
+Mercury) no shield keeps H₂ liquid at any pressure; outside it (Ceres and beyond) LH₂ is
+storable at modest pressure (a few bar at Ceres' ~24 K). This is why LOX/methalox serve the
+inner system and LH₂/LOX is a Ceres-and-out option.
+
+**On-demand electrolysis propellant**:
+Store water (not a pressurized cryogen) and electrolyse it with onboard solar power into
+hydrogen and oxygen at the moment of use, feeding either a chemical thruster (Imperial
+ICE-Cube) or a Hall-effect thruster (Imperial WET-HET). The closer-in alternative to stored
+LH₂/LOX, sharing the "make propellant on demand, no pressurized tank" principle with the
+PuffSat fine-control thrusters.
+
+**Effervescent (carbonation) atomization**:
+Dissolving CO₂ into the icy PuffSat's meltwater so exsolving gas helps shatter it into
+droplets on release, supercharged by the vacuum pressure ratio. A speculative assist that
+trims the micro-explosive load, viable only where carbon is abundant (icy moons such as
+Ceres and Phoebe), not on the carbon-poor Moon. Clathrate storage is rejected: its
+endothermic, self-preserving dissociation releases gas too slowly for millisecond
+atomization and over-pressurizes the liner if it dissociates while confined.
+
 ## Relationships
 
 - A **PuffSat** strikes the **pusher plate** (or the **Medusa-style sail**); plate and
@@ -114,6 +155,9 @@ pre-measured offset rather than chasing fresh navigation noise.
   optional path that shrinks the plate.
 - Near the Sun, lateral knowledge comes from **transverse-node differential ranging**
   with good **GDOP**; control is **deterministic-coast correction**.
+- Heliocentric distance sets the cryogen via the **passive-shielding temperature law**:
+  LOX/methalox inside the **passive-LH₂ threshold** (~1.5 AU), LH₂/LOX beyond it; where a
+  stored cryogen is unwanted, **on-demand electrolysis propellant** carries water instead.
 
 ## Example dialogue
 
