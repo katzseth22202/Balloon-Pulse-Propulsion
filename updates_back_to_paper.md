@@ -1106,12 +1106,12 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:engineering` (new section-intro overview)
 
-- [ ] **"LEO at a glance": the near-term architecture and its confidence ladder, in one place** · `[SIM]` (Tier-1 spine; Tiers 2/3 are `[sizing]`/`[raw]`)
-  - [ ] Open the section with a compact overview a reader grasps before the subsection detail
-  - [ ] State the GOCE-upgrade up front: navigation feasibility no longer rests on the GOCE analogy; a preliminary closed-loop Monte Carlo (companion repo `puffsat_control_simulation`) now models the full apogee-to-interception problem
-  - [ ] Name the three off-board nav assets (apogee nav constellation; target-side tracker array; co-flying tracker) and that no dedicated co-flying coordinator satellite is needed
-  - [ ] Carry the explicit three-tier confidence ladder (Tier 1 simulated 5 m; Tier 2 argued ~10 cm; Tier 3 near-Sun sketch)
-  - [ ] Hold the umbrella register at "preliminary + conditional"
+- [x] **"LEO at a glance": the near-term architecture and its confidence ladder, in one place** · `[SIM]` (Tier-1 spine; Tiers 2/3 are `[sizing]`/`[raw]`) *(landed 2026-06-30: three-paragraph section intro inserted at the top of `sec:engineering` [L641–645], before the first subsection. Para 1 = the closed-loop Monte Carlo result (5 m plate feasible, conditional, simulation-not-flight) + the GOCE-upgrade. Para 2 = the three off-board nav assets as a compact preview with `\autoref` to `sec:coordinator_node_dry_mass_disposal` (avoids duplicating that subsection). Para 3 = the three-tier confidence ladder (Tier 1 sim 5 m / Tier 2 argued 10 cm / Tier 3 near-Sun sketch). ADAPTATION: cited `Katz_aim_is_all_you_need_2025` (the bib'd companion repo) rather than naming the raw `puffsat_control_simulation` repo, which has no bib entry — keeps the cite consistent with the GOCE/coordinator folds. Register held at preliminary+conditional. Build clean.)*
+  - [x] Open the section with a compact overview a reader grasps before the subsection detail
+  - [x] State the GOCE-upgrade up front: navigation feasibility no longer rests on the GOCE analogy; a preliminary closed-loop Monte Carlo (companion repo `puffsat_control_simulation`) now models the full apogee-to-interception problem
+  - [x] Name the three off-board nav assets (apogee nav constellation; target-side tracker array; co-flying tracker) and that no dedicated co-flying coordinator satellite is needed
+  - [x] Carry the explicit three-tier confidence ladder (Tier 1 simulated 5 m; Tier 2 argued ~10 cm; Tier 3 near-Sun sketch)
+  - [x] Hold the umbrella register at "preliminary + conditional"
 
   A preliminary closed-loop Monte Carlo simulation (companion repo
   `puffsat_control_simulation`) models the full path a PuffSat flies, from deployment near
@@ -1143,10 +1143,10 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:formation_challenges_current_missions`
 
-- [ ] **Success criterion = capturing the pusher plate, not centimetre centring** · `[SIM]`  (blocked on D4)
-  - [ ] Add/replace: mission success = arriving within a ~5 m plate with ≥99% probability (per-unit σ ≤ ~1.65 m, arrival-timing ≤ 10 ms)
-  - [ ] Retire "few-centimetre terminal centring" as the *committed* requirement
-  - [ ] Keep the centimetre number only as an optional later tightening (Item 9-optional)
+- [x] **Success criterion = capturing the pusher plate, not centimetre centring** · `[SIM]`  (D4 resolved; landed 2026-06-30) *(reframed the committed lateral claim in `sec:formation_challenges_current_missions` [L650] and the related `sec:neural_navigation` claim [L712]: the binding requirement is landing on the 5 m plate, tolerance ~2 m, not centimetre centring. Centimetre centring retired as the committed requirement; ~10 cm stated as the argued achievable capability with LED beacon metrology, 5 cm only as a stretch, framed as margin. Capability-vs-requirement conflation called out per D4(b); RCS off-center-torque cost + plate rotational inertia stated per D4(a). DEFERRED — kept qualitative, no appendix to back them: the ≥99% capture-probability / per-unit σ≤1.65 m / 10 ms arrival-timing specifics [:1147]. The ~10 cm number rests on the gram-scale camera's distortion calibration (the load-bearing bench claim, not beacon brightness), per the 2026-06-30 discussion; that caveat lives in the unfolded Tier-2 item [:1187]. Build clean.)*
+  - [ ] Add/replace: mission success = arriving within a ~5 m plate with ≥99% probability (per-unit σ ≤ ~1.65 m, arrival-timing ≤ 10 ms) — *deferred (qualitative for now)*
+  - [x] Retire "few-centimetre terminal centring" as the *committed* requirement
+  - [x] Keep the centimetre number only as an optional later tightening (Item 9-optional)
 
   Mission success = the projectile arriving within a **~5 m pusher plate** with
   **≥99 %** probability (per-unit arrival scatter held to σ ≤ ~1.65 m, arrival-timing
@@ -1223,10 +1223,10 @@ glossed once where the section introduces the guidance concepts (likely
   honest committed claim is **10 cm (robust); 5 cm as a stretch** contingent on a ≤1 cm
   gate and a well-calibrated camera; a 2 cm plate is *not* claimed.
 
-- [ ] **Precision tiers: near-term meter-class requirement (reframe the lateral claim)** · `[sizing]`  (blocked on D4)
-  - [ ] State near-term interception tolerances: ~100 m along-track (≈ 10 ms timing slop at ~10 km/s), ~2 m cross-track on the 5 m plate
-  - [ ] Reframe the `\SI{5}{\centi\meter}` std-dev centring claim to "~2 m required, cm achievable (VISORS-class)"
-  - [ ] Note the RCS must cancel the off-center torque from a 2 m miss (more torque = the cost of the relaxed nav)
+- [x] **Precision tiers: near-term meter-class requirement (reframe the lateral claim)** · `[sizing]`  (D4 resolved; landed 2026-06-30) *(folded together with [:1146]. Lateral claim reframed from the 5 cm std-dev assumption to ~2 m required / ~10 cm achievable at L650 and L712; RCS torque cost from a 2 m miss stated. Capability stated as ~10 cm argued via LED beacon metrology, NOT bare "cm", per D4. DEFERRED: the ~100 m along-track / 10 ms timing tolerance [:1227] — the lateral cross-track was the load-bearing piece the 2026-06-30 discussion centered on; along-track can fold later. Build clean.)*
+  - [ ] State near-term interception tolerances: ~100 m along-track (≈ 10 ms timing slop at ~10 km/s), ~2 m cross-track on the 5 m plate — *cross-track done; along-track/timing deferred*
+  - [x] Reframe the `\SI{5}{\centi\meter}` std-dev centring claim to "~2 m required, cm achievable (VISORS-class)"
+  - [x] Note the RCS must cancel the off-center torque from a 2 m miss (more torque = the cost of the relaxed nav)
 
   Required interception tolerances. These are requirement ceilings, not best-case
   capability:
