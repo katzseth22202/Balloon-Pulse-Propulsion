@@ -1358,10 +1358,10 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:neural_navigation`
 
-- [ ] **The catch radius is a thrust-limited funnel (~475 m), set by the engine** · `[SIM]`
-  - [ ] Add: terminal endgame corrects any miss up to ~475 m, fixed by ½·a·t² of constant acceleration, not by nav quality
-  - [ ] Explain the funnel: time-to-go shrinks, reachable sideways distance shrinks, region closes toward the plate
-  - [ ] State the separation of concerns: authority (engine) sets recoverable miss; entry error budgeted ~2× inside the funnel; the real limit is Item 4
+- [x] **The catch radius is a thrust-limited funnel (~475 m), set by the engine** · `[SIM]` *(landed 2026-06-30: two compact paragraphs at the end of `sec:neural_navigation` [L718–720], after the lateral-requirement paragraph and before `sec:handling_space_debris`. This starts the terminal-navigation trio; the knowledge-limit item [:1379] and tracker-array item [:1400] will follow here. Para 1 = the catch radius (~475 m recoverable miss) set by $\tfrac{1}{2}a t^2$ thrust×time, not by tracking quality; ties back to the block argument "above" (`sec:formation_challenges_current_missions`) and delivers the number that the block-miss gloss deliberately deferred; cited `Katz_aim_is_all_you_need_2025`. Para 2 = the funnel narrows as time-to-go shrinks (funnel defined inline), the rocket-not-eyesight analogy, the ~2× authority margin (kept qualitative as "a factor of two to spare"), and a pivot to "knowledge is the real limit" as a standalone insight that sets up [:1379] without a dangling cross-ref. ADAPTATIONS: "projectile"→"PuffSat"; dropped the italic "In plain terms" label; $\tfrac{1}{2}a t^2$ uses `\tfrac` (amsmath + `\tfrac` already in the paper); reworded the backlog's internal "the limit lives elsewhere, in the next item" pointer into a self-contained closing insight. Build clean.)*
+  - [x] Add: terminal endgame corrects any miss up to ~475 m, fixed by ½·a·t² of constant acceleration, not by nav quality
+  - [x] Explain the funnel: time-to-go shrinks, reachable sideways distance shrinks, region closes toward the plate
+  - [x] State the separation of concerns: authority (engine) sets recoverable miss; entry error budgeted ~2× inside the funnel; the real limit is Item 4
 
   The terminal endgame can correct any miss up to a **catch radius of ~475 m**, and that
   number is fixed by how far the engine can pull the projectile sideways in the time
