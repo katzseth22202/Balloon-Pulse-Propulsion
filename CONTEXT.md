@@ -48,6 +48,22 @@ the paper cites it as plausible, not confirmed (see Flagged ambiguities).
 _Avoid_: presenting `f = 0.8` as validated/confirmed; the symbol `f` also denotes pulse
 frequency in the buffer invariant (`T = 1/f`), a distinct quantity.
 
+**Magnetic nozzle**:
+A magnetic field that redirects the conductive collision plasma with no material contact,
+so there is no ablation and no thermal-fluence size floor. The plasma cooperates only when
+it is hot enough to be a near-perfect conductor (high magnetic Reynolds number `Rm`), so a
+magnetic nozzle is a *high-energy-regime* tool: favored near the Sun (fully ionized,
+`Rm ~ 10⁷`), not at LEO insertion (weakly ionized gas, where a material plate wins). Used
+two ways with opposite energy goals. In **propulsion** (near-Sun chamber,
+`sec:periapsis_challenges`) it *reflects* the plasma near-elastically to redirect momentum
+for thrust; the field is a conservative spring, and the momentum floor still reacts as J×B
+on the coil. In the **Straw Way power plant** it *guides* the plasma (a ~90° turn from the
+vertical tube into a horizontal, km-long MHD channel) so its kinetic energy can be
+*extracted* as electricity; here braking the plasma is the point, not conserving its
+momentum.
+_Avoid_: implying it removes the momentum/mass floor (it removes ablation only); conflating
+the propulsion "reflect for thrust" role with the power-plant "guide-then-extract" role.
+
 ### Interception navigation (near-term LEO)
 
 **Common-mode error**:

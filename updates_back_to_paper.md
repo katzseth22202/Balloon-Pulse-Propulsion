@@ -735,8 +735,9 @@ Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
   restitution and blocks the radiative channel, but the bulk convective load that sets the
   size is opacity-blind.
 
-- [ ] **A magnetic nozzle avoids contact and ablation, but trades problems rather than removing them** · `[sizing]`
+- [ ] **A magnetic nozzle avoids contact and ablation; the trade is roughly even at low energy but tips decisively to the nozzle as per-pulse energy climbs, so near the Sun it can overperform a contact wall** · `[sizing]`
   - [ ] State the appeal: a magnetic nozzle reflects the conductive collision plasma off a field with no material contact, so there is no ablation limit and no thermal-fluence size floor. The plasma is a near-perfect conductor here (magnetic Reynolds number `Rm = μ₀ σ L v ~ 10⁷` at 4–5 MK), so it excludes and compresses field lines (frozen-flux / diamagnetic exclusion) and bounces off.
+  - [ ] **State the regime-dependence (why it overperforms near the Sun, not unconditionally).** The two options scale oppositely with per-pulse energy. A contact wall is thermal-fluence-limited and ablates, so it gets *worse* as `E` rises (`R ∝ √E`). The field coupling gets *better*: Spitzer conductivity `σ ∝ T^{3/2}`, so a hotter plasma has a higher `Rm`, reflects more cleanly off frozen-in flux, and leaks less resistive heat into the coil. The crossover tilts to the nozzle as `E` climbs. At the low end (LEO insertion, weakly ionized 3–16 km/s gas near `10⁴ K`) the gas barely conducts and a material plate wins; in the Parker regime the nozzle overperforms. The momentum floor is unchanged across this range (the coil still reacts the full impulse), so "overperform" is about ablation, feasibility, and per-pulse consumables, not about escaping the mass-from-impulse floor. *(added 2026-06-30 grill)*
   - [ ] State that the field can be self-powered by the expansion. The field acts as a conservative spring: a persistent superconducting current holds it with zero per-pulse energy, and the work of redirecting the plasma comes from the plasma's own thermal/kinetic energy. Flux compression lets a modest seed field be transiently amplified by the expanding plasma (Sakharov MK-generator physics), so you need not hold the full peak field statically. (A static 10 T field over a ~20 m bubble already stores ~1.3 TJ, far above one pulse, so flux compression matters.)
   - [ ] State the honest catch: the impulse does not go away. The full thrust still reacts as J×B force on the coil and its support, so the tensile/hoop-stress and minimum-size story carries straight over to the coil. The magnetic nozzle removes ablation and the thermal-fluence floor; it does not remove the momentum floor. Net thrust also needs an open, asymmetric nozzle geometry, not a symmetric mirror.
   - [ ] **Pulsed magnetic nozzle: possible, but complex whether it helps.** A pulsed / flux-compression nozzle buys a smaller seed field and lighter coil by letting the plasma amplify the field, at the cost of switching, arming-within-microseconds timing, and recovery efficiency. A persistent DC superconducting field is simpler and already near-zero per-pulse energy. State it as a real option with an unsettled trade, not a clear win.
@@ -758,6 +759,18 @@ Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
   over to the coil. The magnetic nozzle removes ablation and the thermal floor, not the
   momentum floor, and net thrust needs an open asymmetric geometry rather than a symmetric
   mirror.
+
+  What makes this a likely *win* near the Sun, not just an even trade, is that the two options
+  scale oppositely with per-pulse energy. A contact wall is thermal-fluence-limited and ablates,
+  so it gets worse as the energy rises (`R ∝ √E`). The field coupling gets better: Spitzer
+  conductivity rises as `T^{3/2}`, so a hotter plasma carries a higher magnetic Reynolds number,
+  reflects more cleanly off frozen-in flux, and leaks less resistive heat into the coil. The
+  crossover therefore tilts to the magnetic nozzle as the collision energy climbs. At the low end
+  (LEO insertion, weakly ionized 3–16 km/s gas near `10⁴ K`) the gas barely conducts and a
+  material plate is the simpler winner; in the Parker regime the nozzle overperforms. What does
+  not change across this range is the momentum floor, since the coil still reacts the full impulse,
+  so the advantage is in ablation, feasibility, and per-pulse consumables, not in escaping the
+  mass-from-impulse minimum.
 
   Three takeaways follow that the paper should state as honest, not oversold. A *pulsed*
   magnetic nozzle is possible but it is genuinely unclear whether pulsing helps: flux
@@ -814,6 +827,77 @@ Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
   impact mass (already accelerated at periapsis), or re-accelerate it far from the Sun at the
   cost of weaker pulses. It cannot be shed near the Sun, where it is load-bearing during the
   high-energy pulses, so the conversion is post-periapsis only.
+
+---
+
+## §One Hiroshima Per Second, The World Set Free → new `\subsection` in `sec:world_set_free` (MHD extraction option)
+
+A third energy-extraction pathway for the Straw Way, beside the steam chamber ("Power Plant
+Chamber Details", currently *unlabeled* — give it a `\label{}` so the new text can cross-ref it)
+and the direct chemical-synthesis loop (`sec:strawway_economics`). Presented as an *alternative*
+architecture, not a replacement of the steam baseline. Shares the magnetic-nozzle primitive with
+the near-Sun propulsion item (`sec:periapsis_challenges`; see `CONTEXT.md` "magnetic nozzle" for
+the two opposite-energy-goal senses) and the metering/safety logic with the staging item ("50 t
+every 10 s is a power plant; 5000 t at once is a bomb"). Resolved in a grilling session
+(2026-06-30). Tag `[raw]`/qualitative: the rep-rate is a free parameter, so state scaling and
+architecture, not committed numbers.
+
+- [ ] **Standalone new subsection: extract straw power electromagnetically — vacuum bottom + magnetic nozzle + km-long MHD channel** · `[raw]` → new `\subsection` in `sec:world_set_free`, after "Power Plant Chamber Details", before `sec:vacuum_airlock`
+  - [ ] **The win is killing the airlock, not MHD efficiency per se.** A vacuum bottom makes the projectile flight path and the energy-extraction stage one continuous vacuum, so the entire `sec:vacuum_airlock` machinery (a 300 m/s door sealing a 30 cm aperture in 1 ms, sacrificial polyethylene plugs, ice coatings) that exists only to keep steam from backflowing up the tube simply disappears. State this as the headline motivation.
+  - [ ] **Geometry: a ~90° magnetic turn.** Plasma arrives heading straight down; a km-long channel can't be vertical. The magnetic nozzle *redirects* (not reflects) the downward plasma into a horizontal, km-long underground MHD channel, keeping the heavy MHD hardware off to the side of the vertical projectile path. Flag the 90° turn of a `~10⁵–10⁶ K` plasma slug as speculative, not free.
+  - [ ] **Division of labor: nozzle redirects, MHD channel extracts.** Opposite energy goal from the propulsion nozzle (`sec:periapsis_challenges`), which reflects near-elastically to *conserve* momentum for thrust. Here you *brake* the plasma against the field and pull its kinetic energy out as current in an external load; reflecting it elastically would waste the energy and shove the structure. Same "steer conductive plasma with a big field, no contact" primitive.
+  - [ ] **Manageable explosions is the rationale for many small pulses (the rate itself is arbitrary).** Per-pulse energy sets the structure (the `R ∝ √E` floor from the near-Sun item) and the worst-case failure. Two payoffs: (1) structure — a smaller pulse means a smaller nozzle/channel/load, and since the ~150 km/s impact speed is unchanged the plasma is just as hot and conductive, so shrinking the pulse does not hurt the MHD coupling; (2) safety — a malfunctioning or hijacked projectile is a small bang, not a Tunguska (cross-link the §War, Policy hacker/Tunguska scenario). Same metering principle as the near-Sun staging item: stream many small pulses and a catastrophic single event becomes a throttle.
+  - [ ] **MHD as a *topping* stage over the existing bottoming cycles (decided: option b, not pure MHD).** MHD extracts only the high-grade fraction (~20–40% before the gas is too cool to conduct), so the cooled channel *exhaust* feeds the existing steam-turbine ("Power Plant Chamber Details") or cerium/iron chemical-looping (`sec:strawway_economics`) stages — now sitting a km downstream at the channel's far end, out of the projectile path. Recovers the bulk enthalpy MHD can't take and reuses the paper's existing extraction work rather than discarding it.
+  - [ ] **Plasma removal is continuous-flow, not pump-down.** At any sane rate you never evacuate between pulses; the channel runs like an open-cycle MHD generator or an altitude-test facility. The plasma recombines to neutral gas as it cools, a supersonic diffuser recovers pressure, and a large condenser does the "pumping" (liquid is ~1000× denser than vapor); steam ejectors or cryopumps clear the non-condensable trickle; a magnetic divertor steers the spent flow onto the condenser (the tokamak-exhaust pattern). Two synergies: the **bottoming-cycle heat exchanger *is* the condenser** (so option b also solves plasma removal with the same hardware), and the **non-condensable fraction (CO / CO₂ / H₂) is the fuel feedstock** `sec:strawway_economics` already wants, not waste.
+  - [ ] **No seeding needed (a genuine advantage over ground MHD).** Terrestrial MHD generators must seed the gas with cesium/potassium to conduct at combustion temperatures, with seed-recovery and corrosion headaches. This plasma is `~10⁵–10⁶ K`, intrinsically conductive, so no seeding. State as a real plus.
+  - [ ] **Oxidizer caveat.** The steam chamber gets its combustion oxygen from decomposing steam; a vacuum bottom has no ambient steam, so the carbon → CO/CO₂ chemistry must run on oxygen the projectile carries (its water/oxidizer interior). One sentence; not a blocker.
+  - [ ] **Open efficiency question to flag: radiative loss vs. extraction.** At `~10⁵–10⁶ K` the plasma radiates (bremsstrahlung + lines); for a power plant you want that energy in the load, not on the channel walls. Whether MHD extracts faster than the plasma radiates is the real net-efficiency unknown. State as speculative, the key open question.
+
+  The Straw Way can extract power a third way, beside the steam chamber and the direct
+  chemical-synthesis loop: electromagnetically, from the collision plasma itself. Keep the bottom
+  of the straw under vacuum rather than filling it with steam. The strongest reason is not
+  conversion efficiency, it is that the airlock disappears. Today an entire subsection of hardware
+  exists only to keep the steam chamber's vapor from backflowing up the evacuated tube where the
+  next projectile is falling: a door that seals a 30 cm aperture in a millisecond, sacrificial
+  polyethylene plugs, ice coatings. If the bottom is also vacuum, the projectile path and the power
+  stage are one continuous vacuum, and that whole problem is gone.
+
+  The projectiles arrive heading straight down, so a long extraction channel cannot be vertical. A
+  large magnetic nozzle at the base turns the downward plasma about ninety degrees into a
+  horizontal, kilometer-long underground channel. The plasma is a good conductor at these
+  temperatures, so as it flows along the channel through a transverse magnetic field it drives a
+  current in external electrodes: an MHD generator with no moving parts and nothing touching the
+  plasma. The same magnetic-nozzle idea used to redirect collision plasma for thrust near the Sun
+  is used here for the opposite purpose. Instead of reflecting the plasma to conserve its momentum,
+  the channel brakes it against the field and draws its kinetic energy out as electricity.
+
+  Run the straw as a stream of many small pulses rather than a few enormous ones. The exact rate is
+  a free parameter; the point is that the per-pulse energy is what sizes the structure and sets the
+  worst case. A smaller pulse means a smaller nozzle and channel and a gentler load, and because the
+  impact speed is unchanged the plasma is just as hot and conductive, so shrinking the explosion
+  costs nothing in the MHD coupling. It also makes the plant safe: a malfunctioning or hijacked
+  projectile is a small burst, not a multi-megaton event. This is the same metering logic that turns
+  a single catastrophic impact into a throttle elsewhere in the paper.
+
+  MHD takes only the high-grade fraction of the energy, perhaps a fifth to two fifths, before the
+  gas cools too far to conduct. So the cooled channel exhaust feeds the steam-turbine or
+  chemical-looping stage already described, now placed a kilometer downstream at the far end of the
+  channel and out of the projectile path. That bottoming stage solves a second problem at the same
+  time. The plasma never has to be pumped out of a chamber between pulses; the channel runs as a
+  continuous flow, like an open-cycle MHD generator. The spent plasma recombines into neutral gas as
+  it cools, a diffuser recovers its pressure, and the bottoming cycle's heat exchanger doubles as the
+  condenser that holds the vacuum, since condensing the working fluid to liquid is how one pumps an
+  enormous volume of gas cheaply. The gases that do not condense, the carbon monoxide, carbon dioxide,
+  and hydrogen from the vaporized projectiles, are exactly the feedstock the synthesis loop wants, so
+  clearing them and collecting them are the same step.
+
+  Two honest caveats and one bonus. The bonus: ground MHD generators normally seed the gas with
+  cesium or potassium to conduct at furnace temperatures, with all the seed-recovery and corrosion
+  trouble that brings, but this plasma is hot enough to conduct on its own, so no seeding is needed.
+  The caveats: the steam chamber drew its combustion oxygen from decomposing steam, so a vacuum
+  bottom must rely on oxygen the projectile carries in its water or oxidizer interior; and at these
+  temperatures the plasma radiates strongly, so whether the channel extracts energy faster than the
+  plasma radiates it to the walls is the open question that decides the net efficiency.
 
 ---
 
