@@ -858,11 +858,11 @@ Resolved in a grilling session (2026-06-30).
 
 - [ ] brief note about geopolitcal overflight risks of PuffSat suborbital travel · `[raw]`
 
-- [ ] **Ozone / stratosphere policy mention: avoidable reentry NOx, plus water worth monitoring at scale** · `[raw]` → **new subsection** in §War, Policy (`\label{sec:ozone_policy}`)
-  - [ ] add the new subsection (two short paragraphs, prose below)
-  - [ ] cross-ref `\autoref{sec:200_mile_high}` (where the retrograde reentry-PuffSat deceleration already lives)
-  - [ ] add the 8 `references.bib` entries (block below); verify the `% TODO-CITE`-flagged fields at fold-in
-  - [ ] leave the §3 "less pollution for a given ΔV" line (`templateArxiv.tex` ~L244) untouched, per decision
+- [x] **Ozone / stratosphere policy mention: avoidable reentry NOx, plus water worth monitoring at scale** · `[raw]` → **new subsection** in §War, Policy (`\label{sec:ozone_policy}`) *(landed 2026-06-30: final subsection of §War, Policy, after `sec:overflight_politics`. Build clean, all 8 cites resolve.)*
+  - [x] add the new subsection (two short paragraphs, prose below) *(folded with style cleanup: NOx/bow-shock/photodissociation glossed on first use, SI-wrapped `\SIrange{50}{100}{\year}`, `\SI{200}{\kilo\meter}`, `\SIrange{15}{35}{\kilo\meter}`; reentry spelling matched to paper)*
+  - [x] cross-ref `\autoref{sec:200_mile_high}` (where the retrograde reentry-PuffSat deceleration already lives) *(two refs, render as "Section 2.2")*
+  - [x] add the 8 `references.bib` entries (block below); verify the `% TODO-CITE`-flagged fields at fold-in *(all author lists now fully resolved via Crossref after `api.crossref.org` was allow-listed: Ferreira [Ferreira, Huang, Nomura, Wang]; Hunga [Xin Zhou, Quanliang Chen, Feng, Heddell, Dhomse, Mann, Pumphrey, Millán, Santee, Chipperfield], vol 7(1) art 198; Barker full 13-author list, corrected to vol 14(5) art e2025EF007229. WMO/IPCC notes stripped since `%` is not a `.bib` comment char and would print. CFC "~50 to 100 yr" kept as hedge. Bibliography still renders "et al." per biblatex default, full lists stored in `.bib`.)*
+  - [x] leave the §3 "less pollution for a given ΔV" line (`templateArxiv.tex` ~L244) untouched, per decision *(untouched)*
 
   **Framing settled in the 2026-06-30 grill** (all three of Seth's points, with the honesty caveats agreed):
   point 1 = reentry NOx is the dominant *avoidable* ozone term and we skip it by braking on PuffSats;
