@@ -168,7 +168,7 @@ carbonation as an atomization aid for icy PuffSats. Both resolved in a grilling 
   - [x] Keep it brief (decided 2026-06-30): one or two sentences, do not develop the storage trade.
   - [x] Mechanism: dissolved CO₂ (soda model) exsolves on rupture and the expanding gas helps shatter the water into droplets, supercharged by the vacuum pressure ratio. Frame as a fourth mechanism that *trims* (does not replace) the micro-explosive load already in the section.
   - [x] Scope: viable only where carbon is abundant (Ceres ~20% carbon, Phoebe's CO₂ ice), **not** on the carbon-poor Moon. The exsolved CO₂ is biocompatible, a minor reaction-mass bonus. *(biocompatible/reaction-mass-bonus clause omitted for brevity.)*
-  - [ ] Rejected (do not propose): CO₂ clathrate hydrate. Its dissociation is endothermic and self-preserving, so it releases gas too slowly for millisecond atomization and can re-freeze the spray (the ice-crystal failure the section already warns about), and full dissociation while still confined over-pressurizes the liner. *(dropped from the paper per the brevity decision; kept here as rationale of record.)*
+  - [X ] Rejected (do not propose): CO₂ clathrate hydrate. Its dissociation is endothermic and self-preserving, so it releases gas too slowly for millisecond atomization and can re-freeze the spray (the ice-crystal failure the section already warns about), and full dissociation while still confined over-pressurizes the liner. *(dropped from the paper per the brevity decision; kept here as rationale of record.)*
   - [x] Cite an effervescent-atomization reference when this lands (e.g. a Lefebvre atomization text): `% TODO-CITE: effervescent atomization`.
 
   Where carbon is abundant, the icy PuffSat's meltwater can be lightly carbonated, so that
@@ -192,13 +192,13 @@ treat it like a D4 edit: it changes what the paper already says about Orion, not
 addition. Cross-links to `sec:radiative_differences` (Orion's shaped charges) and
 `sec:lightweight_pusher_plates` (curved plate, Medusa).
 
-- [ ] **Disentangle `f`: opacity sets restitution, plate/source shape sets direction** · `[sizing]`
-  - [ ] Split the two roles `f` currently bundles. Restitution (the 0.5→1 axis: how elastic the bounce is, energy kept as kinetic vs lost to heating the plate) is what opacity governs (Kramers' law). Direction/capture (what drops `f` below 0.5: whether the rebounded momentum goes forward vs scatters sideways or spills past the plate) is pure geometry. The current text pins Orion's high `f` on opacity alone, which conflates the two.
-  - [ ] Fix the Orion claim. Opacity only buys restitution; turning that into ~2× forward thrust needs the rebound collimated. A flat plate reflects efficiently only near normal incidence, so Orion was forced to collimate the source with shaped charges (the paper already says this in `sec:radiative_differences`). Orion's `f` was high, but the directionality came from flat-plate-plus-shaped-charge geometry, not from opacity. Do not write this as knocking Orion.
-  - [ ] State Medusa's geometric advantage. A dished sail wrapping around the blast (concave toward the explosion, convex from the payload side) catches a large solid angle of the divergent spherical expansion and reflects each element forward, with no shaped charge. That curvature matching the blast shape is a real design advantage of Medusa.
-  - [ ] State the PuffSat thesis. A gas puff is divergent, so a flat plate would scatter and spill (`f` < 0.5). Because PuffSat pulses are orders of magnitude gentler than nuclear blasts, we can afford to curve either plate style (rigid plate or Medusa-style sail) to collimate the rebound geometrically, getting directionality from a divergent puff without aggressive source-shaping. This raises the effective `f` for both styles.
-  - [ ] Cite-check the outside-world facts when folding in: Orion's plate was flat, Medusa's pusher was a dished/parachute sail, and Orion used shaped charges to direct the plasma. The shaped-charge fact is already cited (`balcomb1970nuclear`, `dyson2002project_orion`); find sources for the plate shapes.
-  - [ ] Note the shared lever with the down-push item under `sec:lightweight_pusher_plates`: the same curvature that collimates the rebound forward (raising `f`) is what lets the rebound carry the descending PuffSat's downward momentum out. One plate-shape decision, two payoffs.
+- [ X] **Disentangle `f`: opacity sets restitution, plate/source shape sets direction** · `[sizing]`
+  - [X ] Split the two roles `f` currently bundles. Restitution (the 0.5→1 axis: how elastic the bounce is, energy kept as kinetic vs lost to heating the plate) is what opacity governs (Kramers' law). Direction/capture (what drops `f` below 0.5: whether the rebounded momentum goes forward vs scatters sideways or spills past the plate) is pure geometry. The current text pins Orion's high `f` on opacity alone, which conflates the two.
+  - [ X] Fix the Orion claim. Opacity only buys restitution; turning that into ~2× forward thrust needs the rebound collimated. A flat plate reflects efficiently only near normal incidence, so Orion was forced to collimate the source with shaped charges (the paper already says this in `sec:radiative_differences`). Orion's `f` was high, but the directionality came from flat-plate-plus-shaped-charge geometry, not from opacity. Do not write this as knocking Orion.
+  - [ X] State Medusa's geometric advantage. A dished sail wrapping around the blast (concave toward the explosion, convex from the payload side) catches a large solid angle of the divergent spherical expansion and reflects each element forward, with no shaped charge. That curvature matching the blast shape is a real design advantage of Medusa.
+  - [ X] State the PuffSat thesis. A gas puff is divergent, so a flat plate would scatter and spill (`f` < 0.5). Because PuffSat pulses are orders of magnitude gentler than nuclear blasts, we can afford to curve either plate style (rigid plate or Medusa-style sail) to collimate the rebound geometrically, getting directionality from a divergent puff without aggressive source-shaping. This raises the effective `f` for both styles.
+  - [ X] Cite-check the outside-world facts when folding in: Orion's plate was flat, Medusa's pusher was a dished/parachute sail, and Orion used shaped charges to direct the plasma. The shaped-charge fact is already cited (`balcomb1970nuclear`, `dyson2002project_orion`); find sources for the plate shapes.
+  - [ X] Note the shared lever with the down-push item under `sec:lightweight_pusher_plates`: the same curvature that collimates the rebound forward (raising `f`) is what lets the rebound carry the descending PuffSat's downward momentum out. One plate-shape decision, two payoffs.
 
   The paper's `f` quietly bundles two independent things. The first is restitution: how
   elastic the impact is, set by whether the impact energy stays kinetic or is lost to
@@ -232,10 +232,10 @@ The "Like Proba-3, we target millimeter-scale precision" claim (paper line at
 (`sec:formation_challenges_current_missions`) both need the scale correction and
 the walk-before-run framing below.
 
-- [ ] **"Like Proba-3" needs a scale correction: mm at 300 km is not angular metrology** · `[sizing]`
-  - [ ] State Proba-3's mm is at ~144 m (≈ 7 µrad), an easy optical-metrology angle
-  - [ ] State that at a 300 km baseline 1 mm = ~3 nrad, which astrometry cannot reach
-  - [ ] Conclude the precision lever here is **ranging**, not angle (full case under `sec:periapsis_challenges`)
+- [ X] **"Like Proba-3" needs a scale correction: mm at 300 km is not angular metrology** · `[sizing]`
+  - [X ] State Proba-3's mm is at ~144 m (≈ 7 µrad), an easy optical-metrology angle
+  - [X ] State that at a 300 km baseline 1 mm = ~3 nrad, which astrometry cannot reach
+  - [X ] Conclude the precision lever here is **ranging**, not angle (full case under `sec:periapsis_challenges`)
 
   Proba-3 achieves millimetre relative precision at a separation of **~144 m**, where
   1 mm corresponds to an angular precision of **~7 µrad** — easy for an optical
@@ -256,10 +256,10 @@ the walk-before-run framing below.
   photons cannot beat). So at this scale the precision lever **cannot** be "like
   Proba-3" angular metrology. It must be ranging.
 
-- [ ] **Walk before run: meter-class near Earth (near-term), mm near the Sun (later)** · `[sizing]`  (blocked on D4)
-  - [ ] Add a scoping sentence near the headline mm claim (the Proba-3 mention) that mm precision is a *later-stage* near-Sun requirement, not needed for Section 2 near-term work
-  - [ ] State the counterintuitive point: tight precision is feasible where the environment looks most extreme (no atmosphere near the Sun ⇒ deterministic orbital mechanics)
-  - [ ] Name the genuinely hard regime as near-Earth low-periapsis (drag, gravity anomalies, sensor dropouts), which is why the near-term requirement stays loose
+- [X ] **Walk before run: meter-class near Earth (near-term), mm near the Sun (later)** · `[sizing]`  (blocked on D4)
+  - [X ] Add a scoping sentence near the headline mm claim (the Proba-3 mention) that mm precision is a *later-stage* near-Sun requirement, not needed for Section 2 near-term work
+  - [ X] State the counterintuitive point: tight precision is feasible where the environment looks most extreme (no atmosphere near the Sun ⇒ deterministic orbital mechanics)
+  - [X ] Name the genuinely hard regime as near-Earth low-periapsis (drag, gravity anomalies, sensor dropouts), which is why the near-term requirement stays loose
 
   This reframes the paper's navigation-accuracy claims. We can walk before we run, and
   the order is counterintuitive: the near-Earth near-term work needs only meter-class
@@ -701,6 +701,8 @@ projectiles' *spread* relative to each other becomes the whole game.
 
 ## §Sorry, I Don't Need ISRU → `sec:periapsis_challenges` (near-Sun absorbing nozzle / chamber)
 
+> **PARTIAL COLLAPSE 2026-07-01 (Seth decision).** The *magnetic-nozzle* material in this block is reduced to ONE brief mention in §5 (landed at the end of `sec:radiative_differences`, cite `ahedo2010magnetic`) — see the checked magnetic-nozzle item below. The absorbing-structure minimum-size items and the ship-staging items are NOT part of that collapse and remain open.
+
 The near-Sun absorbing structure that catches each prograde/retrograde collision.
 The paper already gestures at it in `sec:periapsis_challenges` ("the pulsed propulsion
 chamber may ablate slightly on each pulse, and the projectiles must be miniaturized to
@@ -735,7 +737,7 @@ Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
   restitution and blocks the radiative channel, but the bulk convective load that sets the
   size is opacity-blind.
 
-- [ ] **A magnetic nozzle avoids contact and ablation; the trade is roughly even at low energy but tips decisively to the nozzle as per-pulse energy climbs, so near the Sun it can overperform a contact wall** · `[sizing]`
+- [x] **A magnetic nozzle avoids contact and ablation; the trade is roughly even at low energy but tips decisively to the nozzle as per-pulse energy climbs, so near the Sun it can overperform a contact wall** · `[sizing]` **COLLAPSED 2026-07-01 → one brief mention in §5.** Landed at end of `sec:radiative_differences`: "a magnetic nozzle, a shaped magnetic field that redirects the ionized plasma with no wall in contact, may beat a solid absorber that has to survive each impact" (cite `ahedo2010magnetic`, Ahedo & Merino 2010, Phys. Plasmas 17:073501). Per Seth, the full magnetic-nozzle trade (regime-dependence, self-powering field, J×B catch, pulsed variant, sun-shielding, Earth-distance comparison — the sub-bullets below) is intentionally dropped to keep the paper short. Sub-bullets moot.
   - [ ] State the appeal: a magnetic nozzle reflects the conductive collision plasma off a field with no material contact, so there is no ablation limit and no thermal-fluence size floor. The plasma is a near-perfect conductor here (magnetic Reynolds number `Rm = μ₀ σ L v ~ 10⁷` at 4–5 MK), so it excludes and compresses field lines (frozen-flux / diamagnetic exclusion) and bounces off.
   - [ ] **State the regime-dependence (why it overperforms near the Sun, not unconditionally).** The two options scale oppositely with per-pulse energy. A contact wall is thermal-fluence-limited and ablates, so it gets *worse* as `E` rises (`R ∝ √E`). The field coupling gets *better*: Spitzer conductivity `σ ∝ T^{3/2}`, so a hotter plasma has a higher `Rm`, reflects more cleanly off frozen-in flux, and leaks less resistive heat into the coil. The crossover tilts to the nozzle as `E` climbs. At the low end (LEO insertion, weakly ionized 3–16 km/s gas near `10⁴ K`) the gas barely conducts and a material plate wins; in the Parker regime the nozzle overperforms. The momentum floor is unchanged across this range (the coil still reacts the full impulse), so "overperform" is about ablation, feasibility, and per-pulse consumables, not about escaping the mass-from-impulse floor. *(added 2026-06-30 grill)*
   - [ ] State that the field can be self-powered by the expansion. The field acts as a conservative spring: a persistent superconducting current holds it with zero per-pulse energy, and the work of redirecting the plasma comes from the plasma's own thermal/kinetic energy. Flux compression lets a modest seed field be transiently amplified by the expanding plasma (Sakharov MK-generator physics), so you need not hold the full peak field statically. (A static 10 T field over a ~20 m bubble already stores ~1.3 TJ, far above one pulse, so flux compression matters.)
@@ -832,6 +834,8 @@ Worked scenario: 2.5 kg retrograde + 7.5 kg prograde, head-on at 4 solar radii,
 
 ## §One Hiroshima Per Second, The World Set Free → new `\subsection` in `sec:world_set_free` (MHD extraction option)
 
+> **COLLAPSED 2026-07-01 (Seth decision).** The whole MHD-extraction idea is reduced to ONE brief mention in §6 (landed at the end of "Power Plant Chamber Details", before `sec:vacuum_airlock`, cite `dominguez2024mhd`). The standalone subsection is dropped; the sub-items below are moot.
+
 A third energy-extraction pathway for the Straw Way, beside the steam chamber ("Power Plant
 Chamber Details", currently *unlabeled* — give it a `\label{}` so the new text can cross-ref it)
 and the direct chemical-synthesis loop (`sec:strawway_economics`). Presented as an *alternative*
@@ -842,7 +846,7 @@ every 10 s is a power plant; 5000 t at once is a bomb"). Resolved in a grilling 
 (2026-06-30). Tag `[raw]`/qualitative: the rep-rate is a free parameter, so state scaling and
 architecture, not committed numbers.
 
-- [ ] **Standalone new subsection: extract straw power electromagnetically — vacuum bottom + magnetic nozzle + km-long MHD channel** · `[raw]` → new `\subsection` in `sec:world_set_free`, after "Power Plant Chamber Details", before `sec:vacuum_airlock`
+- [x] **Standalone new subsection: extract straw power electromagnetically — vacuum bottom + magnetic nozzle + km-long MHD channel** · `[raw]` → **COLLAPSED 2026-07-01 → one brief mention in §6.** Landed at end of "Power Plant Chamber Details", before `sec:vacuum_airlock`: "An alternative converter skips the steam. If the chamber floor is held at vacuum, each projectile arrives as fast plasma that a magnetic channel can decelerate and tap for current directly, the way a magnetohydrodynamic (MHD) generator draws power from moving conductive gas... favors many rapid, small impulses over a few large ones" (cite `dominguez2024mhd`, Domínguez-Lozoya et al. 2024, *Sustainability* 16:10041). Full standalone subsection (90° turn geometry, topping-stage framing, continuous-flow removal, no-seeding, oxidizer caveat, radiative-loss question — sub-bullets below) intentionally dropped to keep the paper short. Sub-bullets moot.
   - [ ] **The win is killing the airlock, not MHD efficiency per se.** A vacuum bottom makes the projectile flight path and the energy-extraction stage one continuous vacuum, so the entire `sec:vacuum_airlock` machinery (a 300 m/s door sealing a 30 cm aperture in 1 ms, sacrificial polyethylene plugs, ice coatings) that exists only to keep steam from backflowing up the tube simply disappears. State this as the headline motivation.
   - [ ] **Geometry: a ~90° magnetic turn.** Plasma arrives heading straight down; a km-long channel can't be vertical. The magnetic nozzle *redirects* (not reflects) the downward plasma into a horizontal, km-long underground MHD channel, keeping the heavy MHD hardware off to the side of the vertical projectile path. Flag the 90° turn of a `~10⁵–10⁶ K` plasma slug as speculative, not free.
   - [ ] **Division of labor: nozzle redirects, MHD channel extracts.** Opposite energy goal from the propulsion nozzle (`sec:periapsis_challenges`), which reflects near-elastically to *conserve* momentum for thrust. Here you *brake* the plasma against the field and pull its kinetic energy out as current in an external load; reflecting it elastically would waste the energy and shove the structure. Same "steer conductive plasma with a big field, no contact" primitive.
