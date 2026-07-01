@@ -1284,8 +1284,8 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:fine_control_thrusters`
 
-- [ ] propose 3m/s omnidirectional thrust capability of rocket, Gaussian distributed with .5 m/s standard deviation, align once per second. · `[raw]`
-- [ ] torque correction is RCS + rocket engine - non,toxic fuel obviously · `[raw]`
+- [x] ~~propose 3m/s omnidirectional thrust capability of rocket, Gaussian distributed with .5 m/s standard deviation, align once per second.~~ · `[raw]` **REJECTED — won't include (2026-07-01, per Seth).** The control sim modeled the PuffSat side of the interception only, never the rocket, so the 3 m/s omni / 0.5 m/s / 1 Hz divert spec has no sim backing and is a stray note. Stays out of the paper.
+- [x] torque correction is RCS + rocket engine - non,toxic fuel obviously · `[raw]` *(landed 2026-07-01: added to `sec:fine_control_thrusters`, after the "trajectory adjustments between impacts" sentence in the propellant-budget paragraph. The rocket cancels off-center impact torque with RCS + a gimbaled main engine (glossed "tilt to push off-axis"), on non-toxic propellant, and trims for the true-vs-planned impulse gap after each pulse. Flagged as a rocket-side requirement the sim did not model, per Seth. Build clean.)*
 
 ### → `sec:coordinator_node_dry_mass_disposal`
 
@@ -1487,8 +1487,8 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:leo_orbit_details`
 
-- [ ] Van Allen radiation shielding is provided by Puffsat itself. Relatively easy for outer Van Allen belt - time through inner belt with high energy protons is short enough to accept risk. Triple mmjority redundance (used on SpaceX - need source) · `[raw]`
-- [ ] slow down PuffSat can't be purely low Earth orbit because of atmospheric drag. · `[raw]`
+- [x] Van Allen radiation shielding is provided by Puffsat itself. Relatively easy for outer Van Allen belt - time through inner belt with high energy protons is short enough to accept risk. Triple mmjority redundance (used on SpaceX - need source) · `[raw]` *(landed 2026-07-01: new paragraph in `sec:leo_orbit_details` after the SRP/shadow paragraph. Self-shielding by propellant mass, outer-belt electrons easy, single inner-belt proton pass accepted (PuffSat is single-use, crosses the belts once on the inbound leg before impact — corrected from an initial "repeatedly crosses" per Seth), TMR glossed inline as "three copies + majority vote" with commercial-grade parts. Build clean. **Cites added 2026-07-01** (TODO-CITE resolved): belt structure → `li2019vanallen` (Li & Hudson 2019, JGR Space Physics 124:8319–8351, peer-reviewed review confirming inner-proton/outer-electron structure); SpaceX-TMR exemplar → `aviationweek2012dragon` (Aviation Week, "Dragon's Radiation-Tolerant Design," 2012-11-20 — date confirmed by Seth; prose now names Dragon riding out the loss of 1 of 3 flight computers to a radiation hit). Byline unconfirmed (corporate author). Both cites resolve, render in bibliography.)*
+- [x] slow down PuffSat can't be purely low Earth orbit because of atmospheric drag. · `[raw]` *(landed 2026-07-01: appended to the `sec:leo_orbit_details` intro sentence. Drag at ~200 km would decay a circular orbit within days, hence the eccentric ellipse; ties to the 50 km disposal perigee via `\autoref{sec:handling_space_debris}`. Build clean.)*
 
 ### → `sec:lightweight_pusher_plates`
 
