@@ -1130,11 +1130,11 @@ A PuffSat rides a Keplerian ellipse with perigee radius $r_p = R_\oplus + \SI{50
 \begin{equation}
 a = \frac{r_p + r_a}{2}, \qquad e = \frac{r_a - r_p}{r_a + r_p}, \qquad p = a\,(1 - e^2).
 \end{equation}
-At the interception radius $r = R_\oplus + \SI{200}{\kilo\meter}$ the speed follows from vis-viva, and the specific angular momentum $h = \sqrt{\mu p}$ is conserved, so the flight-path angle $\gamma$ below the local horizontal obeys
+At the interception radius $r = R_\oplus + \SI{200}{\kilo\meter}$ the speed follows from the vis-viva equation, and the specific angular momentum $h = \sqrt{\mu p}$ is conserved, so the flight-path angle $\gamma$ below the local horizontal obeys the standard two-body relations \cite{vallado_astrodynamics}
 \begin{equation}
 v = \sqrt{\mu\!\left(\frac{2}{r} - \frac{1}{a}\right)}, \qquad \cos\gamma = \frac{h}{r\,v} = \frac{\sqrt{\mu p}}{r\,v},
 \end{equation}
-where $\mu = \SI{3.986e5}{\kilo\meter\cubed\per\second\squared}$ is the Earth's gravitational parameter \cite{vallado_astrodynamics}. These give $v \approx \SI{10.8}{\kilo\meter\per\second}$ and $\gamma \approx \SI{8.5}{\degree}$, so $\sin\gamma \approx 0.15$. The low perigee sets the angle, not the apogee. Sweeping the apogee from \SI{30000}{\kilo\meter} to \SI{300000}{\kilo\meter} moves $\gamma$ only across \SIrange{7.9}{8.6}{\degree}.
+where $\mu = \SI{3.986e5}{\kilo\meter\cubed\per\second\squared}$ is the Earth's gravitational parameter. These give $v \approx \SI{10.8}{\kilo\meter\per\second}$ and $\gamma \approx \SI{8.5}{\degree}$, so $\sin\gamma \approx 0.15$. The low perigee sets the angle, not the apogee. Sweeping the apogee from \SI{30000}{\kilo\meter} to \SI{300000}{\kilo\meter} moves $\gamma$ only across \SIrange{7.9}{8.6}{\degree}.
 
 The same interception velocity resolves into a forward component $v\cos\gamma \approx \SI{10.7}{\kilo\meter\per\second}$ and a downward component $v\sin\gamma \approx \SI{1.6}{\kilo\meter\per\second}$. The craft climbs prograde, and near orbital insertion its velocity is nearly horizontal with speed $v_c$, which builds from rest toward the circular value $v_{\mathrm{circ}} = \sqrt{\mu/r} \approx \SI{7.8}{\kilo\meter\per\second}$. Each pulse delivers momentum along the relative velocity $\vec{u} = \vec{v} - \vec{v}_c$. Its forward part is the overtaking velocity $v\cos\gamma - v_c$, which shrinks as the craft speeds up, while its downward part holds fixed at $v\sin\gamma$. The downward fraction of the pulse is then
 \begin{equation}
