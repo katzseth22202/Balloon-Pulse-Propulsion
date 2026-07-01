@@ -1188,12 +1188,12 @@ glossed once where the section introduces the guidance concepts (likely
   nearly identically — turn out *not* to be the threat they first appear: they are
   mostly common-mode, and common-mode is cheap to cancel.
 
-- [ ] **Optional stretch — surveyor-anchored centring shrinks the plate from 5 m toward ~10 cm** · `[SIM]` (option)  (framing depends on D4)
-  - [ ] Add as an explicitly optional §2 tightening, without changing the baseline
-  - [ ] (1) sacrificial "surveyor" projectile measured by an independent instrumented gate (laser/microwave hoop, not the optical tracker, not a real impact) pins the swarm's shared optical bias
-  - [ ] (2) strobed known-pattern LED beacons on each projectile drive per-unit scatter to centimetres
-  - [ ] Beacon power: ~1 W peak optical (tens of mW average at low strobe duty) is ample at formation range; the photon SNR runs in the hundreds, so the cm floor stays the camera's distortion bias, not brightness. The old "kilowatt" scale was the radiation-pressure laser, a different device.
-  - [ ] State the honest committed claim: 10 cm (robust); 5 cm as a stretch contingent on a ≤1 cm gate and a well-calibrated camera; 2 cm not claimed
+- [x] **Optional stretch — surveyor-anchored centring shrinks the plate from 5 m toward ~10 cm** · `[SIM]` (option) **LANDED COMPACT 2026-07-01 (Seth: keep to a few sentences).** Two mechanism sentences added to `sec:formation_challenges_current_missions`: beacon centroiding into the per-unit paragraph, sacrificial lead surveyor into the common-mode paragraph. The 10 cm/5 cm capability claim itself already lived at L654/L720. Full 50× prose + beacon-power number intentionally left out for brevity.
+  - [x] ~~Add as an explicitly optional §2 tightening~~ — folded as two inline sentences, not a standalone tightening block
+  - [x] (1) sacrificial "surveyor" projectile — **landed in Seth's simpler framing:** a sacrificial *lead* PuffSat flies past the target ahead of the salvo, its miss measures the block's residual common-mode offset, and the target makes a small move to take the rest head-on. (Dropped the "independent instrumented gate / laser-microwave hoop" version.)
+  - [x] (2) strobed known-pattern LED beacons + centroiding drive per-unit scatter down — landed: "Each PuffSat strobes a known pattern, and centroiding its image against the star field fixes its angle to a small fraction of a pixel," cite `liebe2002startracker` (Liebe 2002, IEEE TAES 38(2):587–599, star-tracker sub-pixel centroiding tutorial). **Consequence corrected per Seth:** the payoff is that a tight block formation lands the PuffSats "in a small cluster near the plate's center, so the off-center spread at impact stays low" — NOT "fitting inside the catch radius" (that is the baseline requirement, already stated earlier in the same paragraph).
+  - [x] ~~Beacon power: ~1 W peak optical…~~ — **omitted for brevity** per the "few sentences" instruction.
+  - [x] State the honest committed claim: 10 cm (robust); 5 cm stretch; 2 cm not claimed — already in the paper at L654 ("about 10 cm, with 5 cm only as a stretch") and L720.
 
   The plate can be shrunk roughly **50×** (5 m → ~10 cm) by adding two metrology aids,
   *without* changing the baseline above. (1) A **sacrificial "surveyor" projectile**
