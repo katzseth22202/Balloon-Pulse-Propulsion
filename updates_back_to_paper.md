@@ -1464,10 +1464,10 @@ glossed once where the section introduces the guidance concepts (likely
 
 ### → `sec:handling_space_debris`
 
-- [ ] **Propellant stays under 2 %, and the low (~50 km) perigee is an intended disposal feature** · `[SIM]`
-  - [ ] Add/reinforce: full closed-loop propellant budget (cruise corrections + terminal aim) lands under 2% of the 25 kg projectile mass even in the worst sampled case
-  - [ ] State the deliberately low perigee (~50–65 km) is a designed outcome: de-orbits the spent projectile, burns up any miss (clean disposal)
-  - [ ] Make explicit perigee is a diagnostic where lower is safer, not a target to hit (so a reader does not mistake "50 km perigee" for a nav error)
+- [x] **Propellant stays under 2 %, and the low (~50 km) perigee is an intended disposal feature** · `[SIM]` *(landed 2026-07-01: new reinforcement paragraph after the J₂/night disposal itemize in `sec:handling_space_debris`. Build clean, `Katz_aim_is_all_you_need_2025` cite resolves, prose confirmed in PDF. SI-wrapped as `\SIrange{50}{65}{\kilo\meter}` / `\SI{25}{\kilo\gram}`; "projectile" → canonical "PuffSat"; propellant tied to debris via the no-large-tank/less-dry-mass link.)*
+  - [x] Add/reinforce: full closed-loop propellant budget (cruise corrections + terminal aim) lands under 2% of the 25 kg projectile mass even in the worst sampled case
+  - [x] State the deliberately low perigee (~50–65 km) is a designed outcome: de-orbits the spent projectile, burns up any miss (clean disposal)
+  - [x] Make explicit perigee is a diagnostic where lower is safer, not a target to hit (so a reader does not mistake "50 km perigee" for a nav error)
 
   The full closed-loop propellant budget — cruise corrections plus the terminal aim —
   lands **under 2 % of the 25 kg projectile mass** even in the worst sampled case.
@@ -1775,7 +1775,7 @@ Appendix Y = Subsection 2 below.
 
 ### → `sec:estimate_cold_gas` (cold-gas propellant appendix)
 
-- [ ] Reinforce the <2 % propellant bound with the closed-loop simulation result (see the `sec:handling_space_debris` item above): the appendix asserts the bound from a GOCE-derived back-of-the-napkin estimate; the sim now *confirms* it with a full corrector + terminal-guidance + finite-thrust + dispersed-environment loop. · `[SIM]`
+- [x] Reinforce the <2 % propellant bound with the closed-loop simulation result (see the `sec:handling_space_debris` item above): the appendix asserts the bound from a GOCE-derived back-of-the-napkin estimate; the sim now *confirms* it with a full corrector + terminal-guidance + finite-thrust + dispersed-environment loop. · `[SIM]` *(landed 2026-07-01: new bullet in the "Notes and explicit assumptions" itemize of `sec:estimate_cold_gas`, right after the "back-of-the-napkin upper bound" note, before the ChatGPT acknowledgement. Build clean, cite resolves, prose confirmed in PDF.)*
 
 ---
 

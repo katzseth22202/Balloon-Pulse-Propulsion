@@ -735,6 +735,8 @@ The dry mass components of each PuffSat risk becoming space debris. To avoid thi
 \item If our PuffSat interceptions occur at night, subsequent daytime periapsis will be over a warmer atmosphere with higher drag at the same altitude.
 \end{itemize}
 
+The low perigee, near \SIrange{50}{65}{\kilo\meter}, is a designed disposal outcome rather than a targeting error. It deorbits each spent PuffSat and burns up any unit that misses its target, so a lower perigee is safer. A reader should take \SI{50}{\kilo\meter} as a disposal margin, not a navigation fault to correct upward. A preliminary closed-loop simulation of the interception supports this clean-disposal picture. Its full guidance budget, cruise corrections plus the terminal aim, holds under 2\% of a \SI{25}{\kilo\gram} PuffSat's mass even in the worst sampled case \cite{Katz_aim_is_all_you_need_2025}. A budget that small needs no large propellant tank, so the guidance system adds little dry mass to dispose of.
+
 An alternative removes the down-kick at its source rather than cancelling it at the plate, and it pays off only when the fudge factor $f$ is low. Raising the PuffSat perigee to the \SI{200}{\kilo\meter} interception altitude catches each PuffSat at its perigee, with no descending velocity. There is then no downward momentum for the plate to handle by angling (see \autoref{sec:lightweight_pusher_plates}). That plate cancellation is cheap when $f$ is high and the rebound is elastic. A low $f$ leaves a large residual down-force, and that is when paying to remove the down-kick instead becomes worthwhile. The catch is disposal. A \SI{200}{\kilo\meter} perigee does not self-deorbit, so each dry-mass package fires a small burn at its next apogee, dropping its perigee to about \SI{50}{\kilo\meter} for reentry. Because the apogee of a near-escape orbit is far out, where the package is barely moving, that burn is only about \SI{4}{\meter\per\second}. That is well within the microthrusters the dry mass already carries, and far below the roughly \SI{1.4}{\kilo\meter\per\second} the same change would cost down at perigee. The package coasts about one extra orbit, a day or so, before it deorbits. The hardware must be highly reliable, because a dud strands the package on the \SI{200}{\kilo\meter} orbit as long-lived debris.
 
 Since PuffSats form large formations, care must also be taken to avoid existing satellites.  Short, seconds-long gaps in the formation could be intentionally introduced to avoid collisions.
@@ -928,6 +930,7 @@ Round up for presentation/engineering margin:
   \item The final \(\SI{400}{\g}\) figure is a rounded engineering margin. The computed baseline with margins is \(\approx\SI{374}{\g}\).
   \item Surface area calculations did not include the nitrogen tank proposed in \autoref{sec:formation_challenges_current_missions}.  We considered a gas generator alternative and assumed it would be compact, changing the PuffSat's shape negligibly.   If a nitrogen tank was used, drag would increase since the tank is a reasonable fraction of the PuffSat's size.
   \item This is a conservative back-of-the-napkin upper bound. Second-order effects are not modeled.
+  \item A preliminary closed-loop control simulation confirms this bound from the other direction. Where this appendix estimates propellant from GOCE drag scaling alone, the simulation flies the full interception: corrector burns, terminal guidance, finite-thrust execution, and a dispersed environment. It still holds the total guidance propellant under 2\% of the \SI{25}{\kilo\gram} PuffSat mass, even in the worst sampled case \cite{Katz_aim_is_all_you_need_2025}.
   \item \textbf{Acknowledgement:} ChatGPT extensively helped with this derivation and much of the text is copied from it verbatim \cite{chatgpt}.
 \end{itemize}
 % --- end ---
@@ -1117,7 +1120,7 @@ Differentiating and setting equal to zero gives
 \section{Flight-Path Angle And Downward Pulse Fraction At Interception}\label{sec:down_angle_geometry}
 This appendix backs two figures from \autoref{sec:lightweight_pusher_plates}: the \SI{8.5}{\degree} flight-path angle at interception, and the growth of each pulse's downward fraction from about 15\% to roughly one-half as the craft accelerates.
 
-A PuffSat rides a Keplerian ellipse with perigee radius $r_p = R_\oplus + \SI{50}{\kilo\meter}$ and a near-escape apogee, taken here as $r_a = R_\oplus + \SI{150000}{\kilo\meter}$ with $R_\oplus = \SI{6378}{\kilo\meter}$. Its semi-major axis, eccentricity, and semi-latus rectum are
+A PuffSat rides a Keplerian ellipse with perigee radius $r_p = R_\oplus + \SI{50}{\kilo\meter}$, the disposal perigee of \autoref{sec:handling_space_debris}, and a near-escape apogee, taken here as $r_a = R_\oplus + \SI{150000}{\kilo\meter}$ with $R_\oplus = \SI{6378}{\kilo\meter}$. Its semi-major axis, eccentricity, and semi-latus rectum are
 \begin{equation}
 a = \frac{r_p + r_a}{2}, \qquad e = \frac{r_a - r_p}{r_a + r_p}, \qquad p = a\,(1 - e^2).
 \end{equation}
