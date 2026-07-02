@@ -112,16 +112,28 @@ launch rocket).
 **Apogee nav constellation**:
 A permanent ~150,000 km Ka-band, authenticated *one-way broadcast* network that pins the
 PuffSat's coast/apogee position; the PuffSat is a passive receiver. Sized to *match* (not
-beat) the coast accuracy the corrector needs; ~3 members suffice.
-_Avoid_: "GNSS at apogee" (there is none; GPS reaches only ~20,200 km and the geometry
-differs); "coordinator node" (this is permanent infra, not a co-flyer).
+beat) the coast accuracy the corrector needs; ~3 members suffice. Clock/transponder
+placement (ADR 0020, reconfirmed 2026-07-02 grill): precise clocks live on the
+*constellation members*; the PuffSat carries a sub-gram verify-only receive ASIC, no
+transmitter, and solves its clock bias from ≥4 members like a GNSS receiver; the target
+and co-flyer rockets carry the full two-way crypto-nanosecond echo transponders.
+_Avoid_: "GNSS at apogee" as the baseline (GPS side-lobe fixes have reached ~150,000+ km
+on NASA's MMS, but they are weak, unauthenticated, and geometrically poor there; the paper
+acknowledges MMS and explains why the dedicated constellation wins — resolved 2026-07-02
+grill); "coordinator node" (this is permanent infra, not a co-flyer); putting an echo
+transponder or precise clock on the PuffSat.
 
 **Target-side tracker array**:
 The load-bearing terminal sensor: several (~5) independent, separately bench-calibrated
 detectors on the target that image each PuffSat's optical beacon against a reference-star
-field. Fusing them beats one detector by √N down to a common-mode floor (~1.6 µrad).
+field. Fusing them beats one detector by √N down to a common-mode floor (~1.6 µrad),
+against a ~3.2 µrad requirement. Fallback (ADR 0019, paper alignment resolved 2026-07-02
+grill): if bench calibration proves optimistic on the vibrating vehicle, about a dozen
+cruder 10 µrad detectors average back to the required grade; the paper states both, in
+these roles.
 _Avoid_: calling it a coordinator node; expecting *ranging* to sharpen the lateral (angle
-does the cross-track work).
+does the cross-track work); presenting the dozen-crude-detector fallback as the committed
+configuration.
 
 **Co-flying tracker**:
 The reused launch rocket serving as a closer terminal vantage (shorter range `R`, so
@@ -139,13 +151,25 @@ An optional autonomy layer: each PuffSat also carries a few-gram camera to image
 target beacon against stars and run its own terminal guidance, fused with the target-side
 measurement. Strengthens the no-co-flyer story; costs a little non-volatile dry mass to
 dispose of before impact. The sim modeled only the target-side path, so this is a
-speculative addition, not a simulation result.
-_Avoid_: presenting it as the load-bearing baseline (the **target-side tracker array** is).
+speculative addition, not a simulation result. Extended (2026-07-02 grill) to cover
+inter-PuffSat bearing as part of the same optional layer: a camera pointed *backward*
+images the follower's strobed beacon (pulsed LED or Q-switched laser plus narrowband
+filter) against dark sky, exploiting the short inter-unit range; forward staring into the
+impact flash is avoided per the sim's anchor-as-surveyor rule.
+Cameras may be carried in threes for two-of-three majority voting: fault containment
+(a systematic defect in one camera is rejected as an outlier), *not* a √3 precision
+gain, which shared-batch distortion forbids (ADR 0019 independence rule).
+_Avoid_: presenting it as the load-bearing baseline (the **target-side tracker array**
+is); promoting inter-PuffSat bearing into Tier 1; claiming √N bias averaging across
+same-batch cameras.
 
-**Coordinator node** (legacy framing, superseded for LEO):
-The paper's original picture in `sec:coordinator_node_dry_mass_disposal`: a co-flying
-satellite that tracks each PuffSat and uplinks commands. Superseded for LEO by the
-**off-board nav assets** above; retained only until that section is rewritten.
+**Coordinator node** (fallback option, superseded as baseline for LEO):
+The paper's original picture: a co-flying satellite that tracks each PuffSat and uplinks
+commands. Superseded for LEO by the **off-board nav assets** above. The rewrite landed
+2026-07-02: `sec:sensor_architecture` now holds the consolidated sensor/nav architecture,
+with the coordinator node as its closing held-in-reserve paragraph, and
+`sec:coordinator_node_dry_mass_disposal` retains only dry-mass disposal (label kept so
+existing cross-references resolve).
 _Avoid_: using it for the new architecture (name the specific asset instead).
 
 **Surveyor-anchored centring**:
@@ -254,8 +278,9 @@ atomization and over-pressurizes the liner if it dissociates while confined.
   and a **target-side tracker array** + reused-rocket **co-flying tracker** for terminal
   homing, optionally backed by **PuffSat self-homing**. The companion control sim closed
   this at the 5 m (Tier 1) level. "Coordinator node" is now a *legacy* term for the original
-  co-flying-brain framing; name the specific asset instead. `sec:coordinator_node_dry_mass_disposal`
-  is slated for rewrite.
+  co-flying-brain framing; name the specific asset instead. The rewrite landed 2026-07-02
+  as `sec:sensor_architecture` (grill session; see the **Apogee nav constellation**,
+  **Target-side tracker array**, and **PuffSat self-homing** entries for the decisions).
 - **Medusa "behind" = tension** was a slip; the behind-mounted sail is in
   **compression**. Real Medusa (front-mounted) is tension.
 - **"hydrolyze" → "photodissociate"** (resolved 2026-06-30, §8 ozone subsection
