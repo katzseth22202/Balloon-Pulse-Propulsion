@@ -98,9 +98,15 @@ _Avoid_: "centimetre centring" as the *committed* requirement (see Flagged ambig
 **Feasibility tiers**:
 The three confidence levels the interception claim is carried at, kept deliberately
 separate. Tier 1: a 5 m plate capture, closed-loop simulated (companion repo
-`puffsat_control_simulation`). Tier 2: a ~10 cm plate, argued and sized
-(**surveyor-anchored centring**), not simulated. Tier 3: a near-Sun/Parker extension,
-an architectural sketch with open numbers. Only Tier 1 is a simulation result.
+`puffsat_control_simulation`). Tier 2: a ~10 cm plate, *sized* (**surveyor-anchored
+centring**, ADR 0022: nominal ~5.8 cm, 10 cm robust), not simulated; its binders are
+bench characterizations a Monte Carlo cannot produce. Tier 3: a near-Sun/Parker
+extension, an architectural sketch with open numbers. Only Tier 1 is a simulation
+result. The tiers answer *different questions*, not one question at different
+confidence: Tier 1 proves the closed-loop dynamics and nav grade (the committed
+requirement); Tier 2 shows the metrology can center inside the funnel Tier 1 already
+proved (capability). Neither demotes the other (2026-07-02 grill, provisional:
+recommended framing adopted while Seth was away).
 
 **Off-board nav assets (LEO)**:
 The interception's support hardware, redistributed from the paper's original single
@@ -174,8 +180,21 @@ _Avoid_: using it for the new architecture (name the specific asset instead).
 
 **Surveyor-anchored centring**:
 An optional metrology upgrade (a sacrificial "surveyor" projectile measured by an
-independent instrumented gate, plus strobed LED beacons on each unit) that shrinks the
-plate from 5 m toward ~10 cm without changing the baseline architecture.
+independent instrumented gate, plus strobed beacons on each unit) that shrinks the
+plate from 5 m toward ~10 cm without changing the baseline architecture. Now *sized*,
+not just argued (sim repo `centering_budget.py`, ADR 0022, folded into the paper
+2026-07-02 grill): the plate is the RSS of two legs, the hoop precision σ_hoop and the
+camera scatter σ_θ·v/f. Nominal point ~5.8 cm (1 cm hoop ⊕ 3 µrad camera at the 2 Hz
+link); 10 cm tolerates σ_hoop ≤ 2.9 cm; 5 cm needs *both* legs tightened. A Q-switched,
+coarse-pointed beacon (~100 kW peak, few-hundred-mW average) plus narrowband filter and
+matched gate keeps the intra-train link distortion-limited, not photon-limited.
+Thermal-distortion hierarchy (ADR 0022 §5, reconfirmed 2026-07-02 grill): differential
+astrometry is the *primary* lever (thermal figure error is smooth, so star-differencing
+cancels it); thermal modelling with software correction (Gaia precedent) and a
+reflective narrowband front element with edge-cooled diamond conduction (gyrotron
+practice) are *backup/margin*, load-bearing only near the Sun.
+_Avoid_: "achieved" (binders are unmeasured bench characterizations; right next rigor
+is a bench test, not a sim); putting the diamond filter in the load-bearing LEO role.
 
 ### Near-Sun navigation
 
