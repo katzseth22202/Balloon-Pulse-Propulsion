@@ -447,7 +447,7 @@ Incoming projectiles experience dynamic pressure approximately  $\frac{v_{\text{
 
 Because these projectiles spend only \SIrange{1}{2}{\second} at lower altitudes when arriving at such extreme velocities, we may be able to counteract the resulting terminal forces by briefly firing small chemical thrusters and vectoring their thrust. Despite the rarefied air at \SI{200}{\kilo\meter} altitude, projectiles still face intense ram heating. Thin, thermally conductive skins can be cooled via convective heat transfer and latent heat absorption from phase-changing PuffSat volatiles (e.g., water vaporization).
 
-Projectile guidance and thermal management are easier if projectiles enter the vacuum tube at \SIrange{300}{400}{\kilo\meter} altitude, rather than the \SI{200}{\kilo\meter} baseline used in \autoref{sec:formation_challenges_current_missions}. That altitude exceeds the self-support breaking length of Kevlar or SK99 Dyneema, so the column wants PBO, whose \SI{380}{\kilo\meter} self-support length is the highest of the candidates \cite{zylon_technical_info}. The taper of the following paragraphs then supplies the safety margin (see \autoref{sec:fiber_selection}). A continuous silica or metallized barrier holds off the atomic oxygen and ultraviolet the exposed column meets, and the dry vacuum keeps PBO's hydrolysis pathway shut, so PBO earns its place in the coated column rather than the humid air near the surface.
+Projectile guidance and thermal management are easier if projectiles enter the vacuum tube at \SIrange{300}{400}{\kilo\meter} altitude, rather than the \SI{200}{\kilo\meter} baseline used in \autoref{sec:formation_challenges_current_missions}. That altitude exceeds Kevlar's self-support breaking length. SK99 Dyneema's instantaneous breaking length, near \SI{430}{\kilo\meter} \cite{dyneema_sk99_datasheet}, is on paper the longest of the four, but polyethylene creeps under sustained load, which rules it out for a permanent column (see \autoref{sec:fiber_selection}). The column therefore wants PBO, whose \SI{380}{\kilo\meter} self-support length \cite{zylon_technical_info} comes with near-zero creep. The taper of the following paragraphs then supplies the safety margin (see \autoref{sec:fiber_selection}). A continuous silica or metallized barrier holds off the atomic oxygen and ultraviolet the exposed column meets, and the dry vacuum keeps PBO's hydrolysis pathway shut, so PBO earns its place in the coated column rather than the humid air near the surface.
 
 Unlike the projectiles, PuffSats that provide pulsed propulsion to anchor the tube travel at only \SI{11}{\kilo\meter\per\second}. Their lower velocity enables more precise navigation and impact targeting at reduced altitudes. Therefore, we can place one anchor at the lower \SI{200}{\kilo\meter} altitude and connect the upper portion of the tube to a second anchor at higher altitude. Shorter cables anchored to surface vessels can serve as guy wires to counter winds on the lower \SI{20}{\kilo\meter} of the tube. These guy wires can be actively winched to adjust tension, minimizing peak wind forces the longer anchor cables must withstand.
 
@@ -824,12 +824,12 @@ Marc Andreessen once said ``software is eating the world'' \cite{andreessen_soft
 
 \appendix 
 
-\section{PuffSat cold-gas propellant: pessimistic upper-bound estimate}\label{sec:estimate_cold_gas}
+\section{PuffSat Cold-Gas Propellant: A Pessimistic Upper-Bound Estimate}\label{sec:estimate_cold_gas}
 
-We scale GOCE to a geometrically similar \(\SI{25}{\kg}\) PuffSat composed of low-density ANFO (see \autoref{sec:explosive_puffsat}). This gives a rough, intentionally pessimistic upper bound for cold-gas propellant needs.  We model GOCE as a cylinder and assume to first order that drag scales with surface area.  Our conservative multiplicative assumptions follow.
+We scale GOCE to a geometrically similar \(\SI{25}{\kg}\) PuffSat composed of low-density ANFO (see \autoref{sec:explosive_puffsat}). This gives a rough, intentionally pessimistic upper bound for cold-gas propellant needs. We model GOCE as a cylinder and assume to first order that drag scales with surface area. Our conservative multiplicative assumptions follow.
 
-\subsection*{Geometry and geometric scaling}
-Model GOCE as a cylinder with diameter \(D_0=\SI{1.0}{\m}\) and length \(L_0=\SI{4.0}{\meter}\).  Then the radius \(r_0=\tfrac{D_0}{2}=\SI{0.5}{\meter}\), and
+\subsection*{Geometry And Geometric Scaling}
+Model GOCE as a cylinder with diameter \(D_0=\SI{1.0}{\m}\) and length \(L_0=\SI{4.0}{\meter}\). Then the radius \(r_0=\tfrac{D_0}{2}=\SI{0.5}{\meter}\), and
 \[
 V_0 = \pi r_0^2 L_0 = \pi\cdot(0.5)^2\cdot 4 = \pi\ \mathrm{m^3},
 \qquad
@@ -837,7 +837,7 @@ S_0 = 2\pi r_0 L_0 + 2\pi r_0^2 = \tfrac{9}{2}\pi\ \mathrm{m^2}.
 \]
 
 Let the PuffSat mass be \(m=\SI{25}{\kg}\) and assume an ANFO density
-\(\rho=\SI{840}{\kg\per\m^3}\).  The PuffSat volume is
+\(\rho=\SI{840}{\kg\per\m^3}\). The PuffSat volume is
 \[
 V=\frac{m}{\rho}.
 \]
@@ -863,10 +863,10 @@ s &= \left(\frac{0.0297619}{\pi}\right)^{1/3} \approx 0.2116,\\[4pt]
 \end{aligned}
 \]
 
-\noindent\textbf{Remark:} geometric scaling predicts \(\sim22\times\) reduction in area.  To remain conservative we \emph{assume} only a \(\times 10\) reduction in drag. Explicitly: although area scales \(\approx22\times\) smaller, we take drag to be only \(10\times\) smaller.
+\noindent\textbf{Remark:} geometric scaling predicts \(\sim22\times\) reduction in area. To remain conservative we \emph{assume} only a \(\times 10\) reduction in drag. Explicitly: although area scales \(\approx22\times\) smaller, we take drag to be only \(10\times\) smaller.
 
-\subsection*{Baseline thrust assumption}
-GOCE used up to \(\SI{20}{\milli\newton}\) for drag free control (solar minimum).  We  allow up to \(\times 10\) larger thrust during solar maximum. This gives \(\SI{200}{\milli\newton}\) as a worst-case GOCE-equivalent value.  This solar maximum penalty is probably conservative, since we can time PuffSats to enter low atmosphere at night.  Applying the pessimistic \(\times 10\) weaker drag for the PuffSat (above) yields a continuous required thrust of
+\subsection*{Baseline Thrust Assumption}
+GOCE used up to \(\SI{20}{\milli\newton}\) for drag-free control (solar minimum). We allow up to \(\times 10\) larger thrust during solar maximum. This gives \(\SI{200}{\milli\newton}\) as a worst-case GOCE-equivalent value. This solar maximum penalty is probably conservative, since we can time PuffSats to enter low atmosphere at night. Applying the pessimistic \(\times 10\) weaker drag for the PuffSat (above) yields a continuous required thrust of
 \[
 F_1 = \frac{\SI{200}{\milli\newton}}{10} = \SI{20}{\milli\newton}
 \]
@@ -878,7 +878,7 @@ F_2 = 20\times F_1 = \SI{400}{\milli\newton}
 \]
 for \(t_2=\SI{30}{\s}\).
 
-\subsection*{Cold-gas mass flow}
+\subsection*{Cold-Gas Mass Flow}
 For a thruster with specific impulse \(I_{\mathrm{sp}}\) (seconds) and \(g_0=\SI{9.80665}{\m\per\s^2}\),
 \[
 \dot m = \frac{F}{I_{\mathrm{sp}} g_0}.
@@ -889,7 +889,7 @@ We use a pessimistic \(I_{\mathrm{sp}}=\SI{25}{\s}\), about half a typical CubeS
 \approx 4.079\times 10^{-6}\ \mathrm{kg/s} \approx 4.079\ \mathrm{mg/s}.
 \]
 
-\subsection*{Fuel required for the two intervals}
+\subsection*{Fuel Required For The Two Intervals}
 \paragraph{Continuous interval.}
 Required thrust \(F_1=\SI{20}{\milli\newton}\) sustained for \(t_1=\SI{300}{\s}\):
 \[
@@ -911,8 +911,8 @@ m_2 = \frac{F_2 t_2}{I_{\mathrm{sp}} g_0}
 m_{\mathrm{base}} = m_1 + m_2 \approx \SI{73.4196}{\g}.
 \]
 
-\subsection*{Margins and final rounding}
-Apply the following conservative margins.  GOCE operated at a representative altitude of $\approx \SI{250}{\kilo\meter}$ and successfully descended to as low as $\SI{229}{\kilo\meter}$ \cite{goce_229km}. Atmospheric density rises sharply at lower altitudes. We model an instantaneous drag jump as PuffSat descends from $\SI{250}{\kilo\meter}$ to our \SI{200}{\kilo\meter} target. GOCE's designers treated $\SI{250}{\kilo\meter}$ as nominal because it offered more reliable operational conditions.
+\subsection*{Margins And Final Rounding}
+Apply the following conservative margins. GOCE operated at a representative altitude of $\approx \SI{250}{\kilo\meter}$ and successfully descended to as low as $\SI{229}{\kilo\meter}$ \cite{goce_229km}. Atmospheric density rises sharply at lower altitudes. We model an instantaneous drag jump as PuffSat descends from $\SI{250}{\kilo\meter}$ to our \SI{200}{\kilo\meter} target. GOCE's designers treated $\SI{250}{\kilo\meter}$ as nominal because it offered more reliable operational conditions.
 \begin{enumerate}
   \item Add \(\SI{20}{\g}\) for attitude/torque control: \(m_{\mathrm{a}} = m_{\mathrm{base}} + \SI{20}{\g} \approx \SI{93.4196}{\g}.\)
   \item Double for pulsing inefficiencies and other control limitations: \(m_{\mathrm{b}} = 2 m_{\mathrm{a}} \approx \SI{186.8392}{\g}.\)
@@ -926,12 +926,12 @@ Round up for presentation/engineering margin:
 \boxed{m_{\mathrm{req}} \approx \SI{374}{\g}\ \text{(computed value); rounded to }\SI{400}{\g}\ \text{for conservative margin}.}
 \]
 
-\subsection*{Notes and explicit assumptions}
+\subsection*{Notes And Explicit Assumptions}
 \begin{itemize}
   \item We explicitly made two large conservative choices: (1) although geometric area scaling predicts \(\sim22\times\) lower drag, we assume only a \(10\times\) reduction (pessimistic), and (2) we include an extreme short-duration surge of \(20\times\) the baseline drag for \(\SI{30}{\s}\).
   \item The specific impulse \(I_{\mathrm{sp}}=\SI{25}{\s}\) is pessimistic. A higher \(I_{\mathrm{sp}}\) reduces propellant need proportionally.
   \item The final \(\SI{400}{\g}\) figure is a rounded engineering margin. The computed baseline with margins is \(\approx\SI{374}{\g}\).
-  \item Surface area calculations did not include the nitrogen tank proposed in \autoref{sec:formation_challenges_current_missions}.  We considered a gas generator alternative and assumed it would be compact, changing the PuffSat's shape negligibly.   If a nitrogen tank was used, drag would increase since the tank is a reasonable fraction of the PuffSat's size.
+  \item Surface area calculations did not include the nitrogen tank discussed in \autoref{sec:fine_control_thrusters}. We considered a gas generator alternative and assumed it would be compact, changing the PuffSat's shape negligibly. If a nitrogen tank were used, drag would increase since the tank is a sizable fraction of the PuffSat's size.
   \item This is a conservative back-of-the-napkin upper bound. Second-order effects are not modeled.
   \item A preliminary closed-loop control simulation confirms this bound from the other direction. Where this appendix estimates propellant from GOCE drag scaling alone, the simulation flies the full interception: corrector burns, terminal guidance, finite-thrust execution, and a dispersed environment. It still holds the total guidance propellant under 2\% of the \SI{25}{\kilo\gram} PuffSat mass, even in the worst sampled case \cite{Katz_aim_is_all_you_need_2025}.
   \item \textbf{Acknowledgement:} ChatGPT extensively helped with this derivation and much of the text is copied from it verbatim \cite{chatgpt}.
@@ -940,7 +940,7 @@ Round up for presentation/engineering margin:
 
 
 
-\section{Derivation Of PuffSat Mass/Rocket Mass Continuous Approximation}\label{sec:PuffSat_ratio_approximation}  We want to approximate the ratio of total PuffSat mass \(m_p\) to rocket mass \(m_r\). A sequence of PuffSats, all traveling at velocity \(v_p\), pushes the rocket from initial velocity \(v_{ri}\) to final velocity \(v_{rf}\).   First, assume every collision is perfectly elastic in one dimension.   We model the rocket as continuously bombarded by infinitesimal PuffSats, each with mass \(dm_p\), and solve for a closed-form expression.   (Note: Grok \cite{grok}  helped with some of the math for this derivation and parts of this derivation are copied from Grok  results directly)
+\section{Derivation Of PuffSat Mass/Rocket Mass Continuous Approximation}\label{sec:PuffSat_ratio_approximation} We want to approximate the ratio of total PuffSat mass \(m_p\) to rocket mass \(m_r\). A sequence of PuffSats, all traveling at velocity \(v_p\), pushes the rocket from initial velocity \(v_{ri}\) to final velocity \(v_{rf}\). First, assume every collision is perfectly elastic in one dimension. We model the rocket as continuously bombarded by infinitesimal PuffSats, each with mass \(dm_p\), and solve for a closed-form expression. (Note: Grok \cite{grok} helped with some of the math for this derivation and parts of this derivation are copied from Grok results directly)
 
 The initial velocities are
 \begin{itemize}
@@ -970,12 +970,12 @@ For an elastic collision
 \begin{equation}
     v_p'\ = \frac{2m_r}{m_r+m_p}v_r + \frac{m_p-m_r}{m_r+m_p}v_p \label{eq:vb_prime_full_momentum}
 \end{equation}
-Since \(m_r \gg m_p\)   we plug \(m_p = 0\)  into \autoref{eq:vb_prime_full_momentum} and find 
+Since \(m_r \gg m_p\) we plug \(m_p = 0\) into \autoref{eq:vb_prime_full_momentum} and find 
 \begin{equation}
-v_p' = 2v_r - v_p  \label{eq:vb_prime_result}
-\end{equation}      
+v_p' = 2v_r - v_p \label{eq:vb_prime_result}
+\end{equation} 
 
-Substituting \(v_p'\) from  \autoref{eq:vb_prime_result} into \autoref{eq:momentum}:
+Substituting \(v_p'\) from \autoref{eq:vb_prime_result} into \autoref{eq:momentum}:
 \[
 m_r dv_r = dm_p (v_p - (2 v_r - v_p))
 \]
@@ -1006,17 +1006,20 @@ For the right-hand side, treat \( v_r \) as a function of the accumulated PuffSa
 \frac{dv_r}{v_p - v_r} = \frac{2 dm_p}{m_r}\label{eq:dvr_velocity_relation}
 \end{equation}
 
-Since \(v_p\) is constant,  \(dv_p = 0\) and  \(dv_r = -d(v_p-v_r)\), so we can rewrite \autoref{eq:dvr_velocity_relation} as:
+Since \(v_p\) is constant, \(dv_p = 0\) and \(dv_r = -d(v_p-v_r)\), so we can rewrite \autoref{eq:dvr_velocity_relation} as:
 \[
 -\frac{d(v_p - v_r)}{v_p - v_r} = \frac{2 dm_p}{m_r}
 \]
-Integrate both sides:
-- Left: \( \int_{v_p - v_{ri}}^{v_p - v_{rf}} -\frac{d(v_p - v_r)}{v_p - v_r} = \int_{v_{ri}}^{v_{rf}} \frac{dv_r}{v_p - v_r} \)
+Integrate both sides. The left side becomes
 \[
-= \left[ -\ln|v_p - v_r| \right]_{v_{ri}}^{v_{rf}} = \ln \left| \frac{v_p - v_{ri}}{v_p - v_{rf}} \right|
+\int_{v_{ri}}^{v_{rf}} \frac{dv_r}{v_p - v_r}
+= \left[ -\ln|v_p - v_r| \right]_{v_{ri}}^{v_{rf}} = \ln \left| \frac{v_p - v_{ri}}{v_p - v_{rf}} \right|,
 \]
-- Right: \( \int_0^{m_p} \frac{2 dm_p}{m_r} = \frac{2 m_p}{m_r} \)
-Equate:
+and the right side gives
+\[
+\int_0^{m_p} \frac{2\, dm_p}{m_r} = \frac{2 m_p}{m_r}.
+\]
+Equating the two:
 \[
 \ln \left| \frac{v_p - v_{ri}}{v_p - v_{rf}} \right| = \frac{2 m_p}{m_r}
 \]
@@ -1027,15 +1030,14 @@ Solve for \( m_p \):
 \begin{equation}
 m_p = \frac{m_r}{2} \ln \left| \frac{v_p - v_{ri}}{v_p - v_{rf}} \right| 
 \end{equation}
-\subsection{Interpret The Absolute Value}   
-The absolute value accounts for the direction of velocities:
-- If \( v_p > v_{ri} \) and \( v_p > v_{rf} \),  then \( v_p - v_{ri} \) and \( v_p - v_{rf} \) are positive, so:
+\subsection{Interpret The Absolute Value} 
+The absolute value accounts for the direction of velocities. When \( v_p > v_{ri} \) and \( v_p > v_{rf} \), both \( v_p - v_{ri} \) and \( v_p - v_{rf} \) are positive, so
 \[
 m_p = \frac{m_r}{2} \ln \left( \frac{v_p - v_{ri}}{v_p - v_{rf}} \right)
 \]
 \subsection{Compute PuffSat To Rocket Mass Ratio, With A Fudge Factor For Real World Losses}
 
-Solve for the PuffSat-to-rocket mass ratio. Add a fudge factor $f$ in $(0,1)$ for restitution losses and imperfect volatile spread off the pusher plate.   Assume $f$ is constant across collisions. In practice it varies with the relative PuffSat-rocket velocity.  PuffSat sizes will in practice grow as the rocket nears $v_p$, since more mass is needed for the same acceleration.
+Solve for the PuffSat-to-rocket mass ratio. Add a fudge factor $f$ in $(0,1)$ for restitution losses and imperfect volatile spread off the pusher plate. Assume $f$ is constant across collisions. In practice it varies with the relative PuffSat-rocket velocity. PuffSat sizes will in practice grow as the rocket nears $v_p$, since more mass is needed for the same acceleration.
 \begin{equation}
 \frac{m_r}{m_p} = \frac{2f}{\ln\left(\frac{v_p-v_{ri}}{v_p-v_{rf}}\right)}\label{eq:PuffSat_ratio}
 \end{equation}
@@ -1045,28 +1047,28 @@ Solve for the PuffSat-to-rocket mass ratio. Add a fudge factor $f$ in $(0,1)$ fo
 \paragraph{AI Acknowledgment}
 Most of this derivation is copied directly from a solution worked out with a ChatGPT prompt \cite{chatgpt}.
 
-\paragraph{Assumptions and notation.}  
-Let $x$ denote the vertical coordinate measured downward from the top support ($x=0$ at the top, $x=l$ at the bottom).  
-The material has density $\rho$ (mass per unit volume), subject to gravitational acceleration $g$.  
+\paragraph{Assumptions and notation.} 
+Let $x$ denote the vertical coordinate measured downward from the top support ($x=0$ at the top, $x=l$ at the bottom). 
+The material has density $\rho$ (mass per unit volume), subject to gravitational acceleration $g$. 
 
-The ultimate tensile strength (stress limit) of the material is $\sigma$.  
+The ultimate tensile strength (stress limit) of the material is $\sigma$. 
 Define the \emph{breaking length}
 \[
 b \;\equiv\; \frac{\sigma}{\rho g},
 \]
-i.e.\ a uniform vertical cable of length $b$ will break under its own weight.  
+i.e.\ a uniform vertical cable of length $b$ will break under its own weight. 
 
-Let $A(x)$ be the cross-sectional area at height $x$, and $T(x)$ the internal tension at that section.  
-A payload $P$ may be attached at the bottom ($x=l$). If no external load is present, set $P=0$.  
+Let $A(x)$ be the cross-sectional area at height $x$, and $T(x)$ the internal tension at that section. 
+A payload $P$ may be attached at the bottom ($x=l$). If no external load is present, set $P=0$. 
 
-\paragraph{Equilibrium condition.}  
+\paragraph{Equilibrium condition.} 
 Static force balance gives
 \[
 T(x) \;=\; P + \rho g \int_x^l A(s)\,ds,
 \]
-where the integral accounts for the weight of the cable below $x$.  
+where the integral accounts for the weight of the cable below $x$. 
 
-\paragraph{Optimality condition.}  
+\paragraph{Optimality condition.} 
 To minimize mass for given $P$ and $l$, the stress constraint is active everywhere:
 \[
 T(x) \;=\; \sigma A(x).
@@ -1085,7 +1087,7 @@ so that
 A'(x) \;=\; -\frac{\rho g}{\sigma}\, A(x) \;=\; -\frac{1}{b}\,A(x).
 \]
 
-\paragraph{Solution.}  
+\paragraph{Solution.} 
 This linear ODE has the exponential solution
 \[
 A(x) \;=\; C\, e^{-x/b},
@@ -1093,16 +1095,16 @@ A(x) \;=\; C\, e^{-x/b},
 for some constant $C$ determined by the boundary condition (e.g.\ the required cross-sectional area at the top or bottom).
 
 \section{Deriving Effective Exhaust Velocity for Idealized 100\% Efficient Prograde/Retrograde PuffSat Collision Rocket Thrust}\label{sec:dv_effective}
-Suppose a retrograde PuffSat with mass $m_{rp}$ and a prograde PuffSat with mass $m_{pp}$ collide in a pulsed rocket propulsion chamber, as depicted in \autoref{tab:pulsed_combustion_illustration}.  We want the maximum exhaust velocity $v_e$ for the prograde rocket, assuming 100\% engine efficiency. All the combined gas is expelled behind us, in the retrograde direction.   For simplicity we say 
+Suppose a retrograde PuffSat with mass $m_{rp}$ and a prograde PuffSat with mass $m_{pp}$ collide in a pulsed rocket propulsion chamber, as depicted in \autoref{tab:pulsed_combustion_illustration}. We want the maximum exhaust velocity $v_e$ for the prograde rocket, assuming 100\% engine efficiency. All the combined gas is expelled behind us, in the retrograde direction. For simplicity we say 
 \begin{equation}
 m_{rp} + m_{pp} = 1\label{eq:mass_is_1}
 \end{equation} 
-Each PuffSat has velocity $v_p$ so the retrograde PuffSat has velocity $2v_p$ in the reference frame of the prograde PuffSat.   In the prograde reference frame, kinetic energy is
+Each PuffSat has velocity $v_p$ so the retrograde PuffSat has velocity $2v_p$ in the reference frame of the prograde PuffSat. In the prograde reference frame, kinetic energy is
 \begin{equation}
 E = \frac{m_{rp} (2v_p)^2}{2} = 2m_{rp}v_p^2\label{eq:ke_PuffSats}
 \end{equation}
 
-Let $v_g$ be gas exhaust velocity expelled from the rocket, and assume the expelled gas mass is infinitesimal compared to the entire prograde rocket and its payload.  Applying mass from \autoref{eq:mass_is_1}
+Let $v_g$ be gas exhaust velocity expelled from the rocket, and assume the expelled gas mass is infinitesimal compared to the entire prograde rocket and its payload. Applying mass from \autoref{eq:mass_is_1}
  and kinetic energy from \autoref{eq:ke_PuffSats}, we have 
  \begin{equation}
  2m_{rp}v_p^2= \frac{v_g^2}{2}
@@ -1143,7 +1145,7 @@ At $v_c = 0$ the relative velocity is the PuffSat's own velocity, and the fracti
 \section{Tensile-Fiber Selection for PuffSat Tension Members}\label{sec:fiber_selection}
 Three PuffSat structures carry organic fiber under steady tension above most of the atmosphere: the vacuum launch column (\autoref{sec:tether_tapering}), the Mars skyhook tether (\autoref{sec:mars_skyhook}), and the polymer net behind the pusher-plate sail (\autoref{sec:lightweight_pusher_plates}). The same four fibers are candidates in each case, but a different property decides the choice. The column turns on self-support length, the skyhook on creep and specific strength, and the sail net on shock toughness within a temperature-ceiling limit. \autoref{tab:fiber_selection} collects the numbers, and this section gives the reasoning the three sites share.
 
-Self-support breaking length scales with specific strength. PBO, the fiber sold as Zylon, reaches a self-support length near \SI{380}{\kilo\meter}, about \num{1.6} times Vectran's \cite{zylon_technical_info}. Kevlar and SK99 Dyneema fall short of the \SIrange{300}{400}{\kilo\meter} a tall column spans \cite{cambridge_materials_databook, dyneema_sk99_datasheet}, and Vectran is shorter still. Taper closes that gap, but its mass penalty climbs steeply as self-support length drops, so the column favors the fiber with the most margin (see \autoref{sec:tether_tapering}). Creep separates the fibers under permanent load. Drawn polyethylene creeps even when carbon-modified for creep resistance \cite{sk99_tension}. Vectran, a liquid-crystal polymer, all but eliminates creep \cite{vectran_brochure}, and PBO creeps about as little as Vectran \cite{zylon_technical_info}. A structure that holds steady tension for years, such as a spinning skyhook, rules out polyethylene on creep alone.
+Self-support breaking length scales with specific strength. PBO, the fiber sold as Zylon, reaches a self-support length near \SI{380}{\kilo\meter}, about \num{1.6} times Vectran's \cite{zylon_technical_info}. SK99 Dyneema's instantaneous figure is longer still, near \SI{430}{\kilo\meter} \cite{dyneema_sk99_datasheet}, but it holds only for short loads; creep under sustained tension disqualifies polyethylene below. Kevlar, near \SI{250}{\kilo\meter} \cite{cambridge_materials_databook}, falls short of the \SIrange{300}{400}{\kilo\meter} a tall column spans, and Vectran is shorter still. Taper closes that gap, but its mass penalty climbs steeply as self-support length drops, so the column favors the fiber with the most margin (see \autoref{sec:tether_tapering}). Creep separates the fibers under permanent load. Drawn polyethylene creeps even when carbon-modified for creep resistance \cite{sk99_tension}. Vectran, a liquid-crystal polymer, all but eliminates creep \cite{vectran_brochure}, and PBO creeps about as little as Vectran \cite{zylon_technical_info}. A structure that holds steady tension for years, such as a spinning skyhook, rules out polyethylene on creep alone.
 
 Temperature ceiling forms a ladder. Drawn polyethylene like Dyneema melts near \SI{147}{\celsius} \cite{uhmwpe_fiber_datasheet}. Vectran holds strength to roughly \SI{200}{\celsius} and melts above \SI{300}{\celsius} \cite{vectran_brochure}. Aramid does not melt, keeps most of its strength to about \SI{250}{\celsius}, and decomposes above \SI{425}{\celsius} \cite{kevlar_technical_guide}. PBO tops the ladder and decomposes only near \SI{650}{\celsius} \cite{zylon_technical_info}. A back ply that runs hot must climb the ladder, while one that radiates cool between widely spaced pulses can sit lower.
 
@@ -1161,7 +1163,7 @@ PBO is not new to spaceflight. Metal-clad PBO is a stock product, and the fiber 
     \centering
     \begin{tabularx}{\textwidth}{|l|L|L|L|L|}\hline
         \textbf{Fiber} & \textbf{Self-support length} & \textbf{Creep} & \textbf{Temperature ceiling} & \textbf{Main vulnerability} \\\hline
-        UHMWPE (Dyneema) & below \SIrange{300}{400}{\kilo\meter} & creeps, even carbon-modified & melts $\sim$\SI{147}{\celsius} & low temperature ceiling; creep \\\hline
+        UHMWPE (Dyneema) & $\sim$\SI{430}{\kilo\meter} instantaneous; creep-limited under sustained load & creeps, even carbon-modified & melts $\sim$\SI{147}{\celsius} & low temperature ceiling; creep \\\hline
         Aramid (Kevlar) & below \SIrange{300}{400}{\kilo\meter} & low & no melt; to $\sim$\SI{250}{\celsius}, decomposes above \SI{425}{\celsius} & moisture uptake; hydrolysis \\\hline
         Vectran (LCP) & $\sim$\SI{240}{\kilo\meter} & none & to $\sim$\SI{200}{\celsius}; melts above \SI{300}{\celsius} & lower specific strength \\\hline
         PBO (Zylon) & $\sim$\SI{380}{\kilo\meter} & none & decomposes $\sim$\SI{650}{\celsius} & photodegradation; atomic-oxygen erosion \\\hline
@@ -1175,7 +1177,7 @@ PBO is not new to spaceflight. Metal-clad PBO is a stock product, and the fiber 
 
 As a non-expert, I may have also overlooked relevant prior work or failed to choose the most appropriate citations. If you notice any concepts presented as novel that are actually from other sources, please let me know so I can correct the citations. I've been less formal with citing my own blog posts.
 
-I previously worked at Netflix, which produces content related to some popular culture titles referenced in the paper.   However, I am no longer employed there and am not a major investor. My blog is not monetized and is primarily to further explain this paper's ideas.   I do not believe I have any current financial conflicts of interest.
+I previously worked at Netflix, which produces content related to some popular culture titles referenced in the paper. However, I am no longer employed there and am not a major investor. My blog is not monetized and exists primarily to explain this paper's ideas. I do not believe I have any current financial conflicts of interest.
 
 \section{Copyright}
 \small
