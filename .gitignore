@@ -22,3 +22,7 @@
 
 # Scratch / working documents (todo lists, audit summaries, restart handoffs)
 todos/
+
+# Python
+__pycache__/
+*.pyc
