@@ -69,7 +69,7 @@ the propulsion "reflect for thrust" role with the power-plant "guide-then-extrac
 **Earth re-intercept**:
 The requirement that a boosted solar-dive projectile arrive *where Earth actually is*,
 not merely cross `1 AU` somewhere. The boosted orbit is hyperbolic and crosses 1 AU only
-once, about 0.2 yr after launch, roughly 130° of heliocentric longitude from Earth. The
+once, about 0.2 yr after launch, roughly 136° of heliocentric longitude from Earth. The
 projectile whips ~295° around perihelion while Earth advances only ~70°, so the miss is
 set by the whip-around, not by Earth's drift. Re-aiming at periapsis is prohibitive
 (~5.4 km/s per degree at the 309 km/s, 4 R☉ periapsis speed).
@@ -86,9 +86,10 @@ holds the doubling factor at two. It needs a second PuffSat boost node at 1 AU, 
 where the loop returns; a mature network fields it, an early one may not. First resonance
 ~0.82 yr. Apoapsis-raising is the wasteful direction (opposing boosts, ~+7.6 km/s,
 ~1.82 yr).
-(2) *Single-impulse resonant dive* (inject outbound to ~2.7 AU aphelion): needs only the
-Earth boost node, but the boost grows ~24 → ~41 km/s (+17), which spends more PuffSats and
-drops the doubling factor below two. ~0.82 yr.
+(2) *Single-impulse resonant dive* (inject outbound to ~1.9 AU aphelion): needs only the
+Earth boost node, but the boost grows ~24 → ~37 km/s (the direct dive's ~24 km/s retrograde
+component plus a ~28 km/s outbound radial component), which spends more PuffSats and drops
+the doubling factor below two. ~0.85 yr; the aphelion is the knob that closes the geometry.
 (3) *Gravity-assist resonant return* (Venus/Earth flyby): impulse-free phasing, ~1--2 yr,
 constrained by flyby timing.
 _Avoid_: calling phasing impossible or requiring a "rocket burn" (PuffSat collisions
