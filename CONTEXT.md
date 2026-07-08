@@ -64,6 +64,43 @@ momentum.
 _Avoid_: implying it removes the momentum/mass floor (it removes ablation only); conflating
 the propulsion "reflect for thrust" role with the power-plant "guide-then-extract" role.
 
+### Heliocentric re-intercept (solar-dive return)
+
+**Earth re-intercept**:
+The requirement that a boosted solar-dive projectile arrive *where Earth actually is*,
+not merely cross `1 AU` somewhere. The boosted orbit is hyperbolic and crosses 1 AU only
+once, about 0.2 yr after launch, roughly 130° of heliocentric longitude from Earth. The
+projectile whips ~295° around perihelion while Earth advances only ~70°, so the miss is
+set by the whip-around, not by Earth's drift. Re-aiming at periapsis is prohibitive
+(~5.4 km/s per degree at the 309 km/s, 4 R☉ periapsis speed).
+_Avoid_: "interception" (reserved for the near-term LEO terminal-guidance sense below);
+treating "crosses Earth's orbit" as if it meant "hits Earth."
+
+**Phasing loop**:
+A pre-dive maneuver that delays the deep dive until Earth reaches the fixed crossing point,
+so the return re-intercepts Earth. Every boost is a PuffSat collision, not carried
+propellant, so any of these can supply the impulse. Three realizations:
+(1) *Two-impulse loop* (periapsis-lowering shallow dip, then deep dive): the two retrograde
+boosts are colinear, so it is free in total impulse (~24 km/s, same as a direct dive) and
+holds the doubling factor at two. It needs a second PuffSat boost node at 1 AU, off Earth,
+where the loop returns; a mature network fields it, an early one may not. First resonance
+~0.82 yr. Apoapsis-raising is the wasteful direction (opposing boosts, ~+7.6 km/s,
+~1.82 yr).
+(2) *Single-impulse resonant dive* (inject outbound to ~2.7 AU aphelion): needs only the
+Earth boost node, but the boost grows ~24 → ~41 km/s (+17), which spends more PuffSats and
+drops the doubling factor below two. ~0.82 yr.
+(3) *Gravity-assist resonant return* (Venus/Earth flyby): impulse-free phasing, ~1--2 yr,
+constrained by flyby timing.
+_Avoid_: calling phasing impossible or requiring a "rocket burn" (PuffSat collisions
+provide all impulses); presenting apoapsis-raising as the default; rotating the argument of
+periapsis for a *fast* dive (no in-plane solution when launching from the aphelion of a
+deep diver).
+
+**Re-intercept cycle floor (~0.82 yr)**:
+The shortest Earth-to-Earth solar-dive cycle that actually re-intercepts Earth, set by the
+first phasing resonance. Supersedes the paper's earlier implied ~0.5 yr ("6 month") cycle.
+At one payload doubling per cycle, a millionfold scaling takes ~16 yr, not under a decade.
+
 ### Interception navigation (near-term LEO)
 
 **Common-mode error**:
