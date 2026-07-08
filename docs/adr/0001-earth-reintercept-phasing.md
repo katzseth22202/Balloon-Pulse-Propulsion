@@ -47,8 +47,10 @@ than committing to one.
   resonance, no Earth turnaround). The single-impulse and gravity-assist routes push past it.
 - The companion calculations repo (`katzseth22202/aim_is_all_you_need`) carried the old
   6-month / under-a-decade figure; commit f31bfdc updated it to the derived 0.82 yr floor
-  and pinned the appendix numbers with tests. The single-impulse resonant dive (~1.9 AU,
-  ~0.85 yr, ~37 km/s) is not yet verified there and should get a closure-solver function.
+  and pinned the appendix numbers with tests. Commit 4a85efd added the requested closure
+  solver: `single_impulse_resonant_dive()` roots the aphelion that closes the geometry
+  (1.885 AU, 0.853 yr, 37.27 km/s = 24.07 retrograde + 28.45 radial), with tests pinning
+  the appendix figures.
 - The two-impulse loop introduces a new architectural requirement: PuffSat boost nodes at
   heliocentric points off Earth, not just at Earth and at periapsis. This is a mature-network
   capability; early bootstrapping falls back to the single-impulse dive or a gravity assist.
