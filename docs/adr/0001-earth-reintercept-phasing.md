@@ -27,8 +27,8 @@ not under a decade. Backed by Appendix `sec:earth_reintercept`.
   carried propellant.
   1. *Two-impulse loop* (periapsis-lowering dip, then deep dive): colinear retrograde
      boosts, free in total impulse (~24 km/s), holds the doubling factor at two. Needs a
-     second PuffSat boost node at 1 AU off Earth. First resonance ~0.82 yr. (Apoapsis-raising
-     is the wasteful direction: opposing boosts, ~+7.6 km/s, ~1.82 yr.)
+     second PuffSat boost node at 1 AU off Earth. First resonance ~0.86 yr. (Apoapsis-raising
+     is the wasteful direction: opposing boosts, ~+7.9 km/s, ~1.86 yr.)
   2. *Single-impulse resonant dive* (inject outbound to ~1.9 AU aphelion): only the Earth
      node, but the boost grows 24 to ~37 km/s (the direct dive's ~24 retrograde plus ~28
      outbound radial), dropping the doubling factor below two. ~0.85 yr; the aphelion is
@@ -37,16 +37,16 @@ not under a decade. Backed by Appendix `sec:earth_reintercept`.
      by flyby timing.
 
 The three trade network complexity against per-cycle doubling factor against schedule, at
-cycles of ~0.82 yr, ~0.85 yr, and ~1--2 yr respectively. The paper presents all three rather
+cycles of ~0.86 yr, ~0.85 yr, and ~1--2 yr respectively. The paper presents all three rather
 than committing to one.
 
 ## Consequences
 
-- The paper's central growth timeline moves from "under a decade" to "~16 years" for a
-  millionfold, and 16 yr is itself a floor (two-impulse loop, every cycle catching its
+- The paper's central growth timeline moves from "under a decade" to "~17 years" for a
+  millionfold, and 17 yr is itself a floor (two-impulse loop, every cycle catching its
   resonance, no Earth turnaround). The single-impulse and gravity-assist routes push past it.
 - The companion calculations repo (`katzseth22202/aim_is_all_you_need`) carried the old
-  6-month / under-a-decade figure; commit f31bfdc updated it to the derived 0.82 yr floor
+  6-month / under-a-decade figure; commit f31bfdc updated it to the derived 0.86 yr floor
   and pinned the appendix numbers with tests. Commit 4a85efd added the requested closure
   solver: `single_impulse_resonant_dive()` roots the aphelion that closes the geometry
   (1.885 AU, 0.853 yr, 37.27 km/s = 24.07 retrograde + 28.45 radial), with tests pinning
