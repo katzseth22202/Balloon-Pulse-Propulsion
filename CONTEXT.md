@@ -275,8 +275,11 @@ _Avoid_: quoting the ~\$3/kg output without the mixing-efficiency caveat; presen
 cost model rather than an order-of-magnitude rebuttal; conflating the worst-case ~\$3200/kg
 projectile anchor with the optimistic ~\$80/kg materials build-up (the latter, blended with
 ~90% cheap bulk to ~\$8/kg fleet cost, feeds the Straw Way power economics of
-`sec:strawway_economics`, ~\$2.6/MWh cost against a 1¢/kWh ($10/MWh) price, not the transport
-rebuttal; the more aggressive ~\$1/MWh that also credits the breeding gain is kept out of the paper).
+`sec:strawway_economics`, not the transport rebuttal: the \$8/kg retrograde fleet dilutes
+~16× en route to Earth (÷4 from 3:1 prograde mixing, ÷4 from spreading over 4× its mass of
+thrown payload, the same 25% propellant fraction as the transport chain) to ~\$0.50/kg,
+i.e. ~\$0.16/MWh raw at 150 km/s (3.1 MWh/kg), quoted in the paper as "comfortably under
+\$1/MWh" after conversion losses, against a 1¢/kWh ($10/MWh) price.
 
 ### Cryogenics, thermal, and ISRU propellant
 
