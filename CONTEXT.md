@@ -251,6 +251,33 @@ Two-tier control (a gross early correction of ~tens of m/s plus a fine, late ~mm
 about 1 s before impact) that defeats the `v²` homing-miss floor by nulling a known,
 pre-measured offset rather than chasing fresh navigation noise.
 
+### Economics
+
+**Momentum-amplification cascade** (in the paper as `sec:methalox_rebuttal`, "Moneyball Meets Methalox"):
+The chain that answers the obvious skeptic ("how can heat-tolerant, formation-flying
+projectiles beat a tank of methalox?"). Fast, expensive reaction mass transfers momentum
+to progressively larger amounts of slow, cheap mass at each collision, so cost per kg falls
+by roughly the mass-amplification factor at every stage. For the 4 R☉ transport case:
+a retrograde projectile (worst-case ~\$3200/kg, projectile-cost-dominated, early generation,
+aviation-scale manufacturing but pre-breeding) is mixed 3:1 with cheap prograde mass
+(÷4 → ~\$800/kg reaction mass at effective exhaust u_eff ≈ 155 km/s), boosted ~34.5 km/s at
+periapsis to a 150 km/s Earth crossing (propellant fraction e^(34.5/155)−1 ≈ 25%, ÷~4 →
+~\$200/kg at 150 km/s), then at Earth its kinetic energy is spread over ~24× cheap onboard
+water/plastic (u_eff ≈ 25 km/s exhaust, ÷25 → ~\$8/kg of exhaust) which lifts ~2.6 kg to LEO
+per kg exhausted (e^(8/25)−1 ≈ 0.38) → **~\$3/kg to LEO**, competitive with methalox even at
+the worst-case anchor. Doubling for return-trajectory launches keeps it well under methalox;
+the costly fast-cycling ship amortizes because PuffSats decelerate and recover it in Earth
+orbit. The terminal number is only as firm as the mixing-chamber efficiency (the **fudge
+factor** `f` / f-sim frontier); the magnetic nozzle is legitimate here despite being an
+Earth-arrival stage because a 150 km/s collision is fully ionized (near-Sun-class energy),
+unlike the weakly-ionized 8 km/s LEO PuffSats.
+_Avoid_: quoting the ~\$3/kg output without the mixing-efficiency caveat; presenting it as a
+cost model rather than an order-of-magnitude rebuttal; conflating the worst-case ~\$3200/kg
+projectile anchor with the optimistic ~\$80/kg materials build-up (the latter, blended with
+~90% cheap bulk to ~\$8/kg fleet cost, feeds the Straw Way power economics of
+`sec:strawway_economics`, ~\$2.6/MWh cost against a 1¢/kWh ($10/MWh) price, not the transport
+rebuttal; the more aggressive ~\$1/MWh that also credits the breeding gain is kept out of the paper).
+
 ### Cryogenics, thermal, and ISRU propellant
 
 **Passive standoff sunshade**:
