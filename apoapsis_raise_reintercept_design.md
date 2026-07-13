@@ -1,6 +1,6 @@
 # Apoapsis-Raise Earth Re-Intercept — Design Document
 
-**Status:** Locked design point for further iteration
+**Status:** Locked design point for further iteration. The apoapsis SEP burn's impulsive approximation is now verified against a finite-thrust propagation (see §3).
 **Date:** 2026-07-13
 **Author context:** Seth Katz (paper author). Distilled from a grilling session exploring whether a high-speed Earth flyby is reachable without ISRU, gravity assists, or a close solar approach, as a candidate addition to `sec:earth_reintercept` in `templateArxiv.tex`.
 **Intended home:** this paper repo, likely as a fourth phasing option alongside the two-impulse loop, single-impulse resonant dive, and gravity-assist return already in `sec:earth_reintercept`. Not yet folded into the paper text.
@@ -43,6 +43,12 @@ This sits alongside, not instead of, the existing `sec:earth_reintercept` option
 
 **Speed bar vs. cadence — the 2× bar is a design constraint, not the optimization target.**
 A faster-cycling resonance exists that *misses* 2× escape velocity but still grows mass faster per year. We kept the 2× bar as a hard constraint per Seth's direction rather than dropping it, and searched for the best cadence subject to it.
+
+**Aphelion is phasing-locked near 2.26 AU; the SEP budget sets closing speed, not orbit size.**
+Raising Δv₂ does not shrink the orbit. Across the full single-pass search (Q ∈ [1.05, 3.2] AU, transit ≤ 4 yr), the only phasing-exact Earth intercept sits at Q ≈ 2.26 AU for both Δv₂ = 4 and 5 km/s, because the swept-angle-versus-time balance that closes phasing is dominated by the long leg-1 arc, which the apoapsis kick barely perturbs. The 2× closing-speed bar on its own would allow a sub-2-AU aphelion (down to ~1.74 AU at Δv₂ = 5 km/s), but no sub-2-AU solution also intercepts Earth. The only nearby phasing feature below 2 AU is an anti-phased (~180°) miss near Q ≈ 1.65 AU.
+
+**Impulsive SEP burn verified against a finite-thrust propagation.**
+A 2D finite-thrust integration (constant thrust, mass loss by the rocket equation, thrust held anti-velocity, burn centered on apoapsis) was compared to the instantaneous kick. A 60–90 day burn reproduces the impulsive result to within 0.3–0.7% in closest-approach speed, about 1 day in transit time, ~0.005 AU in the truncated perihelion, and under 1° in phasing. A 180-day burn stays within 2.8% on closing speed. The agreement holds because apoapsis is the slowest part of the orbit, so a 90-day burn sweeps only ~10° of true anomaly, and the velocity stays almost purely tangential across that arc, keeping anti-velocity thrust near-optimal throughout. Centering the burn on apoapsis is the one requirement. A burn that instead starts at apoapsis shifts the effective impulse time by about half the burn duration and throws phasing off by ~16° for a 90-day burn, which is then removed by centering the burn or by re-solving Q with the extended burn modeled.
 
 ## 4. Locked design point
 
@@ -92,8 +98,8 @@ For comparison, the paper's existing solar-dive two-impulse loop reaches a milli
 
 ## 7. Open items / caveats for iteration
 
-- **Low-thrust SEP burn approximated as instantaneous.** A real 2–3 month argon SEP burn sweeps only ~7–10° of true anomaly out of the ~250° total trip, and it happens during the slowest part of the orbit (near apoapsis), so the impulsive approximation is likely reasonable to first order. Not yet checked against a real low-thrust propagation; the precise Q needed for exact phasing could shift slightly once the burn is modeled as extended rather than a point kick.
-- **Is 4 km/s a hard SEP ceiling, or a placeholder?** The optimum sits exactly at the boundary of the searched Δv₂ range. Worth checking whether pushing past 4 km/s continues to help, and if so by how much, before treating 4 km/s as load-bearing.
+- **Low-thrust SEP burn, impulsive approximation now verified (see §3).** Burn duration is not a binding constraint. Assuming lightweight mirrors concentrate the dilute sunlight at 2.26 AU (flux there is 19.5% of 1 AU, so about 5× concentration restores one sun on the cells, within flown concentrator ratios) onto panels delivering ~1 kW/kg of array-level specific power, the 4 km/s argon burn finishes in days to a few weeks. Even at a conservative 100 W/kg system specific power it finishes in ~1–2 months, inside the range where the finite-burn check agrees with the impulsive result and small against the 2.3-yr schedule margin. The 1 kW/kg figure is defensible as a collector/array number (ultralight membrane optics feeding concentrated cells), not as a full power-and-propulsion system number, since the PPU and radiators alone cap the system near a few hundred W/kg. Burn timing is insensitive to which of these holds.
+- **The 4 km/s SEP budget is load-bearing, and was kept deliberately.** Pushing past it helps. At Δv₂ = 5 km/s the same phasing resonance (the aphelion moves only 2.258 → 2.264 AU, since phasing is anchored by the leg-1 half-period rather than the apoapsis kick) gives a 26.34 km/s closing speed and reaches a millionfold in ~45.5 yr instead of 53.6 yr, at the cost of a deeper 0.37 AU truncated perihelion and a lower 0.775 argon mass fraction. We kept 4 km/s to preserve this option's role as the lowest-closing-speed, gentlest-perihelion member of the `sec:earth_reintercept` set. The 5 km/s point is on file if a faster cascade is wanted later.
 - **Burn direction idealization.** Both burns are assumed purely tangential. Real departure-asymptote geometry (patched-conic matching at Earth's SOI) may require a small non-tangential component; not yet checked against a full three-body or high-fidelity patched-conic model.
 - **f = 0.8 fudge factor reused from the existing collision framework**, not re-derived for this lower closing-speed regime. The existing appendix notes f "varies with the relative PuffSat-rocket velocity" — worth checking whether 0.8 still holds at 24 km/s vs. the 150+ km/s regime it was calibrated against.
 - **Not yet reconciled with the companion calculations repo** (`katzseth22202/aim_is_all_you_need`). All numbers above come from an ad hoc script in this session, not yet ported to tested code there.
