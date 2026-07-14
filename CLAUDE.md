@@ -53,6 +53,13 @@ Examples:
 
 Create the `todos/` directory on demand if it does not exist. Never write working documents to the repo root. If a working document needs to be committed (rare), the user will explicitly ask you to move it out of `todos/` and track it.
 
+## Grill-With-Docs Sessions
+
+When running a `grill-with-docs` (or `grill-me`) session in this repo, precede each question with a short paragraph of prose, not just the bare question. That prose should:
+- Explain why the question is being asked (what's at stake or ambiguous in the plan/design).
+- If there's a preferred option, say which one and why, rather than presenting choices neutrally.
+- Define any jargon used in the question or options on the spot, so the question is self-contained.
+
 ## Writing Style
 
 When drafting or editing prose in this paper, avoid the patterns that read as AI-generated. The list below is the enforceable blocklist; the principle above it is so you can extrapolate to novel tells not yet enumerated. When in doubt, prefer the plainer word and the shorter sentence.
