@@ -64,6 +64,96 @@ momentum.
 _Avoid_: implying it removes the momentum/mass floor (it removes ablation only); conflating
 the propulsion "reflect for thrust" role with the power-plant "guide-then-extract" role.
 
+**Field's share (of a pulse)**:
+The fraction of each pulse's collision energy the magnetic nozzle's field must actually
+catch and redirect, as opposed to energy that exits the open back unaided. Both the
+virial floor and the standoff radius scale linearly with it. Working number **~1/2**
+(band ~0.3–1), decided 2026-07-14: the 3:1 diluted fireball drifts at only Mach ~0.8
+(155 km/s drift against ~200 km/s internal sound speed; ~75% of pulse energy
+thermalizes), and the head-on stagnation region squirts radially into the field, so the
+plasma is a slow explosion, not a collimated jet. Mini-Mag Orion's isotropic fission
+burst has share ≈ 1. The only route below ~1/2 is the hybrid nozzle, where a sacrificial
+low-Z absorber takes the bulk blast and the field stands the hot core off it. Posture
+(revised 2026-07-14, same day): the paper's quoted numbers are the **pure magnetic case
+at share ½**; the hybrid is mentioned as a conditional refinement (roughly 2× nozzle
+mass saving at share ~0.15) whose viability hangs on an unverified wall-heating
+fraction (f_wall ≲ 3e-4, an impact-sim deliverable), so it is not load-bearing for any
+quoted mass.
+_Avoid_: "the field only trims divergence" (pre-2026-07-14 wording; overstates
+collimation); claiming a small share without invoking the absorber.
+
+**Virial floor (magnet mass)**:
+The minimum structural mass of any magnet holding field energy `E_B`:
+`M ≳ (ρ/σ_eff)·E_B`, from reacting the Maxwell stress, independent of conductor
+technology; chained through the standoff condition,
+`M ≳ (ρ/σ_eff) × (field's share) × E_pulse`. `σ_eff` is **strain-throttled**, not the
+material's tensile strength: structure at the winding radius stretches with the REBCO
+tape (limit ~0.4% elongation), so it can only develop (modulus × 0.004). Adopted band
+(2026-07-14) **0.4–1.2 MJ/kg**: standard carbon fiber plain build at 0.4; high-modulus
+(M55J-class) fiber plus assembly pre-compression (~ −0.25% squash, widening the usable
+window to ~0.65%) at 1.2. A Kevlar/aramid overwrap is an *implementation of
+pre-compression* (its high elongation lets it be wound at high pre-tension), not an
+escape from the strain limit; as plain stiffening its low modulus makes it worse than
+carbon, and creep limits sustained pre-tension. Mini-Mag's 200 t at 340 GJ sits at or
+below the strain-matched floor, so treat it as their claim, not a validated benchmark.
+Verified against the sources 2026-07-14: AIAA 2003-4525 specifies the nozzle in one
+sentence (5 coils over 11 m, 10 MA each, ~200 t total) with no conductor type, field
+strength, structural material, or mass breakdown; Lenard & Andrews 2007 adds nothing on
+the coil. The 200 t is an unengineered point-design allocation, and no shield fraction
+can be extracted from it.
+_Avoid_: sizing winding structure by tensile *strength* (strain compatibility throttles
+it); framing the constraint as cryogenic material survival (cold mildly helps; the
+stretch-together geometry is the constraint).
+
+**REBCO tape term (conductor mass)**:
+Second term of the two-term nozzle mass model. Ampere-turns ≈ `2RB/μ₀` regardless of
+conductor quality, so tape mass ∝ `R²B/I_tape` ∝ `(share·E_pulse)^(2/3)·B^(−1/3)`.
+It falls more slowly than structure as pulses shrink, so **tape dominates small
+nozzles**. At the adopted 20 T / 20 K anchor (SPARC-class working point, 300–600 A per
+4 mm tape) with the scenario's own pulse energy (477 GJ for 2.5 kg at 618 km/s closing,
+share ½): 100 g pulse ≈ 18–36 t tape vs ≈ 8–24 t structure (total ~26–60 t, replacing
+the paper's "single-digit tonnes"); 2.5 kg pulse ≈ 150–310 t tape vs ≈ 200–600 t
+structure (total ~350–900 t). Those tape figures assume standard 3.5 g/m tape; the
+adopted policy is thin-substrate/thin-copper tape (30 µm Hastelloy + 5 µm Cu/side,
+~1.5 g/m, a commercial product) wherever tape is dominant or comparable, cutting totals
+to ~16–40 t (100 g) and ~265–730 t (2.5 kg). The copper floor is quench protection, not
+resistance. Full derivation in `todos/nozzle_rewrite_plan_2026-07-14.md`, destined for
+a new paper appendix with the math inline (closed-form, hand-checkable; the main text
+quotes only the thin-tape band totals and points there). A calc-repo module is optional
+follow-up for a sweep figure, not a gate (revised 2026-07-14 from "repo first").
+This term is the concrete identity of the former
+"minimum-coil-size floors". Model lives in the calc repo with the `rebco_tapes`
+(Senatore 2024) current-scaling relations.
+_Avoid_: "conductor mass is negligible with REBCO"; the pre-2026-07-14 "single-digit
+tonnes" claim.
+
+**Minimum-rocket conclusion (two anchors + ship classes)**:
+How sec:minimum_nozzle states its bottom line (decided 2026-07-14): quote both nozzle
+totals at the adopted thin-tape architecture (2.5 kg pulse ~265–730 t; 100 g pulse
+~16–40 t), quote bands rather than single best-case points, and translate each into its
+ship class: a multi-thousand-tonne vehicle for the big pulse (the former "better still
+more than a thousand" is now a requirement, not a preference), and roughly
+Starship-class at the light end (~65–400 t, nozzle a tenth to a quarter of the ship)
+for the small pulse. The main text carries only these headlines plus a pointer to a new
+appendix holding the full model and worked arithmetic. Propagation (decided 2026-07-14): the only downstream edit is
+the methalox section's "vehicle carrying hundreds of tonnes or more" (line ~647), which
+becomes thousand-tonne-and-up; the cascade's cost arithmetic is ratios and is untouched.
+The cooling-system floor stays named but qualitative (pulsed heat into a 20 K magnet,
+each absorbed watt costing tens of watts of plant); no invented absorbed-fraction
+number, since that input waits on the impact simulation. The fission-vs-plasma radiation
+contrast stays qualitative too: neither Mini-Mag source publishes a shield mass to cite.
+_Avoid_: "single-digit tonnes"; leaving the ship-class implication implicit; quoting a
+cryoplant power number.
+
+**Standoff radius**:
+The radius where the expanding pulse plasma's pressure meets magnetic pressure,
+`R ~ (2μ₀ · share · E_pulse / B²)^(1/3) ∝ B^(-2/3)`: a stronger field gives a physically
+smaller nozzle at the same virial mass. The ceiling on `B` is itself mechanical (REBCO
+windings are strain-limited near 0.4%), so material strength limits the field and field
+pressure limits the radius.
+_Avoid_: reading a smaller radius as a lighter nozzle (virial mass tracks contained
+energy, not size).
+
 ### Heliocentric re-intercept (solar-dive return)
 
 **Earth re-intercept**:
