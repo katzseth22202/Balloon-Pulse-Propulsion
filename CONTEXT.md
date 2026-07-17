@@ -392,6 +392,26 @@ thrown payload, the same 25% propellant fraction as the transport chain) to ~\$0
 i.e. ~\$0.16/MWh raw at 150 km/s (3.1 MWh/kg), quoted in the paper as "comfortably under
 \$1/MWh" after conversion losses, against a 1¢/kWh ($10/MWh) price.
 
+**Launch-cadence asymmetry (E2E critique)**:
+The 2026-07-17 grill's framing for the launch-cadence disadvantage of Starship
+Earth-to-Earth in `sec:200_mile_high`. Four commitments. (1) *Mechanism is closure, not
+blast*: helicopters are excluded from the shore-to-platform corridor because every launch
+and reentry closes the surrounding airspace and sea lanes against a possible vehicle
+failure (range safety), and at SpaceX's own projected cadence the closure windows tile the
+operating day; "rocket blast makes helicopters unsafe" is the rejected wording. (2) *Cadence
+anchor is SpaceX's own number* (Shotwell's dozens of E2E flights per day), matching the fare
+section's use-their-optimism discipline; the hub-traffic derivation is the fallback only.
+(3) *Pad spacing is grounded on the LC-39 precedent* (LC-39A/B sited ~2.7 km apart for
+Saturn V, a smaller propellant load than Starship's), not a bare "1 km" figure.
+(4) *Boomerang guard*: the paper concedes 2.5x launch capacity in `sec:fare_comparison`, so
+the critique is stated as a **city-end** asymmetry: PuffSat cadence lands at a few remote
+dedicated spaceports on infrastructure schedules (formations pre-placed), while E2E runs its
+full cadence, exclusion zones, and multi-pad sprawl at every served city. Placement: the
+closure argument extends the existing Logistical Inefficiency bullet; pad sprawl is one new
+bullet; the asymmetry sentence lives in the rocket-plane paragraph, not in a bullet.
+_Avoid_: blast-hazard wording for the helicopter point; quoting a cadence band SpaceX never
+claimed; adding the disadvantage without the city-end guard sentence.
+
 ### Cryogenics, thermal, and ISRU propellant
 
 **Passive standoff sunshade**:
