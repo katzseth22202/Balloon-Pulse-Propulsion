@@ -48,6 +48,27 @@ the paper cites it as plausible, not confirmed (see Flagged ambiguities).
 _Avoid_: presenting `f = 0.8` as validated/confirmed; the symbol `f` also denotes pulse
 frequency in the buffer invariant (`T = 1/f`), a distinct quantity.
 
+**Impulse trim (mass-mismatch trim)**:
+How a pre-placed transport formation absorbs the rocket plane's flight-day mass differing
+from the mass the orbits were planned around (decided 2026-07-17 grill; lives at the end of
+`sec:200_mile_high`). The formation is sized for the plane's **maximum takeoff mass**; every
+lighter flight trims the delivered impulse *down*, since nothing already in orbit can add
+impulse for a heavier plane. Three knobs in authority order: (1) **unit count** — withhold
+surplus PuffSats (~1/N granularity; withheld units deorbit on their microthrusters or hold
+for a later window); (2) **timing detune** — atomize early/late so the cloud arrives at the
+plate off-shape, lowering the delivered momentum via the **fudge factor (`f`)**; fine vernier
+only, because the impact sim's shape study (ADR-0028) finds `f` gently sloped and cliff-free
+(max normalized sensitivity S ≈ 0.26 inside an *assumed* ±20% shape box) and the
+timing-to-arriving-shape mapping (the deferred cloud-schedule study) is not yet simulated;
+(3) **onboard ballast/fuel trim** — top off fuel or ballast toward the design mass and pump
+fuel between tanks so the center of mass sits where the down-kick plate geometry
+(`sec:pusher_plate_down_kick`) assumes it (Concorde trim-tank precedent, Rech & Leyman).
+The retrograde deceleration formation inherits the same knobs with better information
+(reentry mass is fixed at takeoff).
+_Avoid_: presenting timing detune as a large-authority knob or quoting its S value without
+the assumed-shape-box caveat; "axially symmetric mass distribution" (the requirement is the
+center of mass on the impulse line through the impact point, not full symmetry).
+
 **Magnetic nozzle**:
 A magnetic field that redirects the conductive collision plasma with no material contact,
 so there is no ablation and no thermal-fluence size floor. The plasma cooperates only when
