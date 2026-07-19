@@ -12,6 +12,9 @@
 *.synctex.gz
 *.pdf
 
+# Build/export output
+out.html
+
 # Editor temp files
 *.swp
 *~
