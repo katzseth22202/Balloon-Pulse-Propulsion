@@ -20,8 +20,9 @@ out.html
 *~
 .DS_Store
 
-# Claude Code (ignore the bulk skills library; track other .claude config)
+# Claude Code (ignore the bulk skills library and local settings; track other .claude config)
 .claude/skills/
+.claude/settings.local.json
 
 # Scratch / working documents (todo lists, audit summaries, restart handoffs)
 todos/
