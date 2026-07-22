@@ -498,15 +498,22 @@ The controller compensates for plate motion from the shock absorbers and reactio
 Orion's own film sets the scale to work down from.
 It was a carbonaceous oil about six thousandths of an inch thick, \SI{150}{\micro\meter}, resprayed over the whole \SI{26}{\meter} plate within the 0.80 to \SI{1.5}{\second} between pulses \cite{ga5009_vol3}.
 That thickness was matched to a plasma impinging at \SIrange{100}{200}{\kilo\meter\per\second} \cite{projorion}.
-PuffSat gas arrives near \SI{11}{\kilo\meter\per\second}, so the energy each pulse deposits per unit area of plate is smaller by more than two orders of magnitude, and the film that has to absorb it thins in proportion.
-What stops the thinning is opacity, not ablated mass.
+PuffSat gas arrives near \SI{11}{\kilo\meter\per\second}.
+Scaling the velocity term alone, that speed difference lowers the kinetic energy per unit impinging mass by a factor of 80--330 and maps Orion's film to \SIrange{0.45}{1.8}{\micro\meter}.
+The thickness itself is within modern spray-deposition capability.
+Ultrasonic spray coating has produced polymer films averaging \SI{0.3}{\micro\meter} and \SI{0.6}{\micro\meter}, including a patterned \SI{10}{\centi\meter} by \SI{10}{\centi\meter} device, with thickness set through ink concentration \cite{liu2017_ultrasonic_spray_film}.
+The PuffSat manifold uses pressure-fed ballistic droplets instead, but its \SIrange{1}{2}{\micro\meter} target sits above demonstrated spray thicknesses.
+Here that figure is the nominal areal-equivalent wet thickness, the delivered liquid volume divided by plate area.
+Coverage sets the lower limit.
+Overlapping footprints and surface wetting must leave no optical holes between graphite asperities.
+We set that limit by opacity rather than ablated mass.
 The film has to block the pulse's radiation before it reaches the graphite, and the base liquid cannot do that job.
 A \SI{100}{\micro\meter} slab of clear silicone transmits above 95\% from 350 to \SI{800}{\nano\meter} \cite{liu2015_pdms_transparency}, so a film a hundred times thinner is effectively a window.
 The absorber has to be carbon dispersed in the liquid, which is why Orion's film was a graphite-based grease rather than plain oil \cite{projorion}.
 Fresh light-absorbing carbon has a mass absorption cross section near \SI{7.5}{\square\meter\per\gram} at \SI{550}{\nano\meter}, and for particles small against the wavelength that figure rises as $1/\lambda$ \cite{bond2006_lac_absorption}.
 At a fifth carbon by mass, a \SIrange{1}{2}{\micro\meter} film carries \SIrange{0.2}{0.4}{\gram\per\square\meter} of carbon, an optical depth of \numrange{1.5}{3} at \SI{550}{\nano\meter} and \numrange{4}{8} at \SI{200}{\nano\meter}.
 Carbon black spherules run \SIrange{20}{50}{\nano\meter} \cite{bond2006_lac_absorption}, small enough to disperse in a film that thin.
-We therefore take \SIrange{1}{2}{\micro\meter}, which weighs \SIrange{25}{50}{\gram} across a \SI{25}{\square\meter} plate, or up to \SI{75}{\gram} for a denser ionic liquid.
+We therefore take a nominal \SIrange{1}{2}{\micro\meter} coat, which is \SIrange{25}{50}{\milli\liter} of near-unit-density liquid and weighs \SIrange{25}{50}{\gram} across a \SI{25}{\square\meter} plate, or up to \SI{75}{\gram} for a denser ionic liquid.
 Resprayed every pulse at a few hertz, that is about \SI{0.1}{\kilo\gram\per\second}, or \SIrange{25}{50}{\kilo\gram} over a thousand pulses.
 Orion's \SI{150}{\micro\meter} on the same plate would cost \SI{3.8}{\kilo\gram} per coat and \SI{3.8}{\tonne} over that thousand pulses, more than the plate itself.
 The film vaporizes under peak impulse heating and protects the permanent graphite beneath it.
