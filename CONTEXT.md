@@ -453,6 +453,59 @@ Ceres and Phoebe), not on the carbon-poor Moon. Clathrate storage is rejected: i
 endothermic, self-preserving dissociation releases gas too slowly for millisecond
 atomization and over-pressurizes the liner if it dissociates while confined.
 
+### Materials
+
+**Halogen-free vaporizables rule**:
+Any material expected to vaporize, decompose, or ablate in flight, ice-wire coatings, the
+airlock's sacrificial plastic, and (see **Second-surface radiator skin** below) balloon
+PuffSat outer skins, must be halogen-free, no fluoropolymers (PTFE/FEP/Teflon) or other
+halogenated plastics. Rationale, stated twice already in the paper for other components:
+halogenated combustion/decomposition products are toxic in the near term (HF,
+perfluoroisobutylene-family compounds) and persistent in the long term (PFAS chemistry),
+and the paper's own fleet-scale argument for aluminum reentry debris (small per-event,
+real in aggregate at billions-of-disposals cadence) applies at least as strongly here.
+Prefer polyethylene (airlock plastic) or polyimide/Kapton (thermal-control skins) even
+where a fluoropolymer would otherwise be the obvious choice for UV durability.
+_Avoid_: FEP Teflon or any PTFE-family polymer anywhere in flight hardware that vaporizes
+on orbit or on impact.
+
+**Second-surface radiator skin** (superseded by **passive louver thermal trim**, `sec:louver_thermal_trim`):
+The formerly-resolved thermal-control construction for balloon/water-bag PuffSat outer skins: a
+clear, halogen-free, UV-tolerant polymer (Kapton, matching the paper's existing JWST
+sunshade citation) faces the sun, with aluminum vapor-deposited on its *inner* face rather
+than the outer one. Sunlight still reflects off the aluminum (low solar absorptivity
+preserved), but the surface radiating to space is the polymer's own, with IR emissivity
+around 0.6–0.8 versus bare (first-surface) aluminum's 0.02–0.05. This fixes an
+unfavorable α/ε ratio: an isothermal sphere with bare first-surface aluminum (α≈0.1–0.2,
+ε≈0.03–0.05) equilibrates near 330–450 K at 1 AU, at or above water's boiling point,
+independent of any internal conduction scheme. The second-surface construction drops that
+estimate to roughly 186 K, trading an overheating problem for a large cooling margin that
+can be dialed back down (partial coverage, material choice) rather than fought from a
+deficit. Kapton's UV durability is worse than FEP's over a multi-year mission, but a
+PuffSat's exposure is a multi-day coast, not years, so the margin FEP would buy is likely
+unnecessary. Not yet backed by a citation for Kapton's or aluminum's exact α/ε values;
+flagged for verification before this goes in the paper.
+_Avoid_: "metallized skin" without specifying which face carries the aluminum,
+first-surface (outward-facing metal) and second-surface (metal on the inner face of a
+transparent polymer) give very different emissivity and are not interchangeable.
+
+**Passive louver thermal trim** (in paper, `sec:louver_thermal_trim`, replaces **second-surface
+radiator skin** above):
+The resolved thermal-control mechanism for all PuffSat variants (icy/water, LOX, balloon), each
+at a different target temperature. A movable louver flap adds fine control on top of a body's
+baseline reflective coating, driven by one of two passive, self-triggering (no electronics)
+actuator technologies: a bimetallic strip, with real flight heritage from Pioneer 10/11's
+louvers and Goddard's Dellingr CubeSat, or a nitinol shape-memory wire drawable to single-digit
+micron diameters. The actuator senses the PuffSat's own body temperature rather than the flap's
+sun-facing side, so a short pull cable separates actuator from flap instead of integrating them.
+Both actuator and flap stay light enough, the wire especially so, that neither is a major
+shrapnel risk against the pusher plate on its own; a spin-stabilized PuffSat can additionally
+reel the whole assembly clear on its tension tether before impact (see **spinning tethered
+pair**, `sec:spinning_tension_detail`). Thermal trim also simply stops in the last ~10 minutes
+before impact: extended flaps add drag that perturbs the terminal trajectory at low altitude,
+and unshaded absorption over that interval only raises a water body's temperature by a few
+tenths of a kelvin, negligible against the margin already banked.
+
 ## Relationships
 
 - A **PuffSat** strikes the **pusher plate** (or the **Medusa-style sail**); plate and
