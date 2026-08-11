@@ -3,8 +3,9 @@
    in the frame of the center of mass not all can become kinetic energy.  Include formula derived from interal energy in appendix.  Reowrk
    for the moon case, just make a note of it elsewhere.  Also for lunar scenario we should consider that mass 
    fraction is benefitted because we don't carry everything on the rocket
-* [] expalin we can get rid of mass from Jupiter with gradual nudges at apoapsis over a few centuries
-* [] consider option for garbage in L4/L5 Earth-Sun Lagrange points, its stable and relatively harmless if contained htere. Possibly they cold fuse together in a giant blob.
+* [x] expalin we can get rid of mass from Jupiter with gradual nudges at perihelion (not apoapsis: feeding it to
+   Jupiter is a timing problem, and timing is orbital energy, which responds to v*dv) over a few centuries
+* [x] consider option for garbage in L4/L5 Earth-Sun Lagrange points, its stable and relatively harmless if contained htere. Possibly they cold fuse together in a giant blob.
    Also discuss possibility lunar garbabe is acceptable if we impact the equator with baffled craters and human settlement is near the poles.
    Angles don't permit ballistic hit.   Lagrange point trips would be long.   and there's some danger of collisions of debris heading back to Earth from them.
 * [] rework for higher mass growth on Jovian cycle- the key difference is we're not constraining to 3:1 mass ratios
@@ -15,7 +16,7 @@
 * [] consider whether to reuse rocket infrastructure or just make rockets enomrous
 * [] consider how mass of PuffSats changes while electronics costs stay fixes as we go from 11.2 - 3.4 or so relative speed
 * [] consider one side hot, one side cold, for rotating mass - must point at sun untilt he end, rockets cana djust orientation.
-* [] consider steel for risk of micrometeorites
+* [X] consider steel for risk of micrometeorites
 * [] co-flyers can go to Lagrange points and are reusable 
 * [] a triangle of accelerometers, especially because pendulum changing - would tell you whether the rockets are perpendicular to expected proposition
    on the balloons

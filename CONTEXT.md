@@ -603,6 +603,55 @@ The ±5° of launch azimuth about the meridian that reaches latitude 85°+ from 
 The ejecta mass fraction launched above the **pole-reach threshold**, the only material that can
 reach a polar settlement at all.
 
+### Heliocentric disposal, Jupiter cycle (`sec:jupiter_only_growth`)
+
+**Heliocentric package**:
+The dry-mass remnant shed by a Jupiter-cycle PuffSat at the Earth encounter. It keeps the
+PuffSat's incoming orbit almost unchanged, because at 60--69 km/s Earth's gravity barely bends it
+and the discard kick is metres per second: retrograde, Jupiter-crossing, perihelion *inside* 1 AU,
+aphelion at or beyond Jupiter, period 5--9 yr. The Earth encounter is a crossing, not a tangency;
+the package arrives with a large inward radial component and continues to a perihelion well below
+1 AU. Exact $q$, $Q$, $P$ not yet pinned from the companion repo.
+_Avoid_: **disposal package** (reserved for the Earth-orbit remnant steered to a lunar impact; the
+heliocentric one is never disposed of), **debris** (reserved for lunar ejecta), "widely dispersed
+debris".
+
+**Dispersal ratio**:
+The volume argument that excuses the Jupiter cycle from the disposal machinery the LEO cycle needs.
+LEO packages stay gravitationally bound inside a shell of order $10^{21}$ m³, the same volume
+satellites occupy. Heliocentric packages are unbound and spread through a torus of order
+$10^{35}$ m³, about $3 \times 10^{14}$ times larger. That ratio, not the word "dispersed", is the
+argument.
+
+**Satellite-collision metric**:
+The hazard the heliocentric package population is judged against, chosen 2026-08-11 over two
+rejected alternatives (Earth-impact hazard, which is a harmless 70 km/s meteor, and upper-
+atmosphere metals loading). At $10^8$ t/yr of PuffSats and a 1% dry-mass fraction, so $10^6$ t/yr
+and ~4 billion packages a year, a century of accumulation gives ~$7 \times 10^{-24}$ packages per
+m³ near 1 AU: one hit per $10^9$ years on a 100 m² spacecraft, ~0.04 hits/yr across the whole
+in-transit fleet. Ignoring the population is the baseline.
+
+**Jupiter phasing**:
+The optional route that clears the population instead of ignoring it. The orbit already crosses
+5.2 AU twice a revolution, so this is a *timing* problem, not a shape problem, and timing is set by
+orbital energy. The burn therefore belongs at **perihelion**, not apoapsis: $\Delta E = v \cdot
+\Delta v$, and the package moves 9--18x faster at perihelion than at aphelion. Target is Jupiter's
+gravitationally focused capture disk, ~205,000 km radius at a ~22 km/s $v_\infty$, so arrival must
+land inside a ~6 hour window.
+_Avoid_: "phasing burns at apoapsis" (imports the wrong folklore; apoapsis is cheap for changing
+perihelion and plane, not period).
+
+**Sunlight trim**:
+The propellantless actuator for **Jupiter phasing**. Sunlight only pushes outward, so a fixed area
+cancels itself over a symmetric pass; asymmetric deployment between the inbound and outbound legs
+does not. A single flap, of the kind `sec:louver_thermal_trim` already flies, gives a 250 g package
+at 0.08 m²/kg about 7 m/s of radial impulse per deep perihelion pass, worth ~3--4 m/s of tangential
+perihelion burn and ~5 days of Jupiter-arrival shift. Two orders of magnitude more authority than
+needed, so the design problem is throttling it down. Must be **commanded**, not passively
+hysteretic: a one-way drift only reshuffles a phase sampling that is already near-random at ~80°
+per revolution, so it concentrates no probability on Jupiter and collapses back into ignoring the
+population.
+
 ## Relationships
 
 - A **PuffSat** strikes the **pusher plate** (or the **Medusa-style sail**); plate and
@@ -636,6 +685,17 @@ reach a polar settlement at all.
 
 ## Flagged ambiguities
 
+- **Jupiter-cycle dry mass: which hazard? — resolved 2026-08-11 (grill).** The metric is
+  **satellite collision**, and by that metric the population is ignorable by many orders of
+  magnitude (see **satellite-collision metric**). Two alternative framings were raised and set
+  aside. Earth impact is a harmless 70 km/s meteor. Upper-atmosphere metals loading is *not*
+  obviously ignorable: if $10^{-4}$ to $10^{-3}$ of the population eventually reenters, that is
+  100--1000 t/yr of mostly-aluminium ablation against a natural aluminium influx near 600 t/yr, on
+  top of the burden `murphy2023metals` already measures. Deliberately out of scope for this
+  paragraph; it is the objection a reviewer is most likely to raise, and the reentry fraction is
+  the single number that would decide it. Salvage (a cislunar depot) is closed: the packages arrive
+  at 40--70 km/s relative to everything near Earth, so the Moon and the Lagrange points are
+  unreachable for them, unlike for the Earth-orbit **disposal package**.
 - **"centimetre centring" vs "plate capture"** — resolved: **plate capture** (about 2 m
   on the 5 m plate) is the *committed* requirement; centimetre precision is achievable
   *capability* and an optional later tightening (surveyor-anchored centring), not the bar
