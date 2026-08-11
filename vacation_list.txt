@@ -18,9 +18,9 @@
 * [] consider one side hot, one side cold, for rotating mass - must point at sun untilt he end, rockets cana djust orientation.
 * [X] consider steel for risk of micrometeorites
 * [] co-flyers can go to Lagrange points and are reusable 
-* [] a triangle of accelerometers, especially because pendulum changing - would tell you whether the rockets are perpendicular to expected proposition
+* [x] a triangle of accelerometers, especially because pendulum changing - would tell you whether the rockets are perpendicular to expected proposition
    on the balloons
-* [] We don't need 40 second quiescent glide.   In dominant architecture, there is no measurement on the PuffSats - the star field is on the coflyers
+* [x] We don't need 40 second quiescent glide.   In dominant architecture, there is no measurement on the PuffSats - the star field is on the coflyers
 * [] remove central mass from the PuffSats, because it doesn't provide adequate convection
 * [x] adjust sodium nitrte bubbles for low pressure environment
 * [] tamper of snow and water or graphite.   Plastic foams also work but might cost/pollute slightly more and are harder to keep compact.

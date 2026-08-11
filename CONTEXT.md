@@ -345,6 +345,124 @@ practice) are *backup/margin*, load-bearing only near the Sun.
 _Avoid_: "achieved" (binders are unmeasured bench characterizations; right next rigor
 is a bench test, not a sim); putting the diamond filter in the load-bearing LEO role.
 
+**Beacon lever arm** (spinning tethered pair only, resolved 2026-08-11 grill):
+The vector from a strobed beacon to the point guidance actually cares about, the center
+body, which the tip packages of `sec:spinning_tension_detail` straddle at roughly ±12.5 m
+on the 25 m bundle. Its length follows from the tether design; only its *direction* is
+open. Scoped as a **refinement-only** error: 2 m of tolerance across a 12.5 m arm is
+160 mrad (9.2°), which a taut tether never reaches, so the 5 m capture verdict does not
+depend on it; the ~10 cm centring refinement needs 8 mrad and does.
+_Avoid_: "the beacon is on the dry mass" as the statement of the problem. A beacon is
+always dry mass (LED, battery, driver). The live choice is *which* dry mass carries it,
+a tip package or the center body.
+
+**Tip-beacon pair** (resolved 2026-08-11 grill):
+Both end packages strobe, and the target-side array averages the two bearings. At near-equal
+range the mean bearing *is* the bearing to the chord midpoint, with no range knowledge, no
+package attitude, and no tether model, at σ_θ/√2 (~1.1 µrad). The 25 m separation subtends
+417 µrad at 60 km, hundreds of times the precision, so the pair always resolves; blink-pattern
+IDs already distinguish them. Chosen over inferring the lever arm from tip accelerometry,
+which stacks gyro drift, a tip-tangent-vs-chord mode assumption, and a 12.5 m extrapolation.
+Costs a few grams on the counterweight and doubles the beacons the tracker must associate.
+_Avoid_: treating it as a complete solution. It cancels **antisymmetric bend** (S-curve, tips
+swing oppositely) and is *blind to* **symmetric bow** (C-curve, tips stay put and the center
+displaces), which is exactly what a transverse force on the center body produces. Detecting
+that bow is the residual job left to accelerometry.
+
+**Center-body kink** (the dominant deflection; ADR 0002, sized 2026-08-11 grill, not yet in the
+companion repo):
+Under thrust the 25 m bundle is not a bow but a shallow V, with the kink at the center body,
+which the two half-tethers have to drag along. Force balance at the center gives
+`sin θ = F / 2T`, half-angle θ, total thrust F, tether tension T. At F = 400 mN and
+T = 0.85 N: **θ = 13.6°, putting the center body 2.9 m off the tip-to-tip chord.** Modulates
+over the spin period, full amplitude when the tether axis is perpendicular to thrust and
+zero when parallel (there the load is a tension differential, not a kink), so it is a
+spin-synchronous signal with known phase. Proportional to thrust, so 3% thrust knowledge
+buys 10 cm; the triad measures θ directly at ~0.15 mrad. Assembly integrity needs `2T > F`,
+about 4x margin here. Disposal geometry survives: tips stay 12.15 m off the impact axis
+against a 5 m plate.
+_Avoid_: locating the deflection at the *thrusting tip* (a tip thruster firing in a fixed
+body direction is a torque, not a bend; coordinated thrust from both tips cancels the torque
+and translates cleanly, leaving the tethers radial at the tips); treating it as a **bow**,
+which the **tip-beacon pair** would partly see, when a symmetric kink is exactly its blind spot.
+
+**Tip-pull bend** (the small, benign companion term):
+Each tip must be accelerated at the assembly's rate by its own half-tether, giving
+`a_assembly / (ω²r)` = 2.4 mrad at 400 mN, 0.1 mrad at 17 mN drag cancellation.
+Baseline: ω ≈ 0.74 rad/s (isobaric ceiling at a ~0.18 m charge radius), r = 12.5 m, tip
+centrifugal 6.8 m/s², spin period 8.5 s. The tip sits ~70x further from the axis than the
+charge, so the layout buys tension without touching the isobaric ceiling. Bare 100 µm bundle
+drag at 200 km adds 0.09 mrad; the bundle weighs 0.27 g over 25 m and breaks at ~45 N against
+0.85 N working load, so it is sized by handling and redundancy, not by load.
+_Avoid_: comparing raw thrust to tether tension (off by the 200:1 assembly/tip mass ratio);
+using the 400 mN figure as a drag number (tex:376 says it is actuator authority; the
+simulation's drag is 17 mN).
+
+**Quasi-static tether response** (resolved 2026-08-11 grill):
+The fundamental transverse mode of each 12.5 m half-tether is `c/2L` with `c = √(T/μ)`,
+about **11 Hz** for a 100 µm bundle (3.5 Hz for ten redundant strands), far above any
+throttled-thrust bandwidth. So the tether tracks commanded thrust quasi-statically with no
+ring to outlast, and **throttled thrust can run continuously to impact with no quiet period**.
+Deflection is then a commanded quantity to subtract, not a transient to wait out. Solid-charge
+impulses are the exception (step response overshoots ~2x and rings at 11 Hz), so they stay
+early in flight.
+_Avoid_: the "pendulum after thrust cutoff" model, which assumes a mode near the spin rate;
+the real mode is ~100x the spin frequency.
+
+**Accelerometer triad** (role settled 2026-08-11 grill):
+Three co-located 3-axis MEMS parts (~1 g) on the **sensing** package, not the thruster package
+(a 400 mN thruster on a 125 g tip is 3.2 m/s² of self-induced specific force against a
+0.016 m/s² signal, a 200:1 swamp; the paper's existing thruster/sensor split gives this free).
+Load-bearing, not a bound check: the **center-body kink** is the **tip-beacon pair**'s blind
+spot and at 2.9 m overruns even the 2 m tolerance, so nothing else measures it. Three units
+vote 2-of-3 against a silent bias, reusing the camera-triad logic of tex:443.
+_Avoid_: justifying the count by signal strength (averaging buys only √N, 1.7x for three, which
+one better part buys outright) or by the centrifugal gradient (`a₂−a₁ = α×r + ω×(ω×r)`, which
+needs *spread* units and is already covered better by the gram-class MEMS gyro over the
+few-second window, at ~0.17 mrad of drift); spreading them into an actual triangle, since a
+vote wants identical inputs, not a baseline.
+
+**Kink downlink** (resolved 2026-08-11 grill):
+θ goes to the target-side estimator over the **low-bandwidth radio** already in the 250 g
+budget, not encoded in the beacon blink pattern. 11 bits at the ~2 Hz link cadence is 22 bps,
+so bandwidth is never the issue. Chosen because the optical channel goes dark whenever an
+impact saturates the tracker's rearward view (tex:439), and a separate radio keeps the kink
+data flowing through those gaps rather than losing it with the beacon; it also leaves the
+beacon pulses purely metrological, undisturbed by data modulation that would have to share
+the matched gate and the centroid.
+_Avoid_: assuming the radio's current sizing covers this. It is budgeted for housekeeping
+across a multi-day coast; this is a hard-real-time terminal duty cycle, live and pointed
+through the last seconds.
+Open: whether a command uplink already exists that would let the PuffSat do the arithmetic
+onboard instead, making any downlink unnecessary. Not confirmed.
+
+**Isobaric ceiling ⇒ kink is unavoidable** (ADR 0002; resolved 2026-08-11 grill; universal
+across variants):
+Holding θ ≤ 8 mrad at 400 mN without measuring needs T ≥ 25 N, so ω = 4 rad/s, which puts
+0.29 g on the charge, 7x past the 0.04 g mark where the isobaric gradient is already 10%.
+The sensitization chemistry caps ω, ω caps T, T sets the kink, so **measurement is mandatory,
+not a convenience**. This is the number CONTEXT's "a fast-spinning variant needs rechecking"
+was waiting for. Decided to hold ω = 0.74 rad/s and fly the triad on *all* variants rather
+than let non-explosive units spin faster: a variant-dependent spin rate means two tether
+designs, 20 g tips, a fatter bundle (25 N against a 45 N break is only 1.8x), and it opens
+cavitation-sphere stratification on liquid payloads.
+_Avoid_: reusing CONTEXT's buoyancy dismissal for a *liquid* payload. That is computed for
+the 50 Pa·s emulsion; in bulk water at 10⁻³ Pa·s the same Stokes creaming runs ~50,000x
+faster, so a 100 µm cavitation sphere migrates tens of metres over a multi-day coast even at
+0.01 g and fully stratifies to the spin axis. A frozen payload is immune.
+
+**Sheath stripping** (resolved 2026-08-11 grill):
+The inflatable bumper / nitrogen tube of `sec:spinning_tension_detail` deflates or is jettisoned
+before the drag phase, having served as Whipple protection through the coast. A 3 cm sheath over
+the 25 m bundle is 0.75 m² broadside and, being light with its own area, is not divided down by
+assembly mass: ~24 mN of drag against 0.85 N of tension, a **28 mrad quasi-static bow** (0.35 m
+of center displacement), 300x the bare bundle and the largest single bow term if retained.
+Stripping it also changes what accelerometry has to do, from tracking a slow DC drift against
+MEMS bias instability to band-passing a clean ~0.7 Hz post-burn transient.
+_Avoid_: keeping the sheath through descent on the grounds that its drag is "a modest price";
+that holds for the coast, not for the drag phase. Open: the PETN variant loses its grain-strike
+bumper exactly when the tether is most loaded.
+
 ### Near-Sun navigation
 
 **Transverse-node differential ranging**:
