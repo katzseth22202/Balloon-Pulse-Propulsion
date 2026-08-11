@@ -21,7 +21,7 @@
    on the balloons
 * [] We don't need 40 second quiescent glide.   In dominant architecture, there is no measurement on the PuffSats - the star field is on the coflyers
 * [] remove central mass from the PuffSats, because it doesn't provide adequate convection
-* [] adjust sodium nitrte bubbles for low pressure environment
+* [x] adjust sodium nitrte bubbles for low pressure environment
 * [] tamper of snow and water or graphite.   Plastic foams also work but might cost/pollute slightly more and are harder to keep compact.
     Latent heat advantage is less
 
