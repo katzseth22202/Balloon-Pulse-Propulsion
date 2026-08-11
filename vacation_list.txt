@@ -1,0 +1,203 @@
+* [] explain bounce of PuffSats is a big advantage, and why we don't usually want to mix prograde mass with impactors
+* [] explain our idealization isn't quite right for theoretcial maximum velocity of the retrograde/prograde impactors because
+   in the frame of the center of mass not all can become kinetic energy.  Include formula derived from interal energy in appendix.  Reowrk
+   for the moon case, just make a note of it elsewhere.  Also for lunar scenario we should consider that mass 
+   fraction is benefitted because we don't carry everything on the rocket
+* [] expalin we can get rid of mass from Jupiter with gradual nudges at apoapsis over a few centuries
+* [] consider option for garbage in L4/L5 Earth-Sun Lagrange points, its stable and relatively harmless if contained htere
+   Also discuss possibility lunar garbabe is acceptable if we impact the equator with baffled craters and human settlement is near the poles.
+   Angles don't permit ballistic hit.   Lagrange point trips would be long.   and there's some danger of collisions of debris heading back to Earth from them.
+* [] rework for higher mass growth on Jovian cycle- the key difference is we're not constraining to 3:1 mass ratios
+* [] consider how to adapt for a shaped nozzle, most likely on Jovian cycle
+* [] consider latent heat of water for coolant.   Even with dramatically lower radiation it may still be too high on Parker probe case.  An advantage of Jupiter
+* [] conical mirrors for most Jovian warming + thermal inertia + possibly reflecting light inside an inner region to solar cells so they survive
+* [] consider sodium or potassium enhanced plasma bursts from Lagrante points for electricity generation.  
+* [] consider whether to reuse rocket infrastructure or just make rockets enomrous
+* [] consider how mass of PuffSats changes while electronics costs stay fixes as we go from 11.2 - 3.4 or so relative speed
+* [] consider one side hot, one side cold, for rotating mass - must point at sun untilt he end, rockets cana djust orientation.
+* [] consider steel for risk of micrometeorites
+* [] co-flyers can go to Lagrange points and are reusable 
+* [] a triangle of accelerometers, especially because pendulum changing - would tell you whether the rockets are perpendicular to expected proposition
+   on the balloons
+* [] We don't need 40 second quiescent glide.   In dominant architecture, there is no measurement on the PuffSats - the star field is on the coflyers
+* [] remove central mass from the PuffSats, because it doesn't provide adequate convection
+* [] adjust sodium nitrte bubbles for low pressure environment
+* [] tamper of snow and water or graphite.   Plastic foams also work but might cost/pollute slightly more and are harder to keep compact.
+    Latent heat advantage is less
+
+
+
+Notes:   Handoff: two ideas to pick up when quota frees up
+
+Written 2026-07-24. Nothing here is in the paper yet. Both are Seth's ideas, recorded
+before a quota cutoff. Line numbers are against `templateArxiv.tex` at commit `3e01107`.
+
+---
+
+## Idea 1: vacuum-bake the TPU liner and qualify it to ASTM E595
+
+### Where it goes
+
+Line 307, the frozen-ISRU inner-liner paragraph in the two-shell section. That paragraph
+already picks thermoplastic polyurethane for the compliant liner, on the grounds that it
+is the bladder material of inflatable spacecraft and pressure suits, and that polyether
+grades resist hydrolysis where polyester grades would not. It says nothing about
+outgassing.
+
+### The claim to add
+
+TPU is the one polymer in the two-shell stack with a real outgassing problem. It carries
+residual volatiles, and polyether grades in particular are not automatically low-outgassing.
+The fix is the standard one: qualify to ASTM E595 (TML ≤ 1.0%, CVCM ≤ 0.10%, the NASA
+screening thresholds) and vacuum-bake the liner before flight so it meets them.
+
+This matters more here than on a typical spacecraft, because the liner sits *inside* the
+water volume and the outer bumper is the thermal control surface. Condensable volatiles
+have somewhere to go and something to fog.
+
+### Why this is easy to write
+
+The paper already makes exactly this move once, at line 1006, for the Ceres acrylic
+concentrating optic. It vacuum-bakes the optic before flight and cites two existing
+bib entries:
+
+- `outgassing_rp1124` — NASA RP-1124, the outgassing data compilation
+- `outgassing_temperature_decay` — Arrhenius temperature dependence of outgassing rate
+
+Both are reusable verbatim. The Arrhenius argument transfers well: line 1006 notes the
+screening test runs at 125 °C, and a frozen-ISRU PuffSat runs far colder, so a bake-dried
+liner sheds volatiles far more slowly than its screening number suggests.
+
+`ASTM E595` does not currently appear anywhere in the paper (`grep -i e595` returns
+nothing). It will need its own bib entry. Line 232 mentions outgassing of the explosives,
+and line 303 says the PEN inner skin holds water vapor "without outgassing", so there is
+already vocabulary to hook into.
+
+### Open question
+
+Whether to also assert an E595-qualified TPU grade exists off the shelf, or state it as a
+screening requirement on the liner. The second is safer and matches how the paper handles
+the coated-PBO barrier at line 1506. Prefer that unless a specific qualified grade turns up.
+
+---
+
+## Idea 2: phase-change ballast under the PuffSat cameras
+
+### The idea, in Seth's framing
+
+> I want to investigate the small cameras on the PuffSat dry mass. I'm wondering if we can
+> lay them on some additional mass like a phase change material to ensure they don't suffer
+> thermal distortion that's very significant, in addition to software adjusting for it, so
+> that they can be more accurate, but I'm not sure what the mass budget would be or if it's
+> reasonable. The reason I am rethinking it is we decided in the spin stabilized
+> configuration to put the dry mass on different tethers than the thrusters to prevent
+> optical interference, but if the dry mass must counter the weight of the thruster anyway
+> we could reserve some mass (maybe 1kg on a 100kg thruster) that basically just keeps the
+> temperature reasonably narrow in range.
+
+### The premise checks out
+
+Line 472 confirms it: "The tether length also separates the two packages by meters, which
+lets one carry the thrusters and the other the optical sensors; the exhaust dissipates long
+before reaching the far end." Line 397 gives the same reason for the propane plume, that it
+should be aimed away from the electronics so it does not interfere with optical sensors.
+
+So the architecture already commits to a sensing package on the far end of a tether from a
+thruster package. And line 470 already says the two packages need not be identical, and that
+one can be "a passive counterweight." The new thought is that the counterweight need not be
+dead mass. If the sensing package has to balance the thruster package anyway, some of that
+balance mass can be a thermal flywheel sitting under the optics.
+
+That is a genuinely good structural argument. Spin balance turns mass that would otherwise
+be a pure penalty into mass that is merely *reallocated*.
+
+### The problem: the number is 4x the entire dry-mass budget
+
+This is the thing to resolve first, and it is not small.
+
+Line 459 sets the whole PuffSat dry mass at **250 g**, itemized as roughly 88 g propellant
+tank, 48 g battery, 50 g valves and plumbing, three few-gram cameras, a gram-class gyro,
+and 50 g of unsized remainder for structure, radio, and coast energy. That 250 g is split
+across *both* tethered packages.
+
+1 kg of PCM is four times that entire budget. Consequences to work through:
+
+1. **The 1% claim.** Line 459 concludes that non-volatile solids are under 1% of total mass
+   for a PuffSat carrying more than 25 kg of fuel. At 250 g that is comfortable. At 1.25 kg
+   it needs rechecking against whichever PuffSat mass is being quoted. (Note the ambiguity in
+   "1kg on a 100kg thruster" — the 100 kg figure matches the water bag of §`sec:icy_puffsat`,
+   not a thruster. Worth confirming which denominator was meant.)
+2. **Shrapnel and disposal.** The whole of §`sec:coordinator_node_dry_mass_disposal` exists
+   because dry mass threatens the pusher plate. Five disposal strategies are listed, and
+   their difficulty scales with the mass being disposed of. A 1 kg slug is a different
+   proposition from a 125 g package.
+3. **Spin balance.** Line 470 holds the mass-times-radius products equal across the pair.
+   Adding 1 kg to the sensing side means either matching it on the thruster side, at 2 kg
+   total, or shortening that arm substantially. Work out which is cheaper.
+4. **Deorbit.** Line 533 sizes a ~4 m/s apogee burn per package for disposal from a 200 km
+   perigee. That is velocity, so it is mass-independent, but the propellant to deliver it
+   is not.
+
+A cheaper version of the idea is worth sizing alongside the 1 kg case: the cameras are
+few-gram parts, so a thermal mass that is *large relative to a camera* may be tens of grams
+rather than a kilogram. Sizing question is how much energy has to be buffered over what
+window, not how much mass is available.
+
+### What the paper currently says about camera thermal distortion
+
+Three places, and they need to stay consistent with whatever gets added:
+
+- **Line 435** is the load-bearing treatment. A dichroic splits beacon and star light behind
+  shared front optics, so the dominant distortion is common to both and cancels when
+  differenced. "Thermal drift in the tracker optics is handled the same way. Heating bends
+  the optical figure smoothly across the field, and a smooth shared distortion is what the
+  star-differencing cancels." Gaia is the precedent for correcting a thermoelastic wobble a
+  thousand times the accuracy target. Two hardware backups are already offered: a reflective
+  narrowband front element that rejects out-of-band sunlight before it heats the optics, and
+  edge-cooled synthetic diamond windows from gyrotron practice.
+- **Line 385** says thermal distortion of the camera is explicitly *not* one of the Tier 3
+  open sizing numbers.
+- **Lines 1468–1470** retire it for the 4-radii periapsis leg on geometric grounds, since the
+  optics ride in the shield's umbra where radiative load is nine orders below a sunlit
+  aperture.
+
+So PCM ballast would be a **third hardware backstop** alongside the reflective front element
+and the diamond window, not a replacement for star-differencing. Seth's framing already says
+this ("in addition to software adjusting for it"). Write it that way. Do not let it read as
+though the software correction were insufficient, because line 385 currently banks on it.
+
+Note also that most of the above is about the **target-side** tracker array, which does not
+have a mass problem. The PuffSat-side cameras (lines 441–443) are the "optional redundancy
+layer," and line 443 says their binding error is gyro drift over the terminal seconds, not
+blur. Check whether thermal distortion is even the limiting term for the PuffSat cameras
+before spending mass on it. If gyro drift dominates, a gram of better gyro beats a kilogram
+of paraffin.
+
+### Existing PCM precedent to reuse
+
+Line 397 already puts a phase-change material on a PuffSat: "a phase change material like
+paraffin wax on an aluminum mesh and running the propane over the wax," used for propane
+thermal margin. It notes the wax is less mass-efficient than batteries but very cheap, and
+that the mass stays small because total thrust is low. That paragraph is the model for how
+to introduce PCM here, and it means no new PCM citation is needed for the concept itself.
+
+### Suggested order of work
+
+1. Decide the denominator (100 kg water bag? 25 kg PuffSat?) and recheck the 1% claim.
+2. Size the actual thermal problem: absorbed watts on the sensing package over the coast and
+   the terminal phase, allowable optics temperature swing, energy to buffer. Line 279 quotes
+   10–15 W unshaded absorption for a reflective PuffSat, which is a starting number.
+3. Only then pick a mass. The answer may be 30 g, not 1 kg.
+4. If the mass lands large, write it into §`sec:spinning_tension_detail` at line 470 as a
+   use for balance mass, and recheck §`sec:coordinator_node_dry_mass_disposal`.
+5. Frame as a hardware backstop to star-differencing, consistent with line 435.
+
+---
+
+## Not in scope, but adjacent
+
+The foam-scaffold work in `sec:icy_puffsat` landed in `3e01107` and is done. The one loose
+end there is that the 1 mm free strand at 30 kg/m³ is flagged in-text as a spec to
+demonstrate rather than an off-the-shelf item, with density named as the parameter to
+concede. If a supplier or paper turns up showing a free-standing low-density foam
+monofilament at that diameter, that hedge can be tightened.
