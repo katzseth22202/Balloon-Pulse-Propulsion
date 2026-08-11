@@ -4,7 +4,7 @@
    for the moon case, just make a note of it elsewhere.  Also for lunar scenario we should consider that mass 
    fraction is benefitted because we don't carry everything on the rocket
 * [] expalin we can get rid of mass from Jupiter with gradual nudges at apoapsis over a few centuries
-* [] consider option for garbage in L4/L5 Earth-Sun Lagrange points, its stable and relatively harmless if contained htere
+* [] consider option for garbage in L4/L5 Earth-Sun Lagrange points, its stable and relatively harmless if contained htere. Possibly they cold fuse together in a giant blob.
    Also discuss possibility lunar garbabe is acceptable if we impact the equator with baffled craters and human settlement is near the poles.
    Angles don't permit ballistic hit.   Lagrange point trips would be long.   and there's some danger of collisions of debris heading back to Earth from them.
 * [] rework for higher mass growth on Jovian cycle- the key difference is we're not constraining to 3:1 mass ratios
@@ -34,7 +34,7 @@ before a quota cutoff. Line numbers are against `templateArxiv.tex` at commit `3
 
 ---
 
-## Idea 1: vacuum-bake the TPU liner and qualify it to ASTM E595
+## [x]Idea 1: vacuum-bake the TPU liner and qualify it to ASTM E595
 
 ### Where it goes
 
@@ -81,7 +81,7 @@ the coated-PBO barrier at line 1506. Prefer that unless a specific qualified gra
 
 ---
 
-## Idea 2: phase-change ballast under the PuffSat cameras
+## [x]Idea 2: phase-change ballast under the PuffSat cameras
 
 ### The idea, in Seth's framing
 

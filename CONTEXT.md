@@ -453,6 +453,66 @@ Ceres and Phoebe), not on the carbon-poor Moon. Clathrate storage is rejected: i
 endothermic, self-preserving dissociation releases gas too slowly for millisecond
 atomization and over-pressurizes the liner if it dissociates while confined.
 
+### Energetics and sensitization
+
+**Chemical gassing (nitrite gassing)**:
+Sensitizing an emulsion explosive by injecting sodium nitrite (NaNO₂), which decomposes in
+the acidified aqueous phase and nucleates nitrogen bubbles in situ. Those bubbles are the
+**hot spots**. The canonical sensitizer for the PuffSat emulsion of `sec:explosive_puffsat`,
+because it is added late in flight, which is the safety property line 230 already claims.
+_Avoid_: "sodium nitride" (Na₃N, a different and essentially non-existent compound, and not
+what any energetic formulation uses); confusing it with sodium azide (NaN₃), which
+`sec:cold_gas_generators` explicitly rejects for its silicate slag.
+
+**Hot spot**:
+A small gas-filled void that heats by adiabatic compression when a shock passes, initiating
+the surrounding matrix. Must contain a **non-condensable** gas. A void filled with water
+vapor condenses under compression instead of heating, so it is a poor hot spot even at the
+correct void fraction. This is the constraint that sets the charge fill pressure.
+
+**Charge fill pressure (~5 kPa)**:
+The explosive PuffSat's emulsion is held a few kPa above vacuum, not at one atmosphere and
+not vacuum-referenced. Chosen as the lowest pressure keeping bubble contents nitrogen- rather
+than steam-dominated: the supersaturated AN phase sits near 1 kPa of water vapor at 290 K, so
+5 kPa is ~80% nitrogen, and ~94% if the charge runs at 273 K. Stays inside line 232's "very
+thin layers" (membrane stress `Pr/t`), where a full atmosphere would demand a real pressure
+vessel. Nitrite dose scales down with pressure, which is the same dose-against-head
+calculation mining already does down a borehole, extrapolated the other direction.
+_Avoid_: "low vapor pressure environment" for the flight condition. Vapor pressure is a
+property of a liquid at a temperature. The environment is low **ambient** pressure, and the
+mechanism runs the opposite way from what that phrase suggests.
+
+**Sensitizer-set thermal band (273--300 K)**:
+The explosive PuffSat's thermal-trim target, squeezed from both sides by the gassing
+chemistry. Below 273 K the nitrite reaction is too slow to finish inside the pre-intercept
+window and the supersaturated ammonium nitrate phase risks crystallizing out. Above 300 K
+aqueous vapor pressure crowds the nitrogen fill and the matrix coarsens. Held passively by
+the louver of `sec:louver_thermal_trim`, which currently lists a target for every variant
+*except* the explosive one. Means colder is **not** strictly better for a gassed charge,
+qualifying line 232's reflective-liner argument.
+
+**Isobaric charge (low-gravity advantage)**:
+In free fall the charge has no hydrostatic head, so bubble size, density, and sensitivity are
+uniform throughout. A 10 m borehole carries ~137 kPa of head and must be dosed against depth.
+Holds to within a few percent for any acceleration below ~0.01 g; near 0.04 g the gradient is
+back to 10%, so a fast-spinning variant needs rechecking. The paired cost is **mixing**: an
+emulsion matrix is a yield-stress paste (~100 Pa) that neither convects nor settles, so
+gassing must happen during a chamber-to-chamber transfer where shear distributes the reagent.
+Buoyancy itself is a non-issue at this timescale. Stokes creaming of a 100 µm bubble in
+50 Pa·s matrix is 0.6 µm/s at *full Earth gravity*, or 2 mm over the whole gassed window.
+
+**Bubble populations (four, do not conflate)**:
+The paper uses "bubble" for four distinct things doing different jobs.
+(1) **Gassing bubbles**, nitrite-generated N₂ in the emulsion, are hot spots that initiate the
+explosive (`sec:explosive_puffsat`).
+(2) **Cavitation bubbles**, pre-formed gas-filled plastic spheres in the bulk water, shape what
+the shock does to the water and cap droplet size (`sec:icy_puffsat`, line 239).
+(3) **Effervescent bubbles**, exsolving dissolved CO₂, stretch ligaments during late breakup
+(see **Effervescent (carbonation) atomization**).
+(4) **Crevice nuclei**, gas trapped on unwetted foam-strand surfaces, seed cavitation in the
+water (line 245).
+(1) initiates the charge; (2), (3), and (4) act on the water after it fires.
+
 ### Materials
 
 **Halogen-free vaporizables rule**:
@@ -505,6 +565,43 @@ pair**, `sec:spinning_tension_detail`). Thermal trim also simply stops in the la
 before impact: extended flaps add drag that perturbs the terminal trajectory at low altitude,
 and unshaded absorption over that interval only raises a water body's temperature by a few
 tenths of a kelvin, negligible against the margin already banked.
+
+### Lunar disposal (`sec:handling_space_debris`)
+
+**Disposal package**:
+The sub-250 g dry-mass remnant of a spent PuffSat, steered to a lunar impact instead of reentry.
+_Avoid_: waste, garbage, trash, debris (reserve **debris** for the ejecta it throws).
+
+**Disposal site**:
+One of a handful of fixed lunar impact points, spread in longitude so one always sits near the
+low-$\Delta V$ approach geometry as the Moon rotates.
+
+**Ejecta trap**:
+A roofed disposal site (sintered enclosure or lava tube) whose small aperture subtends a narrow
+cone from the impact point.
+_Avoid_: baffle, shield. Contrast with **open pit**.
+
+**Open pit**:
+An unroofed disposal site, natural crater or excavation, whose rim blocks ejecta launched below
+$\arctan(H/R)$ and whose slope relaxes to the 35° angle of repose if unbonded.
+_Avoid_: open crater, baffled crater.
+
+**Latitude separation**:
+Siting disposal at the lunar equator while settlement stays polar, so 2729 km of arc separates
+them.
+_Avoid_: geographic separation, polar standoff, antipodal siting (the separation is 90°, not 180°).
+
+**Pole-reach threshold**:
+1.53 km/s, 64% of lunar escape speed, the slowest ejecta that can fly equator-to-pole; raised to
+1.57 km/s by a 35° rim, and to escape (route closed) by a 67° one.
+
+**Azimuth window**:
+The ±5° of launch azimuth about the meridian that reaches latitude 85°+ from an equatorial site,
+5.6% of all azimuths; the actual protection **latitude separation** provides.
+
+**Fast tail**:
+The ejecta mass fraction launched above the **pole-reach threshold**, the only material that can
+reach a polar settlement at all.
 
 ## Relationships
 
