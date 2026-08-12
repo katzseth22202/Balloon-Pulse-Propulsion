@@ -17,7 +17,10 @@
 * [] consider how mass of PuffSats changes while electronics costs stay fixes as we go from 11.2 - 3.4 or so relative speed
 * [] consider one side hot, one side cold, for rotating mass - must point at sun untilt he end, rockets cana djust orientation.
 * [X] consider steel for risk of micrometeorites
-* [] co-flyers can go to Lagrange points and are reusable 
+* [x] co-flyers can go to Lagrange points and are reusable
+   Resolved 2026-08-12: reusable yes, Lagrange no.  Energy at the L-points is nearly the same as the
+   staging ellipse, so the whole cost is angular momentum (~1.5 km/s round trip vs ~50 m/s to stay put).
+   The 2.7 d ellipse returns the co-flyer to apogee for free.  See docs/adr/0004 and 0005.
 * [x] a triangle of accelerometers, especially because pendulum changing - would tell you whether the rockets are perpendicular to expected proposition
    on the balloons
 * [x] We don't need 40 second quiescent glide.   In dominant architecture, there is no measurement on the PuffSats - the star field is on the coflyers

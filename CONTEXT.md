@@ -294,14 +294,55 @@ does the cross-track work); presenting the dozen-crude-detector fallback as the 
 configuration.
 
 **Co-flying tracker**:
-The reused launch rocket serving as a closer terminal vantage (shorter range `R`, so
-smaller `σ_θ · R`); a redundant hedge, *not* required for the 5 m capture verdict.
-_Avoid_: treating it as a dedicated new satellite (it is the launch rocket, reused).
-_Under active reconsideration (2026-08-12 grill, UNRESOLVED)_: whether the co-flyer
-should take the *load-bearing* terminal role from the **target-side tracker array**,
-on the grounds that the target is disturbed by slosh, impacts, and its own RCS burns.
-See the flagged ambiguity below. Two sub-decisions have been taken provisionally:
-**plate-beacon differencing** and a decoupled star-channel exposure.
+The *role* of a quiet off-board vantage holding the measurement from PuffSat deployment down
+to the 2--3 s handover of ADR-0003, where it fuses with and yields to the **target-side
+tracker array**. It is a role, not a vehicle: which vehicle fills it depends on the cycle.
+- LEO cycle (`sec:starship_safelaunch`): the reused launch rocket.
+  _Avoid_ treating it as a dedicated new satellite *there*; it is the launch rocket, reused.
+- Staged crewed launch (`sec:periapsis_challenges`): the **tracker platform**, decided
+  2026-08-12. The staged path has no launch rocket to reuse, because the PuffSats come from a
+  **staging carrier** already in the ellipse and the crew vehicle's reusable ground launcher
+  (line 752) never reaches the 10.9 km/s needed to fly alongside.
+Sub-decisions: **plate-beacon differencing**, and a star channel decoupled from the 1 ms
+beacon gate.
+_Note_: this entry previously read "UNRESOLVED" and described the co-flyer as a redundant
+hedge not required for the 5 m verdict. Both were stale as of ADR-0003; corrected 2026-08-12.
+
+**Tracker platform**:
+The permanent, refuelable sensor vehicle that fills the **co-flying tracker** role on staged
+crewed launches. Parked in the **staging ellipse** at the same 2.7 d period as the carriers, so
+phasing holds once set. Distinct from a **staging carrier**, which is a cheap tank that empties;
+carriers proliferate as waves double each cycle, and the platform is the one asset worth
+amortizing across many of them.
+_Avoid_: coordinator node (legacy term for the rejected per-mission co-flying brain; the
+platform is shared infrastructure, like the **apogee nav constellation**, which is the side of
+the 2026-06-30 decision that was *accepted*), co-flyer satellite, tug.
+_Budget_: parks at ~1000 km perigee to clear drag across the **storage interval**, drops to a
+~200 km operating perigee for the push and returns, about 26 m/s each way, call it 50--100 m/s
+per flight all in. Under 3% of vehicle mass per flight at methalox exhaust velocity, so roughly
+30 flights per propellant load equal to dry mass. It never leaves the ellipse.
+_Vantage_: the 200 km operating perigee against the PuffSats' 50 km disposal perigee is a
+150 km **radial** offset bought for ~5 m/s at apogee, which must be paired with a comparable
+along-track offset to satisfy the **miss plane** geometry. A purely radial offset is blind in
+the radial miss axis.
+_Refuelling_: the propellant rides up as a *dedicated consignment* in the **staging carrier**'s
+payload, not scavenged from the PuffSat fill. Decided 2026-08-12. What matters is that it
+arrives free with every wave, so there is no Earth tanker chain and no depot, which is the last
+thing the Lagrange proposal was reaching for. Scavenging the carrier's water and running
+**on-demand electrolysis propellant** was considered and set aside: it works, but it buys a
+water plant and a several-kW array to avoid carrying a tank that costs a rounding error.
+Every chemistry is affordable, because the platform's whole per-flight budget is 50--150 m/s
+against the ~850 t a single crewed launch consumes (line 198):
+- cold-gas propane (`sec:cold_gas_fluid_choice`), Isp ~70 s: ~2.4 t/flight for a 10 t platform,
+  0.3% of a wave. Stores indefinitely, self-pressurising, no catalyst.
+- peroxide/propane bipropellant (`sec:peroxide_propane_biprop`), Isp ~250--300 s: ~0.6 t/flight.
+  Note the **storable PuffSat** exclusion of peroxide does *not* transfer here: that ruling was
+  about 60% H₂O₂ inside a 250 g thin-skinned balloon, and bulk tankage with a real vent path and
+  thermal control is a different problem.
+_Preferred mechanism_: swap the tank rather than transfer fluid. The carrier brings a full one
+and takes the empty. It needs no fluid interface, and it caps peroxide age at one wave interval
+rather than at platform lifetime.
+_Open_: which chemistry. Both close on mass; the decision is shelf life against dry mass.
 
 **Plate-beacon differencing** (provisional, 2026-08-12 grill):
 If the terminal measurement moves off the target, it must be a *differential angle*:
@@ -803,6 +844,69 @@ hysteretic: a one-way drift only reshuffles a phase sampling that is already nea
 per revolution, so it concentrates no probability on Jupiter and collapses back into ignoring the
 population.
 
+### Staged crewed launch (`sec:periapsis_challenges`, closing paragraph)
+
+**Staging carrier**:
+The unmanned vehicle that holds *undeployed* PuffSat mass between a Parker-return delivery and the
+crewed launch it will feed. It is the "unmanned payload" of the closing paragraph of
+`sec:periapsis_challenges`, named. Being uncrewed, it absorbs the full 3.7 g of an 11 km/s solar-dive
+push, which is the whole point of staging.
+_Avoid_: depot (implies a fixed station), tanker, tug.
+
+**Staging ellipse**:
+The 50 km x 150,000 km orbit (`v_p` = 10.916 km/s, period 2.7 d, apogee speed 0.45 km/s) that the
+solar-dive PuffSats deliver the **staging carrier** into, and where it parks. Same orbit the PuffSats
+themselves fly in `sec:starship_safelaunch`, so no injection burn is ever needed.
+_Avoid_: "apogee at lunar distance" (that is the `tab:mass_scenarios` row description; the operational
+orbit of line 1444 and the companion sim is 150,000 km. Both happen to give `v_p` ~ 10.916 km/s).
+
+**Arrival-declination floor**:
+The lowest inclination a **staging ellipse** can be given for free, equal to the declination of
+the solar-dive carrier's incoming hyperbolic asymptote. Choosing where perigee falls around that
+asymptote selects the inclination at zero cost, and the same PuffSat collisions that deliver the
+boost do the aiming, so upstream aiming beats a plane change. Decided 2026-08-12. Solar-dive
+returns run near the ecliptic, so the floor sits near the 23.4° obliquity: every inclination from
+there up is free (Cape Canaveral 28.5°, Baikonur 51.6°), and near-equatorial ones are not
+(Kourou 5.2°). The paper should state the constraint rather than leave a reader to find it.
+_Fallback, priced_: turning the plane at apogee costs `2 v sin(Δi/2)` at v = 0.45 km/s, so 218 m/s
+for 28°. Negligible on the 10 t **tracker platform** (~0.6 t) and expensive on a loaded carrier
+(~6% of an 850 t wave, ~52 t, every delivery). The asymmetry is the point: let the platform turn,
+never the carrier.
+
+**Perigee arming**:
+Dropping the parked carrier's perigee from its drag-free parking value back to the 50 km deployment
+perigee when a crewed launch is scheduled, and raising it again after. About 31 m/s each way at
+apogee, because the carrier is crawling at 0.45 km/s there. This is the "very small rocket" the
+Lagrange proposal wanted, and it is small only because the carrier never left the ellipse.
+
+**Storage interval**:
+Months, worst case ~0.8 yr, set by the **re-intercept cycle floor**: solar-dive mass arrives in waves
+about 0.82 yr apart while crewed launches draw it down continuously. Decided 2026-08-12. It is the
+number that binds lunisolar perigee drift, propellant shelf life, and cryogenic boiloff.
+
+**Storable PuffSat**:
+The variant qualified to sit in a **staging carrier** across the **storage interval**: water-ice or
+ANFO fill, cool gas generator thrusters (`sec:cold_gas_fluid_choice`, line 419), no 60% peroxide
+bipropellant and no LOX fill. Decided 2026-08-12. It retracts, for staged flights only, the line 424
+premise that "PuffSats are single-use and operate for only half of a single orbit", which is what
+licensed the paper to ignore shelf life everywhere.
+_Rationale_: ice and ANFO keep indefinitely; airbag generants (guanidine nitrate with basic copper
+nitrate) are qualified for ~15 yr of thermal cycling and sit *unpressurized* until fired, so the
+storage phase carries no pressurized tank at all. Peroxide is excluded because the paper itself names
+"catalytic decomposition and oxygen buildup in a closed volume" as the governing in-flight hazard,
+which over months is a slow loss of oxidizer. LOX is excluded because holding 60--80 K through ~50
+perigee passes of Earth albedo and IR is a different problem from holding it at 1 AU.
+_Sustained-flow debt, discharged_: line 395 makes sustained flow, not total impulse, the binding
+cold-gas requirement across the 300 s drag pass, and a gas generator is a one-shot device. The
+T³µPS architecture already cited resolves this: generators charge a **plenum** and the plenum meters
+sustained flow, firing more generators as pressure falls. The pressurized volume then exists only
+during the half-orbit of use, never during storage, which preserves the exact property the storage
+case wanted.
+_Open_: belt dose. The **staging ellipse** crosses the Van Allen belts twice per 2.7 d period, so a
+five-month park is ~100 crossings against deliberately cheap electronics. The mitigation is that
+stowed PuffSats are shielded by the carrier hull and by each other, so only the outer layer of the
+rack takes full dose. Unsized.
+
 ## Relationships
 
 - A **PuffSat** strikes the **pusher plate** (or the **Medusa-style sail**); plate and
@@ -835,6 +939,45 @@ population.
 > knowledge**, `σ_θ · R`, and that's a calibration bias, not noise."
 
 ## Flagged ambiguities
+
+- **Where does staged PuffSat mass park between delivery and use? — RESOLVED 2026-08-12
+  (grill): the staging ellipse, not a Lagrange point.** The proposal was to park incoming
+  PuffSat mass (and the reusable co-flyer carrying it) at Sun-Earth or Earth-Moon Lagrange
+  points, with small rockets pushing it into the deployment orbit when needed. Rejected on
+  angular momentum. The **staging ellipse** and the Earth-Moon Lagrange points sit at nearly
+  the same *energy*, so the entire cost of moving between them is angular momentum: the
+  ellipse crawls through apogee at 0.45 km/s while the Lagrange points sweep around Earth at
+  0.87 (EML1) to 1.02 km/s (EML4/5). Round-trip costs, two-body coplanar, from the ellipse:
+  - EML1/EML2 halo: ~0.88 km/s in, ~0.65 km/s out, ~1.5 km/s round trip, roughly 35% of the
+    loaded carrier as methalox. Buys lunar-ISRU propellant access and a quiet thermal
+    environment.
+  - EML4/EML5 (the stable pair of `sec:handling_space_debris`): ~0.83 km/s each way plus a
+    phasing wait, since departure is locked to 60° from the Moon.
+  - Sun-Earth L1/L2: ~90 day transits, so ~2 flights/yr per carrier. Cadence is the killer.
+  - Staging ellipse: 0 m/s to insert (it is already there), ~31 m/s of **perigee arming**
+    each way, and it returns to apogee every 2.7 days for free.
+  The reusability the proposal wanted therefore comes free from the ellipse's own period.
+  Note the paper's Lagrange numbers in `sec:handling_space_debris` (0.5 km/s to EML1, 0.18 km/s
+  to EML4/5) are computed for a package *falling from the 900,000 km turnaround* and do not
+  transfer to a departure from the staging ellipse.
+  _Shell crossings, answered 2026-08-12_: the ellipse's one real defect is that it sweeps the
+  LEO and GEO belts every 2.7 days with a loaded carrier, and `sec:handling_space_debris`
+  line 543 sells the lunar disposal route on precisely the opposite property ("never descends
+  through the low Earth orbit and geostationary belts"). The reconciling distinction, which the
+  paper does not yet draw and should: **line 543 is an argument about *uncontrolled* objects.**
+  Disposal packages are inert, uninstrumented, and arrive billions per year, so they can never
+  participate in conjunction avoidance. Carriers and the **tracker platform** are few, tracked,
+  and maneuverable. Precedent for long-duration eccentric orbits crossing both belts is Molniya
+  (perigee ~500 km, apogee ~40,000 km, twice daily, decades, dozens of spacecraft) and every
+  GTO ever flown. Priced and held in reserve if the population number comes out badly: raising
+  the parking perigee above the LEO debris shell to ~2500 km costs ~75 m/s each way (per-flight
+  budget 50 -> 150 m/s, still ~20 flights per load); parking clear of LEO at ~10,000 km costs
+  ~247 m/s each way (~5--6 flights per load, and it still crosses GEO).
+  _Still open_: (1) the steady-state carrier population, which is the number the controlled-vs-
+  uncontrolled argument owes. (2) Lunisolar perigee drift across the **storage interval**,
+  unsized: at 150,000 km apogee the carrier sits at 39% of lunar distance, and months of
+  third-body tugging moves perigee by an amount nobody has computed. It sets the parking
+  perigee margin, so it also sets the per-flight budget above.
 
 - **Should the load-bearing terminal sensor move from the target to the co-flyer? —
   RESOLVED 2026-08-12 (grill): split by phase, fused, handover at 2--3 s to impact.**
