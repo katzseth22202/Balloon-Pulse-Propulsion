@@ -276,7 +276,10 @@ _Avoid_: "GNSS at apogee" as the baseline (GPS side-lobe fixes have reached ~150
 on NASA's MMS, but they are weak, unauthenticated, and geometrically poor there; the paper
 acknowledges MMS and explains why the dedicated constellation wins — resolved 2026-07-02
 grill); "coordinator node" (this is permanent infra, not a co-flyer); putting an echo
-transponder or precise clock on the PuffSat.
+transponder or precise clock on the PuffSat; putting a **GNSS receiver** on the PuffSat
+(rejected 2026-08-12 grill, ADR 0003: antenna phase-centre variation caps a 50 g install at
+centimetres, spin at 0.74 rad/s breaks carrier-phase lock every ~8.5 s, and the leg is
+weakest at exactly the range where it would be called on).
 
 **Target-side tracker array**:
 The load-bearing terminal sensor: several (~5) independent, separately bench-calibrated
@@ -294,6 +297,36 @@ configuration.
 The reused launch rocket serving as a closer terminal vantage (shorter range `R`, so
 smaller `σ_θ · R`); a redundant hedge, *not* required for the 5 m capture verdict.
 _Avoid_: treating it as a dedicated new satellite (it is the launch rocket, reused).
+_Under active reconsideration (2026-08-12 grill, UNRESOLVED)_: whether the co-flyer
+should take the *load-bearing* terminal role from the **target-side tracker array**,
+on the grounds that the target is disturbed by slosh, impacts, and its own RCS burns.
+See the flagged ambiguity below. Two sub-decisions have been taken provisionally:
+**plate-beacon differencing** and a decoupled star-channel exposure.
+
+**Plate-beacon differencing** (provisional, 2026-08-12 grill):
+If the terminal measurement moves off the target, it must be a *differential angle*:
+a strobed beacon on the plate rim is centroided in the same frame as the PuffSat
+beacon, and only their angular separation is reported. This makes the co-flyer's
+absolute position cancel to first order, leaving `miss ≈ θ_sep · D` with `D` the
+scalar co-flyer-to-target range. Without it, an absolute line-of-sight measurement
+must be registered to the plate through a separately-known co-flyer-to-target vector,
+which the paper prices at ~2 m (GNSS, `sec:sensor_architecture`) and which alone
+consumes the whole Tier 1 tolerance.
+_Avoid_: assuming a co-flyer measurement is automatically referred to the plate. The
+**target-side tracker array** gets that registration free by being bolted to the plate;
+a co-flyer must buy it.
+
+**Miss plane**:
+The plane perpendicular to the PuffSat-target relative velocity, containing the two
+error components that actually cause a miss: **radial** (altitude) and **cross-track**.
+The third component, along the relative velocity, is *timing*, not miss. A tracker's
+blind axis is its own line of sight, so vantage choice decides which miss component is
+unobservable: a co-flyer directly overhead is blind in radial (bad), one offset purely
+cross-track is blind in cross-track (bad), one offset **along-track** is blind only in
+timing (good). For an offset with altitude `h` and along-track distance `x`, the radial
+error is `(h²+x²)/x · σ_θ`, minimised at `x = h` (45° elevation) to give `2·h·σ_θ`.
+_Avoid_: reading "closer is better" off `σ_θ · R` alone. Closest approach is exactly
+when an overhead co-flyer is blind in radial. Range and observability fight.
 
 **Differential astrometry** (star-differencing, the "Gaia trick"):
 Measuring a beacon's bearing relative to reference stars in the *same* exposure, so the
@@ -803,6 +836,87 @@ population.
 
 ## Flagged ambiguities
 
+- **Should the load-bearing terminal sensor move from the target to the co-flyer? —
+  RESOLVED 2026-08-12 (grill): split by phase, fused, handover at 2--3 s to impact.**
+  The co-flyer is load-bearing from deployment down to roughly 2--3 s before impact; the
+  **target-side tracker array** takes over inside that, and the two are *fused* rather than
+  switched. Motivation for reopening: the target is disturbed by propellant slosh, repeated
+  PuffSat impacts, and its own RCS/gimbal corrections between pulses, while the co-flyer is a
+  quiet platform. What decided it:
+  - The target-side array looks straight down the approach corridor, so its blind axis is the
+    **miss plane**'s *timing* component. Both real miss axes are observable at every instant,
+    with no singular geometry, by construction. A co-flyer never has this.
+  - `σ_θ·R` collapses for the target because `R → 0` at impact, and does not for the co-flyer
+    whose standoff `D` is roughly fixed. The target-side array at its nominal 1.6 µrad beats a
+    50 mas co-flyer inside 45 km. The terminal phase *is* those last seconds.
+  - The target's degraded conditions and its relaxed requirement coincide. Impact gating only
+    exists once impacts are happening, which is when `R` is already small enough that the
+    existing grade delivers centimetres. A **10× platform degradation still delivers 10 cm with
+    0.57 s to spare.** This is a far stronger defence of the current architecture than the
+    shock-isolator-and-Copperhead argument the paper actually makes, and it should replace it.
+  - 2--3 s is simultaneously the metrology crossover and roughly the *control* horizon (a 10 cm
+    divert takes 0.3--0.6 s to execute), so nothing is lost by handing over there.
+  Sizing that falls out: the handover time pins the co-flyer at **~25--35 mas**. Below ~30 mas
+  the co-flyer is **registration-limited** by the cm-class body-beacon-to-plate chain, not
+  optics-limited, so Gaia-class metrology buys nothing. Build the 30 mas scope and spend the
+  rest on absorber metrology.
+  _Avoid_: the paper's current claim that the co-flyer "shortens `R`" for *terminal* homing.
+  True in mid-course, false in the terminal phase where the target is nearer by construction.
+  Also settled along the way:
+  - The measurement must be **plate-beacon differencing**, not absolute line-of-sight
+    (registration to the plate is otherwise ~2 m and eats all of Tier 1).
+  - The **star channel decouples from the 1 ms beacon gate** (10–100 ms free-running star
+    exposure on its own detector, gyro bridging to each beacon epoch). This is the actual
+    reason a quiet platform wins: star *photons*, not vibration immunity. It is impossible
+    on the impact-hammered target and easy on the co-flyer.
+  - Vantage must satisfy the **miss plane** geometry: primarily along-track offset, with
+    `x ≈ h`. A purely radial offset (the "350 km vs 200 km periapsis" idea) is blind in the
+    radial miss axis unless paired with a comparable along-track offset.
+  - Sizing: `σ(radial) = 2·h·σ_θ`. At `h` = 150 km, Tier 1 (~2 m) passes at any grade
+    considered; Tier 2 (~10 cm) needs `σ_θ ≤ ~69 mas`, so the paper's current 330 mas fails
+    and the premise 100 mas also fails. ~50 mas closes it. A half-metre-aperture, ~2–5 m
+    focal-length scope reaches ~5–8 mas on rough photon-budget grounds, i.e. Tier 2 is not
+    metrology-limited once the co-flyer exists.
+  - The co-flyer's overflight singularity is real geometry but operationally harmless. Riding
+    the PuffSat orbit at 10.8 km/s past a target accelerating 0→8 km/s, it sweeps ~2040 km of
+    along-track offset per 300 s push and must transit `x = 0`, where the radial axis goes
+    singular for ~50 s (~150 of ~900 units). It does not matter, because the mid-course only
+    has to deliver into the **catch radius** (475 m against a 224 m entry spread), and even the
+    worst overflight moment gives ~1 m.
+  - Which disturbances actually threaten a 1 ms exposure, by frequency: **slosh (~0.9 Hz) does
+    not** (0.33° of phase across the exposure, so constant rate, which centroids at mid-exposure
+    and differences away like a rigid shift). RCS ringing (5--100 Hz) and impact ringing
+    (hundreds of Hz) do. Slosh instead lands on the body-beacon-to-plate registration leg, which
+    matters more now that the beacon has moved onto the body.
+  Still open: the co-flyer's station-keeping and phasing against an accelerating target, and
+  the migrated error terms below.
+- **Terms that bind once `σ_θ·D` drops under ~1 cm — NONE ARE SIZED ANYWHERE
+  (raised 2026-08-12 grill).** Listed in rough order of how badly they are neglected:
+  *PuffSat beacon to gas-momentum centroid.* Tier 2 assumes "the PuffSat's position" is
+  meaningful at 10 cm. The PuffSat is a balloon that atomises, the plate receives a gas
+  cloud's momentum centroid, and the beacon rides on the dry-mass package that detaches or
+  passes through the plate aperture before impact. `sec:spinning_tension_detail` already
+  concedes the beacon sits off the aim line and fixes it with an accelerometer reading
+  tether-pull direction, but that fix is sized for metres.
+  *Loop latency.* At 11 km/s, 1 µs = 1.1 cm and light-time alone from a 1000 km standoff is
+  3.3 ms = 37 m. Tolerable only because the measured state is ballistic and predictable, but
+  that shifts the requirement from position knowledge to *velocity* knowledge.
+  *Light-time lead.* The beacon appears displaced by `v_rel/c` ≈ 7.57 arcsec, independent of
+  range. Deterministic, but needs `v_rel` to 0.027% to leave 1 cm.
+  *Differential stellar aberration.* ~130 mas per degree of field angle at 10.8 km/s, i.e.
+  larger than the whole 100 mas premise. Deterministic given co-flyer velocity to ~1%.
+  *Differential distortion across the dichroic.* The paper's star-differencing argument says
+  "the same front optics" cancel distortion, but beacon and stars land on **different
+  detectors through different back-end paths** behind the splitter. Only the front element is
+  common. Plausibly the true floor; unsized.
+  *Plate-beacon to plate-centre structural/thermal flex.* mm–cm class, unmeasured.
+- **Is the 1.6 µrad floor noise or bias? — OPEN (raised 2026-08-12 grill).** The paper
+  insists it is a fixed calibration bias ("a bent ruler", averaging cannot help), while this
+  glossary describes it as a "common-mode floor" reached by "√N" fusion, which is noise-like
+  language. A rough photon budget (10 cm aperture, 1 ms exposure, ~20 stars) lands near the
+  same few-hundred-mas value, which suggests the paper's own floor may be star-photon shot
+  noise mislabelled as bias. If so the paper is *understating* its margin, since noise
+  averages and bias does not. Needs decomposing in the companion sim.
 - **Jupiter-cycle dry mass: which hazard? — resolved 2026-08-11 (grill).** The metric is
   **satellite collision**, and by that metric the population is ignorable by many orders of
   magnitude (see **satellite-collision metric**). Two alternative framings were raised and set
