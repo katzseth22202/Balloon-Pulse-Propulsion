@@ -604,6 +604,56 @@ bullet; the asymmetry sentence lives in the rocket-plane paragraph, not in a bul
 _Avoid_: blast-hazard wording for the helicopter point; quoting a cadence band SpaceX never
 claimed; adding the disadvantage without the city-end guard sentence.
 
+### Intercity rocket plane (`sec:200_mile_high`)
+
+**Takeoff**:
+The rocket plane's departure: an ordinary runway takeoff from an existing urban airport on
+air-breathing engines. There is no launch anywhere in this architecture.
+_Avoid_: "launch" for anything the rocket plane does. That word belongs to Starship, and the
+whole community-noise argument rests on the two being different events.
+
+**Transit leg**:
+The subsonic cruise from the departure airport out to the **ignition point**. Flown on
+turbofans, carries no orbital-mechanical meaning, and is therefore free to dogleg away from
+the great circle. About ten minutes at the 150 km baseline.
+
+**Ignition point**:
+Where the rocket engines first fire: roughly \SI{12}{\kilo\meter} altitude, one **ignition
+standoff** from the nearest populated area. The only loud event in the architecture, and the
+only one whose position is a free variable.
+_Avoid_: conflating it with the airport. The formation's orbital plane must contain the
+ignition point and the destination, *not* the departure airport. That decoupling is the
+argument.
+
+**Ignition standoff**:
+Horizontal distance from the **ignition point** to the nearest populated area. Baseline
+\SI{150}{\kilo\meter}, chosen because two Raptors there read as about one wide-body departure
+in A-weighted sound exposure, which is the claim Table 1 already makes. Continuously
+adjustable, so a single town under the track is cleared by lengthening it rather than
+doglegging.
+
+**Community-noise asymmetry (E2E critique)**:
+The 2026-08-13 grill's framing for the noise disadvantage of Starship Earth-to-Earth,
+sibling to the **Launch-cadence asymmetry** entry above and carrying the same boomerang
+guard. Five commitments. (1) *The distance anchor is Musk's own*: ~20 miles / 30 km offshore,
+which he named and tied explicitly to "frequent daily flights." Do not assert a distance he
+never claimed; the 2026-08-13 session opened with "20 km," which is wrong. (2) *Levels are
+measured, not modelled*: Gee's BYU group, 1.0--35.5 km, Flights 5/6/9. 145.7 dB at 1 km,
+125.2 dB at 10 km, 115 dBA sound exposure at 10 km (= 1000 wide-body departures), flyback
+boom 9 psf at 10 km and 1.5x Concorde loudness at 20 km. (3) *Cadence is argued from
+institutional precedent, never from DNL* -- see the Flagged ambiguity below. (4) *The
+rocket-plane counter-case is the movable standoff, not a quieter source*: an offshore
+platform must be passenger terminal and ignition point at once, and those want opposite
+distances from shore, which is what pins Musk at 30 km. Splitting the roles costs ten
+minutes of cruise. The corollary is reach: offshore platforms can only ever serve coastal
+cities, while rural overland ignition opens Phoenix and Chicago. (5) *Boomerang guard*: the
+architecture burns ~2.5x the launch capacity (`sec:fare_comparison`) and is therefore louder
+in total. The claim that survives is that the noise is relocated off the passenger schedule
+and away from cities, not that there is less of it. Concede this inside the bullet.
+_Avoid_: claiming the rocket plane is quieter per passenger; claiming its ascent boom
+vanishes (it is Falcon-9-class, ~1.90 psf max and mostly under 0.5 psf, and it still travels
+150 km); presenting the Starbase suit as findings rather than allegations.
+
 ### Cryogenics, thermal, and ISRU propellant
 
 **Passive standoff sunshade**:
@@ -1092,3 +1142,24 @@ rack takes full dose. Unsized.
   space), *not* hydrolysis. Use "photodissociate" for any upper-atmosphere water-breakup
   claim. The ozone it could threaten sits in the stratosphere at 15--35 km, far below the
   200 km release.
+- **"launch" applied to the rocket plane — RESOLVED 2026-08-13 (grill): it never launches, it
+  takes off.** Every rocket-plane departure is an ordinary runway takeoff from an existing
+  urban airport; the rockets first fire at ~12 km, one **ignition standoff** downrange. The
+  distinction is load-bearing, not cosmetic: the liftoff roar (full thrust at zero altitude
+  over a hard reflecting pad, radiating for tens of seconds at close range) is what dominates
+  the complaint record at Starbase and Vandenberg, and this architecture has no such event at
+  all. Reserve "launch" for Starship. Use **takeoff**, **transit leg**, **ignition point**.
+- **Can the E2E noise critique be made on cumulative exposure (DNL)? — CLOSED NO, 2026-08-13
+  (grill).** Tempting, because Musk tied his own 30 km figure to "frequent daily flights," and
+  the FAA regulates residential compatibility at DNL 65 dB. The blocker is propagation
+  uncertainty past 10 km. Gee's group describes the decay beyond 10 km as "sporadic" and
+  meteorology-driven, and reports A-weighted sound exposure at 35 km coming in **18 dB below**
+  the FAA Environmental Assessment model. Carrying that spread through the DNL arithmetic at
+  30 km gives **7.8 events/day** to reach DNL 65 under naive spherical extrapolation and
+  **491 events/day** under the full 18 dB haircut. A 63x swing settles nothing, and any
+  referee who knows these papers will say so. The paper therefore argues cadence from
+  institutional precedent instead: the California Coastal Commission rejected **50 Falcon 9
+  launches per year** at a site with a 15 km buffer (overridden federally), against Shotwell's
+  projected dozens per day. No estimate required. Reopen only if measured SEL-vs-distance
+  data past 20 km is published; the figure exists in the Flights 5/6 comparison paper but the
+  numbers were not extractable from the open-access text.
