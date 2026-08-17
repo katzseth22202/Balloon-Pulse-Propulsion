@@ -94,9 +94,53 @@ the paper already assumes.
 2. **The magnetic pressure needed at the throat** to mirror the ship-facing half of the
    fireball is uncomputed. It belongs with the deferred radiation-hydrodynamic calculation of
    `sec:solid_PuffSats`.
-3. **Reported laboratory magnetic-nozzle efficiencies have not been checked** against the 0.9
-   requirement. Lab devices are low-power, partially magnetized, low-β thrusters, a different
-   regime from a terawatt-scale high-β fireball, so they are an anchor rather than a
-   prediction. They are also the only measured anchor that exists.
+3. ~~Reported laboratory magnetic-nozzle efficiencies have not been checked.~~ **Checked
+   2026-08-17, see "Literature check" below.**
 4. **`η_jet` is treated as constant across a burn.** It plausibly varies with impactor mass and
    with periapsis depth, in the same way `f` is known to vary with relative velocity.
+
+## Literature check (2026-08-17), and why the decision held
+
+Ahedo and Merino, already cited in the paper as `ahedo2010magnetic`, report a **plume
+efficiency** of **0.63 to 0.83** across their sweep of divergence rate and ion magnetization
+(Table II: 0.83, 0.81, 0.78, 0.72, 0.69, 0.63, 0.63). They define it as the axial share of the
+downstream jet's energy, so it is power-like and maps to `η_jet²`. That caps **`η_jet` at
+roughly 0.79 to 0.91**, and only because it charges for radial spreading and not for spread in
+axial speed. Real `η_jet` sits below that ceiling. Their model assumes a collisionless,
+electron-magnetized, current-free, low-β plasma, none of which describes a dense fireball whose
+own pressure exceeds the field, so it anchors the question rather than settling it. A lower and
+less transferable anchor: a REGULUS-150-Xe simulation study (arXiv:2411.11977) finds magnetic
+nozzle energy conversion falling from ~0.5 to ~0.2 as anomalous cross-field transport rises to
+Bohm scaling, i.e. `η_jet ≈ 0.71` down to 0.45. That is a 30-150 W RF thruster and is not cited
+in the paper.
+
+This reopened the 5:1 option, because the effect that matters in the cost cascade is not
+exhaust velocity but **dilution of the expensive retrograde mass, six-fold at 5:1 against
+four-fold at 3:1**. That moves the methalox break-even from `η_jet ≈ 0.90` to `≈ 0.80`, from the
+top of the Ahedo band to its middle. The original ADR had rejected 5:1 on revision cost "not on
+merit", and the merit side had just improved.
+
+**Decision reaffirmed: keep 3:1.** The 0.9 figure is not a physics requirement and not an
+architecture requirement. It is the break-even of one rhetorical argument against methalox at
+its own deliberately worst-case $3200/kg early-generation projectile price, which is 290 times
+the $11/kg the same paper projects at scale. Nothing about the propulsion fails at 0.85. Only
+three thresholds are real, and they differ in kind:
+
+- **`η_jet` < 0.5** — no thrust at all at 3:1, the fireball passes through. The only hard
+  physical limit, and the Ahedo band clears it.
+- **`η_jet` < 0.7** — the scale energy case stops delivering under $1/MWh.
+- **`η_jet` < 0.9** — the $3200 early-generation anchor stops undercutting methalox.
+
+The paper now states the band and the three thresholds outright rather than restating the
+architecture, which is an honest result rather than a failure and costs no revision pass. Should
+the projectile-cost anchor ever become load-bearing rather than rhetorical, revisit 5:1 first.
+
+## Editing constraint
+
+Applied additively at the author's instruction. Every original sentence survives except four
+corrections where keeping the text would mean keeping an error: the 25 km/s assumption at
+`sec:methalox_rebuttal` (above its own 24 km/s ideal ceiling) and its downstream arithmetic,
+the labelling of `v_g` as an "energy ceiling" on exhaust velocity, the pricing of a 5% radiation
+loss at 2.5% of `v_e` rather than of `v_g`, and the attribution of the near-Sun nozzle efficiency
+to the pusher-plate restitution factor `f`. The appendix section title keeps its original
+wording with the new subsection appended.

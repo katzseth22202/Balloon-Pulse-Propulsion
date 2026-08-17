@@ -67,7 +67,10 @@ dilution is the cheap insurance wherever the added propellant is cheap. Values t
 implicitly: 0.77 (lunar cycle, `sec:no_isru_rocket`), ~0.9 required (methalox rebuttal at its
 $3200 pessimistic anchor), ~0.7 required (scale energy case). None is computed from a nozzle
 model; all are requirements, in the same sense as the radiative-escape budget of
-`sec:minimum_nozzle`.
+`sec:minimum_nozzle`. Published ceiling: Ahedo & Merino's plume efficiency of 0.63-0.83
+(power-like, so it maps to `η_jet²`) caps `η_jet` near **0.79-0.91** on divergence alone,
+before axial velocity spread or any other loss. Their model is collisionless,
+electron-magnetized, current-free and low-β, so it anchors rather than settles the question.
 _Avoid_: conflating with the **fudge factor (`f`)**; calling `η_jet` an efficiency in the power
 sense; treating 3:1 as a validated optimum rather than the loss-free endpoint.
 
@@ -1048,8 +1051,14 @@ rack takes full dose. Unsized.
   anchor is asserted as a requirement, not estimated. (2) The magnetic pressure needed at the
   throat to mirror the ship-facing half of the fireball is uncomputed, and belongs with the
   deferred radiation-hydrodynamic calculation of `sec:solid_PuffSats`. (3) Whether reported
-  laboratory magnetic-nozzle efficiencies reach 0.9 has not been checked against the
-  literature. Recorded as `docs/adr/0006-three-to-one-split-stays-at-the-loss-free-optimum.md`.
+  laboratory magnetic-nozzle efficiencies reach 0.9 was checked 2026-08-17: Ahedo & Merino
+  (`ahedo2010magnetic`, already cited) report plume efficiency 0.63-0.83, which caps `η_jet`
+  near **0.79-0.91** on divergence alone, so the 0.9 the pessimistic anchor needs sits at the
+  top of that band. This reopened the 5:1 option (its six-fold rather than four-fold dilution
+  of the expensive retrograde mass moves methalox break-even to `η_jet ≈ 0.80`) and the
+  decision was **reaffirmed at 3:1**, because 0.9 is a rhetorical break-even at a $3200/kg
+  early-generation projectile price, not a physics or architecture requirement. Recorded as
+  `docs/adr/0006-three-to-one-split-stays-at-the-loss-free-optimum.md`.
 
 - **Where does staged PuffSat mass park between delivery and use? — RESOLVED 2026-08-12
   (grill): the staging ellipse, not a Lagrange point.** The proposal was to park incoming
