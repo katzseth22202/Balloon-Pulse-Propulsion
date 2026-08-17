@@ -20,13 +20,13 @@ is fixed years before the collision happens.
 ## The reframing
 
 Define the **jet efficiency** `η_jet` as the mass-weighted mean axial exhaust velocity over
-the RMS of the full exhaust velocity, both in the rocket frame (`eq:eta_jet_def`). It is
-bounded to `(0,1]` by Cauchy-Schwarz. Then
+the loss-free gas speed `v_g`, both in the rocket frame (`eq:eta_jet_def`). Cauchy-Schwarz and
+energy conservation bound it to `(0,1]`. Then
 
 - `v_e = 2 v_p (η_jet √m_rp − m_rp)`
 - optimum at `m_rp = η_jet²/4`, i.e. `(4/η_jet²) − 1` parts prograde to one
 - `v_e = η_jet² v_p / 2` at that optimum
-- thrust **vanishes** at the pass-through floor `η_jet ≤ √m_rp`
+- forward thrust **vanishes** at the pass-through floor `η_jet = √m_rp` and reverses below it
 
 So 3:1 is the `η_jet → 1` endpoint of a family. At 0.8 the optimum is ~5:1, at 0.7 ~7:1.
 
@@ -73,12 +73,16 @@ the paper already assumes.
 - **A real arithmetic error surfaced and is fixed.** `sec:methalox_rebuttal` conflated `v_g`
   (gas speed, the energy bound) with `v_e` (effective exhaust velocity, after debiting the
   incoming retrograde momentum) at the Earth step, assuming 25 km/s where the head-on ideal
-  ceiling is 24. The headline ~$3/kg survives at `η_jet = 1` (now $3.17), but the margin is
+  ceiling is 24. The headline ~$3/kg survives at `η_jet = 1` (now $3.20), but the margin is
   thinner than it read.
 - **The methalox rebuttal now carries an explicit requirement.** Break-even against methalox
-  sits at `η_jet ≈ 0.9` at the pessimistic $3200 anchor. At 0.8 the doubled bill is ~$17/kg
+  sits at `η_jet ≈ 0.89` at the pessimistic $3200 anchor. At 0.8 the doubled bill is ~$16/kg
   and that version of the argument fails. The scale case at $11/kg fleet cost holds to ~0.7.
-  Below 0.5 nothing works at any price.
+  At 0.5 the chosen three-to-one stage reaches zero forward thrust and reverses below it.
+- **The rocket equation now distinguishes external from onboard mass.** `v_e` is impulse per
+  unit of total collision mass, but the retrograde share arrives externally. The corrected
+  total-mass ratio is `[exp((1-m_rp) Δv/v_e)-1]/(1-m_rp)`. This moves the ideal one-way cost
+  from $3.17/kg to $3.20/kg and break-even from about 0.90 to 0.89.
 - **`sec:minimum_nozzle` gained a thrust budget** alongside its existing mass and heat budgets.
   It also had a related error: "losing 5% of the pulse costs about 2.5% of exhaust velocity"
   is true of `v_g`, but `v_e` is a difference, so the same loss costs about 5% at 3:1 and far
@@ -104,9 +108,9 @@ the paper already assumes.
 Ahedo and Merino, already cited in the paper as `ahedo2010magnetic`, report a **plume
 efficiency** of **0.63 to 0.83** across their sweep of divergence rate and ion magnetization
 (Table II: 0.83, 0.81, 0.78, 0.72, 0.69, 0.63, 0.63). They define it as the axial share of the
-downstream jet's energy, so it is power-like and maps to `η_jet²`. That caps **`η_jet` at
-roughly 0.79 to 0.91**, and only because it charges for radial spreading and not for spread in
-axial speed. Real `η_jet` sits below that ceiling. Their model assumes a collisionless,
+downstream jet's energy, so its square root gives a divergence-only ceiling on `η_jet`. That
+ceiling runs from **roughly 0.79 to 0.91**, and it does not charge for axial speed spread or
+other losses. Real `η_jet` sits below it. Their model assumes a collisionless,
 electron-magnetized, current-free, low-β plasma, none of which describes a dense fireball whose
 own pressure exceeds the field, so it anchors the question rather than settling it. A lower and
 less transferable anchor: a REGULUS-150-Xe simulation study (arXiv:2411.11977) finds magnetic
@@ -116,20 +120,21 @@ in the paper.
 
 This reopened the 5:1 option, because the effect that matters in the cost cascade is not
 exhaust velocity but **dilution of the expensive retrograde mass, six-fold at 5:1 against
-four-fold at 3:1**. That moves the methalox break-even from `η_jet ≈ 0.90` to `≈ 0.80`, from the
+four-fold at 3:1**. That moves the methalox break-even from `η_jet ≈ 0.89` to `≈ 0.80`, from the
 top of the Ahedo band to its middle. The original ADR had rejected 5:1 on revision cost "not on
 merit", and the merit side had just improved.
 
-**Decision reaffirmed: keep 3:1.** The 0.9 figure is not a physics requirement and not an
+**Decision reaffirmed: keep 3:1.** The 0.89 figure is not a physics requirement and not an
 architecture requirement. It is the break-even of one rhetorical argument against methalox at
 its own deliberately worst-case $3200/kg early-generation projectile price, which is 290 times
 the $11/kg the same paper projects at scale. Nothing about the propulsion fails at 0.85. Only
 three thresholds are real, and they differ in kind:
 
-- **`η_jet` < 0.5** — no thrust at all at 3:1, the fireball passes through. The only hard
-  physical limit, and the Ahedo band clears it.
+- **`η_jet` = 0.5** — forward thrust reaches zero at 3:1 and reverses below it. This is the
+  only hard physical limit for the chosen split. The Ahedo model does not show that a dense
+  fireball clears it; its divergence-only ceiling merely lies above it.
 - **`η_jet` < 0.7** — the scale energy case stops delivering under $1/MWh.
-- **`η_jet` < 0.9** — the $3200 early-generation anchor stops undercutting methalox.
+- **`η_jet` < 0.89** — the $3200 early-generation anchor stops undercutting methalox.
 
 The paper now states the band and the three thresholds outright rather than restating the
 architecture, which is an honest result rather than a failure and costs no revision pass. Should
@@ -137,10 +142,11 @@ the projectile-cost anchor ever become load-bearing rather than rhetorical, revi
 
 ## Editing constraint
 
-Applied additively at the author's instruction. Every original sentence survives except four
-corrections where keeping the text would mean keeping an error: the 25 km/s assumption at
+Applied additively at the author's instruction. Every original sentence survived except four
+corrections where keeping the text would have meant keeping an error: the 25 km/s assumption at
 `sec:methalox_rebuttal` (above its own 24 km/s ideal ceiling) and its downstream arithmetic,
 the labelling of `v_g` as an "energy ceiling" on exhaust velocity, the pricing of a 5% radiation
 loss at 2.5% of `v_e` rather than of `v_g`, and the attribution of the near-Sun nozzle efficiency
-to the pusher-plate restitution factor `f`. The appendix section title keeps its original
-wording with the new subsection appended.
+to the pusher-plate restitution factor `f`. A later review corrected the normalization of
+`η_jet`, the zero-thrust inequality, and the external-mass rocket equation. The appendix
+section title keeps its original wording with the new subsection appended.
