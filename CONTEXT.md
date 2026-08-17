@@ -1054,8 +1054,12 @@ rack takes full dose. Unsized.
     `η_jet = 1`, but break-even against methalox now sits at `η_jet ≈ 0.89`.
   - A later review found that the cost cascade had inserted `v_e`, defined per total collision
     mass, into a conventional rocket equation even though the retrograde share arrives
-    externally. The corrected mass ratio is `eq:external_reaction_mass`; it moves the ideal
-    one-way cost to ~$3.20/kg and the break-even from ~0.90 to ~0.89.
+    externally. The corrected mass ratio is `eq:external_reaction_mass`. It is strictly below
+    `exp(Δv/v_e) − 1` at any `m_rp` in `(0,1)`, so the correction **lowers** the collision mass
+    a burn needs and makes every cascade step cheaper. At full precision the ideal one-way cost
+    falls from $3.32/kg to $3.20/kg, and break-even falls from 0.9007 to 0.8906. Any restatement
+    of this correction that shows the cost *rising* is comparing a rounded old number against a
+    full-precision new one.
   _Still open_: (1) no nozzle model supplies `η_jet`; the required 0.89 at the pessimistic
   anchor is asserted as a requirement, not estimated. (2) The magnetic pressure needed at the
   throat to mirror the ship-facing half of the fireball is uncomputed, and belongs with the

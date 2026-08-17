@@ -81,8 +81,13 @@ the paper already assumes.
   At 0.5 the chosen three-to-one stage reaches zero forward thrust and reverses below it.
 - **The rocket equation now distinguishes external from onboard mass.** `v_e` is impulse per
   unit of total collision mass, but the retrograde share arrives externally. The corrected
-  total-mass ratio is `[exp((1-m_rp) Δv/v_e)-1]/(1-m_rp)`. This moves the ideal one-way cost
-  from $3.17/kg to $3.20/kg and break-even from about 0.90 to 0.89.
+  total-mass ratio is `[exp((1-m_rp) Δv/v_e)-1]/(1-m_rp)`. Because that is strictly below
+  `exp(Δv/v_e)-1` for any `m_rp` in `(0,1)`, the correction always lowers the collision mass a
+  burn needs, so every step of the cost cascade gets cheaper. Carried at full precision both
+  ways, the ideal one-way cost moves from $3.32/kg to $3.20/kg and break-even from 0.9007 to
+  0.8906. (An earlier draft of this ADR quoted the uncorrected cost as $3.17/kg. That figure
+  came from carrying the rounded $200 crossing mass instead of $203, and comparing it against
+  the full-precision $3.20 made the correction look like a cost increase.)
 - **`sec:minimum_nozzle` gained a thrust budget** alongside its existing mass and heat budgets.
   It also had a related error: "losing 5% of the pulse costs about 2.5% of exhaust velocity"
   is true of `v_g`, but `v_e` is a difference, so the same loss costs about 5% at 3:1 and far
