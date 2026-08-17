@@ -46,7 +46,42 @@ plate edge, a.k.a. sideways escape; the geometric loss channel that pushes `f` t
 below 0.5) subdominant in the LEO insertion band; the result is *not yet independently validated*, so
 the paper cites it as plausible, not confirmed (see Flagged ambiguities).
 _Avoid_: presenting `f = 0.8` as validated/confirmed; the symbol `f` also denotes pulse
-frequency in the buffer invariant (`T = 1/f`), a distinct quantity.
+frequency in the buffer invariant (`T = 1/f`), a distinct quantity; using `f` for the
+prograde/retrograde collision-plus-nozzle case (that is **jet efficiency (`η_jet`)**, a
+different quantity with a different failure mode).
+
+**Jet efficiency (`η_jet`)**:
+The nozzle-side loss factor in the prograde/retrograde collision law (`eq:ve_general` in
+`sec:jet_efficiency`): the mass-weighted mean *axial* exhaust velocity divided by the RMS of
+the *full* exhaust velocity, both measured in the rocket frame over the whole expelled mass.
+Bounded to `(0,1]` by Cauchy-Schwarz, reaching 1 only if every gram leaves at one speed in one
+direction. A **ratio of velocities, not of powers**; its square is the power-like quantity,
+which is why `v_e` scales as `η_jet²`. Absorbs plume divergence, exhaust-speed spread,
+radiation escaping before it can be turned, frozen-flow (ionization/dissociation) losses, and
+mass the field fails to grip. Consequences: the optimal mix is `m_rp = η_jet²/4`, i.e.
+`(4/η_jet²) − 1` parts prograde to one retrograde, so **3:1 is the `η_jet → 1` endpoint of a
+family, not a fixed number**; `v_e = η_jet² v_p / 2` at that optimum; and thrust **vanishes**
+at the pass-through floor `η_jet ≤ √m_rp` (0.5 at a 3:1 mix, 0.2 at 24:1). Because a plate at
+any `f` still passes some momentum forward while a nozzle below its floor passes none, heavy
+dilution is the cheap insurance wherever the added propellant is cheap. Values the paper pins
+implicitly: 0.77 (lunar cycle, `sec:no_isru_rocket`), ~0.9 required (methalox rebuttal at its
+$3200 pessimistic anchor), ~0.7 required (scale energy case). None is computed from a nozzle
+model; all are requirements, in the same sense as the radiative-escape budget of
+`sec:minimum_nozzle`.
+_Avoid_: conflating with the **fudge factor (`f`)**; calling `η_jet` an efficiency in the power
+sense; treating 3:1 as a validated optimum rather than the loss-free endpoint.
+
+**Gas speed (`v_g`) vs effective exhaust velocity (`v_e`)**:
+Two distinct quantities in `sec:dv_effective`. `v_g = 2 v_p √m_rp` is what the collision energy
+alone allows, the speed the merged mass would carry if every gram left at one speed along one
+axis. `v_e = η_jet · v_g − 2 v_p m_rp` is what the rocket actually gains per unit PuffSat mass
+spent, after debiting the momentum the retrograde PuffSat brought in head-on. **Only `v_e`
+belongs in a rocket equation.** At the 3:1 optimum they differ by 2× (`v_g = v_p`, `v_e =
+v_p/2`). Because `v_e` is a *difference* rather than a fraction, a fractional loss in `v_g`
+appears roughly doubled in `v_e` at 3:1, and far more as `η_jet` nears the pass-through floor.
+_Avoid_: calling `v_g` an "energy ceiling" on exhaust velocity; it ceilings `v_g`, not `v_e`.
+That conflation produced a real error in `sec:methalox_rebuttal` (an assumed 25 km/s that
+exceeded the 24 km/s ideal ceiling), corrected 2026-08-17.
 
 **Impulse trim (mass-mismatch trim)**:
 How a pre-placed transport formation absorbs the rocket plane's flight-day mass differing
@@ -989,6 +1024,32 @@ rack takes full dose. Unsized.
 > knowledge**, `σ_θ · R`, and that's a calibration bias, not noise."
 
 ## Flagged ambiguities
+
+- **Does the 3:1 prograde/retrograde optimum survive a real magnetic nozzle? — RESOLVED
+  2026-08-17 (grill): no, it is the loss-free endpoint; the paper keeps it and names the
+  parameter.** `sec:dv_effective` derived 3:1 assuming the merged fireball leaves as a single
+  collimated jet, which is the momentum-maximizing bound for a given mass and energy, not an
+  approximation. Reframed via **jet efficiency (`η_jet`)** the optimum is `(4/η_jet²) − 1`,
+  moving to ~5:1 at `η_jet = 0.8` and ~7:1 at 0.7. Decision: **keep 3:1 as the stated result**,
+  because it answers the idealized question, because the peak is flat (holding 3:1 costs ~1% of
+  achievable thrust at `η_jet = 0.9`, ~6% at 0.8, ~18% at 0.7), and because the downstream
+  mission numbers already assume a lossy nozzle at that mix. A ~5:1 minimax split would stay
+  within 4% across `η_jet ∈ [0.7, 1.0]`, so the *design* bias runs prograde even though the
+  *derivation* stays at 3:1. Two corrections fell out and were applied:
+  - The center-of-mass motion of the merged fireball does **not** need re-thermalizing. It
+    carries a fraction `m_rp` of the energy (25% at 3:1), already points retrograde, and its
+    momentum exactly equals the incoming projectile's, so alone it yields **zero** net thrust.
+    All thrust comes from collimating the thermal `1 − m_rp` share. That is the nozzle's job,
+    and roughly half of that heat starts out moving *toward* the ship and must be mirrored.
+  - `sec:methalox_rebuttal` conflated `v_g` with `v_e` at the Earth step, assuming 25 km/s
+    where the head-on ideal ceiling is 24. Corrected; the headline ~$3/kg survives at
+    `η_jet = 1`, but break-even against methalox now sits at `η_jet ≈ 0.9`.
+  _Still open_: (1) no nozzle model supplies `η_jet`; the required 0.9 at the pessimistic
+  anchor is asserted as a requirement, not estimated. (2) The magnetic pressure needed at the
+  throat to mirror the ship-facing half of the fireball is uncomputed, and belongs with the
+  deferred radiation-hydrodynamic calculation of `sec:solid_PuffSats`. (3) Whether reported
+  laboratory magnetic-nozzle efficiencies reach 0.9 has not been checked against the
+  literature. Recorded as `docs/adr/0006-three-to-one-split-stays-at-the-loss-free-optimum.md`.
 
 - **Where does staged PuffSat mass park between delivery and use? — RESOLVED 2026-08-12
   (grill): the staging ellipse, not a Lagrange point.** The proposal was to park incoming
