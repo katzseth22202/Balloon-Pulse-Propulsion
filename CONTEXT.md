@@ -779,6 +779,13 @@ The stagnant case, a hot cap parked on the "ceiling" with warm fluid buoyantly s
 need the Sun over the bag's inward-facing cap, and that direction sweeps a full circle in
 inertial space once per rotation, so no fixed source can sit there. Only the **centered**
 hub bag can get a permanently stagnant hot cap, and only when the axis points at the Sun.
+_Sun at the hub's equator is the good case_: the hub bag straddles the axis, so it has its
+own field, zero on the axis but rising to omega^2 a = 0.13 m/s2 at its equator (about 0.45x
+the 100 kg body, 26x weaker than a ring bag). In the thermal attitude the Sun sits in that
+equatorial plane, heating lands where the field is strongest and sweeps once per rotation,
+warm water at the rim is hot-at-the-bottom and overturns, and the cold poles are handled by
+the aluminum-out caps. Only the axis-at-Sun attitude is bad. Do NOT say the hub bag has no
+centrifugal drive; the drive vanishes only ON the axis, not throughout the bag.
 _How bad is that cap_: bounded by transient conduction, not steady state. The cap is stuck
 because warm water floats toward the axis and the sunlit pole already sits on the axis.
 Steady conduction would give ~33 K, but that is never reached: crossing the bag takes
