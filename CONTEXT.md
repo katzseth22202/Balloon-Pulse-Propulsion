@@ -750,7 +750,13 @@ Its permanently dark caps (facing along the spin axis) then sit broadside to the
 which is a side-heated cavity with no critical Rayleigh number, so it convects at any dT
 and needs no polar caps. Off-axis bags are also stirred ~12x harder at the same spin rate (`omega^2 R` at 2 m against
 the volume-mean `omega^2 <s>` = 3*pi*a/16 = 0.17 m inside a 0.29 m sphere).
-Rests on the bags co-rotating rigidly with the ring. A spoke ending at a single point pulls
+Rests on the bags co-rotating rigidly with the ring. **Co-rotating means one turn per lap, same
+face to the hub: tidally locked in geometry, like the Moon to Earth, though by hardware rather
+than by tidal friction.** Circling the axis and spinning about one's own center are separate
+motions; the spoke compels only the first. Locked to the HUB is fine (the Sun still sweeps past
+once per rotation, and the flux-average argument shows the inward and outward faces collect
+identical mean flux anyway). Locked to the STARS is the failure, since that bakes one hemisphere.
+A spoke ending at a single point pulls
 through the bag's center and exerts zero torque, so a bag is torque-free and simply keeps the
 spin it was deployed with. The failure is spin-up after the spokes are taut: the bags never
 start turning, stay fixed in inertial space while orbiting the axis, and park one bumper
