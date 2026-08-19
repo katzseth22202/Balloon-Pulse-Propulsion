@@ -851,6 +851,92 @@ before impact: extended flaps add drag that perturbs the terminal trajectory at 
 and unshaded absorption over that interval only raises a water body's temperature by a few
 tenths of a kelvin, negligible against the margin already banked.
 
+### Straw Way vacuum pumping (`sec:vacuum_tube_details`)
+
+**Straw Way wall stack**:
+Metallized plastic carrying a roughly 100 nm aluminum inner layer, sized for mass rather than for
+vacuum performance (settled 2026-08-19 grill).
+_Avoid_: heavy-metal liner, tantalum liner (see Flagged ambiguities; tantalum is not merely
+unnecessary here, it breaks the pumping mechanism).
+
+**Reflector skin**:
+A few nanometers of iron over the projectile nose, present so that argon has something heavier
+than itself to bounce off. Argon is 40 amu, so it cannot backscatter from carbon (17.5 deg maximum
+single-collision deflection), oxygen (23.6), aluminum (42.5) or silicon (44.7). Iron, titanium,
+calcium, tantalum and tungsten all permit backscatter.
+_Avoid_: conflating with the **high-Z cap** of `sec:solid_PuffSats`, which exists for opacity;
+defaulting to tungsten (iron is cheaper, and its lower `E_d` costs only window ceiling).
+
+**Displacement threshold (`E_d`)**:
+The minimum energy an incoming atom must hand a lattice atom to knock it permanently out of its
+site. Below `E_d` the incoming atom bounces off the lattice acting collectively; above it, the
+atom displaces its way in. Orientation-averaged values: Al 25 eV, C 30, Fe 40, Ta and W 90.
+Directional minima run roughly 40% lower (Fe near 17-20 eV, Al near 16 eV), so every window edge
+below carries that spread.
+_Avoid_: treating `E_d` as a sharp cliff; it is a threshold with real orientation spread.
+
+**Reflector window**:
+The projectile-speed band in which argon reflects off the **reflector skin** and then implants in
+the **Straw Way wall stack**. Its floor is set by the wall (the rebounding argon must clear
+aluminum's `E_d`) and its ceiling by the skin (the incoming argon must *not* clear iron's `E_d`).
+Argon transfers 96-97% of its energy head-on to either Al or Fe, so both edges are sharp in speed:
+**6.2 km/s to 14.1 km/s** for an iron skin, rising to 27.2 km/s for tantalum or tungsten. Earth
+escape speed at the 200 km interception altitude is **11.01 km/s**, so every bound-orbit arrival
+sits inside the iron window automatically, with 28% of margin, and needs no per-source analysis.
+Direct interplanetary arrivals do not: Ceres Hohmann lands at 12.70 km/s (inside), Jupiter prograde
+Hohmann at 14.09 (at the edge), Saturn at 15.08 (outside iron, inside W).
+_Avoid_: quoting the ceiling as a hard number without the `E_d` spread; taking iron's directional
+minimum drops it to about 10 km/s, which would put the 11 km/s case just outside.
+
+**Captured-either-way (the claim the paper makes)**:
+The robust form of the pumping argument, chosen over the window itself because it survives the
+`E_d` spread. Argon is removed from the tube on both sides of the reflector ceiling, only by
+different pumps. Below it, argon reflects and implants about 1.5 nm into the aluminum wall. Above
+it, argon displaces skin atoms and buries itself in the projectile, which carries it out of the
+tube. **Both outcomes occur at every speed** (settled 2026-08-19): backscatter off a heavy cap is
+kinematically allowed at any energy, and sub-threshold trapping in the skin happens at low speed
+too. Closing velocity shifts the odds between the two, it does not switch between them. The single
+genuine failure mode is falling below the **floor**, where the rebound is too soft to enter either
+material and the argon rattles around indefinitely. That floor corresponds to a drop from about
+3250 km apogee, which nothing in the architecture approaches.
+_Avoid_: presenting the two regimes as success and failure, or as mutually exclusive. Reflection
+coefficients are probabilities, not switches.
+
+**Noble-gas ladder**:
+Which NEG-immune gases the projectile mechanism can bury. Two criteria, and they split the gases
+differently. By **displacement** (clearing aluminum's `E_d` on rebound) the minimum projectile
+speeds are Xe 4.0 km/s, Kr 4.4, Ar 5.6, Ne 7.8, He 25.9, so only helium fails below Earth escape
+speed (11.01 km/s at the 200 km interception altitude). But displacement is the wrong criterion
+for a small atom, which can enter **interstitially** without moving anything. Against aluminum's
+59 pm octahedral site, He (31 pm) and Ne (38 pm) fit; Ar (71 pm), Kr (88) and Xe (108) do not.
+So Ar/Kr/Xe must displace and the `E_d` criterion governs them, while helium has a second door.
+_Avoid_: calling helium capture impossible below 25.9 km/s (see Flagged ambiguities; corrected
+2026-08-19). The `E_d` criterion bounds displacement, not entry.
+
+**Rebound ceiling (`2V`)**:
+Reflection off a body moving at `V` bounds the rebound at `|v_out| <= 2V + |v_in|`, and that bound
+does not compound. After one hit an atom moves down-tube faster than the projectiles, so it cannot
+be overtaken and struck on the nose again; the next encounter is with a receding tail, which slows
+it. Reversing axially needs wall bounces, and those outnumber projectile hits about 66 to 1 even at
+1 ktonne/s, so accommodation drains energy faster than projectiles add it. A 4000-atom Monte Carlo
+over 10 s peaked at 12.2 eV against helium's 55.6 eV requirement.
+_Avoid_: appealing to the tail of the velocity distribution to rescue helium. Thermal spread needs
+a 38-sigma tailwind; there is no Fermi-style ratchet to supply the rest.
+
+**Blunt-nose condition**:
+Argon reflects specularly, so a local surface normal at angle `theta` to the flight axis returns it
+at `2 v cos(theta)` and `cos^2(theta)` of the energy. Wall implantation therefore needs the normal
+within about **59 deg** of the axis, i.e. a cone **half-angle above about 31 deg**. A hemispherical
+nose delivers about 74% of its swept argon above threshold; a slender needle delivers none. Costs
+nothing, since these projectiles transit in hard vacuum.
+
+**Sweep-limited pumping speed**:
+`(mdot / projectile areal density) x tube length x capture probability`. Independent of projectile
+size, since halving the projectile doubles the count. At 1 kg/s of traffic and 1% capture it is
+10^3 L/s, a large turbomolecular pump; at the 1 ktonne/s of `sec:death_star` it is 10^9 to 10^11
+L/s. Argon crosses a 3 m bore thermally in 7.5 ms, so successive projectiles sample a fresh draw
+rather than re-sweeping a cleared channel. Rate is not what limits this mechanism.
+
 ### Lunar disposal (`sec:handling_space_debris`)
 
 **Disposal package**:
@@ -1016,6 +1102,12 @@ rack takes full dose. Unsized.
 - Near the Sun, lateral knowledge comes from **transverse-node differential ranging**
   with good **GDOP**; control is **deterministic-coast correction**. The **apogee nav
   constellation** does double duty here, since an Earth-to-Sun transfer departs from Earth.
+- Straw Way argon pumping runs skin-then-wall: the **reflector skin** bounces argon, the
+  **Straw Way wall stack** absorbs it, and **displacement threshold (`E_d`)** sets both edges of
+  the **reflector window**. Earth escape speed sits inside that window, so **capture into a bound
+  ellipse first, then drop through the straw** turns any interplanetary source (lunar, Ceres,
+  Jupiter-cycle secondary payloads) into a guaranteed in-window arrival. The returning Jupiter
+  PuffSats themselves arrive retrograde near 69 km/s and are six times outside it.
 - Heliocentric distance sets the cryogen via the **passive-shielding temperature law**:
   LOX/methalox inside the **passive-LH₂ threshold** (~1.5 AU), LH₂/LOX beyond it; where a
   stored cryogen is unwanted, **on-demand electrolysis propellant** carries water instead.
@@ -1033,6 +1125,53 @@ rack takes full dose. Unsized.
 
 ## Flagged ambiguities
 
+- **Does argon implantation in the tube wall work at the low arrival speeds of lunar, Ceres and
+  Jupiter-cycle payloads? - RESOLVED 2026-08-19 (grill): yes, and the mechanism in the paper is
+  currently attached to the wrong case.** `sec:vacuum_tube_details` claims argon rebounds off the
+  150 km/s projectiles and implants in the wall, citing the sputter-ion pump. Two errors:
+  - At 150 km/s argon meets the projectile at 4.66 keV, far above every `E_d`, so it does not
+    rebound at all. It buries 5.9 nm into the skin and rides out of the tube. The projectile is
+    the pump; the wall gets nothing. A "few nanometers" of iron is a window at this energy, not a
+    mirror.
+  - At 11 km/s argon meets the skin at 25 eV, below iron's `E_d`, so it does reflect, and reaches
+    the wall at up to 100 eV, above aluminum's `E_d`, so it does implant. The paper's stated
+    mechanism happens **only** in the low-speed case.
+  Depth also needs restating. "A few nanometers" is about right at 100 eV (1.5 nm in Al) but
+  understates the fast case by an order of magnitude (34 nm in Al at 18.6 keV). Decision: state
+  **captured-either-way** as the claim and use the **reflector window** as supporting detail.
+- **Does helium break the pumping story? - RESOLVED 2026-08-19 (grill): no, but not by
+  implantation.** Helium needs a 25.9 km/s projectile to clear aluminum's `E_d`, and the
+  **rebound ceiling (`2V`)** makes that unreachable below escape speed by any route, including the
+  velocity tail. **Corrected later the same session:** that does not make helium capture
+  impossible, only uncertain. `E_d` bounds whether an atom can *make* a hole, not whether it can
+  *fit through* one, and helium's 31 pm radius clears aluminum's 59 pm octahedral interstitial
+  site. Tungsten fuzz forms under 20-60 eV helium plasma, where helium can deliver at most ~5 eV
+  against tungsten's ~90 eV threshold, so sub-displacement helium retention is experimentally
+  established. Tunneling is not the route (4.5 pm de Broglie wavelength against 286 pm spacing).
+  The retained *fraction* stays unknown, since helium is also highly mobile in metals. What saves
+  the argument is influx, not pumping. Leak-driven helium sits 5e6 inside a budget
+  of 1e-7 mbar per monthly refurbishment cycle. Permeation would dominate through bare polymer
+  (bare 50 um PET needs a barrier improvement factor of 123x, Kapton 368x), but a single metallized
+  layer buys 100-1000x. Cited in the paper via `baldwin2008helium` (60 eV He loads into W below
+  the physical sputtering threshold) and `kajita2009tungsten` (fuzz threshold above 20 eV). Decision: **no dedicated helium pump**; the refurbishment cycle absorbs it,
+  and the 100 nm aluminum layer is the helium barrier. Consequence: that layer now carries four
+  jobs (atomic-oxygen/UV barrier, magnetic-steering conductor, argon absorber, helium barrier), and
+  three of the four require it to stay *continuous*. The refurbishment driver is therefore pinhole
+  growth from micrometeorites and sputtering, not bulk erosion, which is not close to binding
+  (2.4e21 Ar impacts/m2 to sputter 100 nm away, against 1.8e14 per tube-fill).
+- **Should the tube carry a tantalum liner to suppress argon instability? - RESOLVED 2026-08-19
+  (grill): no, and the existing sentence must be cut.** `sec:vacuum_tube_details` recommends a
+  heavy-metal liner such as tantalum on the sputter-ion-pump analogy (cathode-to-ion mass ratio,
+  `vaumoron1970argon`). It fails twice here. It contradicts the mass budget, which wants
+  metallized plastic over roughly 100 nm of aluminum. And tantalum's `E_d` of 90 eV exceeds the
+  59 eV a 100 eV argon atom can transfer to it, so a tantalum wall would **reflect** the argon
+  instead of trapping it, breaking the pumping mechanism outright. Aluminum is both the lighter
+  and the better absorber, for the same reason: it is lighter than argon. The `vaumoron1970argon`
+  cite was kept, reframed: the cathode-to-ion mass ratio runs the *unfavorable* way for an aluminum
+  wall, and what offsets it is the low rebound energy at slow speeds plus the fact that fast
+  projectiles carry their argon out rather than leaving it in the wall. The instability worry
+  that motivated tantalum also mostly evaporates at low speed, since the Ar-on-Al sputter yield at
+  100 eV is 0.05 against a 32 eV threshold, versus 2.5 at 18.6 keV.
 - **Does the 3:1 prograde/retrograde optimum survive a real magnetic nozzle? — RESOLVED
   2026-08-17 (grill): no, it is the loss-free endpoint; the paper keeps it and names the
   parameter.** `sec:dv_effective` derived 3:1 assuming the merged fireball leaves as a single
