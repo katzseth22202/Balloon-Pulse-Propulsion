@@ -748,16 +748,33 @@ low-emittance caps. An **off-axis** body (the ten ring bags at R = 2 m) sees a n
 uniform `omega^2 R` outward, varying only ~6.5% across a 0.129 m bag and vanishing nowhere.
 Its permanently dark caps (facing along the spin axis) then sit broadside to the field,
 which is a side-heated cavity with no critical Rayleigh number, so it convects at any dT
-and needs no polar caps. Off-axis bags are also stirred ~15x harder at the same spin rate.
-Rests on the bags co-rotating rigidly with the ring; a bag free to spin about its own spoke
-would sweep its dark caps through sunlight and wash the gradient out.
+and needs no polar caps. Off-axis bags are also stirred ~12x harder at the same spin rate (`omega^2 R` at 2 m against
+the volume-mean `omega^2 <s>` = 3*pi*a/16 = 0.17 m inside a 0.29 m sphere).
+Rests on the bags co-rotating rigidly with the ring. A spoke ending at a single point pulls
+through the bag's center and exerts zero torque, so a bag is torque-free and simply keeps the
+spin it was deployed with. The failure is spin-up after the spokes are taut: the bags never
+start turning, stay fixed in inertial space while orbiting the axis, and park one bumper
+hemisphere in permanent sun (~150 C) with the other permanently dark, which kills the
+light-and-shade cycling the thermal balance needs. Fix is a 3-line bridle per spoke, which
+only ever carries spin-up and disturbances, never a steady load.
 _Note_: centrifugal gravity is always perpendicular to the spin axis, so the
 Chandrasekhar `g || Omega` rotational suppression of onset never applies to either case.
+But that only frees the *threshold*, not the *speed*. At omega = 1 rad/s the Ekman number is
+~7e-6 and the Rossby number ~0.02, so Coriolis dominates: convection organizes into columns
+aligned with the spin axis, columnar onset sits orders of magnitude above the plane-layer
+1708 (margin of tens, not tens of thousands), and overturn is minutes to tens of minutes, not
+the tens of seconds a non-rotating free-fall estimate gives. Still fast against a 15 d coast.
+Bonus: axis-aligned columns carry little flow *along* the axis, a second reason the spin
+poles of a centered body are the worst-mixed points.
 _Sun-angle independence (off-axis only)_: an off-axis bag stays side-heated at **every**
 Sun angle, not just at the baseline perpendicular attitude. Decompose the Sun direction in
 the bag's co-rotating frame: the component along the spin axis is constant, and the
-in-plane component turns once per rotation and time-averages to zero. The steady forcing
-is therefore always perpendicular to the (body-fixed, radially outward) centrifugal field.
+in-plane component turns once per rotation. Averaging the Sun *vector* is not the argument,
+since a facet of normal n absorbs as `max(0, n.s)`, which is nonlinear in s. Average that
+instead: over one rotation s sweeps a cone about the spin axis, so the mean depends on n only
+through its angle to that axis. The bag's outward and inward faces share that angle, so they
+collect identical mean flux and no mean gradient forms along the field. Verified numerically
+to 1e-11 across Sun angles 0, 0.6, pi/2 rad.
 The stagnant case, a hot cap parked on the "ceiling" with warm fluid buoyantly stuck, would
 need the Sun over the bag's inward-facing cap, and that direction sweeps a full circle in
 inertial space once per rotation, so no fixed source can sit there. Only the **centered**
@@ -769,11 +786,20 @@ perpendicular to the Sun-line, wanted by centrifugal stirring. The **impact atti
 along the closing velocity, wanted so the ring plane arrives square to the pusher plate.
 Mission geometry decides whether they agree; worst case is 90 deg apart. Resolution: hold
 the thermal attitude through the coast, re-point in the last hours. Cost of the worst case
-is ~63 N.s, an equivalent 0.63 m/s on the 100 kg assembly, under 8 minutes of firing.
+is ~63 N.s, an equivalent 0.63 m/s on the 100 kg assembly. Firing time depends on how the
+400 mN of `sec:fine_control_thrusters` is read: it is a whole-vehicle drag figure, so the
+conservative split is 200 mN per end, a 5 N.m couple, 150 rotations, 942 s. Sizing each
+package for the full 400 mN halves that to 471 s. Impulse and propellant unchanged either way.
+Against the propellant: the drag leg of `sec:estimate_cold_gas` is only 18 N.s before margins
+(20 mN x 300 s + 400 mN x 30 s), so the re-point is ~3.5x that leg; the 500 g tank holds
+123 N.s at the pessimistic Isp = 25 s and 211 N.s at the flown 43 s, so the re-point is about
+half the tank on the first figure and under a third on the second.
 _Key scaling_: `dv = 2 sin(theta/2) * omega * k^2 / r`, where `k` is the radius of gyration
 and `r` the thruster moment arm. Cheap only because the water stays compact at R = 2 m
 while the thrusters ride at the 25 m tether bundle's ends (r = 12.5 m). Putting the same
-100 kg out at 25 m instead costs 37 m/s, which is why that variant is not the architecture.
+100 kg out at 25 m radius instead costs ~41 m/s on the arc formula the appendix actually uses
+(an earlier note said 37 m/s, which was the chord lower bound), which is why that variant is
+not the architecture.
 
 ### Energetics and sensitization
 
