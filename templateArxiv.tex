@@ -520,7 +520,7 @@ Whether the vent arrives in time depends on the failure. A puncture or a dead th
 
 What the ring adds is a timing requirement on the trigger. At \SI{11}{\kilo\meter\per\second}, \SI{1}{\milli\second} of scatter in atomization times smears the disk \SI{11}{\meter} along the flight direction. The mild detonating fuse above crosses \SI{25}{\meter} in \SI{3.6}{\milli\second}, simultaneous enough to sever a bundle but enough to smear a ring over \SI{40}{\meter}. A ring wants an initiator at every bag fired by a common electrical pulse, which crosses the same distance in about \SI{170}{\nano\second}.
 
-The rest it inherits. Guidance stays a single interception, because the bags are rigidly tethered and the thrusters steer one center of mass. A spinning ring also holds its plane in inertial space, which is most of what squaring the disk to the closing velocity asks for. The spokes reach the plate as bare fiber, and a \SI{0.2}{\milli\meter} Kevlar strand struck broadside is about \SI{0.3}{\kilo\gram\per\square\meter} against roughly \SI{400}{\kilo\gram\per\square\meter} of water, so the plume shreds and ablates it as it does the severed bundle. A vented bag leaves an empty shell of tens of grams, which joins the dry mass of \autoref{sec:coordinator_node_dry_mass_disposal} rather than posing a new problem.
+The rest it inherits. Guidance stays a single interception, because the bags are rigidly tethered and the thrusters steer one center of mass. A spinning ring also holds its plane in inertial space, which is most of what squaring the disk to the closing velocity asks for. What it does not settle is which inertial direction. Stirring wants the spin axis perpendicular to the Sun-line (\autoref{sec:spherical_water_thermal}) while the disk wants it along the closing velocity, and mission geometry decides whether those agree. When they do not, the ring flies the thermal attitude through the coast and re-points late. Even a full \SI{90}{\degree} costs about \SI{63}{\newton\second}, an equivalent \SI{0.63}{\meter\per\second} on the \SI{100}{\kilo\gram} assembly. That is about half what the drag-cancellation pass already budgets, and it takes under eight minutes of firing (\autoref{sec:spin_reorientation}). The spokes reach the plate as bare fiber, and a \SI{0.2}{\milli\meter} Kevlar strand struck broadside is about \SI{0.3}{\kilo\gram\per\square\meter} against roughly \SI{400}{\kilo\gram\per\square\meter} of water, so the plume shreds and ablates it as it does the severed bundle. A vented bag leaves an empty shell of tens of grams, which joins the dry mass of \autoref{sec:coordinator_node_dry_mass_disposal} rather than posing a new problem.
 
 Severing that bag's spoke on its own is unnecessary. A vented bag has no moment left to cancel, so a cutter would remove a residual the vent has already made negligible, and would do it slowly. A severed bag carries no centripetal force and departs tangentially, its radial clearance growing at first as $\tfrac{1}{2}\omega^{2}Rt^{2}$, about \SI{2}{\meter\per\second\squared} for a \SI{2}{\meter} ring at \SI{1}{\radian\per\second}. Clearing \SI{3}{\meter} that way takes \SI{1.7}{\second} against the vent's \SI{40}{\milli\second}, and the trigger pulse destroys the whole tether system at atomization in any case. The vent also covers the case that would otherwise want a cutter. A bag leaking at an unknown rate has an unknown mass, so no antipodal vent is the right size. Venting the damaged bag to empty first restores a known state, and the antipode then answers it exactly.
 
@@ -1570,6 +1570,79 @@ The round trip is fixed near \SI{0.21}{\year}, but Earth returns to the crossing
 The cost lands on the growth rate. The cycle that launches the next, larger payload cannot close faster than one Earth return, so the doubling interval is the re-intercepting cycle, not the bare dive time, and its floor is near \SI{0.86}{\year}. Twenty doublings reach a millionfold, so the payload grows by a factor of a million in about 17 years rather than the under-a-decade a \SI{0.5}{\year} cycle would imply. Only the two-impulse loop holds the doubling factor at two and reaches that 17-year figure. The single-impulse dive stretches it through a smaller factor, and the gravity assist through a longer cycle. Every case is a floor, since it assumes each cycle catches its resonance with no turnaround at Earth.
 
 \paragraph{Loops without the dive.} Every option above phases the same \SI{150}{\kilo\meter\per\second} dive. Two gentler cycles skip it entirely: the Jupiter return of \autoref{sec:jupiter_only_growth}, whose PuffSats cross Earth at about \SI{69}{\kilo\meter\per\second} and push more than 9 times their weight per collision, and the apoapsis-raise loop of \autoref{sec:apoapsis_raise_loop}, which closes at about \SI{24}{\kilo\meter\per\second} on carried propellant and multiplies the fleet by 1.55 each cycle.
+
+\section{Spin-Axis Reorientation Cost For A Tethered Ring}\label{sec:spin_reorientation}
+This appendix backs the re-pointing figure quoted in \autoref{sec:tethered_ring}. Two attitudes compete for the ring's spin axis. Centrifugal stirring wants it perpendicular to the Sun-line, so that no part of a body holds a fixed sunward face (\autoref{sec:spherical_water_thermal}). The arriving disk wants the ring plane square to the closing velocity, which puts the spin axis along that velocity. Whether the two agree depends on where the Sun sits relative to the interception track, and the worst case has them a full \SI{90}{\degree} apart. Every result below is closed form.
+
+\subsection*{The Impulse Bound}
+A rigid assembly spinning at rate \(\omega\) about a principal axis carries angular momentum \(L = I\omega\). Re-pointing that axis through an angle \(\theta\) at unchanged spin rate leaves \(|L|\) fixed, so the required change in the angular-momentum vector is the chord of an isosceles triangle,
+\begin{equation}
+\left|\Delta \vec{L}\right| = 2 L \sin(\theta/2).
+\label{eq:reorient_chord}
+\end{equation}
+Thrusters mounted a distance \(r\) from the axis generate a torque no larger than \(r\) times the force they exert. For a total expended linear impulse \(J = \int \lvert\vec{F}\rvert\,\mathrm{d}t\), summed over both thrusters,
+\begin{equation}
+\left|\Delta \vec{L}\right| = \left|\int \vec{\tau}\,\mathrm{d}t\right| \le \int \lvert\vec{\tau}\rvert\,\mathrm{d}t \le r\,J,
+\qquad\text{so}\qquad
+J \ge \frac{2 I \omega \sin(\theta/2)}{r}.
+\label{eq:reorient_bound}
+\end{equation}
+Expressing that impulse as the velocity change the same propellant would have bought on the assembly's total mass \(M\), and writing \(k^2 = I/M\) for the squared radius of gyration,
+\begin{equation}
+\Delta v = \frac{J}{M} \ge 2\sin(\theta/2)\,\frac{\omega k^{2}}{r}.
+\label{eq:reorient_dv}
+\end{equation}
+The cost is set by \(k^{2}/r\), the mass distribution measured against the thruster moment arm, and not by either alone. Compact mass on a long arm is cheap. Mass spread out as far as the arm is not, which is why the figures below depend on the water staying near \SI{2}{\meter} while the thrusters ride at the tether ends.
+
+\subsection*{The Path Actually Flown}
+The bound of \autoref{eq:reorient_bound} is reached only by driving \(\Delta\vec{L}\) straight along the chord. That drops the spin rate to \(\cos(\theta/2)\) of its starting value at the midpoint, which slackens the spokes, and it leaves \(\vec{L}\) off the symmetry axis so the assembly nutates. The standard spin-stabilized maneuver instead fires short pulses at a fixed body azimuth, once per rotation \cite{wertz1978attitude}. Each pulse tips \(\vec{L}\) perpendicular to itself, so \(\lvert\mathrm{d}\vec{L}\rvert = L\,\mathrm{d}\theta\) and \(\lvert L\rvert\) never changes. That walks the great circle rather than the chord, at a cost of
+\begin{equation}
+J_{\mathrm{arc}} = \frac{I \omega \theta}{r},
+\label{eq:reorient_arc}
+\end{equation}
+which for \(\theta = \pi/2\) is \(\pi/(2\sqrt{2}) = 1.11\) times the bound. Holding the spin rate fixed is worth that 11\%, because spoke tension is what holds the ring's shape. Firing over a finite azimuth window \(\Delta\phi\) rather than in an instant costs a further factor. Only the component along the wanted direction survives the average, so the useful fraction is
+\begin{equation}
+\eta_{\mathrm{duty}} = \frac{\sin(\Delta\phi/2)}{\Delta\phi/2}.
+\label{eq:reorient_duty}
+\end{equation}
+A \SI{60}{\degree} window keeps \SI{95.5}{\percent} and a \SI{180}{\degree} window only \SI{63.7}{\percent}.
+
+\subsection*{Moment Of Inertia Of The Ring}
+Take the configuration of \autoref{sec:tethered_ring}, with ten \SI{9}{\kilo\gram} bags on a ring of radius \(R = \SI{2}{\meter}\) and one more on the axis. The two dry-mass packages of \autoref{sec:spinning_tension_detail} sit at the ends of the \SI{25}{\meter} tether bundle, so their moment arm is \(r = \SI{12.5}{\meter}\). Each carries half the \SI{250}{\gram} dry mass and half the \SI{500}{\gram} propellant load, or \(m_d = \SI{375}{\gram}\). Bags off the axis enter as point masses at their own radius, and the hub bag is a \SI{0.13}{\meter} sphere on the axis contributing \(\tfrac{2}{5}m a^{2} = \SI{0.06}{\kilo\gram\meter\squared}\), which rounds away. So
+\begin{equation}
+I = 10\,m_{\mathrm{bag}} R^{2} + 2 m_d r^{2} = 360 + 117 = \SI{477}{\kilo\gram\meter\squared},
+\label{eq:reorient_inertia}
+\end{equation}
+against \(M = \SI{100}{\kilo\gram}\), a radius of gyration of \SI{2.18}{\meter}. The \SI{750}{\gram} of packages, under \SI{1}{\percent} of the mass, supply a quarter of the inertia, because inertia weights mass by the square of its radius.
+
+\subsection*{Result}
+At the \SI{1}{\radian\per\second} spin of \autoref{sec:tethered_ring}, a \SI{90}{\degree} re-point along the great circle needs \(I\omega\theta = \SI{749}{\newton\meter\second}\) of angular impulse. Divided by the \SI{12.5}{\meter} arm that is \SI{60}{\newton\second} of expended impulse, or \SI{63}{\newton\second} through a \SI{60}{\degree} firing window, an equivalent \SI{0.63}{\meter\per\second} on the full \SI{100}{\kilo\gram}. The \SI{300}{\second} drag-cancellation pass near interception runs the same thrusters at \SI{400}{\milli\newton} for \SI{120}{\newton\second} (\autoref{sec:estimate_cold_gas}), so the worst-case re-point costs about half that leg. \autoref{eq:reorient_arc} is linear in \(\theta\), so a \SI{30}{\degree} correction costs a third of the \SI{90}{\degree} figure.
+
+Timing follows from the same numbers. At the \SI{400}{\milli\newton} ceiling of \autoref{sec:fine_control_thrusters} the two packages form a couple of \SI{10}{\newton\meter} while firing, with no net force on the assembly. A \SI{60}{\degree} window delivers \SI{10}{\newton\meter\second} per rotation, so the maneuver takes 75 rotations, or \SI{471}{\second}. Widening the window to \SI{180}{\degree} halves the wall-clock time and raises the propellant by half.
+
+The spokes take a modest transverse load while the axis moves. Precessing at \(\Omega_p = \theta/t\) requires an out-of-plane force on each bag with peak \(2 m \omega \Omega_p R\), against a spoke tension of \(m \omega^{2} R\), so the ring cones out of its plane by
+\begin{equation}
+\tan\psi = \frac{2\Omega_p}{\omega} = \frac{\theta}{\pi N},
+\label{eq:reorient_coning}
+\end{equation}
+where \(N\) is the number of rotations the maneuver takes. At \(N = 75\) that is \SI{0.38}{\degree}, and the tension rises by under a part in ten thousand.
+
+\subsection*{Choosing The Moment Arm}
+Pushing the packages further out lengthens the arm but adds inertia as \(r^{2}\). Writing \(I = I_0 + 2 m_d r^{2}\), with \(I_0\) the water ring's own inertia,
+\begin{equation}
+J_{\mathrm{arc}}(r) = \omega\theta\left(\frac{I_0}{r} + 2 m_d r\right),
+\qquad
+r_{*} = \sqrt{\frac{I_0}{2 m_d}} = \SI{21.9}{\meter},
+\qquad
+J_{\min} = 2\omega\theta\sqrt{2 m_d I_0} = \SI{52}{\newton\second}.
+\label{eq:reorient_optimum}
+\end{equation}
+The minimum is shallow. The \SI{12.5}{\meter} arm the tether bundle already provides sits \SI{16}{\percent} above it, and any arm between \SI{10}{\meter} and \SI{45}{\meter} stays within \SI{35}{\percent}. Mounting the thrusters on the bags instead, at \(r = R = \SI{2}{\meter}\), would cost \SI{285}{\newton\second}, nearly five times as much. The long tether the dry-mass disposal scheme already carries is what makes this maneuver cheap.
+
+\subsection*{Why The Maneuver Waits}
+Flying the thermal attitude through the coast and re-pointing in the last hours costs almost nothing thermally. The hub bag is the only body whose stirring depends on the Sun angle, since it sits on the axis where the centrifugal drive vanishes. Scaling the \SIrange{10}{15}{\watt} of \autoref{sec:lox_puffsat} by projected area, it absorbs about \SI{2.4}{\watt}, so even with nothing radiated its \SI{9}{\kilo\gram} of water gains under \SI{0.7}{\kelvin} in three hours.
+
+The ten ring bags are indifferent to the change. A ring bag's centrifugal field points outward from the spin axis and never changes direction in the bag's own frame. The Sun direction in that frame has a fixed component along the spin axis and an in-plane component that turns once per rotation and averages away. The steady part of the heating is therefore perpendicular to the field at any Sun angle, so the bag stays a side-heated cavity with no onset value to clear (\autoref{sec:spherical_water_thermal}).
 
 \section{Tensile-Fiber Selection for PuffSat Tension Members}\label{sec:fiber_selection}
 Three PuffSat structures carry organic fiber under steady tension above most of the atmosphere: the vacuum launch column (\autoref{sec:tether_tapering}), the Mars skyhook tether (\autoref{sec:mars_skyhook}), and the polymer net behind the pusher-plate sail (\autoref{sec:lightweight_pusher_plates}). The same four fibers are candidates in each case, but a different property decides the choice. The column turns on self-support length, the skyhook on creep and specific strength, and the sail net on shock toughness within a temperature-ceiling limit. \autoref{tab:fiber_selection} collects the numbers, and this section gives the reasoning the three sites share.

@@ -753,6 +753,27 @@ Rests on the bags co-rotating rigidly with the ring; a bag free to spin about it
 would sweep its dark caps through sunlight and wash the gradient out.
 _Note_: centrifugal gravity is always perpendicular to the spin axis, so the
 Chandrasekhar `g || Omega` rotational suppression of onset never applies to either case.
+_Sun-angle independence (off-axis only)_: an off-axis bag stays side-heated at **every**
+Sun angle, not just at the baseline perpendicular attitude. Decompose the Sun direction in
+the bag's co-rotating frame: the component along the spin axis is constant, and the
+in-plane component turns once per rotation and time-averages to zero. The steady forcing
+is therefore always perpendicular to the (body-fixed, radially outward) centrifugal field.
+The stagnant case, a hot cap parked on the "ceiling" with warm fluid buoyantly stuck, would
+need the Sun over the bag's inward-facing cap, and that direction sweeps a full circle in
+inertial space once per rotation, so no fixed source can sit there. Only the **centered**
+hub bag can get a permanently stagnant hot cap, and only when the axis points at the Sun.
+
+**Thermal attitude vs impact attitude** (`sec:tethered_ring`, `sec:spin_reorientation`):
+The two directions the ring's spin axis is asked to hold. The **thermal attitude** is
+perpendicular to the Sun-line, wanted by centrifugal stirring. The **impact attitude** is
+along the closing velocity, wanted so the ring plane arrives square to the pusher plate.
+Mission geometry decides whether they agree; worst case is 90 deg apart. Resolution: hold
+the thermal attitude through the coast, re-point in the last hours. Cost of the worst case
+is ~63 N.s, an equivalent 0.63 m/s on the 100 kg assembly, under 8 minutes of firing.
+_Key scaling_: `dv = 2 sin(theta/2) * omega * k^2 / r`, where `k` is the radius of gyration
+and `r` the thruster moment arm. Cheap only because the water stays compact at R = 2 m
+while the thrusters ride at the 25 m tether bundle's ends (r = 12.5 m). Putting the same
+100 kg out at 25 m instead costs 37 m/s, which is why that variant is not the architecture.
 
 ### Energetics and sensitization
 
