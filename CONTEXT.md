@@ -779,6 +779,14 @@ The stagnant case, a hot cap parked on the "ceiling" with warm fluid buoyantly s
 need the Sun over the bag's inward-facing cap, and that direction sweeps a full circle in
 inertial space once per rotation, so no fixed source can sit there. Only the **centered**
 hub bag can get a permanently stagnant hot cap, and only when the axis points at the Sun.
+_How bad is that cap_: bounded by transient conduction, not steady state. The cap is stuck
+because warm water floats toward the axis and the sunlit pole already sits on the axis.
+Steady conduction would give ~33 K, but that is never reached: crossing the bag takes
+a^2/kappa = 32 h against a 3 h hold, so heat stays in a sqrt(kappa t) = 4 cm skin and the
+surface rise is 2q sqrt(kappa t/pi)/k. That is 6 K on the lit-hemisphere mean
+(76 W/m^2) and 11 K at the sub-solar point for a cos-theta distribution. Both ignore the
+vapor-space heat pipe and the ~0.5 W/K by which net intake falls as the cap warms, and the
+cos-theta case is pessimistic since the water sees the bumper's inner face, not the Sun.
 
 **Thermal attitude vs impact attitude** (`sec:tethered_ring`, `sec:spin_reorientation`):
 The two directions the ring's spin axis is asked to hold. The **thermal attitude** is
