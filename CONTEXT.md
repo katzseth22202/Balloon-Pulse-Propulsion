@@ -738,6 +738,22 @@ Ceres and Phoebe), not on the carbon-poor Moon. Clathrate storage is rejected: i
 endothermic, self-preserving dissociation releases gas too slowly for millisecond
 atomization and over-pressurizes the liner if it dissociates while confined.
 
+**Centrifugal stirring geometry** (`sec:spherical_water_thermal`, `sec:tethered_ring`):
+Which convection architecture a spinning water body needs depends on whether it is
+centered on the spin axis. A **centered** body (the baseline 100 kg sphere, and the hub
+bag of the tethered ring) sees `omega^2 s` pointing cylindrically outward, which vanishes
+along the whole spin axis. Its coldest surfaces, the spin poles, sit exactly on that null,
+so they cannot be stirred and are instead prevented from getting cold with aluminum-out
+low-emittance caps. An **off-axis** body (the ten ring bags at R = 2 m) sees a nearly
+uniform `omega^2 R` outward, varying only ~6.5% across a 0.129 m bag and vanishing nowhere.
+Its permanently dark caps (facing along the spin axis) then sit broadside to the field,
+which is a side-heated cavity with no critical Rayleigh number, so it convects at any dT
+and needs no polar caps. Off-axis bags are also stirred ~15x harder at the same spin rate.
+Rests on the bags co-rotating rigidly with the ring; a bag free to spin about its own spoke
+would sweep its dark caps through sunlight and wash the gradient out.
+_Note_: centrifugal gravity is always perpendicular to the spin axis, so the
+Chandrasekhar `g || Omega` rotational suppression of onset never applies to either case.
+
 ### Energetics and sensitization
 
 **Chemical gassing (nitrite gassing)**:
