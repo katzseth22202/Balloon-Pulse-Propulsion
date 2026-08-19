@@ -1,5 +1,5 @@
 * [] explain bounce of PuffSats is a big advantage, and why we don't usually want to mix prograde mass with impactors
-* [] explain our idealization isn't quite right for theoretcial maximum velocity of the retrograde/prograde impactors because
+* [x] explain our idealization isn't quite right for theoretcial maximum velocity of the retrograde/prograde impactors because
    in the frame of the center of mass not all can become kinetic energy.  Include formula derived from interal energy in appendix.  Reowrk
    for the moon case, just make a note of it elsewhere.  Also for lunar scenario we should consider that mass 
    fraction is benefitted because we don't carry everything on the rocket
@@ -15,7 +15,7 @@
 * [] consider sodium or potassium enhanced plasma bursts from Lagrante points for electricity generation.  
 * [] consider whether to reuse rocket infrastructure or just make rockets enomrous
 * [] consider how mass of PuffSats changes while electronics costs stay fixes as we go from 11.2 - 3.4 or so relative speed
-* [] consider one side hot, one side cold, for rotating mass - must point at sun untilt he end, rockets cana djust orientation.
+* [x] consider one side hot, one side cold, for rotating mass - must point at sun untilt he end, rockets cana djust orientation.
 * [X] consider steel for risk of micrometeorites
 * [x] co-flyers can go to Lagrange points and are reusable
    Resolved 2026-08-12: reusable yes, Lagrange no.  Energy at the L-points is nearly the same as the
