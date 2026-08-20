@@ -1088,6 +1088,19 @@ _Avoid_: citing Kerrebrock as 1965 or Vol 3 (a real error I made from memory and
   those two rows. Prose at line 817 updated from `x0.095` "under ten cents" to **`x0.011`, about a
   cent on the dollar**. Everything at `e >= 0.40` is unchanged, so the **1,284x** headline stands.
 
+**Both subsections are now in the paper** (2026-08-20, builds clean at **107 pp**, 0 errors, all
+five cites resolving):
+- `sec:watering_it_down` ("Watering It Down, Literally") and `sec:two_leg_nozzle` ("Two Nozzles
+  Beat a Nozzle and a Plate") sit between Space Mortgages and Inner Planet Assist Alternatives,
+  as `\subsubsection`s. New tables: `tab:seed_window`, `tab:bag_sizing`, `tab:two_leg_growth`,
+  `tab:equivalent_plate`.
+- The old line-794 paragraph is replaced by a two-sentence pointer to both.
+- **`e -> e_2` relabel done**, 10 occurrences across `sec:space_mortgages` including the
+  `tab:space_mortgage_growth` header; the caption now says why. No bare `$e$` remains in that
+  subsection, and there were no `e^` exponentials in range to catch by accident.
+- Citations wired: `kerrebrock1964nonequilibrium` + `rosa1968mhd` + `messerle1995mhd` on the
+  alkali-seed sentence, `crc_handbook` on the K2CO3 solubility, `molina1974ozone` on chlorine.
+
 **Outbound-leg ground-test gap** (`sec:jupiter_only_growth`, the Space Mortgages argument):
 Why **recovery** (`e`) on the Jupiter-only outbound leg can only be measured by flying, which
 is what makes early cycles an asset rather than a cost. Four commitments, in this order:
