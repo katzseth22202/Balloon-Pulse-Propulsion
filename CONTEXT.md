@@ -48,7 +48,8 @@ the paper cites it as plausible, not confirmed (see Flagged ambiguities).
 _Avoid_: presenting `f = 0.8` as validated/confirmed; the symbol `f` also denotes pulse
 frequency in the buffer invariant (`T = 1/f`), a distinct quantity; using `f` for the
 prograde/retrograde collision-plus-nozzle case (that is **jet efficiency (`η_jet`)**, a
-different quantity with a different failure mode).
+different quantity with a different failure mode); using `f` for the slug-augmented
+head-on departure nozzle (that is **recovery (`e`)**, a collimation claim, not an elasticity one).
 
 **Jet efficiency (`η_jet`)**:
 The nozzle-side loss factor in the prograde/retrograde collision law (`eq:ve_general` in
@@ -75,7 +76,30 @@ model; all are requirements, in the same sense as the radiative-escape budget of
 collisionless,
 electron-magnetized, current-free and low-β, so it anchors rather than settles the question.
 _Avoid_: conflating with the **fudge factor (`f`)**; calling `η_jet` an efficiency in the power
-sense; treating 3:1 as a validated optimum rather than the loss-free endpoint.
+sense; treating 3:1 as a validated optimum rather than the loss-free endpoint; conflating with
+**recovery (`e`)**, which scales the impulse *after* the momentum debit and so has no floor.
+
+**Recovery (`e`)**:
+The third efficiency, and the steep axis of the Jupiter-only 30-year growth table
+(`sec:jupiter_only_growth`, companion ADR `0013`). The fraction of the *ideal collimated
+impulse* a real magnetic nozzle delivers on the slug-augmented head-on departure burn:
+collimation, geometric capture and plasma coupling lumped into one number.
+`v_e = e · w · (√(1+k) − 1) / k`, where `w` is closing speed and `k` the slug ratio.
+Distinguished from the other two on purpose:
+- vs **jet efficiency (`η_jet`)**: `η_jet` scales the jet *before* the incoming-momentum debit
+  is subtracted (`v_e = η_jet v_g − 2 v_p m_rp`), which is why it has a pass-through floor at
+  `√m_rp`. `e` scales the whole net impulse, debit already inside the bracket, so **`e` has no
+  thrust-reversal floor**: any `e > 0` still pushes forward. The `e = 0.25` row of the growth
+  table fails on *transport accounting* (the loop cannot pay its own costs), not on thrust
+  reversal, and must not be described as a physics wall.
+- vs **fudge factor (`f`)**: `f` is an elasticity claim about gas bouncing off a plate; `e` is a
+  collimation claim about a plume. They coincide numerically only in the `k → 0` limit, which is
+  why `astro_constants.STD_FUDGE_FACTOR = 0.8` is reused as the ideal-ceiling `e`. Different
+  hardware claims; no source calibrates either.
+ADR `0013` makes `e ≈ 0.3` the architecture's survival threshold and finds `f` worth about as
+much as `e` (a 0.3 drop in `f` costs what a 0.2 swing in `e` does).
+_Avoid_: quoting an `e` without the `f` it assumed, or vice versa; calling the `e = 0.25` row a
+thrust floor; using `η_jet`'s 0.5 three-to-one floor as if it bounded `e`.
 
 **Gas speed (`v_g`) vs effective exhaust velocity (`v_e`)**:
 Two distinct quantities in `sec:dv_effective`. `v_g = 2 v_p √m_rp` is what the collision energy
@@ -712,6 +736,137 @@ projectile anchor with the optimistic ~\$80/kg materials build-up (the latter, b
 thrown payload, the same 25% propellant fraction as the transport chain) to ~\$0.50/kg,
 i.e. ~\$0.16/MWh raw at 150 km/s (3.1 MWh/kg), quoted in the paper as "comfortably under
 \$1/MWh" after conversion losses, against a 1¢/kWh ($10/MWh) price.
+
+**Space mortgage** (planned, `sec:jupiter_only_growth`, as a `\subsubsection` placed after the
+growth paragraph and before "Inner Planet Assist Alternatives"; title "With Space Mortgages,
+First-Time Buyers Win"):
+A **mass-denominated equity stake** in the Jupiter-only growth fleet, not a launch slot and
+not a loan. The customer buys kilograms of PuffSat fleet mass; the holding compounds at the
+chain's annual growth rate (companion ADR `0013`) for as long as it stays in the loop; the
+customer redeems it as delivered payload whenever they choose to stop compounding. The
+"mortgage" is the operator side: seed launches toward Jupiter are financed against those
+subscriptions, with the in-transit fleet as the appreciating collateral. Early buyers win
+because their kilograms compound through more cycles, and because the data their cycles
+return raises **recovery** (`e`) for everyone after them. At the reference point
+(`e = 0.6`, `f = 0.8`) a kilogram bought into cycle 1 is a x83,070 claim by 2055 against
+~x20 for one bought into cycle 8, at the same price.
+_Avoid_: calling it a forward contract or a prepaid launch slot (those are the rejected
+alternatives, and they make the exponential decorative rather than load-bearing); using the
+strict-mortgage framing where the *operator* is the borrower (then "first-time buyer" has no
+referent); quoting a compounding multiple without naming both `e` and `f`.
+
+**Redemption is withdrawal** (the conservation caveat the multiples rest on):
+In the two-wave ledger the parked payload splits into **craft** and **slug** and *both* go back
+to Jupiter. That is where the growth comes from. So a kilogram taken as delivered product is a
+kilogram not reinvested: the fleet grows at `r − d` for redemption rate `d`, and **x83,070 is
+the no-redemption number**. The section states this in two sentences and names a compounding
+phase followed by a harvest phase. Far from weakening the pitch, it is what makes "first-time
+buyers win" literally true rather than a slogan: the valuable claim is the one with the most
+cycles left ahead of it.
+_Avoid_: presenting the multiples without the reinvestment assumption; promising delivery on
+demand during the compounding phase; adding an optimal-harvest crossover number (not computed
+in the companion repo, and quoting one would need new code in `two_wave_growth.py` first).
+
+**Register (Space Mortgages only)**: deliberately plainer than the surrounding paper. Target is
+an AP-Physics student for the propulsion parts and an interested layperson for the investment
+parts. Short sentences, everyday words, the arithmetic shown rather than asserted. This is a
+local exception, not a change to the paper's voice elsewhere; the stylebook in `CLAUDE.md` still
+applies in full (no em-dashes, no colon-welded sentences, no rule-of-three, quantify don't hedge).
+
+**Numbers printed**: the multiple compounded over the **11 flown cycles / 28.3930 yr**
+(2026-11-09 to 2055-04-02), *not* ADR 0013's 30-year projection. The 30-year mortgage framing
+stays in the title and prose; every printed figure is ephemeris-verified. At the reference point
+(`e = 0.6`, `f = 0.8`) that is **x83,070**, against x157,700 if the rate is extrapolated the last
+1.6 yr. _Avoid_: printing the projection; deriving the table from ADR 0013's rounded e-folding
+column (regenerate from `two_wave_growth.py` / `ChainGrowth.mass_after(28.3930)` instead, worth
+~1.4% at the top corner: my derived reference cell reads x83,184 against the ADR's x83,070).
+
+**Citation**: `\cite{Katz_aim_is_all_you_need_2025}` only, as everywhere else in the paper. The
+ADR number is deliberately *not* named in prose and gets no deep-link bib entry, for consistency
+with the paper's other twelve companion-repo cites. Decided 2026-08-20 against the alternative.
+
+**The table, as it goes in the paper** (regenerated 2026-08-20 from `python -m src.two_wave_growth`
+in the companion clone, `total_growth` column; reproduces ADR 0013's reference cell exactly).
+Multiple of launched mass compounded over the 11 flown cycles, 28.3930 yr, 2026-11-09 to
+2055-04-02:
+
+| `e` | f = 0.5 | f = 0.6 | f = 0.7 | f = 0.8 |
+| ---: | ---: | ---: | ---: | ---: |
+| 0.25 | x0.0953 | x0.311 | x0.816 | x1.83 |
+| 0.30 | x1.28 | x4.54 | x12.8 | x30.5 |
+| 0.40 | x40.2 | x161 | x506 | x1,328 |
+| 0.50 | x363 | x1,587 | x5,371 | x15,100 |
+| 0.60 | x1,676 | x7,827 | x28,060 | x83,070 |
+| 0.70 | x5,182 | x25,460 | x95,480 | x2.94e5 |
+| 0.80 | x12,350 | x63,180 | x2.46e5 | x7.83e5 |
+| 0.90 | x24,590 | x1.30e5 | x5.21e5 | x1.71e6 |
+
+Two cells carry the argument. **`e = 0.25, f = 0.5` returns x0.0953**, nine and a half cents on
+the dollar, the underwater case. **At `f = 0.8`, `e = 0.4` grows 28.83%/yr to x1,328 and
+`e = 0.9` grows 65.76%/yr to x1.71e6** — roughly twice the annual rate for **1,284x** the mass.
+That ratio is the compound-interest intuition the mortgage metaphor exists to carry.
+The chain-optimal slug ratio `k` runs 4.53 to 9.52 across the table and is interior to the
+search box everywhere.
+
+**Supersedes**: the existing growth paragraph's ADR 0009 claims are rewritten in the same edit.
+The perijove burn no longer buys the two-wave split (real orbits give the Lambert pair a free
+encounter time; 8 of 11 cycles pay under 1 m/s, chain mean 0.179 km/s), and "the chamber recovers
+80\% of the ideal thrust" was attached to a 1.7-1.8 yr doubling that is really the `e = 0.6` row
+(`e = 0.8` doubles in 1.45 yr).
+
+**Jupiter-cycle nozzle scaling** (new paragraph in `sec:minimum_nozzle`, pointed to from Space
+Mortgages):
+`sec:minimum_nozzle`'s "hundreds of tonnes of payload, better still more than a thousand"
+amortization floor was drawn for the **near-Sun** pulse and does not bind the Jupiter-only
+outbound leg. At `k = 8.53` the arriving kilogram vaporises 8.53 kg of slug, so the reduced
+mass is 0.895 kg and a 75 km/s closure carries **2.52 GJ**, against **477 GJ** for 2.5 kg at
+618 km/s. A factor of **189**. On the section's own rule that coil mass scales with contained
+energy, and the Mini-Mag anchor of ~200 t for 340 GJ, that is **~1.5 t of coils** against
+~281 t. The nozzle is then 14.8% of a 10 t craft, **4.9% of a 30 t craft**, 1.5% of a 100 t
+one, so the seed vehicle is Starship-class rather than thousand-tonne-class. This is what makes
+the **space mortgage** fund something buildable.
+Ionization check, at AP-Physics register and verifiable in one line: specific kinetic energy
+`½v²` spread over carbon atoms gives ~**4 eV/atom at 8 km/s** (below carbon's 11.26 eV first
+ionization, matching the paper's "weakly ionized" low-orbit gas) and ~**350 eV/atom at
+75 km/s**, about 31x over it. The outbound leg is therefore firmly on the ionized side of the
+paper's own dividing line, so a magnetic nozzle is legitimate there.
+_Provenance_: derived in the 2026-08-20 grill session, not in the companion repo. It is one
+division against a cited anchor (`ewig2003minimag`, `lenard2007minimag`), so it needs no new
+code, but it is a **linear extrapolation** and the paragraph must say so.
+_Avoid_: quoting the 1.5 t without the linear-scaling caveat; letting `sec:minimum_nozzle`'s
+thousand-tonne sentence stand unqualified once this paragraph exists; reusing the *lighter
+impactor* radiative caveat here (this pulse is lighter by **speed**, not by impactor mass, so
+its plasma is cooler and less radiative, not more).
+
+**Outbound-leg ground-test gap** (`sec:jupiter_only_growth`, the Space Mortgages argument):
+Why **recovery** (`e`) on the Jupiter-only outbound leg can only be measured by flying, which
+is what makes early cycles an asset rather than a cost. Four commitments, in this order:
+1. *Energy is explicitly conceded not to be the wall.* 70 kg at 70 km/s is 171.5 GJ, about
+   41 t TNT equivalent; 1 kg at 75 km/s is 2.81 GJ, about 0.67 t. Both are conventional-test
+   scale. **Do not claim the pulse is nuclear-scale** — a reader with a calculator catches it.
+   (A defensible nuclear sentence exists but is about *power density*, not yield: only a
+   nuclear device can dump 2.81 GJ into a kilogram fast enough, the Casaba-Howitzer wall
+   Orion hit. Optional, currently not used.)
+2. *Acceleration is the wall.* `a = v²/2L` to 70 km/s: 2.5e6 g over 100 m, 2.5e5 g over 1 km,
+   **2.5e4 g even over 10 km**, 2.5e3 g over 100 km. No guided projectile carrying a slug
+   survives that, and no evacuated 10 km launcher exists.
+3. *Delivering the energy is a second wall.* 171.5 GJ against Sandia Z's ~20 MJ stored is
+   ~8,600x, before launcher efficiency (the 1 kg case is still 141x).
+4. *The path must be evacuated.* ~6 GPa stagnation pressure at 70 km/s in sea-level air. The
+   range is therefore a km-scale vacuum tube, i.e. the **Straw Way** — downstream
+   infrastructure the working cycle has to pay for first. Worth one sentence of circularity.
+Backstop that closes the sub-scale loophole: `e` is **not scale-invariant**, by
+`sec:minimum_nozzle`'s own radiative-escape argument (a 100 g pulse cools and radiates faster,
+so it returns an `e` that cannot be extrapolated to flight).
+Ground anchor already in the bibliography: First Light Fusion's two-stage gas gun at
+\SI{6.5}{\kilo\meter\per\second} (`firstlight2022fusion`, cited in `sec:epstein_drives`);
+its shaped target drives *target material* past 70 km/s, but only as a mm-scale converging
+implosion, never a free-flying kilogram.
+_Needs citation before use_: the kilogram-class launcher record near 11 km/s, and Sandia Z's
+milligram flyer plates near 45 km/s. Both currently unsourced.
+_Avoid_: leading with energy or treaty language; asserting untestability without conceding
+what *is* groundable (the nozzle magnet itself scales to ~1.6 t of coils at this pulse energy,
+against Mini-Mag's 200 t for 340 GJ, so the driver is the unbuildable half, not the magnet).
 
 **Launch-cadence asymmetry (E2E critique)**:
 The 2026-07-17 grill's framing for the launch-cadence disadvantage of Starship
