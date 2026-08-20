@@ -95,7 +95,9 @@ Distinguished from the other two on purpose:
 - vs **fudge factor (`f`)**: `f` is an elasticity claim about gas bouncing off a plate; `e` is a
   collimation claim about a plume. They coincide numerically only in the `k → 0` limit, which is
   why `astro_constants.STD_FUDGE_FACTOR = 0.8` is reused as the ideal-ceiling `e`. Different
-  hardware claims; no source calibrates either.
+  hardware claims; no source calibrates either. That same `k -> 0` limit is what makes a pusher
+  plate the *no-slug nozzle*, and so decides the leg-1 device choice: see **Overtake leg vs
+  head-on leg**.
 ADR `0013` makes `e ≈ 0.3` the architecture's survival threshold and finds `f` worth about as
 much as `e` (a 0.3 drop in `f` costs what a 0.2 swing in `e` does).
 _Avoid_: quoting an `e` without the `f` it assumed, or vice versa; calling the `e = 0.25` row a
@@ -837,6 +839,51 @@ _Avoid_: quoting the 1.5 t without the linear-scaling caveat; letting `sec:minim
 thousand-tonne sentence stand unqualified once this paragraph exists; reusing the *lighter
 impactor* radiative caveat here (this pulse is lighter by **speed**, not by impactor mass, so
 its plasma is cooler and less radiative, not more).
+
+**Overtake leg vs head-on leg** (`sec:jupiter_only_growth`, decided 2026-08-20 grill; paragraph
+sits in Space Mortgages immediately after the `e`-vs-`f` paragraph):
+Why the Jupiter-only cycle runs *two* momentum devices rather than one magnetic nozzle. The two
+legs face opposite directions, and that settles most of it.
+- **Earth boost (leg 1, pusher plate, `f`)**: an **overtake**. The PuffSat returning from Jupiter
+  catches the craft from behind at 69.270 km/s and pushes it from rest into the eccentric parking
+  orbit (`tab:mass_scenarios`, ratio 9.331 at `f = 0.8`). The arrival's momentum already points
+  where the craft is going, so a plate only has to reverse it.
+- **Jupiter departure (leg 2, magnetic nozzle, `e`)**: **head-on** at ~75 km/s. The arrival's
+  momentum points backward, so a plate would *brake* the craft. Slug dilution there is not an
+  optimization, it is the only mechanism that yields forward thrust.
+**The `k = 0` identity** (the line the paragraph turns on): in an overtake, an ideal nozzle
+carrying slug ratio `k` delivers `1 + sqrt(1+k)` times the arriving momentum. At `k = 0` that is
+exactly **2**, a perfect elastic bounce. *A pusher plate is what a magnetic nozzle becomes when
+it carries no slug*, and that limit is the one place `f` and `e` describe the same thing (the
+other direction of the same fact is why `astro_constants.STD_FUDGE_FACTOR = 0.8` is reused as
+the ideal-ceiling `e`).
+**Metric the argument is settled on: payload delivered per kilogram launched off Earth**, because
+that is the quantity `tab:space_mortgage_growth` compounds. Integrating the leg-1 boost
+(0 -> 10.916 km/s against 69.270 km/s, craft mass constant for the plate, `dm_slug = k dm_p` for
+the nozzle):
+
+| device | kg delivered per kg PuffSat | kg delivered per kg launched |
+| --- | ---: | ---: |
+| plate `f = 0.8` | 9.33 | **1.000** |
+| nozzle `e = 1.0`, `k = 8.5` | 19.81 | 0.700 |
+| nozzle `e = 0.6`, `k = 8.5` | 10.45 | 0.552 |
+| nozzle `e = 0.4`, `k = 8.5` | 5.90 | 0.410 |
+
+The plate throws nothing away, so it delivers 1.000 by construction. A nozzle at `k = 8.5` needs
+`e ~ 0.55` merely to *tie* the plate on fleet mass, and still burns 30-60% of the launch.
+**What keeps it an open option**: `f = 0.8` was swept at **3.2-16 km/s** (`sec:mass_fraction`) and
+leg 1 closes at **69 km/s**, 4.3x the top of the validated envelope and ~19x the specific energy.
+No plate has been measured there. A field touches nothing and cannot ablate, so a real plate
+returning `f ~ 0.4` at 69 km/s hands the leg to the nozzle outright.
+_Provenance_: derived in the 2026-08-20 grill session, not in the companion repo. Energy-conserving
+ideal only (all incoming KE into single-speed collimated exhaust), the same convention behind
+`v_e = e w (sqrt(1+k) - 1)/k`.
+_Avoid_: arguing this on **impulse per kg of reaction mass** (plate 1.6 vs nozzle 0.43 at
+`k = 8.5`) without saying so, since that metric charges the nozzle full price for slug the
+architecture calls cheap, and the per-PuffSat metric flips the answer the other way; claiming the
+nozzle is simply worse (it roughly halves the fleet-mass draw at high `e`); claiming one nozzle
+could serve both legs as-is (leg 1 must exhaust back out the aperture the arrival entered, leg 2
+passes front to back, so same coils, different topology).
 
 **Outbound-leg ground-test gap** (`sec:jupiter_only_growth`, the Space Mortgages argument):
 Why **recovery** (`e`) on the Jupiter-only outbound leg can only be measured by flying, which
