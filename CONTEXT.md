@@ -277,6 +277,88 @@ error.
 The largest miss the projectile can still correct in the final seconds (about 475 m).
 Set by engine thrust (a control/authority limit), *not* by sensing.
 
+**PuffSat GNSS cross-check** (accepted 2026-08-20 grill, supersedes the 2026-08-12
+blanket rejection):
+A GNSS receiver on each PuffSat, differenced against a base receiver on the target, used
+as an **independent cross-check** on the optical terminal chain. The optical chain stays
+load-bearing; GNSS never becomes primary. Scope is the near-Earth LEO cycle only, and
+within it the last ~13 minutes of the descent.
+_Window_: the descent crosses the ~20,200 km GNSS shell 73 min before interception and
+reaches near-terrestrial geometry (~3,000 km) 13 min out. The full-authority divert
+horizon is ~487 s (½at² for 475 m at 4 mm/s²), so **GNSS arrives about 5 minutes before
+the correction horizon closes**. That margin is the feasibility argument.
+_Topology_: the target is the base and broadcasts; PuffSats receive and solve. This keeps
+the no-transmitter-on-the-PuffSat commitment intact.
+_Achievable grade_: **~18 mm**, the RSS of the GNSS terms alone (no troposphere at
+altitude, and ephemeris/clock/most ionosphere cancel over a 5 km baseline).
+_Spin phase is self-solving, not an input_ (resolved 2026-08-20). A tip-mounted antenna
+rides a 12.5 m circle at 9.25 m/s, which writes a clean 0.118 Hz tone into the carrier
+phase of every satellite. Measuring a 12.5 m amplitude at 1--2 mm carrier-phase precision
+gives spin phase to ~0.005°, against the 0.09° that 2 cm needs. Ninety-two revolutions fit
+inside the 780 s window, orbital motion has no content at 0.118 Hz, and a constant integer
+ambiguity cannot affect a sinusoid, so this works on time-differenced phase without fixing
+integers. Same principle as multi-antenna GNSS attitude determination, with the baseline
+swept in time by one antenna instead of realized in space by two.
+_Inertial package supplies the model, GNSS supplies the anchor_ (2026-08-20). The two are
+complementary and **neither closes 2 cm alone**.
+- The ADR-0002 accelerometer triad delivers the *geometry*. It reads `ω²r` directly, so
+  with `r` known it gives ω to δa/2a = 7e-4 at a 1 mg floor, calibrating a 1--3% gyro
+  scale factor down by 20--40x. It also resolves tether-pull direction to ~0.16 mrad with
+  1 s of averaging against the 6.8 m/s² tip field, a factor of 10 inside the 1.6 mrad that
+  2 cm needs. ADR-0002 already sized this leg at 8 mrad; 1.6 mrad is a 5x tightening, not
+  a redesign.
+- What the inertial package **cannot** supply is absolute azimuth about the spin axis. A
+  gyro reads rate, an accelerometer reads specific force, and neither has an inertial
+  azimuth reference on a spinning body. Dead-reckoning 780 s (33,072° of rotation) to 0.09°
+  needs ω to **2.7 ppm**; the best accelerometer-calibrated figure is 7e-5, giving 2.3°.
+  No MEMS part is within 25x. The shortfall is inherent to integrating a rate, not a
+  matter of part selection.
+- The split also runs in time. **Between burns** the arm is a clean circle and GNSS anchors
+  phase. **During burns** the geometry is ADR-0002's 2.9 m kink and the triad carries it.
+  The transverse tether mode at ~11.8 Hz (~100x spin) sits far above the estimation band.
+_Paper scope_ (decided 2026-08-20): **one sentence**, in the redundancy-layer paragraph of
+`sec:sensor_architecture` (near line 460), covered by that paragraph's existing "none of
+this layer is simulated" closer. Everything below stays here, not in the paper, because
+GNSS clears Tier 1 by orders of magnitude and a cross-check that is not load-bearing does
+not earn a paragraph.
+_Why the constellation cannot serve interception_: not link budget, geometry. A focused
+beam closes the power side easily (a 3,300 km stream at 150,000 km needs 22 mrad = 1.26°,
+worth ~44 dBi, from a 0.52 m Ka dish or 0.28 m at 60 GHz). But perigee and apogee sit at
+opposite ends of the major axis with Earth between them. At the 200 km interception
+altitude the true anomaly is 17.6°, putting the apogee direction **16.9° from nadir against
+Earth's 75.8° angular radius**. The constellation is behind the planet, and no antenna gain
+beams through a planet.
+_The handover is forced, and it is clean_: occultation begins at ν ≈ 76° (r = 10,089 km),
+**15 min before interception**. GNSS is available from the shell crossing at 73 min and
+reaches good geometry at 13 min. So there is a **58-minute overlap and no gap**, and
+neither number was designed.
+_Downlink_ (decided 2026-08-20): **modulate the existing beacon**, 0 g. The blink pattern
+is already read in every gated exposure by the target-side array, so no RF hardware, no
+antenna, and line 446's no-transmitter commitment survives. Bandwidth is a few bits/s, set
+by the tracker frame rate, which carries a disagreement flag and a coarse residual but not
+raw observables.
+_Mass and cost_: ~20 g for a purpose-built receiver (patch antenna dominates; DLR's Phoenix
+flew PRISMA's cm-class relative nav at ~20 g, 0.85 W), i.e. **8% of the 250 g dry budget**.
+Power is a non-issue (1.03 Wh over the full 73 min against ~3 Wh in a 5 g primary cell).
+Cost is NRE, not per-unit: **do not buy space-qualified** ($10--50k each × 900 is
+prohibitive). A 1.35-day, two-belt-crossing life is ~50x milder than the five-month park
+CONTEXT already calls "deliberately cheap electronics", so commercial automotive silicon
+serves. Budget ~$1--5M one-time for firmware (COCOM removal, ±60 kHz Doppler) and $50--500
+per unit at volume.
+_What the cross-check buys_: 2 cm at the co-flyer's 150 km standoff bounds the optical
+angular error at **0.13 µrad**, 12x below the assumed 1.6 µrad fusion floor, from a single
+unit with no averaging. This settles the flagged-open "is the 1.6 µrad floor noise or
+bias?" question with flight data rather than a bench test.
+_Antenna_: boresight **along the spin axis**, tip-mounted. The sky view is then fixed and
+the antenna merely translates on a known circle at 9.25 m/s. Carrier phase wind-up (one
+cycle, 19.03 cm on L1, per 8.5 s revolution) is deterministic and largely common across
+satellites, so the receiver clock absorbs most of it.
+_Avoid_: fusing the ~1 m GNSS vector into the ~1.6 cm optical estimate (it moves the answer
+by nothing); assuming it helps anywhere off Earth (the Jupiter, solar-dive, lunar and
+Parker cycles have no GNSS); assuming it reaches the gas-momentum centroid (it measures the
+dry package, same as the beacon); a commodity receiver (COCOM cuts out above 515 m/s and
+18 km, and L1 Doppler here runs to ±60 kHz).
+
 **Cross-track knowledge** (`σ_θ · R`):
 The projectile's lateral position error relative to the target, equal to angular
 precision `σ_θ` times range `R`. The binding constraint on success, limited by a fixed
@@ -319,10 +401,14 @@ _Avoid_: "GNSS at apogee" as the baseline (GPS side-lobe fixes have reached ~150
 on NASA's MMS, but they are weak, unauthenticated, and geometrically poor there; the paper
 acknowledges MMS and explains why the dedicated constellation wins — resolved 2026-07-02
 grill); "coordinator node" (this is permanent infra, not a co-flyer); putting an echo
-transponder or precise clock on the PuffSat; putting a **GNSS receiver** on the PuffSat
-(rejected 2026-08-12 grill, ADR 0003: antenna phase-centre variation caps a 50 g install at
-centimetres, spin at 0.74 rad/s breaks carrier-phase lock every ~8.5 s, and the leg is
-weakest at exactly the range where it would be called on).
+transponder or precise clock on the PuffSat; treating a PuffSat **GNSS receiver** as a
+*replacement* for the apogee constellation or for the optical terminal chain (it exists
+only below the ~20,200 km GNSS shell, and only near Earth; see **PuffSat GNSS
+cross-check**).
+_Superseded_: the flat 2026-08-12 rejection of a PuffSat GNSS receiver. Two of its three
+reasons do not survive the 2026-08-20 reframing. Range collapse does not apply to a
+differential baseline, and phase-centre variation binds only at Tier 2. The lock-loss
+reason assumed a radially-pointing antenna. See **PuffSat GNSS cross-check**.
 
 **Target-side tracker array**:
 The load-bearing terminal sensor: several (~5) independent, separately bench-calibrated
