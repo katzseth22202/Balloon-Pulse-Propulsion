@@ -840,50 +840,253 @@ thousand-tonne sentence stand unqualified once this paragraph exists; reusing th
 impactor* radiative caveat here (this pulse is lighter by **speed**, not by impactor mass, so
 its plasma is cooler and less radiative, not more).
 
-**Overtake leg vs head-on leg** (`sec:jupiter_only_growth`, decided 2026-08-20 grill; paragraph
-sits in Space Mortgages immediately after the `e`-vs-`f` paragraph):
-Why the Jupiter-only cycle runs *two* momentum devices rather than one magnetic nozzle. The two
-legs face opposite directions, and that settles most of it.
-- **Earth boost (leg 1, pusher plate, `f`)**: an **overtake**. The PuffSat returning from Jupiter
-  catches the craft from behind at 69.270 km/s and pushes it from rest into the eccentric parking
-  orbit (`tab:mass_scenarios`, ratio 9.331 at `f = 0.8`). The arrival's momentum already points
-  where the craft is going, so a plate only has to reverse it.
-- **Jupiter departure (leg 2, magnetic nozzle, `e`)**: **head-on** at ~75 km/s. The arrival's
-  momentum points backward, so a plate would *brake* the craft. Slug dilution there is not an
-  optimization, it is the only mechanism that yields forward thrust.
-**The `k = 0` identity** (the line the paragraph turns on): in an overtake, an ideal nozzle
-carrying slug ratio `k` delivers `1 + sqrt(1+k)` times the arriving momentum. At `k = 0` that is
-exactly **2**, a perfect elastic bounce. *A pusher plate is what a magnetic nozzle becomes when
-it carries no slug*, and that limit is the one place `f` and `e` describe the same thing (the
-other direction of the same fact is why `astro_constants.STD_FUDGE_FACTOR = 0.8` is reused as
-the ideal-ceiling `e`).
-**Metric the argument is settled on: payload delivered per kilogram launched off Earth**, because
-that is the quantity `tab:space_mortgage_growth` compounds. Integrating the leg-1 boost
-(0 -> 10.916 km/s against 69.270 km/s, craft mass constant for the plate, `dm_slug = k dm_p` for
-the nozzle):
+**Overtake leg vs head-on leg** (`sec:jupiter_only_growth`; first decided 2026-08-20 grill,
+**verdict reversed later the same day** after the companion two-leg sweep was regenerated):
+Which device catches the growth push. Superseded content: the earlier version of this entry
+argued the plate wins on *payload delivered per kilogram launched off Earth* (plate 1.000 vs
+nozzle 0.700) and turned on the claim that a plate simply *is* a no-slug nozzle. Both are
+retired. The launched-mass metric charges the nozzle for its slug and never charges the plate
+architecture for its own ground launch, and it omits the per-PuffSat side where the nozzle wins.
+The `k = 0` identity is arithmetic only (see below).
 
-| device | kg delivered per kg PuffSat | kg delivered per kg launched |
-| --- | ---: | ---: |
-| plate `f = 0.8` | 9.33 | **1.000** |
-| nozzle `e = 1.0`, `k = 8.5` | 19.81 | 0.700 |
-| nozzle `e = 0.6`, `k = 8.5` | 10.45 | 0.552 |
-| nozzle `e = 0.4`, `k = 8.5` | 5.90 | 0.410 |
+**The geometry still stands, and is why leg 2 has no choice.** The two legs face opposite ways.
+- **Earth boost (leg 1)**: an **overtake**. The returning PuffSat catches the craft from behind
+  and pushes it from rest into the parking orbit. The arrival's momentum already points where the
+  craft is going, so a plate only has to reverse it. Ideal impulse `1 + sqrt(1+k)` times the
+  arriving momentum.
+- **Jupiter departure (leg 2)**: **head-on**. The arrival's momentum points backward, so a plate
+  would *brake* the craft. Ideal impulse `sqrt(1+k) - 1`, which is zero at `k = 0`. Vaporizing a
+  slug is the only mechanism there, not an optimization of one.
 
-The plate throws nothing away, so it delivers 1.000 by construction. A nozzle at `k = 8.5` needs
-`e ~ 0.55` merely to *tie* the plate on fleet mass, and still burns 30-60% of the launch.
-**What keeps it an open option**: `f = 0.8` was swept at **3.2-16 km/s** (`sec:mass_fraction`) and
-leg 1 closes at **69 km/s**, 4.3x the top of the validated envelope and ~19x the specific energy.
-No plate has been measured there. A field touches nothing and cannot ablate, so a real plate
-returning `f ~ 0.4` at 69 km/s hands the leg to the nozzle outright.
-_Provenance_: derived in the 2026-08-20 grill session, not in the companion repo. Energy-conserving
-ideal only (all incoming KE into single-speed collimated exhaust), the same convention behind
-`v_e = e w (sqrt(1+k) - 1)/k`.
-_Avoid_: arguing this on **impulse per kg of reaction mass** (plate 1.6 vs nozzle 0.43 at
-`k = 8.5`) without saying so, since that metric charges the nozzle full price for slug the
-architecture calls cheap, and the per-PuffSat metric flips the answer the other way; claiming the
-nozzle is simply worse (it roughly halves the fleet-mass draw at high `e`); claiming one nozzle
-could serve both legs as-is (leg 1 must exhaust back out the aperture the arrival entered, leg 2
-passes front to back, so same coils, different topology).
+**The `k = 0` identity is formal, not physical.** As `k -> 0` the nozzle's parked-mass term goes
+to the plate's with `e1` in the role of `f`. But a magnetic nozzle steers a **conductor**, and a
+vanishing slug dissipates nothing in the merge, so there is no plasma to grip. `k = 0` sits
+*below* the plume ignition window. The two are genuinely different devices. Do not write "a
+pusher plate is what a magnetic nozzle becomes when it carries no slug" as a physical claim.
+
+**Constraints on `k`, in the order they bind:**
+1. **Plume ignition window** (two-sided). Only the dissipated share `k/(1+k)` of the arrival's
+   kinetic energy heats the blob, spread over `1+k` kg, so `eps_th = w^2 k / (2(1+k)^2)`. That
+   peaks at `k = 1` and falls on **both** sides, giving a closed interval, not a ceiling. Too
+   little slug dissipates nothing; too much spreads a fixed energy too thin.
+2. **Evaluated at the coldest instant of the burn.** The push runs the craft 0 -> 10.95 km/s, so
+   `w` *falls* through the burn as the craft catches up. The last pulse is the coldest and sets
+   the ceiling.
+3. **Fleet-wide intersection.** One nozzle loading flies all eleven cycles, so the admissible set
+   is the intersection over cycles, and the slowest cycle wins.
+
+**2S vs 3S cadence** (regenerated 2026-08-20, 10-day split; the ADR 0013 default is 20 days and
+gives ~1.7 km/s higher, so always pass `split_days=10`):
+
+| cadence | cycles | growth-wave `v_b` | departure burn | cold end | `k1` ceiling | plate ratio at `f=0.8` |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 2 synodic | 7 | 61.83-65.13 (mean 63.02) | 6.84-7.17 | 50.88-54.18 | 13.26-15.32 | 8.21-8.69 |
+| 3 synodic | 4 | 56.53-57.43 (mean 57.17) | 5.32-5.54 | 45.58-46.48 | **10.21**-10.70 | 7.43-7.56 |
+
+Both follow from one cause: squeezing Earth -> Jupiter -> Earth into two synodic periods forces a
+more energetic transfer, which costs more to depart on *and* comes home faster. The 3S cycles are
+the cheap-to-leave, slow-to-return ones, and they cap the fleet at `k1 = 10.21` where the best 2S
+cycle alone would allow 15.32.
+
+**Ignition bill**: 84.41 MJ/kg for water with a 1% potassium seed at 15,000 K. Atomisation
+(H2O -> 2H + O) is **59.7%**, translational 36.7%, vaporisation 3.5%, seed ionisation **0.13%**.
+The intuition that ionisation dominates is wrong once you seed. Hand check for the AP-Physics
+register: atomisation costs 9.50 eV per molecule, heating the 3 atoms to 15,000 K costs
+`4.5kT` = 5.82 eV, so chemical beats thermal by 1.63x; **the two cross at 24,500 K**. _Avoid_:
+quoting 68% or any figure above 63.2% (that is chemical *including* vaporisation); forgetting the
+model charges **no** water ionisation, only the seed, which is what pushes the bill down (5% of
+hydrogen ionised takes it to 94 MJ/kg and drops `k1` to 8.94).
+
+**Ground-launch ledger**: 2/3 of liftoff is launcher propellant, 1/4 of the remainder is launcher
+dry mass, so **1/4 of liftoff reaches intercept**, and the loop must return **1/15 of liftoff**.
+Applied per flown cycle. **This is what actually binds**: across the 8x8 grid it is active in
+**56 of 64 cells** while the plume window is active in **one**. 15,000 K is a low bar for a
+46 km/s impact; what stops `k` is that the water has to be launched.
+
+**The verdict (reversed 2026-08-20): lead with the nozzle winning, at matched recovery.**
+Comparing a nozzle at `e1` against a plate at `f = e1`, both over the flown chain:
+
+| matched `e = f` | nozzle | plate | ratio |
+| ---: | ---: | ---: | ---: |
+| 0.25 | 0.000133 | 0.000309 | **x0.4 (nozzle loses)** |
+| 0.30 | 0.0295 | 0.0291 | x1.0 (tie) |
+| 0.40 | 13.2 | 6.96 | x1.9 |
+| 0.60 | 6.63e4 | 7,827 | **x8.5** |
+| 0.80 | 2.83e7 | 7.83e5 | x36.2 |
+| 0.90 | 3.35e8 | 4.79e6 | x70.0 |
+
+The advantage **switches on near `e = 0.3`** and only then compounds; below it the launch floor
+crushes `k1` onto the window's lower root (~0.1) and the nozzle degenerates toward a plate while
+still paying to launch slug. What breaks the tie in the nozzle's favour is that **`f = 0.8` is
+the least defensible number in either architecture**: it was swept at 3.2-16 km/s
+(`sec:mass_fraction`) and this leg runs 45-65 km/s. Nothing rebounds elastically at 46 km/s.
+Against that `f = 0.8` specifically the crossover is `e1 ~ 0.6` at a good departure leg, rising
+to ~0.7 at a mediocre one, and the paper states that number so a skeptic has it.
+
+_Note the currency_: the companion writeup's "~25%" is a **growth-rate** advantage
+(e-foldings/yr). In delivered mass over the 28.3930 yr chain the same cells are x4 to x70.
+Always say which.
+
+**Assumptions the verdict rests on, both directions:**
+- Wrong-way bulk drift the overtaking nozzle must reverse is only `1/(1+k1)` of the blob energy,
+  **8.9%** at the fleet ceiling. Argues `e1 ~ e2`. **In the nozzle's favour.**
+- The overtake puts impactor entry and exhaust exit at the **same end** of the vehicle, so each
+  arriving PuffSat flies up the previous shot's plume. Argues `e1 < e2`, possibly strongly, and is
+  **unmodelled**. ADR 0014 calls it probably the largest missing effect. The head-on leg has no
+  such problem (in the front, out the back). **The one thing that could reverse the verdict, and
+  the paper must name it.**
+- Impactor and slug both given water's caloric properties. Fine for `k >= 3` (blob is >75% slug);
+  the window's lower root is indicative only.
+- Water fixed **by choice, not by optimisation**: the impulse law has no molar-mass dependence, so
+  the model would always pick whatever is cheapest to ionise per kg (Xe) and reject what a real
+  nozzle wants (Li).
+
+_Provenance_: regenerated 2026-08-20 from the companion clone at `23ceb9b` via
+`python -m src.two_leg_nozzle_sweep` (reproduces ADR 0014 exactly) plus per-cell
+`price_chain_two_leg(...).total_growth`. **ADR 0014 concludes the opposite** ("the plate stays"),
+because it compares against `f = 0.8` rather than at matched recovery; a draft **ADR 0015**
+reversing the verdict on the same arithmetic is to be written locally and pushed by Seth.
+_Avoid_: quoting the ~25% rate figure as if it were mass; claiming the nozzle wins below
+`e ~ 0.3`; claiming one nozzle could serve both legs as-is (leg 1 must exhaust back out the
+aperture the arrival entered, leg 2 passes front to back, so same coils, different topology).
+
+**Watering It Down, Literally** (new `\subsubsection`, decided 2026-08-20 grill; sits *before*
+the plate-vs-nozzle subsection because it establishes why the slug is water and seeded):
+Why the growth cycle's slug is seeded water rather than a cheaper-to-ionise species. Four
+arguments in this order, and the ordering matters because each one answers the objection the
+previous raises.
+
+1. **The nozzle must be cooled, and radiators are heavy.** Two heat sources. (a) **Edge currents**:
+   the plume is diamagnetic and excludes the field with a surface current layer, which dissipates
+   resistively because the plasma's conductivity is finite. Magnetic diffusion time
+   `mu0 sigma L^2` is ~1.6 ms at `sigma = 574 S/m`, `L = 1.5 m`, against a ~200 us expansion, so
+   the field holds but leaks at the percent level per pulse. A pulsed field also drives AC losses
+   in the coils, which for a superconductor must be removed at cryogenic temperature. (b) **An
+   opaque plume radiates as a blackbody**: 15,000 K gives **2.87 GW/m^2**.
+2. **Water is the heat sink that replaces the radiator.** 300 K liquid to 1000 K steam absorbs
+   **3.88 MJ/kg**, against 1.16 for LN2 and 1.38 for dry ice. At `k = 4` that soaks **1.49% of the
+   pulse energy** (LN2: 0.45%). `sec:minimum_nozzle` worries about misdirecting "even a tenth of a
+   percent", so 1.5% is real margin.
+   **And the heat is not spent, it is recycled**: energy put in as waste heat is energy the
+   collision no longer supplies, taking the ignition bill 85.1 -> **81.3 MJ/kg** and the `k1`
+   ceiling 10.10 -> 10.69.
+   Water also **stores passively** across the whole trajectory (278 K at 1 AU, 122 K at Jupiter).
+   LN2 boils at 77 K and needs active cryo at both ends of a 2.18-3.28 yr cycle; CO2 has a ~40 bar
+   vapour pressure at 278 K and needs a pressure vessel.
+3. **Potassium carbonate, 1.77% by mass, gives 1% potassium.** The nozzle steers a *conductor* and
+   water at 3000-6000 K is not one. Why the carbonate: it dissolves (~110 g/100 mL), and the slug
+   *is* water, so the seed distributes itself with no feed system and no settling over a multi-year
+   cruise. **KCl is rejected for chlorine** (ozone-catalytic), consistent with the paper already
+   rejecting lead primaries at line 243 for atmospheric reasons. K metal is pyrophoric in water,
+   KOH caustic, KNO3 an oxidiser, K2SO4 barely soluble. Cost: the extra carbonate adds
+   **0.36 MJ/kg, 0.42% of the bill**.
+   **Why potassium and not cesium**: at *equal mass* K beats Cs above ~3,800 K, because Cs ionises
+   more easily but weighs 3.4x as much, so once ionisation saturates you carry fewer atoms per kg.
+   `Rm` at 5,000 K is 238 (K) against 138 (Cs). Cs wins only below ~3,500 K, and by 87 K.
+   Same trade that standardised open-cycle MHD on K2CO3.
+4. **The payoff: the seed lets the plume recombine while staying steerable.** Recombination
+   window and `Rm` at 1% seed by mass, `rho = 1 kg/m^3`, `L = 10 m`, `v = 50 km/s`:
+
+| T | K ionised | `Rm` | water chemistry |
+| ---: | ---: | ---: | --- |
+| 2,000 K | 0.01% | **0.1, field lets go** | recombined |
+| 3,000 K | 1.14% | 9.2 | recombined |
+| 4,000 K | 10.95% | 76.5 | recombined |
+| 5,000 K | 38.03% | 237.8 | mostly recombined |
+| 6,000 K | 70.12% | 400.2 | dissociating |
+| 15,000 K | 99.90% | 360.7 | fully dissociated |
+
+**Coldest grip at `Rm = 10`, 1% by mass**: Cs 2,942 K, **K 3,029 K**, Rb 3,061 K, Li 3,396 K,
+Na 3,461 K. Sodium works but needs **2.5% at 5,000 K, 5.4% at 4,000 K, 12.7% at 3,000 K** to match
+1% potassium.
+
+**Bag sizing, bounded on both sides** (5 kg slug at 15,000 K). Venting the slug as steam into a bag
+lowers density, hence pressure, hence the field needed to stand it off (`B ~ R^-3/2`). But
+blackbody loss grows as `R^2`, and the plume must stay optically thick (`tau = kappa rho 2R >= 1`)
+or it radiates volumetrically instead of from its surface:
+
+| radius | density | `B` at `beta = 1` | radiated in 200 us | share of `E_th` |
+| ---: | ---: | ---: | ---: | ---: |
+| 0.5 m | 9.55 | 22.3 T | 2 MJ | 0% |
+| 1.0 m | 1.19 | 7.9 T | 7 MJ | 2% |
+| 1.55 m | 0.32 | 4.1 T | 17 MJ | 4% |
+| 2.5 m | 0.076 | 2.0 T | 45 MJ | 11% |
+| 5.0 m | 0.010 | 0.71 T | 180 MJ | 43% |
+| 8.0 m | 0.002 | 0.35 T | 462 MJ | 109%, cannot sustain |
+
+**Sweet spot ~1 to 2.5 m radius at 2-4 T.** Optical depth agrees: max radius 1.09 m at
+`kappa = 0.5 m^2/kg`, 3.45 m at `kappa = 5`. A third bound: the bag cannot much exceed the
+arriving cloud's cross-section or the impactor punches a column through and couples only to the
+mass in that column.
+_Avoid_: saying a bigger bag makes the plume **hotter** (temperature is `eps_th = w^2 k/2(1+k)^2`,
+which has no volume term; a bigger bag is the *same* temperature at lower pressure); claiming the
+bag makes the nozzle **lighter** (stored field energy is invariant at 103.8 MJ by the virial
+theorem, so `sec:minimum_nozzle`'s energy-scaling rule gives the same coil mass -- the win is peak
+field and hoop stress, which goes as `B^2`); worrying about particle magnetisation (`r_L/L` stays
+under 3.5e-5 across the whole range).
+
+**The PuffSat/slug asymmetry, worth one sentence in the paper**: line 250 atomises the PuffSat's
+water into droplets *because* that "requires much less energy than vaporization", while the slug is
+deliberately boiled. Not a contradiction. The PuffSat has no waste heat to spend; the ship has a
+nozzle it must cool anyway.
+
+**Recombination is assumed recovered** (decided 2026-08-20 grill, on the physics above):
+The ~50 MJ/kg locked in `H2O -> 2H + O` is **a loan, not a cost**. Three-body recombination time
+scales as `1/n^2`: 0.01 us at 1 kg/m^3 and 1 us at 0.1, against a ~200 us expansion, so it
+completes with orders of magnitude to spare. It freezes only **below ~0.01 kg/m^3**, which is the
+one condition the paper must name. Two supporting facts: dissociation energy carries **no
+pressure**, so a dissociated plume holds 84 MJ/kg while pressing with only its 31 MJ/kg of
+translation and returns the rest during expansion where the field is weaker; and the frozen-flow
+bound `e1 <= sqrt(1 - phi)` (0.675 at `k = 10.21`, 0.870 at `k = 4.02`) is therefore the
+**pessimistic** limit, not the expected one.
+_Provenance_: derived in the 2026-08-20 grill, not in either repo. Saha + electron-neutral
+conductivity at a fixed 1e-19 m^2 cross-section, so the >=6,000 K rows overstate `sigma` (Coulomb
+collisions take over above ~30% ionisation); the 3,000-5,000 K rows carry the argument and are
+electron-neutral limited. **The fireball density is uncomputed in both repos and decides this**,
+the same gap `sec:minimum_nozzle` already defers to a radiation-hydrodynamic calculation.
+_Avoid_: extending `e`'s definition to cover frozen chemistry without saying recombination is
+assumed (`eta_jet` at line 1521 already lists "frozen ionization or dissociation energy", `e` at
+line 793 does not, and that asymmetry is now deliberate).
+
+**Carry-over to the near-Sun case, prograde only** (raised 2026-08-20 grill; belongs in this
+subsection with an `\autoref` to `sec:solid_PuffSats` and `sec:jupiter_gravity_initial`):
+The same "slug doubles as coolant" argument plausibly applies to the **prograde** three quarters of
+the near-Sun split (`sec:dv_effective`, prose at line 734), where the reaction mass rides aboard a
+shielded rocket and never sees the Sun directly. The prograde vehicle can carry a heat shield over
+its payload, so water is admissible there and brings the same radiator-replacing heat sink to a
+chamber running far hotter than the Jupiter cycle's.
+**It does not carry over to the retrograde quarter.** Those projectiles are released and fly their
+own Sun-grazing retrograde orbit unshielded, so they must survive close solar approach on their
+own. That is exactly why `sec:solid_PuffSats` specifies low-Z carbon and ceramic solids from the
+Parker Solar Probe's thermal protection lineage, with a little iron for X-ray opacity. Water would
+be lost long before periapsis.
+_Avoid_: presenting this as a priced result (it is an observation, and no near-Sun slug/coolant
+budget has been computed); implying the prograde and retrograde legs differ in **periapsis** (they
+share it) rather than in **whether the mass rides behind a shield**.
+
+**References, verified and added 2026-08-20** (all four checked against primary sources, not
+memory; `crc_handbook` already existed and is reused for K2CO3 solubility):
+- `kerrebrock1964nonequilibrium` -- alkali seeding / two-temperature conduction. **My recalled
+  citation was wrong**: it is *AIAA Journal* **Vol 2, No 6, 1072-1080, 1964**, not Vol 3 (1965).
+  Confirmed off the scanned page header. Its worked example is argon plus potassium at 2000 K.
+- `rosa1968mhd` -- Rosa, *Magnetohydrodynamic Energy Conversion*, McGraw-Hill 1968.
+- `messerle1995mhd` -- Messerle, Wiley 1995, UNESCO Energy Engineering Series.
+- `molina1974ozone` -- Molina & Rowland, *Nature* **249**(5460), 810-812, 1974. Cited for why the
+  seed is a carbonate and not a chloride.
+_Avoid_: citing Kerrebrock as 1965 or Vol 3 (a real error I made from memory and corrected).
+
+**Applied to `templateArxiv.tex` 2026-08-20** (builds clean, 104 pp, 0 errors):
+- `tab:mass_scenarios` row for `sec:jupiter_only_growth` now reads **56.5--65.1 km/s** and
+  **7.4--8.7**, with a note that 69.270 is the *unphased* retrograde Hohmann arrival the phased
+  chain never reaches.
+- The **three** (not four, as first miscounted) 9x prose claims are now "about 8 times": lines
+  785, 790, 1616. There was no such claim at line 157.
+- Line 1616's "about 69 km/s" -> **61** (chain mean), and line 828's "69 km/s return velocity"
+  -> the 56.5--65.1 range.
+- `tab:space_mortgage_growth` top two rows refloored to **0.011/0.022/0.039/0.059** and
+  **1.0/3.2/7.7/15**; caption now states the 1/15 ground-launch floor and that it binds only in
+  those two rows. Prose at line 817 updated from `x0.095` "under ten cents" to **`x0.011`, about a
+  cent on the dollar**. Everything at `e >= 0.40` is unchanged, so the **1,284x** headline stands.
 
 **Outbound-leg ground-test gap** (`sec:jupiter_only_growth`, the Space Mortgages argument):
 Why **recovery** (`e`) on the Jupiter-only outbound leg can only be measured by flying, which
