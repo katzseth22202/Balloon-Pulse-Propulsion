@@ -1006,10 +1006,44 @@ Jupiter and 4.2% at Earth.
   against a reshapable magnet.
 - `sec:two_leg_nozzle` line ~977 rewritten: closing speed vs impact speed, the slugged plate.
 - New bib entries: `birkhoff1948lined`, `chen2016plasma`, `creely2020sparc`, `marti1993ice`.
-- **Deliberately NOT propagated**: the 1.8x on `E_B` into `tab:bag_state`'s field-leak line. Ionisation
-  raises stored energy 1.8x but raises electron density from 0.26 to 133 mol/kg, and the conductivity
-  gain dominates by orders of magnitude. The two effects oppose; the paper now says so and leaves the
-  table at its measured-conductivity figure.
+**Two same-day reversals, both now in the paper. Do not re-derive from the earlier notes.**
+
+1. **The plume state is set by energy AND Saha together, and the paper's 15000 K is the COLD-END
+   answer.** An earlier note here said "four fifths ionised at 15000 K"; that was wrong, because Saha
+   at 0.32 kg/m^3 allows only **5.9%** at 15000 K. The gas cannot dump 180 MJ/kg into a channel that
+   narrow, so `T` climbs until it opens. Solving both together (two-line root find, energy
+   `1.5 N(1+f) k T + f N chi` against dissipated minus ~54 MJ/kg vaporise+dissociate):
+
+   | closing speed | dissipated | T | f | P/P0 | B/B0 | E_B |
+   | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+   | 75 km/s | 265 MJ/kg | 26 200 K | 0.573 | 2.75 | 1.66 | 12.2 GJ |
+   | 65 | 199 | 22 400 K | 0.371 | 2.05 | 1.43 | 9.1 GJ |
+   | 56.53 | 150 | 19 400 K | 0.217 | 1.58 | 1.26 | 7.0 GJ |
+   | 45.58 | 98 | 14 700 K | 0.053 | 1.03 | 1.02 | 4.6 GJ |
+
+   **The last row validates the paper's original assumption**: at the coldest pulse the fleet flies,
+   15000 K with negligible ionisation is the answer, not a guess. `tab:bag_sizing`'s two columns are now
+   labelled coldest/hottest pulse, at 1.02x and 1.66x. Ignores O's second ionisation (35.1 eV).
+
+2. **A slugged pusher plate gains NOTHING, so `tab:equivalent_plate` was fair all along.** An earlier
+   note here said a slugged plate "may dominate both entries". Wrong. The plate is pushed by what it
+   reverses: `(1+k) m x w/(1+k) = m w`. **The two factors cancel exactly**, so a slugged plate delivers
+   `2 f m w`, identical to an unslugged one, because the slug was at rest and brought no momentum.
+   Carrying 8.5 kg/kg buys a gentler impact and zero thrust. The nozzle benefits because it is pushed by
+   the *dissipated* energy `(1/2) mu w^2` with `mu = mk/(1+k)`, which climbs with k. **The slug is the
+   nozzle's food and the plate cannot eat it.** `sec:two_leg_nozzle`'s own `k -> 0` identity already said
+   so. The 46 km/s objection to the plate therefore stands as originally written; what was corrected is
+   that the *nozzle's* surface sees 11-23 km/s too, so its advantage is collecting the thermal three
+   quarters, not surviving a speed the plate cannot.
+
+- **`tab:bag_state`'s leak line is bracketed, not rescaled.** Stored energy is now pinned and rises to
+  12.2 GJ, but the leak *fraction* is an integral over two regimes: while the fireball is at 26 000 K and
+  57% ionised, water supplies ~1.7 e-/molecule against the seed's 0.005, so it is ~400x more conductive
+  than the seeded estimate and barely leaks; the seed only governs later, in the 3000-6000 K window where
+  `Rm` approaches 1. Which regime dominates is unresolved. **The upper bound matters**: hold the fraction
+  at 4.4% and scale only `E_B` and waste heat hits 2.62 MJ/kg, 5/6 of the slug flashes, the mist runs
+  352 K, and the bag is **31 kg instead of 3.7 kg** (PE survives with 71 K margin). The paper states that
+  bound explicitly as a gate on the radiation-hydro calculation.
 
 **The slug bag is axial with an ice plug, not a sphere** (decided 2026-08-21 grill). The bag is a
 capsule ~23 m long with a ~3.0 m bore, not a 5.4 m sphere, and its front carries a solid ice plug that
