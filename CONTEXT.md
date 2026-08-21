@@ -988,6 +988,45 @@ Jupiter and 4.2% at Earth.
   holds only 4.9 kPa for seconds, so a plain PE liner suffices and weave and barrier weld as one
   polymer.
 
+**The field leak IS `1/Rm`, and it sets the seed window's floor** (found 2026-08-21 grill; the
+sharpest result of the session). `tau_d / t_exp = mu0 sigma L^2 / (L/v) = mu0 sigma v L = Rm`, so the
+share of stored field energy that soaks into the plume per expansion is **`1/Rm`**. `tab:seed_window`
+has been carrying the leak schedule in its third column all along, and `tab:bag_state`'s 4.4% was being
+quoted as if unrelated. **They are the same quantity.**
+
+| plume T | `Rm` | leak `1/Rm` | vapour `x` at `E_B` = 12.2 GJ | |
+| ---: | ---: | ---: | ---: | --- |
+| 15 000 K | 361 | 0.28% | -0.21 | slug never finishes melting |
+| 6 000 K | 400 | 0.25% | -0.22 | slug never finishes melting |
+| 5 000 K | 238 | 0.42% | -0.17 | slug never finishes melting |
+| 4 000 K | 76.5 | 1.31% | 0.05 | bag nearly unnecessary |
+| 3 000 K | 9.2 | 10.9% | **2.48** | **exceeds the whole slug** |
+| 2 000 K | 0.1 | 1000% | -- | field is gone |
+
+- **There is a cliff between 4000 K and 3000 K and the design sat on it.** Above ~5% leak, `x` passes 1
+  and what fails is not the bag but the **confinement**. My earlier "3.7 kg vs 31 kg" framing was too
+  gentle; 31 kg is the 4.4% case, and 4.4% implies `Rm ~ 23`, between those two rows.
+- **The window floor is ~3300 K, not 2500 K.** The paper said potassium condensation closes it; the
+  leak binds ~800 K earlier. Recombination is unaffected (`tab:seed_window` has water recombined by
+  4000 K). Paper corrected 2026-08-21; `tab:seed_window`'s caption now states the `Rm > ~25` bound too.
+- **Seed fraction is not a lever.** For a trace alkali, Saha gives `n_e ∝ sqrt(n_K)`, so
+  `Rm ∝ sqrt(seed)`. Lifting `Rm` at 3000 K to its 4000 K value needs **69x the potassium**, i.e. most
+  of the slug.
+- **This kills the need for an MHD code.** The `1/Rm` identity means the open question is a *residence
+  time*, "how long does the plume linger below 4000 K while the field works", not a field solve. So:
+  **`puffsat_impact_simulation` owes `T(t)`; `aim_is_all_you_need` does the quadrature.**
+- _Unreconciled_: my electron-neutral estimate gives `sigma` = 569 S/m at 15 000 K against the ~15 900
+  S/m that `Rm` = 361 implies. Factor of 28. Does not change the shape of the calculation.
+
+**Repo routing for the whole backlog** (added 2026-08-21 to
+`todos/companion_repo_calculations_2026-08-21.md`). Three destinations: `aim_is_all_you_need` for
+closed-form solves and sweeps, `puffsat_impact_simulation` for anything needing the collision or
+expansion actually simulated (densities, cooling histories, opacities, LTE checks), and a third bucket
+for what neither has. Of the 13 items, 10 are `aim`, 3 are split, and **only ideal-MHD stability (RT /
+minimum-B) has no home** and is the least load-bearing. The doc also disaggregates the paper's eight
+deferrals to "the radiation-hydrodynamic calculation", which are really six different calculations
+needing four different capabilities.
+
 **Jupiter nozzle mass was wrong by 3-20x and is now a band** (found and fixed 2026-08-21 grill).
 `sec:minimum_nozzle` computed the pulse for **one arriving kilogram** (reduced mass 0.9 kg -> 2.5 GJ)
 and scaled Mini-Mag's 200 t by `2.5/340` to get **1.5 t**. The adopted anchor is a **25 kg impactor on
