@@ -988,6 +988,43 @@ Jupiter and 4.2% at Earth.
   holds only 4.9 kPa for seconds, so a plain PE liner suffices and weave and barrier weld as one
   polymer.
 
+**Conductivity and the droplet-bag question go to `puffsat_impact_simulation`** (routed 2026-08-21;
+spec in `todos/impact_sim_conductivity_and_bag.md`).
+
+_Study 1, `sigma(T, rho, x_K)`._ Routed there because `sigma` is a **transport coefficient**, shares its
+Saha solve with **opacity** (which that repo needs for the eight deferred radiation-transport items),
+and consumes `T(t)`/`rho(t)` which that repo owns.
+- **My "factor of 28" was mostly my own error.** The 569 S/m figure counted only the potassium seed and
+  omitted **water's own ionisation, 5.9% at 15 000 K by Saha, which is 38x more electrons than the
+  seed**. The seed is *not* the dominant electron source above ~5000 K. Corrected blend gives ~6 950
+  S/m at 15 000 K against the ~15 900 that `Rm` = 361 implies, so 2.3x not 28x.
+- **The residual gap is worst exactly at the cliff**: 68 S/m modelled against ~405 implied at 3000 K, a
+  factor of 6, running in the direction that makes the cliff worse.
+- **Both sides are weakly sourced.** The paper's `Rm` column has no published `sigma`, no stated `v` or
+  `L`. My model is a two-limit series blend with `Q_en` = 1e-19 m^2 hand-picked and `ln(Lambda)` coming
+  out **2.5**, marginal for Spitzer.
+- **The validation data is already in `references.bib` and has never been used.** Open-cycle MHD power
+  generation measured potassium-seeded conductivity at **2000-3000 K, which is the cliff regime**:
+  `kerrebrock1964nonequilibrium`, `rosa1968mhd`, `messerle1995mhd`. Likely the best-measured physics in
+  the paper. Kerrebrock also raises an unasked question: **if electron temperature decouples from gas
+  temperature, the cliff may not exist.**
+- _Paper corrected_: "four hundred times more conductive" conflated the **electron-density** ratio with
+  the **conductivity** ratio. Conductivity saturates once Coulomb collisions dominate; the real factor
+  is ~100x against the cool end.
+
+_Study 2, the droplet bag._ **"Is the bag needed at all" is the wrong question.** The bag does two jobs
+and only one depends on the leak:
+- absorbing waste heat -- evaporates if the plume stays above 4000 K;
+- **spreading 213 kg over 660 m^3 so the field can hold it -- survives regardless.** Without it the
+  field goes 4.1 T at 5.4 m to 21 T at 1.8 m.
+So the bag **survives as a different object**: a droplet cloud at 0.32 kg/m^3 in a container under **no
+pressure**, where `eq:bag_film_mass` stops applying and the film is set by deployment and tear
+resistance. `tab:bag_state` already has it two thirds to nine tenths liquid, so this is a smaller change
+than it sounds. The hydro question that repo owns: **does a projectile couple to a droplet cloud the way
+it couples to a vapour**, i.e. does `k = 8.5` still describe it, given droplet breakup time against the
+~2.3 ms snowplow transit.
+_Avoid_: saying the bag becomes unnecessary; quoting the electron-count ratio as a conductivity ratio.
+
 **The field leak IS `1/Rm`, and it sets the seed window's floor** (found 2026-08-21 grill; the
 sharpest result of the session). `tau_d / t_exp = mu0 sigma L^2 / (L/v) = mu0 sigma v L = Rm`, so the
 share of stored field energy that soaks into the plume per expansion is **`1/Rm`**. `tab:seed_window`
