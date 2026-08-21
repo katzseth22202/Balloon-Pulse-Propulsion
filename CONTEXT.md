@@ -988,6 +988,180 @@ Jupiter and 4.2% at Earth.
   holds only 4.9 kPa for seconds, so a plain PE liner suffices and weave and barrier weld as one
   polymer.
 
+**WRITTEN INTO THE PAPER 2026-08-21.** Everything in the three blocks below is now in
+`templateArxiv.tex` and builds clean. Do not re-derive it; edit it.
+- New `\subsubsection{A Needle Through Fog}` (`sec:needle_through_fog`), between `sec:watering_it_down`
+  and `sec:two_leg_nozzle`: aperture argument, `eq:bore_from_length`, `tab:axial_bag`, plug sizing via
+  `birkhoff1948lined`, ice vs PE on CO scavenging, corrected sublimation via `marti1993ice`, graded
+  20 T -> 5 T field via `creely2020sparc`.
+- `eq:bag_film_mass` now carries shape factor `F`; `eq:bag_shape_factor` added; coefficient restated as
+  `2.6e-4 F x T` (was `4e-4 x T`, which had `F = 3/2` baked in).
+- Line ~874's sweep claim replaced with the areal-density arithmetic (27 g of 213 kg).
+- Field-energy invariance restated from `PV = n Rg T` rather than hand-waved; ionisation-thermostat
+  paragraph added; `tab:bag_sizing` gained a **Field, ionized** column (M = 3.3 g/mol) beside the
+  neutral one, and the caption now says it is a *volume* sweep, shape-independent.
+- End of `sec:two_leg_nozzle`: the two topologies, the loss-cone-does-not-apply argument
+  (`chen2016plasma`), `eq:rt_efolds` for Rayleigh-Taylor (`chandrasekhar1961hydrodynamic`), plug
+  position per leg (56 T vs 7.6 T), one-geometry-two-current-sets, and the pre-compression argument
+  against a reshapable magnet.
+- `sec:two_leg_nozzle` line ~977 rewritten: closing speed vs impact speed, the slugged plate.
+- New bib entries: `birkhoff1948lined`, `chen2016plasma`, `creely2020sparc`, `marti1993ice`.
+- **Deliberately NOT propagated**: the 1.8x on `E_B` into `tab:bag_state`'s field-leak line. Ionisation
+  raises stored energy 1.8x but raises electron density from 0.26 to 133 mol/kg, and the conductivity
+  gain dominates by orders of magnitude. The two effects oppose; the paper now says so and leaves the
+  table at its measured-conductivity figure.
+
+**The slug bag is axial with an ice plug, not a sphere** (decided 2026-08-21 grill). The bag is a
+capsule ~23 m long with a ~3.0 m bore, not a 5.4 m sphere, and its front carries a solid ice plug that
+the compact impactor hits first.
+- _Why the bore matters_: standoff volume is invariant (`E_B = P V`, and the field stands off
+  `(gamma-1)E/V`), so `r_bore = sqrt(V/pi l)` falls as `l^(-1/2)` while REBCO tape goes as `B r l`,
+  i.e. as `l^(1/2)`. **Bore and conductor trade inversely, one for one: halve the bore, double the
+  tape.** Virial structure mass does not move at all, because contained energy does not move.
+- _Where we stop_: `l` = 23 m, bore 3.0 m, aspect 4. Coils ~7 m across clear a Starship fairing
+  assembled, which is what `sec:space_mortgages` already claims. Costs +20% tape.
+- _Film cost_: pressure-vessel film mass is `F rho_f P V / sigma` with `F` a pure shape number,
+  **1.5 for a sphere (hoop stress `PR/2t`) and 2.0 for a cylinder (`PR/t`)**. Capsule
+  `F = (2L+2r)/(L+4r/3)`. At aspect 4, `F` = 1.88. **Film 2.8 kg -> 3.7 kg, +0.9 kg on a 213 kg slug.**
+  The whole penalty is bounded at 4/3 and most of it is paid by aspect 2.
+- _Water cost: zero_. `k = 8.5` comes from the ignition window and the launch budget, not bag shape.
+- _Why a compact impactor cannot hit a mist_: the column's axial areal density is only
+  `0.323 x 23` = **7.4 kg/m^2**. A 5 cm ice rod is 3183 kg/m^2. Newtonian drag over the full traverse
+  is `rho v A l` = 3300 kg m/s against its 1.4e6, so it loses 0.24% of its momentum and exits, having
+  swept **58 g of the 213 kg**. A rod is a needle through fog.
+- _So the plug is load-bearing, not a convenience_. The alternative is a footprint-matched puff, which
+  needs an aperture as wide as the bore, so the front is a hole the size of the chamber and there is no
+  forward mirror at all. **Compact impactor: 0.15 m aperture into a 3.0 m bore, 0.25% open.** Given
+  `tab:two_leg_growth` makes `e2` 0.6 -> 0.8 a factor of 14, this dominates every other consideration here.
+- _Plug sizing_: **~1.5x the impactor mass, ~37.5 kg**, not half. Hydrodynamic penetration is
+  `P = L sqrt(rho_p/rho_t)`, which for ice on ice is just `L`, so the plug must be at least as thick as
+  the impactor is long; at matched footprint that means at least as massive. A 25 kg ice rod at 0.1 m
+  radius is 0.87 m long.
+- _The plug is thermally free_: it may melt, just not vaporize, so it absorbs 0.73 MJ/kg on the way to
+  liquid. 37.5 kg soaks 27 MJ of the 211 MJ waste-heat bill. Vapor ends at 24.7 kg vs 23.4 kg baseline,
+  saturation 307 K vs 306 K. PE keeps 116 K of melt margin.
+- _Not a foam column_: the mist runs 0.323 kg/m^3 and the closed-cell PE foam of `sec:icy_puffsat` is
+  30 kg/m^3. Two orders of magnitude, so it is mist or nothing.
+- _Impactor material_: mostly ice, PE structure; it is a hybrid and the question is the ratio. PE-only
+  costs ~9% of the ignition budget, because 25 kg of PE is 1.78 kmol of carbon that scavenges an equal
+  1.78 kmol of oxygen into **CO, whose 11.1 eV bond is the strongest in diatomic chemistry** and will
+  not release it on a 100 us expansion, so 15% of the slug's oxygen never re-forms water and that much
+  of the 50.4 MJ/kg recombination loan is never repaid. Ice's only problem is cruise, and the corrected numbers are
+  (an earlier note here understated the shaded loss by many orders of magnitude): a bare ice body at
+  1 AU cools until `sigma T^4 + L * sublimation` balances 340 W/m^2 averaged, which lands at **194 K**,
+  where ice's vapour pressure is 0.064 Pa (`marti1993ice`, log10(P/Pa) = -2663.5/T + 12.537) and free
+  evaporation runs **7.4 kg/m^2/day**. A 25 kg rod is ~55 kg/m^2, so bare it is gone in a week. Behind
+  the detachable sunshade of `sec:lox_puffsat` at 150 K it loses **0.58 kg/m^2 over a two-year cruise,
+  ~1.4% of the rod**. Affordable, not free.
+- _You cannot funnel a wide puff into a narrow bore_. The arriving cloud is cold neutral droplets at
+  122-200 K with `Rm` far below 1. The field has nothing to grip until after the collision.
+- **Graded field, ~20 T at the chamber falling to ~5 T at the throat** (decided 2026-08-21 grill).
+  Front-loading the collision means the fireball sweeps the mist as a snowplow, and the pressure it
+  needs stood off falls down the bore: ~20 T at 1 m, 12 T at 3 m, 9 T at 6 m, 5 T at exit. That is a
+  genuine converging-diverging magnetic nozzle profile, which the spherical bag never gave. Stored
+  energy is dominated by the long low-field section, so a 20 T nose costs far less than 20 T everywhere,
+  and 20 T is the SPARC-class anchor already adopted above.
+_Avoid_: quoting `tab:bag_sizing`'s single 4.1 T as if the field were uniform; calling the impactor a
+compact rod that "sweeps the column" (it does not, the plug is what couples it); reading a smaller bore
+as a lighter nozzle (it is bought with conductor, at one-for-one).
+
+**The nozzle field is static within a pulse** (decided 2026-08-21 grill, user-asserted and
+self-consistent with the paper). No travelling, switched or otherwise time-varying coil topology is
+admissible. Two independent reasons:
+- _The paper already forbids it_. `sec:watering_it_down` (line ~828) builds the whole quench
+  architecture on keeping induced current **out** of the superconductor: a copper shell between plume
+  and coil takes the transient, the coil supplies a persistent seed field, per
+  `romanelli2017pulsed_fusion_nozzle`. A deliberately time-varying coil field breaks that design.
+- _Energy_. At 4.4 GJ stored, changing even a tenth of the topology per pulse at 90% switching recovery
+  dumps 44 MJ, and at 20 K each absorbed joule costs tens of joules of plant, so ~1 GJ of plant energy
+  per pulse against a 39 GJ pulse. Persistent-mode fields cost nothing to hold.
+
+**Leg 1 (overtake) is a reflector, not a nozzle** (decided 2026-08-21 grill). Follows from the static
+constraint. The blob's net momentum is prograde and the exhaust must leave retrograde, so the device
+reverses momentum rather than expanding it; `sec:two_leg_nozzle` already half-says this (`k -> 0` in the
+overtake gives exactly 2, a perfect bounce).
+- _Only one static topology works_: a **single-ended mirror at the ship end**. A two-ended static mirror
+  leaks preferentially through its weaker end, and on leg 1 that has to be the ship end once enough
+  field sits at the far end to contain the birth fireball, so the plume would vent onto the bus. This is
+  a loss-cone geometry argument, not a mass argument, so it survives better numbers.
+- _Field needed_: the blob reaches the mirror having swept the column, 238 kg at 5.88 km/s through
+  660 m^3. Static 10.6 MPa, ram-to-static `M v^2 / ((gamma-1) E)` = 1.17, total ~23 MPa, **~7.6 T**.
+  Compare **~55 T** if the plug sits at the mirror end instead (62.5 kg at 22.4 km/s, ratio 6.7), which
+  is why the plug must NOT be at the mirror end on this leg.
+- _A free term_: the fireball born at the far end expands at 27 km/s against a 22 km/s drift, so ~9% of
+  it leaves retrograde immediately in the correct direction with no field involved.
+- **Leg 1 keeps the axial bag** (revised later the same day, superseding an earlier note here that it
+  did not). The compact rod enters through the open throat at R, hits a plug **at R**, and the fireball
+  snowplows the full 23 m prograde before meeting the mirror. That run is exactly what makes 7.6 T
+  sufficient rather than 55 T. The blob then travels back out and exits at R. Round trip ~4 ms, which
+  caps pulse rate near **250 Hz** and gives `sec:two_leg_nozzle`'s "flies up the previous shot's plume"
+  worry its first concrete number.
+- _The loss cone does not apply_. At 0.32 kg/m^3 the number density is 1.07e25 /m^3, ~40% of sea-level
+  air, mean free path ~1 um against a 3 m bore, **Kn ~ 3e-7**. This is a continuum fluid, so
+  `1 - sqrt(1-1/R)` is the wrong formula and mirror ratio buys nothing. For a fluid the field is a
+  pressure wall and the condition is just `B^2/2mu_0 > P_static + rho v^2`.
+- _What does leak_: resistive diffusion (already priced at 4.4%) and **Rayleigh-Taylor flute modes**,
+  the classic axisymmetric-mirror failure. Speed cancels out of the growth arithmetic:
+  **e-foldings = sqrt(4 pi d / lambda)** for stopping distance `d` and mode wavelength `lambda`. A 30 cm
+  mode grows 11 e-folds over a 3 m stop and 4.6 over a 0.5 m stop, so **gentler is worse**. Minimum-B
+  (Ioffe / baseball) geometry is the proven fix and costs axisymmetry.
+_Avoid_: proposing any switched, travelling or pulsed coil field **within a pulse**; invoking loss-cone
+or mirror-ratio confinement for this plume.
+
+**One geometry, two current configurations** (decided 2026-08-21 grill). The ship carries a single
+23 m graded bore with independently-fed coils. For leg 2 the currents make the monotonic 20 T -> 5 T
+profile; for leg 1 the current is concentrated at the P end and the rest left near zero, making a
+single-ended mirror in the same hardware with no moving parts.
+- _Why this is allowed_: the static-field rule above is **static within a pulse**, not static forever.
+  The legs are one to three years apart, so recharging a persistent magnet over a day of cruise costs
+  nothing against a pulse. Do not over-read the constraint.
+- _Why not physically reshape the magnet_ (the option to rule out with a number): `CONTEXT.md`'s own
+  virial band already says the 1.2 MJ/kg end is **bought with assembly pre-compression** (~ -0.25%
+  squash, widening the strain window from 0.4% to ~0.65%), not with a material property. Pre-stress is
+  created at assembly and destroyed by disassembly, so a re-formable coil comes back at the plain-build
+  **0.4 MJ/kg**, a factor of 3 on the dominant mass term. Two fixed magnets cost ~1.6 `M_2` (leg 1 is
+  the smaller job); one reshapable magnet at 0.4 costs ~3 `M_2`. **Two fixed win by ~1.9x**, before
+  mechanisms and joints. So the ordering is one-geometry-two-currents, then two fixed magnets, then
+  reshapable last.
+- _On REBCO deformability_: it is a **winding-time** property. The tape bends about its thin axis and
+  cannot stretch past ~0.4% strain, the same limit that throttles `sigma_eff`. Demountable REBCO joints
+  belong to the **ARC** power-plant concept (sector maintenance), not SPARC, and are a maintenance-shift
+  operation rather than a flight reconfiguration. Verify before citing.
+
+**Leg 1's plate comparison is against the wrong speed** (found 2026-08-21 grill, affects
+`sec:two_leg_nozzle` line ~977). That line defends the nozzle by saying `f = 0.8` came from a
+3.2-16 km/s sweep while "this leg runs between 45-65 km/s". Those are **closing** speeds. The impactor
+merges with the slug before anything reaches the reflector, so the reflector sees `w/(1+k)` =
+**5.88 km/s** of bulk drift, inside the measured band. The argument holds only because the plate in
+`tab:equivalent_plate` carries **no slug**. A **slugged plate** is not a row in that table and may
+dominate both entries. Its remaining exposure is ablation from the ~27 km/s internal expansion, not the
+drift. Rework the line before it is quoted again.
+
+**RESOLVED 2026-08-21 (was flagged OPEN the same day; the flag was my arithmetic error, not the
+paper's).** `tab:bag_sizing` is not `(gamma-1)E`. It is the **ideal-gas pressure of the slug at an
+assumed temperature**:
+
+  `B = sqrt(2 mu_0 rho Rg T / M)`, with `T` = 15000 K and `M` = 6 g/mol
+
+`M` = 6 g/mol is fully dissociated water, three particles per 18 g. Every published row reproduces to
+three figures: 21.34/7.87/4.11/2.01/0.70/0.35 T against the table's 21.3/7.9/4.1/2.0/0.70/0.35, and the
+densities match too. And **`E_B = P V = n Rg T` = 4.43 GJ**, which is why line 876's invariance claim is
+true: field energy is the plume's `PV`, and `PV` is fixed by mass and temperature alone, with no volume
+in it. That is a cleaner statement than the `(gamma-1)E` framing and should be how the paper says it.
+
+**What is genuinely open is the assumed 15000 K, and the answer is an ionisation buffer.** The collision
+delivers `(1/2) k w^2/(1+k)^2` = **265 MJ/kg** at 75 km/s (150 at 56.53, 97.8 at 45.58), while the
+85.1 MJ/kg ignition budget only buys vaporisation + dissociation (50.4) + thermal to 15000 K
+(`(3/2)(Rg/M)T` = 31.2). The excess at 75 km/s is 180 MJ/kg. It does **not** mostly raise `T`, because
+singly ionising water's three atoms costs `(2 x 13.598 + 13.618)` eV per molecule = **219 MJ/kg**, and
+180/219 = **0.82**. Ionisation is a thermostat, the way boiling is for a pot of water.
+- _But it doubles the particle count_. At ~80% single ionisation, `M_eff` falls from 6 g/mol to ~3.3, so
+  `P` and `E_B` rise ~1.8x and **`B` rises ~1.34x**: 4.11 T -> ~5.5 T at 5.4 m, `E_B` 4.43 -> ~8 GJ.
+- _So `tab:bag_sizing`'s fields are low by roughly a third_ and should be restated with the ionisation
+  term, or the 15000 K row relabelled as the fully-dissociated-but-neutral case.
+- Saha closure for the ionisation fraction: `hansen_kawaler_trimble_stellar_interiors` is already in the
+  bib. High-temperature EOS: `zeldovich_raizer`, also already cited.
+
 **Solar power at Jupiter, and why the cold end is an asset** (added 2026-08-21 grill). The ship
 must hold **two temperatures at once**: electronics fail well below 122 K, coils want colder than
 that. MLI zones a warm bus against a cold magnet; the warm side needs power.
