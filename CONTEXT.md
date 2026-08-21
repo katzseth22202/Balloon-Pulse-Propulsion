@@ -956,6 +956,76 @@ Why the growth cycle's slug is seeded water rather than a cheaper-to-ionise spec
 arguments in this order, and the ordering matters because each one answers the objection the
 previous raises.
 
+**Bag material: high-strength polyethylene fiber** (decided 2026-08-21 grill). The film-mass
+coefficient is `(3/2) x rho_f Rg T / (M sigma)`, so what matters is **specific strength**
+`sigma/rho`, not strength. Handy identity: **tenacity in cN/dtex x 0.1 = specific strength in
+MJ/kg, exactly**, so the Toyobo table reads off directly.
+
+| fiber | GPa | g/cm^3 | MJ/kg | melts |
+| --- | ---: | ---: | ---: | ---: |
+| PBO (Zylon AS) | 5.8 | 1.54 | 3.77 | 650 C |
+| **HS polyethylene** | **3.5** | **0.97** | **3.61** | **150 C** |
+| p-aramid (HM) | 2.8 | 1.45 | 1.93 | 550 C |
+| polyester (HT) | 1.1 | 1.38 | 0.80 | 260 C |
+
+All four verified from `toyobo_zylon` (datasheet fetched and text-extracted, not recalled).
+Coefficient at half the quoted strength for weave and seams: **`4e-4 x T`**, giving 1.3% of slug at
+Jupiter and 4.2% at Earth.
+- _Why PE and not the cheaper fibers_: HT polyester and HT polypropylene both sit at 0.7-0.8 MJ/kg,
+  so the bag is 12.5 kg instead of 2.8. **Delivering the extra 10 kg costs ~$50k at the near-term
+  fare; the feedstock gap between commodity fibers is ~$100.** Two to three orders of magnitude, so
+  the paper argues the *gap*, not the prices (UHMWPE $20-60/kg, aramid ~$15/kg, polyester a few
+  dollars -- volatile, and deliberately **not** cited in the paper).
+- _Why the 150 C melting point is not the usual disqualifier_: the mist runs 306 K (Jupiter) and
+  **328 K (Earth boost, the binding case), leaving 95 K of margin**. The cold-mist decision is what
+  legalises PE here; a 1000 K bag would have melted it. Creep, its other standard objection, needs
+  sustained load and this bag is loaded for seconds. `sanborn2014dyneema` measured SK76 from 1e-3 to
+  1e3 /s with failure strength *rising* to a plateau near 1/s, so fast loading is favourable.
+- _Why it also wins on chemistry_: pure C and H, so no halogen, sulfur or metal in the plume.
+  Consistent with the existing chlorine, lead and halogenated-plastic refusals, and it is the **same
+  polyethylene** already chosen for the airlock pipe and the pusher-plate slab. **Avoid a metallized
+  barrier film** (aluminium in the plume, and the upper-atmosphere metals-loading objection); the bag
+  holds only 4.9 kPa for seconds, so a plain PE liner suffices and weave and barrier weld as one
+  polymer.
+
+**Solar power at Jupiter, and why the cold end is an asset** (added 2026-08-21 grill). The ship
+must hold **two temperatures at once**: electronics fail well below 122 K, coils want colder than
+that. MLI zones a warm bus against a cold magnet; the warm side needs power.
+- _Flux_: inverse square puts 5.2 AU at 1/27 of 1361 W/m^2, **~50 W/m^2**.
+- _Flight proof, no RTG_: **Juno** is the one that has actually operated on solar at Jupiter. Three
+  9 m arrays, 18,698 cells, **~14 kW at Earth, ~500 W at Jupiter** (`bolton2017juno` for the
+  mission, `jpl_juno_solar_record` for the numbers; JPL release verified by direct fetch). Galileo
+  used RTGs. **JUICE and Europa Clipper are still in cruise as of 2026-08** -- do not write them up
+  as having operated there.
+- _Concentrators_: **SCARLET** on Deep Space 1, line-focus silicone Fresnel lenses at ~8x, ran the
+  bus and the ion engine for the mission's 38 months (`stella2000scarlet`, NTRS 20000057570,
+  verified). Prefer **non-imaging** mirrors where pointing is disturbed by pulses: forming no image
+  buys a wider acceptance angle, hence looser Sun-pointing.
+- _The payoff that makes this more than housekeeping_: Carnot work to lift a joule from 77 K is
+  `(T_h - T_c)/T_c`, so **2.9 J against a 300 K radiator but 0.95 J against Jupiter's ~150 K one**.
+  Cryogenics is **3x cheaper at Jupiter** than at Earth. The distance that endangers the electronics
+  is what makes the magnet affordable to keep cold.
+_Avoid_: quoting SCARLET's W/m^2 or W/kg figures (seen only in secondary summaries, not verified
+against the primary); giving Galileo's RTG wattage (same reason).
+
+**Copper takes the eddy currents, not the superconductor** (added 2026-08-21 grill). Two layers,
+in this order.
+- _Outside the coil_: a **normal-conducting copper shell** between the plume and the coil is the
+  lower-impedance path for a rapidly changing field, so the induced current flows there and warms
+  copper at mount temperature instead of the cold mass. **Precedent is in this exact application**:
+  Romanelli, Mignone & Cervone's multi-coil parabolic pulsed-fusion chamber gives each ring a
+  superconducting **seed** coil plus a separate conducting **thrust coil** that carries the current
+  the expanding plasma induces (`romanelli2017pulsed_fusion_nozzle`, Acta Astronautica 139:528-544,
+  2017, verified via Crossref).
+- _Inside the conductor_: **copper stabilizer** on the REBCO tape. Marchevsky: normal zones spread
+  slowly in REBCO so voltage-based quench detection is hard, and raising stabilizer cross-section
+  **0.16 -> 0.40 mm^2 halved hot-spot temperature** in current-dump tests on insert coils
+  (`marchevsky2021quench`, Instruments 5(3):27, 2021, verified via OSTI).
+- _Why the shell comes first_: stabilizer copper carries no supercurrent, so more of it costs
+  engineering current density. The shell costs none.
+- _The number that motivates both_: removing a joule at 77 K against a 300 K sink costs 2.9 J at
+  Carnot and **~20 J with a real cryocooler**. Keeping the loss out of the cold mass is worth ~20x.
+
 1. **The nozzle must be cooled, and radiators are heavy.** Two heat sources. (a) **Edge currents**:
    the plume is diamagnetic and excludes the field with a surface current layer, which dissipates
    resistively because the plasma's conductivity is finite. Magnetic diffusion time
@@ -964,22 +1034,50 @@ previous raises.
    in the coils, which for a superconductor must be removed at cryogenic temperature. (b) **An
    opaque plume radiates as a blackbody**: 15,000 K gives **2.87 GW/m^2**.
 2. **Water is the heat sink that replaces the radiator.** 300 K liquid to 1000 K steam absorbs
-   **3.88 MJ/kg**, against 1.16 for LN2 and 1.38 for dry ice. At `k = 4` that soaks **1.49% of the
-   pulse energy** (LN2: 0.45%). `sec:minimum_nozzle` worries about misdirecting "even a tenth of a
-   percent", so 1.5% is real margin.
+   **3.88 MJ/kg**, against 1.16 for LN2 and 1.38 for dry ice. Latent heat is **2.26 of that 3.88
+   (58%)**, so the comparison already counts the phase change; water wins because its `h_fg` is 11x
+   nitrogen's, not because the others were denied theirs.
    **And the heat is not spent, it is recycled**: energy put in as waste heat is energy the
    collision no longer supplies, taking the ignition bill 85.1 -> **81.3 MJ/kg** and the `k1`
    ceiling 10.10 -> 10.69.
    Water also **stores passively** across the whole trajectory (278 K at 1 AU, 122 K at Jupiter).
    LN2 boils at 77 K and needs active cryo at both ends of a 2.18-3.28 yr cycle; CO2 has a ~40 bar
    vapour pressure at 278 K and needs a pressure vessel.
+   **BUT 3.88 MJ/kg is a ceiling the bag cannot buy** (resolved 2026-08-21 grill, see *Bag film
+   mass* and *The bag runs as a cold mist* below). Everything above the latent heat is sensible heat
+   of hot steam, and sensible heat is exactly what pressurises the bag. The matched operating point
+   is **0.31 MJ/kg**, not 3.88, and it **exceeds the demand by construction rather than by 15x**.
+   _Avoid_: quoting "1.49% of the pulse energy at `k = 4`" as the delivered figure (that is the
+   1000 K ceiling at an illustrative `k`; the flown chain runs `k ~ 8.5` and 0.31 MJ/kg); framing
+   the competitor as LN2 or dry ice at all. **The competitor is a radiator**, and the figure of
+   merit is not MJ per kg of coolant but **MJ per kg of hardware carried**, where the slug's
+   hardware is its bag film: `h_fg / (9.7e-4 T)` ~= **7,700 MJ per kg of film** at 311 K,
+   independent of slug mass, bag radius and vapour fraction. No radiator is within three orders of
+   magnitude. That is the buried advantage the original wording missed.
 3. **Potassium carbonate, 1.77% by mass, gives 1% potassium.** The nozzle steers a *conductor* and
-   water at 3000-6000 K is not one. Why the carbonate: it dissolves (~110 g/100 mL), and the slug
-   *is* water, so the seed distributes itself with no feed system and no settling over a multi-year
-   cruise. **KCl is rejected for chlorine** (ozone-catalytic), consistent with the paper already
-   rejecting lead primaries at line 243 for atmospheric reasons. K metal is pyrophoric in water,
-   KOH caustic, KNO3 an oxidiser, K2SO4 barely soluble. Cost: the extra carbonate adds
-   **0.36 MJ/kg, 0.42% of the bill**.
+   water at 3000-6000 K is not one. Why the carbonate: it dissolves, and the slug *is* water, so the
+   seed distributes itself with no feed system and no settling over a multi-year cruise. **KCl is
+   rejected for chlorine** (ozone-catalytic), consistent with the paper already rejecting lead
+   primaries at line 243 for atmospheric reasons. K metal is pyrophoric in water, KOH caustic,
+   KNO3 an oxidiser. Cost: the extra carbonate adds **0.36 MJ/kg, 0.42% of the bill**.
+   **Solubility is not the binding constraint** (corrected 2026-08-21 grill). 1.77% K2CO3 by slug
+   mass is **1.80 g per 100 mL**, against ~110 available: a **61x margin**. _Avoid_: rejecting
+   **K2SO4 as "barely soluble"** -- sulfate needs 2.27 g/100 mL against ~12 at 25 C, a 5.3x margin,
+   so it dissolves fine. Reject sulfate for **putting sulfur in the plume**, the same stratospheric
+   logic that already retires chlorine. Carbonate stays the delivery form regardless: cheaper and
+   easier to handle than metallic K.
+   **The carbonate does not evaporate, and the vent is a separation step** (resolved 2026-08-21
+   grill). K2CO3 has no meaningful vapour pressure below its ~1170 K decomposition, so **dry steam
+   would arrive carrying no seed at all** and the "distributes itself, no feed system" claim above
+   would be defeated by the very venting step that follows it. The mist is what rescues it: at
+   `x = 0.13` **87% of the slug never leaves the liquid phase**, so the droplets carry the seed,
+   enriched only by `1/0.87 = 1.15x`. **Decision: droplets only, no separate seed feed.** Rejected
+   alternatives -- a two-stream clean-steam-plus-brine-spray (redundant once the mist exists; the
+   skin-only-seeding saving it would buy is ~0.2% of the bill); dry powder entrained into the vapour
+   as open-cycle MHD does (K2CO3 is hygroscopic, cakes over a 2-3 yr uninspectable cruise, and a
+   caked seed is a dead pulse); a small metered trim feed for in-flight re-seeding (attractive
+   because `tab:seed_window`'s 2500 K cold edge is exactly what a flight measures, but it is a
+   second fluid system on a ship that otherwise has none).
    **Why potassium and not cesium**: at *equal mass* K beats Cs above ~3,800 K, because Cs ionises
    more easily but weighs 3.4x as much, so once ionisation saturates you carry fewer atoms per kg.
    `Rm` at 5,000 K is 238 (K) against 138 (Cs). Cs wins only below ~3,500 K, and by 87 K.
@@ -1000,7 +1098,51 @@ previous raises.
 Na 3,461 K. Sodium works but needs **2.5% at 5,000 K, 5.4% at 4,000 K, 12.7% at 3,000 K** to match
 1% potassium.
 
-**Bag sizing, bounded on both sides** (5 kg slug at 15,000 K). Venting the slug as steam into a bag
+**The bag runs as a cold mist, and its state is derived rather than chosen** (resolved 2026-08-21
+grill). Three results, in dependency order.
+
+_Bag film mass._ A spherical film at working stress `sigma` holding an ideal gas obeys
+`m_bag/m_slug = (3/2) rho_f Rg T / (M sigma) ~= 9.7e-4 * x * T` at `rho_f = 1400 kg/m^3`,
+`sigma = 1 GPa`, where `x` is the vapour fraction. **The radius cancels.** This is a *second*
+invariant sitting beside the stored-field-energy one already recorded below: a bigger bag changes
+neither the coil mass nor the film mass. What it changes is peak field and radiative loss.
+Consequence: **1000 K steam costs ~1 kg of film per kg of slug**, destroyed every pulse. That is
+what kills the 3.88 MJ/kg operating point.
+
+_In vacuum the steam runs cold, and the floor is its own saturation curve._ 373 K is where water's
+saturation pressure hits 1 atm, and there is no atm. The floor is set by the **bag's own density**:
+dew point is 395 K at 1.0 m, 355 K at 1.55 m, 321 K at 2.5 m for a 5 kg slug. **A bigger bag is a
+colder bag.** _Avoid_: saying vacuum makes the steam *easier to contain* -- containment is strictly
+harder, because the film carries the full differential with nothing outside to balance it. On Earth
+a bag of saturated steam at ambient carries **zero** differential.
+
+_The heat balance derives `x` and `T`; nothing is chosen._ The ship has no radiator, so **all** waste
+heat must boil water, and `x = Q / (m_slug h_fg)` with `T` following off the saturation curve.
+Using line 972's own recipe (radiated share x sky fraction x pulse energy, coils filling ~a tenth of
+the sky) at the **213 kg** anchor:
+
+| term | per kg of slug |
+| --- | ---: |
+| radiated (1.2% at 5.3 m, scales as `M^-1/3`) | 1.02 MJ |
+| intercepted at a tenth of the sky | 0.102 MJ |
+| field and coil dissipation (~1% of 20.8 MJ/kg stored) | 0.21 MJ |
+| **demand Q** | **0.31 MJ** |
+| **-> x = Q/h_fg** | **0.13** |
+| **-> T (dew at `rho_vap` = 0.13 x 0.32)** | **311 K** |
+| **-> P** | **~4 kPa** |
+| **-> film** | **3.9% of slug (8.3 kg)** |
+
+**The mist is a thermostat**, and this is the sentence the section was missing. Two-phase water is
+pinned to its saturation curve, so a thermal overrun converts into **vapour fraction, not
+temperature**: the bag boils a little more and holds 311 K. A single-phase coolant would run hotter
+and raise bag pressure with it. The mist also **keeps the seed in suspension** (see point 3 above),
+so two independent arguments land on the same design.
+
+_Avoid_: presenting `x` or `T` as design choices; quoting a bag temperature without saying which
+slug mass it came from.
+
+**Bag sizing, bounded on both sides** (5 kg slug at 15,000 K -- **illustrative only; the flown chain
+carries ~213 kg, see the anchor-mass entry below**). Venting the slug as steam into a bag
 lowers density, hence pressure, hence the field needed to stand it off (`B ~ R^-3/2`). But
 blackbody loss grows as `R^2`, and the plume must stay optically thick (`tau = kappa rho 2R >= 1`)
 or it radiates volumetrically instead of from its surface:
@@ -1015,15 +1157,73 @@ or it radiates volumetrically instead of from its surface:
 | 8.0 m | 0.002 | 0.35 T | 462 MJ | 109%, cannot sustain |
 
 **Sweet spot ~1 to 2.5 m radius at 2-4 T.** Optical depth agrees: max radius 1.09 m at
-`kappa = 0.5 m^2/kg`, 3.45 m at `kappa = 5`. A third bound: the bag cannot much exceed the
-arriving cloud's cross-section or the impactor punches a column through and couples only to the
-mass in that column.
+`kappa = 0.5 m^2/kg`, 3.45 m at `kappa = 5`. A third bound is a **matching condition, not a cap**
+(resolved 2026-08-21 grill): the bag and the arriving cloud want the *same frontal area*. A bag
+wider than the cloud leaves slug unswept; a cloud wider than the bag spills impactor mass past it.
+Both mismatches cost, so the correct statement is match, not "keep the bag small". **On the nozzle
+legs the footprint is a free knob**, unlike everywhere else in the paper: line 511 pins the *plate*
+footprint at about half the plate radius, squeezed between a facesheet cliff (342 MPa against a
+400 MPa limit; 0.3 R takes it to 1470 MPa and destroys the plate) and the `eta_capture` rim spill,
+but a magnetic nozzle has no facesheet to over-pressure and no rim to spill past, and its own scale
+length (`L = 10 m`) sits well above the 1-2.5 m bag. The cloud is therefore sized *for the bag*,
+using the atomization-timing knob the fleet already flies (CONTEXT **impulse trim**, knob 2). The
+impactor is already a gas cloud before arrival (line 86), so this is a sizing choice, not a new
+capability.
 _Avoid_: saying a bigger bag makes the plume **hotter** (temperature is `eps_th = w^2 k/2(1+k)^2`,
 which has no volume term; a bigger bag is the *same* temperature at lower pressure); claiming the
 bag makes the nozzle **lighter** (stored field energy is invariant at 103.8 MJ by the virial
 theorem, so `sec:minimum_nozzle`'s energy-scaling rule gives the same coil mass -- the win is peak
 field and hoop stress, which goes as `B^2`); worrying about particle magnetisation (`r_L/L` stays
 under 3.5e-5 across the whole range).
+
+**Anchor mass for the growth leg: 25 kg impactor, 213 kg slug** (decided 2026-08-21 grill). This
+exposes a units mismatch in `sec:minimum_nozzle`. **Line 968 quotes the growth-leg pulse *per
+arriving kilogram* (2.5 GJ) and then sizes the nozzle from it as though that were the whole pulse**,
+while the near-Sun figure it is compared against (477 GJ) is the whole 2.5 kg projectile. At a 25 kg
+impactor the pulse is **63 GJ** and the Mini-Mag rule returns **~37 t**, not 1.5 t. An independent
+check agrees: the virial bound for a self-supported magnet, `M >= rho_struct E_field / sigma`, with
+the paper's own invariant field energy (20.8 MJ per kg of slug -> **4.4 GJ** at 213 kg) and REBCO
+structure at 1 GPa / 8000 kg/m^3, gives **35 t**. Two routes, same answer, so the number is not an
+artifact of the Mini-Mag ratio.
+_What breaks_: line 790's "masses on the order of a tonne rather than hundreds of tonnes" and line
+968's "about 5% of a 30 tonne craft and 1.5% of a 100 tonne one". Both become **tens of tonnes and a
+few Starship loads**.
+_Why 25 kg anyway_: **bigger pulses radiate less.** Radiated share goes as `M^-1/3`, so the 25 kg
+pulse loses ~1.2% where a 1 kg pulse loses ~4%. By line 972's own square-root rule that is worth
+roughly 3 points of `e2`, and `tab:space_mortgage_growth` pays orders of magnitude for points of
+`e2`. A 37 t nozzle that recovers better beats a 1.5 t one that does not. It is also the same
+argument line 819 already makes in reverse ("a smaller fireball cools and radiates faster, so a
+scaled-down shot returns a recovery that does not carry over to flight").
+_The one lever not yet priced_: `beta = 1` is required **at the throat**, not through the whole
+plume volume, and the stored-field invariant assumes the field fills the sphere. A throat-only field
+would contain less. Unquantified; belongs with the radiation-hydrodynamic calculation already owed.
+
+**Dry-mass plug ring** (decided 2026-08-21 grill):
+A dense ice or plastic annulus at the *front face* of the vented slug bag, held **off the ship's
+axis**, that catches a **softened** dry-mass discard so the PuffSat's <=250 g of non-volatile
+solids couple into the pulse instead of leaving as a **Heliocentric package**.
+*Why it needs its own part*: the package arrives with roughly 25 kg/m^2 of areal density against
+the bag's ~1 kg/m^2 through the centre at the sweet spot, so the steam alone couples only a few
+percent of it. *Sizing*: ~0.1 m of ice, ~3 kg, about 1.5% of the ~200 kg slug a 25 kg PuffSat
+carries at `k ~ 8.5`. *Payoff*: under 1% of the pulse recovered (dry mass is <1% of PuffSat mass
+at the same arrival speed), but the larger win is retiring the **upper-atmosphere metals loading**
+objection the 2026-08-11 grill left open as "the objection a reviewer is most likely to raise",
+by consuming the solids rather than shedding them. Metals help rather than contaminate here:
+Al ionises at 5.99 eV and Si at 8.15 against ~12.6 for water, the opposite of the LOX-plate case
+at line 279 where the same metallisation was landing on a physical surface.
+*Why a ring, and why softened rather than replaced*: **discard stays fail-safe**. The shaped
+charge's kick is tuned down from "clear the target radius" to "clear the ship's silhouette", so a
+plug that misses or under-performs sends debris *past* the hull rather than through it. Both legs
+otherwise point the dry mass down the ship's axis (head-on it enters the front, on the overtake it
+enters the back), and an on-axis plug replacing the discard would be fail-dangerous: ~700 MJ at
+75 km/s relying on 10 cm of ice.
+_Avoid_: presenting the plug as a **mixing aid for the gas plume** (the volatilised plumes mix on
+their own; the plug exists only for the non-volatile remnant); calling it **ship protection** (the
+discard is what protects the ship and is retained); sizing it against the **5 kg bag-table slug**
+(wrong scale -- that table is a small-unit illustration, and dry mass belongs to a 25 kg unit).
+_Open_: the aim spec on the softened kick; whether the **departure leg** (head-on, ~75 km/s) has
+any dry-mass resolution in either repo, since the **Heliocentric package** covers only the Earth
+encounter on the growth push.
 
 **The PuffSat/slug asymmetry, worth one sentence in the paper**: line 250 atomises the PuffSat's
 water into droplets *because* that "requires much less energy than vaporization", while the slug is
