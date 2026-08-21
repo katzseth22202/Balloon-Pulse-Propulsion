@@ -988,6 +988,34 @@ Jupiter and 4.2% at Earth.
   holds only 4.9 kPa for seconds, so a plain PE liner suffices and weave and barrier weld as one
   polymer.
 
+**Jupiter nozzle mass was wrong by 3-20x and is now a band** (found and fixed 2026-08-21 grill).
+`sec:minimum_nozzle` computed the pulse for **one arriving kilogram** (reduced mass 0.9 kg -> 2.5 GJ)
+and scaled Mini-Mag's 200 t by `2.5/340` to get **1.5 t**. The adopted anchor is a **25 kg impactor on
+a 213 kg slug**, so `mu = 25*213/238` = 22.4 kg and the pulse is `(1/2) mu w^2` = **62.9 GJ**. The
+paragraph predated the anchor and never followed it. The stated "factor of 189" against the near-Sun
+477 GJ was also comparing a per-kilogram figure against a whole-pulse one; the real factor is **7.6**.
+- Corrected linear Mini-Mag rule: **37 t**. Virial floor on `E_B`: **3.7-11 t** cold pulse,
+  **10-30 t** hot. **We take the virial figures**, because the linear rule charges the magnet for
+  energy that never pushes on it: the field stands off *pressure*, pressure is translation only, and
+  dissociation plus ionisation carry none. Paper now says **tens of tonnes** and quotes the band.
+- Downstream repaired: "5% of a 30 t craft and 1.5% of a 100 t one" -> **a tenth to a third of a 100 t
+  craft**; `sec:space_mortgages`'s "on the order of a tonne" -> "tens of tonnes". The Starship-class
+  conclusion survives; the nozzle is a serious fraction of the ship rather than a rounding error.
+_Avoid_: quoting 1.5 t; quoting the 189x factor; applying the linear Mini-Mag rule to `E_B`.
+
+**Companion-repo calculation backlog** (`todos/companion_repo_calculations_2026-08-21.md`, written
+2026-08-21). Inventories all ~43 new numbers from 2026-08-19..21, filters to **13 that belong in
+`aim_is_all_you_need`**, gives the method for each, and lists the modules, `make` targets, regression
+tests and ADRs owed. Three rules were decided in that grill:
+1. **Filter: solves and sweeps only.** Code it if it is an iteration/sweep/root-find, or if a whole
+   table's cells move when one upstream constant changes. Printed algebra and datasheet lookups stay
+   in the paper with their existing cites.
+2. **Code the chain in the paper's order with its hand-cuts intact**, so every digit reproduces and the
+   cite is honest; add a *separate* fixed-point check that reports the convergence gap as a number.
+   The three cuts are named in the doc.
+3. **Citation mechanism: a reproduction line in each computed table's caption** naming a `make` target,
+   extending ADR 0015's own "Reproducing:" convention. The 26 existing bare cites stay untouched.
+
 **WRITTEN INTO THE PAPER 2026-08-21.** Everything in the three blocks below is now in
 `templateArxiv.tex` and builds clean. Do not re-derive it; edit it.
 - New `\subsubsection{A Needle Through Fog}` (`sec:needle_through_fog`), between `sec:watering_it_down`
