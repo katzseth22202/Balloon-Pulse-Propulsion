@@ -18,12 +18,18 @@ tables, in `katzseth22202/aim_is_all_you_need`.
 | repo | holds | can you run it from the paper repo? |
 | --- | --- | --- |
 | `Balloon-Pulse-Propulsion` | `templateArxiv.tex`, `references.bib` | yes -- this is where you are |
-| `aim_is_all_you_need` | trajectories, growth chain, bag and nozzle models | no |
-| `puffsat_impact_simulation` | EOS, expansion, opacity, hydro solvers | no |
+| `aim_is_all_you_need` | trajectories, growth chain, bag and nozzle models | yes, cloned |
+| `puffsat_impact_simulation` | EOS, expansion, opacity, hydro solvers | yes, cloned |
 
-**Every number in this document is already stated in full.** The `make` targets
-named under "Reproduce" are provenance, not instructions — you are not expected
-to run them. If a number here seems wrong, say so rather than recomputing it.
+**Every number in this document is already stated in full**, so the `make`
+targets named under "Reproduce" are provenance rather than a prerequisite.
+Only run what you need. Both companion repos clone over HTTPS and their
+dependencies install with `uv pip install numpy scipy pandas astropy tabulate
+boinor`, so a target is there when a correction needs a number this document
+does not carry. Two do: A1 and C1 quote a single column of grids that are 32
+and 40 cells wide, and `make two-wave` and `make two-leg` print the rest.
+Reach for a target when you need one, not to re-derive what is already written
+down. If a number here seems wrong, say so rather than quietly recomputing it.
 
 ### The ground rule
 
@@ -45,8 +51,10 @@ rather than computed.
 
 ### What you cannot verify here
 
-Any physical quantity. If an edit seems to need a number this document does not
-give, stop and ask rather than deriving one.
+Nothing physical, by hand. Do not derive a quantity this document does not give.
+Either run the companion target that produces it, or stop and ask. The failure
+mode this rule exists to prevent is a plausible number reached by algebra on
+other numbers in the paper, which is how several of the errors below got in.
 
 ---
 
