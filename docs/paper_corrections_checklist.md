@@ -26,7 +26,7 @@ column A8 asks about, so doing A3 first makes both cheaper.
 - [x] **A9** `tab:seed_window`'s `Rm` column is not one expansion
       *(regenerated at vL = 7.4e4; sigma column added; floor moves 3300 -> 3800 K)*
 - [x] **A10** The radiated-loss column is a cold-pulse figure, not a burn-wide one
-- [ ] **A11** State the optical-thickness convention (diameter, not radius)
+- [x] **A11** State the optical-thickness convention (diameter, not radius)
 
 ## B. Arguments that reach the right answer by the wrong route
 
@@ -45,6 +45,14 @@ column A8 asks about, so doing A3 first makes both cheaper.
 
 - [ ] **D** Cite the eight existing keys; check the three new ones before adding
 - [ ] **E** Reproduction lines on the captions of the six computed tables
+
+## Citation audit
+
+Ran 2026-08-26 over A1-A11. Section D of the corrections document assigns a key
+to each item; four commits had landed new numbers with no companion cite (A6,
+A8, A10, A11) and A9 carried the impact-sim cite but not the conductivity
+measurements its new `sigma` column rests on. All closed. Every number added by
+A1-A11 now names the repository or the measurement it came from.
 
 ## Deferred
 
