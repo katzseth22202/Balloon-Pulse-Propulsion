@@ -70,3 +70,36 @@ target should take `f` as an argument, or the document should say which run it
 quotes.
 
 **Interim treatment:** decided when C1 is worked.
+
+---
+
+## D4. A3 zeroes the film everywhere, and section F does not say so
+
+**Owed by:** `aim_is_all_you_need` (`docs/paper_corrections.md`)
+**Raised by:** A3, 2026-08-26
+
+A3 zeroes the bag film in `tab:bag_state` from cold storage. `eq:bag_film_mass`
+sizes a pressure vessel, so with nothing boiling it returns zero *wherever* it
+is evaluated, not only in that table. Section F says of `tab:axial_bag` that
+"every one of its 20 cells reproduces exactly. Nothing is owed." That is true of
+reproduction and false once A3 lands. Checked against `BagState` at the solved
+leak, its whole film column goes to zero:
+
+| row | paper | solved leak, cold storage |
+| --- | ---: | ---: |
+| 10.8 m sphere | 2.8 kg | **0.00 kg** |
+| 23 m | 3.6 kg | **0.00 kg** |
+| 50 m | 3.7 kg | **0.00 kg** |
+
+Three further passages rest on the same 2.8 kg: the shape-factor paragraph
+("1.7% of the slug"), the polyethylene-against-polyester material choice, and
+the 4.9 kPa liner argument. A8 does warn that `x` moves and its column needs
+regenerating; nothing says the same about the film.
+
+**Interim treatment (Seth, 2026-08-26):** the bag is requoted at Earth's 278 K
+storage throughout, which is the case that still boils and still needs a vessel.
+Every film mass scales by the same factor 1.725, because the film goes as
+`F x T` and only `x T` moves. Cold storage is then presented as the case that
+removes the requirement outright. What is still owed is a **handling-sized
+membrane model**: with no pressure to hold, the real bag is not 0 kg, and
+neither repository sizes it.

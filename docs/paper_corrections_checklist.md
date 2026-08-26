@@ -13,9 +13,10 @@ column A8 asks about, so doing A3 first makes both cheaper.
 - [x] **A1** Growth-table axes are `eta_geom`, not `e`; `eta_jet = eta_chem * eta_geom`
       *(`tab:space_mortgage_growth` only; `tab:two_leg_growth` deferred, see D1)*
 - [x] **A2** The gas expands at 14.1 km/s, not 17
-- [ ] **A3** Field leak is 0.11-2.54%, not 4.4%, and the bag film goes to 0 kg
+- [x] **A3** Field leak is 0.11-2.54%, not 4.4%, and the bag film goes to 0 kg
+      *(bag requoted at Earth storage; handling-sized membrane owed, see D4)*
 - [ ] **A4** Nozzle mass floor is ~8 t, not 3.7 t, and the tape current needs naming
-- [ ] **A5** `tab:bag_state`'s leak row contradicts its own arithmetic *(lapses if A3 lands)*
+- [x] **A5** `tab:bag_state`'s leak row contradicts its own arithmetic *(lapsed: A3 replaced the row)*
 - [ ] **A6** The mirror passage needs `gamma` = 1.2 and its 56 km/s closing speed stated
 - [ ] **A7** Ice rod is 41 kg/m^2, not 55, and lasts five days, not a week
 - [ ] **A8** `tab:bag_sizing`'s mist column has no stated model
