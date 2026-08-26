@@ -32,7 +32,8 @@ column A8 asks about, so doing A3 first makes both cheaper.
 
 - [x] **B1** The aperture argument is about neutrals, not open area
       *(growth figures quoted at eta_geom = 1 in the source, see D6)*
-- [ ] **B2** The recombination loan defaults; 19-48% of the budget is stranded
+- [x] **B2** The recombination loan defaults; 19-48% of the budget is stranded
+      *(also unified E_a at 50.9 MJ/kg, see D7; divergence bracket, see D8)*
 - [ ] **B3** `tab:seed_window`'s `Rm` and `tab:bag_state`'s leak are one quantity
 - [ ] **B4** The snowplow front is self-widening, which the paper does not use
 

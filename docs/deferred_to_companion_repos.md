@@ -155,3 +155,52 @@ exactly where the nozzle is most optimistic. It still holds at 0.8, by less.
 **Interim treatment:** the paper rounds to "91% against 99%" and does not
 attach a specific `eta_geom`, since the ordering holds across the range and the
 precise gap does not.
+
+---
+
+## D7. The paper's atomisation enthalpy was 50.4 MJ/kg, and nothing flagged it
+
+**Owed by:** `aim_is_all_you_need` (`docs/paper_corrections.md`)
+**Raised by:** B2, 2026-08-26
+
+A2 and A1 both introduce `E_a` = 50.9 MJ/kg, and B2 quotes the paper's own
+sentence "Breaking water into its atoms takes 50.4 MJ/kg" without asking for it
+to change. Applying the corrections as written would leave the paper stating two
+different values for one quantity, two paragraphs apart.
+
+50.9 is right. `plume_thermal.WATER_ATOMISATION_ENTHALPY` is 917 kJ/mol, which
+over 18.015 g/mol gives 50.90 MJ/kg. The paper's 50.4 implies 908 kJ/mol, about
+1.8% low.
+
+**Interim treatment:** unified at 50.9 MJ/kg, stated as 917 kJ/mol so the
+conversion is checkable, cited to `crc_handbook` (already used in the paper for
+bond energies). Both downstream claims survive unchanged: the atomisation is
+still "about 60%" of the 85.1 MJ/kg ignition bill (59.8%), and the polyethylene
+oxygen-scavenging penalty is still "about nine percent" (9.0%).
+
+---
+
+## D8. B2's cold-leg row is divergence-sensitive and the document quotes one angle
+
+**Owed by:** `puffsat_impact_simulation`
+**Raised by:** B2, 2026-08-26
+
+B2's table gives one freeze state per closing speed. `make analysis-fireball`
+brackets each over a 15-60 degree jet divergence, and three legs are insensitive
+to it while the cold one is not:
+
+| `w` [km/s] | doc | 15 deg | 45 deg | 60 deg |
+| ---: | ---: | ---: | ---: | ---: |
+| 75 | 2.35e-2 | 2.35e-2 | 2.35e-2 | 2.35e-2 |
+| 56.53 | 2.10e-2 | 1.68e-2 | 2.10e-2 | 2.10e-2 |
+| 45.58 | **1.01e-2** | 4.60e-3 | **1.13e-2** | 1.78e-2 |
+
+The store held at 45.58 km/s likewise runs 83% / 90% / 94% across the bracket
+against the document's 91.7%, and the stranded share 43.3% / 46.9% / 48.8%
+against 47.7%. The document's row matches no single angle and sits between the
+15 and 45 degree cases.
+
+**Interim treatment:** the paper prints the range across all four legs
+(0.011-0.024 kg/m^3, 90-100% held, 19-47% stranded) taken at the central 45
+degrees, so no claim depends on an angle the paper does not state. Worth saying
+in the document which angle its table is quoted at.
