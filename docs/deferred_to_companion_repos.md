@@ -103,3 +103,29 @@ Every film mass scales by the same factor 1.725, because the film goes as
 removes the requirement outright. What is still owed is a **handling-sized
 membrane model**: with no pressure to hold, the real bag is not 0 kg, and
 neither repository sizes it.
+
+---
+
+## D5. A7 says two numbers reproduce that do not
+
+**Owed by:** `aim_is_all_you_need` (`docs/paper_corrections.md`)
+**Raised by:** A7, 2026-08-26
+
+A7 closes with "Everything else in the paragraph reproduces -- 194 K
+equilibrium, 0.064 Pa, 7.4 kg/m^2/day, 0.58 kg/m^2, 1.4%." Three of those five
+do reproduce. Two do not:
+
+| quantity | paper | `make cruise-thermal` |
+| --- | ---: | ---: |
+| vapour pressure at equilibrium | 0.064 Pa | **0.0688 Pa** |
+| free-evaporation rate | 7.4 kg/m^2/day | **7.91 kg/m^2/day** |
+
+Both are about 7% low, in the same direction, which suggests one input rather
+than two errors. It is not cosmetic here, because A7's own headline conclusion
+divides by it: 41.1 / 7.91 gives the 5.2 days A7 asks the paper to print, while
+41.1 / 7.4 gives 5.6. Printing A7's corrected areal density beside the paper's
+old evaporation rate would leave the paragraph inconsistent in a new place.
+
+**Interim treatment:** the paper prints the computed 0.069 Pa and
+7.9 kg/m^2/day, so that the five-day survival follows from the numbers beside
+it. Worth checking which of the two sources is right before this is settled.
