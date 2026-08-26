@@ -99,7 +99,12 @@ caps `eta_jet`:
 
 | `w` [km/s] | 45.58 | 56.53 | 61.83 | 65.13 | 75.00 |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| `eta_chem` | 0.754 | 0.835 | 0.864 | 0.879 | 0.910 |
+| `eta_chem` | **0.731** | 0.835 | 0.864 | 0.879 | 0.910 |
+
+> **Superseded 2026-08-26 (D2).** The first cell read **~~0.754~~**, which is the
+> `k` = 7.77 value, the tolled optimum rather than the flown `k` = 8.5. The other
+> four cells were already `k` = 8.5 values. The paper landed **0.731**, which is
+> what the flown design pays. Do not re-apply 0.754; it would undo a landed fix.
 
 **Closed form**, if the paper wants to print one:
 
@@ -455,7 +460,29 @@ kg/m³** with **90–100% of the store still held**:
 | ---: | ---: | ---: | ---: | ---: |
 | 75 | 2.35e-2 | 16 063 K | 100% | 19.2% of the dissipated budget |
 | 56.53 | 2.10e-2 | 11 271 K | 100% | 33.9% |
-| 45.58 | 1.01e-2 | 3 908 K | 91.7% | 47.7% |
+| 45.58 | **1.1322e-2** | **4292 K** | **90.05%** | **46.9%** |
+
+> **Cold-leg row regenerated 2026-08-26 (D8).** It formerly read
+> ~~1.01e-2 kg/m³, 3908 K, 91.7% held, 47.7% stranded~~. That was a **stale run**,
+> not an unlabelled angle: it sits between 15° and 45° in density and temperature
+> but between 45° and 60° in held fraction, so no current cell reproduces it. The
+> sweep has **two** axes, and both must be named. `half_angle_deg` and `partner`
+> (the recombination partner, `H` optimistic and shipped by default, `OH`
+> conservative) are explicit columns in `python -m puffsat.fireball` and in
+> `data/results/fireball_freeze.csv`. Re-run in full at `0216a09`:
+>
+> | 45.58 km/s | `rho` at freeze | `T` | held | stranded |
+> | --- | ---: | ---: | ---: | ---: |
+> | 15°, partner H | 4.598e-3 | 3803 K | 83.14% | 43.3% |
+> | **45°, partner H (shipped default)** | **1.1322e-2** | **4292 K** | **90.05%** | **46.9%** |
+> | 60°, partner H | 1.7766e-2 | 4667 K | 93.67% | 48.8% |
+> | any angle, partner OH | 1.8713e-1 | 12 658 K | 99.93% | 52.0% |
+>
+> **The paper body is right and must not be touched.** Its printed ranges of
+> 0.011--0.024 kg/m³, 90--100% held and 19--47% stranded are exactly the
+> 45°/partner-H column across all four legs, re-verified cell by cell. Only this
+> document was stale. Reproduce with `make analysis-fireball` in
+> `puffsat_impact_simulation`.
 
 **The paper already flags the condition** — *"we have not computed the density a
 real pulse produces"* — so the correction is that it has now been computed and

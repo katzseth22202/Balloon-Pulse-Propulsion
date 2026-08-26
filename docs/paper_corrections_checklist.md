@@ -78,3 +78,24 @@ dependencies installed by `uv`. All reproduce the corrections document.
 | `make nozzle-geom` | A4, A6, B4 | reproduces |
 | `make two-wave` | A1, C3, `tab:space_mortgage_growth` | reproduces |
 | `make two-leg` | C1, `tab:two_leg_growth` | reproduces |
+
+## D. Items deferred to the companion repos
+
+Raised in `docs/deferred_to_companion_repos.md` while applying A--E, worked in
+the companions on 2026-08-26, and applied back here the same day. Five paper
+edits fell out (P0--P4); that document's "What landed" table is the record.
+
+- [x] **P0** Strike the two stale rows in `paper_corrections.md`
+      *(B2's cold-leg row regenerated with both sweep axes labelled; A1's `eta_chem` 0.754 -> 0.731)*
+- [x] **P1** The conductivity cliff is 2450 K, not 2570, and the gap is ~1350 K
+      *(2570 came from interpolating the table; the paper now says so and gives the band)*
+- [x] **P2** Name the elasticity the plate column is priced at
+      *(clause already landed under C1; the same sentence had the two chains swapped, now corrected)*
+- [x] **P3** Requote the bag film on the handling floor, not the pressure vessel
+      *(printed as the 6-25 um gauge band; no Echo 1 citation could be verified)*
+- [x] **P4** `tab:seed_window`'s `Rm` column moves with the stated `vL`
+      *(no-op: A9 had already regenerated the table at vL = 7.4e4)*
+
+One item outside D1--D9 was found and deliberately left alone: `sec:axial_bag`'s
+"0.8 kg more film" does not reproduce from any row of `tab:axial_bag`. See the
+deferred document's "One thing left alone".
