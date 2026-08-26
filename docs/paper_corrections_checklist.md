@@ -25,7 +25,7 @@ column A8 asks about, so doing A3 first makes both cheaper.
       *(model stated and column regenerated at A3's vapour fraction)*
 - [x] **A9** `tab:seed_window`'s `Rm` column is not one expansion
       *(regenerated at vL = 7.4e4; sigma column added; floor moves 3300 -> 3800 K)*
-- [ ] **A10** The radiated-loss column is a cold-pulse figure, not a burn-wide one
+- [x] **A10** The radiated-loss column is a cold-pulse figure, not a burn-wide one
 - [ ] **A11** State the optical-thickness convention (diameter, not radius)
 
 ## B. Arguments that reach the right answer by the wrong route
