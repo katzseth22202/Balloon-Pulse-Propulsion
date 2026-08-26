@@ -30,7 +30,8 @@ column A8 asks about, so doing A3 first makes both cheaper.
 
 ## B. Arguments that reach the right answer by the wrong route
 
-- [ ] **B1** The aperture argument is about neutrals, not open area
+- [x] **B1** The aperture argument is about neutrals, not open area
+      *(growth figures quoted at eta_geom = 1 in the source, see D6)*
 - [ ] **B2** The recombination loan defaults; 19-48% of the budget is stranded
 - [ ] **B3** `tab:seed_window`'s `Rm` and `tab:bag_state`'s leak are one quantity
 - [ ] **B4** The snowplow front is self-widening, which the paper does not use

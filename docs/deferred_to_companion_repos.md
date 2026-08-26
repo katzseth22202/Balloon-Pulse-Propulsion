@@ -129,3 +129,29 @@ old evaporation rate would leave the paragraph inconsistent in a new place.
 **Interim treatment:** the paper prints the computed 0.069 Pa and
 7.9 kg/m^2/day, so that the five-day survival follows from the numbers beside
 it. Worth checking which of the two sources is right before this is settled.
+
+---
+
+## D6. B1's growth comparison is quoted at `eta_geom` = 1 without saying so
+
+**Owed by:** `aim_is_all_you_need` (`docs/paper_corrections.md`)
+**Raised by:** B1, 2026-08-26
+
+B1 closes with "99.4% of achievable growth against 91.7%" for the compact
+arrival against the wide one. Repricing on the flown chain reproduces the first
+number and very nearly the second, but only at `eta_geom` = 1:
+
+| | `eta_geom` = 1 | `eta_geom` = 0.8 |
+| --- | ---: | ---: |
+| optimum `k` | 6.75 | 7.45 |
+| `k` = 7.21, compact | **99.4%** | 99.7% |
+| `k` = 8.69, full bore | **91.0%** | 93.4% |
+
+Two things the sentence does not carry. The comparison is against a **full-bore**
+arrival at `k` = 8.69, not against the `k` = 8.60 it names (which is `r/R` = 0.8);
+and the spread narrows as `eta_geom` falls, so the argument is at its strongest
+exactly where the nozzle is most optimistic. It still holds at 0.8, by less.
+
+**Interim treatment:** the paper rounds to "91% against 99%" and does not
+attach a specific `eta_geom`, since the ordering holds across the range and the
+precise gap does not.
