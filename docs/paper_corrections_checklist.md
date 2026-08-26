@@ -21,7 +21,8 @@ column A8 asks about, so doing A3 first makes both cheaper.
 - [x] **A6** The mirror passage needs `gamma` = 1.2 and its 56 km/s closing speed stated
 - [x] **A7** Ice rod is 41 kg/m^2, not 55, and lasts five days, not a week
       *(also corrects the evaporation rate, see D5)*
-- [ ] **A8** `tab:bag_sizing`'s mist column has no stated model
+- [x] **A8** `tab:bag_sizing`'s mist column has no stated model
+      *(model stated and column regenerated at A3's vapour fraction)*
 - [ ] **A9** `tab:seed_window`'s `Rm` column is not one expansion
 - [ ] **A10** The radiated-loss column is a cold-pulse figure, not a burn-wide one
 - [ ] **A11** State the optical-thickness convention (diameter, not radius)
