@@ -204,3 +204,27 @@ against 47.7%. The document's row matches no single angle and sits between the
 (0.011-0.024 kg/m^3, 90-100% held, 19-47% stranded) taken at the central 45
 degrees, so no claim depends on an angle the paper does not state. Worth saying
 in the document which angle its table is quoted at.
+
+---
+
+## D9. B3's conductivity cliff is quoted at the old `vL`
+
+**Owed by:** `aim_is_all_you_need` (`docs/paper_corrections.md`)
+**Raised by:** B3, 2026-08-26
+
+B3 asks the paper to state that "`Rm` = 1 at ~2845 K". That figure comes from
+Study 1's regenerated `tab:seed_window`, which was computed at `vL` = 1.81e4.
+A9 has the paper state `vL` = 7.4e4 instead, from the solved expansion, and at
+that value the crossing moves to **2568 K**. The two corrections cannot both be
+applied as written without the paper quoting a cliff inconsistent with the `vL`
+it prints two paragraphs earlier.
+
+B3's companion claim, that the paper's revised floor "sits just above it", also
+changes size. With A9's floor at 3800 K and the cliff at 2568 K the gap is about
+1200 K, not the ~455 K the document's pair implies.
+
+**Interim treatment:** the paper states ~2570 K, consistent with the `vL` it
+prints, and describes the floor as sitting some twelve hundred kelvin above the
+cliff. The qualitative point B3 wants is unchanged and slightly stronger: the
+leak binds well before the field loses grip, so the cliff is not what
+constrains the design.
