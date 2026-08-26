@@ -36,7 +36,7 @@ column A8 asks about, so doing A3 first makes both cheaper.
       *(also unified E_a at 50.9 MJ/kg, see D7; divergence bracket, see D8)*
 - [x] **B3** `tab:seed_window`'s `Rm` and `tab:bag_state`'s leak are one quantity
       *(cliff restated at the vL A9 prints, see D9)*
-- [ ] **B4** The snowplow front is self-widening, which the paper does not use
+- [x] **B4** The snowplow front is self-widening, which the paper does not use
 
 ## C. Framing written for arguments since retired
 
