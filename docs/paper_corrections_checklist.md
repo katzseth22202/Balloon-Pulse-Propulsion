@@ -15,7 +15,8 @@ column A8 asks about, so doing A3 first makes both cheaper.
 - [x] **A2** The gas expands at 14.1 km/s, not 17
 - [x] **A3** Field leak is 0.11-2.54%, not 4.4%, and the bag film goes to 0 kg
       *(bag requoted at Earth storage; handling-sized membrane owed, see D4)*
-- [ ] **A4** Nozzle mass floor is ~8 t, not 3.7 t, and the tape current needs naming
+- [x] **A4** Nozzle mass floor is ~8 t, not 3.7 t, and the tape current needs naming
+      *(baselined at 500 A, band 300-1000 A given)*
 - [x] **A5** `tab:bag_state`'s leak row contradicts its own arithmetic *(lapsed: A3 replaced the row)*
 - [ ] **A6** The mirror passage needs `gamma` = 1.2 and its 56 km/s closing speed stated
 - [ ] **A7** Ice rod is 41 kg/m^2, not 55, and lasts five days, not a week
