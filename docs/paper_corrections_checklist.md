@@ -10,7 +10,8 @@ column A8 asks about, so doing A3 first makes both cheaper.
 
 ## A. Numbers that are wrong or that move
 
-- [ ] **A1** Growth-table axes are `eta_geom`, not `e`; `eta_jet = eta_chem * eta_geom`
+- [x] **A1** Growth-table axes are `eta_geom`, not `e`; `eta_jet = eta_chem * eta_geom`
+      *(`tab:space_mortgage_growth` only; `tab:two_leg_growth` deferred, see D1)*
 - [ ] **A2** The gas expands at 14.1 km/s, not 17
 - [ ] **A3** Field leak is 0.11-2.54%, not 4.4%, and the bag film goes to 0 kg
 - [ ] **A4** Nozzle mass floor is ~8 t, not 3.7 t, and the tape current needs naming
@@ -32,13 +33,18 @@ column A8 asks about, so doing A3 first makes both cheaper.
 ## C. Framing written for arguments since retired
 
 - [ ] **C1** The `e1 ~ 0.6` crossover
-- [ ] **C2** Say plainly that `eta_geom` is unmeasured
+- [x] **C2** Say plainly that `eta_geom` is unmeasured *(delivered by A1's `sec:jet_efficiency` paragraph)*
 - [ ] **C3** The swept grid runs below the forward-thrust floor
 
 ## D, E. Citations and reproduction lines
 
 - [ ] **D** Cite the eight existing keys; check the three new ones before adding
 - [ ] **E** Reproduction lines on the captions of the six computed tables
+
+## Deferred
+
+Items raised here and owed back to a companion repo are recorded in
+`deferred_to_companion_repos.md`. D1 and D2 came out of A1.
 
 ## Reproduction log
 
