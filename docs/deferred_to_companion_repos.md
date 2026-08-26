@@ -69,7 +69,23 @@ Both are defensible numbers; they are answers to different questions. The
 target should take `f` as an argument, or the document should say which run it
 quotes.
 
-**Interim treatment:** decided when C1 is worked.
+**RESOLVED 2026-08-26 while working C1.** The document is right and the target's
+default is simply not what it quotes. Calling `price_chain(cycles, 1.0, 0.818,
+geometric_efficiency=eta_geom)` reproduces C1's plate column exactly: 4.244e5 at
+`eta_geom` = 0.9 against the document's 4.24e5, and 7.486e4 at 0.8 against its
+7.49e4, for ratios of 22.4x and 10.3x against its 22x and 10x. What is owed is
+one sentence in the document saying the plate column is quoted at `f` = 0.818
+rather than at the target's default 0.800; both are defensible and they answer
+different questions.
+
+**Also worth recording, because it cost time.** `price_chain`'s first positional
+argument is `recovery`, which acts *outside* the momentum debit, while
+`geometric_efficiency` acts inside it. The tolled grid holds `recovery` at 1.0
+and sweeps only `geometric_efficiency`. Passing `eta_geom` to both charges it
+twice and silently returns a much smaller number (7282 rather than 6.289e4 at
+`eta_geom` = 0.8). Nothing published here was affected, since the one figure
+taken from that call was at `eta_geom` = 1.0 where the two agree, but the trap is
+easy to fall into and the docstring does not warn about it.
 
 ---
 

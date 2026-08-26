@@ -40,7 +40,7 @@ column A8 asks about, so doing A3 first makes both cheaper.
 
 ## C. Framing written for arguments since retired
 
-- [ ] **C1** The `e1 ~ 0.6` crossover
+- [x] **C1** The `e1 ~ 0.6` crossover *(objection retracted; D3 resolved)*
 - [x] **C2** Say plainly that `eta_geom` is unmeasured *(delivered by A1's `sec:jet_efficiency` paragraph)*
 - [ ] **C3** The swept grid runs below the forward-thrust floor
 
