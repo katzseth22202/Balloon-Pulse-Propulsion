@@ -47,8 +47,9 @@ column A8 asks about, so doing A3 first makes both cheaper.
 
 ## D, E. Citations and reproduction lines
 
-- [ ] **D** Cite the eight existing keys; check the three new ones before adding
-- [ ] **E** Reproduction lines on the captions of the six computed tables
+- [x] **D** Cite the eight existing keys; check the three new ones before adding
+      *(all three verified against the primary literature before adding, not pasted)*
+- [x] **E** Reproduction lines on the captions of the six computed tables
 
 ## Citation audit
 
