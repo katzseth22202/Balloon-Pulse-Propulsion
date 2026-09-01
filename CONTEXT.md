@@ -272,10 +272,39 @@ component plus a ~28 km/s outbound radial component), which spends more PuffSats
 the doubling factor below two. ~0.85 yr; the aphelion is the knob that closes the geometry.
 (3) *Gravity-assist resonant return* (Venus/Earth flyby): impulse-free phasing, ~1--2 yr,
 constrained by flyby timing.
+(4) *Split dive* (fly (2)'s outbound ellipse, but pay only part of the boost at Earth and
+the rest out at aphelion): cheaper on impulse and on launched slug than (2), at a longer
+clock, and it needs a second node out at ~1.96 AU. See **Split dive** below.
 _Avoid_: calling phasing impossible or requiring a "rocket burn" (PuffSat collisions
 provide all impulses); presenting apoapsis-raising as the default; rotating the argument of
 periapsis for a *fast* dive (no in-plane solution when launching from the aphelion of a
 deep diver).
+
+**Split dive** (`sec:split_dive`):
+The **phasing loop**'s fourth realization. Fly the **single-impulse resonant dive**'s
+outbound ellipse, but spend only part of the Earth boost there and take the rest out at
+aphelion, where the vehicle is slow and reshaping the orbit is cheap. Parametrised by the
+**outbound perihelion** `q`, the perihelion of the ellipse the Earth burn buys; at
+`q` = 4 R☉ the far burn is zero and the family reduces exactly to the single-impulse dive.
+Injecting 1 AU to 4 R☉ is a 54:1 radius ratio, far past the ~15.6:1 where bi-elliptic always
+wins: 24.09 km/s direct, 16.94 through 3 AU, floor `(sqrt 2 - 1) v_earth` = 12.34.
+_Avoid_: presenting the outbound leg as the novelty (the single-impulse dive is *already* a
+raise-then-drop, aphelion 1.9259 AU, boost 28.80 radial + 24.07 retrograde; only the
+*splitting* is new); confusing it with the **two-wave departure**, which splits an
+Earth-orbit burn across days for an arrival-angle reason, not a heliocentric one across
+months for an Oberth reason.
+
+**Partial split** (`q` ~ 0.4918 AU):
+The interior optimum on the Earth re-intercept closure curve: doubling 0.2969 yr against the
+paper's 0.3048, and 1.536 kg of launched slug per delivered kg against 2.365, at `k` = 30,
+`eta_jet^2` = 0.60 and node survival 0.60. Better on **both axes the ledger scores** — and
+the ledger charges the impactors *consumed* at the far node while charging nothing for
+**delivering them to 1.96 AU**, which the returning beam does not reach. **The dominance
+claim is held until that delivery is priced** (`docs/adr/0007`, deferred item S1). The pure bi-elliptic end of the same family
+(`q` = 0.99 AU) is 6% *worse* on doubling than the paper's dive.
+_Avoid_: "free", "costs nothing" or "strictly dominating" while the far-node delivery is
+unpriced; assuming a cheaper injection must be a better one (the curve's own far end
+disproves it).
 
 **Re-intercept cycle floor (~0.82 yr)**:
 The shortest Earth-to-Earth solar-dive cycle that actually re-intercepts Earth, set by the
@@ -313,7 +342,7 @@ else. 4 R☉ against 32 R☉: solar flux 64x, equilibrium temperature 2.83x, nod
 _Avoid_: presenting the shallow node as the safe default; it is the marginal one, and depth
 wins on three independent axes (Oberth leverage, node exhaust speed, and departure cant).
 
-**Split push** (**two-wave departure**):
+**Two-wave departure** (**split push**):
 The Earth-side departure charged from the pad and flown as two pulses about **5 days**
 apart, because its halves want opposite geometries. An **overtaking push** from the
 3.60 km/s ballistic lob to a 5-day parking orbit at 10.861 km/s runs at `theta` = 0 where
@@ -325,7 +354,10 @@ stream is present at apoapsis. 5 days is a saturation point, not a tuned one: it
 day the re-aim eats the whole advantage.
 _Avoid_: quoting the free-parking-orbit figures (0.513 / 1.094 yr doubling), which start the
 burn at Earth escape and charge nothing for reaching it; assuming one canted push is
-equivalent (it costs 1.4x the growth at 32 R☉).
+equivalent (it costs 1.4x the growth at 32 R☉); using "split push" in prose now that the **split dive** exists, since
+the two split different burns for different reasons (days in Earth orbit for an arrival
+angle, against months in heliocentric space for an Oberth saving). The section label
+`sec:split_push` stays, so cross-references do not move.
 
 **Dive-placement floor**:
 The minimum Jupiter-arrival excess speed that can place an opposing stream at a given
@@ -337,6 +369,22 @@ depth. It needs its own departure energy (11.83 km/s of Earth excess, tangential
 own schedule.
 _Avoid_: the retired claim that one departure energy serves both streams; that was a
 statement about the floors, not about a closed cycle.
+
+**Depth conduction crossing**:
+The depth at which the **single-impulse resonant dive**'s Earth departure stops conducting,
+because that burn aims ~31 deg off the arriving stream and so runs *away* from what feeds it,
+cooling itself through the burn. **Quote it with two conditions or not at all.** Expansion
+margin: 19.80 R☉ at 1.5, 27.40 at 1.25, 40.72 at 1.0. Perihelion burn, which matters more:
+5.58 R☉ at 20 km/s, 19.80 at the paper's 35.98 tuning, 26.04 at 40, ~1.9 R☉ per km/s. The
+**split dive**'s Earth node has no crossing in 4--48 R☉ at any of these settings, because its
+burn is 3.93 km/s rather than 21.6, and its far node cannot cool itself at all (it thrusts
+within a few degrees of perpendicular to a radial beam, so closing speed moves 153.50 to
+153.17 across a 10.26 km/s burn).
+_Avoid_: reading the crossing as "the split is required to fly shallow" -- 38.15 km/s of
+perihelion burn holds the direct departure conducting out to 23 R☉, 6% more burn than the
+tuning above, and what that costs at the node is unpriced (`docs/adr/0007`, deferred item
+S2); pairing it with the Jovian pad ledger's 22.93 R☉ to make a window, since those two edges
+come from different architectures.
 
 **Expansion floor** (**conduction reserve**):
 The requirement that the plume still *conduct* when the expansion is finished, not merely
