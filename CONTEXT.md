@@ -282,6 +282,77 @@ The shortest Earth-to-Earth solar-dive cycle that actually re-intercepts Earth, 
 first phasing resonance. Supersedes the paper's earlier implied ~0.5 yr ("6 month") cycle.
 At one payload doubling per cycle, a millionfold scaling takes ~16 yr, not under a decade.
 
+### Jovian dive cycle (`sec:jovian_dive_cycle`)
+
+**Jovian dive cycle**:
+The growth cycle in which Jupiter places the solar dive *every* cycle, not just the first
+one (`sec:jupiter_gravity_initial` places only the first). Depart Earth for Jupiter, let an
+unpowered flyby drop perihelion to the chosen depth, take the Oberth boost there, cross 1 AU
+where Earth is waiting. Because the Earth-side collision only has to buy a Jupiter transfer,
+its push target falls from the **single-impulse resonant dive**'s 39.11 km/s at 200 km to
+15.24 km/s (4 R☉) or 16.66 (32 R☉). That substitution is the whole prize.
+_Avoid_: "Jupiter-only cycle" (that is `sec:jupiter_only_growth`, which has no solar node at
+all); calling it a variant of the **phasing loop** (it replaces the phasing, it does not
+phase).
+
+**Three-synodic closure (3S)**:
+The clock the Jovian dive cycle runs on. The loop must take a whole number of Earth--Jupiter
+synodic periods so the next cycle sees the same geometry, and **three is the only multiple
+that closes**, bracketed on both sides: 1S is short 101.38° of Jovian bend, 2S short 6.84°,
+and 4S needs 4.368 yr against a 3.661 yr ceiling on any zero-revolution direct transfer.
+3S is 3.2761 yr, with +58.80° of bend margin at 4 R☉ and +54.48° at 32.
+_Avoid_: treating 2S as merely worse (no perijove burn closes it at any magnitude or sign;
+only a maneuver off the flyby does, at ~2 km/s wherever it is placed).
+
+**Depth dial**:
+Perihelion read as a continuous knob rather than a choice between two designs. Every
+node quantity moves monotonically along it, and the **cycle time does not move at all**
+(3.2761 yr at every depth), so depth trades collision violence against growth and nothing
+else. 4 R☉ against 32 R☉: solar flux 64x, equilibrium temperature 2.83x, node closing speed
+2.87x, energy thermalised per kilogram 8.2x, rendezvous timing tolerance 2.87x.
+_Avoid_: presenting the shallow node as the safe default; it is the marginal one, and depth
+wins on three independent axes (Oberth leverage, node exhaust speed, and departure cant).
+
+**Split push** (**two-wave departure**):
+The Earth-side departure charged from the pad and flown as two pulses about **5 days**
+apart, because its halves want opposite geometries. An **overtaking push** from the
+3.60 km/s ballistic lob to a 5-day parking orbit at 10.861 km/s runs at `theta` = 0 where
+the impactor's momentum *adds* (`beta` = 3.39 at `k` = 8.5); the **canted departure leg**
+must leave along the aim the three-synodic closure demands (`beta` = 1.67 at 124.8°). The
+**apoapsis re-aim** between them costs `2 v_apo sin(cant/2)`, flown on methalox because no
+stream is present at apoapsis. 5 days is a saturation point, not a tuned one: it captures
+95% of what 40 days offers while Earth advances 4.93° instead of 39.43°, and below half a
+day the re-aim eats the whole advantage.
+_Avoid_: quoting the free-parking-orbit figures (0.513 / 1.094 yr doubling), which start the
+burn at Earth escape and charge nothing for reaching it; assuming one canted push is
+equivalent (it costs 1.4x the growth at 32 R☉).
+
+**Dive-placement floor**:
+The minimum Jupiter-arrival excess speed that can place an opposing stream at a given
+perihelion, since an unpowered flyby rotates the arrival vector but never rescales it.
+Prograde / radial / retrograde: 11.96 / 13.06 / 14.16 km/s at 4 R☉, spreading to
+9.98 / 13.06 / 16.14 at 32. **Neither cycle's own arrival reaches its retrograde floor**
+(12.17 and 10.95 km/s), so the opposing stream cannot ride the payload's cycle at either
+depth. It needs its own departure energy (11.83 km/s of Earth excess, tangential) and its
+own schedule.
+_Avoid_: the retired claim that one departure energy serves both streams; that was a
+statement about the floors, not about a closed cycle.
+
+**Expansion floor** (**conduction reserve**):
+The requirement that the plume still *conduct* when the expansion is finished, not merely
+ignite when the blob merges. A magnetic nozzle works by letting the plume expand, which
+cools it, so a blob sitting on the ignition window's upper root lights and then falls out of
+conduction the moment the field takes work out of it. Written as a ceiling,
+`eta_jet^2 <= (k/(1+k))(1 - reserve/eps_th)`. The **reserve is a bracket, and the companion
+repo's 15,000 K default is not this paper's requirement**: `sec:watering_it_down` puts the
+`Rm = 1` cliff at 2450 K and the binding leak limit at 3800 K, and the 15,000 K figure is the
+plume's *state* at the coldest Jupiter pulse rather than a floor. Water reserve runs 84.41
+MJ/kg at 15,000 K, 61.31 at 3800.
+_Avoid_: reading 15,000 K as a nozzle requirement; charging argon's ionisation as a frozen
+toll (three-body electron-ion recombination goes as `n_e^2` with `alpha ~ T_e^-4.5`, giving
+nanoseconds at 0.32 kg/m³ against a ~100 µs expansion, so it *accelerates* as the plume
+cools and the energy returns inside the nozzle).
+
 ### Interception navigation (near-term LEO)
 
 **Common-mode error**:
