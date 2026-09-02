@@ -479,7 +479,8 @@ stream is present at apoapsis. 5 days is a saturation point, not a tuned one: it
 day the re-aim eats the whole advantage.
 _Avoid_: quoting the free-parking-orbit figures (0.513 / 1.094 yr doubling), which start the
 burn at Earth escape and charge nothing for reaching it; assuming one canted push is
-equivalent (it costs 1.4x the growth at 32 R☉); using "split push" in prose now that the **split dive** exists, since
+equivalent (it costs 1.4x the growth at 32 R☉); using "split push" in prose now that the **split dive** and the Jupiter-side
+**growth wave / departure wave** split exist, since
 the two split different burns for different reasons (days in Earth orbit for an arrival
 angle, against months in heliocentric space for an Oberth saving). The section label
 `sec:split_push` stays, so cross-references do not move.
@@ -1144,6 +1145,60 @@ Both follow from one cause: squeezing Earth -> Jupiter -> Earth into two synodic
 more energetic transfer, which costs more to depart on *and* comes home faster. The 3S cycles are
 the cheap-to-leave, slow-to-return ones, and they cap the fleet at `k1 = 10.21` where the best 2S
 cycle alone would allow 15.32.
+
+**Growth wave vs departure wave** (`sec:jupiter_only_growth`, `sec:split_tail`; named in the
+2026-09-02 grill):
+The Jupiter-only chain's departing batch splits **at Jupiter** into two waves that reach Earth one
+parking-orbit period apart. The **growth wave** arrives first and pushes the newly lofted payload
+from rest into the parking orbit (leg 1, the overtake, recovery `e1`). The **departure wave**
+arrives one parking orbit later and is fed to the magnetic nozzle to throw that payload back to
+Jupiter (leg 2, head-on, recovery `e2`). The gap between them **is** the parking-orbit period.
+Pulling the growth wave that far ahead of the departure wave costs the **separation burn**.
+_Avoid_: calling this a "two-wave split" or "split push" in prose. **Two-wave departure**
+(`sec:split_push`) is a different maneuver in a different cycle, the Jovian dive's *Earth*
+departure flown as two pulses ~5 days apart. Also avoid the companion's name **nozzle wave** for
+the second one: both legs of this chain run a magnetic nozzle, which is exactly why
+`tab:two_leg_growth` sweeps `e1` and `e2` separately.
+
+**The split gap is 10 days in this chain, 20 in the wider architecture** (settled 2026-09-02 after
+the paper was migrated to 20 days and reverted):
+`two_wave_growth.DEFAULT_SPLIT_DAYS` is **10** per companion ADR 0013, and the paper carries 10.
+`astro_constants.PUFFSAT_CYCLE_ORBIT_PERIOD` is **20 days**, and `sep_split_correction` defaults
+to 20. Both are real; they belong to different cycles. 10 and 20 days are within 0.7% on doubling
+(1.737 vs 1.749 yr), because a longer parking orbit buys a cheaper apoapsis re-aim and pays for it
+with a larger separation burn.
+_Avoid_: moving the paper to 20 days. It looks like a three-number edit and is not. The split gap
+only reshapes the **growth wave**, so at 20 days its collision speeds rise (2S 61.83-65.13 ->
+63.56-66.77; 3S 56.53-57.43 -> 58.44-59.29), the coldest growth push goes 45.58 -> 47.49 km/s, and
+that cold end is the design point for the **entire plume and bag thermal chapter** in 11 places
+(liner load, radiative share, `tab:axial_bag`, ionization history, field leak, `eta_chem`, the
+shocked-layer 1040 MJ/kg, and two appendix tables). A hotter pulse ignites more easily but
+radiates as `T^4`, so the thermal margins move the *wrong* way. Departure-wave figures do not move
+at all (`v_b` 54.49-63.31, departure burns 5.32-7.17).
+
+**The split tail, and why low thrust cannot buy it** (`sec:split_tail`; landed 2026-09-02 from
+companion ADR 0026, re-run at the paper's 10-day gap because the ADR published only 20-day figures):
+The separation burn's cost is **bimodal**. Eight cycles buy the head start for under 0.3 m/s; three
+pay 398.5, 556.0 and 1011.3 m/s, all three with the growth wave pinned at the 1.056 `R_J` perijove
+floor. The residue is an **angle**, not a speed mismatch, so on two of the three no flyby change
+helps at all. Worst total correction 1029.8 m/s (2036-09-07), 26% of the wave as methalox.
+**Pay the tail, do not dodge it.** A stricter cadence that also refuses 2S when the growth wave
+would pay holds every correction under 1.51 m/s and doubles in 1.863 yr against 1.737, so dodging
+costs **7.3% of the clock**: it fits 10 cycles into the same 28.39 yr where the flown rule fits 11,
+and a cycle is worth ~2.9x.
+**The propellant flips which cadence wins**, which is the finding. Never-fall-back is worst on
+methalox (2.270 yr, corrections to 5.04 km/s leaving a fifth of the wave) and best on argon
+(1.501); charged for its 7.7 MW array it loses the lead again by 20 kg/kW.
+**Low thrust cannot buy the tail.** `a = 2 eta P / (m v_e)`, so at eta = 0.5 acceleration is
+specific power over exhaust speed: 1 W/kg buys 5.1e-5 m/s^2 at 1 AU. The worst cycle needs
+8.02e-5, i.e. **1.57 kW per tonne of wave**, 0.79 MW at the 500 t reference, ~60 flight-class
+12.5 kW Hall thrusters. The array fraction is scale-invariant, 2.4% at 15 kg/kW. Net of its own
+array argon is worth **1.1%** in doubling, and the departure wave's array is still uncharged.
+_Avoid_: saying the split spacing "pushes us to the 3S cycle" -- that is the policy the work
+**rejected**, not the finding. Benchmarking the array against small deep-space probes (Psyche,
+Dawn): the blocker is **absolute** power, ~0.8 MW built and expended every 2.18 yr, not W/kg.
+Quoting ADR 0026's 8.2x shortfall, 1.61 MW, 2089 m/s worst cycle or 3.7% argon gain: those are its
+**20-day** run and do not describe the chain the paper flies.
 
 **Ignition bill**: 84.41 MJ/kg for water with a 1% potassium seed at 15,000 K. Atomisation
 (H2O -> 2H + O) is **59.7%**, translational 36.7%, vaporisation 3.5%, seed ionisation **0.13%**.

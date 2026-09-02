@@ -102,3 +102,44 @@ Three things landed that were not on this list.
 
 The restructure this document's S3 entry said it was blocking is **retired rather than
 executed**; see `docs/adr/0007`'s resolution section for why.
+
+---
+
+## S4. Record the 10-day SEP-versus-methalox run
+
+Raised 2026-09-02 while landing companion ADR 0026 into `sec:split_tail`.
+
+Target repo: `katzseth22202/aim_is_all_you_need`, module `src/sep_split_correction.py`.
+
+**Why.** ADR 0026 is computed at a **20-day** split gap (`PUFFSAT_CYCLE_ORBIT_PERIOD`), but the
+paper and `two_wave_growth.DEFAULT_SPLIT_DAYS` both carry **10 days** per ADR 0013. Migrating the
+paper to 20 days was attempted and reverted: the gap only reshapes the growth wave, so at 20 days
+the coldest growth push moves 45.58 -> 47.49 km/s, and that cold end is the design point for the
+entire plume-and-bag thermal chapter in 11 places. A hotter pulse radiates as `T^4`, so the move
+reopens thermal margins rather than merely refreshing numbers.
+
+**What was done here.** `analyze_sep_split(split_days=10.0)` was run and `sec:split_tail` is
+written from it. It reproduces ADR 0013 exactly (separation burns 398.5 / 556.0 / 1011.3 m/s,
+chain mean 0.179 km/s), so the harness is sound at both gaps.
+
+**What is wanted.** A short amendment to ADR 0026, or a new ADR, recording the 10-day column
+alongside the 20-day one, and a `make sep-split` invocation the paper's caption can name. The
+figures the paper now cites are below.
+
+| quantity | 10 d (paper) | 20 d (ADR 0026) |
+| --- | ---: | ---: |
+| worst separation burn | 1011.3 m/s | 2089.4 m/s |
+| worst total correction | 1029.8 m/s | 2107.9 m/s |
+| adaptive doubling, methalox | 1.737 yr | 1.749 yr |
+| stricter cadence doubling | 1.863 yr (10 cycles, 4x2S+6x3S) | 1.907 yr (9 cycles, 2x2S+7x3S) |
+| cost of dodging the tail | 7.3% of clock | 9.0% |
+| never-fall-back, methalox / argon | 2.270 / 1.501 yr | 2.686 / 1.468 yr |
+| required specific power | 1.57 kW/t | 3.22 kW/t |
+| power at 500 t reference | 0.79 MW | 1.61 MW |
+| array fraction at 15 kg/kW | 2.4% | 4.83% |
+| argon gain net of its array | 1.1% | 3.7% |
+
+**Also worth recording.** ADR 0026's `STATED_ACCELERATION_1AU = 2.0e-5` is described as the
+design's operating point, but nothing in `templateArxiv.tex` states it, and the module's own
+comment shows it disagrees both with its Jupiter counterpart and with 100 kW on a 500 t wave. The
+paper therefore states the requirement directly and quotes no shortfall ratio against it.
