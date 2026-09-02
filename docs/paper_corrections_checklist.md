@@ -11,7 +11,7 @@ column A8 asks about, so doing A3 first makes both cheaper.
 ## A. Numbers that are wrong or that move
 
 - [x] **A1** Growth-table axes are `eta_geom`, not `e`; `eta_jet = eta_chem * eta_geom`
-      *(`tab:space_mortgage_growth` only; `tab:two_leg_growth` deferred, see D1)*
+      *(`tab:mass_interest_growth` only; `tab:two_leg_growth` deferred, see D1)*
 - [x] **A2** The gas expands at 14.1 km/s, not 17
 - [x] **A3** Field leak is 0.11-2.54%, not 4.4%, and the bag film goes to 0 kg
       *(bag requoted at Earth storage; handling-sized membrane owed, see D4)*
@@ -43,7 +43,7 @@ column A8 asks about, so doing A3 first makes both cheaper.
 - [x] **C1** The `e1 ~ 0.6` crossover *(objection retracted; D3 resolved)*
 - [x] **C2** Say plainly that `eta_geom` is unmeasured *(delivered by A1's `sec:jet_efficiency` paragraph)*
 - [x] **C3** The swept grid runs below the forward-thrust floor
-      *(space_mortgage handled by A1; two_leg annotated, cannot be re-tabulated, see D1)*
+      *(mass_interest handled by A1; two_leg annotated, cannot be re-tabulated, see D1)*
 
 ## D, E. Citations and reproduction lines
 
@@ -76,7 +76,7 @@ dependencies installed by `uv`. All reproduce the corrections document.
 | `make bag-state` | A3, A5, A8, A10 | reproduces |
 | `make plume-state` | A9 | reproduces |
 | `make nozzle-geom` | A4, A6, B4 | reproduces |
-| `make two-wave` | A1, C3, `tab:space_mortgage_growth` | reproduces |
+| `make two-wave` | A1, C3, `tab:mass_interest_growth` | reproduces |
 | `make two-leg` | C1, `tab:two_leg_growth` | reproduces |
 
 ## D. Items deferred to the companion repos

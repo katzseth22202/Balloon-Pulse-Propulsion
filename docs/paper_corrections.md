@@ -82,7 +82,7 @@ or factual error, and two of them are self-contradictory within the paper:
 
 ### A1. Jet-efficiency axes are `eta_geom`, not `e`
 
-**Locate:** `grep -n "tab:space_mortgage_growth\|tab:two_leg_growth" templateArxiv.tex`
+**Locate:** `grep -n "tab:mass_interest_growth\|tab:two_leg_growth" templateArxiv.tex`
 
 **Now:** both growth tables sweep a bare `e` (recovery).
 
@@ -664,7 +664,7 @@ that regenerates it. This is the convention ADR 0015 already uses internally
 | `tab:bag_state` | Reproduce with `make bag-state`. |
 | `tab:axial_bag` | Reproduce with `make bag-state`. |
 | `tab:seed_window` | Reproduce with `make plume-state`. |
-| `tab:space_mortgage_growth` | Reproduce with `make two-wave`. |
+| `tab:mass_interest_growth` | Reproduce with `make two-wave`. |
 | `tab:two_leg_growth` | Reproduce with `make two-leg`. |
 
 All targets are in `katzseth22202/aim_is_all_you_need`; say so once, in the first

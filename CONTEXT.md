@@ -997,23 +997,30 @@ thrown payload, the same 25% propellant fraction as the transport chain) to ~\$0
 i.e. ~\$0.16/MWh raw at 150 km/s (3.1 MWh/kg), quoted in the paper as "comfortably under
 \$1/MWh" after conversion losses, against a 1¢/kWh ($10/MWh) price.
 
-**Space mortgage** (planned, `sec:jupiter_only_growth`, as a `\subsubsection` placed after the
-growth paragraph and before "Inner Planet Assist Alternatives"; title "With Space Mortgages,
-First-Time Buyers Win"):
+**Mass interest** (`sec:jupiter_only_growth`, a `\subsubsection` placed after the growth
+paragraph and before "Inner Planet Assist Alternatives"; title "Mass Interest Is Paid In
+Kilograms, And The Early Buyer Wins". Renamed from "space mortgage" 2026-09-02):
 A **mass-denominated equity stake** in the Jupiter-only growth fleet, not a launch slot and
 not a loan. The customer buys kilograms of PuffSat fleet mass; the holding compounds at the
 chain's annual growth rate (companion ADR `0013`) for as long as it stays in the loop; the
-customer redeems it as delivered payload whenever they choose to stop compounding. The
-"mortgage" is the operator side: seed launches toward Jupiter are financed against those
-subscriptions, with the in-transit fleet as the appreciating collateral. Early buyers win
+customer redeems it as delivered payload whenever they choose to stop compounding. The name
+is load-bearing in both of its ordinary senses. An *interest* is a fractional ownership claim
+(a majority interest, a working interest in a well), and *interest* is what a holding earns
+by compounding. Seed launches toward Jupiter are financed against those subscriptions on the
+operator side, with the in-transit fleet as the appreciating collateral. Early buyers win
 because their kilograms compound through more cycles, and because the data their cycles
 return raises **recovery** (`e`) for everyone after them. At the reference point
 (`e = 0.6`, `f = 0.8`) a kilogram bought into cycle 1 is a x83,070 claim by 2055 against
 ~x20 for one bought into cycle 8, at the same price.
 _Avoid_: calling it a forward contract or a prepaid launch slot (those are the rejected
-alternatives, and they make the exponential decorative rather than load-bearing); using the
-strict-mortgage framing where the *operator* is the borrower (then "first-time buyer" has no
-referent); quoting a compounding multiple without naming both `e` and `f`.
+alternatives, and they make the exponential decorative rather than load-bearing); any debt
+instrument name (**mortgage**, **bond**, **coupon**), all rejected 2026-09-02 because debt
+caps the upside, cannot return zero without meaning default, pays the same rate to cycle 1
+and cycle 8, and puts the *operator* in the borrower seat where "early buyer wins" loses its
+referent; **security** as part of the name (a regulatory category, not a name, and it
+collides with the aerospace sense of the word); quoting a compounding multiple without naming
+both `e` and `f`. First use in the paper takes the appositive "an ownership stake denominated
+in kilograms rather than dollars", which is what answers "is this a financial instrument?".
 
 **Redemption is withdrawal** (the conservation caveat the multiples rest on):
 In the two-wave ledger the parked payload splits into **craft** and **slug** and *both* go back
@@ -1027,15 +1034,16 @@ _Avoid_: presenting the multiples without the reinvestment assumption; promising
 demand during the compounding phase; adding an optimal-harvest crossover number (not computed
 in the companion repo, and quoting one would need new code in `two_wave_growth.py` first).
 
-**Register (Space Mortgages only)**: deliberately plainer than the surrounding paper. Target is
+**Register (Mass Interest only)**: deliberately plainer than the surrounding paper. Target is
 an AP-Physics student for the propulsion parts and an interested layperson for the investment
 parts. Short sentences, everyday words, the arithmetic shown rather than asserted. This is a
 local exception, not a change to the paper's voice elsewhere; the stylebook in `CLAUDE.md` still
 applies in full (no em-dashes, no colon-welded sentences, no rule-of-three, quantify don't hedge).
 
 **Numbers printed**: the multiple compounded over the **11 flown cycles / 28.3930 yr**
-(2026-11-09 to 2055-04-02), *not* ADR 0013's 30-year projection. The 30-year mortgage framing
-stays in the title and prose; every printed figure is ephemeris-verified. At the reference point
+(2026-11-09 to 2055-04-02), *not* ADR 0013's 30-year projection. The thirty-year framing is
+gone with the mortgage name (it was a caption clause justifying the round number); every
+printed figure is ephemeris-verified. At the reference point
 (`e = 0.6`, `f = 0.8`) that is **x83,070**, against x157,700 if the rate is extrapolated the last
 1.6 yr. _Avoid_: printing the projection; deriving the table from ADR 0013's rounded e-folding
 column (regenerate from `two_wave_growth.py` / `ChainGrowth.mass_after(28.3930)` instead, worth
@@ -1064,7 +1072,7 @@ Multiple of launched mass compounded over the 11 flown cycles, 28.3930 yr, 2026-
 Two cells carry the argument. **`e = 0.25, f = 0.5` returns x0.0953**, nine and a half cents on
 the dollar, the underwater case. **At `f = 0.8`, `e = 0.4` grows 28.83%/yr to x1,328 and
 `e = 0.9` grows 65.76%/yr to x1.71e6** — roughly twice the annual rate for **1,284x** the mass.
-That ratio is the compound-interest intuition the mortgage metaphor exists to carry.
+That ratio is the compound-interest intuition the **mass interest** name exists to carry.
 The chain-optimal slug ratio `k` runs 4.53 to 9.52 across the table and is interior to the
 search box everywhere.
 
@@ -1074,8 +1082,8 @@ encounter time; 8 of 11 cycles pay under 1 m/s, chain mean 0.179 km/s), and "the
 80\% of the ideal thrust" was attached to a 1.7-1.8 yr doubling that is really the `e = 0.6` row
 (`e = 0.8` doubles in 1.45 yr).
 
-**Jupiter-cycle nozzle scaling** (new paragraph in `sec:minimum_nozzle`, pointed to from Space
-Mortgages):
+**Jupiter-cycle nozzle scaling** (new paragraph in `sec:minimum_nozzle`, pointed to from Mass
+Interest):
 `sec:minimum_nozzle`'s "hundreds of tonnes of payload, better still more than a thousand"
 amortization floor was drawn for the **near-Sun** pulse and does not bind the Jupiter-only
 outbound leg. At `k = 8.53` the arriving kilogram vaporises 8.53 kg of slug, so the reduced
@@ -1084,7 +1092,7 @@ mass is 0.895 kg and a 75 km/s closure carries **2.52 GJ**, against **477 GJ** f
 energy, and the Mini-Mag anchor of ~200 t for 340 GJ, that is **~1.5 t of coils** against
 ~281 t. The nozzle is then 14.8% of a 10 t craft, **4.9% of a 30 t craft**, 1.5% of a 100 t
 one, so the seed vehicle is Starship-class rather than thousand-tonne-class. This is what makes
-the **space mortgage** fund something buildable.
+the **mass interest** fund something buildable.
 Ionization check, at AP-Physics register and verifiable in one line: specific kinetic energy
 `½v²` spread over carbon atoms gives ~**4 eV/atom at 8 km/s** (below carbon's 11.26 eV first
 ionization, matching the paper's "weakly ionized" low-orbit gas) and ~**350 eV/atom at
@@ -1387,7 +1395,7 @@ paragraph predated the anchor and never followed it. The stated "factor of 189" 
   energy that never pushes on it: the field stands off *pressure*, pressure is translation only, and
   dissociation plus ionisation carry none. Paper now says **tens of tonnes** and quotes the band.
 - Downstream repaired: "5% of a 30 t craft and 1.5% of a 100 t one" -> **a tenth to a third of a 100 t
-  craft**; `sec:space_mortgages`'s "on the order of a tonne" -> "tens of tonnes". The Starship-class
+  craft**; `sec:mass_interest`'s "on the order of a tonne" -> "tens of tonnes". The Starship-class
   conclusion survives; the nozzle is a serious fraction of the ship rather than a rounding error.
 _Avoid_: quoting 1.5 t; quoting the 189x factor; applying the linear Mini-Mag rule to `E_B`.
 
@@ -1469,7 +1477,7 @@ the compact impactor hits first.
   i.e. as `l^(1/2)`. **Bore and conductor trade inversely, one for one: halve the bore, double the
   tape.** Virial structure mass does not move at all, because contained energy does not move.
 - _Where we stop_: `l` = 23 m, bore 3.0 m, aspect 4. Coils ~7 m across clear a Starship fairing
-  assembled, which is what `sec:space_mortgages` already claims. Costs +20% tape.
+  assembled, which is what `sec:mass_interest` already claims. Costs +20% tape.
 - _Film cost_: pressure-vessel film mass is `F rho_f P V / sigma` with `F` a pure shape number,
   **1.5 for a sphere (hoop stress `PR/2t`) and 2.0 for a cylinder (`PR/t`)**. Capsule
   `F = (2L+2r)/(L+4r/3)`. At aspect 4, `F` = 1.88. **Film 2.8 kg -> 3.7 kg, +0.9 kg on a 213 kg slug.**
@@ -1814,7 +1822,7 @@ _What breaks_: line 790's "masses on the order of a tonne rather than hundreds o
 few Starship loads**.
 _Why 25 kg anyway_: **bigger pulses radiate less.** Radiated share goes as `M^-1/3`, so the 25 kg
 pulse loses ~1.2% where a 1 kg pulse loses ~4%. By line 972's own square-root rule that is worth
-roughly 3 points of `e2`, and `tab:space_mortgage_growth` pays orders of magnitude for points of
+roughly 3 points of `e2`, and `tab:mass_interest_growth` pays orders of magnitude for points of
 `e2`. A 37 t nozzle that recovers better beats a 1.5 t one that does not. It is also the same
 argument line 819 already makes in reverse ("a smaller fireball cools and radiates faster, so a
 scaled-down shot returns a recovery that does not carry over to flight").
@@ -1907,7 +1915,7 @@ _Avoid_: citing Kerrebrock as 1965 or Vol 3 (a real error I made from memory and
   785, 790, 1616. There was no such claim at line 157.
 - Line 1616's "about 69 km/s" -> **61** (chain mean), and line 828's "69 km/s return velocity"
   -> the 56.5--65.1 range.
-- `tab:space_mortgage_growth` top two rows refloored to **0.011/0.022/0.039/0.059** and
+- `tab:mass_interest_growth` top two rows refloored to **0.011/0.022/0.039/0.059** and
   **1.0/3.2/7.7/15**; caption now states the 1/15 ground-launch floor and that it binds only in
   those two rows. Prose at line 817 updated from `x0.095` "under ten cents" to **`x0.011`, about a
   cent on the dollar**. Everything at `e >= 0.40` is unchanged, so the **1,284x** headline stands.
@@ -1915,17 +1923,17 @@ _Avoid_: citing Kerrebrock as 1965 or Vol 3 (a real error I made from memory and
 **Both subsections are now in the paper** (2026-08-20, builds clean at **107 pp**, 0 errors, all
 five cites resolving):
 - `sec:watering_it_down` ("Watering It Down, Literally") and `sec:two_leg_nozzle` ("Two Nozzles
-  Beat a Nozzle and a Plate") sit between Space Mortgages and Inner Planet Assist Alternatives,
+  Beat a Nozzle and a Plate") sit between Mass Interest and Inner Planet Assist Alternatives,
   as `\subsubsection`s. New tables: `tab:seed_window`, `tab:bag_sizing`, `tab:two_leg_growth`,
   `tab:equivalent_plate`.
 - The old line-794 paragraph is replaced by a two-sentence pointer to both.
-- **`e -> e_2` relabel done**, 10 occurrences across `sec:space_mortgages` including the
-  `tab:space_mortgage_growth` header; the caption now says why. No bare `$e$` remains in that
+- **`e -> e_2` relabel done**, 10 occurrences across `sec:mass_interest` including the
+  `tab:mass_interest_growth` header; the caption now says why. No bare `$e$` remains in that
   subsection, and there were no `e^` exponentials in range to catch by accident.
 - Citations wired: `kerrebrock1964nonequilibrium` + `rosa1968mhd` + `messerle1995mhd` on the
   alkali-seed sentence, `crc_handbook` on the K2CO3 solubility, `molina1974ozone` on chlorine.
 
-**Outbound-leg ground-test gap** (`sec:jupiter_only_growth`, the Space Mortgages argument):
+**Outbound-leg ground-test gap** (`sec:jupiter_only_growth`, the Mass Interest argument):
 Why **recovery** (`e`) on the Jupiter-only outbound leg can only be measured by flying, which
 is what makes early cycles an asset rather than a cost. Four commitments, in this order:
 1. *Energy is explicitly conceded not to be the wall.* 70 kg at 70 km/s is 171.5 GJ, about
