@@ -79,5 +79,26 @@ present order and leads with the Delta-v family.
 
 ## What landed
 
-Nothing yet. This section is the record once the three come back, in the format
-`docs/paper_corrections_checklist.md` used for D1--D9.
+All three came back on 2026-09-02 and were applied to `templateArxiv.tex` the same day.
+Backing work is companion ADR 0024 (`make opposing-stream`) and ADR 0025 (`make
+shallow-dive`), mirrored in companion `docs/paper_changes_owed.md` P1--P6.
+
+| item | verdict | where it landed |
+| --- | --- | --- |
+| **S1** | **Reverses the claim.** Far-node delivery costs 113.20 km/s of Earth excess and delivers 1.0%; 1.536 kg/kg becomes 3.552 against the dive's 2.365 | `sec:split_dive_growth` strikes the dominance framing; `CONTEXT.md` **Partial split** and **Far-node delivery price** |
+| **S2** | **Answered against the split.** 38.10 km/s holds the direct departure conducting to the 22.93 R☉ pad floor, cycle still grows at 0.657 yr | `sec:self_cooling_departure` closing paragraphs; `CONTEXT.md` **Conducting burn** |
+| **S2 (extra)** | **Larger than S2 itself.** The stated 0.60 node survival flatters every shallow row; derived, doubling runs 0.3075 / 0.6570 / 0.9484 yr | new `tab:derived_node_survival`; `CONTEXT.md` **Stated versus derived node survival** |
+| **S3** | **Omission is real, effect is a rounding error.** Uncharged everywhere, worth under 1.2% of doubling because `k` = 30 makes it a mass question | `sec:opposing_stream_depth`, `sec:jovian_dive_open`; `CONTEXT.md` **Opposing-stream charge** |
+
+Three things landed that were not on this list.
+
+- **P1, node-depth admissibility.** The largest change of the batch and a modelling
+  constraint rather than a number. New `sec:node_depth_admissibility`, and `docs/adr/0008`.
+- **P5, the pad claim's depth.** "The split buys the pad" holds over (4, 5.58] R☉ only.
+  `sec:self_cooling_departure`'s opening.
+- **P6** turned out to be a stale note rather than a paper error. `sec:axial_bag` already
+  says 1.3 kg, which reproduces from `tab:axial_bag` as 6.2 minus 4.9. Closed in
+  `paper_corrections_checklist.md`.
+
+The restructure this document's S3 entry said it was blocking is **retired rather than
+executed**; see `docs/adr/0007`'s resolution section for why.

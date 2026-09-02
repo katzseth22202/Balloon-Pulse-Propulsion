@@ -96,6 +96,37 @@ edits fell out (P0--P4); that document's "What landed" table is the record.
 - [x] **P4** `tab:seed_window`'s `Rm` column moves with the stated `vL`
       *(no-op: A9 had already regenerated the table at vL = 7.4e4)*
 
-One item outside D1--D9 was found and deliberately left alone: `sec:axial_bag`'s
-"0.8 kg more film" does not reproduce from any row of `tab:axial_bag`. See the
-deferred document's "One thing left alone".
+One item outside D1--D9 was found and left alone at the time. `sec:axial_bag` was
+said to quote "0.8 kg more film", which reproduced from no row of `tab:axial_bag`.
+**Closed 2026-09-02, no edit needed.** The section now reads "1.3 kg more film",
+which is the 23 m row minus the sphere (6.2 - 4.9) from that table. The note also
+pointed at a "One thing left alone" section of `deferred_to_companion_repos.md`
+that no longer exists, since that file was deleted and recreated with only S1--S3.
+Both halves of the reference are retired here rather than repaired.
+
+## S. Items deferred to the companion repos, second round
+
+Raised in `deferred_to_companion_repos.md` on 2026-09-01 while applying companion
+ADR 0023, answered in the companions on 2026-09-02, applied back here the same day.
+That document's "What landed" table is the record; `docs/adr/0007` carries the
+reasoning. Six paper edits fell out (P1--P6), and two of the three answers went
+against the conclusion the hold was waiting for.
+
+- [x] **P1** Node-depth admissibility, and the plunger placement is barred
+      *(new `sec:node_depth_admissibility`; four paragraphs of plunge trade in
+      `sec:opposing_stream_depth` compress to one and the arithmetic moves to
+      `sec:arrival_angle`; `docs/adr/0008`)*
+- [x] **P2** S3 answered: the second arrival is uncharged everywhere and worth
+      under 1.2% of doubling; name the architecture the 35.48-44.94 km/s belongs to
+      *(the planned restructure is retired, not executed)*
+- [x] **P3** S2 answered: 38.10 km/s flies the direct route shallow, so the
+      crossing is about the tuning and not the architecture
+- [x] **P4** The stated 0.60 node survival flatters every shallow row
+      *(new `tab:derived_node_survival`; the 0.305-0.358 yr degradation was an
+      artefact of the held constant)*
+- [x] **P5** Bound "the split buys the pad" by its depth, (4, 5.58] R☉
+      *(and at the recommended shallow end neither architecture earns its launch)*
+- [x] **P5b** S1 answered the other way: the partial split's dominance is retired
+      *(1.536 kg/kg becomes 3.552 once the far-node delivery is charged)*
+- [x] **P6** The dangling cross-reference and the item it pointed at
+      *(no-op on the paper; see the paragraph above)*
