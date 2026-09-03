@@ -70,11 +70,17 @@ propellant is cheap. Values the paper pins implicitly: 0.77 (lunar cycle,
 `sec:no_isru_rocket`), ~0.89 required (methalox rebuttal at its
 $3200 pessimistic anchor), ~0.7 required (scale energy case). None is computed from a nozzle
 model; all are requirements, in the same sense as the radiative-escape budget of
-`sec:minimum_nozzle`. Published ceiling: Ahedo & Merino's plume efficiency of 0.63-0.83
-(power-like, so its square root bounds `η_jet`) gives a divergence-only ceiling near
-**0.79-0.91**. Axial velocity spread and other losses lower the full parameter. Their model is
-collisionless,
-electron-magnetized, current-free and low-β, so it anchors rather than settles the question.
+`sec:minimum_nozzle`. Published anchors (2026-09-03): Ahedo & Merino's plume efficiency
+of 0.63-0.83 (power-like, so its square root bounds `η_jet`) gives a divergence-only ceiling
+near **0.79-0.91**; their model is collisionless, electron-magnetized, current-free and
+low-β, so it anchors rather than settles. Hyde's 2D MHD **solenoid returns 0.65**, the
+geometry-matched **upper bound** -- Table 2.1's column is Nakashima's *plume efficiency*
+(Eq 2.8, `sum m*v_z / sum m*|v0|`), a collimation ratio, **not** the `η_th` that equals our
+`η_jet`. Only Schilling's **0.34** is `η_th` (Eq 2.10, `m*v_z/sqrt(2mE0)`, which *is*
+`<v_x>/v_g`), and it sits below our 3:1 floor. But his plume is a drift-free exploding target,
+so his **reflection baseline** is 0.50 and he reached 68% of it, against our 0.775 at 83% of
+0.93. **No published solenoid result states `η_jet` itself for a pulse like ours.** One named
+component of `η_geom` is now retired: see **detachment**.
 _Avoid_: conflating with the **fudge factor (`f`)**; calling `η_jet` an efficiency in the power
 sense; treating 3:1 as a validated optimum rather than the loss-free endpoint; conflating with
 **recovery (`e`)**, which scales the impulse *after* the momentum debit and so has no floor.
@@ -151,8 +157,89 @@ on the coil. In the **Straw Way power plant** it *guides* the plasma (a ~90° tu
 vertical tube into a horizontal, km-long MHD channel) so its kinetic energy can be
 *extracted* as electricity; here braking the plasma is the point, not conserving its
 momentum.
+Coupling has **two** sides and the paper long argued only one. `Rm` measures **grip**;
+**detachment** measures **release** (see its own entry). Pushing `Rm` up is what the design
+does on purpose, and that is exactly the knob Hoyt says causes the dominant steady-state loss.
 _Avoid_: implying it removes the momentum/mass floor (it removes ablation only); conflating
-the propulsion "reflect for thrust" role with the power-plant "guide-then-extract" role.
+the propulsion "reflect for thrust" role with the power-plant "guide-then-extract" role;
+arguing `Rm` upward without saying how the plume gets loose again.
+
+**Detachment (and magnetic drag)**:
+The release half of plasma-field coupling, and the mirror image of `Rm`. **Magnetic drag** is
+the failure mode: plume that does not let go of the diverging field lines follows them
+outward, loses axial momentum and lands off-axis. Hoyt et al. (MACH2) find it is *the* primary
+driver of steady-state nozzle efficiency; Cassibry & Wu give the release condition as the flow
+crossing from **sub-Alfvenic to super-Alfvenic**, i.e. faster than `v_A = B/sqrt(mu0*rho)`.
+Resolved 2026-09-03: **we clear it, and structurally rather than by luck.** Substituting the
+standoff condition `B^2/2mu0 = p` gives `v_A = sqrt(2p/rho) = sqrt(2 R_g T / Mbar)` --
+**density cancels exactly**, so the bag radius (tuned at length in `sec:watering_it_down`)
+does not move this number at all. `M_A` = **1.63** at the coldest pulse, **2.06** at the
+hottest, two independent routes agreeing to 3%. And since `c_s = sqrt(gamma R_g T/Mbar)`,
+`v_A/c_s = sqrt(2/gamma) = 1.095` wherever the field stands off the pressure: **in a beta ~ 1
+nozzle the Alfven surface sits ~10% past the sonic throat**, so a standoff-sized magnetic
+nozzle releases its plume exactly where a de Laval nozzle wants release. Past the last coil
+the margin only grows (`p ~ R^-5` against a vacuum field's `R^-6`). Probe:
+`todos/alfven_detachment_probe.py`.
+_Avoid_: calling this a bound on `η_geom` (clearing a necessary condition is not computing a
+value; three contributions remain, being divergence, speed spread and radiative escape);
+treating the 2450 K `Rm = 1` cliff as "the field fails" (once super-Alfvenic, letting go is
+the *intended* end state, and the floor that actually binds is the 3800 K leak limit).
+
+**Reflection baseline (`eq:reflection_baseline`)**:
+What `η_jet` would be if the nozzle only *reflected*: reverses every backward `v_z`, loses
+every transverse component. With `f_d` the share of pulse energy in bulk drift,
+`η_jet_refl = sqrt(f_d) + (1/2)*sqrt(1-f_d)` (the 1/2 is `<|cos theta|>` over a sphere; a
+Maxwellian replaces it with `sqrt(2/3pi) = 0.46`). **`f_d = 0` gives 0.50.**
+**Ours (`f_d = 0.25`) gives 0.93.** **NOT a ceiling** (corrected 2026-09-03 same day): a
+diverging field *turns* flow as well as reflecting it, converting transverse momentum to
+axial, so a good nozzle beats it -- the pulsed literature reports 0.65-0.85 collimation for
+drift-free plumes. What it measures is **how much turning the field must do**. Our ~0.775
+target sits *below* our 0.93, so we need no turning at all; a drift-free pulse wanting the
+same number must supply everything above 0.50 by turning. Derived 2026-09-03, and the single
+most useful
+number for reading the pulsed-nuclear literature against us, because it reframes every
+isotropic-burst result at once: Schilling's 0.34 is **68% of his own ceiling**, our sweep
+value 0.775 is **83% of ours**. The two designs ask their nozzles for a comparable share of
+what their plume geometry hands them, and the gap is almost entirely the drift. Same asset as
+**field's share** (~1/2 vs Mini-Mag's ~1), reached from the efficiency side instead of the
+mass side, and the reason ADR `0009` rejects the `eps_b` threshold. Probe:
+`todos/reflection_baseline.py`.
+_Avoid_: calling it a ceiling or an upper bound (a turning nozzle exceeds it); quoting it as
+an achievable `η_jet`; applying it to Mini-Mag's *mass* claim rather than to its efficiency.
+
+**`eps_b` (Zakharov rupture criterion)**:
+`eps_b = (plasma energy)/(integrated magnetic field energy)`, with a threshold separating
+*quasi-capture* (clean deflection) from *rupture* (plasma bursts the field and leaks).
+Published: **0.4** inside a solenoid, **0.1** outside, Hyde's flown design at **0.2**.
+**Our standoff sizing pins `eps_b = 1/(gamma-1) = 1.5` identically**, a tautology of the rule
+rather than a property of the magnet, since `E_field = pV` and `U = 1.5 pV`. Integrating the
+graded column's field over all space rather than over the bore alone adds 23-52% and brings it
+to **0.99-1.22**, still 2.5-3x short. Posture (ADR `0009`): **declined**, because rupture is a
+bubble-bursting failure of an isotropic ball born at a point, while our plume has a drift,
+arrives at bore diameter, and meets a field graded to the falling pressure. Exposure if wrong
+is quoted in the paper: hot-pulse structure 10-30 t becomes **37-112 t**, which would undo
+`sec:mass_interest`'s single-Starship claim. Decided by the `sec:solid_PuffSats` impact sim.
+Probes: `todos/epsilon_b_probe.py`, `todos/field_energy_integral.py`.
+_Avoid_: reporting our `eps_b` from bore field energy alone (0.99-1.22 is the honest figure,
+not 1.5); calling the criterion refuted (it is declined as non-transferring, conditionally).
+
+**Driver power (what a pulsed nuclear engine pays and we do not)**:
+Every pulsed nuclear concept must charge something to light the *next* pulse, at MJ scale on a
+~1 s turnaround. Photovoltaics and heat cycles are too heavy at that duty, so VISTA, HOPE and
+PuFF all take the energy back out of the exhaust with a **flux compression generator** (FCG):
+the plasma shoves the field ahead of itself and the changing field drives current into
+capacitors. That forces the magnet into two parts, superconducting **seed coils** holding the
+field plus conducting **thrust coils** taking the induced current. Cost: Schilling's point
+design is **35 t for 1.2 MJ**. **We build the identical two-part magnet
+(`sec:watering_it_down`, citing Romanelli) for the opposite purpose**: the copper shell exists
+to keep induced current *out* of the REBCO, and the 13.4 MW is dumped into argon, never
+banked. Our pulse is not driven, since the energy arrives in the projectile paid for by the
+orbit, so the only onboard power need is cryostats. That is **kW drawn steadily for years**,
+exactly the shape solar plus a battery fits and an FCG does not. Stated in
+`sec:epstein_drives` beside the neutron-shield argument, which has the same form.
+_Avoid_: claiming the FCG harvest is what costs those designs their nozzle efficiency (VISTA
+takes ~1% of available power, and Schilling's 0.34 is computed with no extraction at all);
+proposing we harvest our own eddy current (13.4 MW is thousands of times the cryostat load).
 
 **Field's share (of a pulse)**:
 The fraction of each pulse's collision energy the magnetic nozzle's field must actually
