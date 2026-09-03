@@ -259,6 +259,21 @@ saying "inside a solenoid" for the 0.4 (it is a cloud on the field axis); quotin
 without noting it is the flattering reading of an ambiguous denominator; calling the criterion
 refuted (it is declined as non-transferring, conditionally).
 
+**`E_B/E_p` (field-poor exposure)**:
+The inverse of `kappa`, and the same argument arriving from performance rather than rupture.
+Five sources put the nozzle optimum at field energy several times plasma energy: Nagamine 1999
+and VISTA at **5**, Hyde's flown design at 5, Inatomi 2023 simulating at 5 to peak efficiency,
+Saito 2018 **measuring** extraction saturation above **4.3**, Itadani 2018 **measuring**
+`beta ~ 10`. **Our standoff sizing puts it near 1**, so the magnet is field-poor by ~4x, and
+Inatomi's momentum efficiency at the optimum is **0.6-0.7** under our own `eq:eta_jet_def`
+against the **0.775** `sec:methalox_rebuttal` requires. Posture (ADR `0010`): **conceded**, and
+answered on **ionization**, not geometry. Every number was taken on a thin fully ionized plasma;
+ours is 0.32 kg/m^3, 1.3 eV, **5% ionized**, and a neutral feels no field at any ratio.
+_Avoid_: answering this the way `0009` answers `kappa` (Inatomi is a scaled solenoid, so the
+geometry argument does not transfer); calling the ratio speculative because the field's impulse
+magnitudes diverge 3-7x (a dimensionless optimum survives calibration error, and two of the four
+sources are measurements); saying no published solenoid states `eta_jet` (Inatomi 2023 does).
+
 **Driver power (what a pulsed nuclear engine pays and we do not)**:
 Every pulsed nuclear concept must charge something to light the *next* pulse, at MJ scale on a
 ~1 s turnaround. Photovoltaics and heat cycles are too heavy at that duty, so VISTA, HOPE and
