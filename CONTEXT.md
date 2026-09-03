@@ -180,10 +180,23 @@ nozzle the Alfven surface sits ~10% past the sonic throat**, so a standoff-sized
 nozzle releases its plume exactly where a de Laval nozzle wants release. Past the last coil
 the margin only grows (`p ~ R^-5` against a vacuum field's `R^-6`). Probe:
 `todos/alfven_detachment_probe.py`.
+**Residence, not resistivity** (added 2026-09-03): the reason Schilling's plume dies is NOT
+that his coupling is lossier. His hot metal plasma at 1e5 S/m runs `Rm` ~ 300 early to 3e4
+late, against our 39-650 -- **his field grips more cleanly than ours, per interaction.** He
+loses because his plasma cannot *leave*: (a) his field has **gaps** (Ampere on a loop inside a
+32-strut cage encloses zero net current, so field lives at the struts) and he flew no liner or
+plate behind them; (b) his **strongest field is at the closed apex**, a magnetic bottle, so
+plasma driven up that gradient exits only back through the gaps. We share neither: a solenoid
+winding is continuous (walled by field, not fenced), `sec:watering_it_down` puts a pyrolytic
+graphite liner + aluminium shell behind it at a booked 4.9 kg/pulse, and the 20 T -> 5 T graded
+profile has **no local minimum**, so every gram has a downhill path out and the plume is *born*
+at the strong end rather than driven into it. A nearly lossless coupling still empties a plume
+that never leaves.
 _Avoid_: calling this a bound on `η_geom` (clearing a necessary condition is not computing a
 value; three contributions remain, being divergence, speed spread and radiative escape);
 treating the 2450 K `Rm = 1` cliff as "the field fails" (once super-Alfvenic, letting go is
-the *intended* end state, and the floor that actually binds is the 3800 K leak limit).
+the *intended* end state, and the floor that actually binds is the 3800 K leak limit); saying
+our coupling is more conservative than his (it is not -- see residence above).
 
 **Reflection baseline (`eq:reflection_baseline`)**:
 What `η_jet` would be if the nozzle only *reflected*: reverses every particle whose LAB-frame
