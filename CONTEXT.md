@@ -186,26 +186,42 @@ treating the 2450 K `Rm = 1` cliff as "the field fails" (once super-Alfvenic, le
 the *intended* end state, and the floor that actually binds is the 3800 K leak limit).
 
 **Reflection baseline (`eq:reflection_baseline`)**:
-What `η_jet` would be if the nozzle only *reflected*: reverses every backward `v_z`, loses
-every transverse component. With `f_d` the share of pulse energy in bulk drift,
-`η_jet_refl = sqrt(f_d) + (1/2)*sqrt(1-f_d)` (the 1/2 is `<|cos theta|>` over a sphere; a
-Maxwellian replaces it with `sqrt(2/3pi) = 0.46`). **`f_d = 0` gives 0.50.**
-**Ours (`f_d = 0.25`) gives 0.93.** **NOT a ceiling** (corrected 2026-09-03 same day): a
-diverging field *turns* flow as well as reflecting it, converting transverse momentum to
-axial, so a good nozzle beats it -- the pulsed literature reports 0.65-0.85 collimation for
-drift-free plumes. What it measures is **how much turning the field must do**. Our ~0.775
-target sits *below* our 0.93, so we need no turning at all; a drift-free pulse wanting the
-same number must supply everything above 0.50 by turning. Derived 2026-09-03, and the single
-most useful
-number for reading the pulsed-nuclear literature against us, because it reframes every
-isotropic-burst result at once: Schilling's 0.34 is **68% of his own ceiling**, our sweep
-value 0.775 is **83% of ours**. The two designs ask their nozzles for a comparable share of
-what their plume geometry hands them, and the gap is almost entirely the drift. Same asset as
-**field's share** (~1/2 vs Mini-Mag's ~1), reached from the efficiency side instead of the
-mass side, and the reason ADR `0009` rejects the `eps_b` threshold. Probe:
-`todos/reflection_baseline.py`.
-_Avoid_: calling it a ceiling or an upper bound (a turning nozzle exceeds it); quoting it as
-an achievable `η_jet`; applying it to Mini-Mag's *mass* claim rather than to its efficiency.
+What `η_jet` would be if the nozzle only *reflected*: reverses every particle whose LAB-frame
+axial velocity points at the ship, loses every transverse component. The mirror acts on the
+lab velocity, so **drift and thermal terms do not add** (getting this wrong was the
+2026-09-03 error, corrected same day; the bad form gave 1.06 at `f_d = 0.5`). With
+`f_d` the share of pulse energy in bulk drift,
+
+    eta_refl = 1/(2*sqrt(1-f_d))   for f_d <= 1/2
+             = sqrt(f_d)           for f_d >= 1/2
+
+giving **0.500** drift-free (0.46 Maxwellian) and rising only slowly from there.
+
+**The drift is small where we operate, and dilution spends it.** Only the projectile brings
+kinetic energy, the slug brings mass, so `f_d = 1/(1+k)`:
+
+| k | 1 | 3 | **8.5** | 24 | 30 |
+|---|---|---|---|---|---|
+| `f_d` | 0.500 | 0.250 | **0.105** | 0.040 | 0.032 |
+| baseline | 0.707 | 0.577 | **0.529** | 0.510 | 0.508 |
+
+So the collision geometry is worth **~3% at the k we fly**, not the factor of two first
+claimed. Same magnitude for **overtake as for head-on** (`|−V+u*mu|` has the same
+distribution), but the *burden* differs: head-on, a nozzle doing nothing still yields
+`+sqrt(f_d)`; overtake, doing nothing yields `−sqrt(f_d)`, so the field must reverse the
+drift too.
+
+**NOT a ceiling, and this is what actually carries the argument.** A diverging field *turns*
+flow as well as reflecting it, converting transverse momentum to axial. Every working nozzle
+sits above its own baseline: published solenoids reach 0.65-0.85 collimation on drift-free
+plumes, i.e. **130-170%** of their 0.50. Our 0.775 is **147%** of our 0.529 at k=8.5.
+**We ask a solenoid for what solenoids deliver.** Schilling's strut cage returns 68% of his,
+the only device in the comparison below a plain mirror, which indicts his topology rather
+than pulsed nozzles. Probe: `todos/reflection_baseline.py`.
+_Avoid_: calling it a ceiling or upper bound (a turning nozzle exceeds it, and ours must);
+saying "the drift is the difference" (it is ~3% at flown k; the turning is the difference);
+adding `sqrt(f_d) + (1/2)sqrt(1-f_d)` (wrong, exceeds 1); confusing it with **field's share**,
+which is the mass-side argument and legitimately uses `f_d = 0.25` at the near-Sun 3:1 mix.
 
 **`eps_b` (Zakharov rupture criterion)**:
 `eps_b = (plasma energy)/(integrated magnetic field energy)`, with a threshold separating

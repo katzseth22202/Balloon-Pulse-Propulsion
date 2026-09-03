@@ -44,9 +44,9 @@ at a point, expanding isotropically until its pressure tears open a field that w
 and left. Three features of our pulse each break that picture, and the first is the one that
 also explains Schilling's own 0.34:
 
-1. **Our plume is not isotropic.** `eq:reflection_baseline` prices this. A quarter of our
-   pulse energy is bulk drift along the thrust axis, which lifts the reflection-only baseline
-   on `eta_jet` from 0.50 to 0.93. The same drift means there is no spherically growing bubble.
+1. **Our plume is not isotropic.** The collision leaves a drift along the thrust axis, so
+   there is no spherically growing bubble. Weight this least of the three: `f_d = 1/(1+k)`,
+   which is only 0.105 at the flown k = 8.5, worth ~3% on `eq:reflection_baseline`.
 2. **It is not born at a point.** The bag (`sec:watering_it_down`) delivers the plume already
    at bore diameter, so nothing has to punch its way out to nozzle scale.
 3. **The field is not set once.** Line ~1129's graded profile (20 T at 1 m falling to 5 T at
