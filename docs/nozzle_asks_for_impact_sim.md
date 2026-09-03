@@ -82,23 +82,29 @@ the field is doing worse than a plain mirror.
 
 ---
 
-## N3. Directed column or bursting bubble? The `eps_b` question
+## N3. Directed column or bursting bubble? The `kappa` question
 
 **Priority: highest. This is the one that can move a mass number.**
 
-**Why.** Zakharov's group reports a threshold `eps_b = (plasma energy)/(integrated field
-energy)` separating clean deflection from **rupture**, where the expanding plasma bursts
-through the field and leaks. Inside a solenoid the threshold is 0.4; Hyde's flown design ran
-at 0.2. Our standoff sizing (`B^2/2mu0 = p`) pins `eps_b = 1/(gamma-1) = 1.5` identically,
-because the bore field energy is `pV` and a monatomic plume holds `1.5 pV`. That is a tautology
-of the sizing rule, not a property of the magnet, and no retuning escapes it. Integrating the
-graded column's field over all space rather than over the bore alone adds 23–52% and brings it
-to 0.99–1.22, still 2.5–3× short of the threshold.
+**Why.** Nikitin & Ponomarenko report a threshold `kappa = E_p/E_M` separating clean deflection
+from **rupture**, where the expanding plasma bursts through the field and leaks. `E_p` is the
+cloud's kinetic energy and `E_M` the dipole field energy integrated **beyond the radius the
+cloud is born at**. For a cloud on the field axis the threshold is 0.4 (Vchivkov 2003); Hyde's
+flown design ran at 0.2; the one bench measurement is 0.077 (Kawashima 2016). Our standoff
+sizing (`B^2/2mu0 = p`) pins the bore-only ratio at `1/(gamma-1) = 1.5` identically, because the
+bore field energy is `pV` and a monatomic plume holds `1.5 pV`. That is a tautology of the
+sizing rule, not a property of the magnet, and no retuning escapes it. Counting bore-downstream
+plus exterior field brings it to 0.99–1.22, and counting only field outside the plume's own
+volume gives 2.9–6.5.
 
-The paper declines the criterion on geometric grounds (`docs/adr/0009`): rupture was measured
-on a compact ball born at a point and swelling until it tears a fixed field, while ours arrives
-at bore diameter and meets a field graded to the falling pressure. That argument is prose. This
-item replaces it with a run.
+Do not call this parameter `eps_b`. That is Zakharov's separate ion-Larmor-radius ratio, and the
+paper carried the mix-up until 2026-09-03.
+
+The paper declines the criterion on two grounds (`docs/adr/0009`). The denominator presumes a
+cloud small against the field structure, which our bore-diameter plume is not, so the reading is
+ambiguous by 3–5x. And rupture was measured on a compact ball born at a point and swelling until
+it tears a fixed field, while ours arrives at bore diameter and meets a field graded to the
+falling pressure. Both arguments are prose. This item replaces them with a run.
 
 **What is wanted.** Expand the fireball inside the graded field above and report:
 1. **Maximum `beta = p/(B^2/2mu0)` reached anywhere along the trajectory**, and where.
@@ -107,13 +113,15 @@ item replaces it with a run.
 3. Whether the plume ever detaches from the bore and re-expands outside the winding.
 
 **What would settle it.** Whether the magnet is sized right at 8–15 t (cold) and 17–38 t (hot),
-or whether the field energy has to rise ~3× and take the virial floor with it. **The exposure
+or whether the field energy has to rise ~3× against the analytic 0.4, and over 10× against
+Kawashima's measured 0.077, taking the virial floor with it. **The exposure
 is 37–112 t of hot-pulse structure**, which is the difference between a seed vehicle a single
 Starship can loft and one it cannot.
 
 **Lifts.** The conditional in `sec:minimum_nozzle` ("our sizing is defensible if the plume is a
-directed expansion, and the magnet is three times too light if it behaves like a bomb"), ADR
-`0009`'s status, and `sec:mass_interest`'s single-Starship claim.
+directed expansion; if it behaves like a bomb the magnet is three times too light against the
+analytic threshold, and over ten times against the measured one"), ADR `0009`'s status, and
+`sec:mass_interest`'s single-Starship claim.
 
 ---
 
@@ -221,6 +229,6 @@ Probes live in the paper repo under `todos/` (gitignored, so copy rather than ex
 | --- | --- |
 | `reflection_baseline.py` | `eq:reflection_baseline`, `f_d(k)`, the anisotropy table of N1 |
 | `alfven_detachment_probe.py` | `v_A` two ways, `M_A`, downstream scaling |
-| `epsilon_b_probe.py` | `eps_b` against Zakharov's threshold, mass exposure |
+| `epsilon_b_probe.py` | `kappa` against the rupture threshold, mass exposure (filename predates the rename) |
 | `field_energy_integral.py` | field energy over all space for the graded column |
 | `temperature_floor_probe.py` | what the 3800 K and 2450 K floors cap in `k` |

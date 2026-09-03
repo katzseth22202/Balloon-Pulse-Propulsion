@@ -3480,7 +3480,7 @@
   address     = {Livermore, CA},
   year        = {2003},
   month       = may,
-  number      = {UCRL-LR-110500},
+  number      = {UCRL-TR-110500},
   howpublished = {\url{https://www.osti.gov/biblio/15015945}},
   note        = {Systems analysis final report. Issued as UCRL-TR-110500. Coil shield subtends a solid-angle fraction of 0.0393 at the target, masses about 505 t against a 216 t coil, and rejects about 7 GW. OSTI ID: 15015945. Accessed: 2026-07-23}
 }
@@ -4284,4 +4284,73 @@
   number      = {UCRL-88857},
   address     = {Livermore, California},
   note        = {Prepared for the 34th International Astronautical Federation Congress, Budapest, IAF-83-396.}
+}
+
+@article{nikitin1993retardation,
+  author  = {Nikitin, S. A. and Ponomarenko, A. G.},
+  title   = {Dynamics and spatial boundaries of retardation of the plasma cloud of an explosion in a dipole magnetic field},
+  journal = {Journal of Applied Mechanics and Technical Physics},
+  volume  = {34},
+  number  = {6},
+  pages   = {745--751},
+  year    = {1993},
+  doi     = {10.1007/BF00852074},
+  note    = {Origin of the parameter $\kappa = 12\pi E_p R_0^3 / \mu_0|\mu_d|^2$, the plasma cloud's kinetic energy over the dipole field energy integrated outside the sphere of radius $R_0$ on which the cloud is born. Below a critical $\kappa_c$ the field decelerates the cloud in every direction, which they call quasi-capture; above it the cloud tears through, which they call rupture.},
+}
+
+@article{vchivkov2003thrust,
+  author  = {Vchivkov, Konstantin V. and Nakashima, Hideki and Zakharov, Yuri P. and Esaki, Tomonori and Kawano, Toshihiko and Muranaka, Takanobu},
+  title   = {Laser-produced plasma experiments and particle in cell simulation to study thrust conversion processes in a laser fusion rocket},
+  journal = {Japanese Journal of Applied Physics},
+  volume  = {42},
+  number  = {10R},
+  pages   = {6590--6597},
+  year    = {2003},
+  doi     = {10.1143/JJAP.42.6590},
+  note    = {Source of $\kappa_c = 0.4$ for a plasma born on the axis of the field, as cited by Kawashima and colleagues \cite{kawashima2016structure}.},
+}
+
+@article{kawashima2016structure,
+  author  = {Kawashima, Ryosuke and Morita, Taichi and Yamamoto, Naoji and Saito, Naoya and Fujioka, Shinsuke and Nishimura, Hiroaki and Matsukuma, Hiraku and Sunahara, Atsushi and Mori, Yoshitaka and Johzaki, Tomoyuki and Nakashima, Hideki},
+  title   = {The measurement of plasma structure in a magnetic thrust chamber},
+  journal = {Plasma and Fusion Research},
+  volume  = {11},
+  pages   = {3406012},
+  year    = {2016},
+  doi     = {10.1585/pfr.11.3406012},
+  note    = {\SI{6.0}{\joule} Nd:YAG onto a \SI{500}{\micro\meter} polystyrene sphere \SI{13}{\milli\meter} from a 96-turn coil, imaged with ICCD cameras. Deceleration appears only above \SI{0.67}{\tesla}, where $\kappa = 0.077$. The authors call $\kappa_c = 0.4$ an overestimate for their geometry, since their plume leaves the target on the laser-irradiation side alone rather than expanding in every direction.},
+}
+
+@article{ogawa2026characterization,
+  author  = {Ogawa, Tomoya and Koba, Kento and Yamamoto, Naoji and Morita, Taichi},
+  title   = {Characterization of impulse and plasma expansion dynamics in a magnetic nozzle for laser fusion propulsion applications},
+  journal = {Vacuum},
+  volume  = {250},
+  pages   = {115350},
+  year    = {2026},
+  doi     = {10.1016/j.vacuum.2026.115350},
+  note    = {ISAPS 2024 special issue. The impulse bit scales as the \num{1.2} power of laser energy and the initial plasma momentum as the \num{0.85} power, so momentum efficiency should follow the \num{0.35} power. It does not, falling away at low laser energy. The authors attribute the departure to the plume's density distribution rather than to the magnetic field energy or the laser energy. The paper's own highlights state a linear dependence of impulse on laser energy, against the \num{1.2} in the abstract.},
+}
+
+@article{koba2025measurement,
+  author  = {Koba, Kento and Morita, Taichi and Nakashima, Hideki and Namba, Shinichi and Mori, Yoshitaka and Ise, Toshiyuki and Murata, Shunsuke and Sunahara, Atsushi and Kajimura, Yoshihiro and Edamoto, Masafumi and Schilling, Nathan and Yamamoto, Naoji},
+  title   = {Measurement of the impulse from a magnetic nozzle for the model experiment of laser fusion rocket},
+  journal = {High Energy Density Physics},
+  volume  = {56},
+  pages   = {101213},
+  year    = {2025},
+  doi     = {10.1016/j.hedp.2025.101213},
+  note    = {Two pendulum thrust-stand methods on one magnetic nozzle, direct with the magnet on the pendulum and indirect with a target on it, plus ion-current mapping downstream. The two methods return different impulse bits. The target method reproduces the energy dependence the simulation predicts, which the authors offer as grounds for using it in future.},
+}
+
+@article{schilling2024subscale,
+  author  = {Schilling, Nathan and Yamamoto, Naoji and Morita, Taichi and Nakashima, Hideki and Koba, Kento and Cassibry, Jason T.},
+  title   = {Sub-scale demonstration of an axial pulsed magnetic nozzle for nuclear propulsion systems},
+  journal = {JBIS -- Journal of the British Interplanetary Society},
+  volume  = {77},
+  number  = {8},
+  pages   = {277--283},
+  year    = {2024},
+  doi     = {10.59332/jbis-077-08-0277},
+  note    = {First test of the axial topology modelled in \cite{schilling2022nozzle}. A cylindrical cage \SI{0.12}{\meter} in diameter and \SI{0.12}{\meter} long with 40 struts, \SI{1}{\kilo\ampere} per strut for a \SI{1}{\tesla} field, driven by a \SI{1064}{\nano\meter} Nd:YAG laser at up to \SI{0.65}{\joule} on a \SI{0.5}{\milli\meter} spot. SPFMax predicts \SIrange{6.8}{7.3}{\micro\newton\second} of impulse for nozzle currents of \SI{0}{\ampere} and \SI{1}{\kilo\ampere}; the charge collectors read \SIrange{1.0}{2.2}{\micro\newton\second} over the same pair. The authors attribute the gap to differences between the modelled and the built setup, and to the difficulty of estimating thrust from charge-collector data.},
 }

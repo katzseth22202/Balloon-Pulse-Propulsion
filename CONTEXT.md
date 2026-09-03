@@ -236,21 +236,28 @@ saying "the drift is the difference" (it is ~3% at flown k; the turning is the d
 adding `sqrt(f_d) + (1/2)sqrt(1-f_d)` (wrong, exceeds 1); confusing it with **field's share**,
 which is the mass-side argument and legitimately uses `f_d = 0.25` at the near-Sun 3:1 mix.
 
-**`eps_b` (Zakharov rupture criterion)**:
-`eps_b = (plasma energy)/(integrated magnetic field energy)`, with a threshold separating
-*quasi-capture* (clean deflection) from *rupture* (plasma bursts the field and leaks).
-Published: **0.4** inside a solenoid, **0.1** outside, Hyde's flown design at **0.2**.
-**Our standoff sizing pins `eps_b = 1/(gamma-1) = 1.5` identically**, a tautology of the rule
-rather than a property of the magnet, since `E_field = pV` and `U = 1.5 pV`. Integrating the
-graded column's field over all space rather than over the bore alone adds 23-52% and brings it
-to **0.99-1.22**, still 2.5-3x short. Posture (ADR `0009`): **declined**, because rupture is a
-bubble-bursting failure of an isotropic ball born at a point, while our plume has a drift,
-arrives at bore diameter, and meets a field graded to the falling pressure. Exposure if wrong
-is quoted in the paper: hot-pulse structure 10-30 t becomes **37-112 t**, which would undo
-`sec:mass_interest`'s single-Starship claim. Decided by the `sec:solid_PuffSats` impact sim.
+**`kappa` (rupture criterion)**:
+`kappa = 12 pi E_p R0^3 / (mu0 |mu_d|^2) = E_p/E_M`, the cloud's **kinetic** energy over the
+**dipole** field energy integrated **beyond** radius `R0` (the coil-to-target distance), with a
+threshold separating *quasi-capture* (clean deflection) from *rupture* (plasma bursts the field
+and leaks). From **Nikitin & Ponomarenko 1993**; the value **0.4**, for a cloud born **on the
+field axis**, traces to **Vchivkov 2003**; Hyde's flown design at **0.2**; the one bench
+measurement is **0.077** (Kawashima 2016, who call 0.4 an overestimate for their own one-sided
+plume). **Our standoff sizing pins the bore-only ratio at `1/(gamma-1) = 1.5` identically**, a
+tautology of the rule rather than a property of the magnet, since `E_field = pV` and
+`U = 1.5 pV`. Counting bore-downstream plus exterior field brings it to **0.99-1.22**; counting
+only field outside the plume's own volume gives **2.9-6.5**. Posture (ADR `0009`): **declined**,
+because `kappa`'s denominator presumes a cloud small against the field structure, which our
+bore-diameter plume is not, and because rupture is a bubble-bursting failure of an isotropic
+ball born at a point. Exposure if wrong is quoted in the paper: hot-pulse structure 10-30 t
+becomes **37-112 t**, which would undo `sec:mass_interest`'s single-Starship claim. Decided by
+the `sec:solid_PuffSats` impact sim.
 Probes: `todos/epsilon_b_probe.py`, `todos/field_energy_integral.py`.
-_Avoid_: reporting our `eps_b` from bore field energy alone (0.99-1.22 is the honest figure,
-not 1.5); calling the criterion refuted (it is declined as non-transferring, conditionally).
+_Avoid_: calling it `eps_b` (that is Zakharov's separate ion-Larmor-radius parameter, ~1e-4 for
+us, and the mix-up was in the paper until 2026-09-03); crediting the criterion to Zakharov;
+saying "inside a solenoid" for the 0.4 (it is a cloud on the field axis); quoting 0.99-1.22
+without noting it is the flattering reading of an ambiguous denominator; calling the criterion
+refuted (it is declined as non-transferring, conditionally).
 
 **Driver power (what a pulsed nuclear engine pays and we do not)**:
 Every pulsed nuclear concept must charge something to light the *next* pulse, at MJ scale on a
