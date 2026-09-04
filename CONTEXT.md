@@ -1614,8 +1614,12 @@ the compact impactor hits first.
   `(gamma-1)E/V`), so `r_bore = sqrt(V/pi l)` falls as `l^(-1/2)` while REBCO tape goes as `B r l`,
   i.e. as `l^(1/2)`. **Bore and conductor trade inversely, one for one: halve the bore, double the
   tape.** Virial structure mass does not move at all, because contained energy does not move.
-- _Where we stop_: `l` = 23 m, bore 3.0 m, aspect 4. Coils ~7 m across clear a Starship fairing
-  assembled, which is what `sec:mass_interest` already claims. Costs +20% tape.
+- _Where we stop_: **`l` = 23.8 m, V = 672.9 m^3, bag bore 3.00 m, aspect 3.97** (converged
+  2026-09-04 onto the impact sim's pair; see the column-length entry below). Costs +21% tape.
+  **The winding is not the bag.** It flares 3.50 m -> 5.17 m to follow the plume's bounding flux
+  tube (ADR-0011 as amended by ADR-0012's cap), so `sec:mass_interest`'s "coils ~7 m across clear
+  a Starship fairing assembled" holds at the chamber and **fails at the 10.3 m flare exit**. The
+  paper now concedes this: the magnet ships in sections and is joined once.
 - _Film cost_: pressure-vessel film mass is `F rho_f P V / sigma` with `F` a pure shape number,
   **1.5 for a sphere (hoop stress `PR/2t`) and 2.0 for a cylinder (`PR/t`)**. Capsule
   `F = (2L+2r)/(L+4r/3)`. At aspect 4, `F` = 1.88. **Film 2.8 kg -> 3.7 kg, +0.9 kg on a 213 kg slug.**
@@ -1651,15 +1655,314 @@ the compact impactor hits first.
   ~1.4% of the rod**. Affordable, not free.
 - _You cannot funnel a wide puff into a narrow bore_. The arriving cloud is cold neutral droplets at
   122-200 K with `Rm` far below 1. The field has nothing to grip until after the collision.
-- **Graded field, ~20 T at the chamber falling to ~5 T at the throat** (decided 2026-08-21 grill).
+- **Graded field, capped at 12 T at the chamber falling to ~5 T at the throat** (cap decided
+  2026-09-04, ADR-0012; grading itself decided 2026-08-21 grill). **The 20 T nose is retired.**
+  The field's job at the chamber is wall standoff, and the front (0.15 m rod spreading at 24.9 deg)
+  is only 0.61 m across at z = 1 m with 2.4 m of clearance, so the profile was demanding its
+  strongest field where nothing needed standing off. Hold the flown profile from wall contact to
+  the exit and flatten upstream into a shelf: **12 T from 1 m to 3.12 m, then 9 T at 6 m, 5 T at
+  exit.** Buys 0.88x field energy, 9-27 t structure, 0.96x tape, and `eta_geom` does not move
+  (0.528-0.662, marginally better). **P6's realizability finding stops binding** and the
+  20 T SPARC anchor becomes a comfort rather than a requirement. 9 T is available if the front
+  really spreads at the sound speed; the paper's own 1.9x bracket puts wall contact at 3.26 m
+  needing 11.8 T, so 12 T is immune to the bracket. Asked as R9.
+  _The old entry, for reference_ (decided 2026-08-21 grill):
   Front-loading the collision means the fireball sweeps the mist as a snowplow, and the pressure it
   needs stood off falls down the bore: ~20 T at 1 m, 12 T at 3 m, 9 T at 6 m, 5 T at exit. That is a
   genuine converging-diverging magnetic nozzle profile, which the spherical bag never gave. Stored
   energy is dominated by the long low-field section, so a 20 T nose costs far less than 20 T everywhere,
   and 20 T is the SPARC-class anchor already adopted above.
+**The winding flares to follow the plume; `eq:bore_from_length` sizes the bag, not the magnet**
+(decided 2026-09-04 grill on the impact sim's nozzle answers; ADR-0011). `A/A*` is one ratio read
+two ways: `alpha_exit = 1 - (1-alpha_0) B_exit/B_start` converts the pancake, and
+`r_exit/r_start = sqrt(B_start/B_exit)` is the radial spread that buys it. **They are the same
+number, so conversion cannot be bought without spread.**
+- _The flare_: `r(z) = 3.02 sqrt(B_chamber/B(z))` + clearance. At ADR-0012's 12 T cap that is
+  **3.50 m at the chamber to 5.17 m at the throat**, costing **1.18x conductor** against the
+  original straight 3.5 m winding at the flown field (5.2/8.5 t at 500 A; the "under about 8 t"
+  floor becomes ~9.4 t; flare exit 10.3 m across). At the uncapped 20 T profile it was 6.50 m and
+  1.50x. **The cap and the flare pull against each other and the cap wins**, because a lower
+  chamber field expands the flux tubes less. The bag stays a 3.02 m x 23 m cylinder **inside** it.
+- _Why not a cylinder_: 12.9% of the plume, ~27 kg/pulse, misses a straight 3.5 m winding against
+  the **4.9 kg/pulse (2.3%) the ablation budget books**. A 6x rebooking.
+- _Why not regrade the column field_: self-defeating. Flat 20 T buys `eta_geom` 0.67-0.83 but
+  throws **58.2%** of the plume at the coils and costs 4.92x field energy (49-148 t structure,
+  past the 37-112 t ADR-0009 refused).
+- _`eta_geom` with both terms_: **0.48-0.64**, across P3's 1.44-2.00 exit-radii detachment
+  window (it peaks at 0.53-0.66 at 0.95 radii, but detachment is not ours to choose). Clears
+  `sec:mass_interest`'s floor `1/sqrt(1+k)` = 0.324; **does not reach the swept 0.775**. The
+  impact sim's P2 quotes 0.70-0.88 because `jet.py` models conversion without the spread, and
+  lumps one `A/A*` over mass that is really spread along the column. Probes:
+  `todos/fluxtube.py`, `todos/station_weighted_alpha.py`, `todos/regrade_full.py`. First order
+  (paraxial field, uniform mass, one detachment surface) and owed back to the companion repo.
+
+**A diverging section still pushes on the vehicle at high supersonic Mach** (checked 2026-09-04,
+user's question; settled, no companion ask needed). The worry is that flow at Mach 5-7 is "moving
+too fast to push". It confuses two things: **supersonic means information cannot travel upstream,
+which says nothing about local normal stress.** A wall feels static pressure wherever gas touches
+it. The axial force has a closed form with no angle in it: `dF_z = p sin(th) 2 pi r ds` with
+`ds = dz/cos(th)` collapses to **`p 2 pi r dr`, pressure over the projected annulus**, which is
+why vacuum bells are large.
+- _Numbers_, from the magnet-exit state (0.7 MPa, 0.0251 kg/m^3, Mach 2.35, `mdot` 27 800 kg/s so
+  238 kg takes 8.6 ms): at the binding 7.45x expansion the wall collects **45.8 MN**, the exhaust
+  leaves **19% faster**, and the section delivers **16% of the total impulse** at an exit Mach of
+  5.79. Confirmed two ways, pressure integral and momentum balance, agreeing to the digit.
+- _Vacuum helps rather than hurts_: separation needs wall pressure to fall below ambient and there
+  is no ambient, so a longer bell always adds, with diminishing returns and no cliff.
+  Over-expansion is a sea-level problem. `Kn` ~ 1e-6 at the 12.8 m exit, so continuum throughout.
+- _Do not add this to `eta_geom`'s gain_. Wall pressure is **how** a diverging section converts
+  thermal motion to directed motion, so the 16% and the rise in `alpha` are one effect counted
+  twice. The same holds for R11's magnetic extension, where the force lands on the coils as
+  `j x B` instead of on a bell as `p`.
+Probe: `todos/bell_thrust2.py`.
+
+**`mu` conservation is the wrong framework for this plume; it is a collisional fluid**
+(2026-09-04). `jet.py`'s docstring lists its own assumption, "the expansion is collisionless
+enough for `mu` to mean anything", and the paper's own Knudsen number violates it: **`Kn` = 5e-8
+in the bag, 4e-7 at the magnet exit, 1e-6 at an extension exit**, and this `CONTEXT.md` already
+says "mean free path ~1 um against a 3 m bore ... **this is a continuum fluid**". `mu` is a
+single-particle invariant; a parcel here collides millions of times crossing the bore.
+- _The right model_ is an ordinary de Laval nozzle with **magnetic walls** (the paper's own
+  "walled by field rather than fenced by it"). At `beta` = 0.013-0.073 the field exceeds plasma
+  pressure 15-75x, so it *is* the wall. **This changes no hardware.** The flare stays magnetic and
+  nothing physical is needed at the throat.
+- _Gas-dynamically_, `eta_geom = cos(theta)/sqrt(1 + 3/(gamma M^2))`:
+
+| station | Mach | thermal left | spread term | `cos th` | `eta_geom` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| magnet exit, no extension | 2.35 | 24.6% | 0.868 | 0.883 | 0.767 |
+| extension 2.63x | 3.83 | 10.9% | 0.944 | 0.983 | **0.928** |
+| extension 7.45x | 5.79 | 5.1% | 0.974 | 0.983 | **0.958** |
+
+- **The binding term is divergence, not speed spread.** At the magnet exit the spread term is
+  already 0.868 and `cos th` = 0.883 from free fanning is what costs.
+- _Supersedes_ the 0.48-0.64 above, which was built on `mu`. Sent back as a correction to R1.
+Probe: `todos/framework.py`.
+
+**Everything computed so far is a WATER slug; argon pays neither toll** (2026-09-04, user's
+catch; ask is R13). `sec:watering_it_down` line 1074: "A bare atom has no bonds to break, so the
+50.9 MJ/kg goes away and so does the toll `eq:eta_chem` charges for it." Ionisation is not a
+frozen toll either (three-body recombination in nanoseconds against a ~100 us expansion), so
+**`eta_chem` -> ~1 and `eta_jet` = `eta_geom`**.
+- **Water's cold leg is capped at `eta_jet` <= 0.731, below the paper's own 0.775 target, before
+  any nozzle exists.** The cold-leg shortfall is a chemistry problem, not a nozzle problem.
+- With argon the binding cold leg clears at **0.928 on the short 10.9 m extension**; R11's 30.3 m
+  case is not needed.
+- _The risk that could take it back_: argon is 25 mol/kg against dissociated water's 166, so the
+  plume "runs hotter and further ionized". Radiated power goes as `T^4`, and that share multiplies
+  every liner-load and gate figure (R12's shield count, the ablation booking, P5's margin).
+  **Argon may swap a chemical constraint for a thermal one.** Unquantified.
+_Avoid_: quoting `eta_chem` = 0.731/0.910 or `tab:mass_interest_growth`'s "0.78 to 0.91" without
+saying they are water figures.
+
+**The throat field can be reduced by moving the throat downstream** (raised 2026-09-04 by the
+user; ask is `docs/nozzle_replies_to_impact_sim.md` R11, and **it may retire R8**). P9 forbids
+flaring the same 23 m harder, because that weakens the field where the snowplow is still at the
+wall. **It does not forbid extending the magnet past the bag**, where the front has stopped
+sweeping mass and its pressure is falling. The 5 T exit field is a *collision* requirement;
+nothing downstream of z = 23 m inherits it, and the field is already 15-75x over-strength for the
+expansion there.
+- _What it takes_: `M_A = M sqrt(gamma/2) sqrt(beta)` climbs on both factors as the flare opens,
+  so `M_A` = 1 needs only **2.63x more area on the hot leg (10.9 m extension, 34 m total, 1.32x
+  conductor)** and **7.45x on the binding cold leg (30.3 m, 53 m total, 1.61x)**. Peak field
+  stays 12 T; the extension runs under 2 T so it is cheap per metre. The 3x spread between legs
+  is entirely P3's `beta` range.
+- _What it buys_: not conversion (`alpha` 0.86 vs 0.91) but **where detachment happens**. Free
+  fanning releases the plume along field lines spreading at 40-50 deg (`<cos th>` = 0.665); a
+  controlled 15 deg flare releases it pointed the right way (`<cos th>` = 0.983).
+  **`eta_geom` 0.72-0.91, `eta_jet` hot 0.66-0.83, which clears the swept 0.775 for the first
+  time.**
+- _Why it may retire the staged bell_: it is the bell's benefit obtained magnetically, with no
+  wall for plasma to push against. It also **restores `sec:jet_efficiency`'s original claim that
+  detachment happens inside the nozzle** (the claim was right, the number was wrong).
+- _The gate_: our figures are 1-D isentropic area-Mach with a cone-average divergence, cruder
+  than the flux-tube model behind the 0.48-0.64. **Nothing enters the paper until R11 lands**
+  (user's call). Probes: `todos/extension.py`, `todos/extension2.py`.
+
+**The staged nozzle is parked, gated on the sub-Alfvenic wall question** (raised 2026-09-04 by
+the user; ask is `docs/nozzle_replies_to_impact_sim.md` R8). Magnet to `A/A*` = 4 where the
+collision needs it, then a **physical bell** outside the winding for the rest of the expansion,
+with no field to weaken and no coil to protect.
+- _Why it is worth asking about_: it targets the **divergence** term, which is the largest single
+  loss in the chain. `<cos theta>` = 0.63-0.70 across the detachment window is what holds `eta_geom` to
+  0.48-0.64 against a directed bound near 0.88. A bell sets exhaust direction mechanically and does not care what the
+  field lines do. Chemical bells run ~0.98 divergence efficiency at 15 deg half-angle.
+- _Thermally it is nearly free, and this is the non-obvious part_. Pulses are ~1 ms at 2 Hz, so
+  **duty cycle 0.2%** and the time-averaged flux is 500x below peak. Pyrolytic graphite conducts
+  1700 W/m/K along its sheets, so a 1 ms pulse penetrates 1 mm and the surface spike from
+  44.6 MW/m^2 is **31 K**. **Steady-state radiative balance is the wrong model for a pulsed wall
+  and overstates the load by ~1000x.**
+- _Where the bell can start_: **7 m radius**, one metre outside the magnet exit, survives both the
+  frozen and equilibrium branches. Only the exit plane itself (6.03 m) is too hot, and only on the
+  equilibrium branch. A bell **holds** the plume rather than chasing it; left alone the plume
+  follows flux tubes to 26 m radius by detachment.
+- _The gate_: at the magnet exit the plume is **sub-Alfvenic** (`M_A` 0.35-0.58) and low-beta
+  (0.013-0.073), so a wall there pushes against the field, not against free plasma. Favourable
+  argument, uncalculated: a wall keeps `rho` up, which lowers `v_A` and raises `M_A`, so it may
+  detach the flow sooner. **Nothing enters the paper until R8 lands** (user's call, 2026-09-04).
+Probe: `todos/staged2.py`.
+
+**A magnetic trap is judged by depth, not existence, and P1 sets the threshold** (2026-09-04).
+`sec:jet_efficiency` claims the graded profile "has no local minimum anywhere along it, so nothing
+can sit in it". The impact sim's P8 tests that off-axis and answers ">= 36 coils". **Both ask the
+wrong question.** A mirror holds a particle when `sin^2(theta) > 1/R`, so the threshold is
+`R > 1/(1 - alpha)`:
+- isotropic (`alpha` = 1/3): traps once `R` > **1.50**
+- **the measured column (`alpha` = 0.088): traps once `R` > 1.096**
+
+**The pancake is trapped by a mirror five times weaker than an isotropic plume would need**, so
+P1 makes P8 harder and neither item notices. Against it, shallow ripple minima are harmless: on
+our own crude re-run over the flared, capped winding, 18 coils leaves one minimum at `R` = 1.023
+(below threshold, traps nothing) and 24 coils is clean. **Take the criterion, not our count** (our
+per-coil currents are a rough local-field match, not a winding solve). Asked back as R10.
+_Carry a caveat_: the 12 T flat shelf has **no background gradient to swamp ripple**, so minima
+will appear there that the old steep chamber profile suppressed. Believed ~1e-4 deep, but that is
+exactly where depth has to be checked rather than assumed.
+_Avoid_: stating the residence claim as "no local minimum" (it will be literally false on a flat
+shelf, and harmlessly so); quoting P8's ">= 36 coils" as current (it predates the flare and cap).
+Probe: `todos/winding.py`.
+
+**The same coils must present opposite mirror topologies on the two legs** (2026-09-04, from
+P10 and R10 together). `sec:two_leg_nozzle` already says the legs "ask for opposite shapes", and
+the mirror-ratio threshold makes that quantitative. The threshold is `R > 1/sin^2(theta)` and the
+plume's pancake sets `sin^2(theta)`:
+- **leg 2, departure** (a tube open at both ends): ripple minima **trap** the plume once
+  `R` > 1/(1 - alpha) = **1.096**. Unwanted. This is R10's criterion.
+- **leg 1, overtake** (a cup closed at the ship end): the mirror **reflects** the plume once
+  `R` > **1.449** with the drift included. Wanted, and P10 confirms it is not binding, since the
+  graded column approaches nothing like that.
+
+Same hardware, re-energised per leg, so a mirror ratio is a defect on one leg and the mechanism
+on the other. P10's arithmetic checks: `f_d` = 0.10526, `sqrt(f_d)` = 0.3244 against a 0.529
+baseline, so the nozzle supplies 0.205 head-on and 0.853 on the overtake, **4.17x the work**
+(the impact sim says 4.18).
+
+**Column length resolves in the companion repo's favour** (2026-09-04, the answer document's
+"unreconciled; pick one"). The paper *states* 23 m and 660 m^3, which give a 3.022 m bore and a
+28.7 m^2 cross-section. But the paper *quotes* a **3.0 m bore and 28 m^2**, and those match the
+sim's **23.8 m / 672.9 m^3 exactly** (r = 3.000 m, 28.3 m^2). So the paper is internally
+inconsistent by ~2% and its quoted bore is already the sim's. **Adopted 2026-09-04 and applied
+to the paper**: 23.8 m, 672.9 m^3, 3.00 m bore. Aspect also favours it (3.97 against 3.81 for
+the stated pair, against a quoted "4"), so **three round figures the paper prints match the sim's
+pair and none match its own stated pair**. Also `k` = **8.52**, not 8.5 (213/25).
+_Owed back_: `tab:axial_bag` was recomputed **by hand** from the model its caption states, after
+reproducing all five printed rows at 660 m^3 as a check (`todos/bag_geometry_converge.py`).
+`make bag-state` in the companion repo has not been rerun, so table and generator now disagree.
+Pair it with the `tab:bag_state` recompute already owed. Sent as R14.
+
+**P3's `M_A` correction is confirmed, and its consequence is blocked on R8** (2026-09-04).
+The paper's `M_A` = 1.63 / 2.06 divides the **exit speed** (10.8 km/s) by an Alfven speed built
+from the **bag** density (0.323 kg/m^3) and field (4.1 T). The plume thins 13x between those
+states and `v_A ~ rho^-1/2`, so the figure is inflated by `sqrt(0.323/0.0251)` = 3.59; the sim's
+0.58 x 3.59 = 2.08 reproduces the printed 2.06. The paper's "two routes agree to 3%" is not
+corroboration either: working standoff for rho = 0.323 at 15165 K and `Mbar` = 5.7 g/mol gives
+4.24 T, so `tab:bag_sizing`'s 4.1 T **is** the standoff field and both routes evaluate `beta` = 1.
+**`M_A` never crosses 1 inside the column; the crossing is 1.44-2.00 exit radii downstream.**
+_The consequence, deferred_: the paper retires **magnetic drag** from `eta_geom` on that number
+(line 2291, citing Hoyt). Magnetic drag and R1's divergence term are the same physics, so if the
+plume stays field-guided the retirement is void and the term costs `<cos theta>` = 0.63-0.70. A
+physical bell would make the retirement genuine. **Nothing changes in the paper until R8 lands**
+(user's call). _Avoid_: listing "magnetic drag" and "divergence" as separate contributions to
+`eta_geom`; they are one term.
+
+**Paper edits applied 2026-09-04** (the unblocked half of the impact sim's P1--P10). Six landed
+in `templateArxiv.tex`, and the paper builds:
+1. **Line 773 and `sec:minimum_nozzle`**: the `1e-4` gate is attached to the **near-Sun** burn,
+   the Jupiter chain is given its own (79x less power, about **5%** of pulse energy allowed), and
+   the sky fraction is corrected from the bag's tenth to the bore's **88%**, with the ceiling set
+   by **graphite at 3900 K (13.1 MW/m^2)** rather than structure at 1500 K. The passage now warns
+   that mixing the two pairings is wrong by 8x either way.
+2. **`sec:watering_it_down`, the liner**: a vacuum gap is not insulation. Bare surfaces put the
+   shell at liner temperature (~2600 K against aluminium's 933 K), so the gap wants **low
+   emissivity**, with refractory foil shields if `phi` turns out high.
+3. **`eq:reflection_baseline`**: a new paragraph states `alpha` = **0.088** for the flown column
+   against 0.360 for the sphere, names shape as the whole cause, and says a launch-fairing choice
+   retired the isotropy the baseline rests on. Drift-free baseline 0.46 -> **0.237**.
+4. **`sec:two_leg_nozzle`**: the drift enters with opposite signs, so the overtake nozzle does
+   **four times** the work; plus the mirror-ratio reading (1.45 wanted on leg 1, `R` = 1.10 a trap
+   on leg 2).
+5. **The liner-ablation appendix**: the 42.6 MW intercepted flash is corrected to about
+   **380 MW**, the conduction figures move to 878 kW/m^2 and a 1254 K gradient, and the shell
+   comparison from 3x to **28x**. Flagged as an upper bound pending `phi` (R12).
+6. **`k` = 8.52** noted once where the slug ratio is defined, with 8.5 kept as the round figure.
+
+**A second pass landed later the same day**, clearing the decided-but-unapplied backlog:
+7. **The bag geometry converged** on 23.8 m / 672.9 m^3 / 3.00 m bore. `tab:axial_bag`'s sweep
+   volume and all five rows move; the design row becomes 23.8 m / 3.00 m / 449 m^2 against the
+   old 23 m / 3.02 m / 437 m^2. The last stray "23 m" and its 7.4 -> 7.5 kg/m^2 areal density go
+   with it.
+8. **ADR-0012's 12 T cap** is now in `sec:needle_through_fog`. The graded profile is derived as
+   before, then flattened upstream of wall contact into a 12 T shelf meeting it at 3.12 m, with
+   the front-geometry reason stated and the 1.6--1.9x bracket answered. The SPARC 20 T citation
+   is demoted in place to a comfort rather than a requirement.
+9. **ADR-0011's flare** is now in `sec:minimum_nozzle`. `eq:bore_from_length` is said outright to
+   size the bag and not the magnet; the winding runs 3.50 m -> 5.17 m; conductor moves 4.4/7.2 t
+   -> **5.2/8.5 t**, the 300--1000 A band 7.3/2.2 t -> **8.6/2.6 t**, and the floor "under about
+   8 t" -> **about 9.4 t**.
+10. **The fairing claim** is conceded where the row is chosen: 7 m across at the chamber fits an
+   8 m fairing, the 10.3 m throat does not, so the magnet ships in sections.
+
+_Not applied, deliberately_: everything gated on R8, R11 or R13.
+
+**P5's passive-structure gate is right at the bottom line and wrong twice on the way there**
+(2026-09-04). The gate at line 1584 sizes what the structure can shed as "a few thousand square
+meters at **1500 K**, about a gigawatt". Two inputs are not the flown hardware:
+- **1500 K** is an alloy temperature, but the surface taking the flash is **pyrolytic graphite,
+  good to 3900 K**, which sheds 13.12 MW/m^2 against 1500 K's 0.29. **45x looser.**
+- **"a tenth of the sky"** is the bag's solid angle, but the liner wraps the plume at **82%**
+  (ADR-0011's flared bore). **8.2x tighter.**
+
+Over the real 631 m^2 wall the ceiling is **8.28 GW**, the Jupiter gate product is **6.6e-2**, and
+the allowed radiated share is **8.0%**. The impact sim's P5 gets 7.95% by scaling the near-Sun
+1500 K ceiling with burn power at a tenth of the sky. **The two errors cancel to within 1%**, so
+its number is usable and its reasoning is not. _Avoid_: fixing one of the two and not the other,
+which lands you off by 8x in either direction. Probe: `todos/gate.py`.
+
+**The liner and the shell are radiatively coupled across their gap; not touching is not enough.**
+`sec:watering_it_down` stands the pyrolytic graphite liner off the aluminium shell "on pads of
+insulating carbon foam with a vacuum gap over the rest". A bare vacuum gap between two blackbodies
+is not insulation, it is a clear radiative path, and the shell equilibrates at **liner
+temperature**: 1033 K at the coldest case and 2607 K at the hot pulse, against aluminium's 933 K
+melting point. **The shell melts in every case, including the coldest.** The fix is emissivity,
+not separation. Blocking the backside makes the liner run hotter (3101 K rather than 2607 K at
+the hot pulse, still inside graphite's 3900 K), which tightens the requirement to
+**`eps_eff` <= 0.0082**. Conventional MLI is useless here: **aluminised mylar dies at ~400 K and
+the shields themselves run 2206-2888 K**, so they must be **polished refractory foil** (tantalum
+3290 K, tungsten 3695 K, or graphite). How many depends on `phi`:
+
+| branch | `phi` = 0.1 | 0.2 | 0.5 | 1.0 |
+| --- | ---: | ---: | ---: | ---: |
+| cold, 1.2% | none | none | none | none |
+| hot, 3.6% solved | none | none | 1 | 3 |
+| hot, 13.25% equilibrium | 1 | 2 | 5 | liner itself ablates at 4300 K |
+
+The alternative is a refractory **shell**: tungsten survives a bare gap at 3101 K but is 7.1x
+aluminium's density, and molybdenum (2896 K) is marginal. The foil stack is far lighter.
+_Avoid_: reading "the liner does not touch the shell" as thermal isolation; calling the gap
+filler MLI (it is refractory foil). Probes: `todos/liner.py`, `todos/shield.py`.
+
+**`tab:bag_state`'s flash row is a bag number and lines 2740/2743 reuse it for the liner**
+(the answer document's P4, resolved 2026-09-04). The row books "1.2% radiated, a tenth of the sky"
+and is **correct for the bag**, a film balloon in free space with structure over a tenth of its
+sky. The **liner wraps the plume**: an optically thick plume filling the bore can only radiate out
+through the wall (436 m^2) or the two open ends (57 m^2), so the wall covers **88% of the sky**,
+82% once ADR-0011's flare widens the exit. So the booked **42.6 MW is low by ~8.8x on solid angle
+alone**, and P4's second route (~453 MW) is the right order. Every corrected figure carries `phi`,
+the share of total radiated energy emitted **before the plume clears the exit plane**, which is
+computable from `data/results/cooling_history.csv` and is not yet asked for.
+_Still open_: how the paper states this. Probe: `todos/p4_ledger.py`.
+
+**`throat` = the 5 T exit end, `chamber` = the 20 T end.** `puffsat_impact_simulation` uses
+`throat` for the *opposite* end (`expansion.THROAT_RADIUS`, where `A/A*` = 1), so its P3 reading
+"`M_A` rises from the throat to the exit" is backwards in our vocabulary. See
+`docs/nozzle_replies_to_impact_sim.md` R7.
+
 _Avoid_: quoting `tab:bag_sizing`'s single 4.1 T as if the field were uniform; calling the impactor a
 compact rod that "sweeps the column" (it does not, the plug is what couples it); reading a smaller bore
-as a lighter nozzle (it is bought with conductor, at one-for-one).
+as a lighter nozzle (it is bought with conductor, at one-for-one); **reading `eq:bore_from_length`'s
+`r` as the magnet's radius (it is the bag's); quoting `eta_geom` = 0.70-0.88 from the impact sim's
+P2 (it omits the divergence term and the station weighting); calling the graded field's `A/A*`
+a free lever (every factor of conversion is a factor of sqrt in radius)**.
 
 **The nozzle field is static within a pulse** (decided 2026-08-21 grill, user-asserted and
 self-consistent with the paper). No travelling, switched or otherwise time-varying coil topology is
