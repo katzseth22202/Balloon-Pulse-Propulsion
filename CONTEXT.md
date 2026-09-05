@@ -1666,6 +1666,22 @@ the compact impactor hits first.
   20 T SPARC anchor becomes a comfort rather than a requirement. 9 T is available if the front
   really spreads at the sound speed; the paper's own 1.9x bracket puts wall contact at 3.26 m
   needing 11.8 T, so 12 T is immune to the bracket. Asked as R9.
+  **Under challenge, and the challenge looks right** (2026-09-05, ADR-0013, proposed). This cap
+  was computed with the wall at the **bag bore, 3.02 m, at every station**, which is the same
+  bag-for-magnet substitution ADR-0011 exists to break. The surface that must not be hit is the
+  **liner, 3.50 m flaring to 5.17 m**, and the rest of this file already treats it that way (R12's
+  82% sky, the 631 m^2 radiating area). Reading the same flown profile at the corrected contact
+  station gives **10.59 T at the binding 1.9x bracket (cap 11 T)** and 7.71 T at the sound speed
+  (cap 8 T), at no hardware cost, with shelf field energy 0.78x. **Conditional on R15**, which
+  asks the sim whether standoff is written against the liner or the mist column. **12 T stays the
+  flown number until it lands.** Probe: `todos/peak_field_vs_flare.py`.
+  _Two further findings from the same probe._ **A hybrid nozzle cannot lower the peak field at
+  all**, because the shelf height is the demand at the contact station and R8's bell and R11's
+  extension both sit downstream of it. And **ADR-0011's 1.18-1.50x conductor pricing for the flare
+  is too harsh** where the field is standoff-limited, since tape runs as the integral of `B r`
+  while demand runs as `B ~ 1/r`, making the product bore-independent.
+  _Avoid_: quoting the 8.44 T variant, which needs the untested `1/r` radial scaling and drops the
+  exit to 2.87 T against P9's 5 T.
   _The old entry, for reference_ (decided 2026-08-21 grill):
   Front-loading the collision means the fireball sweeps the mist as a snowplow, and the pressure it
   needs stood off falls down the bore: ~20 T at 1 m, 12 T at 3 m, 9 T at 6 m, 5 T at exit. That is a

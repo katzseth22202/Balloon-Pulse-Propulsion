@@ -4,6 +4,13 @@ Status: accepted (2026-09-04 grill on `puffsat_impact_simulation`'s nozzle answe
 P6 of `docs/nozzle_asks_answered.md`, which was blocked on P7 and is unblocked by `0011`.
 The cap sits at 12 T rather than the 9 T the argument allows, pending R9.
 
+**Amended in proposal by `0013`** (2026-09-05). The cap table below measures wall contact to the
+bag bore at every station, and `0011` puts the liner at 3.50 m flaring to 5.17 m. Reading the
+same flown profile at the contact station against the liner gives 10.59 T rather than 11.75 T at
+the binding bracket, so `0013` proposes **11 T**. That amendment is conditional on R15, which
+asks the impact simulation which surface the standoff requirement is written against. **Until
+R15 lands, 12 T is the flown number.**
+
 ## What P6 found
 
 A solenoid smooths field structure over about its own radius. The graded profile demands a 40%

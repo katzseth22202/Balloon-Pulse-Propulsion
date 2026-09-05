@@ -619,3 +619,80 @@ for the ice-enthalpy defects (`todos/bag_state_recompute_2026-09-03.md`). **Both
 **Nothing here is a physics claim about your run.** We are adopting your geometry because it is
 self-consistent and ours was not. If your 23.8 m came from something we should be matching more
 carefully than three round numbers, say so and we will re-derive rather than adopt.
+
+---
+
+## R15. Which surface is the standoff requirement written against, the liner or the bag bore?
+
+**Priority: high, and cheap to answer. It is one line of your existing geometry, not a run.**
+
+Recorded as `docs/adr/0013`, which is **proposed rather than accepted** and waits on this item.
+
+**The question behind it.** Asked paper-side whether a flare or a hybrid nozzle could buy a peak
+field under ADR-0012's 12 T cap. The hybrid half answers itself and needs nothing from you: the
+shelf height is the standoff demand at the station where the front first touches the wall, so the
+peak is set upstream of anything a bell or a magnetic extension can reach. R8 and R11 cannot
+lower it. **The flare half turns entirely on which surface "the wall" means, and that is yours to
+settle.**
+
+**What we found.** ADR-0012's cap table reads "wall at 3.02 m" at every station, which is
+`eq:bore_from_length`'s bag bore. ADR-0011 puts the liner at 3.50 m flaring to 5.17 m. Reading
+the same flown profile at the contact station against the liner instead:
+
+| spreading | wall | contact | flown profile there |
+| --- | --- | ---: | ---: |
+| 1.9x bracket (the one that forced 12 T) | bag bore 3.02 m | 3.27 m | 11.75 T |
+| **same, against the liner** | **3.50 m, flared** | **4.14 m** | **10.59 T** |
+| sound speed | bag bore 3.02 m | 6.18 m | 8.87 T |
+| **same, against the liner** | **3.50 m, flared** | **8.50 m** | **7.71 T** |
+
+**ADR-0012 already answers this against itself.** Its own text says the field's job is *"wall
+standoff. The field is there to keep plasma off the liner."* The table directly beneath that
+sentence measures to 3.02 m. So the correction does not need a new argument, only a decision about
+which of ADR-0012's two statements is the operative one.
+
+**Our reading is that the liner is the right surface**, because the bag is 12 um of polyethylene
+that vaporises in the collision and stands nothing off, and because the rest of this repository
+already treats the liner as the wall (R12's 82% sky fraction and the 631 m^2 radiating area are
+both taken over ADR-0011's flared bore). ADR-0012 is the one place still using the bag bore, and
+it was written in the same session as ADR-0011 without picking up its flare. **We would rather
+have you confirm that than adopt it on our own reading**, because it changes an accepted ADR.
+
+### The two questions
+
+1. **Is the standoff requirement written against the liner or against the mist column?** If the
+   front has to be held inside the mist it is still sweeping, so that the coupling survives, then
+   the bag bore is right, ADR-0012 stands as written, and ADR-0013 is void. If the requirement is
+   only that plasma not reach the graphite, the liner is right. **This decides the whole item.**
+2. **Does `k` = 7.2 survive the front expanding into the clearance gap?** The mist is inside the
+   3.00 m bag and the bag does not flare, so expanding past it dilutes pressure without reducing
+   swept mass. We read that as neutral to favourable. It is unverified, and it is the thing that
+   would make question 1 come out the other way.
+
+### A third question, only if the first two go our way
+
+Does the standoff demand scale as `1/r` at fixed station? Nothing on either side has tested it.
+ADR-0012's table varies `z` at fixed `r`, and our `1/r` comes from `p ~ E/V` with `V ~ r^2 z`.
+
+It matters because it is the difference between a small correction and a large one. **Reading the
+flown profile at a corrected contact station needs no radial scaling at all** and gives 10.6 T,
+which is the version ADR-0013 proposes. Letting the whole profile follow the flared bore needs
+`1/r` and gives **8.44 T**, with `A/A*` improving from 2.40 to 2.94 because the exit demand falls
+faster than the peak. **We are not asking for that one yet**, because it drops the exit to 2.87 T
+against P9's 5 T, and P9 calls the 5 T exit a collision requirement rather than a standoff one.
+If P9's 5 T is in fact a standoff number evaluated at a 3.02 m bore, say so, and the larger
+version comes back on the table.
+
+### What would settle it
+
+Question 1 is a statement of what your standoff criterion means, not a run. Question 2 is the
+mass-versus-station profile at the end of the plow, which **R4 already asks you for** on other
+grounds. Nothing new is being requested.
+
+### Lifts
+
+ADR-0013's conditional status, and with it about 1 T off the binding bracket and 1.3 T off the
+sound-speed case, at no hardware cost. Also the conductor pricing in ADR-0011: if the field is
+standoff-limited then tape runs as the integral of `B r` while demand runs as `B ~ 1/r`, the
+product is bore-independent, and **the 1.18x to 1.50x we charged the flare is too harsh.** That
+one is ours to correct, but it only bites if the liner is the wall.
