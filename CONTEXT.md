@@ -1498,6 +1498,11 @@ quoted as if unrelated. **They are the same quantity.**
 | 3 000 K | 9.2 | 10.9% | **2.48** | **exceeds the whole slug** |
 | 2 000 K | 0.1 | 1000% | -- | field is gone |
 
+**Amended 2026-09-05** (`aim_is_all_you_need` ADR 0027): the `x` column above is charged the whole
+122 K-to-room-temperature ladder, 0.653 MJ/kg. Only warming the ice and fusing it **gate** melting,
+0.570 MJ/kg; the liquid warming that follows competes with boiling for the same surplus. No verdict
+in this table flips, but the onset threshold it is read against is the 0.570 gate, not the ladder.
+
 - **There is a cliff between 4000 K and 3000 K and the design sat on it.** Above ~5% leak, `x` passes 1
   and what fails is not the bag but the **confinement**. My earlier "3.7 kg vs 31 kg" framing was too
   gentle; 31 kg is the 4.4% case, and 4.4% implies `Rm ~ 23`, between those two rows.
@@ -1624,9 +1629,20 @@ the compact impactor hits first.
   **1.5 for a sphere (hoop stress `PR/2t`) and 2.0 for a cylinder (`PR/t`)**. Capsule
   `F = (2L+2r)/(L+4r/3)`. At aspect 4, `F` = 1.88. **Film 2.8 kg -> 3.7 kg, +0.9 kg on a 213 kg slug.**
   The whole penalty is bounded at 4/3 and most of it is paid by aspect 2.
+  **The `P V` form is a trap, and it caught R14** (2026-09-05, `aim_is_all_you_need` ADR 0029).
+  `P` and `V` are not independent factors here. The film sizes a vessel holding `P V = n R_g T`, so
+  a bigger bag drops `P` by exactly what it adds to `V` and the product does not move. R14 adopted
+  the sim's 672.9 m^3 over 659.6 and scaled `tab:axial_bag`'s film column by the 1.0202 volume
+  ratio; multiplying the model by that ratio reproduces every cell R14 printed, to the digit, which
+  is what identifies it as a double charge rather than a disagreement. The V-free form is
+  `eq:bag_film_mass` itself, `F x rho_f R_g T / (M sigma)`, and the paper's own derivation says
+  every factor of `R` cancels.
+  _Avoid_: scaling any film mass by a volume ratio. Volume reaches the film only through `T`, since
+  the same vapour spread 2% thinner saturates 0.4 K colder and the film is linear in `T`. That is a
+  tenth the size and runs the other way, taking the sphere row from 4.850 to 4.844 kg.
 - _Water cost: zero_. `k = 8.5` comes from the ignition window and the launch budget, not bag shape.
 - _Why a compact impactor cannot hit a mist_: the column's axial areal density is only
-  `0.323 x 23` = **7.4 kg/m^2**. A 5 cm ice rod is 3183 kg/m^2. Newtonian drag over the full traverse
+  `0.3165 x 23.8` = **7.5 kg/m^2**. A 5 cm ice rod is 3183 kg/m^2. Newtonian drag over the full traverse
   is `rho v A l` = 3300 kg m/s against its 1.4e6, so it loses 0.24% of its momentum and exits, having
   swept **58 g of the 213 kg**. A rod is a needle through fog.
 - _So the plug is load-bearing, not a convenience_. The alternative is a footprint-matched puff, which
@@ -1637,10 +1653,11 @@ the compact impactor hits first.
   `P = L sqrt(rho_p/rho_t)`, which for ice on ice is just `L`, so the plug must be at least as thick as
   the impactor is long; at matched footprint that means at least as massive. A 25 kg ice rod at 0.1 m
   radius is 0.87 m long.
-- _The plug is thermally free_: it may melt, just not vaporize, so it absorbs 0.73 MJ/kg on the way to
-  liquid. 37.5 kg soaks 27 MJ of the 211 MJ waste-heat bill. Vapor ends at 24.7 kg vs 23.4 kg baseline,
-  saturation 307 K vs 306 K. PE keeps 116 K of melt margin.
-- _Not a foam column_: the mist runs 0.323 kg/m^3 and the closed-cell PE foam of `sec:icy_puffsat` is
+- _The plug is thermally free_: it may melt, just not vaporize, so it absorbs 0.653 MJ/kg on the way to
+  liquid. 37.5 kg soaks 24.5 MJ of the 138 MJ waste-heat bill, a sixth of it. From Earth storage vapor
+  ends at 28.9 kg against a 39.3 kg baseline and the mist falls from 316 K to 310 K; PE keeps 113 K of
+  melt margin. From cold storage the plug is what keeps the bag dry at all.
+- _Not a foam column_: the mist runs 0.3165 kg/m^3 and the closed-cell PE foam of `sec:icy_puffsat` is
   30 kg/m^3. Two orders of magnitude, so it is mist or nothing.
 - _Impactor material_: mostly ice, PE structure; it is a hybrid and the question is the ratio. PE-only
   costs ~9% of the ignition budget, because 25 kg of PE is 1.78 kmol of carbon that scavenges an equal

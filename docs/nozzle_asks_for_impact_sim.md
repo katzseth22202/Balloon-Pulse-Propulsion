@@ -6,7 +6,7 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N7 to avoid collision.
+targeting `aim_is_all_you_need`). These are N1–N8 to avoid collision.
 
 **One sentence of context.** The paper's growth chain multiplies an uncertain projectile cost
 against a nozzle efficiency nothing computes. `sec:jet_efficiency` says so outright: nothing in
@@ -17,7 +17,8 @@ one item (N3) that could move a headline mass number in either direction.
 **Geometry to run against, unless an item says otherwise.** The Jupiter-cycle departure burn:
 a 25 kg ice projectile closing head-on with a 213 kg water slug at slug ratio `k = 8.5`, over
 the burn's speed range of 45.58 km/s (coldest, last pulse) to 75 km/s (hottest). Standoff
-volume 660 m³ poured into a 23 m column of 3.0 m bore (`eq:bore_from_length`), with the field
+volume 672.9 m³ poured into a 23.8 m column of 3.0 m bore (`eq:bore_from_length`) at a bag
+density of 0.3165 kg/m³, with the field
 graded per `sec:watering_it_down`: 20 T at 1 m from the chamber, 12 T at 3 m, 9 T at 6 m, 5 T
 at the exit. Liner is pyrolytic graphite on an aluminium shell.
 
@@ -212,6 +213,32 @@ it is nearly free once N1's diagnostics exist.
 
 ---
 
+## N8. Re-solve the plume state at the adopted bag density
+
+**Why.** R14 adopted your 23.8 m column and the 672.9 m³ it encloses, and `aim_is_all_you_need`
+has now rebuilt its own geometry on it (its ADR 0029). The bag density that falls out is
+213/672.9 = **0.3165 kg/m³**. Your plume state (`data/plume_state.csv`), the conductivity fits
+behind `tab:seed_window`, the conductivity cliff and the shocked sound speeds behind the
+snowplow were all solved at **0.323 kg/m³**, which is 213 kg in the old 659.6 m³. The two
+repositories are now 2% apart on an input every one of those solves takes.
+
+**Nothing suggests it matters, and this is filed anyway.** The sound-speed table moves 9% across
+an eightfold span in shock compression, so 2% in density is a fortieth of a known-small
+sensitivity. It is raised because a vendored input should not quietly disagree with the geometry
+it is used with, not because anything is expected to move.
+
+**What is wanted.** Either the same solves rerun at 0.3165 kg/m³, or a statement that the
+sensitivity is below the precision the paper prints. Either one closes it.
+
+**What would settle it.** Whether any cell the paper quotes from those runs moves at printed
+precision.
+
+**Lifts.** Nothing. No paper edit is blocked on it. `aim_is_all_you_need` evaluates its
+cross-repo pins at `nozzle_geometry.SIM_SOLVE_DENSITY` = 0.323 meanwhile, so they stay exact and
+stay honest about which bag they are.
+
+---
+
 ## Suggested order
 
 N1 and N3 first. N1 is a diagnostic on runs that probably already exist and it decides whether
@@ -219,7 +246,7 @@ the paper's central efficiency comparison stands. N3 needs a field to be added t
 is the only item that can move a quoted mass. N2 falls out of N1's diagnostics. N4 is the
 standing ask and binds two orders of magnitude before the propulsive budget does, so it should
 not wait behind the new items. N5, N6 and N7 confirm arguments the paper already makes and are
-cheap once the machinery for N1–N3 exists.
+cheap once the machinery for N1–N3 exists. N8 is bookkeeping and is on nobody's critical path.
 
 ## Reproducing the paper-side numbers
 
