@@ -2285,6 +2285,8 @@ The expansion and winding results cited below retain the \SI{12}{\tesla} referen
 
 The solved expansion is strongly collisional, with particles undergoing roughly two to ten million collisions during transit \cite{Katz_puffsat_impact_sim_2026}. The plume therefore expands as a fluid guided by the magnetic field. Pressure gradients accelerate the exhaust; conservation of individual particles' magnetic moments does not describe this flow.
 
+White's flux-compression study addresses collective magnetic pressure confinement and resistive diffusion, which remain relevant to our pulsed MHD flow \cite[pp.~11--14, 123--124]{white2026flux_compression}. Added background-gas collisions damped his observed fluting instability \cite[pp.~103--104, 113]{white2026flux_compression}; this differs from collisions within our dense plume. His magnetic-well experiments used a low background pressure, described as collisionless, and achieved repeated plasma rebound \cite[pp.~127--130]{white2026flux_compression}. Even there, he reports magnetic diffusion times roughly ten times shorter than theory predicts \cite[p.~156]{white2026flux_compression}. This identifies field leakage as a relevant loss mechanism, but supplies no measured efficiency bound for our nozzle.
+
 For this expansion, define $\eta_{\mathrm{exp}}$ as the mean axial speed divided by the root-mean-square speed in the plume's initial rest frame. The model uses a directed flow speed $u$ and isotropic thermal motion about it, giving
 \begin{equation}
 \eta_{\mathrm{exp}} = \frac{\langle\cos\theta\rangle}{\sqrt{1 + 3k_BT/(\bar{m}u^2)}},
@@ -2293,6 +2295,8 @@ For this expansion, define $\eta_{\mathrm{exp}}$ as the mean axial speed divided
 where $\theta$ is the streamline angle to the thrust axis and $\bar{m}$ is the mean mass of the ions and neutral particles. The angle average is weighted by mass over paths traced through the computed winding field. For the \SI{12}{\tesla} capped profile without an extension, $\eta_{\mathrm{exp}}$ is \numrange{0.58}{0.60} at a \SI{45.58}{\kilo\meter\per\second} closing speed. At \SI{75}{\kilo\meter\per\second} it is \numrange{0.80}{0.86}. These ranges span the frozen and equilibrium expansion branches \cite{Katz_puffsat_impact_sim_2026}.
 
 The factor from residual thermal motion alone is already \numrange{0.86}{0.93} at the capped winding's exit. The main modeled loss comes from divergence beyond the last coil. The traced field is nearly axial at the exit, with $\langle\cos\theta\rangle = 0.999$, then spreads toward its return path. Flow that remains attached loses axial momentum as it follows that spread.
+
+Pulsed inductive thrusters provide related MHD prior art. A capacitor discharge drives a coil that induces a plasma current sheet and accelerates it electromagnetically \cite{polzin2007pulsed_inductive}. Coupling weakens rapidly as the sheet separates from the coil, so release is not simply a matter of switching the field off. Our superconducting winding remains energized throughout each plasma pulse (\autoref{sec:watering_it_down}); the exhaust must detach from that sustained applied field.
 
 The expansion factor describes the thermal jet in the plume frame. The paper's $\eta_{\mathrm{geom}}$ also includes radiative escape and mass the field fails to guide, and enters an impulse balance in the ship's frame. Applying the expansion factor to the merged plume's bulk drift requires separate accounting for its direction and any magnetic reversal. The growth tables therefore retain their sweep of $\eta_{\mathrm{geom}}$.
 
