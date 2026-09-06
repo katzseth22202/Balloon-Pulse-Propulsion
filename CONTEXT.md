@@ -1619,15 +1619,18 @@ the compact impactor hits first.
   `(gamma-1)E/V`), so `r_bore = sqrt(V/pi l)` falls as `l^(-1/2)` while REBCO tape goes as `B r l`,
   i.e. as `l^(1/2)`. **Bore and conductor trade inversely, one for one: halve the bore, double the
   tape.** Virial structure mass does not move at all, because contained energy does not move.
-- _Where we stop_: **`l` = 23.8 m, V = 672.9 m^3, bag bore 3.00 m, aspect 3.97** (converged
-  2026-09-04 onto the impact sim's pair; see the column-length entry below). Costs +21% tape.
+- _Where we stop_: **`l` = 23.7789 m, V = 660 m^3, bag radius 2.97236 m, aspect 4**
+  (P20 accepted 2026-09-05, ADR-0014). Cross-section 27.7557 m^2, density 0.322727 kg/m^3.
+  Costs +21% tape relative to the equal-volume sphere in the cylindrical sizing model.
   **The winding is not the bag.** It flares 3.50 m -> 5.17 m to follow the plume's bounding flux
   tube (ADR-0011 as amended by ADR-0012's cap), so `sec:mass_interest`'s "coils ~7 m across clear
   a Starship fairing assembled" holds at the chamber and **fails at the 10.3 m flare exit**. The
   paper now concedes this: the magnet ships in sections and is joined once.
 - _Film cost_: pressure-vessel film mass is `F rho_f P V / sigma` with `F` a pure shape number,
   **1.5 for a sphere (hoop stress `PR/2t`) and 2.0 for a cylinder (`PR/t`)**. Capsule
-  `F = (2L+2r)/(L+4r/3)`. At aspect 4, `F` = 1.88. **Film 2.8 kg -> 3.7 kg, +0.9 kg on a 213 kg slug.**
+  `F = (2L+2r)/(L+4r/3)`. At aspect 4, `F` = 1.9091 in the existing cylinder-bore/capsule-film approximation.
+  **Earth pressure film 4.85 kg -> 6.17 kg, +1.32 kg on a 213 kg slug.**
+  The design membrane is 444.09 m^2; 12.7 um polyethylene weighs 5.19 kg.
   The whole penalty is bounded at 4/3 and most of it is paid by aspect 2.
   **The `P V` form is a trap, and it caught R14** (2026-09-05, `aim_is_all_you_need` ADR 0029).
   `P` and `V` are not independent factors here. The film sizes a vessel holding `P V = n R_g T`, so
@@ -1642,7 +1645,7 @@ the compact impactor hits first.
   tenth the size and runs the other way, taking the sphere row from 4.850 to 4.844 kg.
 - _Water cost: zero_. `k = 8.5` comes from the ignition window and the launch budget, not bag shape.
 - _Why a compact impactor cannot hit a mist_: the column's axial areal density is only
-  `0.3165 x 23.8` = **7.5 kg/m^2**. A 5 cm ice rod is 3183 kg/m^2. Newtonian drag over the full traverse
+  `0.322727 x 23.7789` = **7.7 kg/m^2**. A 5 cm ice rod is 3183 kg/m^2. Newtonian drag over the full traverse
   is `rho v A l` = 3300 kg m/s against its 1.4e6, so it loses 0.24% of its momentum and exits, having
   swept **58 g of the 213 kg**. A rod is a needle through fog.
 - _So the plug is load-bearing, not a convenience_. The alternative is a footprint-matched puff, which
@@ -1657,7 +1660,7 @@ the compact impactor hits first.
   liquid. 37.5 kg soaks 24.5 MJ of the 138 MJ waste-heat bill, a sixth of it. From Earth storage vapor
   ends at 28.9 kg against a 39.3 kg baseline and the mist falls from 316 K to 310 K; PE keeps 113 K of
   melt margin. From cold storage the plug is what keeps the bag dry at all.
-- _Not a foam column_: the mist runs 0.3165 kg/m^3 and the closed-cell PE foam of `sec:icy_puffsat` is
+- _Not a foam column_: the mist runs 0.322727 kg/m^3 and the closed-cell PE foam of `sec:icy_puffsat` is
   30 kg/m^3. Two orders of magnitude, so it is mist or nothing.
 - _Impactor material_: mostly ice, PE structure; it is a hybrid and the question is the ratio. PE-only
   costs ~9% of the ignition budget, because 25 kg of PE is 1.78 kmol of carbon that scavenges an equal
@@ -1870,7 +1873,11 @@ on the other. P10's arithmetic checks: `f_d` = 0.10526, `sqrt(f_d)` = 0.3244 aga
 baseline, so the nozzle supplies 0.205 head-on and 0.853 on the overtake, **4.17x the work**
 (the impact sim says 4.18).
 
-**Column length resolves in the companion repo's favour** (2026-09-04, the answer document's
+**Historical R14 adoption, superseded by ADR-0014/P20 on 2026-09-05.**
+The current geometry is 660 m^3 / 23.7789 m / 2.97236 m radius. The impact simulation
+keeps its original 3.0 m radius and 23.8 m length until rerun.
+
+**Column length resolved in the companion repo's favour** (2026-09-04, the answer document's
 "unreconciled; pick one"). The paper *states* 23 m and 660 m^3, which give a 3.022 m bore and a
 28.7 m^2 cross-section. But the paper *quotes* a **3.0 m bore and 28 m^2**, and those match the
 sim's **23.8 m / 672.9 m^3 exactly** (r = 3.000 m, 28.3 m^2). So the paper is internally
@@ -1920,7 +1927,7 @@ in `templateArxiv.tex`, and the paper builds:
 6. **`k` = 8.52** noted once where the slug ratio is defined, with 8.5 kept as the round figure.
 
 **A second pass landed later the same day**, clearing the decided-but-unapplied backlog:
-7. **The bag geometry converged** on 23.8 m / 672.9 m^3 / 3.00 m bore. `tab:axial_bag`'s sweep
+7. **Historical bag adoption, superseded by ADR-0014/P20:** 23.8 m / 672.9 m^3 / 3.00 m bore. `tab:axial_bag`'s sweep
    volume and all five rows move; the design row becomes 23.8 m / 3.00 m / 449 m^2 against the
    old 23 m / 3.02 m / 437 m^2. The last stray "23 m" and its 7.4 -> 7.5 kg/m^2 areal density go
    with it.

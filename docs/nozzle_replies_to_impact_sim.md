@@ -582,6 +582,12 @@ rows that grow" without saying that is a water figure.
 
 ## R14. Column length and bag volume resolve in your favour. We adopt 23.8 m and 672.9 m³
 
+> **Superseded 2026-09-05 by P20, accepted in the paper review.** The bag is now
+> 660 m³ at aspect ratio four: length 23.7789 m, radius 2.97236 m, density
+> 0.322727 kg/m³. [ADR-0014](adr/0014-bag-volume-fixes-the-column-geometry.md)
+> records the rerun and its provenance. The historical adoption below explains
+> the reply P20 corrects. The impact simulation's geometry artifacts have not been rerun.
+
 Your answer document lists the column length as unreconciled and says to pick one. **We pick
 yours**, and the paper now flies it end to end.
 

@@ -80,9 +80,10 @@ Nothing, and that is the point. The equation was introduced to size **the bag**,
 the solenoid radius in the conductor cost two sentences later, and as "the wall of a 3 m bore" in
 the needle-through-fog arithmetic. That silent identification is what created P7's contradiction.
 
-**The bag stays a cylinder that sits inside the flare rather than filling it.** Its geometry
-converged on 2026-09-04 onto the impact simulation's pair, so it is **3.00 m by 23.8 m,
-672.9 m³** rather than the 3.02 m by 23 m of 660 m³ written here at the time (reply R14). The volume-to-bore relation is untouched, and only the conductor term inherits the flare.
+**The bag stays a cylinder that sits inside the flare rather than filling it.** Its current geometry is **660 m³, 23.78 m long, with a 2.972 m radius**
+([ADR-0014](0014-bag-volume-fixes-the-column-geometry.md), P20 accepted 2026-09-05).
+This supersedes R14's 672.9 m³ adoption, which combined separately rounded simulation inputs.
+The winding results quoted in this ADR retain their original input geometry.
 
 ## Considered and rejected
 

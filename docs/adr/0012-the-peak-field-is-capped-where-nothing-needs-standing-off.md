@@ -56,19 +56,46 @@ at the field where the shelf meets the profile.
 
 **The cap is 12 T**, meeting the flown profile at z = 3.12 m.
 
-| shelf | peak `B` | field energy | virial structure | tape | `eta_geom` |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| none, as flown | 19.8 T | 1.00x | 10--30 t | 1.00x | 0.527--0.660 |
-| **12 T (adopted)** | **12.0 T** | **0.88x** | **9--27 t** | **0.96x** | **0.528--0.662** |
-| 9 T, if the sound-speed spread holds | 9.0 T | 0.75x | 7--22 t | 0.90x | 0.530--0.664 |
+The field-energy, structure, and tape figures below retain the original first-order
+paper-side estimates. They have not been recomputed with the companion expansion model.
 
-## Why `eta_geom` does not pay for this
+| shelf | peak `B` | field energy | virial structure | tape |
+| --- | ---: | ---: | ---: | ---: |
+| none, as flown | 19.8 T | 1.00x | 10--30 t | 1.00x |
+| **12 T (adopted)** | **12.0 T** | **0.88x** | **9--27 t** | **0.96x** |
+| 9 T, if the sound-speed spread holds | 9.0 T | 0.75x | 7--22 t | 0.90x |
 
-It is the coupling of `0011` running backwards. Dropping the chamber field costs `mu` conversion
-for the mass born in the first few metres, **and in the same stroke reduces the divergence those
-flux tubes suffer**, because they no longer fan by `sqrt(19.8/5)`. Conversion and radial spread
-are one ratio, so the trade is nearly free in both directions. `eta_geom` moves by less than
-0.005 across the whole table, in the favourable direction.
+## Why the cap improves the modeled expansion efficiency
+
+**Amended following P13, accepted in the paper review.** The former `eta_geom`
+column and its claim of a change below 0.005 used single-particle `mu` conservation.
+That model does not apply to the collisional plume. The continuum comparison below
+supersedes those efficiency figures.
+
+Reducing the chamber field from 20 T to 12 T, with the exit held at 5 T, reduces
+the expansion area ratio from 4.0 to 2.4. More thermal motion remains at the exit,
+but the denser plume has a lower Alfvén speed. It reaches the model's release
+condition sooner and suffers less downstream divergence. The net effect improves
+`eta_exp`, the mean axial speed divided by the root-mean-square speed in the
+plume's initial rest frame.
+
+| Closing speed | Branch | `eta_exp`, 20 T | `eta_exp`, 12 T | Change |
+| --- | --- | ---: | ---: | ---: |
+| 45.58 km/s | Equilibrium | 0.520 | 0.582 | +0.062 |
+| 45.58 km/s | Frozen | 0.554 | 0.599 | +0.045 |
+| 75 km/s | Equilibrium | 0.656 | 0.795 | +0.139 |
+| 75 km/s | Frozen | 0.704 | 0.859 | +0.155 |
+
+These cases have no downstream extension. The gain is 0.045--0.155 across the
+four rows; P13's summary range of 0.06--0.15 omits the smaller cold frozen gain.
+The companion source calls this factor `eta_geom`; the paper uses `eta_exp` to
+separate it from the full ship-frame impulse factor. No replacement expansion
+result is supplied for the 9 T case.
+
+The values are from `puffsat_impact_simulation` at `6fe8cf3`,
+`docs/nozzle_replies_answered.md`, P12--P13. They retain that model's 3.0 m chamber
+radius and 23.8 m field length; ADR-0014's corrected bag geometry has not been
+rerun through it. Reproduce with `make analysis-nozzle-extension` in that checkout.
 
 ## Why 12 T and not 9 T
 
@@ -98,6 +125,6 @@ asked as R9 in `docs/nozzle_replies_to_impact_sim.md`.
 
 ## Provenance
 
-Paper-side probes, first order, in `todos/`: `chamber_tradeoff.py`, `chamber_relax.py`. Same
+The original field-sizing estimates use paper-side probes, first order, in `todos/`: `chamber_tradeoff.py`, `chamber_relax.py`. Same
 caveats as `0011` (paraxial field, uniform mass, one detachment surface). Owed back to
 `puffsat_impact_simulation` with R1 and R9.

@@ -14,11 +14,10 @@ the paper or either companion repo bounds `eta_geom`, and it is the largest rema
 uncertainty in the chain. Everything below is an attempt to make that sentence obsolete, plus
 one item (N3) that could move a headline mass number in either direction.
 
-**Geometry to run against, unless an item says otherwise.** The Jupiter-cycle departure burn:
-a 25 kg ice projectile closing head-on with a 213 kg water slug at slug ratio `k = 8.5`, over
-the burn's speed range of 45.58 km/s (coldest, last pulse) to 75 km/s (hottest). Standoff
-volume 672.9 m³ poured into a 23.8 m column of 3.0 m bore (`eq:bore_from_length`) at a bag
-density of 0.3165 kg/m³, with the field
+**Geometry to run against, unless an item says otherwise.** The Jupiter cycle uses
+a 25 kg ice projectile and a 213 kg water slug at ratio `k = 8.52`. Closing speed reaches
+45.58 km/s at the slow end of the overtake burn and about 75 km/s on the head-on departure. Following P20, the adopted standoff volume is 660 m³ in a
+23.7789 m column of 2.97236 m radius at 0.322727 kg/m³ (ADR-0014). The historical field is
 graded per `sec:watering_it_down`: 20 T at 1 m from the chamber, 12 T at 3 m, 9 T at 6 m, 5 T
 at the exit. Liner is pyrolytic graphite on an aluminium shell.
 
@@ -214,6 +213,13 @@ it is nearly free once N1's diagnostics exist.
 ---
 
 ## N8. Re-solve the plume state at the adopted bag density
+
+> **Density request withdrawn, 2026-09-05.** P20 restores 660 m³, giving
+> 0.322727 kg/m³, which rounds to the simulation's 0.323 kg/m³. Do not rerun at
+> 0.3165 kg/m³ on this request. A geometry rerun remains owed for the corrected
+> 2.97236 m radius and 23.7789 m length. Existing artifacts retain their original
+> inputs. See [ADR-0014](adr/0014-bag-volume-fixes-the-column-geometry.md).
+> The text below records the superseded request.
 
 **Why.** R14 adopted your 23.8 m column and the 672.9 m³ it encloses, and `aim_is_all_you_need`
 has now rebuilt its own geometry on it (its ADR 0029). The bag density that falls out is
