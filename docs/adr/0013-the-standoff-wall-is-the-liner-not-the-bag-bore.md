@@ -1,105 +1,81 @@
-# The standoff wall is the liner, not the bag bore, which takes the cap below 12 T
+# The liner sets wall standoff, with an adopted 11 T peak
 
-Status: **proposed** (2026-09-05, from the user's question of whether a flare and a hybrid
-nozzle could buy a peak field under `0012`'s cap). Amends `0012` rather than superseding it,
-because it changes one input to that ADR's method and leaves the method alone. **Conditional on
-R15**, which asks the impact simulation to settle which surface the standoff requirement is
-written against. Nothing enters the paper until R15 lands.
+Status: **accepted** in the P18/P19 paper review. Amends ADR-0012's peak field
+and standoff surface. R15's surface question is answered by
+`puffsat_impact_simulation` at `6fe8cf3`, P19 and ADR-0042.
 
-## What forced the question
+## Decision
 
-The question asked was whether a flare, a hybrid nozzle, or both could get the peak field below
-12 T. The flare half is answered here. **The hybrid half is answered no, and the reason is
-structural rather than numerical.**
+Evaluate wall contact against the graphite liner. Adopt an **11 T peak** while
+retaining the 5 T exit and the existing flared hardware envelope. Existing 12 T
+expansion and winding results remain reference calculations; their mass estimates
+remain the paper's budget. No 11 T performance or mass rerun is claimed.
 
-`0012` establishes that the field upstream of wall contact is a flat shelf, and that the shelf
-height is the standoff demand at the contact station. So the peak field is set at exactly one
-place, the station where the snowplow front first touches the wall. **R8's physical bell and
-R11's magnetic extension both live downstream of the bag**, past every station that sets the
-shelf. Neither can lower the peak field. They buy detachment and divergence, which is a different
-account.
+The bag is a consumable membrane. The field protects the liner, whose radius
+starts at 3.50 m and widens downstream. Beyond the bag boundary the clearance
+gap is empty, so the swept area cannot grow beyond the bag's cross-section.
 
-## What `0012` measured to
+## What the companion model actually computes
 
-`0012` **answers this question against itself, two paragraphs apart.** Under "What the field at
-the chamber is for" it states the job outright: *"wall standoff. The field is there to keep plasma
-off the liner."* The table immediately below it then reads, at every row, **"wall at 3.02 m"**.
-That is `eq:bore_from_length`'s bag bore, not the liner, and it is the same identification `0011`
-was written to break.
+`front.integrate` uses a constant scalar wall radius, not the full flared contour.
+It integrates the front with a spreading speed derived from the current shock
+speed. The reported binding cases across the tested closing speeds are:
 
-So this is not a disagreement between two ADRs. **It is a single ADR naming the liner as the
-surface and then measuring to the bag.**
+| Spreading speed | Constant wall radius | Contact station | Original profile demand |
+| --- | ---: | ---: | ---: |
+| Sound speed | 3.50 m | 7.29 m | 8.25 T |
+| 1.9 times sound speed | 3.50 m | 3.83 m | 10.95 T |
 
-`0011` puts the liner, the pyrolytic graphite surface that must not be hit, at **3.50 m at the
-chamber flaring to 5.17 m at the throat**. The bag is 12 um of polyethylene that vaporises in the
-collision, so it stands nothing off. The rest of the repository already agrees: `CONTEXT.md`
-takes the liner's area as 631 m^2 over `0011`'s flared bore when it counts the radiating wall,
-and R12 uses the same 82% sky fraction. **The cap calculation is the one place that still uses
-the bag bore.**
+The liner stays at or outside 3.50 m. Within this prescribed front model, contact
+with the actual flare can only occur later, where the original field demand is
+lower. Rounding the binding 10.95 T upward gives the adopted 11 T cap. The 8.25 T
+sound-speed case does not cover the faster spreading bracket.
 
-`0012` amends `0011` in the same session, and its cap table never picked up `0011`'s flare.
+The model reproduces the paper's shocked-layer estimates with 94,632 K and
+21.12 km/s at 45.58 km/s and fourfold compression. As the front slows, its sound
+speed also falls. Holding that sound speed fixed while reducing the axial speed
+would spuriously accelerate lateral spreading. Taking the sound speed as the
+spreading rate understates swept mass for coupling, but also delays wall contact
+and understates the field cap.
 
-## The decision, proposed
+Swept mass is unchanged when the reporting wall radius changes because the
+integrator caps swept area at the bag boundary. The wall radius only selects
+when contact is recorded. This is not a coupled calculation of feedback from
+lateral expansion into the gap onto the front or magnetic field.
 
-**Evaluate the contact station against the liner, and read the flown profile there.** Nothing
-else moves. The downstream profile stays exactly as derived, so P9's 5 T exit is untouched and
-`0011`'s flare geometry is used as it already stands.
+## Relation to the original proposal
 
-| spreading | wall | contact | flown profile there | cap |
-| --- | --- | ---: | ---: | ---: |
-| 1.9x bracket, 41.3 deg | bag bore 3.02 m, flat (`0012`) | 3.27 m | 11.75 T | **12 T** |
-| **1.9x bracket, 41.3 deg** | **liner 3.50 m, `0011` flare** | **4.14 m** | **10.59 T** | **11 T** |
-| sound speed, 24.9 deg | bag bore 3.02 m, flat (`0012`) | 6.18 m | 8.87 T | 9 T |
-| **sound speed, 24.9 deg** | **liner 3.50 m, `0011` flare** | **8.50 m** | **7.71 T** | **8 T** |
+The original paper-side probe used a flared contour and gave 4.14 m / 10.59 T
+at the faster bracket, and 8.50 m / 7.71 T at the sound speed. Those were different
+geometry calculations, not the companion results above. Both faster-bracket
+estimates round up to 11 T. The old sound-speed-only 8 T proposal is not adopted.
 
-The cap column rounds up to the next whole tesla, which is the margin discipline `0012` used when
-it took 12 T from 11.75 T. **The proposed cap is 11 T**, and 8 T if R9 confirms the sound-speed
-spread. Shelf field energy falls to 0.78x of the 12 T case, and to 0.73x against 9 T.
+The original proposal's shelf-energy ratios are not a recomputation of the whole
+magnet. They are not applied to the mass budget. ADR-0012's 12 T energy and tape
+figures retain their original first-order provenance; ADR-0011's 3.50--5.17 m
+winding and conductor pricing remain the reference envelope and budget.
 
-## Why this is bookkeeping rather than a new design
+## Deferred: grade the whole profile against the liner
 
-No hardware changes. No new section of magnet, no bell, no regrading, and no change to the flare
-`0011` already decided. **The same geometry is read against the surface that actually has to
-survive.** That is why it is worth having even though it is worth only 1 T at the binding
-bracket. It costs nothing.
+P19 confirms that the original 20/12/9/5 T profile was derived against the bag
+bore at every station. The 5 T exit is therefore a bag-referenced standoff number,
+not an independent collision requirement. It remains the chosen exit field while
+a new grading is evaluated.
 
-It also does not depend on the radial scaling of the standoff demand, which is the weak step in
-the deferred option below. The flown profile is a function of `z` alone, so moving the contact
-station downstream and reading the same curve there needs no assumption about how demand varies
-with bore.
+The paper-side `B ~ 1/r` option suggests about 8.44 T peak and 2.87 T exit. That
+radial scaling and the resulting expansion have not been solved together. The
+corresponding argument that conductor cost becomes bore-independent uses the
+same scaling and does not justify a revised tape budget here.
 
-## The flare is cheaper in conductor than `0011` priced it
-
-Worth recording, because it changes how the next flare question should be argued rather than
-anything decided here. Tape mass runs as the integral of `B r` along the column, and the standoff
-demand runs as `B ~ 1/r`. **The product is bore-independent, so widening the winding is close to
-free in tape wherever the field is standoff-limited.** `0011` priced its flare at 1.18x to 1.50x
-conductor because it sized the flare by flux-tube accommodation and held the field at the flown
-values. Once `0012` establishes that the field's job is standoff, that pricing is too harsh.
-
-## Considered and deferred: let the whole profile follow the flared bore
-
-If the standoff demand really scales as `1/r`, the field can fall along the whole column rather
-than only on the shelf, and the peak reaches **8.44 T** at the binding bracket. The expansion
-ratio improves rather than degrading, from `A/A*` = 2.40 to 2.94, because the exit demand falls
-faster than the peak does.
-
-**Deferred, because it drops the exit to 2.87 T against P9's 5 T.** P9 states that the 5 T exit
-is a collision requirement, and a collision requirement is not ours to trade against bore. Taking
-it would need P9 reopened, which is asked as the second half of R15 rather than assumed here.
-
-## What could take this back
-
-- **The wall may genuinely be the bag bore.** If the standoff requirement is written against the
-  mist column rather than the liner, because the front has to be held inside the mist it is still
-  sweeping, then `0012` is right as written and this ADR is void. This is the first question of
-  R15 and the whole decision rests on it.
-- **The coupling could move.** `k` = 7.2 is set by the front filling the 3.00 m bag, and the bag
-  does not flare. Expanding into the clearance gap dilutes pressure without reducing swept mass,
-  which is neutral to favourable, but it is unverified.
+A downstream bell or magnetic extension addresses expansion and release after
+the bag. It does not change the wall-contact station that sets the upstream cap
+in this prescribed model.
 
 ## Provenance
 
-Paper-side probe, `todos/peak_field_vs_flare.py`. It reproduces `0012`'s own two rows before it
-is used for anything else (8.87 T against the ADR's "9 T", 11.75 T against its "11.8 T"). Same
-first-order caveats as `0011` and `0012`. Owed back to `puffsat_impact_simulation` as R15.
+- `puffsat_impact_simulation` at `6fe8cf3`, `docs/nozzle_replies_answered.md`,
+  P18--P19, `python/puffsat/front.py`, and ADR-0042.
+- Reproduce the companion contact calculations with `make analysis-nozzle-front`.
+- These results retain the companion's original geometry inputs. ADR-0014's
+  corrected bag dimensions have not been rerun through the impact model.
+- Historical paper-side comparison: `todos/peak_field_vs_flare.py`.

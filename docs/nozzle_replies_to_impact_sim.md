@@ -8,12 +8,75 @@ this repo already has.
 Numbered R1 onward, to avoid collision with N1--N7 (our asks), P1--P10 (their answers) and
 S1--S4 (`deferred_to_companion_repos.md`, targeting `aim_is_all_you_need`).
 
-**Live document.** Items are added as the paper-side pass proceeds. Nothing here is final until
-the pass finishes.
+## Current status, 2026-09-06
+
+The paper-side review of P11–P26 in `docs/nozzle_replies_answered.md` at
+`puffsat_impact_simulation` revision `6fe8cf3` is complete. The accepted changes
+are applied to the paper. R1–R15 below retain the original requests and reasoning
+as history; the status notes supersede conflicting claims, including earlier
+amendments. Completion of this editorial pass does not close the modeling work.
+
+The adopted design uses a flared winding, an 11 T peak and a retained 5 T exit,
+with a 660 m³ bag. The 12 T expansion and winding calculations remain reference
+results. Expansion-frame efficiency is distinct from the ship-frame efficiency
+used in the fleet calculation. Water radiation accounting uses integrated
+in-nozzle emission; the absorbed liner load remains unresolved.
+
+Remaining companion questions and calculations:
+
+- What fraction of overtake pulses falls below the relevant closing-speed
+  thresholds, and what fleet-growth benefit would pulse-by-pulse loading provide?
+  P23's objective and existing fixed-per-leg policy are answered below.
+- How does expansion-frame momentum map to ship-frame efficiency, including
+  reversal on the head-on leg?
+- Rerun geometry, field and expansion calculations for the corrected bag and
+  adopted 11 T peak; assess regrading the full profile, including the exit field.
+- Resolve the post-snowplow mass distribution, wall interaction and absorbed
+  radiation before replacing liner loads or ablation budgets.
+- Compute argon equation of state, expansion, radiation and conductivity before
+  assigning it new nozzle efficiencies or fleet-growth results.
+
+These are recorded follow-ups. No request has been sent to either companion
+repository.
+
+## P23 follow-up: mission objective and loading policy clarified
+
+Accepted in the paper review. The existing `aim_is_all_you_need` calculation at
+`b4ddcf0` supplies the objective and loading policy that P23 asks about.
+
+- `src/two_wave_growth.py:price_chain` maximizes the product of cycle growth
+  factors over the flown chain, using one departure slug ratio across the cycles.
+- `src/two_leg_nozzle_sweep.py:price_chain_two_leg` chooses separate growth-push
+  and departure ratios. Its objective sums logarithms of cycle growth, equivalent
+  to maximizing compounded growth, subject to ignition and launch-return bounds.
+  Each leg's ratio is held fixed across the cycles.
+- Neither calculation optimizes a pulse-by-pulse loading schedule. Such a schedule
+  has not been priced or adopted in this review.
+
+The chemistry-only gross-momentum optimum is a different question. Holding other
+loss factors fixed and using the paper's `E_a = 50.9 MJ/kg`, its momentum factor
+is `sqrt((1+k) - 2 E_a (1+k)^2/w^2)`. At 45.58 km/s this peaks at
+`k = w^2/(4 E_a) - 1 = 9.20401`. The reference 8.52 is 0.224927% below that
+maximum; moving from 8.52 to 5.2 reduces gross momentum by 7.812997%. These are
+analytic sensitivities, not a new fleet run or a change to the flown loading.
+
+The paper now states this distinction. The objective question is answered from
+the existing source; the value of a varying loading schedule remains open. The
+separate requests for the fraction of overtake pulses at low closing speeds and
+for expansion-frame versus ship-frame efficiency accounting are not closed by
+this clarification. No request has been sent to either companion repository.
 
 ---
 
 ## R1. P2's `eta_geom` is lumped, and the two terms it omits both cut the same way
+
+> **Superseded by the reviewed fluid-expansion and frame accounting.** The
+> single-particle magnetic-moment estimates below are retired, as are the earlier
+> amendment's claims that argon clears the cold leg. The modeled `eta_exp` is mean
+> axial speed divided by RMS speed in the initial plume frame, not the full
+> ship-frame `eta_geom` or `eta_jet`. Geometry and divergence still matter; neither
+> the historical station-weighted levels nor the amendment's numbers establish
+> fleet performance.
 
 > **AMENDED 2026-09-04, later the same day. Read this box before the item.**
 >
@@ -96,6 +159,13 @@ generous than harsh.** Probes: `todos/station_weighted_alpha.py`, `todos/fluxtub
 
 ## R2. P7 is decided: the winding flares. `eq:bore_from_length` was never a magnet contour
 
+> **Field-line check answered by P16, accepted in the paper review.** In the
+> 48-coil, 12 T capped reference calculation, no sampled paths cross the flared
+> winding boundary. ADR-0011 records the uniform-column launch assumption and
+> vacuum-field model. This is not an actual liner-impact mass fraction or an
+> 11 T rerun. Current bag geometry is ADR-0014's 660 m³; current peak is 11 T
+> under ADR-0013. The text below records the earlier design and request.
+
 Recorded in `docs/adr/0011`, as amended by `docs/adr/0012`. The winding follows the plume's
 bounding flux tube, `r(z) = r_bag sqrt(B_chamber/B(z))` plus clearance. At ADR-0012's 12 T cap
 that is **3.50 m at the chamber to 5.17 m at the throat, a mean half-angle of about 4 degrees,
@@ -120,6 +190,12 @@ than our paraxial one, since `field.py` already has the winding machinery P8 use
 ---
 
 ## R3. Regrading the column field to buy back `eta_geom` is self-defeating
+
+> **Superseded by P13 and the adopted P18/P19 field decision.** The
+> magnetic-moment efficiency levels and their claimed ranking below are retired.
+> The fluid calculation improves modeled expansion efficiency when the reference
+> peak falls from 20 T to 12 T. The adopted peak is now 11 T with a retained 5 T
+> exit; no new full-profile efficiency or hardware-mass result was computed.
 
 Recorded so nobody re-derives it, in the same spirit as your P9.
 
@@ -147,6 +223,12 @@ not move the argument, because the lever being refused here is *raising* the col
 
 ## R4. Your deferred N7 is mispriced, and it is now the most valuable run on the list
 
+> **Partially answered; the post-snowplow state remains open.** The
+> station-weighted magnetic-moment efficiencies and factor-of-two-to-three claim
+> below are retired. Mass location still matters for geometry and wall loading.
+> P16 uses uniform column-volume starting points for field traces; it does not
+> reconstruct the actual merged plume or provide a liner-impact mass fraction.
+
 The deferred table rates the rod-resolved snowplow merge by what it buys for `f_d`, which is
 worth about 3% on the reflection baseline. **The same run produces the mass-versus-station
 profile at the end of the plow, and that is worth a factor of 2 to 3 on `eta_geom`:**
@@ -168,6 +250,13 @@ run we need.
 ---
 
 ## R5. Your deferred N3 liner fraction has a first-order answer, and it is not 2.3%
+
+> **Geometric part answered by P16, accepted in the paper review.** The companion
+> field trace gives 17% of sampled paths crossing a straight 3.50 m winding at
+> the original 20 T profile, 14% at the 12 T cap, and none for the capped flare.
+> These supersede the paraxial clearance estimates below. They do not determine
+> kilograms striking the liner: the post-snowplow mass distribution and wall
+> interaction remain unresolved. No ablation budget is replaced by these fractions.
 
 Flux-tube accounting against a straight 3.5 m winding, uniform mass in the bore:
 
@@ -210,6 +299,13 @@ temperature of the surface that takes the flash.
 
 ## R7. `throat` means opposite ends in the two repositories
 
+> **Superseded by P22, accepted in the paper review.** Both repositories now use
+> `chamber` for the strong-field end and `exit` for the downstream opening.
+> `throat` is reserved for the sonic station, at the chamber in the expansion
+> model. The companion's radius constant is now `CHAMBER_RADIUS`. The paper's
+> hardware descriptions and CONTEXT glossary have been corrected. The proposal
+> below records the earlier convention and is no longer operative.
+
 | | this repo | `puffsat_impact_simulation` |
 | --- | --- | --- |
 | **throat** | the downstream **exit**, where the plume leaves at 5 T (paper line 1129, "a strong field at the chamber and a weak one at the throat"; `CONTEXT.md` 1654 uses throat and exit interchangeably) | the upstream station where `A/A*` = 1, at 20 T (`expansion.THROAT_RADIUS` = 3.0 m) |
@@ -223,6 +319,13 @@ both repos adopt **chamber** (20 T end) and **throat** (5 T end) throughout.
 ---
 
 ## R8. What happens when sub-Alfvénic plasma is forced against a wall?
+
+> **Architecture preference updated by P14.** The paper prefers a magnetic
+> extension. The handback does not establish that every physical bell is
+> impossible, nor solve plasma-wall interaction. The historical thermal-survival
+> claims and efficiency levels below are not accepted design results. Wall
+> interaction remains a modeling question, but no longer blocks the paper's
+> statement of the magnetic-extension option.
 
 **This is your own second open question, and it is now load-bearing.** Your deferred section
 raises it as a curiosity:
@@ -327,6 +430,13 @@ The divergence term in R1, and the second open question in your own deferred sec
 
 ## R9. How fast does the snowplow front spread, and where does it first touch the wall?
 
+> **Answered within the prescribed front model by P18/P19.** At a constant
+> 3.50 m wall, the adopted faster-spread case first contacts at 3.83 m and demands
+> 10.95 T, rounded to an 11 T peak. The sound-speed-only case gives 7.29 m and
+> 8.25 T and is not adopted. A flared liner at or outside 3.50 m makes this a
+> conservative contact bound within that model. Its bag-area cap builds in swept
+> mass independence; lateral magnetic feedback is not resolved. See ADR-0013.
+
 **Cheap, and it is worth 3 T of peak field.**
 
 **Why.** ADR-0012 caps the nozzle's peak field by observing that the field's job at the chamber
@@ -365,6 +475,13 @@ speed against its sound speed is the underlying number.
 ---
 
 ## R10. P8 counts minima when what matters is their depth, and P1 sets the threshold
+
+> **Superseded by P17, accepted in the paper review.** The collisionless
+> pitch-angle threshold below is retired. The fluid criterion compares local
+> contraction with the area change allowed by the local Mach number. The tested
+> reference sweep passes at 12 coils for the straight winding and 18 for the
+> flared 12 T winding, with the binding region near the chamber. These are sampled
+> reference results, not an 11 T rerun or a general coil-count guarantee.
 
 **Not a disagreement with P8's sweep, a disagreement with its pass criterion.**
 
@@ -407,6 +524,15 @@ flat region is exactly where the depth criterion has to be applied rather than a
 ---
 
 ## R11. Reduce the field at the throat by moving the throat downstream. **This may retire R8.**
+
+> **Updated by P14 and P18/P19, accepted in the paper review.** The
+> 10.9 m, 15° magnetic extension reaches the model's release condition at 75 km/s,
+> but not at 45.58 km/s. Modeled `eta_exp` is 0.89–0.96 and 0.86–0.92,
+> respectively; these expansion-frame values do not establish ship-frame fleet
+> performance. The 56.3 km/s efficiency-target crossover is not a detachment
+> threshold. The retained 5 T exit was derived from bag-referenced standoff,
+> not an independent collision constraint; full-profile regrading remains open.
+> The blanket clearance claims below are superseded.
 
 **Priority: highest of the open items. It is the only thing we have found that clears the
 paper's own 0.775 target.**
@@ -486,6 +612,14 @@ R8 entirely.
 
 ## R12. We need `phi`, the share of the pulse's radiation emitted before the plume clears the exit
 
+> **Answered by P21; accounting correction accepted in the paper review.** Use
+> its integrated in-nozzle emitted energy directly, without another `phi` factor.
+> These are original 4:1 water expansion results, not an adopted-nozzle or argon
+> rerun. At 238 kg/pulse and 2 Hz, the maximum is 5.73 GW emitted, not absorbed
+> liner power. Its own 56.53 km/s dissipated pulse energy gives 8.0%, not the
+> 4.55% obtained using the 75 km/s denominator. Liner temperature and shield count
+> do not follow from this integral alone. The text below records the original ask.
+
 **Cheap: it is a quadrature over a file you already have.**
 
 **Why.** R5 and our P4 work correct the liner's solid angle from the bag's "tenth of the sky" to
@@ -519,6 +653,14 @@ case in this whole exercise where the passive-structure claim actually fails.
 ---
 
 ## R13. Everything on both sides has been computed for a water slug. `sec:watering_it_down` has an argon option that removes the binding constraint
+
+> **Argon modeling remains open.** Argon removes water's molecular
+> bond-dissociation term, but its ionization, recombination and radiative losses
+> must be accounted for in its own plume history. No argon equation-of-state,
+> expansion, radiation or conductivity calculation was imported in this review.
+> The automatic `eta_chem = 1`, `eta_jet = eta_geom` and cold-leg clearance claims
+> below are superseded. The paper's growth tables have not been recomputed for
+> argon.
 
 **Raised by the user, 2026-09-04, and it changes which quantity binds.**
 
@@ -629,6 +771,13 @@ carefully than three round numbers, say so and we will re-derive rather than ado
 ---
 
 ## R15. Which surface is the standoff requirement written against, the liner or the bag bore?
+
+> **Answered by P19 and accepted in the paper review.** ADR-0013 now adopts
+> the liner criterion and an 11 T peak, using P18's constant 3.50 m contact
+> surface as a conservative bound within its prescribed model. Existing 12 T
+> winding and expansion results remain reference calculations. P19 also confirms
+> that 5 T is bag-referenced standoff; whole-profile regrading remains deferred.
+> The text below records the original request.
 
 **Priority: high, and cheap to answer. It is one line of your existing geometry, not a run.**
 

@@ -2,14 +2,13 @@
 
 Status: accepted (2026-09-04 grill on `puffsat_impact_simulation`'s nozzle answers). Settles item
 P6 of `docs/nozzle_asks_answered.md`, which was blocked on P7 and is unblocked by `0011`.
-The cap sits at 12 T rather than the 9 T the argument allows, pending R9.
+The original decision used 12 T rather than the sound-speed-only 9 T estimate, pending R9.
 
-**Amended in proposal by `0013`** (2026-09-05). The cap table below measures wall contact to the
-bag bore at every station, and `0011` puts the liner at 3.50 m flaring to 5.17 m. Reading the
-same flown profile at the contact station against the liner gives 10.59 T rather than 11.75 T at
-the binding bracket, so `0013` proposes **11 T**. That amendment is conditional on R15, which
-asks the impact simulation which surface the standoff requirement is written against. **Until
-R15 lands, 12 T is the flown number.**
+**Amended by accepted ADR-0013 following P18/P19.** The adopted cap is now
+**11 T**, evaluated against the liner using the companion's constant 3.50 m
+wall as a conservative contact surface within its prescribed front model.
+The 12 T sizing and expansion results below are retained reference calculations,
+not 11 T reruns. The original bag-bore contact argument is recorded for provenance.
 
 ## What P6 found
 
@@ -54,7 +53,7 @@ angle with no field in it, and field only slows spreading, so the field cannot b
 upstream of it into a shelf.** Monotonicity (P8's no-local-minimum requirement) floors the shelf
 at the field where the shelf meets the profile.
 
-**The cap is 12 T**, meeting the flown profile at z = 3.12 m.
+**The original cap was 12 T**, meeting the flown profile at z = 3.12 m.
 
 The field-energy, structure, and tape figures below retain the original first-order
 paper-side estimates. They have not been recomputed with the companion expansion model.
@@ -62,7 +61,7 @@ paper-side estimates. They have not been recomputed with the companion expansion
 | shelf | peak `B` | field energy | virial structure | tape |
 | --- | ---: | ---: | ---: | ---: |
 | none, as flown | 19.8 T | 1.00x | 10--30 t | 1.00x |
-| **12 T (adopted)** | **12.0 T** | **0.88x** | **9--27 t** | **0.96x** |
+| **12 T (reference)** | **12.0 T** | **0.88x** | **9--27 t** | **0.96x** |
 | 9 T, if the sound-speed spread holds | 9.0 T | 0.75x | 7--22 t | 0.90x |
 
 ## Why the cap improves the modeled expansion efficiency
@@ -97,7 +96,7 @@ The values are from `puffsat_impact_simulation` at `6fe8cf3`,
 radius and 23.8 m field length; ADR-0014's corrected bag geometry has not been
 rerun through it. Reproduce with `make analysis-nozzle-extension` in that checkout.
 
-## Why 12 T and not 9 T
+## Why the original decision used 12 T and not 9 T
 
 The wall-contact station rests on the spreading rate, and the paper brackets it:
 

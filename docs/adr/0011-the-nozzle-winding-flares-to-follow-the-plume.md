@@ -5,6 +5,40 @@ N1--N7, `docs/nozzle_asks_answered.md` @ `49a5e49`). Supersedes nothing, but it 
 of that document, which was handed back to this repository as a decision rather than a
 calculation.
 
+**Current field amendment:** accepted ADR-0013 adopts an 11 T peak following
+P18/P19. The 12 T flare dimensions and conductor prices below remain the reference
+hardware envelope and budget; no 11 T winding or expansion rerun is claimed.
+
+## Companion field-line check, P16 accepted
+
+The companion calculation at `6fe8cf3` traces paths through a 48-coil reference
+winding. Starting points sample a uniform-density column, with equal-volume
+radial bins and uniformly spaced axial stations. This differs from placing every
+starting point at a single chamber inlet.
+
+| Winding | Reference field | Sampled paths crossing winding boundary |
+| --- | --- | ---: |
+| Straight, 3.50 m radius | Original 20 T profile | 17% |
+| Straight, 3.50 m radius | 12 T cap | 14% |
+| Flared | 12 T cap | 0% |
+
+This supports retaining the flare. The calculation uses the prescribed vacuum
+field and original 3.0 m bag radius / 23.8 m column. It is not an 11 T rerun and
+does not include plasma feedback on the field. No sampled paths crossing the
+boundary is not a measured zero liner-impact fraction. The actual mass profile
+left by the snowplow and the wall interaction remain unresolved.
+
+These figures supersede the paraxial path-clearance estimates below for the tested
+reference configurations. The old conversions from geometric fractions to
+kilograms striking the liner are not a wall-loading result and do not replace
+the ablation budget. Likewise, the uniform-column starting distribution is an
+assumption, not a reconstructed post-snowplow state.
+
+Source: `puffsat_impact_simulation`, `docs/nozzle_replies_answered.md`, P16,
+`python/puffsat/fluxtube.py`. Reproduce with `make analysis-nozzle-fluxtube`.
+The decision history below retains the earlier paper-side reasoning; its
+single-particle conversion mechanism was retired under P11/P12.
+
 ## What forced the question
 
 P1 of the answer document found the merged fireball is a pancake. The axial share
@@ -65,7 +99,7 @@ so a lower chamber field means the tubes expand less and the flare is gentler:
 | profile | chamber `B` | tube grows | winding at the throat | conductor |
 | --- | ---: | ---: | ---: | ---: |
 | flown, as decided above | 19.8 T | 1.99x | 6.50 m | 1.00x |
-| **12 T cap (adopted)** | **12.0 T** | **1.55x** | **5.17 m** | **0.79x** |
+| **12 T cap (reference)** | **12.0 T** | **1.55x** | **5.17 m** | **0.79x** |
 | 9 T cap, if R9 allows | 9.0 T | 1.34x | 4.54 m | 0.67x |
 
 **Against the original straight 3.5 m winding at the flown field, the capped flare costs 1.18x,
@@ -112,7 +146,7 @@ The winding results quoted in this ADR retain their original input geometry.
   flare decision does not rest on it**, since the flare is what accommodates the flux tubes
   whatever converts them.
 
-## Provenance and status of the numbers
+## Provenance of the original paper-side numbers
 
 The flux-tube accounting, the divergence term and the flare pricing are **paper-side probes**,
 written this session and living in `todos/`: `station_weighted_alpha.py`, `regrade.py`,

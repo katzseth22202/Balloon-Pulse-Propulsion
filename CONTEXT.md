@@ -1675,33 +1675,26 @@ the compact impactor hits first.
   ~1.4% of the rod**. Affordable, not free.
 - _You cannot funnel a wide puff into a narrow bore_. The arriving cloud is cold neutral droplets at
   122-200 K with `Rm` far below 1. The field has nothing to grip until after the collision.
-- **Graded field, capped at 12 T at the chamber falling to ~5 T at the throat** (cap decided
-  2026-09-04, ADR-0012; grading itself decided 2026-08-21 grill). **The 20 T nose is retired.**
-  The field's job at the chamber is wall standoff, and the front (0.15 m rod spreading at 24.9 deg)
-  is only 0.61 m across at z = 1 m with 2.4 m of clearance, so the profile was demanding its
-  strongest field where nothing needed standing off. Hold the flown profile from wall contact to
-  the exit and flatten upstream into a shelf: **12 T from 1 m to 3.12 m, then 9 T at 6 m, 5 T at
-  exit.** Buys 0.88x field energy, 9-27 t structure, 0.96x tape, and `eta_geom` does not move
-  (0.528-0.662, marginally better). **P6's realizability finding stops binding** and the
-  20 T SPARC anchor becomes a comfort rather than a requirement. 9 T is available if the front
-  really spreads at the sound speed; the paper's own 1.9x bracket puts wall contact at 3.26 m
-  needing 11.8 T, so 12 T is immune to the bracket. Asked as R9.
-  **Under challenge, and the challenge looks right** (2026-09-05, ADR-0013, proposed). This cap
-  was computed with the wall at the **bag bore, 3.02 m, at every station**, which is the same
-  bag-for-magnet substitution ADR-0011 exists to break. The surface that must not be hit is the
-  **liner, 3.50 m flaring to 5.17 m**, and the rest of this file already treats it that way (R12's
-  82% sky, the 631 m^2 radiating area). Reading the same flown profile at the corrected contact
-  station gives **10.59 T at the binding 1.9x bracket (cap 11 T)** and 7.71 T at the sound speed
-  (cap 8 T), at no hardware cost, with shelf field energy 0.78x. **Conditional on R15**, which
-  asks the sim whether standoff is written against the liner or the mist column. **12 T stays the
-  flown number until it lands.** Probe: `todos/peak_field_vs_flare.py`.
-  _Two further findings from the same probe._ **A hybrid nozzle cannot lower the peak field at
-  all**, because the shelf height is the demand at the contact station and R8's bell and R11's
-  extension both sit downstream of it. And **ADR-0011's 1.18-1.50x conductor pricing for the flare
-  is too harsh** where the field is standoff-limited, since tape runs as the integral of `B r`
-  while demand runs as `B ~ 1/r`, making the product bore-independent.
-  _Avoid_: quoting the 8.44 T variant, which needs the untested `1/r` radial scaling and drops the
-  exit to 2.87 T against P9's 5 T.
+- **Graded field, adopted 11 T peak and retained 5 T exit** (P18/P19 accepted;
+  ADR-0013 amends ADR-0012). The protected surface is the graphite liner, not the
+  bag. The companion model uses a constant 3.50 m wall, giving contact at 3.83 m
+  and demand 10.95 T at the binding 1.9x spreading bracket. Since the liner flares
+  outward from that radius, this is conservative for contact within the prescribed
+  front/profile model. The sound-speed-only result is 7.29 m / 8.25 T and is not
+  the adopted cap. These are not the old paper-side full-flare 4.14 m / 10.59 T
+  and 8.50 m / 7.71 T estimates.
+  Swept area is capped at the bag boundary by construction; changing the reporting
+  wall radius does not alter the front integration. Lateral feedback remains unresolved.
+  **Retain 12 T reference calculations and mass budgets.** The 3.50--5.17 m
+  envelope, conductor prices, expansion efficiencies, and coil-count sweep have not
+  been rerun at 11 T or ADR-0014's corrected bag dimensions. P13 corrects the old
+  claim that the 12 T cap leaves efficiency unchanged: eta_exp improves by
+  0.045--0.155 over the 20 T reference cases. Original 0.88x energy and 0.96x tape
+  figures remain first-order estimates for 12 T, not new 11 T savings.
+  P19 confirms that 5 T was also bag-referenced standoff. Whole-profile regrading
+  is deferred; the unrun 8.44 T peak / 2.87 T exit option and its `B ~ 1/r`
+  conductor savings are not adopted. Source: impact sim `6fe8cf3`, P18/P19,
+  `front.py`, ADR-0042.
   _The old entry, for reference_ (decided 2026-08-21 grill):
   Front-loading the collision means the fireball sweeps the mist as a snowplow, and the pressure it
   needs stood off falls down the bore: ~20 T at 1 m, 12 T at 3 m, 9 T at 6 m, 5 T at exit. That is a
@@ -1992,10 +1985,14 @@ the share of total radiated energy emitted **before the plume clears the exit pl
 computable from `data/results/cooling_history.csv` and is not yet asked for.
 _Still open_: how the paper states this. Probe: `todos/p4_ledger.py`.
 
-**`throat` = the 5 T exit end, `chamber` = the 20 T end.** `puffsat_impact_simulation` uses
-`throat` for the *opposite* end (`expansion.THROAT_RADIUS`, where `A/A*` = 1), so its P3 reading
-"`M_A` rises from the throat to the exit" is backwards in our vocabulary. See
-`docs/nozzle_replies_to_impact_sim.md` R7.
+**Current nozzle terminology (P22 accepted).** `chamber` is the strong-field end;
+`exit` is the downstream weak-field opening. `throat` is reserved for the sonic
+station, where flow reaches sound speed, at the chamber in the expansion model.
+This supersedes R7's proposed `throat = exit` convention. The companion renamed
+`expansion.THROAT_RADIUS` to `CHAMBER_RADIUS`; historical entries above may retain
+the earlier vocabulary. The paper now uses `exit` for the downstream hardware and
+`chamber` for the ship-facing pressure-support region. Chemical-thruster sonic
+throats retain their standard name.
 
 _Avoid_: quoting `tab:bag_sizing`'s single 4.1 T as if the field were uniform; calling the impactor a
 compact rod that "sweeps the column" (it does not, the plug is what couples it); reading a smaller bore
@@ -3286,3 +3283,56 @@ rack takes full dose. Unsized.
   projected dozens per day. No estimate required. Reopen only if measured SEL-vs-distance
   data past 20 km is published; the figure exists in the Flights 5/6 comparison paper but the
   numbers were not extractable from the open-access text.
+
+
+## P21 radiation accounting accepted after the nozzle handback review
+
+The current paper uses the companion's in-nozzle energy integral directly.
+`radiance.py` at impact-simulation revision `6fe8cf3` integrates each parcel's
+emission over its transit. It retains `AREA_RATIO_EXIT = 4.0`, chamber radius
+3.0 m, field length 23.8 m, and the original water histories. These are not the
+12 T capped expansion calculations, the adopted 11 T nozzle, or an argon solve.
+Radiative cooling is not fed back into the flow.
+
+| Closing speed | Frozen emission, MJ/kg | Equilibrium emission, MJ/kg |
+| --- | ---: | ---: |
+| 45.58 km/s | 0.99 | 3.55 |
+| 56.53 km/s | 1.77 | 12.03 |
+| 65 km/s | 2.19 | 6.10 |
+| 75 km/s | 2.65 | 4.35 |
+
+For 238 kg per pulse at 2 Hz, multiply by 0.476 to get GW emitted inside the
+nozzle. Frozen power is 0.47--1.26 GW; equilibrium power is 1.69--5.73 GW.
+The largest case emits 2.863 GJ per pulse at 56.53 km/s, against 35.750 GJ of
+dissipated collision energy (reduced mass 25*213/238 kg). Its share is 8.009%,
+not P21's 4.55% from using a common 62.9 GJ denominator. That denominator belongs
+to the 75 km/s case. Do not multiply already-in-nozzle energy by `phi` again.
+
+Emission is not absorbed liner power. The 585 MW booked ablation capacity covers
+all intercepted radiation in the maximum case only below about 10.2% absorption.
+This does not preclude radiative heat rejection, but neither the integral nor a
+wall-area ratio establishes a liner temperature or a shield count. Supersedes
+historical claims in this file that the corrected 380 MW is an upper bound or
+that all radiation leaves with the booked carbon. The appendix retains 380 MW as
+an assumed conduction load and 1150 K as a separate assumed gap-radiation example;
+neither is a computed water/argon state. The 449 m^2 reference area gives about
+4.4 MW gap exchange at graphite/aluminium emissivities 0.85/0.1, or about 13 MW
+if aluminium emissivity is 0.3, neglecting its temperature as in that example.
+
+
+## P23 mission objective and loading policy clarified
+
+Accepted in the paper review, from `aim_is_all_you_need` at `b4ddcf0`.
+`two_wave_growth.price_chain` maximizes compounded growth across the flown chain
+with a common departure ratio. `two_leg_nozzle_sweep.price_chain_two_leg` permits
+separate ratios for the two legs, holds each fixed across cycles, and maximizes
+sum(log(cycle growth)) subject to ignition and launch-return constraints. Neither
+optimizes a pulse-by-pulse loading schedule. This answers P23's objective question;
+it does not adopt a new slug ratio or schedule.
+
+At fixed other loss factors, the chemistry-only gross-momentum factor is
+`sqrt((1+k) - 2 E_a (1+k)^2/w^2)`. With E_a=50.9 MJ/kg and w=45.58 km/s,
+its optimum is k=9.20401; k=8.52 is 0.224927% below the maximum. Moving to k=5.2
+reduces that gross momentum by 7.812997%, even while eta_chem rises. These figures
+are not mission growth optima. Pulse-speed fractions and the expansion/ship-frame
+efficiency mapping remain separate open questions.
