@@ -1379,25 +1379,32 @@ This is the **third** distinct sense of "2S/3S" in this document and they do not
 * **Synodic lock** is a *padded total*, and the thing being claimed is phase repeatability.
 _Avoid_: writing bare "the 2S cycle" anywhere near `sec:jovian_dive_cycle` (a reader taught the
 closure sense first will read it as the 6.84 deg bend deficit being solved, which nothing here
-does); calling the lock a new trajectory before the check below lands.
+does); calling the 2S lock a new trajectory, which it is not (see below).
 
-**2S lock: constructed, not yet pinned** (2026-09-08 grill; **status: owed back to the companion
-repo before any paper text**):
-Padding a sub-2.00 S flight up to exactly 2.00 S gives a fixed point the companion's own open
-question says the chain search never sustains. One exists at departure phase 0.781: flight
-1.978 S (2.16 yr), park 0.022 S (**9 days**), `dv` 7.25 km/s, `v_b` 63.2 km/s. Its growth
-reproduces the companion's quoted 6.021 at Isp 2214 to three digits, and the same harness
-reproduces the published 3S row exactly, so the device agrees with theirs.
-**The trade, and it is the reason 2S does not simply win.** Doubling 0.84 yr against 3S's 1.19 at
-Isp 2214 (1.00 against 1.38 at Isp 1200), bought by giving back launch window: **28 of 73 phases
-against 73 of 73**. 2S at the top exhaust speed is still narrower than 3S at Isp 1200's 44 of 73.
-Present them as **two operating points with the trade stated**, never as 2S superseding 3S.
-Two open items ride with it. The lock needs a **9-day** park, *shorter* than the 20-day cycle
-orbit, where 3S lengthens it to ~104; admissibility unchecked. And its `dv` 7.25 / `v_b` 63.2 sit
-inside the **2S vs 3S cadence** table's 2-synodic ranges (6.84-7.17 and 61.83-65.13), so the lock
-may be a padded member of a family the paper already flies, which would make the claim "lock a
-cycle we fly" rather than "fly a new one".
-_Avoid_: quoting 0.84 yr in the paper before the companion implements, tests and chain-checks it.
+**2S lock: pinned, and it is the resonance we already had** (2026-09-08 grill, pinned same day
+by companion ADR 0031 and asks S5-S8; **in the paper at `sec:synodic_lock`**):
+The 2.00 S lock exists, and padding is not what builds it. It sits at departure phase **0.8082**,
+flight 1.9497 S, park **0.0503 S (20.06 days)**, `dv` **8.613 km/s**, `v_b` **63.35 km/s**, and
+that is `fixed_points()`' own two-synodic resonance to every digit. Its park is the mandatory
+coast plus about ninety minutes, so there is no remainder for fly-and-park to pad.
+**The park cannot go below the coast.** The push lands at one periapsis and the departure burn
+lights at the next, so the park is the 20-day cycle orbit *lengthened*. The first construction
+here wanted a 9-day park and that is not a trajectory; asking the question found the companion's
+`MINIMUM_PARK` at 0.02 S, 2.5x under the coast it stood for. Charging it cost +3.5% of clock.
+**The trade, and it is the reason 2S does not simply win.** Doubling **0.873 yr** against 3S's
+**1.189** at Isp 2214 (**1.082** against **1.377** at Isp 1200), bought by giving back launch
+window: **26 of 73 phases against 73 of 73**. 2S at the top exhaust speed is still narrower than
+3S at Isp 1200's 44 of 73. Present them as **two operating points with the trade stated**, never
+as 2S superseding 3S. On methalox nothing pads to 2.00 S; 3S is reachable from 12 of 73 at
+3.641 yr.
+**The flown chain needs none of this.** All eleven cycles are already exact locks, drift under
+1e-4 S. What forces its four 3S fallbacks is ADR 0011's perijove floor (45 of 91 windows over
+200 years clear 4,000 km), not phase drift, so the lock retires a problem the architecture did
+not have.
+_Avoid_: quoting the 0.84 yr / phase-0.781 / 9-day-park construction, which is superseded;
+counting "phases offering a lock" off the **usable-phase** fraction, which is a looser test and
+is what made an earlier cut of ADR 0015 read 28 of 73 against a 73 of 73 from a different test;
+presenting the 2S lock as a new trajectory or as fly-and-park's product.
 
 **Departure phase, sweet phase, usable phase** (companion `src/fly_and_park.py`; the paper must
 define all three before using any fly-and-park result):

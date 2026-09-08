@@ -164,17 +164,37 @@ Raised while grilling the companion's `docs/paper_corrections_fly_and_park_2026-
 (ADR 0030, `src/fly_and_park.py`). Backing decision:
 `docs/adr/0015-2s-and-3s-are-operating-points-not-a-succession.md`.
 
+**All four are answered and written into the paper.** Companion commit `e384232`, backed by
+its ADR 0031 and handed back in `docs/paper_corrections_synodic_lock_2026-09-08.md`. The paper
+carries them in `sec:synodic_lock` and `tab:doubling_ladder`.
+
 | ask | what is wanted | status |
 | --- | --- | --- |
-| **S5** | Implement, test and **chain-check the 2.00 S synodic lock**, constructed here at phase 0.781 but not run through the chain search | **hold**: the 0.84 yr doubling stays out of the paper |
-| **S6** | One **doubling ladder** with the scorer named on every rung, because 1.19 yr and 1.45 yr are different quantities at the same `f` = 0.8 | **hold**: no new doubling figure until it lands |
-| **S7** | Absorb the **launch-window layout**, one contiguous arc widening 71 to 241 to 399 days, which the companion publishes fractions for but not shape | result to absorb, not a question |
-| **S8** | Say whether the 2S lock is a **padded member of the 2S vs 3S cadence family** already flown (`dv` 7.25 against 6.84-7.17, `v_b` 63.2 against 61.83-65.13) | **hold**: decides how strongly the 2S point may be worded |
+| **S5** | Implement, test and **chain-check the 2.00 S synodic lock**, constructed here at phase 0.781 but not run through the chain search | **answered, and the construction was wrong.** The 9-day park is inadmissible; the admissible lock is the resonance the paper already flies. **0.873 yr**, not 0.84 |
+| **S6** | One **doubling ladder** with the scorer named on every rung, because 1.19 yr and 1.45 yr are different quantities at the same `f` = 0.8 | **answered: a different measurement of a different thing.** Not at matched efficiency and not at matched scope. Ladder is `tab:doubling_ladder` |
+| **S7** | Absorb the **launch-window layout**, one contiguous arc widening 71 to 241 to 399 days, which the companion publishes fractions for but not shape | **absorbed and pinned.** One arc at every exhaust speed; the Isp 1200 width is **240** days, not 241 |
+| **S8** | Say whether the 2S lock is a **padded member of the 2S vs 3S cadence family** already flown (`dv` 7.25 against 6.84-7.17, `v_b` 63.2 against 61.83-65.13) | **yes, and more strongly than asked.** The flown cycles are already exact locks, drift under 1e-4 S, so nothing needs padding |
 
-**S5 carries the item most likely to kill the result**, and it is not the chain check. The
-2.00 S lock needs a **9-day** park, shorter than the 20-day `PUFFSAT_CYCLE_ORBIT_PERIOD`,
-where 3S fly-and-park lengthens that coast to ~104 days. If a 9-day coast is inadmissible the
-lock needs a different sub-2.00 S flight or it does not exist.
+**S5's hazard was the right one, and it fired.** The ask flagged that the 2.00 S lock needed a
+**9-day** park against a 20-day `PUFFSAT_CYCLE_ORBIT_PERIOD`, and asked whether that was
+admissible. It is not, and the question found a wrong constant in the companion:
+`MINIMUM_PARK` was 0.02 S, about eight days, standing in for a coast it is 2.5x under. The
+park is the bound near-escape orbit's period **lengthened**, since the push lands at one
+periapsis and the departure burn lights at the next, so it can never be shorter than one lap.
+Charging the coast moves the lock from phase 0.781 to **0.8082**, where it coincides to every
+digit with `fixed_points()`' own two-synodic resonance. Fly-and-park does not produce the 2S
+operating point. There is no remainder left to pad.
+
+**What moved on the way in.** Two published companion figures shifted (padding beats plain 3S
+at **16** of 30 phases at Isp 1200, not 17; the perfect-retrograde premium's median is 1.037
+over 29 phases). Neither is quoted in the paper. One paper figure was corrected: `sec:mass_interest`
+called the 1.74 yr rung's knob a *"nozzle geometric efficiency"*, and it is the **nozzle impulse
+recovery**. Both are 0.6 here and they are different parameters.
+
+**Re-derived rather than transcribed**, because the handback and ADR 0015 counted two different
+things. Phases offering a lock, coast charged, from `synodic_lock()`: 2S is **none** at Isp 380,
+**11 of 73** at 1200 and **26 of 73** at 2214; 3S is **12**, **44** and **73 of 73**. ADR 0015's
+73-of-73 came off the *usable-phase* fraction, which is a looser test. Its conclusion survives.
 
 **Vocabulary settled in the same grill** and recorded in `CONTEXT.md`: **fly-and-park**,
 **synodic lock** (with **2S lock** / **3S lock**), **departure phase**, **sweet phase**,
