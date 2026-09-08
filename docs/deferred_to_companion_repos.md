@@ -150,3 +150,115 @@ figures the paper now cites are below.
 design's operating point, but nothing in `templateArxiv.tex` states it, and the module's own
 comment shows it disagrees both with its Jupiter counterpart and with 100 kW on a 500 t wave. The
 paper therefore states the requirement directly and quotes no shortfall ratio against it.
+
+---
+
+# Fly-and-park batch, raised 2026-09-08
+
+Raised while grilling the companion's `docs/paper_corrections_fly_and_park_2026-09-07.md`
+(ADR 0030, `src/fly_and_park.py`) for what the paper may state. Target repo for all four:
+`katzseth22202/aim_is_all_you_need`.
+
+Three of the four are **holds**: the paper does not quote the number until the ask lands.
+S7 is a result computed here that the companion should absorb rather than a question.
+
+Vocabulary settled in the same grill and recorded in `CONTEXT.md`: **fly-and-park**,
+**synodic lock** (with **2S lock** / **3S lock**), **departure phase**, **sweet phase**,
+**usable phase**. The lock term exists because "2S" already meant two incompatible things
+in this paper, and this is a third.
+
+---
+
+## S5. Implement, test and chain-check the 2.00 S synodic lock
+
+**Why.** The companion's own N4 calls a repeatable 2S cycle its largest open question, and
+reports that the chain search never sustains one. The reason is visible in the seam entry:
+the good short cycles land at **2.09 S**, which does not return to its own departure phase,
+so each one hands its successor a worse phase. **Fly-and-park is the mechanism that removes
+that drift.** Pad a sub-2.00 S flight up to exactly 2.00 S and the cycle is a fixed point by
+construction.
+
+**What was found here.** Using `enumerate_phase_grid()` and `Cycle.growth()` unchanged, one
+exists at departure phase **0.781**: flight **1.978 S** (2.16 yr), park **0.022 S** (9 days),
+`dv` **7.25 km/s**, `v_b` **63.2 km/s**. Its growth reproduces the companion's own quoted
+**6.021** at Isp 2214 to three digits, and the same harness reproduces the published 3S row
+(2.735 S flight, 0.265 S park, `dv` 6.74, `v_b` 68.7) exactly, so the device agrees.
+
+| padded to | Isp 1200 doubling | Isp 2214 doubling | phases offering one, Isp 2214 |
+| --- | ---: | ---: | ---: |
+| 2.00 S | **1.00 yr** | **0.84 yr** | 28 of 73 |
+| 3.00 S | 1.38 yr | 1.19 yr | 73 of 73 |
+
+**What is wanted.** The construction implemented in `src/fly_and_park.py` with a target-synodic
+argument rather than a hard-coded 3.00, pinned by tests, and **run through the chain search**.
+The fixed-point argument says the successor is the same cycle, but N4's own second caveat
+records a single-cycle optimum that did not survive the chain lookahead, so it needs running.
+
+**Also unresolved.** The lock needs a **9-day** park, which is *shorter* than the 20-day
+`PUFFSAT_CYCLE_ORBIT_PERIOD`, where 3S fly-and-park lengthens that coast to ~104 days. Whether
+a 9-day coast is admissible is not something the paper can read off the model.
+
+**Lifts.** `CONTEXT.md`'s **2S lock: constructed, not yet pinned** hold, and the paper's
+ability to state the 0.84 yr figure at all.
+
+---
+
+## S6. Emit one doubling ladder, with the scorer named on every rung
+
+**Why.** `sec:jupiter_only_growth` already publishes 4.0 yr on chemical, 3.0 yr with the
+head-on catch, **1.74 yr at `f` = 0.6 and 1.45 yr at `f` = 0.8**. Fly-and-park lands at
+**1.19 yr** (3S) and **0.84 yr** (2S lock) at that same `f` = 0.8. Those are different
+quantities: the paper's is an eleven-cycle ephemeris chain including the expensive cycles it
+is forced to fly, the new one is the best phase's best single padded cycle scored as
+`M(v_b)*exp(-dv/v_e)`. Dropped in unlabelled, one subsection would carry four doubling times
+that appear to disagree at matched `f`.
+
+**What is wanted.** One table, every rung tagged with its scorer, its model (ephemeris chain
+against circular phased chain), and whether it is a chain result or a single-cycle result.
+
+**What would settle it.** Whether 1.19 yr is a refinement of 1.45 yr or a different
+measurement of a different thing. The paper needs to know which sentence it is writing.
+
+**Lifts.** The hold on every new doubling figure in the fly-and-park subsection.
+
+---
+
+## S7. Absorb the launch-window layout, which the fractions do not show
+
+**Why.** The companion publishes the usable-phase *fraction* by Isp (18% at methalox to 100%
+at 1900 s) and a day-offset table at Isp 380 and 2214 only. It does not say whether the usable
+phases form one window or several, and the paper's launch-cadence sentence has to say which.
+
+**What was found here.** They form **one contiguous arc** at every exhaust speed tested,
+widening about the sweet phase:
+
+| Isp (s) | 380 | 700 | 1000 | **1200** | 1500 | 1800 | **1900** |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| usable phases | 13/73 | 26/73 | 36/73 | **44/73** | 56/73 | 69/73 | **73/73** |
+| widest window (d of 399) | **71** | 142 | 197 | **241** | 306 | 377 | **399** |
+| windows | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+
+So the claim is "one window, **3.4x** wider at Isp 1200", not "a set of windows". The 71 days
+at methalox agrees with the companion's own finer -36/+24 day read to within one grid cell.
+
+**What is wanted.** The layout computed inside `fly_and_park.py` and pinned, so the paper cites
+`make fly-park` rather than a scratch script.
+
+---
+
+## S8. Say whether the 2S lock is a cycle the paper already flies
+
+**Why.** The **2S vs 3S cadence** table carries 2-synodic departure burns of **6.84-7.17 km/s**
+and growth-wave `v_b` of **61.83-65.13 km/s**. The 2.00 S lock sits at `dv` **7.25** and `v_b`
+**63.2**, inside one range and just outside the other. If it is a padded member of that family,
+the paper's claim becomes "lock a cycle we already fly", which is markedly easier to defend
+than "fly a new one".
+
+**The caution.** These are different models (`sep-split`'s ephemeris chain against the circular
+phased chain), so the resemblance may be coincidence. That is exactly why it needs checking
+rather than asserting either way.
+
+**What would settle it.** Whether any 2-synodic cycle in the cadence run pads to an exact
+2.00 S total and holds its departure phase.
+
+**Lifts.** How strongly the paper may word the 2S operating point.

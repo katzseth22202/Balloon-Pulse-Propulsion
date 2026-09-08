@@ -594,7 +594,10 @@ that closes**, bracketed on both sides: 1S is short 101.38° of Jovian bend, 2S 
 and 4S needs 4.368 yr against a 3.661 yr ceiling on any zero-revolution direct transfer.
 3S is 3.2761 yr, with +58.80° of bend margin at 4 R☉ and +54.48° at 32.
 _Avoid_: treating 2S as merely worse (no perijove burn closes it at any magnitude or sign;
-only a maneuver off the flyby does, at ~2 km/s wherever it is placed).
+only a maneuver off the flyby does, at ~2 km/s wherever it is placed). Also avoid reading
+this **2S** as the Jupiter-only chain's: see **synodic lock** below, where 2S is routine and
+a 2.00 S total is a phase fixed point. Three senses of "2S" live in this document and only
+this one is a bend-feasibility claim.
 
 **Depth dial**:
 Perihelion read as a continuous knob rather than a choice between two designs. Every
@@ -1345,6 +1348,100 @@ _Avoid_: saying the split spacing "pushes us to the 3S cycle" -- that is the pol
 Dawn): the blocker is **absolute** power, ~0.8 MW built and expended every 2.18 yr, not W/kg.
 Quoting ADR 0026's 8.2x shortfall, 1.61 MW, 2089 m/s worst cycle or 3.7% argon gain: those are its
 **20-day** run and do not describe the chain the paper flies.
+
+**Fly-and-park** (`sec:jupiter_only_growth`; companion `src/fly_and_park.py`, its
+`docs/paper_corrections_fly_and_park_2026-09-07.md`, named in the 2026-09-08 grill):
+Flying the Jupiter-only chain's loop **shorter and hotter than its synodic window** and parking
+the payload in its bound near-escape cycle orbit for the remainder, so flight plus park is an
+exact integer of synodic periods. At the best 3S phase: flight 2.735 S against an exact-3S
+cycle's 2.99, park 0.265 S (~104 days), departure burn 6.74 km/s against 5.56, arrival `v_b`
+**68.7 km/s against 61.3**. The park is nearly free: stretching the cycle orbit from 20 days to
+~100 moves the push target `v_rf` 10.9503 -> ~10.99 km/s, 0.2% on the mass ratio.
+**What parks is the payload, not the impactor.** The arriving mass is consumed in the collision
+on arrival, so **the mass cannot wait** (companion ADR 0010) still holds unchanged. Fly-and-park
+lengthens a coast the architecture already flies; it stores nothing.
+_Avoid_: reading it as warehousing returned mass, or as lifting ground mass early into LEO (the
+model represents **no ground resupply whatsoever**); saying it shortens the cycle (the padding
+exists precisely to hold the clock at an exact integer, and the companion retires that claim by
+name); expecting a `(68/61)^2` energy gain (the impulse law is **linear** in closing speed).
+
+**Synodic lock (2S lock, 3S lock)** (named in the 2026-09-08 grill, to keep three senses of
+"2S" apart):
+The property **fly-and-park** buys: because flight plus park sums to an exact integer of
+Earth--Jupiter synodic periods, the cycle **returns to its own departure phase** and repeats with
+no steering. A cycle that lands at 2.09 S does not, which is why the chain search could reach one
+and never hold it: each drifting cycle hands its successor a worse phase.
+This is the **third** distinct sense of "2S/3S" in this document and they do not interchange:
+* **Three-synodic closure (3S)**, above, is the *Jovian solar dive*'s bend feasibility. 2S there
+  is short 6.84 deg and **does not close** unpowered at any perijove burn.
+* **2S vs 3S cadence**, above, is the *Jupiter-only chain*'s return policy. Both are routine;
+  the flown 11-cycle chain takes seven 2S returns and four 3S.
+* **Synodic lock** is a *padded total*, and the thing being claimed is phase repeatability.
+_Avoid_: writing bare "the 2S cycle" anywhere near `sec:jovian_dive_cycle` (a reader taught the
+closure sense first will read it as the 6.84 deg bend deficit being solved, which nothing here
+does); calling the lock a new trajectory before the check below lands.
+
+**2S lock: constructed, not yet pinned** (2026-09-08 grill; **status: owed back to the companion
+repo before any paper text**):
+Padding a sub-2.00 S flight up to exactly 2.00 S gives a fixed point the companion's own open
+question says the chain search never sustains. One exists at departure phase 0.781: flight
+1.978 S (2.16 yr), park 0.022 S (**9 days**), `dv` 7.25 km/s, `v_b` 63.2 km/s. Its growth
+reproduces the companion's quoted 6.021 at Isp 2214 to three digits, and the same harness
+reproduces the published 3S row exactly, so the device agrees with theirs.
+**The trade, and it is the reason 2S does not simply win.** Doubling 0.84 yr against 3S's 1.19 at
+Isp 2214 (1.00 against 1.38 at Isp 1200), bought by giving back launch window: **28 of 73 phases
+against 73 of 73**. 2S at the top exhaust speed is still narrower than 3S at Isp 1200's 44 of 73.
+Present them as **two operating points with the trade stated**, never as 2S superseding 3S.
+Two open items ride with it. The lock needs a **9-day** park, *shorter* than the 20-day cycle
+orbit, where 3S lengthens it to ~104; admissibility unchecked. And its `dv` 7.25 / `v_b` 63.2 sit
+inside the **2S vs 3S cadence** table's 2-synodic ranges (6.84-7.17 and 61.83-65.13), so the lock
+may be a padded member of a family the paper already flies, which would make the claim "lock a
+cycle we fly" rather than "fly a new one".
+_Avoid_: quoting 0.84 yr in the paper before the companion implements, tests and chain-checks it.
+
+**Departure phase, sweet phase, usable phase** (companion `src/fly_and_park.py`; the paper must
+define all three before using any fly-and-park result):
+**Departure phase** is where Earth and Jupiter stand relative to each other when the payload
+leaves, as a fraction of the 1.0923 yr synodic period, so phase 0 and 1 are the same geometry.
+**Sweet phase** is where reaching Jupiter is cheapest, located at **0.726** rather than assumed;
+the cheapest available departure burn runs **4.41 km/s there to 38.49 at the worst phase**, an
+8.7x swing. That swing is the *mechanism* behind the integer-synodic clock the paper already
+reports but never explains: a stage that cannot afford the dear phases is pinned to the cheap one.
+**Usable phase** is one from which some closing cycle actually grows the payload. Reachability
+never changes with exhaust speed; usability does.
+_Avoid_: treating phase as a calendar date (circular, coplanar, relative epoch); conflating
+reachable with usable.
+
+**Departure-burn accounting seam** (companion ADR 0030 and its CONTEXT.md; **unresolved**):
+Two models charge the *same* Earth departure burn differently. `jovian_cycle_phasing.py` charges
+**methalox** (Isp 380 s, `v_e` = 3.727 km/s); ADR 0009/0012 and `circular_resonance_impulse.py`
+drive it with the returning stream through the **head-on nozzle** at `v_e` = 19-22 km/s at
+`k` = 3, which is Isp ~1940-2240. The paper already carries both ends at line ~857 as the 4.0 yr
+chemical doubling against 3.0 yr for the head-on catch.
+**The seam need not be resolved to publish fly-and-park**, because the result is a *sweep across*
+it, reported as a continuum in departure Isp. What the exhaust speed moves is growth per cycle
+and the launch window, **not the clock**: the 30-yr chain picks ~3.00 S and holds phase under
+either accounting, because a 2.09 S cycle has the better instantaneous rate and a worse successor.
+**Two thresholds, and they are not the same number.** Fly-and-park clears its own exchange rate
+at **Isp 1200 s** (3.13 km/s budget against a +1.04 km/s cost, ~3x headroom, winning at 17 of 30
+phases). Continuous departures need **Isp 1900 s**. Both sit under the departure-nozzle ledger's
+own 2214 s.
+**Methalox is where fly-and-park fails, by about 5%**: 0.99 km/s of budget against the same
++1.04 cost, winning at 1 phase of 11 for a best gain of 1.002. It is not an idea chemistry nearly
+supports.
+_Avoid_: quoting either model's clock or `v_b` preference as settled; quoting the 1200 s gate for
+the launch-window claim or the 1900 s gate for the exchange rate.
+
+**Usable launch window is one contiguous arc** (computed 2026-09-08 in the grill; **owed back to
+the companion repo, which publishes the fractions but not the layout**):
+The usable phases do not scatter around the circle, they form a **single window** widening about
+the sweet phase at every exhaust speed tested: **71 days of 399 at methalox, 241 days at Isp
+1200, the whole 399 at 1900**. So the launch-cadence claim is "one window, 3.4x wider" rather
+than "a set of windows", which is both simpler and the stronger operational statement.
+_Avoid_: calling the Isp 1200 case continuous (it is 60% of phases, and only 1900 s reaches
+100%); inferring **pad** throughput from it. This says when the vehicle may leave Earth orbit.
+Whether it eases ground-launch congestion depends on fleet resupply, which **nothing in either
+repository models**, and it must be labelled as inference wherever the paper says it.
 
 **Ignition bill**: 84.41 MJ/kg for water with a 1% potassium seed at 15,000 K. Atomisation
 (H2O -> 2H + O) is **59.7%**, translational 36.7%, vaporisation 3.5%, seed ionisation **0.13%**.
