@@ -338,11 +338,19 @@ Two re-scorings were considered and declined. The methane vessel's
 conductor would move `sec:minimum_nozzle`'s finding that the nozzle is 8 to 38\% of a
 \SI{100}{\tonne} craft. Rerunning the growth chain at \SIrange{571}{716}{\second} would say
 whether the thermal nozzle passes the chain's binding launch-and-return budget. Both are
-companion-repo work, and the second one is now the one that matters: `tab:mass_interest_growth`
-requires $\eta_{\mathrm{jet}} > 1/\sqrt{1+k}$ for forward thrust at all, which here is
-\num{0.219}, and the wall clears that easily at \numrange{0.543}{0.624}. Whether it clears the
-harder test, returning a fifteenth of the mass lifted off the pad, is unrun and is no longer
-obvious.
+companion-repo work, and the second one is now the one that decides whether this section exists.
+
+**The wall's jet efficiency lands on the edge of `tab:mass_interest_growth`'s growth threshold.**
+Its $\eta_{\mathrm{jet}} = \eta_{\mathrm{chem}}\eta_{\mathrm{geom}}$ is \num{0.543} at
+$\eta_{\mathrm{geom}} = 0.852$ and \num{0.624} at \num{0.98}. Forward thrust needs only
+$1/\sqrt{1+k} = \num{0.220}$ here, which it clears with room. Net growth is the harder test:
+that table loses mass at $\eta_{\mathrm{geom}} = 0.50$, where the flown chemistry puts
+$\eta_{\mathrm{jet}}$ near \num{0.46}, and grows at \num{0.60}, where it is near \num{0.55}.
+**The wall straddles that crossing.** It cannot be read off the table directly, because the
+table is scored at $k = 8.52$ on water with a pusher plate on the growth push, and the impulse
+law depends on $k$. Rerunning the chain at \SIrange{571}{716}{\second} and $k = 19.56$ is
+therefore no longer a nice-to-have. It is the question of whether the walled option survives at
+all, and it belongs to `aim_is_all_you_need` rather than to the impact simulation.
 
 ## Chamber and film
 
