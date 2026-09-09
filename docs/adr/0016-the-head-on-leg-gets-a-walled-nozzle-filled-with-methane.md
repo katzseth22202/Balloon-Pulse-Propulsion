@@ -18,8 +18,15 @@ survivable wall without them.
 **The largest single change is that the 2026-09-09 dissociation correction is
 withdrawn.** It cost methane 40 seconds on a two-parameter fit that the companion's
 nine-species equilibrium solve overturns. The chemical store is 95 to 99 per cent
-charged at the flown 10,000 K, not 61 to 67, so methane returns to
+charged at the flown 10,000 K, not 61 to 67, so methane's full-recombination figure returns to
 \SIrange{1120}{1133}{\second} across the geometry range.
+
+**A second change goes the other way and is larger.** Applying the return exposed that this
+decision has been scoring the wall on a different convention from the magnet it is compared
+against: every walled figure assumed full recombination where `eq:eta_chem` charges the magnet
+for its own. Charged the chemistry the companion actually measures, **methane is
+\SIrange{571}{716}{\second} against the magnetic nozzle's \SI{1249}{\second}**, not
+\SI{1129}{\second} against it. See "The two nozzles were never on the same convention".
 
 ## Decision
 
@@ -62,22 +69,69 @@ companion's solve runs hydrogen \SI{320.8}{\mega\joule\per\kilogram}, methane 13
 ammonia 95.2 and water 69.4, against the 338, 143, 98 and 72 estimated here. Helium is
 31 and unsolved. Everything else follows from it.
 
-| slug | $k$ | slug/pulse | effective Isp | GN\,s per load | vessel | storage |
-| --- | ---: | ---: | ---: | ---: | ---: | --- |
-| **methane** | 19.11 | \SI{478}{\kilo\gram} | **1129 s** | **1.107** | \SI{8.7}{\tonne} | \SI{422}{\kilogram\per\cubic\meter} at \SI{111}{\kelvin} |
-| water alone | 39.55 | \SI{989}{\kilo\gram} | 856 s | 0.839 | \SI{9.2}{\tonne} | ambient |
-| ammonia | 28.54 | \SI{714}{\kilo\gram} | 973 s | 0.954 | \SI{9.5}{\tonne} | \SI{240}{\kelvin}, \SI{10}{\bar} |
-| liquid hydrogen | 7.77 | \SI{194}{\kilo\gram} | 1499 s | 0.833 | \SI{11.6}{\tonne} | \SI{20}{\kelvin} |
-| (water on the magnetic nozzle) | 8.52 | \SI{213}{\kilo\gram} | 1249 s | 1.225 | \SIrange{17.3}{37.6}{\tonne} | ambient |
+| slug | $k$ | slug/pulse | $\eta_{\mathrm{chem}}$ | effective Isp | GN\,s per load | vessel | storage |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| **methane** | 19.56 | \SI{489}{\kilo\gram} | 0.637 | **571 to 716 s** | **0.560 to 0.702** | \SI{8.7}{\tonne} | \SI{422}{\kilogram\per\cubic\meter} at \SI{111}{\kelvin} |
+| water alone | 39.55 | \SI{989}{\kilo\gram} | 0.644 | 483 to 584 s | 0.473 to 0.573 | \SI{9.2}{\tonne} | ambient |
+| ammonia | 28.54 | \SI{714}{\kilo\gram} | *0.640* | *523 to 642 s* | *0.513 to 0.630* | \SI{9.5}{\tonne} | \SI{240}{\kelvin}, \SI{10}{\bar} |
+| liquid hydrogen | 7.77 | \SI{194}{\kilo\gram} | 0.729 | 828 to 1100 s | 0.460 to 0.611 | \SI{11.6}{\tonne} | \SI{20}{\kelvin} |
+| (water on the magnetic nozzle) | 8.52 | \SI{213}{\kilo\gram} | 0.910 | 1249 s | 1.225 | \SIrange{17.3}{37.6}{\tonne} | ambient |
 
-Scored at a \SI{25}{\kilo\gram} impactor, $\eta_{\mathrm{geom}} = 0.852$ from the
-flown water case, a \SI{400}{\cubic\meter} chamber and \SI{10000}{\kelvin}. **Every
-slug ratio is now the companion's, solved on a nine-species equilibrium equation of
-state with NIST-JANAF thermochemistry** (W1, W8). They are outputs rather than inputs,
-and where this decision had already stated one they come back close: \num{7.77}
-against a stated \num{7.99} for hydrogen and \num{39.55} against \num{37.70} for
-water, both inside 5\%. Effective Isp and the launch ledger are then this repository's
-own, from `todos/ladder_companion_k.py`.
+**The ranges are the two ends of $\eta_{\mathrm{geom}}$ and that is now the open question**, low
+end \num{0.852} and high end \num{0.98}. See "The two nozzles were never on the same
+convention" below for why both numbers are in the table rather than one.
+
+Scored at a \SI{25}{\kilo\gram} impactor, a \SI{200}{\cubic\meter} chamber,
+\SI{10000}{\kelvin} and the ask's own \SI{7}{\square\meter} throat. **Every slug ratio is
+the companion's, solved on a nine-species equilibrium equation of state with NIST-JANAF
+thermochemistry** (W1, W8). They are outputs rather than inputs, and where this decision had
+already stated one they come back close: \num{7.77} against a stated \num{7.99} for hydrogen
+and \num{39.55} against \num{37.70} for water, both inside 5\%. **Every
+$\eta_{\mathrm{chem}}$ is the companion's too**, being the square root of the energy
+conversion fraction it solves per fluid. Effective Isp and the launch ledger are then this
+repository's own, from `todos/matched_convention_ladder.py`.
+
+## The two nozzles were never on the same convention, and it flattered the wall
+
+This is the largest correction in the whole return and it was found on the paper side while
+applying N12. **Every walled figure this decision has ever printed assumed full
+recombination.** `CONTEXT.md`'s assumptions line said so out loud, and the ladder was scored at
+$\eta_{\mathrm{geom}} = 0.852$ with nothing else, which is $\eta_{\mathrm{chem}} = 1$.
+
+**The magnetic nozzle row in the same table is not scored that way.** `sec:jet_efficiency`
+factors the paper's jet efficiency as
+$\eta_{\mathrm{jet}} = \eta_{\mathrm{chem}}\eta_{\mathrm{geom}}$, and the
+\SI{1249}{\second} row uses $0.775 = 0.910 \times 0.852$, where \num{0.910} is
+`eq:eta_chem` charging water its bond energy at \SI{75}{\kilo\meter\per\second}. So the
+paper charges the magnet for its chemistry and this decision charged the wall for none of its
+own, and then set the two side by side.
+
+**The companion has now measured what the wall actually returns**, and it is not 1. Through the
+flown \SI{7}{\square\meter} throat the methane nozzle converts \num{0.406} of the chamber's
+internal energy into directed kinetic energy, returning 26.2\% of its store, so
+$\eta_{\mathrm{chem}} = \sqrt{0.406} = \num{0.637}$. On the paper's own impulse model,
+
+$$\mathrm{Isp}_{\mathrm{eff}} = \frac{(1+k)\,\eta_{\mathrm{geom}}\,u_e - w}{k\,g_0}$$
+
+with $u_e$ the companion's exit speed, **methane is \SI{571}{\second} rather than
+\SI{1120}{\second}** at the magnet's own $\eta_{\mathrm{geom}}$.
+
+**A second borrowed number pushes back the other way, and it is now the open question.**
+$\eta_{\mathrm{geom}} = 0.852$ was taken from the flown water case, meaning from a *magnetic*
+nozzle, where it collects plume divergence, exhaust-speed spread, radiative escape and **mass
+the field fails to grip**. A walled de Laval nozzle has no field to fail, and its divergence
+loss is a bell nozzle's, near \num{0.98}. So the ladder over-credited the wall by $1/0.637$ on
+chemistry and under-credited it by $0.852/0.98$ on geometry, and the two partly cancel: the net
+error is a factor of about \num{1.37} on the exhaust term. **Granting the wall
+$\eta_{\mathrm{geom}} = 0.98$ outright still only reaches \SI{716}{\second}.** That is
+N13 and it is worth 145 seconds, so it should be asked rather than assumed.
+
+**What this does to the decision's headline.** This section has been claiming
+\SI{1129}{\second} against the magnetic nozzle's \SI{1249}{\second}, a 10\% gap, described
+as the price of a device that exists. **On a matched convention the gap is 43 to 54\%**, and
+the launch ledger is \numrange{0.560}{0.702} against \num{1.225}. The wall is roughly half the
+magnet, not nine tenths of it. Whether a device that exists is worth paying half for is a
+different argument from the one this decision has been making, and it is not made here.
 
 **Ammonia recovers the lead over water that the withdrawn correction took from it**,
 because the correction discharged nitrogen's store hardest and the store is not in
@@ -92,11 +146,12 @@ which is set by the sensible energy alone, and with the store charged the partic
 count returns to what full atomisation gave. They are approximate to a few percent
 and nothing in this decision turns on them.
 
-Methane spans \SIrange{1120}{1133}{\second} across the
-\SIrange{200}{673}{\cubic\meter} geometry range, so **volume is worth 1.2\%, not the
-3.4\% the withdrawn correction booked**. N9's geometry choice should therefore be made
-on thermal and structural grounds, which is also where W3 and W6 land it from two
-other directions.
+**Volume is worth 1.2\%, not the 3.4\% the withdrawn correction booked.** Across
+\SIrange{200}{673}{\cubic\meter} the solved $k$ moves only from \num{19.56} to \num{18.92},
+and the companion's own exit speeds land within 0.3\% of each other at fixed throat, because a
+larger chamber charges more of the store and is thinner and returns less of it by the exit
+plane. The two effects cancel. N9's geometry choice should therefore be made on thermal and
+structural grounds, which is where W3 and W6 land it from two other directions.
 
 ## Why methane rather than the hydrogen the precedent points at
 
@@ -108,17 +163,23 @@ bay holds about \SI{57}{\tonne} of it where it holds \SI{100}{\tonne} of a dense
 fluid, and the Isp advantage only repays that above a burn of about
 \SI{22}{\kilo\meter\per\second}. This leg is a few.
 
-**That margin is now thin enough to be worth defending, and W8 attacks it.** The
-ladder above charges every fluid the same conversion fraction, meaning it assumes each
-one hands back the same share of its store on the way out. The companion solved three
-of them separately and they do not agree: hydrogen converts \num{0.532} of its store
-where methane converts \num{0.406}, because methane's carbon parks in \ce{C3} at the
-exit plane and hydrogen's store banks straight into \ce{H2} (W9). Exhaust speed goes
-as the square root of conversion, so carrying that difference raises hydrogen by 14.5\%
-against methane and moves the launch ledger to \num{1.032} against \num{1.098}. The
-gap closes from 32\% to 6\%. **Methane still wins it, and the margin is now inside the
-uncertainty on $\eta_{\mathrm{geom}}$**, so this decision's central choice rests on a
-number the paper does not yet own. It goes back as N12.
+**N12 asked whether per-fluid conversion overturns this, and it does not. It widens the
+margin.** The ladder used to charge every fluid the same conversion fraction, and the
+companion's three solved rungs disprove that: hydrogen converts \num{0.532} of its store where
+methane converts \num{0.406}, because hydrogen's banks straight into \ce{H2} and methane's
+parks in \ce{C3} at the exit plane (W9). Carried properly, that raises hydrogen's specific
+impulse to \SIrange{828}{1100}{\second} against methane's \SIrange{571}{716}{\second}, a
+lead of 45 to 54\%. **But the launch ledger goes the other way and by more than before**:
+\numrange{0.460}{0.611} against methane's \numrange{0.560}{0.702}, so methane wins by 15 to
+22\% where the full-recombination ladder had it winning by 32\%.
+
+**Why charging the chemistry helps methane rather than hurting it.** The drift term subtracts a
+fixed \SI{75}{\kilo\meter\per\second} of arriving momentum, and per kilogram of slug that is
+$w/k$: \SI{9653}{\meter\per\second} against hydrogen's small slug and only
+\SI{3834}{\meter\per\second} against methane's large one. Lowering everyone's exhaust speed
+makes that fixed penalty a larger share of what is left, and hydrogen carries two and a half
+times as much of it. **Hydrogen's advantage is real and its ledger is worse**, which is the same
+verdict this section reached on volume, now reached on chemistry as well.
 
 Methane leads ammonia on specific impulse by 16\%, on the launch ledger by 16\%, on
 vessel mass by 8\% and on slug mass per pulse by 33\%. That lead was 31\% under the
@@ -240,14 +301,15 @@ the companion's conversion fractions (`todos/ladder_companion_k.py`):
 
 | throat | $A/A_*$ | conversion | effective Isp | GN\,s per load | turnovers | sets $k$? | blowdown |
 | ---: | ---: | ---: | ---: | ---: | ---: | :--- | ---: |
-| \SI{7}{\square\meter} | 4.04 | 0.406 | 1120 s | 1.098 | 6.8 | **no** | \SI{8.0}{\milli\second} |
-| \SI{4}{\square\meter} | 7.07 | 0.460 | **1217 s** | **1.193** | 11.9 | yes | \SI{14.0}{\milli\second} |
-| \SI{2}{\square\meter} | 14.14 | 0.523 | **1323 s** | **1.298** | 23.8 | yes | \SI{28.0}{\milli\second} |
+| \SI{7}{\square\meter} | 4.04 | 0.406 | 571 to 716 s | 0.560 to 0.702 | 6.8 | **no** | \SI{8.0}{\milli\second} |
+| \SI{4}{\square\meter} | 7.07 | 0.460 | **642 to 797 s** | **0.630 to 0.782** | 11.9 | yes | \SI{14.0}{\milli\second} |
+| \SI{2}{\square\meter} | 14.14 | 0.523 | **710 to 876 s** | **0.697 to 0.859** | 23.8 | yes | \SI{28.0}{\milli\second} |
 
-The magnetic nozzle is 1249 s and \num{1.225} for comparison. **At a
-\SI{2}{\square\meter} throat the walled nozzle passes it on the launch ledger**, which
-no version of this decision has been able to say before. That is the strongest reason
-to take the item seriously and the strongest reason not to quote it yet.
+The magnetic nozzle is 1249 s and \num{1.225} for comparison. **Narrowing the throat to
+\SI{2}{\square\meter} is worth 24 to 26\% and it does not close the gap**, reaching at best
+70\% of the magnetic nozzle's ledger with the wall granted an $\eta_{\mathrm{geom}}$ it has
+not been shown to earn. An earlier reading of this table, on the full-recombination ladder, had
+the \SI{2}{\square\meter} row passing the magnetic nozzle outright. It does not.
 
 **Three independent arguments converge on the same recommendation**, which is what makes
 it worth acting on. The Isp gain above; W3's turnover count, which fails at
@@ -274,11 +336,13 @@ at a non-magnetic option on the head-on leg, and nothing existing is re-scored.
 Two re-scorings were considered and declined. The methane vessel's
 \SI{8.7}{\tonne} against the magnet's \SIrange{17.3}{37.6}{\tonne} of structure plus
 conductor would move `sec:minimum_nozzle`'s finding that the nozzle is 8 to 38\% of a
-\SI{100}{\tonne} craft. Rerunning the growth chain at \SI{1129}{\second} would say
+\SI{100}{\tonne} craft. Rerunning the growth chain at \SIrange{571}{716}{\second} would say
 whether the thermal nozzle passes the chain's binding launch-and-return budget. Both are
-companion-repo work, and the second one is now worth more than it was: at a
-\SI{2}{\square\meter} throat the figure to rerun is \SI{1323}{\second} and the launch
-ledger clears the magnetic nozzle's.
+companion-repo work, and the second one is now the one that matters: `tab:mass_interest_growth`
+requires $\eta_{\mathrm{jet}} > 1/\sqrt{1+k}$ for forward thrust at all, which here is
+\num{0.219}, and the wall clears that easily at \numrange{0.543}{0.624}. Whether it clears the
+harder test, returning a fifteenth of the mass lifted off the pad, is unrun and is no longer
+obvious.
 
 ## Chamber and film
 
@@ -446,7 +510,7 @@ Answered at `puffsat_impact_simulation` `6d74d3f`, numbers computed at `4a448c0`
 
 | item | verdict | what moved here |
 | --- | --- | --- |
-| **N10.4b**, chamber dissociation | **Reverses the premise.** Hydrogen is 93 to 98\% dissociated at \SI{10000}{\kelvin}, not 49 to 76. The store is 95 to 99\% charged | the 2026-09-09 correction is withdrawn; \SIrange{1120}{1133}{\second} |
+| **N10.4b**, chamber dissociation | **Reverses the premise.** Hydrogen is 93 to 98\% dissociated at \SI{10000}{\kelvin}, not 49 to 76. The store is 95 to 99\% charged | the 2026-09-09 correction is withdrawn; \SIrange{1120}{1133}{\second} before the convention fix below |
 | **N10**, Project 242 | **Settles the tension.** \SI{2700}{\second} is 24 to 29\% above the frozen ceiling of \SIrange{2085}{2229}{\second} | the arithmetic-over-prose reading is now a result |
 | **N9.0**, sealed vessel | **The geometry question dissolves.** Column length cancels; the verdict is a bore-to-throat area ratio, and it fails at \SI{7}{\square\meter} | the fifty turnovers and the \SI{11}{\kilo\meter\per\second} sound speed are both gone |
 | **N10.1-3**, freeze stations | **The fork closes on the good side.** Damkoehler stays above threshold everywhere, 2.16 decades of margin at the flown point | the frozen \SI{793}{\second} branch does not apply |
@@ -454,6 +518,11 @@ Answered at `puffsat_impact_simulation` `6d74d3f`, numbers computed at `4a448c0`
 | **N10.5**, carbon | **Reframed and six times smaller.** 84\% of the carbon store returns as gas-phase acetylene | the \SI{880}{\second} floor is withdrawn |
 | **N9.1-7**, the load case | **Not started**, and W6 raises their priority | the section still cannot be written |
 | **N11**, radiative escape | **Not started** | nothing |
+
+**N12 is answered on the paper side rather than sent.** Per-fluid conversion does not overturn
+the fluid choice: it widens methane's launch-ledger lead over hydrogen from 32\% to 15--22\%,
+because the head-on drift term subtracts a fixed $w/k$ that bites hardest on the smallest slug.
+What it did expose is the convention mismatch above, which is much larger than N12 itself was.
 
 **One correction was found while applying it, and it resolves an inconsistency the
 companion flagged.** W1 scaled specific impulse by $\sqrt{1+k}/k$ and got two answers
@@ -483,11 +552,12 @@ loading is unpriced at the geometry every other result recommends.
 
 Three items go back with them.
 
-- **N12, per-fluid conversion in the launch ledger.** The ladder charges every fluid the
-  same conversion fraction and the companion's three solved rungs disprove that.
-  Carrying the difference closes methane's lead over hydrogen from 32\% to 6\%, which is
-  inside $\eta_{\mathrm{geom}}$'s own uncertainty. This decision's central choice rests
-  on it.
+- **N13, the walled nozzle's own $\eta_{\mathrm{geom}}$.** The \num{0.852} in every walled
+  figure was borrowed from the flown *water* case, meaning from a magnetic nozzle, where it
+  collects plume divergence, exhaust-speed spread, radiative escape and mass the field fails to
+  grip. A walled de Laval nozzle has no field to fail and its divergence loss is a bell
+  nozzle's. The spread between \num{0.852} and \num{0.98} is worth **145 seconds**, which is
+  a quarter of the number, so it should be asked rather than assumed.
 - **The acetylene kinetics.** Worth 59 points of atomisation against soot's 7, and it is
   ordinary combustion kinetics rather than nucleation theory.
 - **An `eos_ammonia`.** Ammonia is the only rung that is assembled rather than solved,

@@ -213,24 +213,28 @@ The section presents a family ordered by **Wall-cap energy density**, not a sing
 At 75 km/s head-on, 10,000 K chamber, 400 m^3, `eta_geom = 0.852`, 25 kg impactor,
 7 m^2 throat:
 
-| slug | k | slug/pulse | holds | eff Isp | GN.s/load | vessel | storage |
-|---|---|---|---|---|---|---|---|
-| **methane (flown pick)** | 19.11 | **478 kg** | **136.8** | **1,129 s** | **1.107** | **8.7 t** | 422 kg/m^3 @ 111 K |
-| ammonia* | 28.54 | 714 kg | 95.2 | 973 s | 0.954 | 9.5 t | 682 kg/m^3 @ 240 K |
-| liquid hydrogen | 7.77 | 194 kg | 320.8 | 1,499 s | 0.833 | 11.6 t | 71 kg/m^3 @ 20 K |
-| water alone | 39.55 | 989 kg | 69.4 | 856 s | 0.839 | 9.2 t | ambient |
-| (water on the magnetic nozzle) | 8.52 | 213 kg | -- | 1,249 s | 1.225 | 17.3-37.6 t | ambient |
+| slug | k | slug/pulse | holds | eta_chem | eff Isp | GN.s/load | vessel | storage |
+|---|---|---|---|---|---|---|---|---|
+| **methane (flown pick)** | 19.56 | **489 kg** | **136.8** | 0.637 | **571-716 s** | **0.560-0.702** | **8.7 t** | 422 kg/m^3 @ 111 K |
+| ammonia* | 28.54 | 714 kg | 95.2 | *0.640* | *523-642 s* | *0.513-0.630* | 9.5 t | 682 kg/m^3 @ 240 K |
+| liquid hydrogen | 7.77 | 194 kg | 320.8 | 0.729 | 828-1,100 s | 0.460-0.611 | 11.6 t | 71 kg/m^3 @ 20 K |
+| water alone | 39.55 | 989 kg | 69.4 | 0.644 | 483-584 s | 0.473-0.573 | 9.2 t | ambient |
+| (water on the magnetic nozzle) | 8.52 | 213 kg | -- | 0.910 | 1,249 s | 1.225 | 17.3-37.6 t | ambient |
+
+**The ranges are the two ends of `eta_geom`, 0.852 and 0.98, and that is ask N13.** The
+`eta_chem` column is what changed on 2026-09-09: every walled row used to carry an implicit
+1.000 and the magnetic row has always carried 0.910. See **The two nozzles were never on the
+same convention**.
 
 \* **Ammonia is assembled, not solved.** There is no `eos_ammonia`, so its `k` comes from the
 paper's own 68.9 MJ/kg atomisation plus an exact translational term, and its conversion
 fraction is borrowed from methane. It is the one row that could still move by more than a few
 percent.
-**Methane is the flown pick.** It leads on specific impulse (+16% over ammonia), launch ledger
-(+16%), vessel mass (-8%), slug mass per pulse (-33%) and toxicity, and Starship already flies
-it so the tankage and boil-off management are flown hardware. Hydrogen keeps the best Isp and
-loses the ledger to volume. **Ammonia is second, not fourth.** The withdrawn dissociation
-correction had it tied with water at 823 against 831 s; with the store charged it is 973
-against water's 856.
+**Methane is the flown pick.** It leads on launch ledger (+11% over ammonia), vessel mass
+(-8%), slug mass per pulse (-33%) and toxicity, and Starship already flies it so the tankage and
+boil-off management are flown hardware. Hydrogen keeps the best Isp, by 45-54%, and loses the
+ledger to volume by 15-22%. **Ammonia is second on Isp, not fourth.** The withdrawn dissociation
+correction had it tied with water; with the store charged it is clear of water.
 Recombination products: methane returns 52.6% as H2 and 43.3% as carbon, confirmed exactly by
 the companion from heats of formation, with the remaining 4.2% the formation enthalpy that
 never returns. **But most of that carbon comes back as gas-phase acetylene, not as soot** (see
@@ -251,9 +255,11 @@ uncertainty.
 the magnetic nozzle flies. Same fluid, same collision, 4.6x the slug, and the entire factor is
 the temperature cap. It is the clearest single demonstration of what a wall costs.
 Assumptions behind every entry: `w = 75` km/s, a 25 kg polyethylene impactor at 83.7 MJ/kg
-atomisation, `eta_geom = 0.852` from the flown water case, full recombination, `k` solved from
-`E_atomise + (3/2)RT*N = (1/2)w^2` per kg of impactor, and effective Isp
-`= w(eta*sqrt(1+k) - 1)/k` charged against the ship's slug only.
+atomisation, `eta_geom` swept 0.852 to 0.98 (N13), **`eta_chem` per fluid from the companion's
+solved conversion** (this used to say "full recombination" and that was the error), `k` from the
+companion's equilibrium solve, and effective Isp `= [(1+k)*eta_geom*u_e - w]/(k*g0)` charged
+against the ship's slug only. That reduces to the paper's `w(eta*sqrt(1+k) - 1)/(k*g0)` when
+`u_e = eta_chem * w/sqrt(1+k)`, so it is the same model with the chemistry no longer set to 1.
 _Avoid_: presenting one fluid as the answer; the ordering by energy-at-the-wall-cap is the
 result and the fluid falls out of it. Do not mix the ionised and un-ionised solves.
 
@@ -320,7 +326,7 @@ Hydrogen is the only walled option that keeps it.
 design. A fluid that soaks up the pulse in a small slug gets a proportionally larger free ride
 from the impactor mass it never lifted, so low `k` is paid once in exhaust speed and again here.
 _Avoid_: adding this as a bonus on top of the quoted Isp. It is a decomposition, not a charge;
-1,120 s already contains the 5.1%.
+the 571-716 s already contains the 5.1%.
 
 **Partial dissociation corrects the headline (2026-09-09) -- WITHDRAWN THE SAME DAY**:
 **Do not use anything in this entry.** It is kept because the mistake is instructive and
@@ -417,10 +423,11 @@ is our own extrapolation past the only anchor we have. The **heat balance closes
 at 3.2 um per pulse against 3.7. And it keeps the ladder and the flown point at the **same
 temperature**, so the ionised and un-ionised solves no longer have to be told apart (ionisation is
 0.5% at 10,000 K).
-**Flown numbers** at the 400 m^3 mid-point, on the companion's solved equilibrium: `k = 19.11`,
-478 kg of slug per pulse, **1,129 s** effective, **1.107 GN.s per launch load**. Through a 2 m^2
-throat instead of 7 it would be 1,323 s and 1.298, which is the upside N9 has to price (see
-**The throat is the lever**).
+**Flown numbers** at 200 m^3 through the 7 m^2 throat, matched convention: `k = 19.56`, 489 kg
+of slug per pulse, **571-716 s** effective, **0.560-0.702 GN.s per launch load**. Through a
+2 m^2 throat instead of 7 it would be 710-876 s and 0.697-0.859, which is the upside N9 has to
+price (see **The throat is the lever**). On the withdrawn full-recombination convention these
+read 1,129 s and 1.107; do not quote those.
 
 **Why +20% of temperature buys only +2.7%, derived rather than asserted.** The ideal nozzle law
 `v = sqrt(2*cp*Tc)` is not being departed from. Our capacity is `A + B*T` rather than `cp*T`,
@@ -561,34 +568,69 @@ the only expansion-ratio knob there is.
 
 | throat | A/A* | conversion | eff Isp | GN.s/load | turnovers | sets k? | blowdown |
 |---|---|---|---|---|---|---|---|
-| 7 m^2 | 4.04 | 0.406 | 1,120 s | 1.098 | 6.8 | **no** | 8.0 ms |
-| 4 m^2 | 7.07 | 0.460 | **1,217 s** | **1.193** | 11.9 | yes | 14.0 ms |
-| 2 m^2 | 14.14 | 0.523 | **1,323 s** | **1.298** | 23.8 | yes | 28.0 ms |
+| 7 m^2 | 4.04 | 0.406 | 571-716 s | 0.560-0.702 | 6.8 | **no** | 8.0 ms |
+| 4 m^2 | 7.07 | 0.460 | **642-797 s** | **0.630-0.782** | 11.9 | yes | 14.0 ms |
+| 2 m^2 | 14.14 | 0.523 | **710-876 s** | **0.697-0.859** | 23.8 | yes | 28.0 ms |
 
-**At 2 m^2 the walled nozzle passes the magnetic one on the launch ledger** (1.298 against
-1.225), which no version of this section has been able to say. **Three independent arguments
-converge on narrowing it**: the Isp gain, the sealed-vessel turnover count that fails at 7 m^2
-and passes at 4, and the freeze margin that stays comfortable at 4 everywhere.
+**Narrowing to 2 m^2 is worth 24-26% and does not close the gap**, reaching at best 70% of the
+magnetic nozzle's 1.225 with the wall granted an `eta_geom` it has not earned. An earlier
+reading of this table, on the full-recombination ladder, had 2 m^2 passing the magnet outright.
+It does not. **Three independent arguments still converge on narrowing it**: the Isp gain, the
+sealed-vessel turnover count that fails at 7 m^2 and passes at 4, and the freeze margin that
+stays comfortable at 4 everywhere.
 **The cost is blowdown and it is unpriced.** Choked flow goes as throat area, so the pulse
 stretches 8 -> 28 ms while the throat passes the same power through a third of the area. Both
 are N9 items 1-7 and neither has been run, so every number above is an **upper bound**. The
 2 m^2 row also exits at 4,349-4,561 K, into the range where the companion's EOS omits condensed
 carbon and stops being physical.
-_Avoid_: quoting 1,323 s or 1.298 as a result. It is what the chemistry allows, not what the
-wall permits.
+_Avoid_: quoting the 2 m^2 row as a result. It is what the chemistry allows, not what the wall
+permits, and N9 has not priced the 28 ms pulse it needs.
 
-**Conversion is a chemistry result, not a nozzle constant (2026-09-09, W8; ask N12)**:
-The paper's ladder charges every fluid the same conversion fraction, i.e. assumes each hands
-back the same share of its store. **The companion solved three of them through identical
-geometry and they do not agree**: hydrogen 0.532, water 0.415, methane 0.406. Hydrogen's store
-banks straight into H2; methane's parks in C3.
-Exhaust speed goes as `sqrt(conversion)`, so carrying the difference raises hydrogen 14.5%
-against methane and moves the launch ledger to **1.032 against methane's 1.098**. Methane's
-lead closes from 32% to **6%, inside `eta_geom`'s own uncertainty.** The "methane not hydrogen"
-choice therefore rests on a number the paper does not own.
-**The `1/sqrt(m_bar)` scaling cannot settle it either**, because that law assumes a common
+**The two nozzles were never on the same convention (2026-09-09, and it is the largest
+correction in the batch)**:
+`sec:jet_efficiency` factors the paper's jet efficiency as `eta_jet = eta_chem * eta_geom`, and
+the magnetic nozzle's **1,249 s uses 0.775 = 0.910 x 0.852**, where 0.910 is `eq:eta_chem`
+charging water its bond energy at 75 km/s. **The walled ladder was scored at 0.852 alone**, with
+this file's own assumptions line saying "full recombination" out loud. That is `eta_chem = 1`.
+So the paper charged the magnet for its chemistry, charged the wall for none, and printed the
+two side by side.
+**The companion has now measured what the wall returns.** Through the flown 7 m^2 throat the
+methane nozzle converts 0.406 of the chamber's internal energy into directed KE, returning 26.2%
+of its store, so `eta_chem = sqrt(0.406) = 0.637`. On the paper's own impulse model,
+`Isp_eff = [(1+k)*eta_geom*u_e - w]/(k*g0)` with `u_e` the companion's exit speed, **methane is
+571 s rather than 1,120 s** at the magnet's own `eta_geom`.
+**The loss is amplified because this is the head-on leg.** The drift term subtracts a fixed `w/k`
+of arriving momentum, 3,834 m/s per kg of methane slug, so a 36% cut in efficiency becomes a 49%
+cut in impulse. `sec:jet_efficiency` already documents that amplification: a 12.4% efficiency
+drop costs 21.3% head-on and only 8.7% on the overtake.
+**A second borrowed number pushes back and is now ask N13.** `eta_geom = 0.852` came from the
+flown *water* case, meaning from a magnetic nozzle, where it collects divergence, speed spread,
+radiative escape and **mass the field fails to grip**. A wall has no field to fail and its
+divergence loss is a bell nozzle's, near 0.98. The two errors partly cancel: over-credit 1/0.637
+on chemistry, under-credit 0.852/0.98 on geometry, net ~1.37 too high. Even granting 0.98
+outright, methane reaches only 716 s.
+**What it does to the headline.** The section claimed 1,129 s against 1,249 s, a 10% gap, "the
+price of a device that exists." **Matched, the gap is 43-54%** and the ledger is 0.560-0.702
+against 1.225. The wall is about half the magnet, not nine tenths.
+_Avoid_: quoting any walled Isp without saying which `eta_chem` and which `eta_geom` it carries.
+Never set a companion "total" or "effective" Isp beside a paper figure; neither carries
+`eta_geom` or the drift term.
+
+**Conversion is a chemistry result, not a nozzle constant (2026-09-09, W8; N12 answered)**:
+The ladder used to charge every fluid the same conversion fraction. **The companion solved three
+through identical geometry and they do not agree**: hydrogen 0.532, water 0.415, methane 0.406.
+Hydrogen's store banks straight into H2; methane's parks in C3.
+**N12 asked whether this overturns the fluid choice. It does not, it widens the margin.**
+Hydrogen's Isp lead grows to 45-54%, but its launch ledger falls to 0.460-0.611 against
+methane's 0.560-0.702, so methane wins by 15-22% where the full-recombination ladder had 32%.
+The reason is the drift term: `w/k` is 9,653 m/s against hydrogen's small slug and 3,834 against
+methane's large one, so lowering everyone's exhaust makes that fixed penalty bite hydrogen 2.5x
+harder. **Hydrogen's advantage is real and its ledger is worse**, which is the same verdict the
+section already reached on tank volume.
+**The `1/sqrt(m_bar)` scaling cannot settle the ordering**, because that law assumes a common
 conversion fraction and this is exactly where it fails.
-_Avoid_: reading the ladder's ordering as safe by more than its top two rungs.
+_Avoid_: reading a fluid's Isp lead as a ledger lead on this architecture; the drift term
+reverses them.
 
 **Thermal nozzle citation ladder (and what each source does not do)**:
 `\cite{bray1959recombination}` is the mechanism: a dissociated flow tracks equilibrium until
@@ -707,9 +749,10 @@ one sentence in `sec:minimum_nozzle` pointing at a non-magnetic option on the he
 **Nothing existing is re-scored.** Deliberately declined: re-scoring the minimum-rocket
 conclusion (the 8.7 t methane vessel against the magnet's 17.3-37.6 t of structure plus
 conductor would move the 8-38%-of-a-100-t-craft headline) and re-scoring the growth chain at
-1,129 s. Both are companion-repo asks and both stay open, and the second is worth more than it
-was: at a 2 m^2 throat the figure to rerun is 1,323 s and the launch ledger clears the magnetic
-nozzle's 1.225.
+571-716 s. Both are companion-repo asks and both stay open, and the second is now the one that
+matters: forward thrust needs only `eta_jet > 1/sqrt(1+k)` = 0.219, which the wall clears at
+0.543-0.624, but whether it returns the required fifteenth of liftoff is unrun and no longer
+obvious.
 
 **Hydrogen thermal nozzle**:
 A walled de Laval chamber that catches the head-on PuffSat, lets it merge with a charge of

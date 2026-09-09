@@ -7,9 +7,9 @@ See `docs/adr/0007-the-split-dive-ships-at-held-strength.md` for why each is hel
 Target repo for all three: `katzseth22202/aim_is_all_you_need`, module
 `src/bielliptic_dive_split.py` unless noted.
 
-**Nozzle items live separately.** Twelve asks targeting `katzseth22202/puffsat_impact_simulation`
-are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N12 so they do not collide with the
-S-numbers here. N9-N12 cover the walled thermal nozzle of ADR-0016 and carry
+**Nozzle items live separately.** Thirteen asks targeting `katzseth22202/puffsat_impact_simulation`
+are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N13 so they do not collide with the
+S-numbers here. N9-N13 cover the walled thermal nozzle of ADR-0016 and carry
 their own geometry, which is not the magnetic one N1-N8 assume. That file is written to be copied verbatim into the companion repo. Two of them
 are load-bearing: N1 (the exhaust's second moment, which decides whether `eq:reflection_baseline`
 is being applied to an isotropic plume or a pancake) and N3 (whether the plume is a directed
@@ -19,8 +19,12 @@ column or a bursting bubble, worth 37-112 t of hot-pulse magnet structure).
 is carried here at `docs/walled_nozzle_answers_from_impact_sim.md` and applied in ADR-0016 and
 `CONTEXT.md`. The headline is that the paper-side dissociation correction of the same day is
 withdrawn: the chamber is 93-98% dissociated, not 49-76%, so methane returns to 1,120-1,133 s.
-**N9 items 1-7 are now the only thing gating the walled-nozzle section**, and N12 was raised on
-the way in.
+**N9 items 1-7 gate the walled-nozzle section**, and N12 and N13 were raised on the way in. N12
+is already answered on the paper side. **N13 is the one that matters**: applying the return
+showed the walled ladder had been scored with `eta_chem = 1` where the magnetic nozzle it is
+compared against carries `eq:eta_chem`'s 0.910, so on a matched convention methane is 571-716 s
+against the magnet's 1,249 rather than 1,129 against it. N13 asks for the walled nozzle's own
+`eta_geom`, which decides where in that range it lands.
 
 ---
 

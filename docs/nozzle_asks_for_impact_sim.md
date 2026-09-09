@@ -6,8 +6,8 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N12 to avoid collision. **N1–N8 are the magnetic
-nozzle and use the geometry below. N9–N12 were added for the walled thermal nozzle of
+targeting `aim_is_all_you_need`). These are N1–N13 to avoid collision. **N1–N8 are the magnetic
+nozzle and use the geometry below. N9–N13 were added for the walled thermal nozzle of
 ADR-0016 and carry their own geometry, which is not this one.**
 
 ## Status, 2026-09-09
@@ -23,7 +23,8 @@ ADR-0016 and carry their own geometry, which is not this one.**
 | **N9 items 1–7** | **open, and now the only thing gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient |
 | **N10 items 1–5, 4b** | **all answered.** See "What landed" below |
 | N11 | open, not started |
-| **N12** | **new**, raised 2026-09-09 by the answer to N10.3 |
+| **N12** | **answered on the paper side**, and the fluid choice survives |
+| **N13** | **new**, raised 2026-09-09 while answering N12. Joint highest priority with N9 |
 
 **What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
 are left in place with corrections marked, so the record shows what was asked. The
@@ -462,6 +463,14 @@ between W1's two rows. `todos/ladder_companion_k.py` reproduces all three sets.
 
 ## N12. Carry per-fluid conversion into the launch ledger
 
+**ANSWERED on the paper side 2026-09-09, and it did not need sending.** Per-fluid conversion
+does not overturn the fluid choice, it widens the margin: hydrogen's specific-impulse lead grows
+to 45-54% while its launch ledger falls to 0.460-0.611 against methane's 0.560-0.702, because
+the head-on drift term subtracts a fixed `w/k` that bites 2.5x harder on hydrogen's small slug.
+**What working it exposed is much larger than the item was**, and it is in N13.
+
+The original ask follows.
+
 **Priority: highest of the walled-nozzle items after N9.** It is the number ADR-0016's central
 fluid choice rests on, and nothing in the paper owns it.
 
@@ -471,7 +480,10 @@ identical geometry and they do not agree: hydrogen 0.532, water 0.415, methane 0
 store banks straight into `H2`; methane's parks in `C3` at the exit plane (W9). Exhaust speed
 goes as `sqrt(conversion)`, so carrying the difference raises hydrogen 14.5% against methane and
 moves the launch ledger to 1.032 against methane's 1.098. **Methane's lead closes from 32% to
-6%, which is inside the uncertainty on `eta_geom` that the paper already sweeps.**
+6%, which is inside the uncertainty on `eta_geom` that the paper already sweeps.** *(Superseded:
+that scaling held methane at a conversion of 1 while moving the others relative to it. Charging
+every fluid its solved conversion absolutely gives 0.460-0.611 against 0.560-0.702, so methane's
+lead is 15-22% and the item does not threaten the choice.)*
 
 **What is wanted.** Conversion fraction for each fluid on the ladder through the same throat,
 solved rather than borrowed, and specifically an `eos_ammonia` so the one assembled rung becomes
@@ -483,6 +495,38 @@ ordering below its top rung survives.
 
 **Lifts.** ADR-0016's "Why methane rather than the hydrogen the precedent points at", and the
 `_Avoid_` line on `CONTEXT.md`'s **Conversion is a chemistry result, not a nozzle constant**.
+
+---
+
+## N13. What is the walled nozzle's own `eta_geom`?
+
+**Priority: joint highest with N9, and it is worth 145 seconds.** Raised 2026-09-09 while
+answering N12.
+
+**Why.** Every walled figure ADR-0016 has printed carries `eta_geom = 0.852`, borrowed from the
+flown water case, which is a **magnetic** nozzle. In `sec:jet_efficiency` that factor collects
+plume divergence, exhaust-speed spread, radiative escape and **mass the field fails to grip**.
+A walled de Laval nozzle has no field to fail. Its divergence loss is a bell nozzle's, near 0.98
+for a 15 degree half-angle, and its radiative escape is the 1.2% ADR-0016 already estimates.
+There is no reason the two devices should share a number, and the spread between 0.852 and 0.98
+is 571 s against 716 s on the flown point, a quarter of the answer.
+
+This matters more than it did, because the same pass found that the walled ladder had been
+scored with `eta_chem = 1` where the magnetic row carries `eq:eta_chem`'s 0.910. Correcting that
+costs the wall roughly half its impulse, so what `eta_geom` gives back is now a large share of
+what is left.
+
+**What is wanted.** A divergence and speed-spread factor for the walled expansion at 2, 4 and
+7 m² throats, reported the way `eta_geom` is defined in `sec:jet_efficiency` so it multiplies
+directly onto the exit speed the freeze study already produces. A single number per throat with
+a range is enough. The companion's exit speeds are explicitly quoted with "no divergence or
+geometry loss", so this is the missing factor rather than a re-derivation.
+
+**What would settle it.** Whether the walled nozzle is 571 s or 716 s, and therefore whether it
+is 46% or 57% of the magnetic nozzle's launch ledger.
+
+**Lifts.** The range on every row of ADR-0016's ladder, and on `CONTEXT.md`'s **The slug ladder**
+and **The throat is the lever**.
 
 ## Suggested order
 
