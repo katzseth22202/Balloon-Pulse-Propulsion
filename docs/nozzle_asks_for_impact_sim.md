@@ -24,7 +24,7 @@ ADR-0016 and carry their own geometry, which is not this one.**
 | **N10 items 1–5, 4b** | **all answered.** See "What landed" below |
 | N11 | open, not started |
 | **N12** | **answered on the paper side**, and the fluid choice survives |
-| **N13** | **new**, raised 2026-09-09 while answering N12. Joint highest priority with N9 |
+| **N13** | **new**, raised 2026-09-09 while answering N12. Medium, behind N9 |
 
 **What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
 are left in place with corrections marked, so the record shows what was asked. The
@@ -465,9 +465,11 @@ between W1's two rows. `todos/ladder_companion_k.py` reproduces all three sets.
 
 **ANSWERED on the paper side 2026-09-09, and it did not need sending.** Per-fluid conversion
 does not overturn the fluid choice, it widens the margin: hydrogen's specific-impulse lead grows
-to 45-54% while its launch ledger falls to 0.460-0.611 against methane's 0.560-0.702, because
-the head-on drift term subtracts a fixed `w/k` that bites 2.5x harder on hydrogen's small slug.
-**What working it exposed is much larger than the item was**, and it is in N13.
+to 53% while its launch ledger falls to 0.604 against methane's 0.696, because the head-on drift
+term subtracts a fixed `w/k` that bites 2.5x harder on hydrogen's small slug.
+**What working it exposed is much larger than the item was.** The walled ladder had been scored
+with `eta_chem = 1` where the magnetic nozzle it is compared against carries `eq:eta_chem`'s
+0.910, so methane is 709 s against the magnet's 1,249 rather than 1,129 against it.
 
 The original ask follows.
 
@@ -498,35 +500,34 @@ ordering below its top rung survives.
 
 ---
 
-## N13. What is the walled nozzle's own `eta_geom`?
+## N13. The walled nozzle's exit-plane velocity distribution
 
-**Priority: joint highest with N9, and it is worth 145 seconds.** Raised 2026-09-09 while
-answering N12.
+**Priority: medium, behind N9.** Raised 2026-09-09 while answering N12, and it shrank while
+being written.
 
-**Why.** Every walled figure ADR-0016 has printed carries `eta_geom = 0.852`, borrowed from the
-flown water case, which is a **magnetic** nozzle. In `sec:jet_efficiency` that factor collects
-plume divergence, exhaust-speed spread, radiative escape and **mass the field fails to grip**.
-A walled de Laval nozzle has no field to fail. Its divergence loss is a bell nozzle's, near 0.98
-for a 15 degree half-angle, and its radiative escape is the 1.2% ADR-0016 already estimates.
-There is no reason the two devices should share a number, and the spread between 0.852 and 0.98
-is 571 s against 716 s on the flown point, a quarter of the answer.
+**Why.** `sec:jet_efficiency` splits the paper's five loss contributions into two factors:
+`eta_chem` for unrecovered chemistry and `eta_geom` for divergence, **exhaust-speed spread**,
+radiative escape and mass the field fails to grip. The walled ladder had been carrying
+`eta_geom = 0.852` borrowed from the flown water case, which is a *magnetic* nozzle with a field
+that can fail to grip.
 
-This matters more than it did, because the same pass found that the walled ladder had been
-scored with `eta_chem = 1` where the magnetic row carries `eq:eta_chem`'s 0.910. Correcting that
-costs the wall roughly half its impulse, so what `eta_geom` gives back is now a large share of
-what is left.
+**The item shrank because your conversion fraction already carries the speed spread.** Your
+`u_e` is the bulk axial speed at a plane where the gas is still at 5,584 K, so the residual
+thermal energy is already excluded from it. Multiplying your conversion by 0.852 charges the
+exhaust heat twice. What is genuinely left for a walled `eta_geom` is divergence and radiative
+escape, taken here as 0.98 and 0.994, giving 0.974 and `eta_jet = 0.621`. Being wrong by a
+realistic amount on both is worth about 30 seconds out of 709, so this no longer gates anything.
 
-**What is wanted.** A divergence and speed-spread factor for the walled expansion at 2, 4 and
-7 m² throats, reported the way `eta_geom` is defined in `sec:jet_efficiency` so it multiplies
-directly onto the exit speed the freeze study already produces. A single number per throat with
-a range is enough. The companion's exit speeds are explicitly quoted with "no divergence or
-geometry loss", so this is the missing factor rather than a re-derivation.
+**What is wanted.** The exit-plane velocity distribution, mass-weighted, at 2, 4 and 7 m²
+throats, so a divergence factor can be computed rather than assumed. **A quasi-1D solve cannot
+produce one**, which is the real content of this item: it needs the same diagnostic N1 asks of
+the magnetic nozzle, `<v_z^2>/<v^2>` over the expelled mass, on the walled geometry.
 
-**What would settle it.** Whether the walled nozzle is 571 s or 716 s, and therefore whether it
-is 46% or 57% of the magnetic nozzle's launch ledger.
+**What would settle it.** Whether 0.974 is roughly right or whether a short bell inside a 3 m
+bore diverges enough to matter.
 
-**Lifts.** The range on every row of ADR-0016's ladder, and on `CONTEXT.md`'s **The slug ladder**
-and **The throat is the lever**.
+**Lifts.** The assumed 0.98 in ADR-0016's ladder and in `CONTEXT.md`'s **The two nozzles were
+never on the same convention**.
 
 ## Suggested order
 

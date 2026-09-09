@@ -22,9 +22,10 @@ withdrawn: the chamber is 93-98% dissociated, not 49-76%, so methane returns to 
 **N9 items 1-7 gate the walled-nozzle section**, and N12 and N13 were raised on the way in. N12
 is already answered on the paper side. **N13 is the one that matters**: applying the return
 showed the walled ladder had been scored with `eta_chem = 1` where the magnetic nozzle it is
-compared against carries `eq:eta_chem`'s 0.910, so on a matched convention methane is 571-716 s
-against the magnet's 1,249 rather than 1,129 against it. N13 asks for the walled nozzle's own
-`eta_geom`, which decides where in that range it lands.
+compared against carries `eq:eta_chem`'s 0.910, so on a matched convention methane is 709 s
+against the magnet's 1,249 rather than 1,129 against it. That 1,249 is itself a performance
+target rather than a solve, which is the balancing point the section has to carry. N13 asks for
+the walled nozzle's exit-plane velocity distribution and is a medium item, not a gate.
 
 ---
 

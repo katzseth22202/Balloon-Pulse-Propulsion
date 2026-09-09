@@ -25,8 +25,9 @@ charged at the flown 10,000 K, not 61 to 67, so methane's full-recombination fig
 decision has been scoring the wall on a different convention from the magnet it is compared
 against: every walled figure assumed full recombination where `eq:eta_chem` charges the magnet
 for its own. Charged the chemistry the companion actually measures, **methane is
-\SIrange{571}{716}{\second} against the magnetic nozzle's \SI{1249}{\second}**, not
-\SI{1129}{\second} against it. See "The two nozzles were never on the same convention".
+\SI{709}{\second} against the magnetic nozzle's \SI{1249}{\second}**, not \SI{1129}{\second}
+against it, and that 1249 is a target where the 709 is solved. See "The two nozzles were never
+on the same convention".
 
 ## Decision
 
@@ -69,17 +70,18 @@ companion's solve runs hydrogen \SI{320.8}{\mega\joule\per\kilogram}, methane 13
 ammonia 95.2 and water 69.4, against the 338, 143, 98 and 72 estimated here. Helium is
 31 and unsolved. Everything else follows from it.
 
-| slug | $k$ | slug/pulse | $\eta_{\mathrm{chem}}$ | effective Isp | GN\,s per load | vessel | storage |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| **methane** | 19.56 | \SI{489}{\kilo\gram} | 0.637 | **571 to 716 s** | **0.560 to 0.702** | \SI{8.7}{\tonne} | \SI{422}{\kilogram\per\cubic\meter} at \SI{111}{\kelvin} |
-| water alone | 39.55 | \SI{989}{\kilo\gram} | 0.644 | 483 to 584 s | 0.473 to 0.573 | \SI{9.2}{\tonne} | ambient |
-| ammonia | 28.54 | \SI{714}{\kilo\gram} | *0.640* | *523 to 642 s* | *0.513 to 0.630* | \SI{9.5}{\tonne} | \SI{240}{\kelvin}, \SI{10}{\bar} |
-| liquid hydrogen | 7.77 | \SI{194}{\kilo\gram} | 0.729 | 828 to 1100 s | 0.460 to 0.611 | \SI{11.6}{\tonne} | \SI{20}{\kelvin} |
-| (water on the magnetic nozzle) | 8.52 | \SI{213}{\kilo\gram} | 0.910 | 1249 s | 1.225 | \SIrange{17.3}{37.6}{\tonne} | ambient |
+| slug | $k$ | slug/pulse | conversion | $\eta_{\mathrm{jet}}$ | effective Isp | GN\,s per load | vessel | storage |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| **methane** | 19.56 | \SI{489}{\kilo\gram} | 0.406 | 0.621 | **709 s** | **0.696** | \SI{8.7}{\tonne} | \SI{422}{\kilogram\per\cubic\meter} at \SI{111}{\kelvin} |
+| water alone | 39.55 | \SI{989}{\kilo\gram} | 0.415 | 0.628 | 579 s | 0.568 | \SI{9.2}{\tonne} | ambient |
+| ammonia | 28.54 | \SI{714}{\kilo\gram} | *0.410* | *0.624* | *640 s* | *0.628* | \SI{9.5}{\tonne} | \SI{240}{\kelvin}, \SI{10}{\bar} |
+| liquid hydrogen | 7.77 | \SI{194}{\kilo\gram} | 0.532 | 0.711 | 1087 s | 0.604 | \SI{11.6}{\tonne} | \SI{20}{\kelvin} |
+| (water on the magnetic nozzle) | 8.52 | \SI{213}{\kilo\gram} | -- | *0.775* | 1249 s | 1.225 | \SIrange{17.3}{37.6}{\tonne} | ambient |
 
-**The ranges are the two ends of $\eta_{\mathrm{geom}}$ and that is now the open question**, low
-end \num{0.852} and high end \num{0.98}. See "The two nozzles were never on the same
-convention" below for why both numbers are in the table rather than one.
+$\eta_{\mathrm{jet}}$ is the square root of the conversion fraction the companion solves,
+times a walled $\eta_{\mathrm{geom}}$ of \num{0.974}. **The magnetic nozzle's \num{0.775} is
+italicised because it is a target rather than a solve**, and that matters when reading the last
+two columns against each other.
 
 Scored at a \SI{25}{\kilo\gram} impactor, a \SI{200}{\cubic\meter} chamber,
 \SI{10000}{\kelvin} and the ask's own \SI{7}{\square\meter} throat. **Every slug ratio is
@@ -108,30 +110,52 @@ own, and then set the two side by side.
 
 **The companion has now measured what the wall actually returns**, and it is not 1. Through the
 flown \SI{7}{\square\meter} throat the methane nozzle converts \num{0.406} of the chamber's
-internal energy into directed kinetic energy, returning 26.2\% of its store, so
-$\eta_{\mathrm{chem}} = \sqrt{0.406} = \num{0.637}$. On the paper's own impulse model,
+internal energy into directed kinetic energy, so the exhaust runs at $\sqrt{0.406} = 0.637$ of
+the loss-free speed this decision was quoting.
 
-$$\mathrm{Isp}_{\mathrm{eff}} = \frac{(1+k)\,\eta_{\mathrm{geom}}\,u_e - w}{k\,g_0}$$
+**Where the missing 59\% goes, and it is two different things.** At the exit plane the gas
+still holds 69.8\% of its atomisation store, and bonds are 74.2\% of the wall's energy budget,
+so unrecovered chemistry alone costs $0.742 \times 0.698 = 51.8$ points of $u$. The rest, about
+8 points, leaves as heat: the exhaust is still at \SI{5584}{\kelvin} and that never became
+directed motion.
 
-with $u_e$ the companion's exit speed, **methane is \SI{571}{\second} rather than
-\SI{1120}{\second}** at the magnet's own $\eta_{\mathrm{geom}}$.
+**Those two losses live in different factors of the paper's split**, which is the part that is
+easy to get wrong. `sec:jet_efficiency` puts unrecovered chemistry in $\eta_{\mathrm{chem}}$ and
+**exhaust-speed spread in $\eta_{\mathrm{geom}}$**, alongside divergence, radiative escape and
+mass the field fails to grip. The companion's conversion fraction already covers **both**,
+because its $u_e$ is the bulk axial speed at a plane where the gas is still hot. Multiplying it
+by the magnet's \num{0.852} therefore charges the exhaust heat twice, and a first pass at this
+correction did exactly that and reported \SI{571}{\second}.
 
-**A second borrowed number pushes back the other way, and it is now the open question.**
-$\eta_{\mathrm{geom}} = 0.852$ was taken from the flown water case, meaning from a *magnetic*
-nozzle, where it collects plume divergence, exhaust-speed spread, radiative escape and **mass
-the field fails to grip**. A walled de Laval nozzle has no field to fail, and its divergence
-loss is a bell nozzle's, near \num{0.98}. So the ladder over-credited the wall by $1/0.637$ on
-chemistry and under-credited it by $0.852/0.98$ on geometry, and the two partly cancel: the net
-error is a factor of about \num{1.37} on the exhaust term. **Granting the wall
-$\eta_{\mathrm{geom}} = 0.98$ outright still only reaches \SI{716}{\second}.** That is
-N13 and it is worth 145 seconds, so it should be asked rather than assumed.
+**What is actually left for a walled $\eta_{\mathrm{geom}}$** is divergence, near \num{0.98} for
+a bell, and radiative escape, near \num{0.994} on this decision's own 1.2\%. There is no field
+to fail to grip. That gives \num{0.974}, so
+
+$$\eta_{\mathrm{jet}} = \sqrt{0.406} \times 0.974 = \num{0.621},
+\qquad \mathrm{Isp}_{\mathrm{eff}} = \SI{709}{\second}.$$
+
+**The wall recombines better than the plume it is compared against and loses anyway**, which is
+the result worth carrying out of this. It hands back 30.2\% of its store where
+`sec:watering_it_down`'s water plume freezes with 90 to 100\% still held. It loses because
+capping the temperature forces $k$ from \num{8.52} to \num{19.56}, and a bigger slug spreads the
+same collision energy thinner, \SI{136.8}{\mega\joule\per\kilogram} against 295. That turns
+bonds from 18.4\% of the budget into **74.2\%** of it. **The wall wins the argument it was
+adopted to win, and the slug it needs in order to win it is what costs the burn.**
 
 **What this does to the decision's headline.** This section has been claiming
-\SI{1129}{\second} against the magnetic nozzle's \SI{1249}{\second}, a 10\% gap, described
-as the price of a device that exists. **On a matched convention the gap is 43 to 54\%**, and
-the launch ledger is \numrange{0.560}{0.702} against \num{1.225}. The wall is roughly half the
-magnet, not nine tenths of it. Whether a device that exists is worth paying half for is a
-different argument from the one this decision has been making, and it is not made here.
+\SI{1129}{\second} against the magnetic nozzle's \SI{1249}{\second}, a 10\% gap, described as
+the price of a device that exists. **Matched, it is \SI{709}{\second} against 1249, a 43\%
+gap**, and the launch ledger is \num{0.696} against \num{1.225}.
+
+**One thing cuts the other way and it is not small.** The \num{0.775} the wall is measured
+against is not a solved result. `sec:jet_efficiency` calls it a literature-based performance
+target at 147\% of the reflection baseline, and the one three-dimensional pulsed nozzle
+simulated under the same definition, Schilling's, returns \num{0.34}. **The wall's \num{0.621}
+is computed and the magnet's \num{0.775} is hoped for.** It also sits inside the
+\numrange{0.6}{0.7} band Inatomi's solenoid scaling actually returns. The fair sentence is that
+the wall delivers about four fifths of what the magnet is *targeting*, on a number that is
+solved rather than aimed at. That is a different sentence from the one this decision used to
+make and from the one the raw gap suggests, and it is the one the section should carry.
 
 **Ammonia recovers the lead over water that the withdrawn correction took from it**,
 because the correction discharged nitrogen's store hardest and the store is not in
@@ -168,10 +192,9 @@ margin.** The ladder used to charge every fluid the same conversion fraction, an
 companion's three solved rungs disprove that: hydrogen converts \num{0.532} of its store where
 methane converts \num{0.406}, because hydrogen's banks straight into \ce{H2} and methane's
 parks in \ce{C3} at the exit plane (W9). Carried properly, that raises hydrogen's specific
-impulse to \SIrange{828}{1100}{\second} against methane's \SIrange{571}{716}{\second}, a
-lead of 45 to 54\%. **But the launch ledger goes the other way and by more than before**:
-\numrange{0.460}{0.611} against methane's \numrange{0.560}{0.702}, so methane wins by 15 to
-22\% where the full-recombination ladder had it winning by 32\%.
+impulse to \SI{1087}{\second} against methane's \SI{709}{\second}, a lead of 53\%. **But the
+launch ledger goes the other way**: \num{0.604} against methane's \num{0.696}, so methane wins
+by 15\% where the full-recombination ladder had it winning by 32\%.
 
 **Why charging the chemistry helps methane rather than hurting it.** The drift term subtracts a
 fixed \SI{75}{\kilo\meter\per\second} of arriving momentum, and per kilogram of slug that is
@@ -299,17 +322,17 @@ The bore is fixed at \SI{28.3}{\square\meter}, so the throat is the only
 expansion-ratio knob there is. Narrowing it, scored on this repository's own ledger with
 the companion's conversion fractions (`todos/ladder_companion_k.py`):
 
-| throat | $A/A_*$ | conversion | effective Isp | GN\,s per load | turnovers | sets $k$? | blowdown |
-| ---: | ---: | ---: | ---: | ---: | ---: | :--- | ---: |
-| \SI{7}{\square\meter} | 4.04 | 0.406 | 571 to 716 s | 0.560 to 0.702 | 6.8 | **no** | \SI{8.0}{\milli\second} |
-| \SI{4}{\square\meter} | 7.07 | 0.460 | **642 to 797 s** | **0.630 to 0.782** | 11.9 | yes | \SI{14.0}{\milli\second} |
-| \SI{2}{\square\meter} | 14.14 | 0.523 | **710 to 876 s** | **0.697 to 0.859** | 23.8 | yes | \SI{28.0}{\milli\second} |
+| throat | $A/A_*$ | conversion | $\eta_{\mathrm{jet}}$ | effective Isp | GN\,s per load | turnovers | sets $k$? | blowdown |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | :--- | ---: |
+| \SI{7}{\square\meter} | 4.04 | 0.406 | 0.621 | 709 s | 0.696 | 6.8 | **no** | \SI{8.0}{\milli\second} |
+| \SI{4}{\square\meter} | 7.07 | 0.460 | 0.661 | **780 s** | **0.765** | 11.9 | yes | \SI{14.0}{\milli\second} |
+| \SI{2}{\square\meter} | 14.14 | 0.523 | 0.704 | **858 s** | **0.841** | 23.8 | yes | \SI{28.0}{\milli\second} |
 
-The magnetic nozzle is 1249 s and \num{1.225} for comparison. **Narrowing the throat to
-\SI{2}{\square\meter} is worth 24 to 26\% and it does not close the gap**, reaching at best
-70\% of the magnetic nozzle's ledger with the wall granted an $\eta_{\mathrm{geom}}$ it has
-not been shown to earn. An earlier reading of this table, on the full-recombination ladder, had
-the \SI{2}{\square\meter} row passing the magnetic nozzle outright. It does not.
+The magnetic nozzle's target is 1249 s and \num{1.225} for comparison. **Narrowing the throat to
+\SI{2}{\square\meter} is worth 21\% and closes about a third of the gap**, from 43\% to 31\%. It
+does not pass the magnet, which an earlier reading of this table on the full-recombination
+ladder had it doing. What it does do is take the wall to $\eta_{\mathrm{jet}} = \num{0.704}$,
+at the top of the \numrange{0.6}{0.7} band Inatomi's solenoid scaling returns.
 
 **Three independent arguments converge on the same recommendation**, which is what makes
 it worth acting on. The Isp gain above; W3's turnover count, which fails at
@@ -336,21 +359,22 @@ at a non-magnetic option on the head-on leg, and nothing existing is re-scored.
 Two re-scorings were considered and declined. The methane vessel's
 \SI{8.7}{\tonne} against the magnet's \SIrange{17.3}{37.6}{\tonne} of structure plus
 conductor would move `sec:minimum_nozzle`'s finding that the nozzle is 8 to 38\% of a
-\SI{100}{\tonne} craft. Rerunning the growth chain at \SIrange{571}{716}{\second} would say
+\SI{100}{\tonne} craft. Rerunning the growth chain at \SI{709}{\second} would say
 whether the thermal nozzle passes the chain's binding launch-and-return budget. Both are
 companion-repo work, and the second one is now the one that decides whether this section exists.
 
-**The wall's jet efficiency lands on the edge of `tab:mass_interest_growth`'s growth threshold.**
-Its $\eta_{\mathrm{jet}} = \eta_{\mathrm{chem}}\eta_{\mathrm{geom}}$ is \num{0.543} at
-$\eta_{\mathrm{geom}} = 0.852$ and \num{0.624} at \num{0.98}. Forward thrust needs only
-$1/\sqrt{1+k} = \num{0.220}$ here, which it clears with room. Net growth is the harder test:
-that table loses mass at $\eta_{\mathrm{geom}} = 0.50$, where the flown chemistry puts
-$\eta_{\mathrm{jet}}$ near \num{0.46}, and grows at \num{0.60}, where it is near \num{0.55}.
-**The wall straddles that crossing.** It cannot be read off the table directly, because the
-table is scored at $k = 8.52$ on water with a pusher plate on the growth push, and the impulse
-law depends on $k$. Rerunning the chain at \SIrange{571}{716}{\second} and $k = 19.56$ is
-therefore no longer a nice-to-have. It is the question of whether the walled option survives at
-all, and it belongs to `aim_is_all_you_need` rather than to the impact simulation.
+**The wall clears `tab:mass_interest_growth`'s growth threshold, but not by much.** Its
+$\eta_{\mathrm{jet}}$ is \num{0.621} at the flown throat and \num{0.704} at
+\SI{2}{\square\meter}. Forward thrust needs only $1/\sqrt{1+k} = \num{0.220}$ here, which it
+clears easily. Net growth is the harder test: that table loses mass at
+$\eta_{\mathrm{geom}} = 0.50$, where the flown chemistry puts $\eta_{\mathrm{jet}}$ near
+\num{0.46}, and grows at \num{0.60}, where it is near \num{0.55}. **The wall sits above that
+crossing at both throats**, which is the first version of this decision in which that can be
+said from solved numbers rather than assumed ones. It still cannot be read off the table
+directly, because the table is scored at $k = 8.52$ on water with a pusher plate on the growth
+push, and the impulse law depends on $k$. Rerunning the chain at \SI{709}{\second} and
+$k = 19.56$ is what turns "above the threshold" into a growth multiple, and it belongs to
+`aim_is_all_you_need` rather than to the impact simulation.
 
 ## Chamber and film
 
@@ -560,12 +584,13 @@ loading is unpriced at the geometry every other result recommends.
 
 Three items go back with them.
 
-- **N13, the walled nozzle's own $\eta_{\mathrm{geom}}$.** The \num{0.852} in every walled
-  figure was borrowed from the flown *water* case, meaning from a magnetic nozzle, where it
-  collects plume divergence, exhaust-speed spread, radiative escape and mass the field fails to
-  grip. A walled de Laval nozzle has no field to fail and its divergence loss is a bell
-  nozzle's. The spread between \num{0.852} and \num{0.98} is worth **145 seconds**, which is
-  a quarter of the number, so it should be asked rather than assumed.
+- **N13, the walled nozzle's own $\eta_{\mathrm{geom}}$.** Now a small item rather than a large
+  one, because the companion's conversion fraction turned out to carry the exhaust-speed spread
+  already. What is left is divergence and radiative escape, taken here as \num{0.98} and
+  \num{0.994} from a bell nozzle and this decision's own 1.2\%. Worth about 30 seconds if both
+  are wrong by a realistic amount, so it can wait behind N9. **What should be asked instead is
+  the exit-plane velocity distribution**, since a quasi-1D solve cannot produce a divergence
+  factor at all.
 - **The acetylene kinetics.** Worth 59 points of atomisation against soot's 7, and it is
   ordinary combustion kinetics rather than nucleation theory.
 - **An `eos_ammonia`.** Ammonia is the only rung that is assembled rather than solved,
