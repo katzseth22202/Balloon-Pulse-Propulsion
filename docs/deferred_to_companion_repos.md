@@ -7,9 +7,9 @@ See `docs/adr/0007-the-split-dive-ships-at-held-strength.md` for why each is hel
 Target repo for all three: `katzseth22202/aim_is_all_you_need`, module
 `src/bielliptic_dive_split.py` unless noted.
 
-**Nozzle items live separately.** Thirteen asks targeting `katzseth22202/puffsat_impact_simulation`
-are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N13 so they do not collide with the
-S-numbers here. N9-N13 cover the walled thermal nozzle of ADR-0016 and carry
+**Nozzle items live separately.** Fourteen asks targeting `katzseth22202/puffsat_impact_simulation`
+are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N14 so they do not collide with the
+S-numbers here. N9-N14 cover the walled thermal nozzle of ADR-0016 and carry
 their own geometry, which is not the magnetic one N1-N8 assume. That file is written to be copied verbatim into the companion repo. Two of them
 are load-bearing: N1 (the exhaust's second moment, which decides whether `eq:reflection_baseline`
 is being applied to an isotropic plume or a pancake) and N3 (whether the plume is a directed
@@ -25,7 +25,9 @@ showed the walled ladder had been scored with `eta_chem = 1` where the magnetic 
 compared against carries `eq:eta_chem`'s 0.910, so on a matched convention methane is 709 s
 against the magnet's 1,249 rather than 1,129 against it. That 1,249 is itself a performance
 target rather than a solve, which is the balancing point the section has to carry. N13 asks for
-the walled nozzle's exit-plane velocity distribution and is a medium item, not a gate.
+the walled nozzle's exit-plane velocity distribution and is a medium item, not a gate. **N14 is
+the cheap one worth doing first**: the expansion has only ever been run from a 10,000 K chamber,
+and charging the chemistry appears to reverse the sign of the temperature lever.
 
 ---
 

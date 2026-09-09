@@ -6,8 +6,8 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N13 to avoid collision. **N1–N8 are the magnetic
-nozzle and use the geometry below. N9–N13 were added for the walled thermal nozzle of
+targeting `aim_is_all_you_need`). These are N1–N14 to avoid collision. **N1–N8 are the magnetic
+nozzle and use the geometry below. N9–N14 were added for the walled thermal nozzle of
 ADR-0016 and carry their own geometry, which is not this one.**
 
 ## Status, 2026-09-09
@@ -25,6 +25,7 @@ ADR-0016 and carry their own geometry, which is not this one.**
 | N11 | open, not started |
 | **N12** | **answered on the paper side**, and the fluid choice survives |
 | **N13** | **new**, raised 2026-09-09 while answering N12. Medium, behind N9 |
+| **N14** | **new**, raised 2026-09-09. High, and the cheapest item here: one flag on an existing target |
 
 **What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
 are left in place with corrections marked, so the record shows what was asked. The
@@ -528,6 +529,48 @@ bore diverges enough to matter.
 
 **Lifts.** The assumed 0.98 in ADR-0016's ladder and in `CONTEXT.md`'s **The two nozzles were
 never on the same convention**.
+
+---
+
+## N14. Run the expansion from an 8,000 and a 12,000 K chamber
+
+**Priority: high, and it is the cheapest item on this list.** Raised 2026-09-09. It is one flag
+on `make walled-nozzle-freeze`, which has only ever been run from a 10,000 K chamber.
+
+**Why.** ADR-0016 declined a hotter chamber on the grounds that it buys 2.5 to 4.9%, smaller
+than the section's other uncertainties. That was scored on a convention that did not charge the
+chemistry. Charged, the answer looks like it **reverses**, and the paper side cannot settle it
+because the expansion has not been run at any other chamber temperature.
+
+The chamber half is solid and it helps: at 12,000 K the slug falls from 489 kg to 444, energy
+per kilogram rises from 136.8 to 149.8 MJ/kg, and the tear-apart bill falls from 74.2% of the
+budget to 67.6%. Held at the 10,000 K exit state that is worth +11%, three times what the ADR
+booked.
+
+The expansion half looks like it undoes that, and this is the part that needs running. At fixed
+area ratio `T_exit/T_chamber` is fixed, so a 12,000 K chamber leaves the 7 m² throat near
+6,701 K rather than 5,584. Extrapolating your own three exit points at roughly five points of
+store per 500 K, it leaves holding ~80.6% against 69.8%. **Break-even is 78.4% held**, so this
+lands just the wrong side of it, and clearly wrong once the extra leftover heat is counted:
+709 s falls to about 614 at 7 m², 780 to 715 at 4, 858 to 806 at 2.
+
+**What is wanted.** `freeze.csv` regenerated at chamber temperatures of 8,000 and 12,000 K
+alongside the existing 10,000, at all three throats, reporting the same columns: exit `T`, store
+returned, minimum Damköhler, margin, and the energy conversion fraction. The conversion fraction
+is the one that matters; everything else on the paper side follows from it.
+
+**What would settle it.** Whether the chamber temperature should be dropped from the section's
+list of levers entirely, and whether `CONTEXT.md`'s "15,000 K is the prize" line is backwards.
+The paper-side estimate is that a 15,000 K chamber exits near 8,400 K with essentially nothing
+recombined, worth about 435 s against 709.
+
+**Also worth reporting while the run is open.** Whether the freeze margin holds at 12,000 K. A
+hotter, thinner chamber has less density to work with, and the 673 m³ / 2 m² corner was already
+down to 0.41 decades at 10,000 K.
+
+**Lifts.** ADR-0016's "Going hotter was considered and declined", which now has the right
+conclusion for the wrong reason, and `CONTEXT.md`'s **Hotter is worse, once the chemistry is
+charged**, which is currently carrying an extrapolation where it should carry a solve.
 
 ## Suggested order
 

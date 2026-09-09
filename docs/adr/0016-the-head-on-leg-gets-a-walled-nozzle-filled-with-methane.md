@@ -47,13 +47,51 @@ so it spends certainty to buy noise. \SI{10000}{\kelvin} additionally has a cita
 closes the heat balance with 91\% of the wall load absorbed against 71\%, and keeps the
 liner at \SI{3.2}{\micro\meter} per pulse.
 
-**Going cooler is worse than going hotter, and that is the half worth keeping** (W1).
-\SI{8000}{\kelvin} costs 6 to 12\%, against the 3.5 to 4.9\% that
-\SI{12000}{\kelvin} buys. The exponent quoted here has been wrong twice, at
-\num{0.136} and then at \num{0.23}, and on the companion's solved rows it is about
-\num{0.26}. The conclusion each time was that temperature is a weak lever, and that
-conclusion survives all three numbers. Quote it as a lever worth a few percent per
-\SI{2000}{\kelvin} rather than as an exponent.
+**Charging the chemistry reverses this, and the reason to stay at
+\SI{10000}{\kelvin} is now much stronger than "the gain is small."** Every figure above
+comes from the withdrawn full-recombination convention, where a hotter chamber was worth a
+free 3.5\% and the only argument against it was that 3.5\% is inside the noise. Charged
+properly, **going hotter is negative.**
+
+The mechanism is worth following, because it is the same one that cost the wall its impulse
+in the first place, running backwards. A hotter chamber genuinely helps where this decision
+said it did: at \SI{12000}{\kelvin} a kilogram of methane holds more, so the slug falls from
+\SI{489}{\kilo\gram} to 444, energy per kilogram rises from 136.8 to
+\SI{149.8}{\mega\joule\per\kilogram}, and the tear-apart bill falls from 74.2\% of the budget
+to 67.6\%. Held there, that is worth **+11\%**, three times what this decision booked.
+
+**But the exit temperature rides along with the chamber, and the exit is what decides how much
+of the bill comes back.** At a fixed area ratio $T_e/T_c$ is fixed, so a
+\SI{12000}{\kelvin} chamber leaves the same \SI{7}{\square\meter} throat at
+\SI{6701}{\kelvin} rather than 5584. On the companion's own three exit points, roughly five
+points of store per \SI{500}{\kelvin}, it therefore leaves holding about 80.6\% of its store
+where the \SI{10000}{\kelvin} case holds 69.8\%, and it leaves hotter as well. **Break-even is
+78.4\% held**, so the hotter chamber falls just the wrong side of it on chemistry alone and
+clearly the wrong side once the extra leftover heat is counted.
+
+| throat | \SI{10000}{\kelvin} | \SI{12000}{\kelvin} | |
+| ---: | ---: | ---: | ---: |
+| \SI{7}{\square\meter} | 709 s | 614 s | $-13\%$ |
+| \SI{4}{\square\meter} | 780 s | 715 s | $-8\%$ |
+| \SI{2}{\square\meter} | 858 s | 806 s | $-6\%$ |
+
+**The \SI{12000}{\kelvin} column is an extrapolation of the companion's three solved exit
+states, not a solve.** The expansion has only ever been run from a \SI{10000}{\kelvin}
+chamber. That is N14, and it is cheap: the same `make walled-nozzle-freeze` at a different
+chamber temperature.
+
+**And \SI{15000}{\kelvin} is not the prize `CONTEXT.md` has been calling it.** The chamber
+arithmetic keeps improving, $k$ falling to \num{16.36} and the bill to 62.5\%, but the
+\SI{7}{\square\meter} exit lands near \SI{8400}{\kelvin}, where essentially nothing has
+recombined. That is roughly \SI{435}{\second}, not a near-tie with the magnetic nozzle.
+
+**What is binding is how cold the gas gets before it leaves, not how hot it started**, and the
+throat sets that at no cost in wall temperature. Narrow the throat, do not raise the chamber.
+
+**Going cooler is still worse than going hotter** (W1), so \SI{10000}{\kelvin} remains an
+optimum rather than a ceiling being bumped against. \SI{8000}{\kelvin} costs 6 to 12\% on the
+chamber alone, and it does not get the exit-temperature refund either, because a cooler
+chamber that expands to the same area ratio has less energy to begin with.
 Present it as a family of working fluids ordered by one number, and name **methane**
 as the fluid we would fly.
 

@@ -401,6 +401,32 @@ lever**).
 _Avoid_: using the charge fraction where the return fraction belongs; they answer different
 questions and differ by a factor of four.
 
+**Hotter is worse, once the chemistry is charged (2026-09-09, and it reverses the reason)**:
+The old reason to stay at 10,000 K was that going hotter bought only 2.5-4.9%, inside the noise.
+Charged properly, going hotter is **negative**, and the mechanism is the wall's own problem
+running backwards.
+**The chamber half helps, exactly as the section said.** At 12,000 K a kilogram of methane holds
+more, so the slug falls 489 -> 444 kg, energy per kilogram rises 136.8 -> 149.8 MJ/kg, and the
+tear-apart bill falls from 74.2% of the budget to 67.6%. Held there it is worth **+11%**, three
+times what the section booked.
+**The exit half undoes it.** At fixed area ratio `T_exit/T_chamber` is fixed, so a 12,000 K
+chamber leaves the same 7 m^2 throat at 6,701 K instead of 5,584. On the companion's own three
+exit points (~5 points of store per 500 K) it leaves holding ~80.6% where the 10,000 K case
+holds 69.8%, and it leaves hotter too. **Break-even is 78.4% held.** It lands the wrong side.
+
+| throat | 10,000 K | 12,000 K | |
+|---|---|---|---|
+| 7 m^2 | 709 s | 614 s | -13% |
+| 4 m^2 | 780 s | 715 s | -8% |
+| 2 m^2 | 858 s | 806 s | -6% |
+
+**The 12,000 K column is an extrapolation, not a solve** (the expansion has only been run from
+10,000 K; that is ask N14, and it is one flag on `make walled-nozzle-freeze`).
+**What binds is how cold the gas gets before it leaves, not how hot it started.** The throat
+sets that and costs no wall temperature. Narrow the throat, do not raise the chamber.
+_Avoid_: quoting the +2.5% or +3.5% temperature gain, or 15,000 K as upside. Both come from the
+convention that did not charge the chemistry.
+
 **Chamber temperature: stay at 10,000 K (decided 2026-09-09, confirmed by the companion)**:
 Going **down** is worse than going up, which is the non-obvious half, and it is the one claim
 from the withdrawn dissociation entry that the companion's proper solve upholds. Solved: 8,000 K
@@ -468,8 +494,10 @@ more heat. Closure depends on how hard the jacket superheats the methane before 
 (~800 K classical limit): at a 400 K jacket the sink covers 91% / 71% / 49% at
 10,000 / 12,000 / 15,000 K; at 800 K it covers 100% / 100% / 91%. **The flown 10,000 K point has
 the most margin of the three**, which is part of why it was kept.
-**15,000 K is the prize if that jacket closes**, because it reaches 1,192 GN.s per load against
-the magnetic nozzle's 1.225, a tie within 3%. Named as upside, not claimed.
+**15,000 K WAS called the prize here and it is not one.** That reading came from the withdrawn
+full-recombination convention. Charged the chemistry, the 7 m^2 exit from a 15,000 K chamber
+lands near 8,400 K, where essentially nothing has recombined: about 435 s against 709. See
+**Hotter is worse, once the chemistry is charged**.
 _Avoid_: trusting the ceiling too far. Convective flux is a Bartz-like scaling off one anchor
 and is 80-90% of the load, so it is the crudest number carrying the most weight. N9 item.
 
