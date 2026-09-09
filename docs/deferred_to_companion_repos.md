@@ -7,13 +7,20 @@ See `docs/adr/0007-the-split-dive-ships-at-held-strength.md` for why each is hel
 Target repo for all three: `katzseth22202/aim_is_all_you_need`, module
 `src/bielliptic_dive_split.py` unless noted.
 
-**Nozzle items live separately.** Eleven asks targeting `katzseth22202/puffsat_impact_simulation`
-are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N11 so they do not collide with the
-S-numbers here. N9-N11 were added 2026-09-08 for the walled thermal nozzle of ADR-0016 and carry
+**Nozzle items live separately.** Twelve asks targeting `katzseth22202/puffsat_impact_simulation`
+are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N12 so they do not collide with the
+S-numbers here. N9-N12 cover the walled thermal nozzle of ADR-0016 and carry
 their own geometry, which is not the magnetic one N1-N8 assume. That file is written to be copied verbatim into the companion repo. Two of them
 are load-bearing: N1 (the exhaust's second moment, which decides whether `eq:reflection_baseline`
 is being applied to an isotropic plume or a pancake) and N3 (whether the plume is a directed
 column or a bursting bubble, worth 37-112 t of hot-pulse magnet structure).
+
+**N9 item 0 and all of N10 came back on 2026-09-09**, companion `6d74d3f`. The answer document
+is carried here at `docs/walled_nozzle_answers_from_impact_sim.md` and applied in ADR-0016 and
+`CONTEXT.md`. The headline is that the paper-side dissociation correction of the same day is
+withdrawn: the chamber is 93-98% dissociated, not 49-76%, so methane returns to 1,120-1,133 s.
+**N9 items 1-7 are now the only thing gating the walled-nozzle section**, and N12 was raised on
+the way in.
 
 ---
 

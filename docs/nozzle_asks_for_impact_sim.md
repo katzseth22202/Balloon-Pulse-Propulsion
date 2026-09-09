@@ -6,9 +6,30 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N11 to avoid collision. **N1–N8 are the magnetic
-nozzle and use the geometry below. N9–N11 were added 2026-09-08 for the walled thermal nozzle of
+targeting `aim_is_all_you_need`). These are N1–N12 to avoid collision. **N1–N8 are the magnetic
+nozzle and use the geometry below. N9–N12 were added for the walled thermal nozzle of
 ADR-0016 and carry their own geometry, which is not this one.**
+
+## Status, 2026-09-09
+
+**N9 item 0 and all of N10 came back** at `puffsat_impact_simulation` `6d74d3f`, computed at
+`4a448c0`. The answer document is carried in this repo at
+`docs/walled_nozzle_answers_from_impact_sim.md` and applied in ADR-0016 and `CONTEXT.md`.
+
+| item | status |
+| --- | --- |
+| N1–N8 | open, magnetic nozzle |
+| **N9 item 0** | **answered.** The question dissolves: column length cancels, it is a throat question, and it fails at 7 m² |
+| **N9 items 1–7** | **open, and now the only thing gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient |
+| **N10 items 1–5, 4b** | **all answered.** See "What landed" below |
+| N11 | open, not started |
+| **N12** | **new**, raised 2026-09-09 by the answer to N10.3 |
+
+**What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
+are left in place with corrections marked, so the record shows what was asked. The
+11 km/s sound speed in N9 item 0 is atomic hydrogen's and the right figure is 6.0–6.3 km/s. N10
+item 4b's premise, that the chamber is 49–76% dissociated, is the thing that did not survive:
+it is 93–98%.
 
 **One sentence of context.** The paper's growth chain multiplies an uncertain projectile cost
 against a nozzle efficiency nothing computes. `sec:jet_efficiency` says so outright: nothing in
@@ -254,10 +275,18 @@ nozzle stands or falls on, and nothing else here substitutes for it.
 
 **Different geometry from N1–N8.** ADR-0016 admits a walled de Laval chamber as a
 non-magnetic option on the head-on departure burn. Same 660 m³ column, 3 m bore, 23.8 m
-length. No field. 25 kg impactor at 75 km/s into **474 kg of methane vapour** pre-charged at
-1.4 bar and 111 K, slug ratio `k = 18.96`, equilibrated chamber 10,000 K. Ammonia at `k = 27.53`
-is the storable alternative and is worth running alongside. The flown fluid changed from ammonia
-to methane on 2026-09-09 (ADR-0016), so earlier drafts of this ask carry ammonia numbers.
+length. No field. 25 kg impactor at 75 km/s into methane vapour, equilibrated chamber 10,000 K.
+**Slug ratios updated 2026-09-09 from the companion's own solve** (W1, W8): methane
+`k = 19.56` at 200 m³, 19.11 at 400 and 18.92 at 673, so **489 kg of methane at 200 m³** and 478
+at 400, against the 474 kg and `k = 18.96` this ask first carried. Pre-charge is 1.4 bar at
+111 K **in the 200 m³ chamber**, 0.70 bar in 400 and 0.41 in 673. Ammonia at `k = 28.54`
+(estimated, no EOS) is the storable alternative and is worth running alongside. The flown fluid
+changed from ammonia to methane on 2026-09-09 (ADR-0016), so earlier drafts of this ask carry
+ammonia numbers.
+
+**Run items 1-7 at 2, 4 and 7 m² throats, not at 7 alone.** W6 recommends narrowing the throat
+and every other result agrees with it, but that stretches the pulse from 8 ms to 28 ms and
+passes the same power through a third of the throat area. Pricing that is this item's job.
 
 **Why.** The section clears the wall against the *equilibrated* 10,000 K state, where the
 gas is optically thick (`tau` about 12.5 across the bore) and the wall sees 54.8 MW/m²,
@@ -269,14 +298,17 @@ near 0.56 and a first estimate puts it near 200,000 K.
 
 **What we need.**
 
-0. **First, and it changes the geometry:** does a *sealed* vessel escape the coupling problem
-   `sec:needle_through_fog` is about? That section worries because the magnetic nozzle's bag is
-   a free-standing cloud, so mass the cone misses is left behind. In a closed chamber the
-   unswept propellant is still in the chamber, sound speed is 11 km/s, and a 7 m column
-   equilibrates about fifty times during a 30 ms blowdown. If it holds, `k` is set by what is
-   loaded rather than by what the cone sweeps, the column can be short, and everything in the
-   table below moves. Run 200 m³ over 7.1 m, 400 m³ over 14 m and 673 m³ over 23.8 m, all at
-   the same 3 m bore.
+0. ~~**First, and it changes the geometry:**~~ **ANSWERED 2026-09-09, and it is not a geometry
+   question.** The item asked whether a *sealed* vessel escapes the coupling problem
+   `sec:needle_through_fog` is about, on the grounds that at an 11 km/s sound speed a 7 m column
+   equilibrates about fifty times during the blowdown, and asked for 200 m³ over 7.1 m, 400 m³
+   over 14 m and 673 m³ over 23.8 m so the three would separate. **They cannot separate**: the
+   turnover count is `A_bore / (f A*)` and the length divides out analytically. The 11 km/s is
+   atomic hydrogen's; dissociated methane averages 3.33 amu per particle, so it is 6.0–6.3 km/s.
+   The count is 23.8 turnovers at a 2 m² throat, 11.9 at 4 and **6.8 at 7, which fails the
+   tenfold criterion.** The sealed vessel sets `k` only for throats of about 4 m² or narrower.
+   The geometry choice returns to the thermal and Isp arguments, and the Isp argument is worth
+   1.2% across the range, so it is thermal and structural.
 1. Contact station and arrival time of the front against the wall at 75 km/s into methane at
    `k = 18.96`, with the spreading model already used for `sec:needle_through_fog`.
 2. Local temperature, density and swept mass at contact.
@@ -314,7 +346,9 @@ graphite per pulse from the equilibrium load alone.
 
 ## N10. Recombination along a walled expansion, `N+N+M` and `H+H+M`
 
-**Priority: high.** For the flown methane slug it is the fork between 1,080 s and 793 s.
+**Priority: high. ANSWERED 2026-09-09, in favour of equilibrium.** The Damköhler number never
+enters the freezing band anywhere in the bore, with 2.16 decades of margin at the flown point
+against a 0.5-decade rate uncertainty, so the frozen 793 s branch does not apply.
 
 **Why.** The whole case for a walled nozzle over a magnetic one is that a physical throat
 holds density up where a field lets the plume thin, and three-body recombination goes as
@@ -338,26 +372,34 @@ validation available here.
 
 **What we need.** Along the de Laval expansion from 206 bar and 10,000 K through a 7 m² throat:
 1. The freezing station and the frozen fraction for `N+N+M` and for `H+H+M` separately.
-2. Fraction of the atomisation energy returned as directed kinetic energy: 103.7 MJ/kg for
-   methane, 68.9 for ammonia.
+2. ~~Fraction of the atomisation energy returned as directed kinetic energy: 103.7 MJ/kg for
+   methane, 68.9 for ammonia.~~ **ANSWERED.** Atomisation is 102.35 MJ/kg on a 0 K reference
+   state, not 103.7 on a 298 K one. Through the flown 7 m² throat the nozzle converts **39.3 to
+   40.6% of the wall-cap energy into directed kinetic energy**, which is the convention-free
+   statement and carries nobody's normalisation. Ammonia is not run: there is no `eos_ammonia`.
 3. The same for a water slug at `k = 37.70` and for pure hydrogen at `k = 7.99`, so the ladder
    in ADR-0016 rests on solved chemistry rather than on the equilibrium assumption.
 4. Sensitivity to throat area, since that is the knob that sets how long the gas stays dense.
-4b. **Chamber dissociation equilibrium, which turned out to set the headline.** Paper-side work on
-   2026-09-09 found the slug's hydrogen is only 49 to 76% dissociated across the candidate
-   chambers, not fully atomised, so the chemical store is only partly charged and it responds to
-   both `T` and `p`. That moved methane from 1,132 s to 1,059-1,095 s. Report the equilibrium
-   composition at (rho, T) for the methane charge at 200/400/673 m^3 and 8,000-12,000 K, and the
-   resulting `k`. `eos_water.py` already does this class of solve for its own species set.
-   **This makes N9 and N10 one question**: a bigger chamber charges more of the store (+3.4% on
-   Isp from 200 to 673 m^3) while a smaller one is better thermally, and the two must be
-   optimised together rather than separately.
-5. **Carbon condensation, which is the flown fluid's largest exposure and a different mechanism.**
-   Soot forms by nucleation rather than by a three-body collision, so it gets none of the `n^2`
-   help the rest of this ask rests on. Methane returns 52% of its atomisation as H2 and 43% as
-   condensing carbon. Report whether that 43% is recovered, at what station, and what particle
-   size results, because the size decides the two-phase lag (30 nm gives a margin of 1e6 against
-   a 1 ms residence, 1 um gives 900, and 5 um alumina in a solid rocket gives 36).
+4b. **Chamber dissociation equilibrium. ANSWERED 2026-09-09, and the premise did not survive.**
+   The item was written as "report the composition, we already know it is 49 to 76%". It is
+   **93 to 98%**, the store is 95 to 99% charged, and the paper-side correction that moved
+   methane from 1,132 s to 1,059-1,095 s is withdrawn. The paper-side two-parameter fit missed
+   because `H2 <-> 2H` at 10,000 K has `D0/kT = 5.2`: half dissociation would need 81.5 kg/m³
+   and ~14,000 bar, thirty times the densest chamber here. **N9 and N10 are no longer one
+   question.** Volume is worth 1.2% on Isp across 200 to 673 m³, not 3.4%, so it no longer
+   fights the thermal case and the geometry can be chosen on thermal and structural grounds
+   alone.
+5. **Carbon condensation. REFRAMED 2026-09-09 and much smaller than booked.** The item treated
+   the whole 43% as hostage to nucleation. `2 CH4 -> C2H2 + 3 H2` returns 89.0% of full
+   atomisation with no particle formed, so 84% of the carbon store comes back in the gas phase
+   and only **7 points of atomisation, 5.2% of the energy budget**, needs actual condensation.
+   The 52%/43% split itself is confirmed exactly (52.6 and 43.3). **What is now the top priority
+   on this rung is the acetylene kinetics, not the nucleation**: the Damköhler work prices
+   `H + H + M` only, so nothing shows the `C -> C3 -> C2H2` path keeps up during the expansion,
+   and it is worth 59 points of atomisation against soot's 7. That is ordinary combustion
+   kinetics (`C2H + H2`, `C2H2 + H`). The remaining 7 points still need classical nucleation
+   theory and cannot be substituted by a rate coefficient: the evaluated literature holds one
+   measurement of `C + C + M` and nothing at all for `C + H + M`.
 
 ## N11. Radiative escape and wall fluence for a carbon-bearing plume
 
@@ -388,12 +430,59 @@ simulation.** Each is a species set and a geometry on machinery that is already 
 single largest piece of work. It is built around a reusable `Diatomic` dataclass, so N2 and H2 drop
 into the same frame rather than needing a new one.
 
-**Do N10 first.** It decides an effective specific impulse of 1,080 s against 793 s (the carbon
-condensation store is 25.3 GJ, 36% of the pulse), its chemistry is
-a well-posed ODE with literature rate constants, and Project 242 supplies a published answer at the
-thin end. An integrator that reproduces Rubbia's 2700 s at a few bar and then predicts recombination
-at 206 to 694 bar is validated across four orders of magnitude in three-body rate. That is a
-stronger position than the module holds today, where it carries a bracket it cannot close.
+**Do N10 first.** ~~It decides an effective specific impulse of 1,080 s against 793 s~~ **Done,
+2026-09-09, and it came back on the equilibrium side with 2.16 decades of margin.** The Rubbia
+validation worked: 2,700 s is 24–29% above the frozen ceiling, so their own number requires the
+recombination their prose denies.
+
+**Do N9 items 1–7 next, and they are now the only gate on the paper section.** Everything else
+that could move a number has moved. Two of N10's answers make them harder rather than easier:
+W6 recommends narrowing the throat from 7 m² to 4 or 2, which stretches the pulse from 8 ms to
+28 and passes the same power through a third of the throat area; and W4 shows the impactor
+crosses the column in 0.08 of an acoustic transit, so the sealed vessel does nothing for the
+arrival transient. **Run items 1–7 at 2, 4 and 7 m² rather than at 7 alone.**
+
+## What landed, N9 item 0 and N10
+
+Nine findings, W1–W9 in the answer document. The four that moved a number the paper prints:
+
+| finding | verdict | where it landed |
+| --- | --- | --- |
+| **W1** (N10.4b) | **Reverses the ask's premise.** 93–98% dissociated, store 95–99% charged. The 2026-09-09 paper-side correction is withdrawn | ADR-0016's ladder; `CONTEXT.md` **The store is charged**. Methane 1,120–1,133 s |
+| **W2** (Project 242) | **Settled.** 2,700 s is 24–29% above the frozen ceiling of 2,085–2,229 s and needs 52–63% of the store back | ADR-0016's Project 242 section; `CONTEXT.md` **Project 242 read in full** |
+| **W5/W6** (N10.1–4) | **Fork closes on equilibrium**, and the binding constraint turns out to be expansion ratio rather than chemistry | ADR-0016 **The throat is the largest lever**; `CONTEXT.md` **The throat is the lever** |
+| **W9** (N10.5) | **Carbon exposure is six times smaller.** 84% returns as gas-phase acetylene; 5.2% of the budget is hostage to soot | ADR-0016 **What stays open**; `CONTEXT.md` **Acetylene is where the carbon store actually goes** |
+
+**One correction went back the other way.** W1 scaled specific impulse by `sqrt(1+k)/k` and got
+two answers 3% apart depending on which paper row it anchored on, and flagged that something
+else was in the paper's column. It is the drift term: the paper's form is
+`w(eta*sqrt(1+k) - 1)/k` and the `-1` subtracts a velocity rather than scaling one. Applying the
+paper's own formula to the solved `k` gives 1,120 / 1,129 / 1,133 s at 200 / 400 / 673 m³,
+between W1's two rows. `todos/ladder_companion_k.py` reproduces all three sets.
+
+## N12. Carry per-fluid conversion into the launch ledger
+
+**Priority: highest of the walled-nozzle items after N9.** It is the number ADR-0016's central
+fluid choice rests on, and nothing in the paper owns it.
+
+**Why.** The ladder charges every fluid the same conversion fraction, meaning it assumes each
+one hands back the same share of its store through the nozzle. W8 solved three of them through
+identical geometry and they do not agree: hydrogen 0.532, water 0.415, methane 0.406. Hydrogen's
+store banks straight into `H2`; methane's parks in `C3` at the exit plane (W9). Exhaust speed
+goes as `sqrt(conversion)`, so carrying the difference raises hydrogen 14.5% against methane and
+moves the launch ledger to 1.032 against methane's 1.098. **Methane's lead closes from 32% to
+6%, which is inside the uncertainty on `eta_geom` that the paper already sweeps.**
+
+**What is wanted.** Conversion fraction for each fluid on the ladder through the same throat,
+solved rather than borrowed, and specifically an `eos_ammonia` so the one assembled rung becomes
+a solved one. Ammonia draws level with methane at a conversion of 0.601 against methane's 0.406,
+which is a large ask but not an absurd one, since hydrogen reaches 0.532 in the same geometry.
+
+**What would settle it.** Whether ADR-0016 still names methane, and whether the ladder's
+ordering below its top rung survives.
+
+**Lifts.** ADR-0016's "Why methane rather than the hydrogen the precedent points at", and the
+`_Avoid_` line on `CONTEXT.md`'s **Conversion is a chemistry result, not a nozzle constant**.
 
 ## Suggested order
 
@@ -415,3 +504,5 @@ Probes live in the paper repo under `todos/` (gitignored, so copy rather than ex
 | `epsilon_b_probe.py` | `kappa` against the rupture threshold, mass exposure (filename predates the rename) |
 | `field_energy_integral.py` | field energy over all space for the graded column |
 | `temperature_floor_probe.py` | what the 3800 K and 2450 K floors cap in `k` |
+| `ladder_dissociation.py` | the **withdrawn** 2026-09-09 dissociation correction; kept so the mistake reproduces |
+| `ladder_companion_k.py` | the ladder, the throat table and the N12 sensitivity on the companion's solved `k` |

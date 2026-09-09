@@ -167,8 +167,9 @@ arguing `Rm` upward without saying how the plume gets loose again.
 **Wall-cap energy density (the argument that picks the working fluid)**:
 How much energy a kilogram of slug can hold at the temperature a wall survives. A walled
 nozzle's exhaust speed is `w/sqrt(1+k)`, and `k` is set by this number, so it decides
-everything. At 10,000 K: **hydrogen 338 MJ/kg**, methane 143, ammonia 98, water 72,
-helium 31. Hydrogen holds five times water because it has 992 mol of particles per kilogram
+everything. At 10,000 K, solved by the companion: **hydrogen 320.8 MJ/kg**, methane 136.8,
+ammonia 95.2, water 69.4. Helium is 31 and unsolved. The paper-side estimates were 338 /
+143 / 98 / 72, high by 3 to 5%. Hydrogen holds five times water because it has 992 mol of particles per kilogram
 after dissociation and parks 214 MJ/kg in H-H bonds, which is storage that costs no
 temperature and comes back on expansion.
 Corollary that explains why the magnet is not simply beaten: a magnetic nozzle has **no**
@@ -193,47 +194,62 @@ absorbers means **less** escapes. Rubbia's chamber is `tau ~ 0.003`; ours is 7 t
 transparency argument is a low-density argument, exactly like his recombination finding, and
 neither transfers. Same mistake as the recombination one, made twice.
 **The endothermic cost is a tie.** What never returns is the formation enthalpy, not the
-atomisation energy: NH3 -> 1/2 N2 + 3/2 H2 costs 2.70 MJ/kg, CH4 -> C(s) + 2 H2 costs 4.66.
-Both a few percent.
+atomisation energy: NH3 -> 1/2 N2 + 3/2 H2 costs 2.70 MJ/kg, CH4 -> C(s) + 2 H2 costs 4.15
+(the paper carried 4.66; the gap is a 298 K against a 0 K reference state, and ammonia's has not
+been rechecked at 0 K). Both a few percent.
 **And the carbon is the sacrificial layer the design already wants.** The liner loses 1.26 to
 13.9 kg per pulse against **376 kg of carbon in the exhaust**, so 0.34% to 3.7% has to
 redeposit for it to be self-healing. A water or ammonia exhaust carries nothing that could
 rebuild it and has to be sprayed. Methane's exhaust is the spray.
 _Avoid_: the "75% condensed is unprecedented" framing; it compares soot to alumina droplets.
 
-**The slug ladder (thermal nozzle, resolved)**:
-**SUPERSEDED IN PART.** The table below assumes full atomisation and reads 15-30% high; the
-dissociation-corrected ladder is in **Partial dissociation corrects the headline** above, and
-ADR-0016 carries the corrected version. The *ordering* is unchanged and methane's lead widens,
-so the argument below stands even though its numbers do not.
+**The slug ladder (thermal nozzle, solved by the companion 2026-09-09)**:
+Every `k` below is the companion's, solved on a nine-species equilibrium EOS with NIST-JANAF
+thermochemistry (`puffsat_impact_simulation@4a448c0`, W1 and W8). They are **outputs**, and
+where the paper had already stated one they come back inside 5%: hydrogen 7.77 against a
+stated 7.99, water 39.55 against 37.70. Effective Isp and the ledger are the paper's own,
+from `todos/ladder_companion_k.py`.
 The section presents a family ordered by **Wall-cap energy density**, not a single fluid.
-At 75 km/s head-on, 10,000 K chamber, `eta_geom = 0.852`, 25 kg impactor:
+At 75 km/s head-on, 10,000 K chamber, 400 m^3, `eta_geom = 0.852`, 25 kg impactor,
+7 m^2 throat:
 
 | slug | k | slug/pulse | holds | eff Isp | GN.s/load | vessel | storage |
 |---|---|---|---|---|---|---|---|
-| **methane (flown pick)** | 18.96 | **474 kg** | **142.5** | **1,132 s** | **1.110** | **8.7 t** | 422 kg/m^3 @ 111 K |
-| ammonia | 27.53 | 688 kg | 98.2 | 986 s | 0.967 | 9.5 t | 682 kg/m^3 @ 240 K |
-| liquid hydrogen | 7.99 | 200 kg | 338.0 | 1,488 s | 0.826 | 11.6 t | 71 kg/m^3 @ 20 K |
-| water alone | 37.70 | 943 kg | 71.7 | 872 s | 0.855 | 9.2 t | ambient |
+| **methane (flown pick)** | 19.11 | **478 kg** | **136.8** | **1,129 s** | **1.107** | **8.7 t** | 422 kg/m^3 @ 111 K |
+| ammonia* | 28.54 | 714 kg | 95.2 | 973 s | 0.954 | 9.5 t | 682 kg/m^3 @ 240 K |
+| liquid hydrogen | 7.77 | 194 kg | 320.8 | 1,499 s | 0.833 | 11.6 t | 71 kg/m^3 @ 20 K |
+| water alone | 39.55 | 989 kg | 69.4 | 856 s | 0.839 | 9.2 t | ambient |
 | (water on the magnetic nozzle) | 8.52 | 213 kg | -- | 1,249 s | 1.225 | 17.3-37.6 t | ambient |
 
-**Methane is the flown pick.** It leads on specific impulse (+15% over ammonia), launch ledger
-(+15%), vessel mass (-9%), slug mass per pulse (-31%) and toxicity, and Starship already flies
+\* **Ammonia is assembled, not solved.** There is no `eos_ammonia`, so its `k` comes from the
+paper's own 68.9 MJ/kg atomisation plus an exact translational term, and its conversion
+fraction is borrowed from methane. It is the one row that could still move by more than a few
+percent.
+**Methane is the flown pick.** It leads on specific impulse (+16% over ammonia), launch ledger
+(+16%), vessel mass (-8%), slug mass per pulse (-33%) and toxicity, and Starship already flies
 it so the tankage and boil-off management are flown hardware. Hydrogen keeps the best Isp and
-loses the ledger to volume. Ammonia stays named as the storable alternative and is a
-performance twin of a water slug carrying a 10% hydrogen film (986 against 987 s).
-Recombination products: methane returns 52% as H2 and 43% as condensed carbon; ammonia returns
-95.6% as gases (3H->1.5H2 55.3%, 2N->N2 40.3%); hydrogen returns all of it as H2.
-**Scoring convention, so the two sets of numbers are not mixed.** The ladder is solved
+loses the ledger to volume. **Ammonia is second, not fourth.** The withdrawn dissociation
+correction had it tied with water at 823 against 831 s; with the store charged it is 973
+against water's 856.
+Recombination products: methane returns 52.6% as H2 and 43.3% as carbon, confirmed exactly by
+the companion from heats of formation, with the remaining 4.2% the formation enthalpy that
+never returns. **But most of that carbon comes back as gas-phase acetylene, not as soot** (see
+**Acetylene is where the carbon store actually goes**). Ammonia returns 95.6% as gases
+(3H->1.5H2 55.3%, 2N->N2 40.3%); hydrogen returns all of it as H2.
+**The ladder charges every fluid the same conversion fraction and that is now known to be
+wrong**, which is ask N12. See **Conversion is a chemistry result, not a nozzle constant**.
+**Scoring convention, so the sets of numbers are not mixed.** The paper-side ladder was solved
 **without** ionisation, which keeps it a pure fluid comparison independent of chamber volume and
-costs 0.5% at 10,000 K. `k` values: methane 18.96 / 17.94, ammonia 27.53 / 25.93, water
-37.70 / 35.57, hydrogen 7.99 / 7.43 at 10,000 / 12,000 K. Since the chamber now flies at
+costs 0.5% at 10,000 K. Its `k` values were methane 18.96 / 17.94, ammonia 27.53 / 25.93, water
+37.70 / 35.57, hydrogen 7.99 / 7.43 at 10,000 / 12,000 K. **The companion's solve carries
+ionisation and the C+..C6+ Saha ladder and lands within 5% of all four**, which is the check that
+both sides use the same energy ledger. Since the chamber now flies at
 10,000 K too, **the flown numbers are the ladder's own** and there is no second solve to
 reconcile. Ionisation is 0.5% at this temperature (`k` 18.96 against 18.86), below every other
 uncertainty.
-**The number worth staring at is water.** `k = 37.70` on a wall against the `k = 8.52` the
-magnetic nozzle flies. Same fluid, same collision, 4.4x the slug, and the entire factor is the
-temperature cap. It is the clearest single demonstration of what a wall costs.
+**The number worth staring at is water.** `k = 39.55` solved, on a wall, against the `k = 8.52`
+the magnetic nozzle flies. Same fluid, same collision, 4.6x the slug, and the entire factor is
+the temperature cap. It is the clearest single demonstration of what a wall costs.
 Assumptions behind every entry: `w = 75` km/s, a 25 kg polyethylene impactor at 83.7 MJ/kg
 atomisation, `eta_geom = 0.852` from the flown water case, full recombination, `k` solved from
 `E_atomise + (3/2)RT*N = (1/2)w^2` per kg of impactor, and effective Isp
@@ -244,7 +260,8 @@ result and the fluid falls out of it. Do not mix the ionised and un-ionised solv
 **The wall limits temperature, not energy (why the two nozzles want opposite fluids)**:
 The cleanest statement of what `Wall-cap energy density` is really measuring. A chemical bond is
 energy the propellant carries **without the wall ever seeing it as heat**. Methane hides
-103.7 MJ/kg from the wall in bonds; helium can hide nothing, so every joule it absorbs becomes
+102.35 MJ/kg from the wall in bonds (the paper carried 103.7; the gap is a 0 K against a 298 K
+reference state, not a disagreement); helium can hide nothing, so every joule it absorbs becomes
 temperature, and temperature is the one thing the wall caps.
 Held at 12,000 K: hydrogen 362.8 MJ/kg, methane 150.3, **helium 37.4**, argon 3.7. Methane holds
 4.0x helium, and only 1.25x of that is particle count (5 atoms per 16 amu against 1 per 4). The
@@ -272,9 +289,11 @@ pressure, methane only the 21.5 GJ that is actually heat. Vessels: **9.9 t metha
 *every* temperature, because all its energy is sensible so `nRT` is pinned by the pulse. Heating
 it buys no pressure relief.
 **Helium is nonetheless a real floor, and the section should say so.** Methane returns 1,154 s
-with all chemistry, 880 s with the carbon frozen, and 452 s with nothing returning. Helium's
-guaranteed 667 s beats that last row. It is not reachable (H+H+M carries a x3400 margin), but it
-is the honest reason a monatomic option cannot simply be dismissed.
+with all chemistry and 452 s with nothing returning; the 880 s middle row is **withdrawn**,
+because W9 shows only 5.2% of the budget is hostage to soot rather than 32%. Helium's guaranteed
+667 s beats the bottom row. It is not reachable (H+H+M now carries a solved 2.16 decades of
+Damkoehler margin, not the hand-estimated x3400), but it is the honest reason a monatomic option
+cannot simply be dismissed.
 **The transparency argument for helium gets a hearing and fails.** Monatomic, no bound-bound
 below 20 eV, first ionisation 24.6 eV, so its *radiative* ceiling really is higher than
 methane's. But it needs **48,800 K** to tie 1,154 s, and there its convective load is 10x worse
@@ -291,21 +310,30 @@ own form, which looks different and is not**: `eq:ve_general` divides by `(1+k)`
 `eq:external_reaction_mass` applies `(1-m_rp)` inside the rocket equation, and
 `(1-m_rp)/v_e_paper = 1/v_e_here` to six figures. These numbers therefore go into the
 **standard** rocket equation, not the modified one, and drop into the paper's framework unchanged.
-**The benefit is exactly `(1+k)/k` and shrinks as `k` grows**: hydrogen walled 12.5%, water on the
-magnetic nozzle 11.7%, **methane walled 4.8%**, water walled 2.7%.
+**The benefit is exactly `(1+k)/k` and shrinks as `k` grows**: hydrogen walled 12.9%, water on the
+magnetic nozzle 11.7%, ammonia walled 3.5%, **methane walled 5.1%**, water walled 2.5%.
 So **the wall charges twice**. It forces a higher `k`, which slows the exhaust, and the same high
-`k` dilutes the free reaction mass that is this architecture's whole premise. At 21 kg of carried
+`k` dilutes the free reaction mass that is this architecture's whole premise. At 20 kg of carried
 slug per kilogram arriving, "the propellant comes from outside" is no longer most of the story.
 Hydrogen is the only walled option that keeps it.
+**It also rewards the light fluid twice**, which is why the ordering is not negotiable by nozzle
+design. A fluid that soaks up the pulse in a small slug gets a proportionally larger free ride
+from the impactor mass it never lifted, so low `k` is paid once in exhaust speed and again here.
 _Avoid_: adding this as a bonus on top of the quoted Isp. It is a decomposition, not a charge;
-1,095 s already contains the 4.8%.
+1,120 s already contains the 5.1%.
 
-**Partial dissociation corrects the headline (2026-09-09, supersedes the full-atomisation
-numbers above)**:
-Everything scored before this entry assumed the slug's hydrogen fully atomises. At several
-hundred bar it does not, and the chemical store therefore **charges and discharges with both
-temperature and pressure** rather than being the fixed constant `A` the exponent derivation used.
-Free-H fraction of hydrogen nuclei:
+**Partial dissociation corrects the headline (2026-09-09) -- WITHDRAWN THE SAME DAY**:
+**Do not use anything in this entry.** It is kept because the mistake is instructive and
+because two other entries still cite it. The companion solved the same equilibrium properly
+on a nine-species EOS with NIST-JANAF thermochemistry and found the chamber **93 to 98%
+dissociated at 10,000 K**, with the chemical store **95 to 99% charged**, not the 49 to 76%
+this entry booked. See **The store is charged, and here is why the paper-side fit missed it**.
+Methane returns to 1,120-1,133 s and the ladder returns to something close to the
+full-atomisation ordering.
+The withdrawn reasoning follows. Everything scored before this entry assumed the slug's
+hydrogen fully atomises. At several hundred bar it does not, and the chemical store therefore
+**charges and discharges with both temperature and pressure** rather than being the fixed
+constant `A` the exponent derivation used. Free-H fraction of hydrogen nuclei:
 
 | T | 100 bar | 200 | 400 | 636 | 1000 |
 |---|---|---|---|---|---|
@@ -339,27 +367,60 @@ a weak lever" conclusion stands, but the number was wrong.
 lower pressure -> more dissociation -> more store charged, worth +3.4% from 200 to 673 m^3, which
 is comparable to what 2,000 K buys. That fights the thermal case for a small chamber, so **N9 and
 N10 are now one joint question rather than two.**
-_Avoid_: quoting 1,132 s or 1.110 GN.s; those assume full atomisation.
+_Avoid_: quoting **anything in this entry**. The 1,059 / 1,080 / 1,095 s row, the 21.59
+slug ratio, the 43.58 for ammonia, the +3.4% volume lever and the 0.23 exponent are all
+withdrawn.
 
-**Chamber temperature: stay at 10,000 K (decided 2026-09-09)**:
-Going **down** is worse than going up, which is the non-obvious half. At 673 m^3: 8,000 K costs
-5.8%, 9,000 K costs 2.6%, 12,000 K gains 3.6%. At 10,000 K the chamber sits on the steep part of
-the dissociation curve, so cooling discharges the chemical store faster than heating charges it.
-10,000 K is therefore a genuine optimum rather than merely a cheap choice.
+**The store is charged, and here is why the paper-side fit missed it (2026-09-09, W1)**:
+At the flown 10,000 K the chamber is 93 to 98% dissociated and the store is 95 to 99% charged.
+Solved `k`: **19.56 at 200 m^3, 19.11 at 400, 18.92 at 673**, at 642 / 321 / 190 bar.
+**Why the paper-side estimate came out low.** `H2 <-> 2H` at 10,000 K has `D0/kT = 5.2`, so the
+Boltzmann factor barely suppresses it and the equilibrium constant `n_H^2/n_H2` is `1.22e28
+m^-3`. Half dissociation needs the hydrogen nuclei density to equal that constant, which for
+methane is **81.5 kg/m^3 and ~14,000 bar**, thirty times the densest chamber on the table. Le
+Chatelier pushes the way the paper argued; at 600 bar it is nowhere near strong enough to do
+what was booked.
+**Chamber volume is worth 1.2%, not 3.4%.** 1,120 / 1,129 / 1,133 s at 200 / 400 / 673 m^3, so
+the Isp argument no longer separates the geometries and N9's choice is thermal and structural.
+**The Isp column is NOT proportional to `sqrt(1+k)/k`, and the companion's W1 assumed it was.**
+The paper's form is `w(eta*sqrt(1+k) - 1)/k`, and the `-1` is the drift term of
+`eq:reflection_baseline`, which subtracts a velocity rather than scaling one. That is why W1's
+two anchors disagreed by 3% and it says so. Applying the paper's own formula to the solved `k`
+gives the three numbers above, between W1's two rows. `todos/ladder_companion_k.py` reproduces
+all three sets so they can be told apart.
+**A charge is not a return.** 95 to 99% charged is a **ceiling** on what recombination could
+hand back. What the flown 7 m^2 throat actually returns is **22.6 to 26.2%** of the store, and
+the gap is unfinished gas-phase recombination rather than freezing (see **The throat is the
+lever**).
+_Avoid_: using the charge fraction where the return fraction belongs; they answer different
+questions and differ by a factor of four.
+
+**Chamber temperature: stay at 10,000 K (decided 2026-09-09, confirmed by the companion)**:
+Going **down** is worse than going up, which is the non-obvious half, and it is the one claim
+from the withdrawn dissociation entry that the companion's proper solve upholds. Solved: 8,000 K
+costs **6-12%**, 12,000 K gains **3.5-4.9%**. At 10,000 K the chamber sits where cooling
+discharges the chemical store faster than heating charges it, so 10,000 K is a genuine optimum
+rather than merely a cheap choice. The paper-side estimate had 5.8% and 3.6%, right in shape.
+_Caution_: the 8,000 K row is the softest number in the companion's solve. Its C3 partition
+function is treated harmonically where the bend is quasilinear, which costs 0.1-1.2% of the
+store at 10,000 K but **3.4-9.9% at 8,000 K**, and in the direction of understating the charge.
 
 **Chamber temperature: stay at 10,000 K (decided 2026-09-09)**:
 The chamber runs at Rubbia's own ceiling and does not chase higher. Reasons, in order of weight.
-The gain is **+2.5%** for +20% of temperature, which is **smaller than the uncertainty in every
-other term in the section**: `eta_geom` is swept, the convective wall flux is a Bartz-like guess
-carrying 80-90% of the load, and the recombination fraction is unknown. Raising T spends
+The gain is **+3.5 to 4.9%** for +20% of temperature (the paper-side estimate was 2.5%), which
+is still **smaller than the uncertainty in every other term in the section**: `eta_geom` is
+swept, the convective wall flux is a Bartz-like guess carrying 80-90% of the load, and the
+recombination fraction is now solved but the wall's is not. Raising T spends
 certainty to buy noise. **10,000 K also has a citation** (`augelli2013project242`) where 12,000 K
 is our own extrapolation past the only anchor we have. The **heat balance closes with margin**,
 91% of the wall load absorbed at a 400 K jacket against 71% at 12,000 K. The **liner runs cooler**
 at 3.2 um per pulse against 3.7. And it keeps the ladder and the flown point at the **same
 temperature**, so the ionised and un-ionised solves no longer have to be told apart (ionisation is
 0.5% at 10,000 K).
-**Flown numbers** at the 400 m^3 mid-point, dissociation solved: `k = 21.59`, 540 kg of slug per
-pulse, **1,080 s** effective, **1.059 GN.s per launch load**.
+**Flown numbers** at the 400 m^3 mid-point, on the companion's solved equilibrium: `k = 19.11`,
+478 kg of slug per pulse, **1,129 s** effective, **1.107 GN.s per launch load**. Through a 2 m^2
+throat instead of 7 it would be 1,323 s and 1.298, which is the upside N9 has to price (see
+**The throat is the lever**).
 
 **Why +20% of temperature buys only +2.7%, derived rather than asserted.** The ideal nozzle law
 `v = sqrt(2*cp*Tc)` is not being departed from. Our capacity is `A + B*T` rather than `cp*T`,
@@ -371,7 +432,11 @@ where `A` is the atomisation store and only `B*T` moves:
 | 12,000 K | 103.7 | 46.7 | **150.4** |
 
 Hand check: `sqrt(150.4/142.6) = 1.027`. Taking logs,
-`d(ln v)/d(ln T) = (1/2) * BT/(A+BT) = (1/2) * (sensible fraction)`. A classic thermal rocket has
+`d(ln v)/d(ln T) = (1/2) * BT/(A+BT) = (1/2) * (sensible fraction)`. **This is a lower bound and
+the companion's solve puts the true exponent near 0.26**, because holding `A` fixed is what the
+derivation assumes and the store does charge a little with temperature. The conclusion is the
+same either way. The 103.7 MJ/kg row is a 298 K reference state; the 0 K value matching the
+companion's partition functions is 102.35. A classic thermal rocket has
 sensible fraction 1.000 and exponent **0.500**, giving `sqrt(1.2)` = +9.5%. Methane's is 0.273
 and its exponent is **0.136**, giving +2.5%. The ratio 0.136/0.500 is exactly the sensible
 fraction; nothing else is hiding in it.
@@ -406,7 +471,8 @@ Per 70.3 GJ pulse, methane slug, at the flown 10,000 K: **atomisation 51.0 GJ (7
 19.0 GJ (27%), **ionisation 0.32 GJ (0.5%)**. At 12,000 K it is 47.7 / 21.5 / 1.13 GJ.
 Three consequences worth carrying. **Temperature is a weak lever** because it reaches only the
 sensible quarter; a C-H bond costs the same to break at 10,000 K as at 20,000 K, which is why
-+2,000 K buys 2.5% and not 20%, and why the chamber stays at 10,000 K. **Ionisation is extra storage, not a loss.** It is recovered
++2,000 K buys 3.5-4.9% (W1; the paper-side estimate was 2.5%) and not 20%, and why the chamber
+stays at 10,000 K. **Ionisation is extra storage, not a loss.** It is recovered
 fast (Rubbia; and `sec:jovian_dive_open` makes the same argument for argon at `n_e^2` with a
 `T^-4.5` coefficient), and switching it off raises `k` from 17.60 to 17.94 and costs 0.7%.
 Stranding it entirely would cost 0.8%. It is irrelevant in both directions. **Atomisation is
@@ -421,26 +487,108 @@ atom cluster between 2.2 and 3.5 eV.
 **Hydrogen wins a third argument here.** Its bond is the cheapest per atom at 2.24 eV, so 41% of
 its energy sits in the safe store. It is the highest Isp, the fastest recombination *and* the
 least exposed to freezing. Only tank volume argues the other way.
-**The floor is not a collapse.** Methane with the carbon never condensing strands 32% of the
-pulse and still returns **880 s**, against helium's chemically risk-free **667 s** and methalox's
-380. The only fluids that cannot freeze are monatomic and they are far worse, so safety cannot
-be bought this way.
+**The floor is not a collapse, and it is much higher than 880 s.** That figure stranded the
+whole 43% carbon store and is **withdrawn**: W9 puts only 5.2% of the pulse genuinely hostage
+to nucleation, since 84% of the carbon returns as gas-phase acetylene. What replaces 880 s has
+not been computed. The shape of the argument survives: helium's chemically risk-free **667 s**
+and methalox's 380 are the comparisons, the only fluids that cannot freeze are monatomic, and
+they are far worse.
 _Avoid_: spending a paragraph on ionisation; it is under a percent either way. Do not describe
 it as consuming the budget, which inverts its sign.
 
-**Density is what saves every fluid on the ladder**:
+**Density is what saves every fluid on the ladder (solved 2026-09-09, W5)**:
 The single mechanism the section rests on. Three-body recombination goes as `n^2`, and a wall
-holds density up where a field lets the plume thin. Margins against a ~1 ms transit at
-chamber density: H+H+M x3400, N+N+M x403 (nitrogen is ~8x slower, which is why it famously
-freezes in arcjets at 0.1-1 bar and does not freeze here). `sec:watering_it_down`'s water
-plume freezes at 0.02 kg/m^3 only because a magnetic nozzle free-expands it.
-**Carbon is the exception, and it matters now that methane is the flown pick.** Soot forms by
-**nucleation**, not by a three-body collision, so it does **not** get the `n^2` help this
-argument gives H+H+M and N+N+M. Methane returns 52% of its atomisation as H2 through the
-protected route and 43% as carbon condensation through an unprotected one. That 43% is the
-section's largest single chemical exposure and it is unquantified.
+holds density up where a field lets the plume thin. **This is now run station by station down
+the expansion rather than hand-estimated, and the verdict is equilibrium everywhere in the
+bore.** The Damkoehler number never enters the freezing band. Margin at the flown point
+(200 m^3, 7 m^2 throat) is **2.16 decades** against a rate uncertainty of 0.5, so it survives
+its own rate error four times over. `sec:watering_it_down`'s water plume freezes at
+0.02 kg/m^3 only because a magnetic nozzle free-expands it.
+**The paper's two hand estimates were both wrong and both erred safe.** x3400 for H+H+M is
+3.5 decades, more generous than the best case anywhere; x403 for N+N+M is the wrong reaction
+for a methane chamber. Two findings push the same way. Hurle et al. measured H+H+M directly
+over 2,500-7,000 K and found it **temperature-independent**, ~3x faster than the cold
+evaluations extrapolate, so every margin is a floor. And **atomic hydrogen is the third body
+here** (the chamber is 93-98% dissociated), which three shock tubes agree is 7-67x better at
+stabilising the collision than argon.
+**One corner is genuinely thin**: 673 m^3 at a 2 m^2 throat has 0.41 decades, less than the
+coefficient's own uncertainty. 200 m^3 at the same throat holds 1.33. Narrow the throat on the
+small chamber, not the large one.
+**Nitrogen's "~8x slower" is not robust and must carry its spread** (W7). Byron 1966 (shock
+tube) makes nitrogen **faster** than hydrogen at 6,000 K, ratio 0.6; Notey, Jo & Panesi 2025
+(ab initio master equation) makes it 12.7. **The two disagree by 1.3 decades.** The 8x sits
+inside the band only near the ab initio end, and ammonia's whole rung depends on it.
+**Carbon is still a different mechanism, but it is much smaller than booked.** See **Acetylene
+is where the carbon store actually goes**.
 _Avoid_: arguing this fluid-by-fluid; it is one mechanism with three instances plus carbon,
-which is a different mechanism and must not be folded in with them.
+which is a different mechanism and must not be folded in with them. Do not quote the arcjet
+8x without Byron.
+
+**Acetylene is where the carbon store actually goes (2026-09-09, W9)**:
+The 43.3% of methane's atomisation locked in carbon was booked as hostage to soot nucleation.
+**Most of it comes back in the gas phase and needs no nucleation at all.** The stoichiometry
+is exact and needs no rate constant: **`2 CH4 -> C2H2 + 3 H2` returns 89.0% of full
+atomisation**, against 52.6% for the H2 channel alone and 95.9% for H2 plus fully condensed
+carbon. Acetylene is nearly as strongly bound per atom as methane was.
+So the carbon store splits: **36.3 points of atomisation (84%) return as gas-phase acetylene**
+and **7.0 points (16%) need actual condensation**. That is **5.2% of the energy budget** truly
+hostage to soot, not the 32.4% that treating the whole carbon store as condensation-limited
+implies. The two-phase lag exposure shrinks with it, since acetylene is gas and stays
+momentum-coupled.
+**And the flown nozzle collects almost none of it.** At the exit plane the expansion parks
+**66-82% of the carbon in C3**, which has banked ~62% per carbon of what condensation would
+give and is a long way from done. From the exit state to acetylene equilibrium is **59 points
+of atomisation**; from acetylene to condensed carbon is **7**. The missing energy is unfinished
+gas-phase recombination, not failed nucleation, and it is unfinished because the nozzle stopped
+1,000-1,500 K too hot. Same conclusion as **The throat is the lever**, reached from the carbon
+side.
+**What is still open is kinetics, not thermodynamics.** The Damkoehler work prices H+H+M only,
+so nothing shows the `C -> C3 -> C2H2` path keeps up during the expansion. It is ordinary
+combustion kinetics (`C2H + H2`, `C2H2 + H`), not nucleation theory, and it is worth 59 points
+against soot's 7. Two hazards: C3 is the companion's least trustworthy species (harmonic
+treatment of a quasilinear bend) and it is now carrying most of the carbon; and the evaluated
+literature has **one** measurement of `C + C + M` and **nothing** for `C + H + M`, so the
+remaining 7 points cannot be settled by a rate coefficient the way the H2 channel was.
+_Avoid_: quoting the 880 s carbon-frozen floor, which assumed the whole 43% was hostage.
+
+**The throat is the lever (2026-09-09, W6)**:
+The paper posed throat area as a chemistry knob, holding density up so recombination keeps up.
+**Right knob, wrong reason, and it points the other way.** Chemistry is in surplus by two
+decades. What limits the return is that the nozzle does not expand far enough: at `A/A* = 4.04`
+the gas leaves at 5,300-5,600 K still holding 70-76% of its store, because at 5,500 K
+*equilibrium itself* holds the bonds broken. The bore is fixed at 28.3 m^2, so the throat is
+the only expansion-ratio knob there is.
+
+| throat | A/A* | conversion | eff Isp | GN.s/load | turnovers | sets k? | blowdown |
+|---|---|---|---|---|---|---|---|
+| 7 m^2 | 4.04 | 0.406 | 1,120 s | 1.098 | 6.8 | **no** | 8.0 ms |
+| 4 m^2 | 7.07 | 0.460 | **1,217 s** | **1.193** | 11.9 | yes | 14.0 ms |
+| 2 m^2 | 14.14 | 0.523 | **1,323 s** | **1.298** | 23.8 | yes | 28.0 ms |
+
+**At 2 m^2 the walled nozzle passes the magnetic one on the launch ledger** (1.298 against
+1.225), which no version of this section has been able to say. **Three independent arguments
+converge on narrowing it**: the Isp gain, the sealed-vessel turnover count that fails at 7 m^2
+and passes at 4, and the freeze margin that stays comfortable at 4 everywhere.
+**The cost is blowdown and it is unpriced.** Choked flow goes as throat area, so the pulse
+stretches 8 -> 28 ms while the throat passes the same power through a third of the area. Both
+are N9 items 1-7 and neither has been run, so every number above is an **upper bound**. The
+2 m^2 row also exits at 4,349-4,561 K, into the range where the companion's EOS omits condensed
+carbon and stops being physical.
+_Avoid_: quoting 1,323 s or 1.298 as a result. It is what the chemistry allows, not what the
+wall permits.
+
+**Conversion is a chemistry result, not a nozzle constant (2026-09-09, W8; ask N12)**:
+The paper's ladder charges every fluid the same conversion fraction, i.e. assumes each hands
+back the same share of its store. **The companion solved three of them through identical
+geometry and they do not agree**: hydrogen 0.532, water 0.415, methane 0.406. Hydrogen's store
+banks straight into H2; methane's parks in C3.
+Exhaust speed goes as `sqrt(conversion)`, so carrying the difference raises hydrogen 14.5%
+against methane and moves the launch ledger to **1.032 against methane's 1.098**. Methane's
+lead closes from 32% to **6%, inside `eta_geom`'s own uncertainty.** The "methane not hydrogen"
+choice therefore rests on a number the paper does not own.
+**The `1/sqrt(m_bar)` scaling cannot settle it either**, because that law assumes a common
+conversion fraction and this is exactly where it fails.
+_Avoid_: reading the ladder's ordering as safe by more than its top two rungs.
 
 **Thermal nozzle citation ladder (and what each source does not do)**:
 `\cite{bray1959recombination}` is the mechanism: a dissociated flow tracks equilibrium until
@@ -465,6 +613,24 @@ equilibrium. Their carried baseline is 2700 s at 3200 N, and 0.5*F*ve = 42.4 MW 
 **67% of the dissociation energy returns**, sits at 91% of equilibrium (a reduction of 1.10,
 inside their own stated 1.2), and frozen-molecular would need a **17,000 K** chamber against
 their own 9,500 K radiative ceiling. There is no reading in which 2700 s is a frozen number.
+**SETTLED by the companion, 2026-09-09 (W2), and it is the strongest result in that return**,
+because it is a published case reproduced and a stated contradiction resolved the way the design
+needs. Equilibrium hydrogen at 10,000 K, both columns being ceilings on a perfect nozzle:
+
+| p | Isp equilibrium | **Isp frozen** | store return 2700 s needs |
+|---|---|---|---|
+| 1 bar | 3,070 s | **2,229 s** | 0.52 |
+| 10 bar | 2,992 s | **2,122 s** | 0.63 |
+| 100 bar | 2,959 s | **2,085 s** | 0.67 |
+
+**2,700 s is 24-29% above the frozen ceiling at every pressure in "a few bar."** No nozzle,
+however good, reaches it without recombination, and it sits comfortably inside the ~3,000 s
+equilibrium ceiling, so it is not absurd either. It needs 52-63% of the store back, bracketing
+the paper's 67% estimate. The paper's supporting figures are right in shape and 5-10% low: 206
+against a solved 217-239, 421 against 421-453. The 351 is exact.
+**Why this matters more than a validation.** The section rests its case on running 139x Rubbia's
+number density. That argument needs Rubbia's own case to *have* recombination in it, or the
+density scaling starts from zero. It does.
 
 **Why Rubbia cannot run dense, and we can**: fission fragments must stop in about
 0.5 mg/cm^2 of gas. Range against density: 12.5 mm in his cold wall gas at 0.40 kg/m^3,
@@ -490,8 +656,11 @@ alone it reads as a refutation of this section when it is the opposite.
 
 **Chamber geometry (short and dense, methane numbers)**:
 Keep the paper's 3 m bore from `eq:bore_from_length` and shorten the column. Methane carries
-474 kg per pulse against ammonia's 688, so 499 kg total, 153,075 mol, `nRT` 12.73 GJ, vessel
-8.7 t of carbon overwrap.
+489 kg per pulse at 200 m^3 and 478 at 400, against ammonia's 714, so 514 kg total and about
+8.7 t of carbon overwrap. **And the length is no longer a lever** (W3): the equilibration count
+is `A_bore/(f A*)` and the column length cancels exactly, so the short column is admissible on
+the same terms as the long one and the choice is thermal and structural. The table's pressures
+are confirmed by the companion, 642 bar at 200 m^3 against 636 and 190 at 673 against 189.
 
 | V | L | p | tau | MJ/m^2/pulse | C um/pulse | front contact | swept then | heat sink |
 |---|---|---|---|---|---|---|---|---|
@@ -499,9 +668,10 @@ Keep the paper's 3 m bore from `eq:bore_from_length` and shorten the column. Met
 | 400 m^3 | 14.0 m | 318 bar | 16.0 | 1.13 | 8.6 um | 6.5 m | 77 kg | 52% |
 | 673 m^3 | 23.8 m | 189 bar | 7.3 | 2.29 | 17.5 um | 6.5 m | 45 kg | 28% |
 
-Pre-charge at 200 m^3 is **1.4 bar** of methane vapour at 111 K, so there is no bag, no
-membrane and no atomiser. Smaller is better on every thermal axis and the ordering is the same
-as it was for ammonia.
+Pre-charge at 200 m^3 is **1.4 bar** of methane vapour at 111 K, and the same mass sits at
+**0.70 bar in 400 m^3 and 0.41 in 673**, so at all three there is no bag, no membrane and no
+atomiser. Quote the pre-charge with its volume; ADR-0016 quoted 1.4 bar without one. Smaller is
+better on every thermal axis and the ordering is the same as it was for ammonia.
 **One thing got worse in the flip.** Methane's regenerative sink is tighter, because its latent
 heat is 511 kJ/kg against ammonia's 1371 and it carries 31% less mass per pulse. Where ammonia
 absorbed 100% of the wall load at 200 m^3, methane absorbs 73%, leaving about 38 GJ over a
@@ -537,7 +707,9 @@ one sentence in `sec:minimum_nozzle` pointing at a non-magnetic option on the he
 **Nothing existing is re-scored.** Deliberately declined: re-scoring the minimum-rocket
 conclusion (the 8.7 t methane vessel against the magnet's 17.3-37.6 t of structure plus
 conductor would move the 8-38%-of-a-100-t-craft headline) and re-scoring the growth chain at
-1,080 s. Both are companion-repo asks and both stay open.
+1,129 s. Both are companion-repo asks and both stay open, and the second is worth more than it
+was: at a 2 m^2 throat the figure to rerun is 1,323 s and the launch ledger clears the magnetic
+nozzle's 1.225.
 
 **Hydrogen thermal nozzle**:
 A walled de Laval chamber that catches the head-on PuffSat, lets it merge with a charge of
