@@ -6,7 +6,9 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N8 to avoid collision.
+targeting `aim_is_all_you_need`). These are N1–N11 to avoid collision. **N1–N8 are the magnetic
+nozzle and use the geometry below. N9–N11 were added 2026-09-08 for the walled thermal nozzle of
+ADR-0016 and carry their own geometry, which is not this one.**
 
 **One sentence of context.** The paper's growth chain multiplies an uncertain projectile cost
 against a nozzle efficiency nothing computes. `sec:jet_efficiency` says so outright: nothing in
@@ -244,6 +246,154 @@ cross-repo pins at `nozzle_geometry.SIM_SOLVE_DENSITY` = 0.323 meanwhile, so the
 stay honest about which bag they are.
 
 ---
+
+## N9. Does the shocked front reach the wall, and at what temperature?
+
+**Priority: highest of the three thermal-nozzle items.** It is the load case the walled
+nozzle stands or falls on, and nothing else here substitutes for it.
+
+**Different geometry from N1–N8.** ADR-0016 admits a walled de Laval chamber as a
+non-magnetic option on the head-on departure burn. Same 660 m³ column, 3 m bore, 23.8 m
+length. No field. 25 kg impactor at 75 km/s into **474 kg of methane vapour** pre-charged at
+1.4 bar and 111 K, slug ratio `k = 18.96`, equilibrated chamber 10,000 K. Ammonia at `k = 27.53`
+is the storable alternative and is worth running alongside. The flown fluid changed from ammonia
+to methane on 2026-09-09 (ADR-0016), so earlier drafts of this ask carry ammonia numbers.
+
+**Why.** The section clears the wall against the *equilibrated* 10,000 K state, where the
+gas is optically thick (`tau` about 12.5 across the bore) and the wall sees 54.8 MW/m²,
+1.6 MJ/m² per 30 ms pulse. That is not what arrives first. `sec:needle_through_fog` puts the
+freshly shocked layer at the nose of a 45.58 km/s arrival near 94,600 K and has the 24.9°
+cone reaching a 3 m wall after 6 m of the column. At that station the front has swept only
+about 14 m³ of the column, roughly 14 kg against a 25 kg impactor, so its local slug ratio is
+near 0.56 and a first estimate puts it near 200,000 K.
+
+**What we need.**
+
+0. **First, and it changes the geometry:** does a *sealed* vessel escape the coupling problem
+   `sec:needle_through_fog` is about? That section worries because the magnetic nozzle's bag is
+   a free-standing cloud, so mass the cone misses is left behind. In a closed chamber the
+   unswept propellant is still in the chamber, sound speed is 11 km/s, and a 7 m column
+   equilibrates about fifty times during a 30 ms blowdown. If it holds, `k` is set by what is
+   loaded rather than by what the cone sweeps, the column can be short, and everything in the
+   table below moves. Run 200 m³ over 7.1 m, 400 m³ over 14 m and 673 m³ over 23.8 m, all at
+   the same 3 m bore.
+1. Contact station and arrival time of the front against the wall at 75 km/s into methane at
+   `k = 18.96`, with the spreading model already used for `sec:needle_through_fog`.
+2. Local temperature, density and swept mass at contact.
+3. Fluence delivered to the wall over the contact transient, in MJ/m², separated into
+   radiative and convective parts.
+4. Whether a continuously injected cold film at 0.02 to 0.2 kg/m² measurably reduces (3),
+   given that at those areal densities it is optically thin to the equilibrium field.
+
+5. **Throat carbon deposition.** The methane exhaust carries 376 kg of carbon per pulse through
+   a 2 to 7 m^2 throat. A drifting throat area is the one dimension a nozzle cannot tolerate.
+   The throat is the hottest and fastest station so it should self-clean, but nothing shows it.
+   Report net deposition or removal per pulse at the throat and along the liner, since the same
+   number decides whether the liner is self-healing (0.34 to 3.7% redeposition suffices).
+6. Whether a sprayed carbon film laid between pulses survives the front. `sec:watering_it_down`
+   rules a sprayed film out for the magnetic nozzle liner ("no film thin enough to spray lasts
+   through it") because that liner faces a plume at 45.58 km/s. The walled case stagnates the
+   gas and the load is radiative, so the rejection may not carry over. Paper-side numbers are
+   2.2 microns per pulse at 200 m³ and 12.5 at 673 m³, against GA-5009's ~150 microns of
+   antiablation oil on a 0.8 to 1.5 s recycle.
+
+7. **Convective wall flux, which is the crudest number carrying the most weight.** The paper-side
+   estimate is a Bartz-like scaling off a single anchor, giving 123 to 281 MW/m^2 between 10,000
+   and 18,000 K against a radiative 16 to 75. It is therefore 80-90% of the wall load, and it is
+   what sets the chamber temperature ceiling rather than radiation. Report it properly at
+   200/400/673 m^3 and at 10,000, 12,000 and 15,000 K. **The flown point is 10,000 K**, chosen
+   because the gain from going hotter is 2.5% per 2,000 K and smaller than this very estimate's
+   own uncertainty. What the run would decide is whether that choice is forced or merely
+   prudent: 15,000 K is worth 1.192 GN.s per launch load against the magnetic nozzle's 1.225, so
+   if the wall turns out to be comfortable the near-tie is reachable after all.
+
+**What it decides.** Whether the section states a survivable wall or carries the front as an
+open condition, and it picks the chamber geometry and temperature. It also decides whether the wall is a thin
+sprayed steel skin or a thick refractory liner, currently booked at 2.2 to 12.5 microns of
+graphite per pulse from the equilibrium load alone.
+
+## N10. Recombination along a walled expansion, `N+N+M` and `H+H+M`
+
+**Priority: high.** For the flown methane slug it is the fork between 1,080 s and 793 s.
+
+**Why.** The whole case for a walled nozzle over a magnetic one is that a physical throat
+holds density up where a field lets the plume thin, and three-body recombination goes as
+`n²`. `sec:watering_it_down` finds the water plume freezing at 0.02 kg/m³ with 90 to 100% of
+the bond energy still held, because a magnetic nozzle free-expands it. Bray's sudden-freezing
+criterion is the mechanism (`bray1959recombination`). Hand-estimated margins against a 1 ms
+transit at chamber density are ×3400 for `H+H+M` and ×403 for `N+N+M`. Nitrogen is about eight
+times slower, which is why it freezes in arcjets at 0.1 to 1 bar. Nobody has solved it here.
+
+**There is a published anchor, and it should be reproduced first.** Project 242
+(`augelli2013project242`, read in full 2026-09-08) writes that molecular recombination is *not*
+fast, but its carried baseline of 2700 s needs 351 MJ/kg of stagnation enthalpy where
+sensible-only hydrogen at 10,000 K gives 206. That implies about 67% of the dissociation energy
+returning at a few bar, where paper-side arithmetic puts the `H+H+M` margin near 0.014.
+**Those two statements are in tension and the solver should say which is right**, because our
+own claim rests on the same reaction at 139 times the number density. Run their case at a few
+bar and 10,000 K alongside ours at 206 and 694 bar. Reproducing a published Isp at the thin end
+while predicting recombination at the dense end exercises the mechanism across four orders of
+magnitude in three-body rate with a real answer at one end, which is the strongest single
+validation available here.
+
+**What we need.** Along the de Laval expansion from 206 bar and 10,000 K through a 7 m² throat:
+1. The freezing station and the frozen fraction for `N+N+M` and for `H+H+M` separately.
+2. Fraction of the atomisation energy returned as directed kinetic energy: 103.7 MJ/kg for
+   methane, 68.9 for ammonia.
+3. The same for a water slug at `k = 37.70` and for pure hydrogen at `k = 7.99`, so the ladder
+   in ADR-0016 rests on solved chemistry rather than on the equilibrium assumption.
+4. Sensitivity to throat area, since that is the knob that sets how long the gas stays dense.
+4b. **Chamber dissociation equilibrium, which turned out to set the headline.** Paper-side work on
+   2026-09-09 found the slug's hydrogen is only 49 to 76% dissociated across the candidate
+   chambers, not fully atomised, so the chemical store is only partly charged and it responds to
+   both `T` and `p`. That moved methane from 1,132 s to 1,059-1,095 s. Report the equilibrium
+   composition at (rho, T) for the methane charge at 200/400/673 m^3 and 8,000-12,000 K, and the
+   resulting `k`. `eos_water.py` already does this class of solve for its own species set.
+   **This makes N9 and N10 one question**: a bigger chamber charges more of the store (+3.4% on
+   Isp from 200 to 673 m^3) while a smaller one is better thermally, and the two must be
+   optimised together rather than separately.
+5. **Carbon condensation, which is the flown fluid's largest exposure and a different mechanism.**
+   Soot forms by nucleation rather than by a three-body collision, so it gets none of the `n^2`
+   help the rest of this ask rests on. Methane returns 52% of its atomisation as H2 and 43% as
+   condensing carbon. Report whether that 43% is recovered, at what station, and what particle
+   size results, because the size decides the two-phase lag (30 nm gives a margin of 1e6 against
+   a 1 ms residence, 1 um gives 900, and 5 um alumina in a solid rocket gives 36).
+
+## N11. Radiative escape and wall fluence for a carbon-bearing plume
+
+**Priority: medium.** It moves a number the section prints rather than a conclusion.
+
+**Why.** The paper-side estimate anchors opacity on an A0 photosphere and scales it as
+`sqrt(rho)`, which is a hydrogen argument applied to a nitrogen-bearing gas. Nitrogen's first
+ionisation is 14.53 eV, above hydrogen's 13.60, so its free-electron continuum should be lower,
+but its bound-bound line forest is not something the scaling covers.
+
+**What we need.** Planck and Rosseland means for the methane plume between 3,000 and 15,000 K
+at 0.5 to 4 kg/m³, then the escaping flux and the per-pulse wall fluence through
+`eq:cooling_race`. Report the radiated share of the 70.3 GJ pulse. The paper-side figure is
+1.2%, and it is the least defended number in the section.
+
+## Where N9-N11 land in the code that already exists
+
+Read against `puffsat_impact_simulation` at `c11424c` (2026-09-06). **None of these three is a new
+simulation.** Each is a species set and a geometry on machinery that is already written.
+
+| ask | already there | missing |
+| --- | --- | --- |
+| N9 | `python/puffsat/front.py`: `integrate`, `shock_state`, `spread_speed_table`, `FrontRun`, `FrontStation`. It already returns contact stations (ADR-0013 quotes them). | Run at 200/400/673 m³ on the 3 m bore with a methane EOS, reporting **contact temperature and swept mass** rather than `field_demanded_at`. Sealed-vessel equilibration (item 0) needs no EOS at all. Add throat carbon deposition. |
+| N10 | `python/puffsat/recombination.py` is already exactly Bray's criterion as a Damköhler ratio, with `atom_three_body_coefficient` (`K_ATOM_THREE_BODY = 6.1e-38`, exponent `-2.0`) for `H + OH + M -> H2O + M`, the ionisation and dissociation stores carried separately, and a field reporting how many decades the coefficient could be wrong before the verdict flips. `expansion.nozzle_history` already walks a throat. `eos_water.INTERMEDIATES` **already contains H2**. | `H + H + M` and `N + N + M` coefficients beside the existing one, plus **carbon nucleation, which is not a three-body reaction and needs different machinery**; an `eos_methane.py` (and `eos_ammonia.py` for the alternative); a no-field variant of `nozzle_history`; the Rubbia validation case. |
+| N11 | `opacity_bracket.py`, `continuum.py`, `radiance.py`, `lte.py`, the TOPS grid. | These are water-shaped. Nitrogen opacity is the genuinely hard extension here and the reason N11 is ranked below the other two. |
+
+`eos_water.py` is 783 lines of from-scratch partition functions and a Saha ladder, and it is the
+single largest piece of work. It is built around a reusable `Diatomic` dataclass, so N2 and H2 drop
+into the same frame rather than needing a new one.
+
+**Do N10 first.** It decides an effective specific impulse of 1,080 s against 793 s (the carbon
+condensation store is 25.3 GJ, 36% of the pulse), its chemistry is
+a well-posed ODE with literature rate constants, and Project 242 supplies a published answer at the
+thin end. An integrator that reproduces Rubbia's 2700 s at a few bar and then predicts recombination
+at 206 to 694 bar is validated across four orders of magnitude in three-body rate. That is a
+stronger position than the module holds today, where it carries a bracket it cannot close.
 
 ## Suggested order
 

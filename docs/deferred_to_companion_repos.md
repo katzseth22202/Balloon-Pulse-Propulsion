@@ -7,9 +7,10 @@ See `docs/adr/0007-the-split-dive-ships-at-held-strength.md` for why each is hel
 Target repo for all three: `katzseth22202/aim_is_all_you_need`, module
 `src/bielliptic_dive_split.py` unless noted.
 
-**Nozzle items live separately.** Seven asks targeting `katzseth22202/puffsat_impact_simulation`
-are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N7 so they do not collide with the
-S-numbers here. That file is written to be copied verbatim into the companion repo. Two of them
+**Nozzle items live separately.** Eleven asks targeting `katzseth22202/puffsat_impact_simulation`
+are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N11 so they do not collide with the
+S-numbers here. N9-N11 were added 2026-09-08 for the walled thermal nozzle of ADR-0016 and carry
+their own geometry, which is not the magnetic one N1-N8 assume. That file is written to be copied verbatim into the companion repo. Two of them
 are load-bearing: N1 (the exhaust's second moment, which decides whether `eq:reflection_baseline`
 is being applied to an isotropic plume or a pancake) and N3 (whether the plume is a directed
 column or a bursting bubble, worth 37-112 t of hot-pulse magnet structure).
