@@ -389,6 +389,98 @@ actually collectable**. The \SI{2}{\square\meter} row also exits at
 \SIrange{4349}{4561}{\kelvin}, walking into the range where the companion's equation of
 state omits condensed carbon and stops being a physical answer.
 
+## Four hotter-chamber options priced and declined, and what they point at
+
+Raised 2026-09-09. All four are declined, and the disproof is the same in every case, which
+is why they are recorded together: **what pays is how cold the gas gets before it leaves, and
+raising the chamber temperature raises the exit temperature in the same proportion.**
+
+The exit temperature is a fixed fraction of the chamber temperature at fixed area ratio. Fitting
+the companion's own four points, including its deep-expansion diagnostic, gives
+$T_e/T_c = 0.667\,(A/A_*)^{-0.138}$. It falls very slowly, and blowdown time runs as the area
+ratio at a fixed bore. Those two facts settle all four options.
+
+**\SI{25000}{\kelvin}, on the nuclear light bulb precedent, with a sacrificial hydrocarbon film.**
+The wall side is closer to workable than expected. Escaping flux goes as $T^4$, so
+\SI{87}{\mega\watt\per\square\meter} becomes about 3400, and an \SI{8}{\milli\second} pulse
+delivers \SI{27}{\mega\joule\per\square\meter}, which ablates \SI{184}{\micro\meter} of graphite
+per pulse against GA-5009's flown \SI{150}{\micro\meter} on a 0.8 to \SI{1.5}{\second} recycle.
+That is \SI{54}{\kilo\gram} per pulse, against about \SI{19}{\kilo\gram} for a 10\% mass
+allowance, so the proposal is short by a factor of three rather than by an order of magnitude,
+and the vaporisation locks up 5.2\% of the pulse. **The nozzle is what fails.** A
+\SI{25000}{\kelvin} chamber leaves the \SI{7}{\square\meter} throat near
+\SI{14000}{\kelvin}. Reaching a \SI{3500}{\kelvin} exit from there needs
+$A/A_* \approx \num{84000}$, a \SI{3}{\square\centi\meter} throat and a
+\SI{167}{\second} blowdown. **A brief flash and a hot chamber are mutually exclusive in a fixed
+bore**, because the hotter the chamber the longer the gas must be held in the nozzle to give the
+energy back.
+
+**And the light bulb is not the precedent it looks like.** Its wall is transparent fused silica
+and runs near \SI{2000}{\kelvin}; the radiation passes *through* it, which is the design's whole
+premise. This chamber is optically thick at $\tau = 7$ to 45 and the wall absorbs what reaches
+it. The two designs are opposite in the one property that decides the wall load. `CONTEXT.md`
+already prefers Rubbia's transpiration-cooled porous carbon--carbon for the film, and this is
+why.
+
+**Water at \SI{15000}{\kelvin}, on the hope that it recombines and returns everything.** Its
+bond share does fall, from 74.5\% of the budget to 59.7\%, and $k$ from 39.55 to 31.35. But
+\ce{H2O} only re-forms below about \SI{4000}{\kelvin}, and a \SI{15000}{\kelvin} chamber leaves
+the \SI{7}{\square\meter} throat near \SI{8300}{\kelvin}, where the molecule cannot exist at
+all. Nothing recombines, and it returns about \SI{369}{\second}. **A hot chamber forbids exactly
+the recombination the proposal assumes.** Water is the fluid that needs a cold exit most, not
+least.
+
+**A \SI{10}{\kilo\gram} impactor with a steel vessel.** Vessel mass runs as $nRT\rho/\sigma$, so
+the impactor scales $nRT$ and the material ratio is untouched: carbon overwrap goes
+\SIrange{8.7}{3.5}{\tonne} and steel goes \SIrange{991}{396}{\tonne}, against a
+\SI{100}{\tonne} craft. **Steel is out by two orders of magnitude at any impactor size.** The
+chamber itself becomes tidy, \SI{80}{\cubic\meter} at \SI{2.21}{\meter} radius over
+\SI{5.23}{\meter} with \SI{103}{\square\meter} of wall, and the film costs
+\SI{0.73}{\kilo\gram} per pulse or \SI{181}{\kilo\gram} over a 250-pulse burn. That is cheap and
+it is not what was ever binding.
+
+**And \SI{100}{\micro\meter} of graphite is the wrong thickness for a different reason than
+ablation.** Against ablation at \SI{10000}{\kelvin} it is ample, 31 pulses' worth at
+\SI{3.2}{\micro\meter} each. But heat soaks \SI{146}{\micro\meter} into pyrolytic graphite in
+\SI{8}{\milli\second} and \SI{1033}{\micro\meter} in 400, so a film thin enough to spray does
+not keep the substrate cold for the length of the pulse. **Film thickness is set by the pulse
+length, not by the ablation rate**, and it wants roughly three soak depths.
+
+## The cold end is where the unclaimed impulse is
+
+The same fit that kills all four options above points hard the other way, and this is the
+largest number found anywhere in this decision.
+
+The companion's deep-expansion diagnostic says the \SI{200}{\cubic\meter} chamber **does not
+freeze out to $A/A_* = 400$**, being the densest. W9's equilibrium speciation says a methane
+exhaust that reaches \SIrange{3000}{3500}{\kelvin} holds only 12 to 14\% of its store, against
+the 69.8\% it holds at the flown \SI{7}{\square\meter} exit. So the acetylene energy W9 says is
+sitting on the table is reachable by expanding further, at no cost in wall temperature:
+
+| $A/A_*$ | throat | exit $T$ | store held | effective Isp | blowdown |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 4.04 | \SI{7.0}{\square\meter} | 5501 K | 70\% | 590 s | \SI{8}{\milli\second} |
+| 14.1 | \SI{2.0}{\square\meter} | 4628 K | 60\% | 726 s | \SI{28}{\milli\second} |
+| 50 | \SI{0.57}{\square\meter} | 3887 K | 35\% | 971 s | \SI{99}{\milli\second} |
+| 100 | \SI{0.28}{\square\meter} | 3533 K | 20\% | 1097 s | \SI{198}{\milli\second} |
+| **200** | **\SI{0.14}{\square\meter}** | **3211 K** | **13\%** | **1156 s** | **\SI{396}{\milli\second}** |
+| 400 | \SI{0.07}{\square\meter} | 2918 K | 12\% | 1171 s | \SI{792}{\milli\second} |
+
+**The \SI{8}{\milli\second} pulse at 2\% duty gives a \SI{400}{\milli\second} period, and that
+caps the area ratio near 200.** At that cap the walled nozzle returns about
+\SI{1156}{\second} against the magnetic nozzle's \SI{1249}{\second} target, which is the first
+version of this decision in which the two are close.
+
+**Three things stand between this and a result, and all three are N9's.** The throat is
+\SI{0.14}{\square\meter}, passing the same power through 50 times less area than the
+\SI{7}{\square\meter} baseline, which makes throat carbon and throat heat the whole problem
+rather than a footnote. The film has to hold heat off the substrate for \SI{400}{\milli\second}
+rather than 8, which wants millimetres rather than microns. And the companion's equation of
+state omits condensed carbon below about \SI{4000}{\kelvin}, so every row under
+\SI{3900}{\kelvin} is outside what it can currently answer. **The Isp column is what the
+chemistry allows, not what the hardware permits**, and it is recorded here as a target for N15
+rather than as a number this decision carries.
+
 ## What this deliberately does not do
 
 The section is self-contained. One sentence goes into `sec:minimum_nozzle` pointing

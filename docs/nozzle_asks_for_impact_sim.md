@@ -6,8 +6,8 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N14 to avoid collision. **N1–N8 are the magnetic
-nozzle and use the geometry below. N9–N14 were added for the walled thermal nozzle of
+targeting `aim_is_all_you_need`). These are N1–N15 to avoid collision. **N1–N8 are the magnetic
+nozzle and use the geometry below. N9–N15 were added for the walled thermal nozzle of
 ADR-0016 and carry their own geometry, which is not this one.**
 
 ## Status, 2026-09-09
@@ -26,6 +26,7 @@ ADR-0016 and carry their own geometry, which is not this one.**
 | **N12** | **answered on the paper side**, and the fluid choice survives |
 | **N13** | **new**, raised 2026-09-09 while answering N12. Medium, behind N9 |
 | **N14** | **new**, raised 2026-09-09. High, and the cheapest item here: one flag on an existing target |
+| **N15** | **new**, raised 2026-09-09. Highest after N9: the largest unclaimed number in ADR-0016 |
 
 **What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
 are left in place with corrections marked, so the record shows what was asked. The
@@ -571,6 +572,59 @@ down to 0.41 decades at 10,000 K.
 **Lifts.** ADR-0016's "Going hotter was considered and declined", which now has the right
 conclusion for the wrong reason, and `CONTEXT.md`'s **Hotter is worse, once the chemistry is
 charged**, which is currently carrying an extrapolation where it should carry a solve.
+
+---
+
+## N15. Run the expansion out to A/A* = 200, on the 200 m³ chamber
+
+**Priority: highest of the walled-nozzle items, ahead of everything except N9 itself.** Raised
+2026-09-09. It is the largest unclaimed number anywhere in ADR-0016.
+
+**Why.** Your own deep-expansion diagnostic says the 200 m³ chamber **does not freeze out to
+A/A* = 400**, being the densest, and W9 says a methane exhaust reaching 3,000-3,500 K holds only
+12-14% of its store against the 69.8% it holds at the flown 7 m² exit. Those two together say
+the acetylene energy W9 found is reachable by expanding further, and it costs no wall
+temperature. Fitting your four exit points gives `T_e/T_c = 0.667 (A/A*)^-0.138`, and the
+paper-side ledger then reads:
+
+| A/A* | throat | exit T | held | eff Isp | blowdown |
+|---|---|---|---|---|---|
+| 4.04 | 7.0 m² | 5,501 K | 70% | 590 s | 8 ms |
+| 14.1 | 2.0 m² | 4,628 K | 60% | 726 s | 28 ms |
+| 50 | 0.57 m² | 3,887 K | 35% | 971 s | 99 ms |
+| 100 | 0.28 m² | 3,533 K | 20% | 1,097 s | 198 ms |
+| **200** | **0.14 m²** | **3,211 K** | **13%** | **1,156 s** | **396 ms** |
+| 400 | 0.07 m² | 2,918 K | 12% | 1,171 s | 792 ms |
+
+The 8 ms pulse at ADR-0016's 2% duty cycle gives a 400 ms period, which caps the area ratio near
+200. At that cap the walled nozzle reaches about 1,156 s against the magnetic nozzle's 1,249 s
+target, which no version of this decision has been able to say.
+
+**What is wanted.** `freeze.csv` regenerated at A/A* of 50, 100, 200 and 400 on the
+200 m³ chamber, reporting exit `T`, exit density, store returned, minimum Damköhler and the
+conversion fraction, the same columns as now. **The freeze verdict is the question**: your
+diagnostic says this chamber survives to 400, but it was run as a diagnostic rather than as a
+flown case, and the margin at 673 m³ / 2 m² was already 0.41 decades.
+
+**Two things make the answer conditional and both should be reported alongside.** Your equation
+of state omits condensed carbon below about 4,000 K (weakness 4), so every row under 3,900 K is
+outside what it can currently answer, and the whole point of going there is to reach the
+temperature where carbon condensation is what completes the recombination. And W9's acetylene
+kinetics are still untested (weakness 8), so this run should say whether the `C -> C3 -> C2H2`
+path keeps up over a 400 ms expansion, which is 50 times longer than the flown one and therefore
+much more favourable to it.
+
+**What would settle it.** Whether the walled nozzle is a 700 s device or a 1,150 s device. That
+is the difference between an alternative worth a paragraph and one worth the section.
+
+**What it does NOT settle, and this is N9's.** The throat becomes 0.14 m², passing the same
+power through 50 times less area, so throat carbon deposition and throat heat flux stop being
+footnotes. The film has to hold heat off the substrate for 400 ms rather than 8, which wants
+millimetres rather than microns of graphite. **The Isp column above is what the chemistry
+allows, not what the hardware permits.**
+
+**Lifts.** ADR-0016's "The cold end is where the unclaimed impulse is", and the throat
+recommendation in W6, which stops at 2 m² only because that is where the ask happened to stop.
 
 ## Suggested order
 
