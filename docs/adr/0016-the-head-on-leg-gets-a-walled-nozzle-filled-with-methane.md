@@ -1042,24 +1042,46 @@ configuration is a proposal to be priced, not a result.**
 Asked 2026-09-10, from the flown \SI{10000}{\kelvin} chamber. **It fails both walls and the
 prize is half a percent.**
 
-**There is nothing there.** Water is already essentially fully recombined at the
-\SI{2900}{\kelvin} exit the design can reach: 2.5\% of its store still held, meaning 97.5\%
-returned. Following it further:
+**The chemistry is nearly done, but Carnot is not, and a first pass here missed that.**
+The \SI{0.5}{\percent} figure this section first carried zeroed the exhaust's own sensible
+enthalpy below \SI{5000}{\kelvin}. The exhaust still carries heat at \SI{2900}{\kelvin} and
+cooling further recovers some of it. That is the Carnot term and it is the larger half:
 
-| exit $T$ | store held | effective Isp | gain over 2900 K |
-| ---: | ---: | ---: | ---: |
-| 3500 K | 3.1\% | 992 s | -- |
-| **2914 K** | **2.5\%** | **995 s** | **the reachable limit** |
-| 2600 K | 2.2\% | 997 s | $+0.2\%$ |
-| 2000 K | 1.6\% | 999 s | $+0.5\%$ |
-| 1500 K | 1.1\% | 1001 s | $+0.7\%$ |
+| fluid | exit | store held | heat still in the exhaust | conversion | effective Isp |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| water | 2914 K | 2.5\% | 7.8\% | 90.4\% | 947 s |
+| water | 2000 K | 1.6\% | 5.3\% | 93.5\% | 967 s ($+2.1\%$) |
+| hydrogen | 2914 K | 2.0\% | 13.1\% | 85.6\% | 1644 s |
+| hydrogen | 2000 K | 1.0\% | 9.0\% | 90.4\% | **1715 s ($+4.4\%$)** |
+| methane | 2914 K | 36.2\% | 4.4\% | 68.7\% | 1041 s |
+| methane | 2000 K | 34.0\% | 3.0\% | 71.7\% | 1072 s ($+3.0\%$) |
 
-**And it cannot be reached anyway.** From \SI{10000}{\kelvin} a \SI{2000}{\kelvin} exit needs
-$A/A_* \approx \num{6200}$, which is a throat of \SI{46}{\square\centi\meter}, **7.6 cm
-across**. At \SI{100}{\cubic\meter} that gives $Da = 0.34$ against a freezing threshold of 10,
-so it freezes **thirty times over**, and a blowdown of \SI{6.1}{\second} against a
-\SI{400}{\milli\second} pulse period, **fifteen times too slow**. Shrinking the chamber to
-\SI{25}{\cubic\meter} still leaves $Da = 2.3$ and \SI{1.5}{\second}.
+**Why it is still small, and why hydrogen gains most.** Carnot acts on the **sensible** share
+only. Water carries 27\% of its budget as heat and 73\% as chemistry; hydrogen 37\% and 63\%.
+The chemical store does not care what temperature the expansion stops at, only whether the atoms
+have paired up, and they have by \SI{3000}{\kelvin}. **Hydrogen gains twice what water does
+precisely because more of its budget is heat**, which is the Carnot intuition arriving exactly
+where it should.
+
+**And on how dissociated the water is: quite, and it barely matters in energy.** At the
+\SI{2914}{\kelvin} exit and \SI{0.10}{\bar}, **9.5\% of the \ce{H2O} is split**. But that split
+only fails the *last* 26\% of the store: \ce{H2} and \ce{O2} are already complete at that
+temperature, $D/kT$ being 18 and 21, and they are 74\% of it. So 9.5\% dissociated by mole is
+2.5\% of the energy held. **A molar dissociation figure and an energy loss are different
+numbers here, and the first is about four times the second.**
+
+**But the walls do not move for a 2 to 4\% prize.** From \SI{10000}{\kelvin} a
+\SI{2000}{\kelvin} exit needs $A/A_* \approx \num{6200}$, a throat of
+\SI{46}{\square\centi\meter}, **7.6 cm across**. At \SI{100}{\cubic\meter} the Damkoehler
+numbers are **0.34 for water, 0.13 for methane and 0.041 for hydrogen** against a threshold of
+10, and the blowdown is \SI{6.1}{\second} against a \SI{400}{\milli\second} period. Shrinking to
+\SI{25}{\cubic\meter} still leaves \SI{1.5}{\second}.
+
+**Hydrogen is the worst of the three on freezing, which is the irony worth recording.** It gains
+most from a cold exit and reaches one least well, because the small slug that gives it its
+specific impulse also makes the thinnest chamber, \SI{2.19}{\kilogram\per\cubic\meter} against
+water's 10.13. Its $\ce{H}+\ce{H}+M$ is the one channel W5 established with margin, so this
+methane-calibrated $Da$ understates it, but not by two decades.
 
 **The reachable limit is already the right place to stop.** At \SI{100}{\cubic\meter} the
 blowdown caps the area ratio at 404, which lands the exit at \SI{2914}{\kelvin}. **That is
