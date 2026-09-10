@@ -636,6 +636,15 @@ ADR-0050's EOS cannot model below 4,000 K, and `eos_water` is the older and larg
 equations of state. **The fluid choice may come down to the liner rather than the impulse**, and
 this grid is what would show it.
 
+**The single most valuable curve in the whole grid: where does exit temperature stop falling
+slowly with area ratio?** The paper side is using `T_e/T_c = 0.667 (A/A*)^-0.138`, fitted to
+your four points from A/A* = 4 to 140. That exponent is 2.6x shallower than the ideal-gas
+-0.364, and the reason is physical: a recombining nozzle cools slowly because the chemistry is
+feeding heat back in. **Once recombination finishes, the curve must steepen back toward ideal**,
+and where it does decides whether a 2,000 K exit needs an area ratio of 600 or of 6,200. That is
+the difference between a 24 cm throat and a 7.6 cm one, and between reachable and not.
+**Report exit temperature against area ratio out to 1,000 and the shape settles it.**
+
 **The specific configuration to price first, if the grid has to be cut down.** 100 m³ at
 1,284 bar, a 0.1 m² throat, and a bulk slug of 90% water with 10% liquid hydrogen, with a
 methane wall film carried off-ladder for the liner. Paper side puts it at 1,138 s and 1.116 GN.s

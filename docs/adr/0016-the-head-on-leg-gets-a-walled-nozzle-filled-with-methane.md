@@ -1037,7 +1037,7 @@ density. The 10\% hydrogen rows additionally run 2\% high on `u`. And the whole 
 \SI{4000}{\kelvin}, where ADR-0050's equation of state does not claim to work. **The
 configuration is a proposal to be priced, not a result.**
 
-## A \SI{2000}{\kelvin} exit is unreachable, and there is nothing at it
+## A \SI{2000}{\kelvin} exit is reachable at \SI{50}{\cubic\meter}, and worth a few percent
 
 Asked 2026-09-10, from the flown \SI{10000}{\kelvin} chamber. **It fails both walls and the
 prize is half a percent.**
@@ -1070,18 +1070,48 @@ temperature, $D/kT$ being 18 and 21, and they are 74\% of it. So 9.5\% dissociat
 2.5\% of the energy held. **A molar dissociation figure and an energy loss are different
 numbers here, and the first is about four times the second.**
 
-**But the walls do not move for a 2 to 4\% prize.** From \SI{10000}{\kelvin} a
-\SI{2000}{\kelvin} exit needs $A/A_* \approx \num{6200}$, a throat of
-\SI{46}{\square\centi\meter}, **7.6 cm across**. At \SI{100}{\cubic\meter} the Damkoehler
-numbers are **0.34 for water, 0.13 for methane and 0.041 for hydrogen** against a threshold of
-10, and the blowdown is \SI{6.1}{\second} against a \SI{400}{\milli\second} period. Shrinking to
-\SI{25}{\cubic\meter} still leaves \SI{1.5}{\second}.
+**This section first said \SI{2000}{\kelvin} was unreachable and that was wrong.** The claim
+rested on $T_e/T_c = 0.667\,(A/A_*)^{-0.138}$, fitted to four companion points spanning
+$A/A_* = 4$ to 140 and then extrapolated **forty-four-fold** to 6,200. That exponent is
+$2.6\times$ shallower than the ideal-gas value of $-0.364$, and the reason is physical: **a
+recombining nozzle cools slowly because the chemistry is pumping heat back in.** Once
+recombination is finished that reason is gone and the curve has to steepen back toward ideal.
+Steepening from the last solid point puts a \SI{2000}{\kelvin} exit at
+**$A/A_* \approx 600$, not 6,200** — a factor of ten, and a \SI{24.5}{\centi\meter} throat
+rather than a 7.6.
 
-**Hydrogen is the worst of the three on freezing, which is the irony worth recording.** It gains
-most from a cold exit and reaches one least well, because the small slug that gives it its
+**On that reading it clears both walls, at a smaller chamber:**
+
+| volume | $p_c$ | $A/A_*$ | throat | $Da$ | blowdown | |
+| ---: | ---: | ---: | ---: | ---: | ---: | :--- |
+| 200 m³ | 642 bar | 602 | \SI{0.047}{\square\meter} | 3.3 | 1193 ms | freezes, too slow |
+| 100 m³ | 1284 bar | 602 | \SI{0.047}{\square\meter} | 8.6 | 596 ms | marginal, too slow |
+| **50 m³** | **2568 bar** | 602 | \SI{0.047}{\square\meter} | **22.3** | **298 ms** | **passes both** |
+| 25 m³ | 5136 bar | 602 | \SI{0.047}{\square\meter} | 58.3 | 149 ms | passes with room |
+
+**Rubbia is the argument that found this, and it is a good one.** Project 242 recombines hydrogen
+from a \SI{10000}{\kelvin} chamber and reaches 91\% of the equilibrium ceiling W2 computes, so a
+chamber at this temperature demonstrably can be expanded to where recombination substantially
+completes. Two things make that easier for him and one harder. **Easier:** he runs continuously,
+so there is no chamber to empty, no blowdown limit and no \SI{400}{\milli\second} period, and any
+area ratio is free to him. **Easier:** hydrogen only, and $\ce{H}+\ce{H}+M$ is the channel W5
+established with margin to spare. **Harder:** his chamber is a few bar against our 642 to 1284,
+so at the same *pressure* ratio his exit is two orders of magnitude thinner than ours.
+
+**That last one runs our way and is the point.** If Rubbia recombines at his exit density we
+recombine at ours with room. **Density was never the binding constraint here. The
+\SI{400}{\milli\second} pulse period is, and it is the one thing he does not have.**
+
+**Hydrogen remains the worst of the three on freezing, which is the irony worth keeping.** It
+gains most from a cold exit and reaches one least well, because the small slug that gives it its
 specific impulse also makes the thinnest chamber, \SI{2.19}{\kilogram\per\cubic\meter} against
-water's 10.13. Its $\ce{H}+\ce{H}+M$ is the one channel W5 established with margin, so this
-methane-calibrated $Da$ understates it, but not by two decades.
+water's 10.13.
+
+**Which extrapolation is right is exactly what N16 settles**, and it is worth naming as the
+single most valuable thing in that grid: **where does $T_e$ against $A/A_*$ steepen?** Everything
+past $A/A_* = 140$ in this decision is one or other guess about that curve.
+
+## The cold end is where the unclaimed impulse is
 
 **The reachable limit is already the right place to stop.** At \SI{100}{\cubic\meter} the
 blowdown caps the area ratio at 404, which lands the exit at \SI{2914}{\kelvin}. **That is
