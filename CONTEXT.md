@@ -762,6 +762,34 @@ the film than the nuclear light bulb.
 _Avoid_: repeating their prose about molecular recombination without their arithmetic; taken
 alone it reads as a refutation of this section when it is the opposite.
 
+**Pulsed NTR (Arias 2016, AIAA 2016-4685): read and declined 2026-09-10**:
+A bimodal solid-core NTR run as a TRIGA-like pulsed reactor, with prompt neutrons carrying their
+kinetic energy past the fuel into the hydrogen. Proposed as a second high-temperature anchor
+beside Rubbia and **not taken**, on four counts.
+**It states no temperature and no pressure**, and neither nozzle chemistry, TRISO nor shock
+loading appears in it. The fuel is MOX/UO2 at a 1 cm cylinder radius, or thin plate quenched by
+lithium, and there is no fuel-survival argument to borrow.
+**Its implied temperature is the error this section exists to avoid.** From its own
+`Isp = Isp_0 * sqrt(f_n*N + 1)` with `f_n = 1/20` and `N = 1e2` to `1e3`, on `Isp ~ sqrt(T)` at
+fixed `c`, the chamber runs 6 to 51 times its 900 s baseline point: **16,000 K to 140,000 K**.
+Fixing `c` fixes the composition, and hydrogen is dissociated and ionising across that whole band.
+See **Why +20% of temperature buys only +2.7%**. Rubbia's 9,500 K stays the only anchor.
+**Its pressure is a steady core's**, 38.6 bar on NERVA XE, so ~10x Rubbia's few bar and ~1/16 of
+our 636 bar. Pulsing reshapes the temperature history and not the pressure, which is why no shock
+appears in the concept at all.
+**And its own heat balance does not close.** At 333.6 kN and 900 s the jet power is 1.47 GW, so
+`N = 1e2` leaves ~140 GW of fission-fragment heat in the fuel (micron fragment range in oxide; a
+1 cm rod keeps essentially all of them). That is **~2,200 t of radiator** at Rubbia's 190 MW per
+3 t, or **33 t/s of lithium** dumped against 37.8 kg/s of hydrogen.
+Two citing works on record, one the author's own follow-up on decay heat at shutdown. Full text
+paywalled; the derived figures above are ours, not theirs.
+_Avoid_: re-proposing it from the Wikipedia article, which rests on this one conference paper and
+carries a standing `{{Why}}` flag on the `f_n*N` step (the fraction does not change when the core
+is pulsed). No external pulsed-fission precedent has been found close enough to transfer either:
+TRIGA was considered on 2026-09-10 and declined as well, being a fuel element under a power
+transient rather than a liner under impact. The liner question stays where it was, with N9
+items 1-3 and the arrival transient.
+
 **Chamber geometry (short and dense, methane numbers)**:
 Keep the paper's 3 m bore from `eq:bore_from_length` and shorten the column. Methane carries
 489 kg per pulse at 200 m^3 and 478 at 400, against ammonia's 714, so 514 kg total and about
