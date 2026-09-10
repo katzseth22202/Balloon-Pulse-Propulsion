@@ -805,7 +805,7 @@ to water hands the carbon an easy high-temperature bond:
 
 | methane in a water slug | $u$ | $k$ | slug | ceiling Isp | at a cold exit |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0\% | 71.7 | 38.24 | 956 kg | 1020 s | 990 s |
+| 0\% | 69.4 | 39.55 | 989 kg | 1006 s | 990 s |
 | 10\% | 78.6 | 34.77 | 869 kg | 1061 s | **~1035 s** |
 | 20\% | 85.6 | 31.86 | 797 kg | 1100 s | -- |
 
@@ -854,6 +854,49 @@ an equation of state that goes blind exactly where the design is heading? **That
 question with a defensible answer either way, and it is not the question this decision answered
 when it picked methane on a 31\% lead.** N16 should settle it by running both fluids on the same
 grid.
+
+## Reference: both Isp conventions, and the slug ratio behind every number
+
+**Every Isp in this decision is EFFECTIVE**, meaning impulse per kilogram of *launched slug*.
+The impactor arrives from outside at \SI{75}{\kilo\meter\per\second} and the vehicle never
+lifted it, so it is not charged:
+
+$$\mathrm{Isp}_{\mathrm{eff}} = \frac{(1+k)\,u_e - w}{k\,g_0},
+\qquad \mathrm{Isp}_{\mathrm{true}} = \frac{u_e}{g_0}.$$
+
+The companion reports **true**. Setting one beside the other is the error W5 records and it is
+easy to make, so the table carries both.
+
+| | $k$ | slug | conv | $\eta_{\mathrm{jet}}$ | $u_e$ | true Isp | **effective Isp** | drift charge |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| **flown \SI{7}{\square\meter} throat, companion-solved** ||||||||
+| methane | 19.56 | 489 kg | 40.6\% | 0.621 | 10265 | 1047 s | **709 s** | 391 s |
+| water | 39.55 | 989 kg | 41.5\% | 0.627 | 7390 | 754 s | **579 s** | 193 s |
+| hydrogen | 7.77 | 194 kg | 53.2\% | 0.710 | 17992 | 1835 s | **1086 s** | 984 s |
+| **cold end, \SI{200}{\cubic\meter} at its freeze limit, estimated** ||||||||
+| methane | 19.56 | 489 kg | 69.7\% | 0.813 | 13445 | 1371 s | **1050 s** | 391 s |
+| water | 39.55 | 989 kg | 97.4\% | 0.961 | 11321 | 1154 s | **990 s** | 193 s |
+| water + 10\% \ce{CH4} | 35.95 | 899 kg | 98.1\% | 0.965 | 11905 | 1214 s | **1035 s** | 213 s |
+| **ceilings, perfect recombination** ||||||||
+| methane | 19.56 | 489 kg | 100\% | 0.974 | 16110 | 1643 s | **1336 s** | 391 s |
+| water | 39.55 | 989 kg | 100\% | 0.974 | 11472 | 1170 s | **1006 s** | 193 s |
+| water + 10\% \ce{CH4} | 35.95 | 899 kg | 100\% | 0.974 | 12017 | 1225 s | **1047 s** | 213 s |
+| **for comparison** ||||||||
+| water, magnetic nozzle | 8.52 | 213 kg | -- | *0.775* | 18838 | 1921 s | **1249 s** | 898 s |
+
+**The drift column is the part worth reading.** It is $w/(k g_0)$, the arriving momentum that has
+to be cancelled, charged per kilogram of slug. It is \SI{391}{\second} against methane and only
+\SI{193}{\second} against water, because water carries twice the slug to spread it over. **That
+is why water's true and effective columns sit closer together than methane's**, and why a fluid
+that wins on true Isp can lose on effective, which is what happens to hydrogen.
+
+$(1+k)/k$ is the free-impactor bonus and it is already inside every effective number: $+5.1\%$
+for methane, $+2.5\%$ for water. It is a decomposition, not an addition.
+
+**One inconsistency this table exposes and settles.** Water's ceiling was quoted at
+\SI{1020}{\second} in one place and \SI{1006}{\second} in another. The first uses the paper-side
+full-atomisation $k = 38.24$ and the second the companion's solved $k = 39.55$. **The solved one
+is right**, and every water row in the cold-end tables already used it.
 
 ## The cold end is where the unclaimed impulse is
 
