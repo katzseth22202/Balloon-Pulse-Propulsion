@@ -1129,11 +1129,19 @@ left for a cooler chamber to buy, and only its bigger slug remains: water loses 
 10,000 to \SI{6000}{\kelvin} at a deep expansion. **Run the chamber hot and the nozzle long, not
 the other way round.** The cool-chamber half of N14 should be read that way inside N16.
 
-## Aqueous ammonia: not at household strength, but the question points somewhere useful
+## Aqueous ammonia: declined 2026-09-10 on handling and supply, not on performance
 
-Asked 2026-09-10, as an ambient way to get hydrogen into a water slug without cryogenics.
-**At household strength it is not worth the handling, and the reason why is what makes the
-question worth recording.**
+**Decision: ammonia stays off the ladder.** Raised as an ambient way to get hydrogen into a water
+slug without cryogenics, and declined the same day because it is neither as safe nor as cheap as
+methane. That is the same argument this decision already makes for methane over ammonia in "Why
+methane rather than the hydrogen the precedent points at": not toxic, and Starship already flies
+it, so its tankage and boil-off management are flown hardware rather than a new subsystem.
+**The numbers below are kept so the case does not have to be re-derived if the supply picture
+ever changes**, and because the last row of the table is a genuine result that was buried by a
+correction rather than by an argument.
+
+At household strength it is not worth the handling, and the reason why is what makes the
+question worth recording.
 
 **Ammonia is a poor hydrogen carrier by mass.** It supplies \SI{176}{\mole} of hydrogen per
 kilogram against water's 111 and liquid hydrogen's 992. **To carry as much hydrogen as 10\%
@@ -1160,7 +1168,8 @@ non-cryogenic options at the cold end.**
 fourth by the withdrawn dissociation correction, which discharged nitrogen's store hardest and
 was wrong. On the corrected numbers it is second overall.
 
-**Two things stand in the way, and the second did not exist before today.**
+**Two things would have stood in the way had it been pursued, and the second did not exist
+before today.**
 
 **Nitrogen's rate.** \ce{N2} is \SI{941}{\kilo\joule\per\mole}, among the strongest bonds there
 are, so at a \SI{2914}{\kelvin} exit its formation is thermodynamically overwhelming, $D/kT$
