@@ -1037,6 +1037,48 @@ density. The 10\% hydrogen rows additionally run 2\% high on `u`. And the whole 
 \SI{4000}{\kelvin}, where ADR-0050's equation of state does not claim to work. **The
 configuration is a proposal to be priced, not a result.**
 
+## A \SI{2000}{\kelvin} exit is unreachable, and there is nothing at it
+
+Asked 2026-09-10, from the flown \SI{10000}{\kelvin} chamber. **It fails both walls and the
+prize is half a percent.**
+
+**There is nothing there.** Water is already essentially fully recombined at the
+\SI{2900}{\kelvin} exit the design can reach: 2.5\% of its store still held, meaning 97.5\%
+returned. Following it further:
+
+| exit $T$ | store held | effective Isp | gain over 2900 K |
+| ---: | ---: | ---: | ---: |
+| 3500 K | 3.1\% | 992 s | -- |
+| **2914 K** | **2.5\%** | **995 s** | **the reachable limit** |
+| 2600 K | 2.2\% | 997 s | $+0.2\%$ |
+| 2000 K | 1.6\% | 999 s | $+0.5\%$ |
+| 1500 K | 1.1\% | 1001 s | $+0.7\%$ |
+
+**And it cannot be reached anyway.** From \SI{10000}{\kelvin} a \SI{2000}{\kelvin} exit needs
+$A/A_* \approx \num{6200}$, which is a throat of \SI{46}{\square\centi\meter}, **7.6 cm
+across**. At \SI{100}{\cubic\meter} that gives $Da = 0.34$ against a freezing threshold of 10,
+so it freezes **thirty times over**, and a blowdown of \SI{6.1}{\second} against a
+\SI{400}{\milli\second} pulse period, **fifteen times too slow**. Shrinking the chamber to
+\SI{25}{\cubic\meter} still leaves $Da = 2.3$ and \SI{1.5}{\second}.
+
+**The reachable limit is already the right place to stop.** At \SI{100}{\cubic\meter} the
+blowdown caps the area ratio at 404, which lands the exit at \SI{2914}{\kelvin}. **That is
+"clearly into water recombination" already** — the phrase describes \SI{2900}{\kelvin} as well
+as it describes 2000, because the combustion step is done by about \SI{3000}{\kelvin}.
+
+**Who would want \SI{2000}{\kelvin} is methane, and it cannot have it either.** Methane's carbon
+is still 36\% held at \SI{3100}{\kelvin}, so it is the fluid with something left to collect down
+there. But it freezes sooner than water does, having the thinner chamber, and below
+\SI{4000}{\kelvin} ADR-0050's equation of state omits condensed carbon, which is the very
+chemistry the cold end would be reaching for.
+
+**One rule falls out of this and it corrects an earlier reading.** Cooling the chamber was found
+to help at the flown \SI{7}{\square\meter} throat and it does, but only because that exit is far
+too hot to recombine. Once the expansion is deep enough to finish the chemistry there is nothing
+left for a cooler chamber to buy, and only its bigger slug remains: water loses 18\% going from
+10,000 to \SI{6000}{\kelvin} at a deep expansion. **Run the chamber hot and the nozzle long, not
+the other way round.** The cool-chamber half of N14 should be read that way inside N16.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
