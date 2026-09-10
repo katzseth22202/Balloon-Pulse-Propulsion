@@ -482,6 +482,71 @@ ablation.** Against ablation at \SI{10000}{\kelvin} it is ample, 31 pulses' wort
 not keep the substrate cold for the length of the pulse. **Film thickness is set by the pulse
 length, not by the ablation rate**, and it wants roughly three soak depths.
 
+## The slug does not have to be one fluid, and a water--hydrogen mix beats both ends
+
+Raised 2026-09-10. **The ladder has been treating the working fluid as a choice between
+pure substances, and it is a continuous dial.** A water slug carrying a hydrogen fraction was
+scored once, at 10\%, and recorded in `CONTEXT.md` at `6faf171` as \SI{987}{\second}. That line
+was lost when the ladder was rewritten. It should not have been, because the dial is the most
+useful thing in this section.
+
+**Why a small hydrogen fraction moves so much.** Hydrogen is light enough that 10\% of the mass
+is half the atoms. Ten percent liquid hydrogen in water gives **\num{3.99} hydrogen atoms per
+oxygen against water's 2**, exactly doubling the hydrogen, and drops the mean atomic mass from
+\SI{6.005}{amu} to \num{4.015}. Wall-cap energy density rises from 72 to
+\SI{98}{\mega\joule\per\kilogram}, so $k$ falls from \num{38.24} to \num{27.61} and the slug from
+956 to \SI{690}{\kilo\gram}.
+
+| \ce{H2} by mass | H per O | $\bar{m}$ | $u$ | $k$ | slug | storage | Isp | GN\,s per load |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0\% (water) | 2.00 | 6.005 | 72 | 38.24 | 956 kg | \SI{1000}{\kilogram\per\cubic\meter} | 601 s | 0.589 |
+| 10\% | 3.99 | 4.015 | 98 | 27.61 | 690 kg | 432 | 698 s | 0.684 |
+| 20\% | 6.47 | 3.015 | 125 | 21.51 | 538 kg | 276 | 776 s | 0.761 |
+| 35\% | 11.62 | 2.196 | 165 | 16.06 | 401 kg | 179 | 870 s | 0.853 |
+| **55\%** | 23.84 | 1.611 | 218 | 11.89 | 297 kg | **122** | **971 s** | **0.927** |
+| 70\% | 43.70 | 1.343 | 258 | 9.90 | 247 kg | 98 | 1034 s | 0.796 |
+| (methane) | -- | 3.21 | 137 | 19.56 | 489 kg | 422 | 722 s | 0.696 |
+| (pure hydrogen) | -- | 1.008 | 321 | 7.77 | 194 kg | 70.8 | 1087 s | 0.604 |
+
+**The launch ledger has an interior optimum and neither pure fluid is near it.** A
+\SI{100}{\tonne} bay is filled by mass above about
+\SI{125}{\kilogram\per\cubic\meter} and by volume below it, so the best mix is the lightest one
+that still fills the bay by mass. That is near 55\% hydrogen, at \num{0.927} against methane's
+\num{0.696} and pure hydrogen's \num{0.604}. **Pure hydrogen loses the ledger to volume and
+water loses it to specific impulse, and a mix escapes both.**
+
+**And it is a dial rather than a choice**, which is worth more than the number. The mission can
+trade specific impulse against propellant cost leg by leg without changing the hardware, using
+whatever hydrogen fraction the logistics of that leg can carry. Nothing else in this decision
+has that property.
+
+**The proposal's own physics argument is half right and it matters which half.** Doubling the
+hydrogen doubles $\ce{H} + \ce{OH} + M$ and roughly doubles $\ce{OH}$ as well, so the initial
+rate goes as about $4\times$. **That is correct and it does not cash**, because W5 established
+the walled nozzle is not rate-limited: it carries 2.16 decades of Damkoehler margin and tracks
+equilibrium everywhere in the bore. A reaction already at equilibrium does not care that it
+could go faster.
+
+**What actually pays is that hydrogen's store comes back through the one channel that works.**
+At the flown \SI{7}{\square\meter} exit the gas is near \SI{5500}{\kelvin}, and \ce{H2O} does not
+form in quantity above about \SI{4000}{\kelvin}. So **essentially no water re-forms at the flown
+exit whatever the hydrogen fraction**, and the mix does not win by combusting better. It wins by
+**substituting an easy store for a hard one**: hydrogen's returns through $\ce{H}+\ce{H}+M$,
+which W5 has established with margin to spare, where water's needs a temperature this nozzle
+does not reach.
+
+**Le Chatelier is the part that has not been priced, and it belongs with N15.** At equilibrium
+$[\ce{H2O}]/([\ce{H}]^2[\ce{O}])$ is fixed at a given temperature, so doubling the free hydrogen
+does raise the oxygen's conversion to water. That effect is real, it is in none of the numbers
+above, and it is worth nothing at a \SI{5500}{\kelvin} exit and a great deal at the
+\SI{3200}{\kelvin} exit N15 asks for. **The mix and the deep expansion are complementary**, and
+they should be run together.
+
+**One correction to the proposal's premise.** Ten percent of the mass is **61\% of the volume**,
+so the cryostat is not small in the sense that matters for boil-off, which scales with surface
+area. What is true is that the hydrogen volume per pulse falls from \SI{2.74}{\cubic\meter} to
+\SI{0.97}{\cubic\meter} against a pure-hydrogen slug, a genuine factor of \num{2.8}.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
