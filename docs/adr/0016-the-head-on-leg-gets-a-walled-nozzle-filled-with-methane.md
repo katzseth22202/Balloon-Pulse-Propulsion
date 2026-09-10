@@ -783,6 +783,78 @@ dissociated at \SI{1}{\bar} and \SI{3000}{\kelvin} scaled as $p^{-1/3}$, not a s
 store held from 3\% to 15\% would cost water \SI{53}{\second}, which does not change the
 conclusion but does change the margin.
 
+## Carbon in the bulk slug does not rebuild the liner, and a fuel-rich wall film does
+
+Asked 2026-09-10: can a water slug carry a little methane so its carbon rebuilds the liner?
+**No, and the reason is stoichiometry rather than kinetics.**
+
+**The oxygen outnumbers the carbon eight to one.** A 90/10 water/methane slug has
+$\mathrm{C/O} = 0.12$. Soot needs $\mathrm{C/O}$ comfortably above 1, and reaching even 1 takes
+**47\% methane by mass**, at which point it is a methane slug with water in it.
+
+**And carbon prefers oxygen even without the surplus.** $\ce{C + O -> CO}$ releases
+\SI{1077}{\kilo\joule\per\mole} against \SI{966}{} for $\ce{C + O -> C(s)} + \tfrac{1}{2}\ce{O2}$,
+so CO wins by 111 even at $\mathrm{C/O} = 1$. **Every carbon atom leaves as CO and the liner gets
+nothing.**
+
+**But CO is a gain, which inverts the proposal.** The CO bond is among the strongest in
+chemistry, \SI{1077}{\kilo\joule\per\mole} against \ce{H2}'s 432, so it re-forms early and stays
+formed where \ce{H2O} needs the exhaust below \SI{4000}{\kelvin} and soot needs nucleation nobody
+can model. `tab:seed_carrier` already says as much about \ce{CO2} in the paper. So adding methane
+to water hands the carbon an easy high-temperature bond:
+
+| methane in a water slug | $u$ | $k$ | slug | ceiling Isp | at a cold exit |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 0\% | 71.7 | 38.24 | 956 kg | 1020 s | 990 s |
+| 10\% | 78.6 | 34.77 | 869 kg | 1061 s | **~1035 s** |
+| 20\% | 85.6 | 31.86 | 797 kg | 1100 s | -- |
+
+**So a little methane in water is a small impulse improvement wearing a liner argument's
+clothes.** It is worth about $+4.5\%$ over pure water and it does nothing whatever for the wall.
+
+**The liner fix is a fuel-rich wall film, and that is ordinary engine practice.** Oxidiser-rich
+staged-combustion engines keep the boundary layer fuel-rich precisely so the wall survives a bulk
+flow that would eat it. This decision already retains film injection as a shield for the shocked
+front and as a convective coolant; making it a hydrocarbon and keeping it locally fuel-rich makes
+it the carbon source as well. The budget is already there: the stated film of 0.02 to
+\SI{0.2}{\kilogram\per\square\meter} over \SI{134}{\square\meter} is 2.7 to
+\SI{27}{\kilo\gram} per pulse, against a liner losing 1.26 to \SI{13.9}{\kilo\gram}.
+
+**And the film is doing something more important than resupply.** `sec:watering_it_down` picks
+pyrolytic graphite for a water plume **and then hedges it against oxygen**, so an oxygen-bearing
+chamber does not merely fail to rebuild a carbon liner, it actively attacks one. Tungsten is no
+escape, since its oxides are volatile. **A fuel-rich boundary layer is the answer to both**, and
+it is the same answer real engines already use.
+
+## Does that put water on top? It removes the reason methane was on top
+
+**The liner was methane's argument, and the film retires it for both fluids.** If the wall needs
+a sprayed hydrocarbon film either way, then methane's exhaust carbon stops being a free service
+and becomes a duplicate of something the design is already doing.
+
+What is left of the comparison, at the cold end this decision is now heading toward:
+
+| | pure water | water + 10\% methane | pure methane |
+| --- | ---: | ---: | ---: |
+| 400 m³ | 984 s | **~1030 s** | 971 s |
+| 200 m³ | 990 s | ~1035 s | **1050 s** |
+| 100 m³ | 995 s | ~1040 s | **1086 s** |
+| storage | ambient | ambient plus a small \SI{111}{\kelvin} tank | \SI{111}{\kelvin} |
+| throat carbon (N9 item 5) | none | small | **the whole item** |
+| EOS below \SI{4000}{\kelvin} | fine | mostly fine | **cannot speak** |
+| liner | needs a fuel-rich film | needs a fuel-rich film | needs a fuel-rich film |
+
+**Methane's remaining lead is 4 to 6\% of impulse at the small chambers, and it reverses at
+400 m³.** Against that, water is stored at ambient, has no throat-carbon item, and can actually
+be modelled at the temperatures the design wants to run at, which methane cannot.
+
+**This decision should therefore stop naming methane as the flown fluid and name the question
+instead.** It is now: is 4 to 6\% of impulse worth a cryogenic tank, a throat-deposition item and
+an equation of state that goes blind exactly where the design is heading? **That is a reasonable
+question with a defensible answer either way, and it is not the question this decision answered
+when it picked methane on a 31\% lead.** N16 should settle it by running both fluids on the same
+grid.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
