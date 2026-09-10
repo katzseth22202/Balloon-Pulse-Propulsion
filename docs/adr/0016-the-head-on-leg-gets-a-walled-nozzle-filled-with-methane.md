@@ -1111,18 +1111,16 @@ water's 10.13.
 single most valuable thing in that grid: **where does $T_e$ against $A/A_*$ steepen?** Everything
 past $A/A_* = 140$ in this decision is one or other guess about that curve.
 
-## The cold end is where the unclaimed impulse is
-
 **The reachable limit is already the right place to stop.** At \SI{100}{\cubic\meter} the
 blowdown caps the area ratio at 404, which lands the exit at \SI{2914}{\kelvin}. **That is
 "clearly into water recombination" already** — the phrase describes \SI{2900}{\kelvin} as well
 as it describes 2000, because the combustion step is done by about \SI{3000}{\kelvin}.
 
-**Who would want \SI{2000}{\kelvin} is methane, and it cannot have it either.** Methane's carbon
-is still 36\% held at \SI{3100}{\kelvin}, so it is the fluid with something left to collect down
-there. But it freezes sooner than water does, having the thinner chamber, and below
-\SI{4000}{\kelvin} ADR-0050's equation of state omits condensed carbon, which is the very
-chemistry the cold end would be reaching for.
+**Methane is the fluid with most to collect down there**, being 36\% held at
+\SI{3100}{\kelvin}, but it also freezes soonest of the three, having the thinnest chamber. And
+below \SI{4000}{\kelvin} ADR-0050's equation of state omits condensed carbon, which is the very
+chemistry the cold end would be reaching for. **Water is the fluid that can actually be modelled
+where the design wants to run.**
 
 **One rule falls out of this and it corrects an earlier reading.** Cooling the chamber was found
 to help at the flown \SI{7}{\square\meter} throat and it does, but only because that exit is far
@@ -1130,6 +1128,51 @@ too hot to recombine. Once the expansion is deep enough to finish the chemistry 
 left for a cooler chamber to buy, and only its bigger slug remains: water loses 18\% going from
 10,000 to \SI{6000}{\kelvin} at a deep expansion. **Run the chamber hot and the nozzle long, not
 the other way round.** The cool-chamber half of N14 should be read that way inside N16.
+
+## Aqueous ammonia: not at household strength, but the question points somewhere useful
+
+Asked 2026-09-10, as an ambient way to get hydrogen into a water slug without cryogenics.
+**At household strength it is not worth the handling, and the reason why is what makes the
+question worth recording.**
+
+**Ammonia is a poor hydrogen carrier by mass.** It supplies \SI{176}{\mole} of hydrogen per
+kilogram against water's 111 and liquid hydrogen's 992. **To carry as much hydrogen as 10\%
+liquid \ce{H2} takes 56\% ammonia**, past concentrated aqueous ammonia at about 30\%, let alone
+household 5 to 10\%.
+
+| slug | $k$ | $u$ | storage | effective Isp | GN\,s | vs water |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| pure water | 39.54 | 69.4 | 1000 | 845 s | 0.828 | -- |
+| water + 5\% ammonia | 38.80 | 70.7 | 994 | 851 s | 0.834 | $+0.7\%$ |
+| water + 10\% ammonia (household) | 38.09 | 71.9 | 989 | 857 s | 0.840 | $+1.4\%$ |
+| water + 30\% ammonia (concentrated) | 35.49 | 77.1 | 968 | 880 s | 0.863 | $+4.2\%$ |
+| water + 10\% liquid \ce{H2} | 28.56 | 95.2 | **432** | 943 s | 0.924 | $+11.6\%$ |
+| **pure ammonia** | 28.59 | 95.0 | **900** | **954 s** | **0.935** | $+12.9\%$ |
+
+**The useful finding is the last row.** Ammonia is not really a hydrogen carrier, it is a
+propellant in its own right at \SI{68.9}{\mega\joule\per\kilogram} of atomisation against water's
+50.9. **Pure ammonia beats a water slug carrying 10\% liquid hydrogen**, 954 s against 943, and
+stores at \SI{900}{\kilogram\per\cubic\meter} at \SI{240}{\kelvin} and \SI{10}{\bar} instead of
+needing a cubic metre of \SI{20}{\kelvin} tankage per pulse. **It is first among the
+non-cryogenic options at the cold end.**
+
+**This decision had ammonia on the ladder as the storable alternative and then lost it**, ranked
+fourth by the withdrawn dissociation correction, which discharged nitrogen's store hardest and
+was wrong. On the corrected numbers it is second overall.
+
+**Two things stand in the way, and the second did not exist before today.**
+
+**Nitrogen's rate.** \ce{N2} is \SI{941}{\kilo\joule\per\mole}, among the strongest bonds there
+are, so at a \SI{2914}{\kelvin} exit its formation is thermodynamically overwhelming, $D/kT$
+being 39. Whether it *keeps up* is open: W7 found $\ce{N}+\ce{N}+M$ uncertain by 1.3 decades,
+with Byron's shock tube making nitrogen **faster** than hydrogen and a 2025 ab initio result
+making it 12.7 times slower. Ammonia's whole rung rests on that one number.
+
+**CN attack on the wall film.** This decision already flags atomic nitrogen attacking carbon to
+form CN and files it under "the ammonia variant." But the liner answer reached above is a
+**fuel-rich methane wall film**, so ammonia in the bulk and carbon at the wall now meet by design
+rather than by accident, and **a carbon film is exactly what atomic nitrogen would eat.** That
+interaction has to be priced before ammonia and the film are recommended together.
 
 ## The cold end is where the unclaimed impulse is
 
