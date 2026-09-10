@@ -547,6 +547,67 @@ so the cryostat is not small in the sense that matters for boil-off, which scale
 area. What is true is that the hydrogen volume per pulse falls from \SI{2.74}{\cubic\meter} to
 \SI{0.97}{\cubic\meter} against a pure-hydrogen slug, a genuine factor of \num{2.8}.
 
+## Winning the freeze race, and why it forces a cooler chamber
+
+Raised 2026-09-10. Reaching the temperature where the store actually comes back is a race
+against the density that makes coming back possible. Expanding cools the gas, which is what
+recombination needs, and thins it, which is what recombination cannot survive. Three-body rates
+go as $n^2$, so the second effect wins eventually and Bray's criterion says where.
+
+Calibrated on the companion's two solved \SI{200}{\cubic\meter} points, $Da$ falls as
+$\rho_{\mathrm{exit}}^{1.38}$ and the freezing threshold sits at $Da = 10$, which reproduces its
+2.16-decade margin at the flown throat.
+
+**Every chamber freezes at about the same area ratio, near 125 to 170, because that is where
+the density runs out.** What a cooler chamber buys is being **colder when it gets there**:
+
+| chamber | coldest exit before freezing | $A/A_*$ | throat | blowdown | what has re-formed |
+| ---: | ---: | ---: | ---: | ---: | :--- |
+| \SI{12000}{\kelvin} | **4112 K** | 125 | \SI{0.23}{\square\meter} | \SI{247}{\milli\second} | nothing; \ce{H2O} has not started |
+| \SI{10000}{\kelvin} | 3384 K | 137 | \SI{0.21}{\square\meter} | \SI{270}{\milli\second} | \ce{H2O} forming, partial |
+| \SI{9000}{\kelvin} | 3005 K | 151 | \SI{0.19}{\square\meter} | \SI{298}{\milli\second} | \ce{H2O} essentially complete |
+| \SI{8000}{\kelvin} | **2630 K** | 168 | \SI{0.17}{\square\meter} | \SI{333}{\milli\second} | past complete |
+
+**That is a threshold, not a trend.** \ce{H2O} does not form above about \SI{4000}{\kelvin} and
+completes near 3000. A \SI{12000}{\kelvin} chamber freezes at 4112, before the window opens, so
+no nozzle recovers its water at all. A chamber at \SI{9000}{\kelvin} or below reaches the window
+with room. **The chamber temperature does not merely trade against the exit temperature. It
+decides whether the exit can reach the chemistry at all.**
+
+**Cooling wins the race three separate ways at once**, which is why it is decisive rather than
+incremental. A cooler chamber starts denser, because it needs a bigger slug to absorb the same
+pulse, \SIrange{2.57}{3.17}{\kilogram\per\cubic\meter} from 10,000 to \SI{8000}{\kelvin}. It
+reaches any given exit temperature at a far smaller area ratio, because the exit is a fixed
+fraction of the chamber, so it thins out much less on the way, $A/A_*$ of 21 against 107 for a
+\SI{3500}{\kelvin} exit. And the shorter expansion is a shorter pulse. At a
+\SI{3500}{\kelvin} exit that is $Da = 175$ from \SI{8000}{\kelvin} against 14 from
+\SI{10000}{\kelvin}, a factor of twelve.
+
+**Two further levers, both already evidenced, and one of them is free.** $Da$ is linear in
+nozzle length (the companion's weakness 5), so a bell twice as long doubles it. And W5's
+third-body find says atomic hydrogen stabilises the collision 7 to 67 times better than argon.
+**A water--hydrogen slug supplies that third body by construction**, so the mix bought for the
+launch ledger helps the race as well, for a reason that has nothing to do with the fuel value of
+the hydrogen. Taking a conservative $3\times$ on the third body and a nozzle twice as long turns
+the marginal \SI{10000}{\kelvin} case from $Da = 14$ into 84.
+
+**Every row above fits inside the pulse period.** The \SI{8}{\milli\second} pulse at 2\% duty
+gives \SI{400}{\milli\second}, and the slowest of these is 333.
+
+**What it is worth, and this is an estimate rather than a result.** Methane at
+\SI{8000}{\kelvin} expanded to a \SI{2630}{\kelvin} exit would hold about 11\% of its store, for
+roughly \SI{1150}{\second} and \num{1.13} on the launch ledger, against the magnetic nozzle's
+target of 1249 and \num{1.225}. **That would be a near-tie, and it is the first configuration in
+this decision that reaches one.**
+
+**Three things make it an estimate.** The $Da$ fit is calibrated on two points and extrapolated
+thirty-fold in area ratio. The companion's equation of state omits condensed carbon below about
+\SI{4000}{\kelvin}, and every row in the table above is under it. And that omission bites
+**methane specifically**, because the cold end is exactly where its carbon wants to condense.
+**Water has no condensed phase to worry about at \SI{2630}{\kelvin}**, so the fluid choice may
+reverse at the cold end, which is one more reason to run N14, N15 and the mix together rather
+than separately.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
