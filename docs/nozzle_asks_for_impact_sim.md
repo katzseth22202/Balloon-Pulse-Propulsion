@@ -10,7 +10,21 @@ targeting `aim_is_all_you_need`). These are N1–N16 to avoid collision. **N1–
 nozzle and use the geometry below. N9–N16 were added for the walled thermal nozzle of
 ADR-0016 and carry their own geometry, which is not this one.**
 
-## Status, 2026-09-09
+## Start here
+
+**Two items matter and the rest can wait: N9 items 1-7 and N16.**
+
+- **N16** is one grid on machinery that already exists, and it decides whether the walled
+  nozzle is a 700 s device or an 1,100 s one. It replaces N14 and N15, which were the same
+  question asked three times. If only one point can be run, run the configuration named at the
+  end of it and plain methane beside it.
+- **N9 items 1-7** are the load case and nothing substitutes for them. **Read the note at the
+  top of N9 before starting**: a paper-side result says the front may not reach the wall at all
+  below about 170 m³, which would close items 1-4 rather than answer them.
+
+Everything else here is either answered, folded in, or on nobody's critical path.
+
+## Status, 2026-09-10
 
 **N9 item 0 and all of N10 came back** at `puffsat_impact_simulation` `6d74d3f`, computed at
 `4a448c0`. The answer document is carried in this repo at
@@ -547,6 +561,97 @@ never on the same convention**.
 
 ---
 
+## N16. One conversion-fraction surface: chamber T, chamber volume, throat area
+
+**Priority: highest after N9, and it replaces N14 and N15.** Raised 2026-09-10, after paper-side
+work on the temperature, volume and throat dials found that all three act through the same two
+quantities and therefore cannot be answered one at a time.
+
+**The one thing wanted.** The energy conversion fraction, and the exit state behind it, over a
+grid:
+
+| dial | values | why |
+| --- | --- | --- |
+| chamber temperature | 6,000 / 8,000 / 10,000 / 12,000 K | paper side finds cooler is better and hotter is worse, both by more than ADR-0016 booked, and cannot check it |
+| chamber volume | 50 / 100 / 200 / 400 m³ | **never swept.** Vessel mass is invariant under it, so it is a free variable nobody has turned |
+| throat area | the flown 7 m² down to 0.05 m², log-spaced | the flown point is 4 area ratios short of where the chemistry finishes |
+
+Report per point: exit `T`, **exit density**, store returned, minimum Damköhler and its margin,
+and the conversion fraction. It is `make walled-nozzle-freeze` over a grid rather than a point,
+on machinery that already exists.
+
+**Why it has to be a surface rather than three lines.** Everything that matters reduces to the
+exit temperature and the exit density. The throat sets the first. The chamber volume sets the
+second. The chamber temperature sets both, since exit temperature is a fixed fraction of chamber
+temperature. Sweeping them separately answers none of them, because the optimum is interior in
+all three.
+
+### The paper-side correction that motivates it, and it is about your own W9 table
+
+**W9's speciation was computed at 1 kg/m³ and it is being read as if it were density-independent.**
+It is not, and a deep expansion exits two orders of magnitude thinner, where equilibrium favours
+dissociation. Reading W9 straight overstates the recovery badly. Calibrating instead against your
+three solved exit states gives
+
+    held(T, rho) = held_W9(T) * rho^-0.21
+
+which reproduces all three within 4% and returns the flown case at 707 s against the 709 the
+paper carries. **That fit is a paper-side hack over three points, extrapolated thirtyfold in
+density, and it is now load-bearing for every cold-end number in ADR-0016.** `eos_methane` can
+compute the real thing directly. **That single curve is the most valuable thing this ask can
+return**, more than any individual grid point.
+
+**Two other paper-side fits are propping up the same numbers and would be retired by the grid.**
+`T_e/T_c = 0.667 (A/A*)^-0.138`, fitted to four of your points and extrapolated a hundredfold in
+area ratio. And `Da ∝ rho_exit^1.38`, fitted to two.
+
+### What the paper side already believes, so the grid can confirm or break it
+
+- **Cooler is better and hotter is worse**, because exit temperature is a fixed fraction of
+  chamber temperature. 8,000 K returns about 817 s against 10,000 K's 722, at 41% of the wall
+  load. 12,000 K returns 579 s and freezes at 4,112 K, before \ce{H2O} can form at all.
+- **Smaller is better and costs nothing.** Vessel mass runs as `nRT*rho/sigma` with `nRT` fixed
+  by the pulse, so 100 m³ at 1,284 bar weighs what 200 m³ at 642 does. It also halves the
+  blowdown, which is what caps the area ratio against the 400 ms pulse period.
+- **The chemistry finishes well past the flown throat.** 707 s at `A/A*` 4.04 rising to about
+  1,074 at 200, on the corrected `held`.
+- **The best combination found is roughly 100 m³ at 8,000 K with a throat near 0.1 m².** Nothing
+  on the paper side can price it, because the three fits above all get extrapolated at once.
+
+### Two things to report that are not conversion fractions
+
+1. **Whether the freeze margin survives at high density.** It should improve, since `Da` goes as
+   density squared, but the 673 m³ / 2 m² corner was already at 0.41 decades.
+2. **Where the condensed-carbon omission starts to bite.** ADR-0050's weakness 4 puts it below
+   about 4,000 K, and **every interesting row in this grid is under that**. If the answer is that
+   the EOS cannot speak below 4,000 K, say so plainly and the paper will carry the cold end as a
+   bound rather than a number. It is also the point at which **water may become the better fluid**,
+   having no condensed phase to worry about there.
+
+**Run water on the same grid, not as an afterthought.** Paper-side work puts water within 5 to
+9% of methane at the cold end and *ahead* of it at 400 m³, because water's remaining store is
+ordinary gas-phase combustion that finishes by 3,100 K while methane's is stuck behind C3,
+acetylene and then soot. Water also has no condensed-carbon problem, which is the very thing
+ADR-0050's EOS cannot model below 4,000 K, and `eos_water` is the older and larger of the two
+equations of state. **The fluid choice may come down to the liner rather than the impulse**, and
+this grid is what would show it.
+
+**The specific configuration to price first, if the grid has to be cut down.** 100 m³ at
+1,284 bar, a 0.1 m² throat, and a bulk slug of 90% water with 10% liquid hydrogen, with a
+methane wall film carried off-ladder for the liner. Paper side puts it at 1,138 s and 1.116 GN.s
+per launch load, against methane-plus-hydrogen's 1,174 and 1.151 and pure hydrogen's 1,851 s but
+only 1.028 because a 100 t bay holds 57 t of it. **If only one point can be run, run that one and
+plain methane beside it.**
+
+**What would settle it.** Whether the walled nozzle is a 700 s device or an 1,100 s one, and
+therefore whether it earns a section or a paragraph.
+
+**Lifts.** ADR-0016's "The cold end is where the unclaimed impulse is", "Raising the chamber
+pressure is the fix", "Winning the freeze race", and the whole "Going hotter was considered and
+declined" section, all of which currently rest on paper-side fits.
+
+---
+
 ## N14. Run the expansion from a COOLER chamber: 6,000, 7,000 and 8,000 K
 
 > **FOLDED INTO N16.** Kept for its reasoning; do not run it separately. The three dials it treats separately
@@ -695,12 +800,26 @@ recommendation in W6, which stops at 2 m² only because that is where the ask ha
 
 ## Suggested order
 
-N1 and N3 first. N1 is a diagnostic on runs that probably already exist and it decides whether
-the paper's central efficiency comparison stands. N3 needs a field to be added to the model but
-is the only item that can move a quoted mass. N2 falls out of N1's diagnostics. N4 is the
-standing ask and binds two orders of magnitude before the propulsive budget does, so it should
-not wait behind the new items. N5, N6 and N7 confirm arguments the paper already makes and are
-cheap once the machinery for N1–N3 exists. N8 is bookkeeping and is on nobody's critical path.
+**Updated 2026-09-10.** The walled-nozzle items now outrank the magnetic ones, because the
+walled section cannot be written at all while they are open and the magnetic items refine a
+section that exists.
+
+1. **N16**, the conversion-fraction grid. One sweep on existing machinery, and it settles
+   whether the walled nozzle earns a section. It also retires three paper-side fits that
+   everything else in ADR-0016 is currently resting on.
+2. **N9 items 1-7**, the load case. Start with the contact station against chamber volume,
+   because if the front exits before touching the wall below ~170 m³ then items 1-4 close and
+   only the throat items 5-7 remain.
+3. **N1 and N3**, the magnetic nozzle. N1 is a diagnostic on runs that probably already exist
+   and it decides whether the paper's central efficiency comparison stands. N3 needs a field
+   added to the model but is the only item that can move a quoted mass.
+4. **N4**, the standing ask, which binds two orders of magnitude before the propulsive budget
+   does. **N2** falls out of N1's diagnostics.
+5. **N13** (exit-plane velocity distribution) is worth about 30 s and can ride along with N16
+   if the solver produces it anyway. **N11** is the hardest extension here and moves a number
+   the section prints rather than a conclusion.
+6. **N5, N6, N7** confirm arguments the paper already makes and are cheap once N1-N3 exist.
+   **N8** is bookkeeping and is on nobody's critical path.
 
 ## Reproducing the paper-side numbers
 
@@ -715,95 +834,3 @@ Probes live in the paper repo under `todos/` (gitignored, so copy rather than ex
 | `temperature_floor_probe.py` | what the 3800 K and 2450 K floors cap in `k` |
 | `ladder_dissociation.py` | the **withdrawn** 2026-09-09 dissociation correction; kept so the mistake reproduces |
 | `ladder_companion_k.py` | the ladder, the throat table and the N12 sensitivity on the companion's solved `k` |
-
-
----
-
-## N16. One conversion-fraction surface: chamber T, chamber volume, throat area
-
-**Priority: highest after N9, and it replaces N14 and N15.** Raised 2026-09-10, after paper-side
-work on the temperature, volume and throat dials found that all three act through the same two
-quantities and therefore cannot be answered one at a time.
-
-**The one thing wanted.** The energy conversion fraction, and the exit state behind it, over a
-grid:
-
-| dial | values | why |
-| --- | --- | --- |
-| chamber temperature | 6,000 / 8,000 / 10,000 / 12,000 K | paper side finds cooler is better and hotter is worse, both by more than ADR-0016 booked, and cannot check it |
-| chamber volume | 50 / 100 / 200 / 400 m³ | **never swept.** Vessel mass is invariant under it, so it is a free variable nobody has turned |
-| throat area | the flown 7 m² down to 0.05 m², log-spaced | the flown point is 4 area ratios short of where the chemistry finishes |
-
-Report per point: exit `T`, **exit density**, store returned, minimum Damköhler and its margin,
-and the conversion fraction. It is `make walled-nozzle-freeze` over a grid rather than a point,
-on machinery that already exists.
-
-**Why it has to be a surface rather than three lines.** Everything that matters reduces to the
-exit temperature and the exit density. The throat sets the first. The chamber volume sets the
-second. The chamber temperature sets both, since exit temperature is a fixed fraction of chamber
-temperature. Sweeping them separately answers none of them, because the optimum is interior in
-all three.
-
-### The paper-side correction that motivates it, and it is about your own W9 table
-
-**W9's speciation was computed at 1 kg/m³ and it is being read as if it were density-independent.**
-It is not, and a deep expansion exits two orders of magnitude thinner, where equilibrium favours
-dissociation. Reading W9 straight overstates the recovery badly. Calibrating instead against your
-three solved exit states gives
-
-    held(T, rho) = held_W9(T) * rho^-0.21
-
-which reproduces all three within 4% and returns the flown case at 707 s against the 709 the
-paper carries. **That fit is a paper-side hack over three points, extrapolated thirtyfold in
-density, and it is now load-bearing for every cold-end number in ADR-0016.** `eos_methane` can
-compute the real thing directly. **That single curve is the most valuable thing this ask can
-return**, more than any individual grid point.
-
-**Two other paper-side fits are propping up the same numbers and would be retired by the grid.**
-`T_e/T_c = 0.667 (A/A*)^-0.138`, fitted to four of your points and extrapolated a hundredfold in
-area ratio. And `Da ∝ rho_exit^1.38`, fitted to two.
-
-### What the paper side already believes, so the grid can confirm or break it
-
-- **Cooler is better and hotter is worse**, because exit temperature is a fixed fraction of
-  chamber temperature. 8,000 K returns about 817 s against 10,000 K's 722, at 41% of the wall
-  load. 12,000 K returns 579 s and freezes at 4,112 K, before \ce{H2O} can form at all.
-- **Smaller is better and costs nothing.** Vessel mass runs as `nRT*rho/sigma` with `nRT` fixed
-  by the pulse, so 100 m³ at 1,284 bar weighs what 200 m³ at 642 does. It also halves the
-  blowdown, which is what caps the area ratio against the 400 ms pulse period.
-- **The chemistry finishes well past the flown throat.** 707 s at `A/A*` 4.04 rising to about
-  1,074 at 200, on the corrected `held`.
-- **The best combination found is roughly 100 m³ at 8,000 K with a throat near 0.1 m².** Nothing
-  on the paper side can price it, because the three fits above all get extrapolated at once.
-
-### Two things to report that are not conversion fractions
-
-1. **Whether the freeze margin survives at high density.** It should improve, since `Da` goes as
-   density squared, but the 673 m³ / 2 m² corner was already at 0.41 decades.
-2. **Where the condensed-carbon omission starts to bite.** ADR-0050's weakness 4 puts it below
-   about 4,000 K, and **every interesting row in this grid is under that**. If the answer is that
-   the EOS cannot speak below 4,000 K, say so plainly and the paper will carry the cold end as a
-   bound rather than a number. It is also the point at which **water may become the better fluid**,
-   having no condensed phase to worry about there.
-
-**Run water on the same grid, not as an afterthought.** Paper-side work puts water within 5 to
-9% of methane at the cold end and *ahead* of it at 400 m³, because water's remaining store is
-ordinary gas-phase combustion that finishes by 3,100 K while methane's is stuck behind C3,
-acetylene and then soot. Water also has no condensed-carbon problem, which is the very thing
-ADR-0050's EOS cannot model below 4,000 K, and `eos_water` is the older and larger of the two
-equations of state. **The fluid choice may come down to the liner rather than the impulse**, and
-this grid is what would show it.
-
-**The specific configuration to price first, if the grid has to be cut down.** 100 m³ at
-1,284 bar, a 0.1 m² throat, and a bulk slug of 90% water with 10% liquid hydrogen, with a
-methane wall film carried off-ladder for the liner. Paper side puts it at 1,138 s and 1.116 GN.s
-per launch load, against methane-plus-hydrogen's 1,174 and 1.151 and pure hydrogen's 1,851 s but
-only 1.028 because a 100 t bay holds 57 t of it. **If only one point can be run, run that one and
-plain methane beside it.**
-
-**What would settle it.** Whether the walled nozzle is a 700 s device or an 1,100 s one, and
-therefore whether it earns a section or a paragraph.
-
-**Lifts.** ADR-0016's "The cold end is where the unclaimed impulse is", "Raising the chamber
-pressure is the fix", "Winning the freeze race", and the whole "Going hotter was considered and
-declined" section, all of which currently rest on paper-side fits.
