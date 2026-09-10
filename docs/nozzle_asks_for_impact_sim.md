@@ -343,6 +343,19 @@ near 0.56 and a first estimate puts it near 200,000 K.
    prudent: 15,000 K is worth 1.192 GN.s per launch load against the magnetic nozzle's 1.225, so
    if the wall turns out to be comfortable the near-tie is reachable after all.
 
+**Before designing any mitigation, price the strike.** Two paper-side proposals are parked
+waiting on this item and both would be wasted work if the answer is that the front never reaches
+the wall. **Report the contact station against chamber volume**, since ADR-0016's own figure has
+the cone reaching a 3 m wall after 6 m of column and a 100 m³ chamber is only 3.5 m long. If the
+front exits first below about 170 m³, say so and items 1 to 4 close for the short chamber.
+
+The two parked proposals, so the run can price them at the same time: a **stratified pre-charge**,
+where density layers deposit vorticity at each interface and broaden the front rather than
+reflecting it (Richtmyer-Meshkov; worth reporting the peak wall flux with and without a 2:1
+stratification, which costs 1.4% of impulse); and a **wall-dense gradient**, which is the injected
+film extended into the gas rather than coating the surface, and which puts mass between the shock
+and the liner instead of breaking the shock up.
+
 **What it decides.** Whether the section states a survivable wall or carries the front as an
 open condition, and it picks the chamber geometry and temperature. It also decides whether the wall is a thin
 sprayed steel skin or a thick refractory liner, currently booked at 2.2 to 12.5 microns of

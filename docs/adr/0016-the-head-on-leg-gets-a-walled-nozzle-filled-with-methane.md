@@ -898,6 +898,57 @@ for methane, $+2.5\%$ for water. It is a decomposition, not an addition.
 full-atomisation $k = 38.24$ and the second the companion's solved $k = 39.55$. **The solved one
 is right**, and every water row in the cold-end tables already used it.
 
+## Layering the pre-charge to break up the arrival shock: same physics either way, and second-order
+
+Raised 2026-09-10, with the question of whether a mix of gases would do it or whether density
+layers of one gas would serve. **Density layers of one gas serve, and the two are the same
+mechanism.**
+
+What a shock feels crossing an interface is acoustic impedance $Z = \rho c$. Different gases at
+the same pressure and temperature give $\rho \propto M$ and $c \propto 1/\sqrt{M}$, so
+$Z \propto \sqrt{M}$. The same gas at different densities and the same pressure gives
+$c \propto \sqrt{T} \propto \sqrt{1/\rho}$, so $Z \propto \sqrt{\rho}$. **Identical scaling.** A
+second fluid buys nothing a density gradient does not, and costs a tank, a feed system and an
+entry on the propellant ladder.
+
+**But the mechanism is weaker than it looks for this shock.** Impedance mismatch reflects
+strongly for a *sound* wave. A strong shock's jump conditions are set by its pressure ratio,
+which here is enormous, so a modest density step mostly transmits. What layering actually
+produces is Richtmyer--Meshkov instability: the interface goes unstable, deposits vorticity, and
+**broadens** the front rather than reflecting it.
+
+**Broadening is still the right goal**, because ablation depth follows the fluence a surface
+takes while it is above its sublimation point, so spreading the same energy over a longer arrival
+lowers the peak. The energy is not destroyed, only rescheduled.
+
+**It costs impulse, and that part is computable.** Thrust goes as $\sum m_i \sqrt{u_i}$ at fixed
+$\sum m_i u_i$, and the square root is concave, so any non-uniformity in specific energy loses:
+0.5\% at a 1.5:1 density ratio, **1.4\% at 2:1**, 5\% at 4:1. Cheap, but a real cost against a
+benefit nobody has computed.
+
+**And it fights W3, which is what the walled chamber rests on.** The sealed-vessel result is that
+the chamber turns over enough times during blowdown that $k$ is set by what was loaded rather
+than by what the cone swept. Deliberate stratification is the opposite of that, and the outcome
+is a timescale question: if the layers survive to the throat the exhaust is non-uniform and the
+cost above is real, and if they do not survive they are gone before the shock reaches the wall
+either.
+
+**One version of the idea is not second-order, and the sign is what separates them.** Uniform
+layering is about breaking coherence. A gradient that is **dense at the wall and thin on the
+axis** is a different mechanism: it puts mass between the shock and the liner, absorbing arrival
+energy in its own heat capacity. That is the injected film extended from a surface coating into
+the gas, and this decision already keeps the film "as a shield for the shocked front and as a
+convective coolant." **That is where the effort belongs if the wall strike survives N9.**
+
+**And it may not survive N9 at all.** ADR-0016 has the spreading cone reaching a
+\SI{3}{\meter} wall after \SI{6}{\meter} of column. A \SI{100}{\cubic\meter} chamber is
+\SI{3.5}{\meter} long. **Below about \SI{170}{\cubic\meter} the front leaves before it touches
+the wall**, so there is no strike to mitigate. Shortening the column deletes the problem where
+layering only softens it, and the short column is already recommended for three other reasons.
+
+**Parked rather than pursued**, and noted on N9 items 1 to 3 so the companion prices the strike
+before anyone designs a mitigation for it.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
