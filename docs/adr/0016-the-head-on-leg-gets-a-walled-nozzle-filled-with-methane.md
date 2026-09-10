@@ -608,6 +608,53 @@ thirty-fold in area ratio. The companion's equation of state omits condensed car
 reverse at the cold end, which is one more reason to run N14, N15 and the mix together rather
 than separately.
 
+## No, a longer nozzle does not let water catch methane, and the reason is the useful part
+
+Asked 2026-09-10. **It does not, and the lever is the wrong one twice over.**
+
+Water's store splits by stoichiometry alone, no rates needed. \ce{H2O} costs
+\SI{917}{\kilo\joule\per\mole} to atomise; forming \ce{H2} from the two hydrogens returns
+47.1\% of that, forming $\tfrac{1}{2}\ce{O2}$ from the oxygen returns 27.2\%, and
+$\ce{H2} + \tfrac{1}{2}\ce{O2} \rightarrow \ce{H2O}$ returns the last 26.0\%. **Reaching only
+the diatomics returns 74\%**, which is water's analogue of W9's acetylene split, and the last
+quarter is ordinary gas-phase combustion rather than anything exotic.
+
+**Water starts with a free head start on the freeze race and it is not enough.** Because it
+needs twice the slug, its chamber is twice as dense, \SIrange{2.57}{5.07}{\kilogram\per\cubic\meter},
+and $Da$ goes as density$^{1.38}$, so water carries $2.6\times$ methane's margin for nothing.
+It can therefore expand to $A/A_* = 269$ where methane freezes at 137, reaching a
+\SI{3082}{\kelvin} exit against methane's 3384.
+
+**And that is exactly why the longer nozzle is wasted on it.** Water is essentially fully
+recombined by about \SI{3100}{\kelvin}, and its freeze limit is 3082. **The two coincide**, so
+lengthening the nozzle moves the freeze limit down into a temperature range where there is no
+store left to collect. Methane freezes at \SI{3384}{\kelvin} still holding about 13\%, so the
+extra length is worth something to methane and nothing to water. **The lever helps the fluid
+that looks like it needs it least.**
+
+| at its own freeze limit | exit | store held | effective Isp |
+| :--- | ---: | ---: | ---: |
+| methane | 3384 K | 13\% | **1250 s** |
+| water, diatomics only | 3082 K | 26\% | 884 s |
+| water, combustion complete | 3082 K | 10\% | **961 s** |
+
+**What water is short of is energy density, and no nozzle touches it.** A kilogram of water
+holds 51\% of what a kilogram of methane holds at \SI{10000}{\kelvin}, so it needs
+$2.0\times$ the slug, 989 against \SI{489}{\kilo\gram}. Effective Isp is charged per kilogram of
+slug the vehicle carried, so that ratio **is** the gap. Recombination was never what water was
+short of, and fixing recombination perfectly still leaves 23\%.
+
+**The fix is the hydrogen dial rather than the nozzle.** Adding hydrogen attacks the energy
+density directly, which is the actual shortfall, and it supplies atomic hydrogen as the best
+available third body at the same time.
+
+**One caveat cuts against every water row above and it has not been modelled.** The deep
+expansion that makes the gas cold also makes it thin, and low density favours dissociation at
+equilibrium. Water at \SI{3000}{\kelvin} is about 5\% dissociated at \SI{1}{\bar} and
+considerably more at the millibar exit pressures these area ratios imply. **The "combustion
+complete" row may not be reachable at any nozzle length**, for a reason that is equilibrium
+rather than kinetics, and that is the first thing a real solve has to answer.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
