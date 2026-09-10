@@ -991,6 +991,52 @@ hydrogen, against a pure-hydrogen slug's 194 kg and \SI{2.74}{\cubic\meter}. **F
 half the cryogenics for a little over half the gain**, which is the trade a mission would
 actually tune.
 
+## The configuration this decision should now propose, and what N16 has to confirm
+
+Assembled 2026-09-10 from everything above. **A \SI{100}{\cubic\meter} chamber at
+\SI{1284}{\bar}, expanded to its own freeze limit near a \SI{3100}{\kelvin} exit, with a
+fuel-rich methane wall film for the liner** (2.7 to \SI{27}{\kilo\gram} per pulse, off the
+propellant ladder). Scored on that geometry, effective Isp:
+
+| bulk slug | $k$ | slug | storage | held | effective Isp | GN\,s | bay fills by |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
+| water | 39.54 | 989 kg | 1000 | 2.5\% | 995 s | 0.976 | mass |
+| water + 5\% \ce{H2} | 33.19 | 830 kg | 604 | 2.5\% | 1070 s | 1.049 | mass |
+| **water + 10\% \ce{H2}** | 28.56 | 714 kg | 432 | 2.5\% | **1138 s** | **1.116** | mass |
+| methane | 19.57 | 489 kg | 422 | 36.2\% | 1085 s | 1.064 | mass |
+| **methane + 10\% \ce{H2}** | 17.06 | 426 kg | 282 | 32.8\% | **1174 s** | **1.151** | mass |
+| pure hydrogen | 7.60 | 190 kg | 71 | 2.0\% | 1851 s | 1.028 | **volume** |
+| *(magnetic nozzle target)* | 8.52 | 213 kg | -- | -- | *1249 s* | *1.225* | mass |
+
+**The cold end compresses the fluid differences, which is the finding that matters.** Everything
+recombines by \SI{3100}{\kelvin} except methane's carbon, which is stuck at 36\% held because
+$\ce{C3} \rightarrow \ce{C2H2}$ is unfinished and soot needs nucleation. **Water goes from 40\%
+behind methane at the flown throat to 8\% behind it here**, and with 10\% hydrogen it passes
+plain methane outright.
+
+**So the recommended configuration is: \SI{100}{\cubic\meter}, a \SI{0.1}{\square\meter} throat,
+90\% water with 10\% liquid hydrogen in the bulk, and a methane wall film.** \SI{1138}{\second}
+and \num{1.116}, against methane-plus-hydrogen's 1174 and \num{1.151}. **The remaining 3\% is
+smaller than every unresolved item in this decision**, and it buys ambient bulk storage, no
+throat-carbon item, and an equation of state that can speak below \SI{4000}{\kelvin} where
+methane's cannot.
+
+**Pure hydrogen wins specific impulse by 56\% and still loses the launch ledger**, because a
+\SI{100}{\tonne} bay holds only \SI{57}{\tonne} of it. That is this decision's original finding
+and the cold end does not change it. **Hydrogen is worth paying for only if the mission is
+delta-v limited rather than launch-mass limited**, which is the same \SI{22}{\kilo\meter\per\second}
+threshold argument above and this leg is a few.
+
+**Nothing here passes the magnetic nozzle's \num{1.225}**, but that number is a performance
+target rather than a solve, and the only three-dimensional simulation under the same definition
+returns \num{0.34}. On solved-against-solved the walled option is ahead.
+
+**What N16 has to confirm before any of this is written into the paper.** Three paper-side fits
+are stacked under every row: `held(T, rho)`, `T_e/T_c` against area ratio, and `Da` against exit
+density. The 10\% hydrogen rows additionally run 2\% high on `u`. And the whole table sits below
+\SI{4000}{\kelvin}, where ADR-0050's equation of state does not claim to work. **The
+configuration is a proposal to be priced, not a result.**
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the

@@ -794,6 +794,13 @@ ADR-0050's EOS cannot model below 4,000 K, and `eos_water` is the older and larg
 equations of state. **The fluid choice may come down to the liner rather than the impulse**, and
 this grid is what would show it.
 
+**The specific configuration to price first, if the grid has to be cut down.** 100 m³ at
+1,284 bar, a 0.1 m² throat, and a bulk slug of 90% water with 10% liquid hydrogen, with a
+methane wall film carried off-ladder for the liner. Paper side puts it at 1,138 s and 1.116 GN.s
+per launch load, against methane-plus-hydrogen's 1,174 and 1.151 and pure hydrogen's 1,851 s but
+only 1.028 because a 100 t bay holds 57 t of it. **If only one point can be run, run that one and
+plain methane beside it.**
+
 **What would settle it.** Whether the walled nozzle is a 700 s device or an 1,100 s one, and
 therefore whether it earns a section or a paragraph.
 
