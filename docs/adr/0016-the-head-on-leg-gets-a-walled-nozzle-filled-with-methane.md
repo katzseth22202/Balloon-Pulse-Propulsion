@@ -88,10 +88,46 @@ recombined. That is roughly \SI{435}{\second}, not a near-tie with the magnetic 
 **What is binding is how cold the gas gets before it leaves, not how hot it started**, and the
 throat sets that at no cost in wall temperature. Narrow the throat, do not raise the chamber.
 
-**Going cooler is still worse than going hotter** (W1), so \SI{10000}{\kelvin} remains an
-optimum rather than a ceiling being bumped against. \SI{8000}{\kelvin} costs 6 to 12\% on the
-chamber alone, and it does not get the exit-temperature refund either, because a cooler
-chamber that expands to the same area ratio has less energy to begin with.
+**And going cooler is better, which is the same finding read the other way. The claim that it
+is worse does not survive either.** Written here yesterday: "\SI{8000}{\kelvin} costs 6 to 12\%
+and does not get the exit-temperature refund, because a cooler chamber has less energy to begin
+with." The second half is wrong. The exit temperature is a fixed **fraction** of the chamber
+temperature, so a cooler chamber gets the refund in exactly the same proportion a hotter one
+pays the penalty.
+
+At \SI{8000}{\kelvin} the slug grows from \SI{489}{\kilo\gram} to 608 and $u$ falls from 136.8
+to \SI{111}{\mega\joule\per\kilogram}. **But the tear-apart bill's share barely moves**, 74.2\%
+to 74.6\%, because the charged store and $u$ fall together. Meanwhile the
+\SI{7}{\square\meter} exit falls from \SI{5501}{\kelvin} to 4401, where the store held drops
+from 69.0\% to 58.4\%. Net: **\SI{817}{\second} against \SI{722}{\second}, a gain of 13\%**,
+where the withdrawn convention booked an 8\% penalty.
+
+| chamber | $k$ | slug | exit $T$ | store held | effective Isp | wall load |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| \SI{8000}{\kelvin} | 24.33 | \SI{608}{\kilo\gram} | 4401 K | 58.4\% | **817 s** | **0.41$\times$** |
+| \SI{9000}{\kelvin} | 21.65 | \SI{541}{\kilo\gram} | 4951 K | 63.7\% | 778 s | 0.66$\times$ |
+| \SI{10000}{\kelvin} | 19.56 | \SI{489}{\kilo\gram} | 5501 K | 69.0\% | 722 s | 1.00$\times$ |
+| \SI{12000}{\kelvin} | 17.77 | \SI{444}{\kilo\gram} | 6601 K | 79.6\% | 579 s | 2.07$\times$ |
+
+**A cooler chamber is the only lever in this decision that pays on the exhaust and the wall at
+the same time.** Escaping flux goes as $T^4$, so \SI{8000}{\kelvin} hands the wall 41\% of the
+load \SI{10000}{\kelvin} does, and the liner loses \SI{1.3}{\micro\meter} per pulse rather than
+3.2. Every other lever here trades one against the other. **That is what makes the narrow
+throat of N15 affordable**, because the throat's problem is wall and throat heat flux and a
+cooler chamber is what pays for it.
+
+**Two ways to reach the same exit temperature, and they cost different currencies.** Cooling to
+\SI{8000}{\kelvin} at the \SI{7}{\square\meter} throat and staying at \SI{10000}{\kelvin} with a
+\SI{2.3}{\square\meter} throat both land the exit near \SI{4450}{\kelvin}. The first costs
+\SI{119}{\kilo\gram} more slug per pulse. The second costs three times the pulse length and
+three times the throat flux. **They compose**, and the combination is what N14 and N15 should be
+run together to price.
+
+**Where the floor is has not been established.** The companion's chamber solve stops at
+\SI{8000}{\kelvin}, and W1 flags that row as its softest, with the \ce{C3} exposure at 3.4 to
+9.9\% against 0.1 to 1.2\% at \SI{10000}{\kelvin}, erring toward understating the charge. So
+\SI{8000}{\kelvin} is probably better than the table says, and nothing here shows where cooling
+stops helping. That is the first half of N14, and it is now the interesting half.
 Present it as a family of working fluids ordered by one number, and name **methane**
 as the fluid we would fly.
 

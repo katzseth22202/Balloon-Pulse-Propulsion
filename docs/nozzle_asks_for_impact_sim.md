@@ -533,10 +533,54 @@ never on the same convention**.
 
 ---
 
-## N14. Run the expansion from an 8,000 and a 12,000 K chamber
+## N14. Run the expansion from a COOLER chamber: 6,000, 7,000 and 8,000 K
 
-**Priority: high, and it is the cheapest item on this list.** Raised 2026-09-09. It is one flag
-on `make walled-nozzle-freeze`, which has only ever been run from a 10,000 K chamber.
+**Priority: high, and it is the cheapest item on this list.** Raised 2026-09-09, and reframed
+2026-09-10 when the cool side turned out to be the interesting one. It is one flag on
+`make walled-nozzle-freeze`, which has only ever been run from a 10,000 K chamber.
+
+**The reframing.** This item was first written to ask about 12,000 K. That direction is now
+settled well enough on the paper side: hotter is worse, because the exit temperature is a fixed
+fraction of the chamber temperature and the exit is what decides how much of the store comes
+back. **The same arithmetic run downward says cooler is better, and by more than hotter is
+worse**, because the tear-apart bill's share barely moves across this range while the exit
+temperature falls in proportion:
+
+| chamber | k | slug | exit T at 7 m² | held | eff Isp | wall load |
+|---|---|---|---|---|---|---|
+| **8,000 K** | 24.33 | 608 kg | 4,401 K | 58.4% | **817 s** | **0.41x** |
+| 9,000 K | 21.65 | 541 kg | 4,951 K | 63.7% | 778 s | 0.66x |
+| 10,000 K | 19.56 | 489 kg | 5,501 K | 69.0% | 722 s | 1.00x |
+| 12,000 K | 17.77 | 444 kg | 6,601 K | 79.6% | 579 s | 2.07x |
+
+**Why this is the cheap high-value item.** A cooler chamber is the only lever in ADR-0016 that
+pays on the exhaust and the wall at once. Escaping flux goes as `T^4`, so 8,000 K hands the wall
+41% of the load and the liner loses 1.3 um/pulse against 3.2. It is therefore also what makes
+N15's 0.14 m² throat affordable, since that item's whole difficulty is throat and wall heat flux.
+
+**What is wanted.** `freeze.csv` and `chamber.csv` regenerated at 6,000, 7,000, 8,000 and 9,000 K
+alongside the existing 10,000, at all three throats, reporting the same columns: `k`, `u`, store
+charged, exit `T`, store returned, minimum Damköhler, margin, and the conversion fraction.
+**Report 12,000 K too**, so the paper side's claim that it is negative is checked rather than
+assumed.
+
+**Three things this run should settle, and the third is the one nobody has asked before.**
+
+1. **Where cooling stops paying.** Nothing on the paper side shows a floor. The store must still
+   be charged for there to be anything to recover, and at some temperature the slug grows faster
+   than the exit refund is worth.
+2. **Whether the freeze margin survives.** A cooler chamber is denser at fixed volume, which
+   helps, but the expansion is also cooler throughout, which hurts. The 673 m³ / 2 m² corner was
+   already at 0.41 decades at 10,000 K.
+3. **Whether W1's 8,000 K row is as soft as it says.** W1 flags it as the softest in the study,
+   with the `C3` exposure at 3.4-9.9% against 0.1-1.2% at 10,000 K, erring toward understating
+   the charge. If so, 8,000 K is better than the table above, and the case for cooling is
+   stronger still. **The C3 partition function is the thing to fix first if this rung matters**,
+   and after W9 it carries most of the carbon anyway.
+
+**Run it with N15.** Cooling the chamber and narrowing the throat both lower the exit
+temperature, and they compose. The paper side cannot price the combination because the `held`
+extrapolation it is using is calibrated over 4,561-5,584 K and steepens below that.
 
 **Why.** ADR-0016 declined a hotter chamber on the grounds that it buys 2.5 to 4.9%, smaller
 than the section's other uncertainties. That was scored on a convention that did not charge the
@@ -569,9 +613,10 @@ recombined, worth about 435 s against 709.
 hotter, thinner chamber has less density to work with, and the 673 m³ / 2 m² corner was already
 down to 0.41 decades at 10,000 K.
 
-**Lifts.** ADR-0016's "Going hotter was considered and declined", which now has the right
-conclusion for the wrong reason, and `CONTEXT.md`'s **Hotter is worse, once the chemistry is
-charged**, which is currently carrying an extrapolation where it should carry a solve.
+**Lifts.** ADR-0016's whole "Going hotter was considered and declined" section, which now has
+the right conclusion for the wrong reason and the wrong conclusion on the cool side, and
+`CONTEXT.md`'s **Chamber temperature: 10,000 K is NOT an optimum once the chemistry is charged**,
+which is carrying an extrapolation where it should carry a solve.
 
 ---
 

@@ -427,7 +427,33 @@ sets that and costs no wall temperature. Narrow the throat, do not raise the cha
 _Avoid_: quoting the +2.5% or +3.5% temperature gain, or 15,000 K as upside. Both come from the
 convention that did not charge the chemistry.
 
-**Chamber temperature: stay at 10,000 K (decided 2026-09-09, confirmed by the companion)**:
+**Chamber temperature: 10,000 K is NOT an optimum once the chemistry is charged**:
+**Both halves of the old argument are withdrawn.** It said going down costs 6-12% and going up
+gains 3.5-4.9%, both from the full-recombination convention. Charged, **cooler is better and
+hotter is worse**, because the exit temperature is a fixed FRACTION of the chamber temperature
+and the exit is what decides how much of the bill comes back.
+
+| chamber | k | slug | exit T | held | eff Isp | wall load |
+|---|---|---|---|---|---|---|
+| 8,000 K | 24.33 | 608 kg | 4,401 K | 58.4% | **817 s** | **0.41x** |
+| 9,000 K | 21.65 | 541 kg | 4,951 K | 63.7% | 778 s | 0.66x |
+| 10,000 K | 19.56 | 489 kg | 5,501 K | 69.0% | 722 s | 1.00x |
+| 12,000 K | 17.77 | 444 kg | 6,601 K | 79.6% | 579 s | 2.07x |
+
+**The tear-apart bill's share barely moves across this range**, 74.2% to 74.6%, because the
+charged store and `u` fall together. The exit temperature does all the work.
+**And a cooler chamber is the only lever that pays on the exhaust AND the wall.** Flux goes as
+`T^4`, so 8,000 K hands the wall 41% of the load and the liner loses 1.3 um/pulse against 3.2.
+Everything else in this section trades the two. **That is what makes N15's narrow throat
+affordable.**
+**The floor is unknown.** The companion's chamber solve stops at 8,000 K, and W1 calls that its
+softest row (C3 exposure 3.4-9.9% against 0.1-1.2% at 10,000 K), erring toward understating the
+charge. So 8,000 K is probably better than the table says. That is N14's first half, and it is
+the interesting half.
+_Avoid_: "10,000 K is a genuine optimum," "8,000 K costs 5.8%," "+2.5% per 2,000 K," and
+"15,000 K is the prize." All four come from the convention that did not charge the chemistry.
+
+**Chamber temperature: the superseded 10,000 K case (kept for its other arguments)**:
 Going **down** is worse than going up, which is the non-obvious half, and it is the one claim
 from the withdrawn dissociation entry that the companion's proper solve upholds. Solved: 8,000 K
 costs **6-12%**, 12,000 K gains **3.5-4.9%**. At 10,000 K the chamber sits where cooling
