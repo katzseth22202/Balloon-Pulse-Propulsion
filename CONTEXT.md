@@ -22,6 +22,14 @@ mounted on a shock absorber. About 5 m wide in the near-term design, where it do
 a debris shield.
 _Avoid_: target plate, impact plate.
 
+**Water-injected pusher plate**:
+The preferred candidate for the overtake leg, supplied with carried water that mixes
+with an overtaking PuffSat's flow near the plate and becomes pressure-driven exhaust.
+The injected water is bulk reaction mass, distinct from a thin protective coating.
+_Avoid_: treating it as an unaugmented plate; calling the water only a coolant;
+calling k = 9–10 a computed optimum or the greater-than-fifteen delivery target a
+simulated result.
+
 **Medusa-style sail**:
 A flexible pusher mounted *behind* the rocket on shock-absorbing struts. Because it sits
 behind, its struts carry **compression** (and can buckle), unlike real Project Medusa's
@@ -101,9 +109,8 @@ Distinguished from the other two on purpose:
 - vs **fudge factor (`f`)**: `f` is an elasticity claim about gas bouncing off a plate; `e` is a
   collimation claim about a plume. They coincide numerically only in the `k → 0` limit, which is
   why `astro_constants.STD_FUDGE_FACTOR = 0.8` is reused as the ideal-ceiling `e`. Different
-  hardware claims; no source calibrates either. That same `k -> 0` limit is what makes a pusher
-  plate the *no-slug nozzle*, and so decides the leg-1 device choice: see **Overtake leg vs
-  head-on leg**.
+  hardware claims. The `k -> 0` coincidence is arithmetic and does not select the
+  overtake device; see **Water-injected pusher plate** and **Overtake leg vs head-on leg**.
 ADR `0013` makes `e ≈ 0.3` the architecture's survival threshold and finds `f` worth about as
 much as `e` (a 0.3 drop in `f` costs what a 0.2 swing in `e` does).
 _Avoid_: quoting an `e` without the `f` it assumed, or vice versa; calling the `e = 0.25` row a
@@ -1965,7 +1972,9 @@ its plasma is cooler and less radiative, not more).
 
 **Overtake leg vs head-on leg** (`sec:jupiter_only_growth`; first decided 2026-08-20 grill,
 **verdict reversed later the same day** after the companion two-leg sweep was regenerated):
-Which device catches the growth push. Superseded content: the earlier version of this entry
+The current preferred overtake candidate is the **water-injected pusher plate**.
+The historical comparisons below use unaugmented plates and magnetic nozzles.
+Superseded content: the earlier version of this entry
 argued the plate wins on *payload delivered per kilogram launched off Earth* (plate 1.000 vs
 nozzle 0.700) and turned on the claim that a plate simply *is* a no-slug nozzle. Both are
 retired. The launched-mass metric charges the nozzle for its slug and never charges the plate
@@ -1987,7 +1996,7 @@ vanishing slug dissipates nothing in the merge, so there is no plasma to grip. `
 *below* the plume ignition window. The two are genuinely different devices. Do not write "a
 pusher plate is what a magnetic nozzle becomes when it carries no slug" as a physical claim.
 
-**Constraints on `k`, in the order they bind:**
+**Magnetic-nozzle constraints on `k`, in the order they bind:**
 1. **Plume ignition window** (two-sided). Only the dissipated share `k/(1+k)` of the arrival's
    kinetic energy heats the blob, spread over `1+k` kg, so `eps_th = w^2 k / (2(1+k)^2)`. That
    peaks at `k = 1` and falls on **both** sides, giving a closed interval, not a ceiling. Too
@@ -2022,8 +2031,9 @@ Pulling the growth wave that far ahead of the departure wave costs the **separat
 _Avoid_: calling this a "two-wave split" or "split push" in prose. **Two-wave departure**
 (`sec:split_push`) is a different maneuver in a different cycle, the Jovian dive's *Earth*
 departure flown as two pulses ~5 days apart. Also avoid the companion's name **nozzle wave** for
-the second one: both legs of this chain run a magnetic nozzle, which is exactly why
-`tab:two_leg_growth` sweeps `e1` and `e2` separately.
+the second one: the wave names identify their mission roles independently of the
+chosen propulsion hardware. `tab:two_leg_growth` is the two-magnetic-nozzle reference
+calculation and sweeps `e1` and `e2` separately.
 
 **The split gap is 10 days in this chain, 20 in the wider architecture** (settled 2026-09-02 after
 the paper was migrated to 20 days and reverted):
@@ -2393,7 +2403,7 @@ tests and ADRs owed. Three rules were decided in that grill:
   against a reshapable magnet.
 - `sec:two_leg_nozzle` line ~977 rewritten: closing speed vs impact speed, the slugged plate.
 - New bib entries: `birkhoff1948lined`, `chen2016plasma`, `creely2020sparc`, `marti1993ice`.
-**Two same-day reversals, both now in the paper. Do not re-derive from the earlier notes.**
+**Historical revisions. Item 2 is corrected by the water-injected plate study.**
 
 1. **The plume state is set by energy AND Saha together, and the paper's 15000 K is the COLD-END
    answer.** An earlier note here said "four fifths ionised at 15000 K"; that was wrong, because Saha
@@ -2412,16 +2422,10 @@ tests and ADRs owed. Three rules were decided in that grill:
    15000 K with negligible ionisation is the answer, not a guess. `tab:bag_sizing`'s two columns are now
    labelled coldest/hottest pulse, at 1.02x and 1.66x. Ignores O's second ionisation (35.1 eV).
 
-2. **A slugged pusher plate gains NOTHING, so `tab:equivalent_plate` was fair all along.** An earlier
-   note here said a slugged plate "may dominate both entries". Wrong. The plate is pushed by what it
-   reverses: `(1+k) m x w/(1+k) = m w`. **The two factors cancel exactly**, so a slugged plate delivers
-   `2 f m w`, identical to an unslugged one, because the slug was at rest and brought no momentum.
-   Carrying 8.5 kg/kg buys a gentler impact and zero thrust. The nozzle benefits because it is pushed by
-   the *dissipated* energy `(1/2) mu w^2` with `mu = mk/(1+k)`, which climbs with k. **The slug is the
-   nozzle's food and the plate cannot eat it.** `sec:two_leg_nozzle`'s own `k -> 0` identity already said
-   so. The 46 km/s objection to the plate therefore stands as originally written; what was corrected is
-   that the *nozzle's* surface sees 11-23 km/s too, so its advantage is collecting the thermal three
-   quarters, not surviving a speed the plate cannot.
+2. **Added reaction water** is carried mass that collision heat accelerates into
+   exhaust. The earlier claim that it adds no plate impulse confused unchanged
+   incoming bulk momentum with the full pressure-driven impulse; see
+   **Water-injected pusher plate**.
 
 - **`tab:bag_state`'s leak line is bracketed, not rescaled.** Stored energy is now pinned and rises to
   12.2 GJ, but the leak *fraction* is an integral over two regimes: while the fireball is at 26 000 K and
@@ -2884,14 +2888,12 @@ single-ended mirror in the same hardware with no moving parts.
   belong to the **ARC** power-plant concept (sector maintenance), not SPARC, and are a maintenance-shift
   operation rather than a flight reconfiguration. Verify before citing.
 
-**Leg 1's plate comparison is against the wrong speed** (found 2026-08-21 grill, affects
-`sec:two_leg_nozzle` line ~977). That line defends the nozzle by saying `f = 0.8` came from a
-3.2-16 km/s sweep while "this leg runs between 45-65 km/s". Those are **closing** speeds. The impactor
-merges with the slug before anything reaches the reflector, so the reflector sees `w/(1+k)` =
-**5.88 km/s** of bulk drift, inside the measured band. The argument holds only because the plate in
-`tab:equivalent_plate` carries **no slug**. A **slugged plate** is not a row in that table and may
-dominate both entries. Its remaining exposure is ablation from the ~27 km/s internal expansion, not the
-drift. Rework the line before it is quoted again.
+**Unaugmented plate comparison**:
+A comparison using a plate with no added reaction water, as in `tab:equivalent_plate`.
+Its elastic-bounce ceiling does not bound a plate that accelerates added water into
+exhaust.
+_Avoid_: extending an unaugmented plate's restitution factor to water-injected
+performance without accounting for the heated reaction mass.
 
 **RESOLVED 2026-08-21 (was flagged OPEN the same day; the flag was my arithmetic error, not the
 paper's).** `tab:bag_sizing` is not `(gamma-1)E`. It is the **ideal-gas pressure of the slug at an
