@@ -773,6 +773,14 @@ area ratio. And `Da ∝ rho_exit^1.38`, fitted to two.
    bound rather than a number. It is also the point at which **water may become the better fluid**,
    having no condensed phase to worry about there.
 
+**Run water on the same grid, not as an afterthought.** Paper-side work puts water within 5 to
+9% of methane at the cold end and *ahead* of it at 400 m³, because water's remaining store is
+ordinary gas-phase combustion that finishes by 3,100 K while methane's is stuck behind C3,
+acetylene and then soot. Water also has no condensed-carbon problem, which is the very thing
+ADR-0050's EOS cannot model below 4,000 K, and `eos_water` is the older and larger of the two
+equations of state. **The fluid choice may come down to the liner rather than the impulse**, and
+this grid is what would show it.
+
 **What would settle it.** Whether the walled nozzle is a 700 s device or an 1,100 s one, and
 therefore whether it earns a section or a paragraph.
 

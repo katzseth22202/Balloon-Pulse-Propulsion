@@ -729,6 +729,60 @@ problem raised by another factor of two. And \SI{1284}{\bar} is a real containme
 if the vessel mass does not feel it, with a liner that has to survive it. **The volume dial
 should be swept alongside the throat rather than fixed at 200 to 673 as this decision has it.**
 
+## At the cold end water is within 10\% of methane, and at a large chamber it wins
+
+Asked 2026-09-10, and it changes what the fluid choice is about.
+
+**Each fluid has a ceiling that no chemistry, pressure or nozzle can beat**, because it is fixed
+by the slug ratio and the slug ratio is fixed by energy density in the chamber. Perfect
+recombination with nothing left hot gives **methane \SI{1336}{\second} and water
+\SI{1006}{\second}**.
+
+**Water essentially reaches its ceiling at any cold exit. Methane does not.** Water's remaining
+store is $\ce{H2} + \tfrac{1}{2}\ce{O2} \rightarrow \ce{H2O}$, ordinary gas-phase combustion
+that finishes by about \SI{3100}{\kelvin}. Methane's is stuck behind the \ce{C3} to acetylene
+path and then soot. So as the chamber shrinks and the exit gets colder, **methane keeps climbing
+and water is already done**:
+
+| volume | $p_c$ | methane exit | methane Isp | water exit | water Isp | gap |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 400 m³ | 321 bar | 3724 K | 971 s | 3528 K | **984 s** | **water wins, +1.3\%** |
+| 200 m³ | 642 bar | 3384 K | 1050 s | 3206 K | 990 s | $-5.7\%$ |
+| 100 m³ | 1284 bar | 3076 K | 1086 s | 2914 K | 995 s | $-8.4\%$ |
+| 50 m³ | 2568 bar | 2795 K | 1100 s | 2648 K | 999 s | $-9.2\%$ |
+
+Both store above \SI{125}{\kilogram\per\cubic\meter}, so both fill a \SI{100}{\tonne} bay by
+mass and the launch ledger tracks these one for one.
+
+**This decision picked methane on a 31\% lead that no longer exists.** At the cold end the gap is
+5 to 9\%, and it reverses at \SI{400}{\cubic\meter}. **The fluid choice is now a liner argument
+rather than an impulse argument**, and that is a different question from the one this decision
+answered.
+
+**What water gains beyond the number.** Ambient storage against methane's \SI{111}{\kelvin}, so
+no cryogenics at all. A chamber twice as dense at the same volume, worth $2.6\times$ the freeze
+margin for nothing. **No condensed-carbon problem**, which matters more than it sounds: ADR-0050's
+equation of state cannot speak below \SI{4000}{\kelvin} and every row in the table above is under
+it, but that limitation is *methane's*. And no throat carbon deposition, which is N9 item 5
+entire.
+
+**What water loses, and it is the reason this decision chose methane in the first place.** The
+liner. Methane's exhaust carries \SI{376}{\kilo\gram} of carbon past a liner losing 1.26 to
+\SI{13.9}{\kilo\gram}, so 0.34 to 3.7\% redeposition makes it self-healing, and a water exhaust
+carries nothing that could rebuild it. Worse, `sec:watering_it_down` already picks pyrolytic
+graphite for a water plume **and then hedges it against oxygen**. A water chamber has to solve
+liner chemistry that a methane chamber solves for free.
+
+**So the recommendation is not to reopen the fluid choice yet, but to stop resting it on
+specific impulse.** N16 should report both fluids on the same grid, and the decision should then
+be made on the liner, on storage, and on which equation of state can actually speak at the
+temperatures the design wants to run at.
+
+**One caveat on water's column.** Its recombination model here is a paper-side construction, 5\%
+dissociated at \SI{1}{\bar} and \SI{3000}{\kelvin} scaled as $p^{-1/3}$, not a solve. Pushing the
+store held from 3\% to 15\% would cost water \SI{53}{\second}, which does not change the
+conclusion but does change the margin.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
