@@ -655,6 +655,80 @@ considerably more at the millibar exit pressures these area ratios imply. **The 
 complete" row may not be reachable at any nozzle length**, for a reason that is equilibrium
 rather than kinetics, and that is the first thing a real solve has to answer.
 
+## Correction: the cold-end numbers were read off a table computed at the wrong density
+
+Found 2026-09-10 while pricing a higher-pressure chamber. **Every cold-exit figure produced
+here before this section used W9's equilibrium speciation, which the companion computed at
+\SI{1}{\kilogram\per\cubic\meter}.** The exhaust at a deep expansion is two orders of magnitude
+thinner than that, and **low density favours dissociation at equilibrium**, so those figures
+were optimistic.
+
+Calibrating against the companion's three solved exit states instead gives
+
+$$\mathrm{held}(T, \rho) = \mathrm{held}_{\mathrm{W9}}(T)\,\rho^{-0.21}$$
+
+which reproduces all three to within 4\%. Applied to the \SI{200}{\cubic\meter} chamber:
+
+| $A/A_*$ | exit $T$ | exit $\rho$ | held, as read | held, corrected | Isp as printed | **Isp corrected** |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 4.04 | 5501 K | 0.191 | 49.8\% | 70.5\% | 899 s | **707 s** |
+| 14.1 | 4628 K | 0.055 | 32.6\% | 60.0\% | 1077 s | **853 s** |
+| 50 | 3887 K | 0.015 | 19.2\% | 46.1\% | 1205 s | **1005 s** |
+| 200 | 3211 K | 0.0039 | 12.9\% | 41.4\% | 1251 s | **1046 s** |
+
+**N15's headline of \SI{1156}{\second} becomes about \SI{1074}{\second}.** The corrected model
+also reproduces the companion's own flown case at \SI{707}{\second} against the
+\SI{709}{\second} already carried, which is the check that it is calibrated rather than fitted.
+The cold end is still the best configuration in this decision. It is not as free as it looked.
+
+## Raising the chamber pressure is the fix, and it is free on vessel mass
+
+**The correction above and this section are the same physics.** What re-dissociates the exhaust
+is its density, so the answer is to arrive at the cold end denser.
+
+**Chamber density is set by volume, and volume is free.** Vessel mass runs as $nRT\rho/\sigma$
+and $nRT$ is fixed by the pulse, so trading volume for pressure does not change it. A
+\SI{100}{\cubic\meter} chamber at \SI{1284}{\bar} weighs what a \SI{200}{\cubic\meter} one at
+642 does. **That is the whole reason this lever exists**, and it is already in this decision's
+own vessel paragraph without having been used.
+
+**At a fixed exit temperature, halving the volume doubles the exit density.** At the
+\SI{3211}{\kelvin} exit of $A/A_* = 200$, going from 200 to \SI{50}{\cubic\meter} takes the store
+held from 41.4\% to 31.0\% and the impulse from 1046 to \SI{1124}{\second}. **And it cuts the
+blowdown from \SI{396}{\milli\second} to 99**, which matters more, because blowdown against the
+\SI{400}{\milli\second} pulse period is what caps the area ratio in the first place.
+
+**Pushed to each volume's own freeze limit**, the exit density is pinned at
+\SI{0.0056}{\kilogram\per\cubic\meter} by definition, so what a smaller chamber buys there is a
+*colder* exit at the same density rather than a denser one:
+
+| volume | length | $p_c$ | $A/A_*$ | throat | exit $T$ | held | effective Isp |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 400 m³ | 14.1 m | 321 bar | 68 | \SI{0.42}{\square\meter} | 3724 K | 50.9\% | 971 s |
+| 200 m³ | 7.1 m | 642 bar | 137 | \SI{0.21}{\square\meter} | 3384 K | 40.9\% | 1050 s |
+| **100 m³** | **3.5 m** | **1284 bar** | 273 | \SI{0.10}{\square\meter} | 3076 K | 36.2\% | **1086 s** |
+| 50 m³ | 1.8 m | 2568 bar | 546 | \SI{0.05}{\square\meter} | 2795 K | 34.3\% | 1100 s |
+| 25 m³ | 0.9 m | 5136 bar | 1092 | \SI{0.03}{\square\meter} | 2540 K | 33.4\% | 1107 s |
+
+**It works and it saturates.** The density exponent is $-0.21$, which is weak, so a
+sixteen-fold pressure rise is worth 14\% and most of that comes in the first halving. Take
+\SI{100}{\cubic\meter} and stop; \SI{1086}{\second} against the magnetic nozzle's target of
+1249, on a vessel that weighs the same and a chamber a third the length.
+
+**Two things fall out that are worth more than the impulse.** The blowdown at
+\SI{100}{\cubic\meter} is half what it was, so the deep expansion fits inside the pulse period
+with room. And the column becomes \SI{3.5}{\meter} long, where this decision has the spreading
+cone reaching a \SI{3}{\meter} wall only after \SI{6}{\meter} of column. **Below about
+\SI{170}{\cubic\meter} the front leaves before it touches the wall at all**, which would retire
+N9 items 1 to 3 rather than answer them. That is the single largest open item in this decision
+and a short chamber may simply delete it.
+
+**What it costs, and N9 has to price all of it.** The wall area falls with the column, so the
+same pulse lands on less of it. The throat becomes \SI{0.10}{\square\meter}, which is N9 item 5's
+problem raised by another factor of two. And \SI{1284}{\bar} is a real containment pressure even
+if the vessel mass does not feel it, with a liner that has to survive it. **The volume dial
+should be swept alongside the throat rather than fixed at 200 to 673 as this decision has it.**
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
