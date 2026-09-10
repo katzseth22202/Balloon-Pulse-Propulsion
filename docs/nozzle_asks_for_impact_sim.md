@@ -34,7 +34,7 @@ Everything else here is either answered, folded in, or on nobody's critical path
 | --- | --- |
 | N1–N8 | open, magnetic nozzle |
 | **N9 item 0** | **answered.** The question dissolves: column length cancels, it is a throat question, and it fails at 7 m² |
-| **N9 items 1–7** | **open, and now the only thing gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient |
+| **N9 items 1–7** | **open, and one of two items gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient. **Read its geometry note: what to run moved an order of magnitude on 2026-09-10** |
 | **N10 items 1–5, 4b** | **all answered.** See "What landed" below |
 | N11 | open, not started |
 | **N12** | **answered on the paper side**, and the fluid choice survives |
@@ -291,20 +291,42 @@ stay honest about which bag they are.
 **Priority: highest of the three thermal-nozzle items.** It is the load case the walled
 nozzle stands or falls on, and nothing else here substitutes for it.
 
-**Different geometry from N1–N8.** ADR-0016 admits a walled de Laval chamber as a
-non-magnetic option on the head-on departure burn. Same 660 m³ column, 3 m bore, 23.8 m
-length. No field. 25 kg impactor at 75 km/s into methane vapour, equilibrated chamber 10,000 K.
-**Slug ratios updated 2026-09-09 from the companion's own solve** (W1, W8): methane
-`k = 19.56` at 200 m³, 19.11 at 400 and 18.92 at 673, so **489 kg of methane at 200 m³** and 478
-at 400, against the 474 kg and `k = 18.96` this ask first carried. Pre-charge is 1.4 bar at
-111 K **in the 200 m³ chamber**, 0.70 bar in 400 and 0.41 in 673. Ammonia at `k = 28.54`
-(estimated, no EOS) is the storable alternative and is worth running alongside. The flown fluid
-changed from ammonia to methane on 2026-09-09 (ADR-0016), so earlier drafts of this ask carry
-ammonia numbers.
+**Different geometry from N1–N8, and it moved a long way on 2026-09-10.** ADR-0016 admits a
+walled de Laval chamber as a non-magnetic option on the head-on departure burn. No field. 25 kg
+impactor at 75 km/s, equilibrated chamber 10,000 K, 3 m bore.
 
-**Run items 1-7 at 2, 4 and 7 m² throats, not at 7 alone.** W6 recommends narrowing the throat
-and every other result agrees with it, but that stretches the pulse from 8 ms to 28 ms and
-passes the same power through a third of the throat area. Pricing that is this item's job.
+**The geometry this item should now be run at is not the one it was written for.** A session of
+paper-side work on your N9.0/N10 answers moved the recommended chamber an order of magnitude
+smaller and the throat nearly two:
+
+| | as this ask was written | **what to run now** |
+| --- | --- | --- |
+| chamber volume | 200 / 400 / 673 m³ | **50 / 100 / 200 m³** |
+| column length | 7.1 to 23.8 m | **1.8 to 7.1 m** |
+| chamber pressure | 190 to 642 bar | **642 to 2,568 bar** |
+| throat area | 7 m² | **0.05 to 0.2 m²** (area ratios 140 to 600) |
+| pulse length | 8 ms | **150 to 400 ms** |
+| bulk fluid | methane, ammonia alongside | **methane AND water**, ammonia dropped |
+
+**Why it moved.** The chemistry does not finish until the exhaust reaches about 3,000 K, and the
+7 m² throat leaves it at 5,500 K still holding 70% of its store. Reaching 3,000 K needs an area
+ratio near 140 rather than 4. Shrinking the chamber is what makes that fit the 400 ms pulse
+period, since blowdown goes as volume times area ratio, and it costs nothing in vessel mass
+because that runs as `nRT * rho/sigma` with `nRT` fixed by the pulse.
+
+**Slug ratios, from your own solve** (W1, W8): methane `k = 19.56`, so 489 kg of methane and
+514 kg total in the chamber whatever its volume. Water `k = 39.55`, so 989 kg and 1,014 total.
+Methane pre-charge at 111 K is 1.4 bar in 200 m³ and scales inversely with volume.
+
+**Ammonia is dropped.** It was declined 2026-09-10 on handling and supply rather than
+performance, so there is no need to run it. If it ever returns, the open question is
+`N + N + M`, which W7 left uncertain by 1.3 decades.
+
+**Run items 1-7 across the throat range, not at one point.** The recommended throat is now
+0.05 to 0.2 m², passing the same power through 35 to 140 times less area than the 7 m² baseline,
+over a pulse 20 to 50 times longer. **Throat carbon deposition and throat heat flux stop being
+footnotes and become the item**, and the film has to hold heat off the substrate for hundreds of
+milliseconds rather than eight, which wants millimetres of graphite rather than microns.
 
 **Why.** The section clears the wall against the *equilibrated* 10,000 K state, where the
 gas is optically thick (`tau` about 12.5 across the bore) and the wall sees 54.8 MW/m²,
@@ -471,7 +493,9 @@ that could move a number has moved. Two of N10's answers make them harder rather
 W6 recommends narrowing the throat from 7 m² to 4 or 2, which stretches the pulse from 8 ms to
 28 and passes the same power through a third of the throat area; and W4 shows the impactor
 crosses the column in 0.08 of an acoustic transit, so the sealed vessel does nothing for the
-arrival transient. **Run items 1–7 at 2, 4 and 7 m² rather than at 7 alone.**
+arrival transient. **Run items 1–7 across 0.05 to 0.2 m² throats and 50 to 200 m³ chambers**,
+which is where a further session of paper-side work landed the design; N9's own geometry note
+carries the table.
 
 ## What landed, N9 item 0 and N10
 
@@ -548,8 +572,9 @@ exhaust heat twice. What is genuinely left for a walled `eta_geom` is divergence
 escape, taken here as 0.98 and 0.994, giving 0.974 and `eta_jet = 0.621`. Being wrong by a
 realistic amount on both is worth about 30 seconds out of 709, so this no longer gates anything.
 
-**What is wanted.** The exit-plane velocity distribution, mass-weighted, at 2, 4 and 7 m²
-throats, so a divergence factor can be computed rather than assumed. **A quasi-1D solve cannot
+**What is wanted.** The exit-plane velocity distribution, mass-weighted, across the throat range
+N9 and N16 now use (0.05 to 0.2 m²), so a divergence factor can be computed rather than
+assumed. **A quasi-1D solve cannot
 produce one**, which is the real content of this item: it needs the same diagnostic N1 asks of
 the magnetic nozzle, `<v_z^2>/<v^2>` over the expelled mass, on the walled geometry.
 
