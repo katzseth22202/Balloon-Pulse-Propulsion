@@ -12,15 +12,17 @@ ADR-0016 and carry their own geometry, which is not this one.**
 
 ## Start here
 
-**Two items matter and the rest can wait: N9 items 1-7 and N16.**
+**Two items matter and the rest can wait: N9 items 1-8 and N16.**
 
 - **N16** is one grid on machinery that already exists, and it decides whether the walled
   nozzle is a 700 s device or an 1,100 s one. It replaces N14 and N15, which were the same
   question asked three times. If only one point can be run, run the configuration named at the
   end of it and plain methane beside it.
-- **N9 items 1-7** are the load case and nothing substitutes for them. **Read the note at the
-  top of N9 before starting**: a paper-side result says the front may not reach the wall at all
-  below about 170 m³, which would close items 1-4 rather than answer them.
+- **N9 items 1-8** are the load case and nothing substitutes for them. **Read the two notes at
+  the top of N9 before starting**: a paper-side result says the front may not reach the wall at
+  all below about 170 m³, which would close items 1-4 rather than answer them, and a second
+  bounds the structural half at 0.14-0.39% of the pulse impulse, which points the run at items
+  3, 5 and 6.
 
 Everything else here is either answered, folded in, or on nobody's critical path.
 
@@ -34,7 +36,7 @@ Everything else here is either answered, folded in, or on nobody's critical path
 | --- | --- |
 | N1–N8 | open, magnetic nozzle |
 | **N9 item 0** | **answered.** The question dissolves: column length cancels, it is a throat question, and it fails at 7 m² |
-| **N9 items 1–7** | **open, and one of two items gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient. **Read its geometry note: what to run moved an order of magnitude on 2026-09-10** |
+| **N9 items 1–8** | **open, and one of two items gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient. **Read its geometry note and the structural bound above item 1**: what to run moved an order of magnitude on 2026-09-10, and the structural half now looks closed on the impulse ratio, leaving items 3/5/6 as the live ones |
 | **N10 items 1–5, 4b** | **all answered.** See "What landed" below |
 | N11 | open, not started |
 | **N12** | **answered on the paper side**, and the fluid choice survives |
@@ -322,7 +324,7 @@ Methane pre-charge at 111 K is 1.4 bar in 200 m³ and scales inversely with volu
 performance, so there is no need to run it. If it ever returns, the open question is
 `N + N + M`, which W7 left uncertain by 1.3 decades.
 
-**Run items 1-7 across the throat range, not at one point.** The recommended throat is now
+**Run items 1-8 across the throat range, not at one point.** The recommended throat is now
 0.05 to 0.2 m², passing the same power through 35 to 140 times less area than the 7 m² baseline,
 over a pulse 20 to 50 times longer. **Throat carbon deposition and throat heat flux stop being
 footnotes and become the item**, and the film has to hold heat off the substrate for hundreds of
@@ -335,6 +337,36 @@ freshly shocked layer at the nose of a 45.58 km/s arrival near 94,600 K and has 
 cone reaching a 3 m wall after 6 m of the column. At that station the front has swept only
 about 14 m³ of the column, roughly 14 kg against a 25 kg impactor, so its local slug ratio is
 near 0.56 and a first estimate puts it near 200,000 K.
+
+**Paper-side bound on the structural half, added 2026-09-10. It narrows what items 1-4 are for.**
+Worked from the ask's own geometry table, so it is arithmetic on your numbers rather than a new
+input. Strong cylindrical Sedov off a line source, at the `gamma_eff = 1.183` that the ask's own
+pressures already imply (642 bar at 200 m^3 and 2,568 at 50 both give `pV/E = 0.1826`, so the
+dissociation is charged on both sides of what follows).
+
+- **The overpressure ratio is geometry-invariant.** Peak wall pressure goes as `0.23*pi*E/V` and
+  the equilibrated pressure as `(gamma-1)*E/V`, so the ratio is **~3.9x at every volume in the
+  table** and chamber shape is not a lever on it. The `xi^4` sensitivity is real, though: `xi` of
+  0.9 to 1.1 spans **2.6x to 5.8x**. The invariance survives that; the value does not, which is
+  why it is asked for rather than asserted.
+- **The arrival time is invariant too.** `t = R / sqrt(pi*E/M)` = **145 us** at the 3 m bore for
+  all three volumes, because `E'/rho` depends only on `R` and `E/M`. **The impactor has left the
+  column before the wall is loaded** at every volume now asked for: transits are 24 us at 50 m^3,
+  47 at 100 and 94 at 200, against 145 us for the front to cross the bore.
+- **The vessel appears to integrate the transient away.** A 3.9x spike lasting of order 145 us
+  carries **0.14 to 0.39%** of the impulse the 150-400 ms blowdown delivers at the design
+  pressure, against a composite breathing period near **1.95 ms** at the 3 m bore, so the spike
+  is 7% of one period and the structure sees an impulse rather than a step.
+- **What it is worth, and why the item is priced this way.** Vessel mass runs as
+  `1.5*nRT*rho/sigma`, so on the flown composite it is **8.8 t** sized on the design pressure and
+  **34.6 t** if the transient has to be carried quasi-statically. **The structural half of N9 is
+  worth about 26 t**, which is the same order as the magnetic nozzle's 17.3-37.6 t of structure
+  the section is arguing against.
+
+**So the surface half is the live half.** Items **3, 5 and 6** are what the run is for, and 1-2
+mainly feed them. For calibration on the surface half: Orion's plate took plasma at 100-200 km/s
+and shed ~150 um of oil per pulse on a 0.8-1.5 s recycle (GA-5009), against 75 km/s and microns
+here, so the ablation regime is inside demonstrated territory and the containment regime is not.
 
 **What we need.**
 
@@ -378,6 +410,16 @@ near 0.56 and a first estimate puts it near 200,000 K.
    own uncertainty. What the run would decide is whether that choice is forced or merely
    prudent: 15,000 K is worth 1.192 GN.s per launch load against the magnetic nozzle's 1.225, so
    if the wall turns out to be comfortable the near-tie is reachable after all.
+
+8. **Confirm or break the 3.9x, and look for a second pass.** Two things, both cheap once item 1
+   is running. First, report the actual peak wall overpressure as a multiple of the equilibrated
+   pressure, so the ideal-gas reading above is checked rather than trusted. Second, and this is
+   the only path found so far by which the **vessel** rather than the liner becomes the binding
+   constraint: cylindrical Sedov describes the first pass only. Report whether the front reflects
+   coherently off the closed end or the bore and reconverges on the axis, and if it does, the
+   peak and the dwell of that second event. A reflected shock that arrives while the wall is
+   still loaded is the one result that would move this back from a surface problem to a
+   structural one, and it would put ~26 t back on the vessel.
 
 **Before designing any mitigation, price the strike.** Two paper-side proposals are parked
 waiting on this item and both would be wasted work if the answer is that the front never reaches
@@ -488,12 +530,12 @@ into the same frame rather than needing a new one.
 validation worked: 2,700 s is 24–29% above the frozen ceiling, so their own number requires the
 recombination their prose denies.
 
-**Do N9 items 1–7 next, and they are now the only gate on the paper section.** Everything else
+**Do N9 items 1–8 next, and they are now the only gate on the paper section.** Everything else
 that could move a number has moved. Two of N10's answers make them harder rather than easier:
 W6 recommends narrowing the throat from 7 m² to 4 or 2, which stretches the pulse from 8 ms to
 28 and passes the same power through a third of the throat area; and W4 shows the impactor
 crosses the column in 0.08 of an acoustic transit, so the sealed vessel does nothing for the
-arrival transient. **Run items 1–7 across 0.05 to 0.2 m² throats and 50 to 200 m³ chambers**,
+arrival transient. **Run items 1–8 across 0.05 to 0.2 m² throats and 50 to 200 m³ chambers**,
 which is where a further session of paper-side work landed the design; N9's own geometry note
 carries the table.
 
@@ -841,7 +883,7 @@ section that exists.
 1. **N16**, the conversion-fraction grid. One sweep on existing machinery, and it settles
    whether the walled nozzle earns a section. It also retires three paper-side fits that
    everything else in ADR-0016 is currently resting on.
-2. **N9 items 1-7**, the load case. Start with the contact station against chamber volume,
+2. **N9 items 1-8**, the load case. Start with the contact station against chamber volume,
    because if the front exits before touching the wall below ~170 m³ then items 1-4 close and
    only the throat items 5-7 remain.
 3. **N1 and N3**, the magnetic nozzle. N1 is a diagnostic on runs that probably already exist
