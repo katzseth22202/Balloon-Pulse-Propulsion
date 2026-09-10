@@ -949,6 +949,48 @@ layering only softens it, and the short column is already recommended for three 
 **Parked rather than pursued**, and noted on N9 items 1 to 3 so the companion prices the strike
 before anyone designs a mitigation for it.
 
+## Hydrogen as a dial on any base slug, priced at 5\% and 10\%
+
+Asked 2026-09-10. Effective Isp throughout, at the flown \SI{7}{\square\meter} throat with the
+companion's own conversion fractions, plus the perfect-recombination ceiling, which needs no
+chemistry model at all.
+
+| base slug | \ce{H2} | $k$ | slug | $u$ | storage | **flown** | ceiling | GN\,s | gain |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| **pure methane** | 0\% | 19.57 | 489 kg | 136.7 | 422 | **709 s** | 1335 s | 0.695 | -- |
+| | 5\% | 18.23 | 456 kg | 146.2 | 338 | 738 s | 1372 s | 0.724 | $+4.0\%$ |
+| | 10\% | 17.06 | 426 kg | 155.7 | 282 | **765 s** | 1407 s | **0.750** | $+7.8\%$ |
+| **pure water** | 0\% | 39.54 | 989 kg | 69.4 | 1000 | **579 s** | 1006 s | 0.568 | -- |
+| | 5\% | 33.19 | 830 kg | 82.3 | 604 | 630 s | 1082 s | 0.617 | $+8.7\%$ |
+| | 10\% | 28.56 | 714 kg | 95.2 | 432 | **674 s** | 1150 s | 0.661 | $+16.4\%$ |
+| **90\% water / 10\% methane** | 0\% | 35.95 | 899 kg | 76.1 | 880 | **597 s** | 1047 s | 0.585 | -- |
+| | 5\% | 30.72 | 768 kg | 88.7 | 560 | 644 s | 1117 s | 0.631 | $+7.9\%$ |
+| | 10\% | 26.79 | 670 kg | 101.2 | 411 | **686 s** | 1180 s | 0.672 | $+14.9\%$ |
+
+**Hydrogen is not the stronger lever.** Switching water to methane is worth $+22.4\%$ against
+10\% hydrogen's $+16.4\%$ on the same base. **What hydrogen has that the fluid switch does not is
+that it works on every base**, so it stacks rather than competes.
+
+**Its leverage runs inversely to the base fluid's energy density**, which is the rule worth
+carrying: $+16.4\%$ on water at \SI{69}{\mega\joule\per\kilogram} and only $+7.8\%$ on methane
+at 137. Hydrogen is a bigger relative addition to a weaker store. **So the two levers are
+substitutes rather than complements, and hydrogen is most valuable exactly where the base fluid
+is worst.**
+
+**It is close to linear over this range**, 4.0\% then 7.8\% on methane, 8.7\% then 16.4\% on
+water, so there is no knee to find between 0 and 10\% and the dial behaves as a dial.
+
+**Best on the table is methane with 10\% hydrogen**, \SI{765}{\second} and \num{0.750} on the
+launch ledger. Water with 10\% hydrogen reaches \num{0.661}, which is 95\% of plain methane's
+ledger while storing at \SI{432}{\kilogram\per\cubic\meter}, the same density as methane, and
+without a methane tank.
+
+**The cryogenic bill is the thing to weigh it against.** Ten percent hydrogen is 43 to
+\SI{71}{\kilo\gram} per pulse depending on the base, or 0.6 to \SI{1.0}{\cubic\meter} of liquid
+hydrogen, against a pure-hydrogen slug's 194 kg and \SI{2.74}{\cubic\meter}. **Five percent is
+half the cryogenics for a little over half the gain**, which is the trade a mission would
+actually tune.
+
 ## The cold end is where the unclaimed impulse is
 
 The same fit that kills all four options above points hard the other way, and this is the
