@@ -6,8 +6,8 @@ copied verbatim into `katzseth22202/puffsat_impact_simulation`, so it repeats co
 paper repo already has.
 
 Companion register for the other repo is `docs/deferred_to_companion_repos.md` (items S1–S4,
-targeting `aim_is_all_you_need`). These are N1–N15 to avoid collision. **N1–N8 are the magnetic
-nozzle and use the geometry below. N9–N15 were added for the walled thermal nozzle of
+targeting `aim_is_all_you_need`). These are N1–N16 to avoid collision. **N1–N8 are the magnetic
+nozzle and use the geometry below. N9–N16 were added for the walled thermal nozzle of
 ADR-0016 and carry their own geometry, which is not this one.**
 
 ## Status, 2026-09-09
@@ -25,8 +25,9 @@ ADR-0016 and carry their own geometry, which is not this one.**
 | N11 | open, not started |
 | **N12** | **answered on the paper side**, and the fluid choice survives |
 | **N13** | **new**, raised 2026-09-09 while answering N12. Medium, behind N9 |
-| **N14** | **new**, raised 2026-09-09. High, and the cheapest item here: one flag on an existing target |
-| **N15** | **new**, raised 2026-09-09. Highest after N9: the largest unclaimed number in ADR-0016 |
+| **N14** | folded into N16 |
+| **N15** | folded into N16 |
+| **N16** | **new**, raised 2026-09-10. Highest after N9, and it replaces N14 and N15 |
 
 **What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
 are left in place with corrections marked, so the record shows what was asked. The
@@ -535,6 +536,10 @@ never on the same convention**.
 
 ## N14. Run the expansion from a COOLER chamber: 6,000, 7,000 and 8,000 K
 
+> **FOLDED INTO N16.** Kept for its reasoning; do not run it separately. The three dials it treats separately
+> turn out to interact through the same two quantities, exit temperature and exit
+> density, so running them one at a time guarantees three round-trips for one answer.
+
 **Priority: high, and it is the cheapest item on this list.** Raised 2026-09-09, and reframed
 2026-09-10 when the cool side turned out to be the interesting one. It is one flag on
 `make walled-nozzle-freeze`, which has only ever been run from a 10,000 K chamber.
@@ -622,6 +627,10 @@ which is carrying an extrapolation where it should carry a solve.
 
 ## N15. Run the expansion out to A/A* = 200, on the 200 m³ chamber
 
+> **FOLDED INTO N16.** Kept for its reasoning; do not run it separately. The three dials it treats separately
+> turn out to interact through the same two quantities, exit temperature and exit
+> density, so running them one at a time guarantees three round-trips for one answer.
+
 **Priority: highest of the walled-nozzle items, ahead of everything except N9 itself.** Raised
 2026-09-09. It is the largest unclaimed number anywhere in ADR-0016.
 
@@ -693,3 +702,80 @@ Probes live in the paper repo under `todos/` (gitignored, so copy rather than ex
 | `temperature_floor_probe.py` | what the 3800 K and 2450 K floors cap in `k` |
 | `ladder_dissociation.py` | the **withdrawn** 2026-09-09 dissociation correction; kept so the mistake reproduces |
 | `ladder_companion_k.py` | the ladder, the throat table and the N12 sensitivity on the companion's solved `k` |
+
+
+---
+
+## N16. One conversion-fraction surface: chamber T, chamber volume, throat area
+
+**Priority: highest after N9, and it replaces N14 and N15.** Raised 2026-09-10, after paper-side
+work on the temperature, volume and throat dials found that all three act through the same two
+quantities and therefore cannot be answered one at a time.
+
+**The one thing wanted.** The energy conversion fraction, and the exit state behind it, over a
+grid:
+
+| dial | values | why |
+| --- | --- | --- |
+| chamber temperature | 6,000 / 8,000 / 10,000 / 12,000 K | paper side finds cooler is better and hotter is worse, both by more than ADR-0016 booked, and cannot check it |
+| chamber volume | 50 / 100 / 200 / 400 m³ | **never swept.** Vessel mass is invariant under it, so it is a free variable nobody has turned |
+| throat area | the flown 7 m² down to 0.05 m², log-spaced | the flown point is 4 area ratios short of where the chemistry finishes |
+
+Report per point: exit `T`, **exit density**, store returned, minimum Damköhler and its margin,
+and the conversion fraction. It is `make walled-nozzle-freeze` over a grid rather than a point,
+on machinery that already exists.
+
+**Why it has to be a surface rather than three lines.** Everything that matters reduces to the
+exit temperature and the exit density. The throat sets the first. The chamber volume sets the
+second. The chamber temperature sets both, since exit temperature is a fixed fraction of chamber
+temperature. Sweeping them separately answers none of them, because the optimum is interior in
+all three.
+
+### The paper-side correction that motivates it, and it is about your own W9 table
+
+**W9's speciation was computed at 1 kg/m³ and it is being read as if it were density-independent.**
+It is not, and a deep expansion exits two orders of magnitude thinner, where equilibrium favours
+dissociation. Reading W9 straight overstates the recovery badly. Calibrating instead against your
+three solved exit states gives
+
+    held(T, rho) = held_W9(T) * rho^-0.21
+
+which reproduces all three within 4% and returns the flown case at 707 s against the 709 the
+paper carries. **That fit is a paper-side hack over three points, extrapolated thirtyfold in
+density, and it is now load-bearing for every cold-end number in ADR-0016.** `eos_methane` can
+compute the real thing directly. **That single curve is the most valuable thing this ask can
+return**, more than any individual grid point.
+
+**Two other paper-side fits are propping up the same numbers and would be retired by the grid.**
+`T_e/T_c = 0.667 (A/A*)^-0.138`, fitted to four of your points and extrapolated a hundredfold in
+area ratio. And `Da ∝ rho_exit^1.38`, fitted to two.
+
+### What the paper side already believes, so the grid can confirm or break it
+
+- **Cooler is better and hotter is worse**, because exit temperature is a fixed fraction of
+  chamber temperature. 8,000 K returns about 817 s against 10,000 K's 722, at 41% of the wall
+  load. 12,000 K returns 579 s and freezes at 4,112 K, before \ce{H2O} can form at all.
+- **Smaller is better and costs nothing.** Vessel mass runs as `nRT*rho/sigma` with `nRT` fixed
+  by the pulse, so 100 m³ at 1,284 bar weighs what 200 m³ at 642 does. It also halves the
+  blowdown, which is what caps the area ratio against the 400 ms pulse period.
+- **The chemistry finishes well past the flown throat.** 707 s at `A/A*` 4.04 rising to about
+  1,074 at 200, on the corrected `held`.
+- **The best combination found is roughly 100 m³ at 8,000 K with a throat near 0.1 m².** Nothing
+  on the paper side can price it, because the three fits above all get extrapolated at once.
+
+### Two things to report that are not conversion fractions
+
+1. **Whether the freeze margin survives at high density.** It should improve, since `Da` goes as
+   density squared, but the 673 m³ / 2 m² corner was already at 0.41 decades.
+2. **Where the condensed-carbon omission starts to bite.** ADR-0050's weakness 4 puts it below
+   about 4,000 K, and **every interesting row in this grid is under that**. If the answer is that
+   the EOS cannot speak below 4,000 K, say so plainly and the paper will carry the cold end as a
+   bound rather than a number. It is also the point at which **water may become the better fluid**,
+   having no condensed phase to worry about there.
+
+**What would settle it.** Whether the walled nozzle is a 700 s device or an 1,100 s one, and
+therefore whether it earns a section or a paragraph.
+
+**Lifts.** ADR-0016's "The cold end is where the unclaimed impulse is", "Raising the chamber
+pressure is the fix", "Winning the freeze race", and the whole "Going hotter was considered and
+declined" section, all of which currently rest on paper-side fits.
