@@ -1,19 +1,32 @@
 # The head-on leg gets a walled nozzle, and methane fills it
 
 Status: **proposed**. Resolved in a grill session on 2026-09-08, amended
-2026-09-09 when the flown fluid changed from ammonia to methane, and amended again
-the same day when the companion returned N9 item 0 and all of N10. Terms are
+2026-09-09 when the flown fluid changed from ammonia to methane, amended again
+the same day when the companion returned N9 item 0 and all of N10, and amended
+2026-09-10 when it returned N9 items 1 to 7 and the whole of N16. Terms are
 recorded in `CONTEXT.md` under **Wall-cap energy density**, **The slug ladder** and
 **Density is what saves every fluid on the ladder**.
 
-**The companion has answered N9 item 0 and N10 items 1 to 5.** The answer document
-is carried verbatim at `docs/walled_nozzle_answers_from_impact_sim.md`, from
-`puffsat_impact_simulation` at `6d74d3f`, computed at its `4a448c0`. Every number
-below that changed is marked with the finding that moved it, W1 through W9. The
-paper text is still not written, because **N9 items 1 to 7 are the load case and
-none of them has been run**. Those decide whether the wall survives the arrival
-transient and whether the throat holds its area, and the section cannot state a
-survivable wall without them.
+**The companion has now answered everything this decision asked except N11 and
+N13.** Two answer documents are carried verbatim, both from
+`puffsat_impact_simulation` at `1ffd367`:
+`docs/walled_nozzle_answers_from_impact_sim.md` for W1 to W9 and
+`docs/walled_nozzle_grid_answers_from_impact_sim.md` for W10 to W24. Every number
+below that changed is marked with the finding that moved it.
+
+**The section can now be drafted.** N9 items 1 to 7 were the load case and were
+the stated gate, and they have come back. What remains open is the Stanton
+number, which decides \SI{100}{\cubic\meter} against \SI{150}{\cubic\meter} and
+nothing else, so the section can carry both rather than wait.
+
+**Five of this decision's positions reversed on the second return, and they are
+recorded in place rather than edited out.** The chamber runs hotter rather than
+cooler (W17). Water loses to methane in all 128 grid cells rather than tying at
+the cold end (W21). The water-plus-hydrogen configuration loses to plain methane
+(W22). The \SI{2000}{\kelvin} exit is the wrong target rather than an expensive
+one (W20). And the throat plates nothing back, so it is a consumable rather than
+self-healing (W15). **The two largest reversals share one cause**, which is that
+both priced what the exhaust returns without pricing what the chamber charged.
 
 **The largest single change is that the 2026-09-09 dissociation correction is
 withdrawn.** It cost methane 40 seconds on a two-parameter fit that the companion's
@@ -34,106 +47,148 @@ on the same convention".
 Admit a walled de Laval chamber as a non-magnetic option on the head-on
 Earth-to-Jupiter departure burn of `sec:jupiter_only_growth`, at the flown
 \SI{75}{\kilo\meter\per\second} closing speed. Run the chamber at
-\SI{10000}{\kelvin}, which is Rubbia's own radiative ceiling, and do not chase
-higher.
+\SI{12000}{\kelvin} in \SIrange{100}{150}{\cubic\meter} through a
+\SI{2}{\square\meter} throat, and book the throat as a consumable with a stated
+replacement interval.
 
-Going hotter was considered and declined. The ideal law $v = \sqrt{2c_pT}$ still
-holds, but our capacity is $A + BT$ where $A$ is the atomisation store, and only $BT$
-moves. Methane's sensible fraction is \num{0.273}, which the companion confirms at
-\numrange{0.277}{0.287}, so the exponent on temperature is far from \num{0.5} and
-\SI{12000}{\kelvin} returns 3.5 to 4.9\%. That is still smaller than the uncertainty in
-$\eta_{\mathrm{geom}}$, in the convective wall flux and in the recombination fraction,
-so it spends certainty to buy noise. \SI{10000}{\kelvin} additionally has a citation,
-closes the heat balance with 91\% of the wall load absorbed against 71\%, and keeps the
-liner at \SI{3.2}{\micro\meter} per pulse.
+**That reverses the chamber temperature this decision has carried since it was
+written, and the reversal is the largest correction the companion has sent.**
+Every earlier version ran at \SI{10000}{\kelvin} or argued for cooling below it.
+The companion's solved grid (W17) says the dial runs the other way, by 56 to
+59\%, at every throat. The superseded argument is kept below, because where it
+fails is the part worth having.
 
-**Charging the chemistry reverses this, and the reason to stay at
-\SI{10000}{\kelvin} is now much stronger than "the gain is small."** Every figure above
-comes from the withdrawn full-recombination convention, where a hotter chamber was worth a
-free 3.5\% and the only argument against it was that 3.5\% is inside the noise. Charged
-properly, **going hotter is negative.**
+### What was argued here, and the one term it omitted
 
-The mechanism is worth following, because it is the same one that cost the wall its impulse
-in the first place, running backwards. A hotter chamber genuinely helps where this decision
-said it did: at \SI{12000}{\kelvin} a kilogram of methane holds more, so the slug falls from
-\SI{489}{\kilo\gram} to 444, energy per kilogram rises from 136.8 to
-\SI{149.8}{\mega\joule\per\kilogram}, and the tear-apart bill falls from 74.2\% of the budget
-to 67.6\%. Held there, that is worth **+11\%**, three times what this decision booked.
+The argument ran in two steps and the first step is correct. Exit temperature is
+a near-fixed fraction of chamber temperature, which the companion confirms
+directly (W20). So a hotter chamber does leave a hotter exhaust, and hotter
+exhaust has handed back less of its chemistry. Read on its own that says cool
+the chamber, and this decision read it that way, booking \SI{817}{\second} at
+\SI{8000}{\kelvin} against \SI{722}{\second} at \SI{10000}{\kelvin}.
 
-**But the exit temperature rides along with the chamber, and the exit is what decides how much
-of the bill comes back.** At a fixed area ratio $T_e/T_c$ is fixed, so a
-\SI{12000}{\kelvin} chamber leaves the same \SI{7}{\square\meter} throat at
-\SI{6701}{\kelvin} rather than 5584. On the companion's own three exit points, roughly five
-points of store per \SI{500}{\kelvin}, it therefore leaves holding about 80.6\% of its store
-where the \SI{10000}{\kelvin} case holds 69.8\%, and it leaves hotter as well. **Break-even is
-78.4\% held**, so the hotter chamber falls just the wrong side of it on chemistry alone and
-clearly the wrong side once the extra leftover heat is counted.
+**The omitted term is how much store the chamber charges in the first place.**
+`todos/cooler_chamber.py` derives the tear-apart bill from an $A + BT$ capacity
+and concludes it "barely moves, 74 to 75\% everywhere, because $u$ and the
+charged store fall together". That holds only if the methane atomises fully at
+every chamber temperature, and it does not. On the companion's own equilibrium
+solve at \SI{100}{\cubic\meter}:
 
-| throat | \SI{10000}{\kelvin} | \SI{12000}{\kelvin} | |
-| ---: | ---: | ---: | ---: |
-| \SI{7}{\square\meter} | 709 s | 614 s | $-13\%$ |
-| \SI{4}{\square\meter} | 780 s | 715 s | $-8\%$ |
-| \SI{2}{\square\meter} | 858 s | 806 s | $-6\%$ |
+| chamber | \SI{6000}{\kelvin} | \SI{8000}{\kelvin} | \SI{10000}{\kelvin} | \SI{12000}{\kelvin} |
+| --- | ---: | ---: | ---: | ---: |
+| store charged | 0.336 | 0.657 | 0.887 | 0.961 |
+| slug ratio $k$ | 45.71 | 27.01 | 20.48 | 18.11 |
+| chamber pressure | \SI{1008}{\bar} | \SI{1127}{\bar} | \SI{1284}{\bar} | \SI{1448}{\bar} |
 
-**The \SI{12000}{\kelvin} column is an extrapolation of the companion's three solved exit
-states, not a solve.** The expansion has only ever been run from a \SI{10000}{\kelvin}
-chamber. That is N14, and it is cheap: the same `make walled-nozzle-freeze` at a different
-chamber temperature.
+A \SI{6000}{\kelvin} chamber parks two thirds of the store in \ce{C3} and
+\ce{C2H2}. That is already the recombined state, so there is nothing left down
+there to hand back. A kilogram holds less, more kilograms are needed to absorb
+the same \SI{70.3}{\giga\joule}, $k$ rises by two and a half times, and the
+exhaust speed $w/\sqrt{1+k}$ falls with it. **The cold chamber is cheap on the
+wall and expensive on the ledger, and the ledger term is much the larger.**
 
-**And \SI{15000}{\kelvin} is not the prize `CONTEXT.md` has been calling it.** The chamber
-arithmetic keeps improving, $k$ falling to \num{16.36} and the bill to 62.5\%, but the
-\SI{7}{\square\meter} exit lands near \SI{8400}{\kelvin}, where essentially nothing has
-recombined. That is roughly \SI{435}{\second}, not a near-tie with the magnetic nozzle.
+The second stale input compounds it. `k_from_ratio` inverts $\sqrt{1+k}/k$
+against the companion's W1 ratio table, which was the credit-only column. Both
+repositories now charge the head-on momentum debit, so the identity is
+$(\sqrt{1+k}-1)/k$, and the inverted $k$ moves with it. The solved
+\SI{8000}{\kelvin} slug ratio is \num{27.01} where this decision back-solved
+\num{24.33}.
 
-**What is binding is how cold the gas gets before it leaves, not how hot it started**, and the
-throat sets that at no cost in wall temperature. Narrow the throat, do not raise the chamber.
+### What the solved grid says
 
-**And going cooler is better, which is the same finding read the other way. The claim that it
-is worse does not survive either.** Written here yesterday: "\SI{8000}{\kelvin} costs 6 to 12\%
-and does not get the exit-temperature refund, because a cooler chamber has less energy to begin
-with." The second half is wrong. The exit temperature is a fixed **fraction** of the chamber
-temperature, so a cooler chamber gets the refund in exactly the same proportion a hotter one
-pays the penalty.
+Effective specific impulse, methane at \SI{100}{\cubic\meter}, on the
+companion's conventions and carrying none of this paper's launch-ledger
+normalisations:
 
-At \SI{8000}{\kelvin} the slug grows from \SI{489}{\kilo\gram} to 608 and $u$ falls from 136.8
-to \SI{111}{\mega\joule\per\kilogram}. **But the tear-apart bill's share barely moves**, 74.2\%
-to 74.6\%, because the charged store and $u$ fall together. Meanwhile the
-\SI{7}{\square\meter} exit falls from \SI{5501}{\kelvin} to 4401, where the store held drops
-from 69.0\% to 58.4\%. Net: **\SI{817}{\second} against \SI{722}{\second}, a gain of 13\%**,
-where the withdrawn convention booked an 8\% penalty.
+| throat | \SI{6000}{\kelvin} | \SI{8000}{\kelvin} | \SI{10000}{\kelvin} | \SI{12000}{\kelvin} |
+| ---: | ---: | ---: | ---: | ---: |
+| \SI{7.00}{\square\meter} | 509 s | 637 s | 738 s | 808 s |
+| \SI{2.00}{\square\meter} | 625 s | 780 s | 899 s | 976 s |
+| \SI{0.50}{\square\meter} | 702 s | 884 s | 1012 s | **1093 s** |
+| \SI{0.20}{\square\meter} | 716 s | 903 s | 1040 s | 1124 s |
+| \SI{0.10}{\square\meter} | 725 s | 909 s | 1045 s | 1129 s |
 
-| chamber | $k$ | slug | exit $T$ | store held | effective Isp | wall load |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| \SI{8000}{\kelvin} | 24.33 | \SI{608}{\kilo\gram} | 4401 K | 58.4\% | **817 s** | **0.41$\times$** |
-| \SI{9000}{\kelvin} | 21.65 | \SI{541}{\kilo\gram} | 4951 K | 63.7\% | 778 s | 0.66$\times$ |
-| \SI{10000}{\kelvin} | 19.56 | \SI{489}{\kilo\gram} | 5501 K | 69.0\% | 722 s | 1.00$\times$ |
-| \SI{12000}{\kelvin} | 17.77 | \SI{444}{\kilo\gram} | 6601 K | 79.6\% | 579 s | 2.07$\times$ |
+**Hotter wins at every throat.** The reversal is not an artefact of the
+momentum debit either. On the credit-only convention the same rows read 677 to
+1231 and 892 to 1552, so the debit narrows the margin from \num{1.74} to
+\num{1.56} and leaves the ranking untouched. The \SI{817}{\second} and
+\SI{722}{\second} figures are withdrawn, along with the \SI{579}{\second} at
+\SI{12000}{\kelvin} and the whole cooler-chamber table.
 
-**A cooler chamber is the only lever in this decision that pays on the exhaust and the wall at
-the same time.** Escaping flux goes as $T^4$, so \SI{8000}{\kelvin} hands the wall 41\% of the
-load \SI{10000}{\kelvin} does, and the liner loses \SI{1.3}{\micro\meter} per pulse rather than
-3.2. Every other lever here trades one against the other. **That is what makes the narrow
-throat of N15 affordable**, because the throat's problem is wall and throat heat flux and a
-cooler chamber is what pays for it.
+### The ceiling is a wall argument, and it should be stated as one
 
-**Two ways to reach the same exit temperature, and they cost different currencies.** Cooling to
-\SI{8000}{\kelvin} at the \SI{7}{\square\meter} throat and staying at \SI{10000}{\kelvin} with a
-\SI{2.3}{\square\meter} throat both land the exit near \SI{4450}{\kelvin}. The first costs
-\SI{119}{\kilo\gram} more slug per pulse. The second costs three times the pulse length and
-three times the throat flux. **They compose**, and the combination is what N14 and N15 should be
-run together to price.
+What survives from the old reasoning is the cost. Going hotter does load the
+wall, and the companion now prices it (W14). Liner flux rises from
+\SIrange{93}{174}{\mega\watt\per\square\meter} at \SI{10}{\kilo\kelvin} to
+\SIrange{198}{351}{\mega\watt\per\square\meter} at \SI{15}{\kilo\kelvin}. So the
+temperature ceiling is real and it is set by what the liner takes, not by the
+gain being too small to chase. **The gain is not small.** This decision
+previously declined \SI{12000}{\kelvin} on the grounds that 3.5 to 4.9\% sits
+inside the noise in $\eta_{\mathrm{geom}}$. The solved figure is \SI{+8.9}{\percent}
+at the ask's throat and \SI{+40.2}{\percent} once the throat moves with it.
 
-**Where the floor is has not been established.** The companion's chamber solve stops at
-\SI{8000}{\kelvin}, and W1 flags that row as its softest, with the \ce{C3} exposure at 3.4 to
-9.9\% against 0.1 to 1.2\% at \SI{10000}{\kelvin}, erring toward understating the charge. So
-\SI{8000}{\kelvin} is probably better than the table says, and nothing here shows where cooling
-stops helping. That is the first half of N14, and it is now the interesting half.
+\SI{15000}{\kelvin} is still not taken, and now for a stated reason rather than
+an assumed one. The companion's grid stops at \SI{12000}{\kelvin}, so a
+\SI{15000}{\kelvin} row would be an extrapolation, and W14 puts its liner flux
+at roughly twice the \SI{12000}{\kelvin} load. The band worth running next is
+\SIrange{12000}{15000}{\kelvin} against the liner, not against the ledger.
+
+### Chamber volume is not free either
+
+This decision has treated volume as costless, on the correct observation that
+vessel mass runs as $nRT\rho/\sigma$ with $nRT$ fixed by the pulse. The mass
+argument stands. The performance is not flat (W18). Effective Isp for methane
+at a \SI{0.5}{\square\meter} throat:
+
+| chamber | \SI{6000}{\kelvin} | \SI{8000}{\kelvin} | \SI{10000}{\kelvin} | \SI{12000}{\kelvin} |
+| ---: | ---: | ---: | ---: | ---: |
+| \SI{50}{\cubic\meter} | 692 s | 856 s | 995 s | 1091 s |
+| \SI{100}{\cubic\meter} | 702 s | 884 s | **1012 s** | **1093 s** |
+| \SI{200}{\cubic\meter} | **707 s** | **893 s** | 1008 s | 1081 s |
+| \SI{400}{\cubic\meter} | 706 s | 879 s | 971 s | 1039 s |
+
+Two effects cross. A bigger chamber is thinner, so it dissociates more and $k$
+falls, which is the same physics as the temperature dial. A thinner chamber also
+freezes sooner, because a three-body rate goes as density squared. The optimum
+is interior and it moves with temperature, sitting at \SI{200}{\cubic\meter}
+cold and \SI{100}{\cubic\meter} hot. At \SI{12000}{\kelvin} the whole column is
+flat to within 1\%, so **the \SI{100}{\cubic\meter} recommendation is right, and
+right for a reason this decision did not give.** It is only right in company
+with a hotter chamber.
+
+**The floor is about \SI{150}{\cubic\meter} and it is set by the contraction**
+(W23). Below the \SI{178}{\cubic\meter} gate the front leaves the column without
+reaching the side wall, which is what N9 items 1 to 4 turned on, but it does not
+leave the hardware. Against a \SIrange{0.05}{1}{\square\meter} throat the
+convergent section is 96 to 99\% of the bore area, so a short chamber trades a
+grazing side-wall strike for a normal-incidence strike on the contraction. That
+load runs the wrong way with shrinking volume. At \SI{50}{\cubic\meter} the
+front still carries 42\% of the pulse energy at \SI{31.4}{\kilo\meter\per\second}
+onto \SI{4.4}{\square\meter}, giving \SIrange{6.7}{66.7}{\mega\joule\per\square\meter}
+against the \SI{1.6}{\mega\joule\per\square\meter} the section clears the wall
+against. At \SI{150}{\cubic\meter} it is \SIrange{0.41}{4.14}{\mega\joule\per\square\meter},
+a factor of 16 better, and the impulse is flat to \SI{12}{\second} out of 1093
+across \SIrange{100}{200}{\cubic\meter}.
+
+**So carry both \SI{100}{\cubic\meter} and \SI{150}{\cubic\meter} and pick on
+the wall**, which is the only axis where they differ. \SI{100}{\cubic\meter}
+exits at \SI{4061}{\kelvin}, above the condensed-carbon floor, and has
+\num{0.36} decades of freeze margin. \SI{150}{\cubic\meter} is \num{2.9} times
+softer on the contraction and exits \SI{2}{\kelvin} below that floor, so its
+number is a bound rather than a solve.
+
 Present it as a family of working fluids ordered by one number, and name **methane**
 as the fluid we would fly.
 
 The precedent is Rubbia's thin-film \ce{^{242m}Am} fission-fragment-heated rocket,
-Project 242, which heats hydrogen to the same temperature continuously
-\cite{augelli2013project242}.
+Project 242, which heats hydrogen continuously to \SI{10000}{\kelvin}
+\cite{augelli2013project242}. That is now a floor on this chamber rather than the
+ceiling this decision took it for, and W2 settles what it does and does not license.
+Its \SI{2700}{\second} sits 24 to 29\% above the frozen ceiling of
+\SIrange{2085}{2229}{\second}, so the figure requires the recombination its own prose
+denies. Read the other way, \SI{2700}{\second} already implies converting 97.5\% of a
+\SI{12000}{\kelvin} hydrogen chamber's store, which is this architecture's
+full-conversion limit. It is not a target to scale upward from.
 
 ## The number that orders the family
 
@@ -325,12 +380,40 @@ gap is the reference state rather than a disagreement: this side used 298 K heat
 formation and the companion uses 0 K, matching its partition functions. State whichever,
 but state which. Ammonia's 2.70 has not been rechecked at 0 K.
 
-What decides it in methane's favour beyond the ledger is that **the carbon is the
-sacrificial layer this design already wants**. The liner loses \SIrange{1.26}{13.9}{\kilo\gram}
-per pulse against \SI{376}{\kilo\gram} of carbon in the exhaust, so
-\SIrange{0.34}{3.7}{\percent} redeposition makes it self-healing. A water or ammonia
-exhaust carries nothing that could rebuild a liner and has to be sprayed between
-pulses. Methane's exhaust is the spray.
+What decided it in methane's favour beyond the ledger was that **the carbon looked
+like the sacrificial layer this design already wants**. The liner loses
+\SIrange{1.26}{13.9}{\kilo\gram} per pulse against \SI{376}{\kilo\gram} of carbon in
+the exhaust, so \SIrange{0.34}{3.7}{\percent} redeposition would make it self-healing.
+
+**Withdraw that.** N9 item 5 came back and there is nothing to redeposit (W15). The
+exhaust is **undersaturated** in carbon at every wall temperature graphite survives,
+because the carbon is parked in acetylene rather than travelling as free atoms. The
+state that decides whether carbon sticks is the free stream's pressure at the wall's
+temperature, and at \SI{623}{\bar} the saturation ratio runs \num{1.00} at
+\SI{1912}{\kelvin}, \num{0.21} at \SI{2500}{\kelvin} and \num{0.032} at graphite's
+own \SI{3900}{\kelvin} working ceiling. A ratio below one means the gas can dissolve
+more carbon than it is carrying. **At the surface temperature this design runs, the
+exhaust takes graphite off the wall rather than putting it on**, with thirty-two times
+spare capacity.
+
+**The redeposition was not rate-limited. It is thermodynamically absent**, so no amount
+of residence time or surface preparation recovers it. The band where nothing plates runs
+from \SI{1912}{\kelvin} upward with no upper edge out to \SI{8000}{\kelvin}, and
+holding a surface under \SI{1900}{\kelvin} while it takes
+\SIrange{400}{2400}{\mega\watt\per\square\meter} means removing almost all of that
+load actively. **A self-healing carbon throat and a passively cooled one are mutually
+exclusive.**
+
+This turns on the boundary layer being in chemical equilibrium, and it is, with five
+decades to spare against a gas-kinetic collision frequency. If the layer were frozen at
+the free stream's composition the saturation ratio would be \num{41} instead of
+\num{0.032}, so the fork is six orders wide and the margin decides it cleanly.
+
+**What this costs methane is the free-service argument, not the fluid choice.** A water
+or ammonia exhaust carries nothing that could rebuild a liner, and it now turns out
+neither does methane's. Methane's exhaust is not the spray. The liner and the throat
+both need the sprayed film on their own account, and methane keeps its place on the
+ledger instead (W21).
 
 ## What the wall survives on
 
@@ -381,7 +464,102 @@ Mass runs as $1.5\,nRT\rho/\sigma$ and does not depend on pressure. The same
 \SI{16.9}{\giga\joule} of $nRT$ gives \SI{991}{\tonne} in steel, \SI{125}{\tonne} in
 titanium and about \SI{8.7}{\tonne} in carbon overwrap for the methane charge.
 
-## The throat is the largest lever in the section, and N9 has to price it
+## The load case came back, and N9 items 1 to 7 close
+
+Answered 2026-09-10 (W10 to W15, W23). These were the whole of what this
+decision said was still owed before the section could be drafted. **The premise
+they were posed against does not survive, and it fails in the design's favour.**
+
+**The front never reaches the side wall below \SI{178}{\cubic\meter}** (W10).
+The gate this decision guessed at \SI{170}{\cubic\meter} is real and the guess
+was right to 5\%. On the 1.0, 1.6 and 1.9 times sound-speed spreading bracket
+that `sec:needle_through_fog` already uses, the gate runs 178, 109 and
+\SI{92}{\cubic\meter}. So the honest statement is that the side wall is safe at
+\SI{50}{\cubic\meter}, and safe at \SI{100}{\cubic\meter} unless the front
+spreads faster than its own sound speed.
+
+**Where the front does reach the wall it is nowhere near \SI{200000}{\kelvin}**
+(W11). That figure is right for the entering front and wrong for the arriving
+one. At \SI{75}{\kilo\meter\per\second} into methane the freshly shocked layer
+really is at \SIrange{166000}{205000}{\kelvin}. It then decelerates hard,
+because the chamber is \SIrange{0.7}{11}{\kilogram\per\cubic\meter} rather than
+the magnetic bag's \num{0.32}:
+
+| chamber | contact station | arrival speed | swept | **layer $T$ at contact** |
+| ---: | ---: | ---: | ---: | ---: |
+| \SI{50}{\cubic\meter} | never, leaves at $r = \SI{1.19}{\meter}$ | | | |
+| \SI{100}{\cubic\meter} | never, leaves at $r = \SI{2.02}{\meter}$ | | | |
+| \SI{200}{\cubic\meter} | \SI{6.15}{\meter} | \SI{9.2}{\kilo\meter\per\second} | \SI{178}{\kilo\gram} | **\SI{4867}{\kelvin}** |
+| \SI{400}{\cubic\meter} | \SI{5.64}{\meter} | \SI{19.2}{\kilo\meter\per\second} | \SI{72.5}{\kilo\gram} | **\SI{17186}{\kelvin}** |
+| \SI{673}{\cubic\meter} | \SI{5.57}{\meter} | \SI{28.2}{\kilo\meter\per\second} | \SI{41.5}{\kilo\gram} | **\SI{30726}{\kelvin}** |
+
+In the \SI{200}{\cubic\meter} chamber the front sweeps seven times its own mass
+before it touches, so the layer at contact is 37 times cooler than the layer at
+entry. **A wall argument made against \SI{200000}{\kelvin} is being made against
+a state that never sees the wall.**
+
+**Two corrections inside that.** The spreading cone is \SIrange{28.7}{30.3}{\degree},
+not the \SI{24.9}{\degree} this decision carries. The \SI{24.9}{\degree} figure
+belongs to water at \SI{45.58}{\kilo\meter\per\second}, and methane at
+\SI{75}{\kilo\meter\per\second} opens wider. And the contact station is nearly
+independent of chamber volume at \SIrange{5.6}{6.2}{\meter}, because a denser
+pre-charge decelerates the front exactly as fast as it shortens the column. This
+decision's "6 m of the column" is right, for a reason it did not state.
+
+**The strike is convective, not radiative, and this decision had the wrong
+channel worried** (W12). Radiative delivery is
+\SIrange{0.001}{0.009}{\mega\joule\per\square\meter} against the
+\SI{1.6}{\mega\joule\per\square\meter} the section already clears the wall
+against. Convective delivery is \SIrange{0.11}{1.09}{\mega\joule\per\square\meter}
+at \SI{200}{\cubic\meter} and \SIrange{8.79}{87.9}{} at \SI{673}{\cubic\meter}.
+**The verdict does not depend on the opacity model**, because at the thin end
+the blackbody cap settles it and at the thick end more opacity means less
+delivery.
+
+**And the convective channel gets worse with a bigger chamber**, since delivery
+scales as shocked density times radial speed times specific energy times
+duration and every one of those grows as the chamber thins. So the wall argument
+and the ledger argument now point the same way, which is the first time in this
+decision they have. **Make the chamber small**, subject to the contraction floor
+in the Decision above.
+
+**The Bartz estimate is a good liner number and should be labelled one** (W14).
+This decision's \SIrange{123}{281}{\mega\watt\per\square\meter} between 10,000
+and \SI{18000}{\kelvin} overlaps the solved liner column across 10 to
+\SI{15}{\kilo\kelvin}, matching well at \SI{200}{\cubic\meter} and running high
+at \SI{673}{\cubic\meter}. So the conclusion that convection is 80 to 90\% of
+the wall load, and that it rather than radiation sets the temperature ceiling,
+survives.
+
+**What is new is the throat, and it is the binding component.** At the flown
+\SI{7}{\square\meter} throat the flux is about three and a half times the
+liner's on both heat-capacity edges, \SIrange{328}{610}{\mega\watt\per\square\meter}
+against the liner's \SIrange{93}{174}{}, and the surface temperature at
+radiative balance is \SIrange{7400}{12100}{\kelvin} against graphite's
+\SI{3900}{\kelvin} working ceiling.
+
+The throat ablates at \SI{0.23}{\milli\meter} per pulse at \SI{2}{\square\meter}
+and \SI{1.07}{\milli\meter} at \SI{0.5}{\square\meter}. **Those two figures are
+at \SI{100}{\cubic\meter} and \SI{8000}{\kelvin}**, at the equilibrium
+heat-capacity edge with no transpiration credit, so read them as the pessimistic
+end of a factor-of-two band and not as the flown chamber's numbers. That is what
+the throat-life table in the throat section above is counting, and W15 says there
+is no credit side to set against it.
+
+**Read the size and not the digits.** Bartz was fitted on chemical rockets at
+tens of bar and a few thousand kelvin, and is extrapolated here to a thousand
+bar and a partly ionised boundary layer. Its frozen and equilibrium heat-capacity
+edges differ by a factor of 1.9 to 2.2, which is the honest width of the answer.
+
+**The one number that binds and is not solved is the Stanton number.** The
+convective figures above are the stagnation enthalpy the layer brings to the
+wall times a Stanton number bracketed over \numrange{0.001}{0.01}, which is the
+Reynolds analogy on a turbulent boundary layer. That factor of ten is the
+largest single uncertainty in the load case. It decides the
+\SI{100}{\cubic\meter} against \SI{150}{\cubic\meter} choice in the Decision,
+and closing it needs a boundary-layer solve on the contact geometry.
+
+## The throat is the largest lever in the section, and it is priced in throat life
 
 This decision treated throat area as a chemistry knob, holding density up so
 recombination could keep up. **That is the right knob for the wrong reason and it
@@ -416,20 +594,112 @@ chamber. **Narrow the throat on the small chamber rather than the large one.** A
 decades, below the rate coefficient's own uncertainty, where \SI{200}{\cubic\meter}
 still holds 1.33.
 
-**The cost is blowdown time and it is not priced.** Choked mass flow goes as the throat
-area, so the pulse stretches from \SI{8}{\milli\second} to 28 as the throat goes 7 to
-2. That is $3.5\times$ longer for the wall to absorb the same pulse, while the throat
-itself passes the same power through a third of the area. Both are N9 items 1 to 7 and
-neither has been run, so **every number in that table is an upper bound on what is
-actually collectable**. The \SI{2}{\square\meter} row also exits at
-\SIrange{4349}{4561}{\kelvin}, walking into the range where the companion's equation of
-state omits condensed carbon and stops being a physical answer.
+**The cost is dwell, and the companion has now priced it** (W24). This decision
+expected the cost to be blowdown time and the throat flux, and only the first
+half was right. Bartz gives the throat flux as $D_*^{-0.2}$, so halving the
+throat area raises it by about 7\%, which is \SI{610}{\mega\watt\per\square\meter}
+at \SI{7}{\square\meter} against 932 at \SI{0.1}{\square\meter}, a factor of
+\num{1.5} across a factor of 70 in area. What moves is the blowdown, because the
+same chamber empties through a smaller hole. It runs \SI{8}{\milli\second} at
+\SI{7}{\square\meter}, \SI{56}{\milli\second} at 1 and \SI{560}{\milli\second}
+at \SI{0.1}{\square\meter}, a factor of 70 that matches the area exactly.
+Fluence is flux times time, so the dwell carries almost all of the cost.
+
+> **A narrower throat does not heat the throat harder. It heats it for twice as
+> long.**
+
+**That converts into a pulse count, because the throat is a consumable** (W15,
+below). Recession is radial, so an eroding throat opens, drifting back up the
+trade curve it was narrowed to climb:
+
+| throat | $A/A_*$ | conversion | effective Isp | vs \SI{7}{\square\meter} | recession per pulse | pulses to $+10\%$ area |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| \SI{7.00}{\square\meter} | 4.0 | 0.406 | 738 s | | \SI{0.04}{\milli\meter} | 1947 |
+| \SI{4.00}{\square\meter} | 7.1 | 0.468 | 822 s | $+11.3\%$ | \SI{0.07}{\milli\meter} | 795 |
+| **\SI{2.00}{\square\meter}** | 14.1 | 0.532 | **902 s** | $+22.1\%$ | \SI{0.15}{\milli\meter} | **262** |
+| **\SI{1.00}{\square\meter}** | 28.3 | 0.585 | **965 s** | $+30.7\%$ | \SI{0.32}{\milli\meter} | **87** |
+| \SI{0.50}{\square\meter} | 56.5 | 0.623 | 1008 s | $+36.5\%$ | \SI{0.68}{\milli\meter} | 29 |
+| \SI{0.20}{\square\meter} | 141.4 | 0.629 | 1015 s | $+37.5\%$ | \SI{1.87}{\milli\meter} | 7 |
+| \SI{0.10}{\square\meter} | 282.7 | 0.633 | 1020 s | $+38.1\%$ | \SI{4.01}{\milli\meter} | 2 |
+
+Methane at \SI{200}{\cubic\meter} and \SI{10000}{\kelvin}, the ask's own point,
+so the rows are comparable with the table above. Hydrogen runs the same curve
+slightly steeper, 1143 s at \SI{7}{\square\meter} and 1544 at 1.
+
+**The exponent is derived rather than fitted, which is the part to trust.** Flux
+goes as $A_*^{-0.1}$ and blowdown as $A_*^{-1}$, so recession goes as
+$A_*^{-1.1}$. A fixed fractional area growth needs recession proportional to
+$r_* \sim A_*^{0.5}$, so life goes as $A_*^{1.6}$, a factor of \num{3.03} per
+halving. The solved columns reproduce that to 2\% across the ladder.
+
+> **The exchange rate: each halving of throat area buys 4 to 10\% effective Isp
+> and costs a factor of three in throat life.** The rate worsens as it goes. The
+> step from 7 to \SI{2}{\square\meter} pays seven times the life for
+> \SI{+22}{\percent}; the step from 1 to \SI{0.5}{\square\meter} pays three times
+> for \SI{+4.4}{\percent}.
+
+**Why the curve flattens is in the chemistry, not the geometry** (W19). Raw
+conversion climbs all the way to \num{0.748}, but freeze-capped conversion
+saturates at \num{0.633}. Past the freeze station the equilibrium branch keeps
+releasing chemistry the real flow no longer has time to release. So below about
+\SI{0.5}{\square\meter} the extra nozzle delivers nothing, and the chemical wall
+sits between 1 and \SI{0.5}{\square\meter} rather than at $A/A_* = 140$ where an
+earlier reading put it.
+
+**Take \SI{2}{\square\meter}.** It is worth \SI{+22}{\percent} on methane and
+\SI{+25}{\percent} on hydrogen, lasts 262 pulses to $+10\%$ area, stays on the
+equilibrium branch, and exits above the condensed-carbon floor.
+\SI{1}{\square\meter} buys a third more impulse for three times the erosion, and
+is the right answer only if the throat is a scheduled consumable rather than
+hard to service. Below \SI{0.5}{\square\meter} the gain is under 1\% per halving.
+
+**This decision's stated cost of narrowing corresponds to \SI{2}{\square\meter}
+and no deeper.** The 8 to \SI{28}{\milli\second} pulse stretch quoted above is
+exactly the 7 to \SI{2}{\square\meter} step. Nothing in the section has ever
+priced a throat narrower than that, and the deep-throat rows elsewhere in this
+decision should be read against the 87-pulse and 29-pulse intervals rather than
+as free choices.
+
+**So the section must state a throat-replacement interval alongside its throat
+area, and at present it states neither.** If the throat cannot be serviced at
+all the calculus inverts, because total impulse per throat goes as pulses times
+Isp and that falls fifty-fold from 7 to \SI{1}{\square\meter}. That makes the
+throat choice an economics one, and the table above is the exchange rate to
+price it with.
+
+**Two caveats travel with the millimetres.** Bartz is far outside its
+calibration here, having been fitted on chemical rockets at tens of bar and a
+few thousand kelvin rather than a thousand bar at ten thousand kelvin with a
+partly ionised boundary layer, so read the exponent and not the digits. And the
+ablation depth takes no transpiration credit, while a blowing boundary layer
+typically halves the net flux at these rates, so every pulse count above is the
+pessimistic edge of a factor-of-two band.
+
+The \SI{2}{\square\meter} row's exit at \SIrange{4349}{4561}{\kelvin} still sits
+near the range where the companion's equation of state omits condensed carbon.
+That has not moved.
 
 ## Four hotter-chamber options priced and declined, and what they point at
 
 Raised 2026-09-09. All four are declined, and the disproof is the same in every case, which
 is why they are recorded together: **what pays is how cold the gas gets before it leaves, and
 raising the chamber temperature raises the exit temperature in the same proportion.**
+
+**The four options stay declined and the disproof no longer generalises** (W17, W20).
+The premise above is half right. Exit temperature genuinely is a near-fixed fraction of
+chamber temperature, which N16 confirms directly, so the blowdown arithmetic that kills
+these four extreme chambers stands untouched. What the premise does not license is the
+general rule that a hotter chamber is worse, because it prices only the exhaust and not
+the charge. **Between 6,000 and \SI{12000}{\kelvin} hotter wins at every throat**, and
+the Decision above now runs at 12,000. What kills \SI{25000}{\kelvin} is that the
+nozzle needed to cool it back down does not fit in the pulse period, which is a
+different argument and a sound one.
+
+The $T_e/T_c = 0.667\,(A/A_*)^{-0.138}$ fit below is also superseded (W20). The real
+slope is not constant, running $-0.189$ near the throat and $-0.080$ far downstream, so
+$-0.138$ is a fair average over $A/A_* = 4$ to 140 and a bad local slope at either end.
+That does not rescue any of the four, because all four need extrapolation far past 140
+where the flow has frozen anyway.
 
 The exit temperature is a fixed fraction of the chamber temperature at fixed area ratio. Fitting
 the companion's own four points, including its deep-expansion diagnostic, gives
@@ -547,7 +817,43 @@ so the cryostat is not small in the sense that matters for boil-off, which scale
 area. What is true is that the hydrogen volume per pulse falls from \SI{2.74}{\cubic\meter} to
 \SI{0.97}{\cubic\meter} against a pure-hydrogen slug, a genuine factor of \num{2.8}.
 
-## Winning the freeze race, and why it forces a cooler chamber
+### N16 swept the dial, and the mix still loses to plain methane
+
+Answered 2026-09-10 (W22). **The dial is real and it is not enough.** Swept at the
+best methane cell, \SI{12000}{\kelvin} and \SI{100}{\cubic\meter} through a
+\SI{0.5}{\square\meter} throat:
+
+| \ce{H2} by mass | $k$ | $u$ | effective Isp, upper | min $Da$ |
+| ---: | ---: | ---: | ---: | ---: |
+| 0\%, pure water | 36.81 | \SI{74.4}{\mega\joule\per\kilogram} | 846 s | 2.89 |
+| 5\% | 30.44 | \SI{89.5}{} | 933 s | 1.68 |
+| **10\%** | 26.05 | \SI{104.0}{} | **1009 s** | 1.04 |
+| 20\% | 20.25 | \SI{132.4}{} | 1140 s | 0.445 |
+| 30\% | 16.55 | \SI{160.3}{} | 1251 s | 0.206 |
+| *plain methane, same cell* | *18.11* | *\SI{147.2}{}* | *1093 s* | *23* |
+
+**Hydrogen buys energy density and sells freeze margin.** Energy per kilogram
+more than doubles across the sweep, which is the whole benefit and is genuine.
+But diluting the water slows water's own three-body return, which goes as the
+square of water density, so the Damkoehler number falls the whole way.
+**Matching methane needs about 15\% hydrogen and passing it about 20\%**, and by
+then the bracket is \SI{313}{\second} wide against methane's single hard number
+with 23 decades of margin.
+
+**Le Chatelier was the unpriced term and it runs the wrong way for the mix.**
+This section flagged it as possibly worth a great deal at a cold exit. It is
+still unpriced, because there is no joint hydrogen-oxygen equilibrium equation of
+state, and the companion composes the mixture as two independent subsystems at a
+common temperature. That is exact for the thermal terms and wrong in one
+direction: the free hydrogen does not shift water's own dissociation equilibrium
+in the model, and Le Chatelier puts the real mixture's held store **above** the
+modelled one. **Every mixture figure is therefore an optimistic edge**, and the
+mixture loses anyway, so the verdict is safe in the direction it matters.
+
+**The volume correction above stands and is worth keeping**, since the cryostat
+argument is unaffected by any of this.
+
+## Winning the freeze race, and why it does not force a cooler chamber after all
 
 Raised 2026-09-10. Reaching the temperature where the store actually comes back is a race
 against the density that makes coming back possible. Expanding cools the gas, which is what
@@ -607,6 +913,56 @@ thirty-fold in area ratio. The companion's equation of state omits condensed car
 **Water has no condensed phase to worry about at \SI{2630}{\kelvin}**, so the fluid choice may
 reverse at the cold end, which is one more reason to run N14, N15 and the mix together rather
 than separately.
+
+### N16 answered it: the race is real, the wall is where this said, and the conclusion still reverses
+
+Answered 2026-09-10 (W18, W19). **The mechanism in this section survives and the
+recommendation drawn from it does not.** That combination is worth stating
+plainly, because it is the same failure as the temperature dial and it has the
+same cause.
+
+**What survives.** There is a chemical wall and it sits near $A/A_* \approx 140$,
+which is inside this section's own 125-to-170 estimate. Freeze margin in decades
+against the threshold, methane at \SI{8000}{\kelvin}, negative meaning frozen:
+
+| chamber \\ throat | \SI{7.00}{\square\meter} | \SI{2.00}{\square\meter} | \SI{1.00}{\square\meter} | \SI{0.50}{\square\meter} | \SI{0.20}{\square\meter} | \SI{0.10}{\square\meter} |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| \SI{50}{\cubic\meter} | 3.48 | 2.10 | 1.37 | 0.64 | $-0.32$ | $-1.05$ |
+| \SI{100}{\cubic\meter} | 3.00 | 1.65 | 0.93 | 0.20 | $-0.74$ | $-1.46$ |
+| \SI{200}{\cubic\meter} | 2.48 | 1.16 | 0.45 | $-0.27$ | $-1.19$ | $-1.90$ |
+| \SI{400}{\cubic\meter} | 0.76 | 0.49 | $-0.05$ | $-0.77$ | $-1.68$ | $-2.37$ |
+
+A thinner chamber does freeze sooner, exactly as this section argued, because a
+three-body rate goes as density squared. That is why the \SI{400}{\cubic\meter}
+row is a decade worse than the \SI{50}{\cubic\meter} one at every throat.
+
+**What reverses.** This section priced only the exit side of the ledger. It
+asked how cold the gas can get before it freezes, found that a cooler chamber
+gets colder, and stopped. What it did not price is how much store the chamber
+charged before any of that. A \SI{8000}{\kelvin} methane chamber charges
+\num{0.657} of full atomisation against \num{0.961} at \SI{12000}{\kelvin}, so
+the cooler chamber is running a deeper expansion on a much smaller store. The
+solved grid puts \SI{100}{\cubic\meter} at \SI{8000}{\kelvin} through a
+\SI{0.5}{\square\meter} throat at \SI{884}{\second}, against
+\SI{1093}{\second} at \SI{12000}{\kelvin}.
+
+**So the \SI{1150}{\second} near-tie is withdrawn**, along with the
+\SI{2630}{\kelvin} exit it was scored at and the claim that cooling wins the
+race three ways at once. Cooling does win the race. It wins a race whose prize
+shrank faster than the odds improved.
+
+**The two free levers this section named both stand.** The Damkoehler number is
+linear in nozzle length, and atomic hydrogen is a far better third body than
+argon. Neither is enough to move the verdict, because the binding term is the
+charge rather than the return.
+
+**One thing this section got right and should keep credit for.** It identified
+that the chamber temperature decides whether the exit can reach the chemistry at
+all, rather than merely trading against it. That is a threshold argument and it
+is correct. It points at methane rather than water, because methane's return
+channel is $\ce{H} + \ce{H} + \ce{M}$ with both partners the same species, while
+the water fluids need a scarce \ce{OH} and freeze four times sooner in area
+ratio (W22).
 
 ## No, a longer nozzle does not let water catch methane, and the reason is the useful part
 
@@ -681,6 +1037,25 @@ also reproduces the companion's own flown case at \SI{707}{\second} against the
 \SI{709}{\second} already carried, which is the check that it is calibrated rather than fitted.
 The cold end is still the best configuration in this decision. It is not as free as it looked.
 
+**The fit is retired, and it over-corrected at the end that mattered** (W16). N16 computed
+`held` directly over a nine-by-eight grid in density and temperature rather than fitting it, and
+the exponent turns out not to be a constant and not able to be one. It runs from 0 to $-0.25$
+for methane and 0 to $-0.42$ for water, vanishing at both ends, because a fully atomised gas has
+nothing left to shift and a fully recombined one has nothing left to break. That is mass action
+rather than a fitting artefact, and no single power law reproduces it.
+
+Against the solved surface the $\rho^{-0.21}$ fit is exact at its own anchor and good to
+$\pm 10\%$ between 3,500 and \SI{5000}{\kelvin}. **At \SI{3000}{\kelvin} it overstates
+`held` by 32 to 44\%**, and that is exactly where the deep expansions this decision was chasing
+actually exit. Overstating `held` understates recovery, **so the corrected cold-end numbers are
+pessimistic rather than optimistic**, which is the opposite of the direction this correction was
+made to guard against. The correction was right to make and it overshot at the cold end.
+
+**Use the solved surface.** It is 72 rows per fluid, carried in this repository at
+`docs/walled_nozzle_grid_answers_from_impact_sim.md` and committed in the companion as
+`data/results/walled_nozzle/held_surface.csv` with the local exponent alongside. Every figure in
+this section and the next is superseded by the grid tables in the Decision above.
+
 ## Raising the chamber pressure is the fix, and it is free on vessel mass
 
 **The correction above and this section are the same physics.** What re-dissociates the exhaust
@@ -723,65 +1098,79 @@ cone reaching a \SI{3}{\meter} wall only after \SI{6}{\meter} of column. **Below
 N9 items 1 to 3 rather than answer them. That is the single largest open item in this decision
 and a short chamber may simply delete it.
 
+**The gate is confirmed at \SI{178}{\cubic\meter} and the deletion is real** (W10), so this
+paragraph's guess was right to 5\%. **The rest of this section is superseded.** Its throat
+column runs to \SI{0.03}{\square\meter}, and the chemistry freezes between 1 and
+\SI{0.5}{\square\meter} (W19) while the throat itself lasts two pulses at
+\SI{0.1}{\square\meter} (W24). The impulse figures it reads off the retired fit are
+superseded by the solved grid. What survives is the lever itself, which is genuine: chamber
+volume trades against pressure at constant vessel mass, and a shorter column is what puts the
+front outside the wall. It is the deep throats that are gone, not the short chamber.
+
 **What it costs, and N9 has to price all of it.** The wall area falls with the column, so the
 same pulse lands on less of it. The throat becomes \SI{0.10}{\square\meter}, which is N9 item 5's
 problem raised by another factor of two. And \SI{1284}{\bar} is a real containment pressure even
 if the vessel mass does not feel it, with a liner that has to survive it. **The volume dial
 should be swept alongside the throat rather than fixed at 200 to 673 as this decision has it.**
 
-## At the cold end water is within 10\% of methane, and at a large chamber it wins
+## Withdrawn: water is not within 10\% of methane, and it never wins
 
-Asked 2026-09-10, and it changes what the fluid choice is about.
+Asked 2026-09-10 and answered by N16 on 2026-09-10 (W21). **The answer is that
+water loses in all 128 cells of the grid**, so the near-tie this section was
+built on is withdrawn along with the table that carried it.
 
-**Each fluid has a ceiling that no chemistry, pressure or nozzle can beat**, because it is fixed
-by the slug ratio and the slug ratio is fixed by energy density in the chamber. Perfect
-recombination with nothing left hot gives **methane \SI{1336}{\second} and water
-\SI{1006}{\second}**.
+Water's effective impulse as a fraction of methane's, both fluids run through
+identical machinery at a \SI{2}{\square\meter} throat:
 
-**Water essentially reaches its ceiling at any cold exit. Methane does not.** Water's remaining
-store is $\ce{H2} + \tfrac{1}{2}\ce{O2} \rightarrow \ce{H2O}$, ordinary gas-phase combustion
-that finishes by about \SI{3100}{\kelvin}. Methane's is stuck behind the \ce{C3} to acetylene
-path and then soot. So as the chamber shrinks and the exit gets colder, **methane keeps climbing
-and water is already done**:
+| chamber | \SI{50}{\cubic\meter} | \SI{100}{\cubic\meter} | \SI{200}{\cubic\meter} | \SI{400}{\cubic\meter} |
+| ---: | ---: | ---: | ---: | ---: |
+| \SI{6000}{\kelvin} | 0.772 | 0.780 | 0.790 | **0.800** |
+| \SI{8000}{\kelvin} | 0.798 | 0.800 | 0.797 | 0.763 |
+| \SI{10000}{\kelvin} | 0.792 | 0.787 | 0.786 | 0.570 |
+| \SI{12000}{\kelvin} | 0.786 | 0.787 | 0.606 | 0.615 |
 
-| volume | $p_c$ | methane exit | methane Isp | water exit | water Isp | gap |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 400 m³ | 321 bar | 3724 K | 971 s | 3528 K | **984 s** | **water wins, +1.3\%** |
-| 200 m³ | 642 bar | 3384 K | 1050 s | 3206 K | 990 s | $-5.7\%$ |
-| 100 m³ | 1284 bar | 3076 K | 1086 s | 2914 K | 995 s | $-8.4\%$ |
-| 50 m³ | 2568 bar | 2795 K | 1100 s | 2648 K | 999 s | $-9.2\%$ |
+**The best water ever manages is \num{0.800}**, at \SI{6000}{\kelvin} and
+\SI{400}{\cubic\meter}, which is also the worst corner of the grid in absolute
+terms. The low cells at large volume are where water freezes and methane has
+not. The claim that water reverses the ordering at \SI{400}{\cubic\meter} was an
+artefact of the cold-end table below, and that reversal does not appear anywhere
+in the solved grid.
 
-Both store above \SI{125}{\kilogram\per\cubic\meter}, so both fill a \SI{100}{\tonne} bay by
-mass and the launch ledger tracks these one for one.
+**A ratio is quoted deliberately.** Both fluids carry identical conventions, so
+every normalisation this paper applies cancels out of the column. The ratio
+survives the conventions where an absolute number would not.
 
-**This decision picked methane on a 31\% lead that no longer exists.** At the cold end the gap is
-5 to 9\%, and it reverses at \SI{400}{\cubic\meter}. **The fluid choice is now a liner argument
-rather than an impulse argument**, and that is a different question from the one this decision
-answered.
+**Why water loses, and it is one variable.** Water's mean atomised particle mass
+is \SI{6.0}{amu} against methane's \num{3.2}, so a kilogram of water holds fewer
+particles and less energy at the same temperature. It needs $k$ of 40 to 50
+where methane needs 20 to 27. Both the exhaust speed $w/\sqrt{1+k}$ and the
+carried-mass credit $(1+k)/k$ punish that. The head-on momentum debit narrows
+the gap by about six points, because water's larger $k$ means a smaller
+per-kilogram debit, but it never closes it.
 
-**What water gains beyond the number.** Ambient storage against methane's \SI{111}{\kelvin}, so
-no cryogenics at all. A chamber twice as dense at the same volume, worth $2.6\times$ the freeze
-margin for nothing. **No condensed-carbon problem**, which matters more than it sounds: ADR-0050's
-equation of state cannot speak below \SI{4000}{\kelvin} and every row in the table above is under
-it, but that limitation is *methane's*. And no throat carbon deposition, which is N9 item 5
-entire.
+**What this decision got wrong, and where.** The withdrawn table read methane's
+cold-end Isp off a paper-side recombination model rather than a solve, and read
+water's off a construction that was 5\% dissociated at \SI{1}{\bar} and
+\SI{3000}{\kelvin} scaled as $p^{-1/3}$. The construction was flagged as a
+caveat at the time. The larger error is the one that was not flagged: the
+`held` fit underneath both columns is wrong by 32 to 44\% at \SI{3000}{\kelvin},
+which is exactly where those deep expansions exit (W16, below). The ceilings
+quoted above, \SI{1336}{\second} for methane and \SI{1006}{\second} for water,
+were computed on that fit and are withdrawn with it.
 
-**What water loses, and it is the reason this decision chose methane in the first place.** The
-liner. Methane's exhaust carries \SI{376}{\kilo\gram} of carbon past a liner losing 1.26 to
-\SI{13.9}{\kilo\gram}, so 0.34 to 3.7\% redeposition makes it self-healing, and a water exhaust
-carries nothing that could rebuild it. Worse, `sec:watering_it_down` already picks pyrolytic
-graphite for a water plume **and then hedges it against oxygen**. A water chamber has to solve
-liner chemistry that a methane chamber solves for free.
+**What survives, and it is the part worth keeping.** Water's argument was never
+really impulse, and this section said so in its last paragraph. It stores at
+ambient against methane's \SI{111}{\kelvin}. It makes a chamber twice as dense
+at the same volume. It has no condensed-carbon problem, which matters because
+ADR-0050's equation of state cannot speak below \SI{4000}{\kelvin} and that
+limitation is methane's alone. And it puts no carbon through the throat, which
+is N9 item 5 entire.
 
-**So the recommendation is not to reopen the fluid choice yet, but to stop resting it on
-specific impulse.** N16 should report both fluids on the same grid, and the decision should then
-be made on the liner, on storage, and on which equation of state can actually speak at the
-temperatures the design wants to run at.
-
-**One caveat on water's column.** Its recombination model here is a paper-side construction, 5\%
-dissociated at \SI{1}{\bar} and \SI{3000}{\kelvin} scaled as $p^{-1/3}$, not a solve. Pushing the
-store held from 3\% to 15\% would cost water \SI{53}{\second}, which does not change the
-conclusion but does change the margin.
+**So the fluid choice is a liner choice, and it should be argued as one rather
+than sold as a near-tie on impulse.** The price of choosing water is now known
+and it is 26 to 30\% of the impulse, not 5 to 9\%. If the liner or the throat
+turns out to decide the design, that may still be the right trade. It is a much
+larger bill than this section booked.
 
 ## Carbon in the bulk slug does not rebuild the liner, and a fuel-rich wall film does
 
@@ -826,34 +1215,38 @@ chamber does not merely fail to rebuild a carbon liner, it actively attacks one.
 escape, since its oxides are volatile. **A fuel-rich boundary layer is the answer to both**, and
 it is the same answer real engines already use.
 
-## Does that put water on top? It removes the reason methane was on top
+## Does that put water on top? N16 answered it, and the answer is no
 
 **The liner was methane's argument, and the film retires it for both fluids.** If the wall needs
 a sprayed hydrocarbon film either way, then methane's exhaust carbon stops being a free service
-and becomes a duplicate of something the design is already doing.
+and becomes a duplicate of something the design is already doing. **That part stands.** What
+does not stand is the impulse table this section used to carry, which had methane's lead at 4 to
+6\% and reversing at \SI{400}{\cubic\meter}. It was built on the withdrawn cold-end columns.
 
-What is left of the comparison, at the cold end this decision is now heading toward:
+**On the solved grid the lead is 20 to 21\% at every chamber the design would fly** (W21), and
+the reversal at \SI{400}{\cubic\meter} does not exist. So the question this section posed, and
+which it framed as reasonable either way, has an answer:
 
-| | pure water | water + 10\% methane | pure methane |
-| --- | ---: | ---: | ---: |
-| 400 m³ | 984 s | **~1030 s** | 971 s |
-| 200 m³ | 990 s | ~1035 s | **1050 s** |
-| 100 m³ | 995 s | ~1040 s | **1086 s** |
-| storage | ambient | ambient plus a small \SI{111}{\kelvin} tank | \SI{111}{\kelvin} |
-| throat carbon (N9 item 5) | none | small | **the whole item** |
-| EOS below \SI{4000}{\kelvin} | fine | mostly fine | **cannot speak** |
-| liner | needs a fuel-rich film | needs a fuel-rich film | needs a fuel-rich film |
+| | pure water | pure methane |
+| --- | ---: | ---: |
+| effective Isp, \SI{100}{\cubic\meter} at \SI{12000}{\kelvin} | 0.787 of methane | **1093 s** |
+| effective Isp, \SI{200}{\cubic\meter} at \SI{10000}{\kelvin} | 0.786 of methane | 1008 s |
+| storage | ambient | \SI{111}{\kelvin} |
+| throat carbon (N9 item 5) | none | eroded, not plated (W15) |
+| EOS below \SI{4000}{\kelvin} | fine | **cannot speak** |
+| liner | needs a fuel-rich film | needs a fuel-rich film |
 
-**Methane's remaining lead is 4 to 6\% of impulse at the small chambers, and it reverses at
-400 m³.** Against that, water is stored at ambient, has no throat-carbon item, and can actually
-be modelled at the temperatures the design wants to run at, which methane cannot.
+**Methane stays the named fluid, and now on a solved margin rather than an assumed one.** The
+bill for switching to water is 26 to 30\% of the impulse. That is a real question if the liner
+turns out to decide the design, and it is no longer the near-tie that made the switch look
+close to free.
 
-**This decision should therefore stop naming methane as the flown fluid and name the question
-instead.** It is now: is 4 to 6\% of impulse worth a cryogenic tank, a throat-deposition item and
-an equation of state that goes blind exactly where the design is heading? **That is a reasonable
-question with a defensible answer either way, and it is not the question this decision answered
-when it picked methane on a 31\% lead.** N16 should settle it by running both fluids on the same
-grid.
+**One column in that table did move in water's favour, and it is worth stating plainly.** The
+condensed-carbon blindness is methane's alone, and most of the grid's interesting rows exit
+below \SI{4000}{\kelvin}. The one cell that escapes it is \SI{100}{\cubic\meter} at
+\SI{12000}{\kelvin} through a \SI{0.5}{\square\meter} throat, which exits at
+\SI{4061}{\kelvin}. That the recommended cell is also the one cell free of the equation of
+state's worst weakness is convenient, and it is worth not leaning on.
 
 ## Reference: both Isp conventions, and the slug ratio behind every number
 
@@ -897,6 +1290,50 @@ for methane, $+2.5\%$ for water. It is a decomposition, not an addition.
 \SI{1020}{\second} in one place and \SI{1006}{\second} in another. The first uses the paper-side
 full-atomisation $k = 38.24$ and the second the companion's solved $k = 39.55$. **The solved one
 is right**, and every water row in the cold-end tables already used it.
+
+**The companion now charges the same debit, and the two repositories agree.** This
+was the one place where the walled-nozzle answers and this decision were on
+different conventions, and it was worth 3\% of disagreement between W1's two
+anchor rows. The companion's ladder now reports
+$w(\eta_{\mathrm{jet}}\sqrt{1+k} - 1)/(k g_0)$, which is the identity above, so
+its effective column and this one can finally be set side by side. Its own
+head-on expression carried the $-1$ all along. The anchor rows that used to
+disagree by \SI{32}{\second} now agree to \SI{11}{\second}, which is inside
+their rounding.
+
+**One consequence is worth stating, because it reverses a claim this decision
+made about hydrogen.** On the credit-only column hydrogen led methane by
+\num{1.88} times. With the debit charged the lead is \num{1.55} times. Hydrogen
+collects the largest carried-mass credit and pays the largest momentum debit,
+and the debit is the bigger of the two by exactly $w/u_e$. It still wins the
+ladder decisively on chemistry. Its margin is smaller than the credit-only
+column showed.
+
+**The solved ladder, at the ask's own \SI{7}{\square\meter} throat and
+\SI{200}{\cubic\meter}** (W8), with the credit-only column kept alongside so the
+two conventions cannot be confused again:
+
+| fluid | $k$ | conv | $u_e$ | true Isp | **effective Isp** | *credit only* |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| hydrogen | 7.77 | 0.532 | 18482 | 1885 s | **1143 s** | *2127 s* |
+| methane | 19.56 | 0.406 | 10536 | 1074 s | **738 s** | *1129 s* |
+| ammonia (estimated) | 28.54 | *0.41* | ~8800 | *~901 s* | *~665 s* | *~933 s* |
+| water | 39.55 | 0.415 | 7588 | 774 s | **600 s** | *793 s* |
+
+**The molecular-weight law belongs to the credit-only convention, and it does not
+survive the correction.** Credit-only Isp tracks $1/\sqrt{\bar{m}}$ to within
+10\% across a factor of six in particle mass. The corrected column is compressed
+toward methane, running 1.55, 1.00 and 0.81 for hydrogen, methane and water
+against the law's 1.78, 1.00 and 0.73. The reason is that the debit also scales
+as $1/k$ and so also falls hardest on the light fluids. **The ordering is
+untouched, and only the margins shrink**, which is what the fluid verdict rests
+on.
+
+**Two rows below are withdrawn.** The cold-end block and the ceilings block both
+rest on the $\rho^{-0.21}$ fit for `held`, which the companion has retired
+(W16). The \SI{1336}{\second} methane ceiling and the \SI{1006}{\second} water
+ceiling go with it. The flown-throat block is unaffected, because it is the
+companion's own solve.
 
 ## Layering the pre-charge to break up the arrival shock: same physics either way, and second-order
 
@@ -991,53 +1428,108 @@ hydrogen, against a pure-hydrogen slug's 194 kg and \SI{2.74}{\cubic\meter}. **F
 half the cryogenics for a little over half the gain**, which is the trade a mission would
 actually tune.
 
-## The configuration this decision should now propose, and what N16 has to confirm
+## The configuration this decision proposes, after N16 priced the one it proposed first
 
-Assembled 2026-09-10 from everything above. **A \SI{100}{\cubic\meter} chamber at
-\SI{1284}{\bar}, expanded to its own freeze limit near a \SI{3100}{\kelvin} exit, with a
-fuel-rich methane wall film for the liner** (2.7 to \SI{27}{\kilo\gram} per pulse, off the
-propellant ladder). Scored on that geometry, effective Isp:
+Assembled 2026-09-10 and **replaced the same day, because N16 ran it and plain
+methane beat it** (W22). The withdrawn proposal was \SI{100}{\cubic\meter} at
+\SI{1284}{\bar}, a \SI{0.1}{\square\meter} throat, and a bulk slug of 90\% water
+with 10\% liquid hydrogen, scored at \SI{1138}{\second}. Three of its four
+choices do not survive.
 
-| bulk slug | $k$ | slug | storage | held | effective Isp | GN\,s | bay fills by |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
-| water | 39.54 | 989 kg | 1000 | 2.5\% | 995 s | 0.976 | mass |
-| water + 5\% \ce{H2} | 33.19 | 830 kg | 604 | 2.5\% | 1070 s | 1.049 | mass |
-| **water + 10\% \ce{H2}** | 28.56 | 714 kg | 432 | 2.5\% | **1138 s** | **1.116** | mass |
-| methane | 19.57 | 489 kg | 422 | 36.2\% | 1085 s | 1.064 | mass |
-| **methane + 10\% \ce{H2}** | 17.06 | 426 kg | 282 | 32.8\% | **1174 s** | **1.151** | mass |
-| pure hydrogen | 7.60 | 190 kg | 71 | 2.0\% | 1851 s | 1.028 | **volume** |
-| *(magnetic nozzle target)* | 8.52 | 213 kg | -- | -- | *1249 s* | *1.225* | mass |
+**Priced at its own point**, \SI{100}{\cubic\meter} and \SI{8000}{\kelvin}
+through a \SI{0.1}{\square\meter} throat:
 
-**The cold end compresses the fluid differences, which is the finding that matters.** Everything
-recombines by \SI{3100}{\kelvin} except methane's carbon, which is stuck at 36\% held because
-$\ce{C3} \rightarrow \ce{C2H2}$ is unfinished and soot needs nucleation. **Water goes from 40\%
-behind methane at the flown throat to 8\% behind it here**, and with 10\% hydrogen it passes
-plain methane outright.
+| bulk slug | $k$ | $p_c$ | exit $T$ | conversion raw / capped | freezes at $A/A_*$ | effective Isp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| **90\% water + 10\% \ce{H2}** | 34.42 | \SI{1289}{\bar} | \SI{3108}{\kelvin} | 0.763 / 0.610 | 11.2 | **811 to 933 s** |
+| water | 50.26 | \SI{1163}{\bar} | \SI{3228}{\kelvin} | 0.703 / 0.596 | 21.3 | 689 to 761 s |
+| **plain methane** | 27.01 | \SI{1127}{\bar} | \SI{3109}{\kelvin} | 0.697 / 0.633 | 47.6 | **909 to 968 s** |
 
-**So the recommended configuration is: \SI{100}{\cubic\meter}, a \SI{0.1}{\square\meter} throat,
-90\% water with 10\% liquid hydrogen in the bulk, and a methane wall film.** \SI{1138}{\second}
-and \num{1.116}, against methane-plus-hydrogen's 1174 and \num{1.151}. **The remaining 3\% is
-smaller than every unresolved item in this decision**, and it buys ambient bulk storage, no
-throat-carbon item, and an equation of state that can speak below \SI{4000}{\kelvin} where
-methane's cannot.
+All three freeze at this throat, so each is a bracket rather than a number, with
+capped conversion at the low end and equilibrium at the high end.
 
-**Pure hydrogen wins specific impulse by 56\% and still loses the launch ledger**, because a
-\SI{100}{\tonne} bay holds only \SI{57}{\tonne} of it. That is this decision's original finding
-and the cold end does not change it. **Hydrogen is worth paying for only if the mission is
-delta-v limited rather than launch-mass limited**, which is the same \SI{22}{\kilo\meter\per\second}
-threshold argument above and this leg is a few.
+**Three readings, and only the first was this decision's.** The hydrogen
+dilution is worth 18 to 23\% over plain water, which is real and is what the
+proposal rested on. Plain methane still beats the mixture by 4 to 12\% at both
+ends of the bracket. And methane's lead is partly that it freezes latest,
+$A/A_*$ of \num{47.6} against \num{11.2}, because its return channel is
+$\ce{H} + \ce{H} + \ce{M}$ with both partners the same species while the water
+fluids need a scarce \ce{OH}.
 
-**Nothing here passes the magnetic nozzle's \num{1.225}**, but that number is a performance
-target rather than a solve, and the only three-dimensional simulation under the same definition
-returns \num{0.34}. On solved-against-solved the walled option is ahead.
+**Hydrogen is a bigger dial than 10\%, and it is not enough.** Swept at the best
+methane cell, \SI{12000}{\kelvin} and \SI{100}{\cubic\meter} through a
+\SI{0.5}{\square\meter} throat, energy density runs from \SI{74.4}{\mega\joule\per\kilogram}
+at pure water to \SI{160.3}{\mega\joule\per\kilogram} at 30\% hydrogen. That is
+the whole benefit and it is real. But diluting the water slows its own
+three-body return, which goes as the square of water density, so the Damkoehler
+number falls the whole way. Matching methane on the upper bound needs about 15\%
+hydrogen and passing it needs about 20\%, and by then the bracket is
+\SI{313}{\second} wide against methane's single hard number.
 
-**What N16 has to confirm before any of this is written into the paper.** Three paper-side fits
-are stacked under every row: `held(T, rho)`, `T_e/T_c` against area ratio, and `Da` against exit
-density. The 10\% hydrogen rows additionally run 2\% high on `u`. And the whole table sits below
-\SI{4000}{\kelvin}, where ADR-0050's equation of state does not claim to work. **The
-configuration is a proposal to be priced, not a result.**
+**The mixture is an estimate and has to be labelled one wherever it is quoted.**
+There is no joint hydrogen-oxygen equilibrium equation of state, so it is
+composed of `eos_water` and a hydrogen equation of state as two independent
+subsystems at a common temperature. That is exact for the thermal terms and
+wrong about one thing, in that the free hydrogen does not shift water's own
+dissociation equilibrium. Le Chatelier puts the real mixture's held store above
+this, so every mixture number is an optimistic edge. The mixture already loses,
+so the conclusion is safe in the direction it matters.
 
-## A \SI{2000}{\kelvin} exit is reachable at \SI{50}{\cubic\meter}, and worth a few percent
+**The \SI{0.1}{\square\meter} throat is retired too**, and on three independent
+counts. Its blowdown is \SI{560}{\milli\second} against the
+\SI{400}{\milli\second} pulse period, so methane does not empty in time. Its
+freeze-capped conversion is flat against \SI{0.5}{\square\meter}, so the extra
+nozzle delivers under 1\% (W19). And it lasts two pulses to $+10\%$ area (W24).
+
+**The throat is the one choice in this configuration that is not settled, and the
+two candidates fail on different axes.** The chemistry optimum is
+\SI{0.5}{\square\meter}, which returns \SI{1093}{\second}, keeps \num{0.36}
+decades of freeze margin and exits at \SI{4061}{\kelvin}, just above the
+condensed-carbon floor. It is the only cell in the grid that is both near-optimal
+and free of the equation of state's worst weakness. Against that, W24's
+throat-life ladder puts \SI{0.5}{\square\meter} at 29 pulses where
+\SI{2}{\square\meter} gets 262, and that ladder was run at
+\SI{200}{\cubic\meter}. **This decision takes \SI{2}{\square\meter} because an
+unsolved throat life is not a reason to spend one**, and it names running the
+ladder at the flown chamber as the way to reopen the question.
+
+**So the configuration this decision now proposes is \SI{100}{\cubic\meter} at
+\SI{12000}{\kelvin}, a \SI{2}{\square\meter} throat, plain methane in the bulk,
+and a fuel-rich methane wall film.** It returns \SI{976}{\second} effective,
+exits at \SI{4892}{\kelvin} with \num{1.73} decades of freeze margin, and
+empties in \SI{12.5}{\milli\second}. Taking the throat to
+\SI{1}{\square\meter} buys \SI{1040}{\second} and to \SI{0.5}{\square\meter}
+\SI{1093}{\second}, the latter still on the equilibrium branch and still above
+the condensed-carbon floor at \SI{4061}{\kelvin}.
+
+**The throat-replacement interval at this chamber is not solved, and the section
+must not imply otherwise.** The companion's throat ladder was run at
+\SI{200}{\cubic\meter} and \SI{10000}{\kelvin}, which is where the 262-pulse
+and 87-pulse figures above come from. Two terms move in opposite directions at
+\SI{100}{\cubic\meter}, since the chamber empties in half the time, which halves
+the fluence, while the pressure doubles, which raises the Bartz flux. **Quote the
+\SI{200}{\cubic\meter} intervals as the available anchor and state the chamber
+they were measured at**, or run the ladder at the flown chamber. The exchange
+rate itself, a factor of three in throat life per halving of throat area, is
+derived from the flux and blowdown exponents rather than fitted, so it transfers
+where the absolute pulse counts do not.
+
+**What changed under the proposal, in one line each.** The fluid went back to
+methane because water loses in all 128 grid cells (W21). The chamber went hotter
+because the temperature dial reverses (W17). The throat went from
+\SI{0.1}{\square\meter} to \SI{2}{\square\meter} because the chemistry freezes
+and the throat erodes (W19, W24). The chamber volume stayed at
+\SI{100}{\cubic\meter}, which is the one choice that survived, though for a
+reason this decision did not give (W18) and with a floor at
+\SI{150}{\cubic\meter} if the contraction load lands at the pessimistic edge of
+its Stanton bracket (W23).
+
+**The three paper-side fits stacked under the withdrawn table are all now
+retired or replaced.** `held(T, rho)` is replaced by the solved surface (W16),
+$T_e/T_c$ against area ratio by the solved curve (W20), and the whole cold-exit
+target by W20's finding that the proxy inverts once the flow freezes.
+
+## Withdrawn: a \SI{2000}{\kelvin} exit is the wrong target, not just an expensive one
 
 Asked 2026-09-10, from the flown \SI{10000}{\kelvin} chamber. **It fails both walls and the
 prize is half a percent.**
@@ -1129,6 +1621,56 @@ left for a cooler chamber to buy, and only its bigger slug remains: water loses 
 10,000 to \SI{6000}{\kelvin} at a deep expansion. **Run the chamber hot and the nozzle long, not
 the other way round.** The cool-chamber half of N14 should be read that way inside N16.
 
+### N16 answered it, and the target should be retired rather than chased
+
+Answered 2026-09-10 (W20), and the result splits this section's two claims
+apart. **The geometry estimate is close to right. The prize is not there.**
+
+**The equilibrium curve never steepens. It keeps flattening.** Methane at
+\SI{100}{\cubic\meter} from a \SI{10000}{\kelvin} chamber:
+
+| $A/A_*$ | exit $T$ | $T_e/T_c$ | local slope |
+| ---: | ---: | ---: | ---: |
+| 3.9 | \SI{5737}{\kelvin} | 0.574 | $-0.189$ |
+| 30.6 | \SI{4204}{\kelvin} | 0.420 | $-0.124$ |
+| 100.9 | \SI{3671}{\kelvin} | 0.367 | $-0.104$ |
+| 297.5 | \SI{3305}{\kelvin} | 0.331 | $-0.091$ |
+| 943.7 | \SI{2994}{\kelvin} | 0.299 | $-0.080$ |
+
+The fitted $-0.138$ is a fair average across $A/A_* = 4$ to 140 and a bad local
+slope at either end. Extrapolating the far-field slope puts a
+\SI{2000}{\kelvin} exit at $A/A_* \approx \num{1.4e5}$, a \SI{0.8}{\centi\meter}
+throat radius. Not 600 and not 6200.
+
+**But the equilibrium branch is not valid out there**, because the chemistry
+froze at $A/A_* \approx 140$ (W19). A genuinely frozen gas does steepen toward
+the ideal $-0.364$, and on that slope a \SI{2000}{\kelvin} exit arrives near
+$A/A_* \approx 700$. **So this section's estimate of 600 was close, and its
+reasoning was sound as far as it went.** The answer to "where does it steepen"
+is: at the freeze station, and the equilibrium curve is structurally incapable
+of showing it.
+
+**The trouble is what the gas is doing when it gets there.** Cold because
+frozen is not the same as cold because finished. The gas is cold at
+$A/A_* = 700$ precisely because it stopped handing energy back.
+**Exit temperature was only ever a proxy for "the chemistry finished", and once
+the flow freezes the proxy inverts.**
+
+**The variable to optimise is the store returned, and it peaks at
+$A/A_* \approx 56$ while the exhaust is still at \SI{3615}{\kelvin}** (W19).
+Past that the equilibrium column keeps climbing while the capped column goes
+flat, which is the equilibrium branch crediting chemistry the real flow no
+longer has time to release. The \SI{2000}{\kelvin} target is withdrawn, and so
+is the \SI{50}{\cubic\meter} chamber that was sized to reach it. The table of
+gains above, +2.1\% for water and +4.4\% for hydrogen, priced a state the flow
+does not arrive in.
+
+**What survives is the closing rule, and N16 strengthened it.** "Run the chamber
+hot and the nozzle long, not the other way round" is right on the first half and
+needs one qualifier on the second. Run it hot, which W17 makes much stronger
+than this section could. Run the nozzle long up to $A/A_* \approx 56$, and no
+longer, because past that the chemistry freezes and the throat erodes.
+
 ## Aqueous ammonia: declined 2026-09-10 on handling and supply, not on performance
 
 **Decision: ammonia stays off the ladder.** Raised as an ambient way to get hydrogen into a water
@@ -1187,6 +1729,21 @@ interaction has to be priced before ammonia and the film are recommended togethe
 
 The same fit that kills all four options above points hard the other way, and this is the
 largest number found anywhere in this decision.
+
+**Superseded 2026-09-10, and the direction was right while the destination was not**
+(W19, W24). The impulse in this section's table is read off the $\rho^{-0.21}$ fit that
+W16 retires and off an equilibrium branch that W19 shows has frozen. Its recommended
+\SI{0.14}{\square\meter} throat sits past the chemical wall, and on the solved grid
+freeze-capped conversion is flat below about \SI{0.5}{\square\meter}. **The
+\SI{1156}{\second} headline is withdrawn.** The throat-life table in the throat section
+adds the cost this section could not see: at \SI{0.2}{\square\meter} the throat lasts
+seven pulses to $+10\%$ area, and at \SI{0.1}{\square\meter} it lasts two.
+
+**What survives is that expanding further is the lever**, which was this section's real
+finding and it is correct. It runs out at $A/A_* \approx 56$, a
+\SI{0.5}{\square\meter} throat, rather than at the 200 the blowdown cap suggested. The
+three N9 items this section named as standing between it and a result have all come back,
+and the throat is indeed the whole problem rather than a footnote.
 
 The companion's deep-expansion diagnostic says the \SI{200}{\cubic\meter} chamber **does not
 freeze out to $A/A_* = 400$**, being the densest. W9's equilibrium speciation says a methane
@@ -1293,14 +1850,29 @@ sweeps, which is the coupling problem the walled chamber was adopted to escape.
 items 1 to 3 turn on. The impactor crosses the column at \SI{75}{\kilo\meter\per\second}
 against a \SI{6}{\kilo\meter\per\second} sound speed, so it completes 0.08 of one
 acoustic crossing while it is inside. Equilibration happens over the blowdown, long
-afterwards. Those items stand exactly as posed.
+afterwards. Those items stood exactly as posed, and they have now come back answered.
 
 Film injection is retained as a shield for the shocked front and as a convective
 coolant. It is **not** a radiation shield, and the section must not claim it is. The
 chamber's own optical depth already does that work, and a film thin enough to inject
-sits near an optical depth of 0.03. With methane the between-pulse spray may be
-unnecessary, since the exhaust carries \SI{376}{\kilo\gram} of carbon past a liner
-that loses \SIrange{1.26}{13.9}{\kilo\gram}.
+sits near an optical depth of 0.03. **The between-pulse spray is required rather than
+optional**, and the suggestion that methane's own exhaust might make it unnecessary is
+withdrawn with the redeposition argument above (W15).
+
+**The film is sized generously, which is the good news in the load case** (W13). A cold
+methane film absorbs \SI{140.5}{\mega\joule\per\kilogram} at chamber conditions, being
+atomisation plus sensible heat, so \SI{0.02}{\kilo\gram\per\square\meter} carries
+\SI{2.8}{\mega\joule\per\square\meter} and \SI{0.2}{\kilo\gram\per\square\meter} carries
+\SI{28.1}{}. Against the radiative transient that is three hundred times oversized.
+Against the convective transient it is sized correctly at \SI{200}{\cubic\meter} and
+undersized at \SI{673}{\cubic\meter} on the pessimistic edge.
+
+**And `sec:watering_it_down`'s rejection of a sprayed film does not carry over to this
+liner.** That rejection is about a liner facing a plume at
+\SI{45.58}{\kilo\meter\per\second}. This liner is grazed by a layer arriving radially at
+\SIrange{2.6}{12.2}{\kilo\meter\per\second} whose radiative load is negligible. The
+film's problem in the walled case is mechanical scouring, and nothing prices scouring
+yet.
 
 ## What stays open
 
@@ -1339,20 +1911,24 @@ that decides the answer. And the evaluated literature holds one measurement of
 $\ce{C} + \ce{C} + M$ and nothing at all for $\ce{C} + \ce{H} + M$, so the remaining 7
 points cannot be settled by a rate coefficient the way the \ce{H2} channel just was.
 
-**And does carbon deposit in the throat?** A drifting throat area is the one dimension a
-nozzle cannot tolerate. The throat is the hottest and fastest station so it should
-clean itself, but nothing here shows that. It stays with N9, and W6 raises its priority,
-because the recommendation that follows from every other result is to make the throat
-smaller.
+**And does carbon deposit in the throat? No, and the question was the wrong way round**
+(W15). A drifting throat area is the one dimension a nozzle cannot tolerate, and this
+decision assumed the throat would clean itself because it is the hottest and fastest
+station. It does not deposit carbon at any wall temperature graphite survives, so there
+is nothing to clean off. It is being chemically eroded instead, and the throat drifts
+**open** rather than closed. That is still a drifting throat area, and the throat-life
+table above is what prices it.
 
-The wall's load case during the crossing is not the \SI{10000}{\kelvin} equilibrium
-this decision clears it for. `sec:needle_through_fog` puts the freshly shocked layer
-at the nose of a \SI{45.58}{\kilo\meter\per\second} arrival near
-\SI{94600}{\kelvin}, and has the spreading cone reaching a \SI{3}{\meter} wall after
-\SI{6}{\meter} of a \SI{23.8}{\meter} column. At \SI{75}{\kilo\meter\per\second} the
-specific energy is 2.7 times higher. This belongs with the impact simulation, and
-until it returns the section carries it as a stated condition rather than as a
-settled result.
+The wall's load case during the crossing has returned, and it closes (W10 to W14, W23).
+This decision carried it as a stated condition on the grounds that
+`sec:needle_through_fog` puts the freshly shocked layer at the nose of a
+\SI{45.58}{\kilo\meter\per\second} arrival near \SI{94600}{\kelvin}, with the
+spreading cone reaching a \SI{3}{\meter} wall after \SI{6}{\meter} of a
+\SI{23.8}{\meter} column. The contact station survives that reasoning and the
+temperature does not. See the load-case section above. **What remains open is the
+Stanton number**, bracketed over a factor of ten on the only channel that delivers
+meaningful energy to the wall, and that is now the single largest uncertainty in this
+decision.
 
 Project 242 has now been read, and it supports this decision more directly than the
 secondary summaries did. Their prose says molecular recombination "is not" fast. Their
@@ -1398,9 +1974,14 @@ carbon--carbon, which is the precedent for the film this decision retains.
 
 The liner material is unchosen. `sec:watering_it_down` picks pyrolytic graphite for
 a water plume and then hedges it against oxygen. Methane removes the oxidation
-problem and keeps graphite as the default, which is convenient because the exhaust
-may rebuild it. The tungsten option and the question of atomic nitrogen attacking
-carbon to form CN belong to the ammonia variant rather than to this one.
+problem and keeps graphite as the default. **The convenience that the exhaust might
+rebuild it is withdrawn** (W15), so graphite is the default on oxidation grounds alone
+and both the liner and the throat are consumables. The tungsten option and the question
+of atomic nitrogen attacking carbon to form CN belong to the ammonia variant rather than
+to this one. One point for a non-carbon refractory is now on the table, since a
+refractory that is not carbon has no deposition question at all, and against that it
+would run hotter and put the speciation back inside the equation of state's weak spot
+above \SI{4700}{\kelvin}.
 
 ## The companion's return, item by item
 
@@ -1413,7 +1994,7 @@ Answered at `puffsat_impact_simulation` `6d74d3f`, numbers computed at `4a448c0`
 | **N10**, Project 242 | **Settles the tension.** \SI{2700}{\second} is 24 to 29\% above the frozen ceiling of \SIrange{2085}{2229}{\second} | the arithmetic-over-prose reading is now a result |
 | **N9.0**, sealed vessel | **The geometry question dissolves.** Column length cancels; the verdict is a bore-to-throat area ratio, and it fails at \SI{7}{\square\meter} | the fifty turnovers and the \SI{11}{\kilo\meter\per\second} sound speed are both gone |
 | **N10.1-3**, freeze stations | **The fork closes on the good side.** Damkoehler stays above threshold everywhere, 2.16 decades of margin at the flown point | the frozen \SI{793}{\second} branch does not apply |
-| **N10.3**, the ladder | **Answered for water and hydrogen, ammonia unplaced.** The stated $k$ come back as outputs within 5\% | ladder re-scored on solved $k$; ammonia back above water |
+| **N10.3**, the ladder | **Answered for water and hydrogen, ammonia unplaced.** The stated $k$ come back as outputs within 5\% | ladder re-scored on solved $k$; the ammonia-versus-water ordering is conversion-dependent and neither is printed |
 | **N10.5**, carbon | **Reframed and six times smaller.** 84\% of the carbon store returns as gas-phase acetylene | the \SI{880}{\second} floor is withdrawn |
 | **N9.1-7**, the load case | **Not started**, and W6 raises their priority | the section still cannot be written |
 | **N11**, radiative escape | **Not started** | nothing |
@@ -1435,30 +2016,94 @@ Those are the numbers this decision now carries. `todos/ladder_companion_k.py`
 reproduces them and reproduces both of W1's rows alongside, so the three can be told
 apart.
 
+**The companion adopted this correction on 2026-09-10 and the two repositories now
+agree.** Its ladder reports the same $w(\eta\sqrt{1+k} - 1)/(k g_0)$, its own head-on
+expression having carried the $-1$ all along, and the two anchor rows that disagreed by
+\SI{32}{\second} now agree to 11. So this was a convention mismatch rather than a
+physics disagreement, and it is closed from both sides.
+
 **What the answer does not license.** A charge is not a return. The store being 95 to
 99\% charged is a ceiling on what recombination could hand back, and W5 puts the actual
 return at 22.6 to 26.2\% through the flown \SI{7}{\square\meter} throat. The two numbers
 answer different questions and the section must not use one for the other.
 
+## The companion's second return, item by item
+
+Answered at `puffsat_impact_simulation` `1ffd367`, 2026-09-10. The full document
+is `docs/walled_nozzle_grid_answers_from_impact_sim.md`. It answers N9 items 1
+to 7 and the whole of N16, and it carries fifteen items, W10 to W24. Every table
+quoted in this decision was re-checked against the companion's committed CSVs
+under `data/results/walled_nozzle/` rather than taken from its prose.
+
+| item | verdict | what moved here |
+| --- | --- | --- |
+| **N9 items 1--2**, contact station | **The temperature premise does not survive.** The front reaches the wall at \SIrange{5.6}{6.2}{\meter}, but by then it has swept 41 to \SI{178}{\kilo\gram} and slowed to \SIrange{9}{28}{\kilo\meter\per\second}, so the layer is at \SIrange{4900}{30700}{\kelvin} | the \SI{200000}{\kelvin} load case is withdrawn; the \SI{24.9}{\degree} cone becomes \SIrange{28.7}{30.3}{\degree} |
+| **the gate**, N9's own precondition | **The paper side's guess is right to 5\%.** The front never reaches the wall below \SI{178}{\cubic\meter} | items 1 to 4 close for the 50 and \SI{100}{\cubic\meter} chambers |
+| **the contraction**, raised there not asked | **Priced, and it does not shrink with the chamber.** The bulk load is volume-independent and the arrival load worsens as the chamber shortens | a floor at \SI{150}{\cubic\meter} enters the Decision |
+| **N9 item 3**, fluence | **It reverses which channel matters.** Radiative delivery is \SIrange{0.001}{0.009}{\mega\joule\per\square\meter}; the load is convective and grows with chamber volume | the wall argument now points the same way as the ledger |
+| **N9 items 4 and 6**, the film | **Answered generously.** Even \SI{0.02}{\kilo\gram\per\square\meter} carries \SI{2.8}{\mega\joule\per\square\meter} | `sec:watering_it_down`'s rejection does not carry over to this liner |
+| **N9 item 7**, convective flux | **Answered.** The Bartz-like \SIrange{123}{281}{\mega\watt\per\square\meter} is a good liner number and 2 to 3 times low at the throat | the estimate is relabelled rather than replaced |
+| **N9 item 5**, throat carbon | **No self-healing, and no plating at all.** The exhaust is undersaturated in carbon at every wall temperature graphite survives | the \SIrange{0.34}{3.7}{\percent} redeposition line is deleted; the throat is a consumable |
+| **N16**, `held(T, rho)` | **The fit is retired.** The exponent is not \num{-0.21} and not constant, running 0 to $-0.25$ for methane | every cold-end figure built on the fit is superseded |
+| **N16**, the temperature dial | **It reverses.** \SI{6000}{\kelvin} returns 497 to \SI{743}{\second} where \SI{12000}{\kelvin} returns 800 to 1156 | the cooler chamber is withdrawn; the Decision runs at \SI{12000}{\kelvin} |
+| **N16**, the volume dial | **"Free" is wrong.** Volume buys slug ratio and costs freeze margin, and the optimum is interior | \SI{100}{\cubic\meter} survives, for a different reason |
+| **N16**, the throat dial | **There is a chemical wall.** The store returned peaks near $A/A_* = 56$ and then falls | the \SI{0.1}{\square\meter} and \SI{0.05}{\square\meter} throats are retired |
+| **the throat's price**, raised there not asked | **Priced.** Narrowing buys $+22\%$ at \SI{2}{\square\meter} and costs a factor of three in throat life per halving | the decision now states a replacement interval |
+| **N16**, water on the grid | **It loses everywhere.** Water returns 52 to 83\% of methane's effective impulse in all 128 cells | the cold-end near-tie is withdrawn; methane keeps the fluid choice |
+| **N16**, the named configuration | **Plain methane beats it by 4 to 12\%** | the water-plus-hydrogen proposal is withdrawn |
+| **N13**, exit-plane velocity distribution | **Not started, and confirmed unreachable from there.** It needs a 2-D solve | stays open, still worth about \SI{30}{\second} |
+| **N11**, radiative escape | **Not started** | nothing |
+
+**Eight of this decision's stated premises did not survive**, and five of them
+were positions rather than inputs. The temperature dial, water's near-tie, the
+water-plus-hydrogen configuration, the \SI{2000}{\kelvin} exit target and the
+self-healing throat all reverse. Each is recorded in place above rather than
+edited out, because where an argument failed is the part worth keeping.
+
+**The common cause of the two largest reversals is the same omission.** Both the
+temperature dial and the freeze-race conclusion priced only what the exhaust
+gives back and not what the chamber charged in the first place. A cold chamber
+parks its store in \ce{C3} and acetylene, which is already the recombined state,
+so a deeper expansion recovers a larger share of a much smaller store. **Any
+future argument on this rung has to carry the charge term and the return term
+together.**
+
 ## What is still owed before the section can be drafted
 
-**N9 items 1 to 7 are the whole of it.** They are the load case, and the companion's
-return makes them more binding rather than less: W4 confirms the sealed vessel does not
-soften the arrival transient, and W6's recommendation to narrow the throat stretches the
-pulse from \SI{8}{\milli\second} to 28 and passes the same power through a third of the
-throat area. Until they return, the section would have to state a chamber whose wall
-loading is unpriced at the geometry every other result recommends.
+**N9 items 1 to 7 are answered and no longer gate the section.** That was the
+whole of what this decision previously said was owed. What replaces it is
+shorter and softer.
 
-Three items go back with them.
+- **The Stanton number.** The convective strike and the contraction load are
+  both an energy-budget ceiling times a Stanton number bracketed over a factor
+  of ten, and it is the only channel delivering meaningful energy to the wall.
+  It decides \SI{100}{\cubic\meter} against \SI{150}{\cubic\meter} and nothing
+  else in the Decision. **The section can be drafted carrying both**, which is
+  what the Decision now does.
+- **The throat-life ladder at the flown chamber.** It has only been run at
+  \SI{200}{\cubic\meter} and \SI{10000}{\kelvin}. Running it at
+  \SI{100}{\cubic\meter} and \SI{12000}{\kelvin} would settle
+  \SI{2}{\square\meter} against \SI{0.5}{\square\meter}, which is worth
+  \SI{117}{\second}. Cheap, being the same machinery at a different cell.
+- **A genuinely frozen methane expansion.** `eos_water` has a frozen branch and
+  `eos_methane` does not, so the freeze-capped conversion behind every deep
+  throat is a lower bound rather than an answer. The gap to the equilibrium
+  column is 0.03 to 0.09 in conversion, which bounds the error.
+- **The acetylene kinetics**, unchanged from the first return. Worth 59 points
+  of atomisation against soot's 7, and ordinary combustion kinetics rather than
+  nucleation theory.
+- **The chemical erosion rate.** That the exhaust erodes graphite is settled;
+  how fast is not, so the ablation column is a floor rather than a total.
+- **N13**, the exit-plane velocity distribution, confirmed to need the 2-D
+  axisymmetric kernel. Worth about \SI{30}{\second} out of 1500, so it gates
+  nothing.
+- **N11**, radiative escape, untouched.
+- **An `eos_ammonia`**, unchanged. Ammonia is the only rung that is assembled
+  rather than solved.
 
-- **N13, the walled nozzle's own $\eta_{\mathrm{geom}}$.** Now a small item rather than a large
-  one, because the companion's conversion fraction turned out to carry the exhaust-speed spread
-  already. What is left is divergence and radiative escape, taken here as \num{0.98} and
-  \num{0.994} from a bell nozzle and this decision's own 1.2\%. Worth about 30 seconds if both
-  are wrong by a realistic amount, so it can wait behind N9. **What should be asked instead is
-  the exit-plane velocity distribution**, since a quasi-1D solve cannot produce a divergence
-  factor at all.
-- **The acetylene kinetics.** Worth 59 points of atomisation against soot's 7, and it is
-  ordinary combustion kinetics rather than nucleation theory.
-- **An `eos_ammonia`.** Ammonia is the only rung that is assembled rather than solved,
-  and it is second on the ladder rather than fourth.
+**Nothing on that list blocks drafting.** The section should be written at
+\SI{100}{\cubic\meter}, \SI{12000}{\kelvin}, a \SI{2}{\square\meter} throat and
+plain methane, quoting \SI{976}{\second} effective and stating two open items
+rather than waiting on them. Those are the Stanton bracket, and the throat
+interval, which is solved at \SI{200}{\cubic\meter} and not at the flown
+chamber.

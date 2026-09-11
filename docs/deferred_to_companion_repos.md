@@ -7,29 +7,44 @@ See `docs/adr/0007-the-split-dive-ships-at-held-strength.md` for why each is hel
 Target repo for all three: `katzseth22202/aim_is_all_you_need`, module
 `src/bielliptic_dive_split.py` unless noted.
 
-**Nozzle items live separately.** Fifteen asks targeting `katzseth22202/puffsat_impact_simulation`
-are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N15 so they do not collide with the
-S-numbers here. N9-N15 cover the walled thermal nozzle of ADR-0016 and carry
+**Nozzle items live separately.** Sixteen asks targeting `katzseth22202/puffsat_impact_simulation`
+are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N16 so they do not collide with the
+S-numbers here. N9-N16 cover the walled thermal nozzle of ADR-0016 and carry
 their own geometry, which is not the magnetic one N1-N8 assume. That file is written to be copied verbatim into the companion repo. Two of them
 are load-bearing: N1 (the exhaust's second moment, which decides whether `eq:reflection_baseline`
 is being applied to an isotropic plume or a pancake) and N3 (whether the plume is a directed
 column or a bursting bubble, worth 37-112 t of hot-pulse magnet structure).
 
-**N9 item 0 and all of N10 came back on 2026-09-09**, companion `6d74d3f`. The answer document
-is carried here at `docs/walled_nozzle_answers_from_impact_sim.md` and applied in ADR-0016 and
-`CONTEXT.md`. The headline is that the paper-side dissociation correction of the same day is
-withdrawn: the chamber is 93-98% dissociated, not 49-76%, so methane returns to 1,120-1,133 s.
-**N9 items 1-7 gate the walled-nozzle section**, and N12 and N13 were raised on the way in. N12
-is already answered on the paper side. **N13 is the one that matters**: applying the return
-showed the walled ladder had been scored with `eta_chem = 1` where the magnetic nozzle it is
-compared against carries `eq:eta_chem`'s 0.910, so on a matched convention methane is 709 s
-against the magnet's 1,249 rather than 1,129 against it. That 1,249 is itself a performance
-target rather than a solve, which is the balancing point the section has to carry. N13 asks for
-the walled nozzle's exit-plane velocity distribution and is a medium item, not a gate. **N14 is
-the cheap one worth doing first**: the expansion has only ever been run from a 10,000 K chamber,
-and charging the chemistry appears to reverse the sign of the temperature lever. **N15 is
-the biggest**: expanding to A/A* = 200 rather than 4 reaches a 3,200 K exit where equilibrium
-holds 13% of the store instead of 70%, worth about 1,156 s against the magnetic nozzle's 1,249.
+**The walled-nozzle asks are closed except N11 and N13.** Two returns landed, both carried
+here and applied in ADR-0016 and `CONTEXT.md`.
+
+**First return, 2026-09-09**, companion `6d74d3f`, document
+`docs/walled_nozzle_answers_from_impact_sim.md` (W1-W9). It answers N9 item 0 and all of N10.
+The headline is that the paper-side dissociation correction of the same day is withdrawn: the
+chamber is 93-98% dissociated, not 49-76%.
+
+**Second return, 2026-09-10**, companion `1ffd367`, document
+`docs/walled_nozzle_grid_answers_from_impact_sim.md` (W10-W24). It answers N9 items 1-7 and the
+whole of N16, which had absorbed N14 and N15. **N9 items 1-7 no longer gate the section.**
+Four paper-side positions reversed: the temperature dial runs the other way (so N14's premise
+was backwards), water loses in all 128 grid cells rather than tying at the cold end, the named
+water-plus-hydrogen configuration loses to plain methane, and the deep throat N15 wanted is past
+a chemical wall at `A/A*` ~ 140. The throat is also a consumable rather than self-healing, which
+is N9 item 5 reversing.
+
+**What is still owed on this track.** **N11** is the only wholly untouched item. **N13**, the
+walled nozzle's exit-plane velocity distribution, is confirmed unreachable from the companion's
+quasi-1-D machinery and needs its 2-D axisymmetric Euler kernel, which is days rather than
+hours; it is worth about 30 s out of 1,500, so it gates nothing. **The one number that binds is
+a Stanton number**, bracketed over a factor of ten on the convective channel, and it decides a
+100 m³ against a 150 m³ chamber and nothing else.
+
+**The convention question is settled from both sides.** The walled ladder had been scored on a
+different convention from the magnetic nozzle it is compared against, and the companion adopted
+the paper's own `w(eta*sqrt(1+k) - 1)/(k*g0)` on 2026-09-10. Methane is 738 s at the ask's own
+7 m² throat and 976 s at the configuration ADR-0016 now proposes, against the magnet's 1,249.
+That 1,249 is a performance target rather than a solve, which is the balancing point the section
+has to carry.
 
 ---
 

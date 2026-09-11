@@ -204,10 +204,18 @@ neither transfers. Same mistake as the recombination one, made twice.
 atomisation energy: NH3 -> 1/2 N2 + 3/2 H2 costs 2.70 MJ/kg, CH4 -> C(s) + 2 H2 costs 4.15
 (the paper carried 4.66; the gap is a 298 K against a 0 K reference state, and ammonia's has not
 been rechecked at 0 K). Both a few percent.
-**And the carbon is the sacrificial layer the design already wants.** The liner loses 1.26 to
-13.9 kg per pulse against **376 kg of carbon in the exhaust**, so 0.34% to 3.7% has to
-redeposit for it to be self-healing. A water or ammonia exhaust carries nothing that could
-rebuild it and has to be sprayed. Methane's exhaust is the spray.
+**The carbon-as-sacrificial-layer argument is WITHDRAWN (2026-09-10, W15).** It used to read
+that the liner loses 1.26 to 13.9 kg per pulse against 376 kg of carbon in the exhaust, so
+0.34% to 3.7% redeposition makes it self-healing. There is nothing to redeposit. The exhaust is
+**undersaturated** in carbon at every wall temperature graphite survives, because the carbon is
+parked in acetylene rather than travelling as free atoms. Saturation ratio at 623 bar is 1.00 at
+1,912 K, 0.21 at 2,500 K and **0.032 at graphite's 3,900 K working ceiling**, so the gas has 32x
+spare carbon capacity and takes graphite **off** the surface. The redeposition was never
+rate-limited, it is thermodynamically absent. A self-healing carbon throat and a passively
+cooled one are mutually exclusive. Methane's exhaust is **not** the spray, and the liner and
+throat are both consumables.
+_Avoid_: "the throat is the hottest station so it self-cleans"; the throat erodes **open**,
+which is still a drifting throat area.
 _Avoid_: the "75% condensed is unprecedented" framing; it compares soot to alumina droplets.
 
 **The slug ladder (thermal nozzle, solved by the companion 2026-09-09)**:
@@ -269,6 +277,52 @@ charged against the ship's slug only. That is the paper's own `w(eta*sqrt(1+k) -
 `eta = eta_jet` rather than `eta_geom` alone.
 _Avoid_: presenting one fluid as the answer; the ordering by energy-at-the-wall-cap is the
 result and the fluid falls out of it. Do not mix the ionised and un-ionised solves.
+
+**UPDATE 2026-09-10 (companion second return, W17 to W24). The operating point moved and the
+ladder above is now the *reference* rung, not the flown one.**
+The flown point is **100 m^3 at 12,000 K through a 2 m^2 throat, plain methane**, returning
+**976 s effective** (exit 4,892 K, 1.73 decades of freeze margin, 12.5 ms blowdown). Going to
+1 m^2 buys 1,040 s and to 0.5 m^2 buys 1,093 s, the last still on the equilibrium branch and
+still above the 4,000 K carbon floor at 4,061 K.
+_Avoid_: attaching the 262-pulse and 87-pulse throat intervals to this chamber. **The throat
+ladder was run at 200 m^3 and 10,000 K only.** At 100 m^3 the blowdown halves (less fluence) and
+the pressure doubles (more Bartz flux), and which wins is unsolved. The **exchange rate**
+(a factor of three in life per halving) is derived from exponents and does transfer; the
+absolute pulse counts do not.
+**The temperature dial reverses.** Cooler is not better. Across the companion's 128-cell grid,
+6,000 K returns 497-743 s effective where 12,000 K returns 800-1,156 s, and hotter wins at
+**every** throat by 56-59%. The paper's cooler-chamber case priced only what the exhaust hands
+back and not what the chamber charged. **Store charged collapses 0.961 -> 0.336 from 12,000 K to
+6,000 K**, because a cold chamber parks the store in C3 and acetylene, which is already the
+recombined state. There is nothing left down there to give back.
+_Avoid_: any argument on this rung that carries the return term without the charge term. That
+single omission produced both of the two largest reversals.
+**The temperature ceiling is a WALL argument, not a "the gain is too small" argument.** Liner
+flux runs 93-174 MW/m^2 at 10 kK and 198-351 at 15 kK.
+**Chamber volume is not free either.** Vessel mass genuinely is flat (`nRT rho/sigma`), and
+performance is not. The optimum is interior and moves with temperature: 200 m^3 cold, 100 m^3
+hot. A bigger chamber is thinner so it dissociates more (`k` falls); a thinner chamber freezes
+sooner (three-body rate goes as density squared). Floor is **~150 m^3**, set by the
+contraction's arrival load (see **The throat and the contraction are the consumables**).
+**The debited ladder, at the ask's own 7 m^2 / 200 m^3 / 10,000 K reference point** (W8), with
+the retired credit-only column beside it so the two conventions cannot be mixed again:
+
+| fluid | k | conv | u_e | true Isp | **effective Isp** | *credit only* |
+|---|---|---|---|---|---|---|
+| hydrogen | 7.77 | 0.532 | 18,482 | 1,885 s | **1,143 s** | *2,127 s* |
+| methane | 19.56 | 0.406 | 10,536 | 1,074 s | **738 s** | *1,129 s* |
+| ammonia* | 28.54 | *0.41* | ~8,800 | *~901 s* | *~665 s* | *~933 s* |
+| water | 39.55 | 0.415 | 7,588 | 774 s | **600 s** | *793 s* |
+
+**Hydrogen's lead over methane is 1.55x, not 1.88x.** Both mass-ledger corrections scale as
+`1/k` and the **debit is the larger**, by exactly `w/u_e`, so effective Isp sits **below** true
+Isp everywhere and the light fluids give back the most. **The `1/sqrt(m_bar)` scaling law
+belongs to the credit-only convention** and does not survive the correction: the corrected
+column reads 1.55 / 1.00 / 0.81 for hydrogen / methane / water against the law's 1.78 / 1.00 /
+0.73. **The ordering is untouched and only the margins shrink**, which is what the fluid verdict
+rests on.
+_Avoid_: quoting any Isp without saying which convention. A reader who applies the credit and
+forgets the debit reads every number too high by `(w - u_e)/(k g0)`.
 
 **The wall limits temperature, not energy (why the two nozzles want opposite fluids)**:
 The cleanest statement of what `Wall-cap energy density` is really measuring. A chemical bond is
@@ -334,6 +388,14 @@ design. A fluid that soaks up the pulse in a small slug gets a proportionally la
 from the impactor mass it never lifted, so low `k` is paid once in exhaust speed and again here.
 _Avoid_: adding this as a bonus on top of the quoted Isp. It is a decomposition, not a charge;
 the 709 s already contains the 5.1%.
+**CORRECTION 2026-09-10 (W8): `k` enters a THIRD time and that one runs the other way.** The
+head-on momentum **debit** `w/(k g0)` also scales as `1/k`, so it too falls hardest on the light
+fluids, **and it is the larger term** by exactly `w/u_e` (four to nine times). Per kilogram of
+slug: hydrogen collects +243 s of credit and pays **-985 s** of debit, methane +55 / -391,
+water +20 / **-193**. Net effect on true Isp is -39% for hydrogen and -22% for water.
+So "the light fluid is rewarded twice" is only true on the credit-only convention. On the real
+head-on burn it is rewarded twice and charged once, harder. **Hydrogen still wins the ladder,
+by 1.55x rather than 1.88x.** The ordering survives; the margins compress toward methane.
 
 **Partial dissociation corrects the headline (2026-09-09) -- WITHDRAWN THE SAME DAY**:
 **Do not use anything in this entry.** It is kept because the mistake is instructive and
@@ -591,6 +653,95 @@ is where the carbon store actually goes**.
 _Avoid_: arguing this fluid-by-fluid; it is one mechanism with three instances plus carbon,
 which is a different mechanism and must not be folded in with them. Do not quote the arcjet
 8x without Byron.
+
+**UPDATE 2026-09-10 (W19): the mechanism has a WALL, and it sits near `A/A*` ~ 140.**
+W5 asked whether the flow freezes inside the bore at the flown 7 m^2 throat and the answer was
+no. The grid asks the same question at 35-140x the area ratio and there the answer is yes.
+Freeze margin in decades (negative = frozen), methane at 8,000 K:
+
+| chamber \ throat | 7.00 | 2.00 | 1.00 | 0.50 | 0.20 | 0.10 |
+|---|---|---|---|---|---|---|
+| 50 m^3 | 3.48 | 2.10 | 1.37 | 0.64 | **-0.32** | -1.05 |
+| 100 m^3 | 3.00 | 1.65 | 0.93 | 0.20 | **-0.74** | -1.46 |
+| 200 m^3 | 2.48 | 1.16 | 0.45 | **-0.27** | -1.19 | -1.90 |
+| 400 m^3 | 0.76 | 0.49 | **-0.05** | -0.77 | -1.68 | -2.37 |
+
+**The store RETURNED peaks near `A/A*` = 56 and then falls.** Equilibrium conversion keeps
+climbing to 0.748 while **freeze-capped conversion saturates at 0.633**, because past the freeze
+station the equilibrium branch releases chemistry the real flow no longer has time to release.
+The capped column is the honest one. **Useful range is `A/A*` = 30-140, a 0.2 to 1.0 m^2
+throat, not 0.05.**
+_Avoid_: quoting an equilibrium conversion past the freeze station. Read `freeze_area_ratio`; a
+freeze at `A/A*` = 1.00 means the cap is biting at the throat and must not be quoted at all.
+
+**The throat and the contraction are the consumables (2026-09-10, W15, W23, W24)**:
+**The throat is eroded, not plated, at every wall temperature graphite survives** (see the
+withdrawal under **Why methane**), so narrowing it is bought on a replacement interval.
+**The cost of a narrow throat is DWELL, not flux.** Bartz gives throat flux as `D*^-0.2`, so
+halving the area raises it ~7% (610 -> 932 MW/m^2 across a factor **70** in area). What doubles
+is the blowdown, because the same chamber empties through a smaller hole: 8 ms -> 56 ms ->
+560 ms across that same factor 70. Fluence is flux x time, so **a narrower throat does not heat
+the throat harder, it heats it for twice as long.**
+Recession is **radial**, so an eroding throat **opens**, drifting back up the trade curve it was
+narrowed to climb. Methane, 200 m^3, 10,000 K:
+
+| throat | effective Isp | vs 7 m^2 | pulses to +10% area |
+|---|---|---|---|
+| 7.00 m^2 | 738 s | -- | 1,947 |
+| **2.00 m^2** | **902 s** | +22.1% | **262** |
+| **1.00 m^2** | **965 s** | +30.7% | **87** |
+| 0.50 m^2 | 1,008 s | +36.5% | 29 |
+| 0.10 m^2 | 1,020 s | +38.1% | 2 |
+
+**The exponent is derived, not fitted:** flux goes as `A*^-0.1` and blowdown as `A*^-1`, so
+recession goes as `A*^-1.1`; a fixed fractional area growth needs recession proportional to
+`r* ~ A*^0.5`; so **life ~ `A*^1.6`, a factor of 3.03 per halving**.
+**The exchange rate: each halving of throat area buys 4-10% effective Isp and costs a factor of
+three in throat life**, and the rate worsens as it goes.
+**The paper's own stated cost of narrowing (8 -> 28 ms) corresponds to a 2 m^2 throat and no
+deeper.** Take 2 m^2 where the throat is hard to service, 1 m^2 as a scheduled consumable.
+**The contraction is the other consumable and it does not shrink with the chamber.** Below the
+178 m^3 gate the front leaves the *column* but not the *hardware*: at a 0.05-1 m^2 throat the
+convergent section is 96-99% of the bore area, so a short chamber trades a grazing side-wall
+strike for a **normal-incidence** strike on the contraction. The bulk load is
+volume-**independent** (2.53-25.3 MJ/m^2; the same 70.3 GJ turns the same corner however long
+the column was) and the arrival load gets **worse** as the chamber shortens (6.7-66.7 MJ/m^2 at
+50 m^3 against 0.41-4.14 at 150 m^3). **Floor ~150 m^3.**
+_Avoid_: treating throat area as a free lever. State a replacement interval beside it, or say
+there is none. If the throat cannot be serviced the calculus inverts, because total impulse per
+throat (pulses x Isp) falls **50x** from 7 m^2 to 1 m^2.
+
+**Water loses to methane everywhere, and the fluid choice is a LINER choice (2026-09-10, W21)**:
+Paper-side work had water within 5-9% of methane at the cold end and **ahead** at 400 m^3. Both
+were artefacts of the retired `rho^-0.21` `held` fit. On the solved grid **water returns 52-83%
+of methane's effective impulse in all 128 cells and is never ahead.** Best case is 0.800, at
+6,000 K and 400 m^3, which is also the worst corner in absolute terms.
+A **ratio** is quoted deliberately: both fluids run identical machinery, so every normalisation
+the paper applies cancels. The ratio survives the conventions; an absolute number would not.
+**Why**: water's mean atomised particle mass is 6.0 amu against methane's 3.2, so it needs
+`k` = 40-50 where methane needs 20-27, and both `w/sqrt(1+k)` and the credit `(1+k)/k` punish
+that. The debit narrows the gap ~6 points and never closes it.
+**Water's real argument stands and it is not impulse**: ambient storage, twice the chamber
+density, **no condensed-carbon problem** (`eos_methane` goes blind below 4,000 K and that is
+methane's limitation alone), and no throat carbon. **The price of choosing water is 26-30% of
+the impulse, not 5-9%.**
+_Avoid_: selling water as a near-tie on impulse. Argue it on the liner or not at all.
+
+**A 2,000 K exit is the WRONG TARGET, not just an expensive one (2026-09-10, W20)**:
+The equilibrium `T_e(A/A*)` curve **never steepens -- it keeps flattening**: local slope runs
+-0.189 near the throat to -0.080 far downstream, so the paper's fitted -0.138 is a fair average
+over `A/A*` = 4-140 and a bad local slope at either end. Extrapolating the far field puts a
+2,000 K exit at `A/A*` ~ **1.4e5**. But the equilibrium branch is invalid out there anyway,
+because the chemistry froze at ~140; a genuinely frozen gas **does** steepen toward the ideal
+-0.364, which lands 2,000 K near `A/A*` ~ 700 (close to the paper's own optimistic guess of
+600). **So the answer to "where does it steepen" is: at the freeze station, and the equilibrium
+curve is structurally incapable of showing it.**
+**And a 2,000 K exit reached that way is worthless.** Cold-because-frozen is not
+cold-because-finished; the gas is cold precisely because it stopped handing energy back.
+**Exit temperature was only ever a proxy for "the chemistry finished", and once the flow freezes
+the proxy inverts.** Optimise **store returned** instead, which peaks at `A/A*` ~ 56 with the
+exhaust still at 3,615 K.
+_Avoid_: chasing exit temperature. It is a proxy, and past the freeze station it reads backwards.
 
 **Acetylene is where the carbon store actually goes (2026-09-09, W9)**:
 The 43.3% of methane's atomisation locked in carbon was booked as hostage to soot nucleation.

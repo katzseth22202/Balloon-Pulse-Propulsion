@@ -12,44 +12,65 @@ ADR-0016 and carry their own geometry, which is not this one.**
 
 ## Start here
 
-**Two items matter and the rest can wait: N9 items 1-8 and N16.**
+**N9 and N16 both came back on 2026-09-10, and nothing on this list now gates the paper
+section.** What is left is N11, N13, and the magnetic-nozzle items N1 to N8.
 
-- **N16** is one grid on machinery that already exists, and it decides whether the walled
-  nozzle is a 700 s device or an 1,100 s one. It replaces N14 and N15, which were the same
-  question asked three times. If only one point can be run, run the configuration named at the
-  end of it and plain methane beside it.
-- **N9 items 1-8** are the load case and nothing substitutes for them. **Read the two notes at
-  the top of N9 before starting**: a paper-side result says the front may not reach the wall at
-  all below about 170 m³, which would close items 1-4 rather than answer them, and a second
-  bounds the structural half at 0.14-0.39% of the pulse impulse, which points the run at items
-  3, 5 and 6.
+- **N16** was run and it reverses four paper-side positions. The temperature dial runs the
+  other way, water loses in all 128 cells, the named water-plus-hydrogen configuration loses to
+  plain methane, and the throat has a chemical wall. See W16 to W22.
+- **N9 items 1-8** came back and the gate is real: the front never reaches the side wall below
+  178 m³, so items 1 to 4 close for the chamber the design wants. The paper-side 170 m³
+  estimate was right to 5%. What the run added is the contraction, which nobody asked about and
+  which does not shrink with the chamber. See W10 to W15 and W23.
+- **The one number still owed is a Stanton number.** The convective strike and the contraction
+  load are both an energy-budget ceiling times a Stanton number bracketed over a factor of ten,
+  and it is the only channel delivering meaningful energy to the wall. It decides 100 m³
+  against 150 m³ and nothing else.
 
 Everything else here is either answered, folded in, or on nobody's critical path.
 
-## Status, 2026-09-10
+## Status, 2026-09-10 (second return)
 
-**N9 item 0 and all of N10 came back** at `puffsat_impact_simulation` `6d74d3f`, computed at
-`4a448c0`. The answer document is carried in this repo at
-`docs/walled_nozzle_answers_from_impact_sim.md` and applied in ADR-0016 and `CONTEXT.md`.
+**N9 items 1 to 7 and the whole of N16 came back** at `puffsat_impact_simulation` `1ffd367`.
+Two answer documents are carried in this repo,
+`docs/walled_nozzle_answers_from_impact_sim.md` (W1–W9, refreshed) and
+`docs/walled_nozzle_grid_answers_from_impact_sim.md` (W10–W24), both applied in ADR-0016 and
+`CONTEXT.md`.
 
 | item | status |
 | --- | --- |
 | N1–N8 | open, magnetic nozzle |
 | **N9 item 0** | **answered.** The question dissolves: column length cancels, it is a throat question, and it fails at 7 m² |
-| **N9 items 1–8** | **open, and one of two items gating the paper section.** W4 confirms the sealed vessel does not soften the arrival transient. **Read its geometry note and the structural bound above item 1**: what to run moved an order of magnitude on 2026-09-10, and the structural half now looks closed on the impulse ratio, leaving items 3/5/6 as the live ones |
+| **N9 items 1–7** | **answered (W10–W15, W23).** The gate is 178 m³, so items 1–4 close for the 50 and 100 m³ chambers. Item 5 reverses: the throat is chemically eroded, not plated. Item 7's paper-side Bartz figure is a good *liner* number and 2–3× low at the throat |
+| **N9 item 8** | **answered on the paper side** before the return, and unaffected by it |
 | **N10 items 1–5, 4b** | **all answered.** See "What landed" below |
-| N11 | open, not started |
+| N11 | open, not started. The only wholly untouched item |
 | **N12** | **answered on the paper side**, and the fluid choice survives |
-| **N13** | **new**, raised 2026-09-09 while answering N12. Medium, behind N9 |
-| **N14** | folded into N16 |
-| **N15** | folded into N16 |
-| **N16** | **new**, raised 2026-09-10. Highest after N9, and it replaces N14 and N15 |
+| **N13** | **confirmed unreachable from the companion.** It needs the 2-D axisymmetric Euler kernel pointed at a walled nozzle, which is days rather than hours. Worth ~30 s out of 1,500, so it gates nothing |
+| **N14** | folded into N16, answered there (W17). **The answer reverses the ask** |
+| **N15** | folded into N16, answered there (W19, W20, W24) |
+| **N16** | **answered in full (W16–W22).** Four paper-side premises did not survive |
+
+**The one number still owed by anybody is the Stanton number** behind W12 and W23. It is a
+factor of ten on the only channel that delivers meaningful energy to the wall, and closing it
+needs a boundary-layer solve on the contact geometry. It decides 100 m³ against 150 m³.
+
+**Four premises in the asks below did not survive, and they are left in place with corrections
+marked.** "Cooler is better and hotter is worse" reverses (W17). "Smaller is better and costs
+nothing" is half right, since vessel mass is flat but performance is not (W18). "Water within
+5 to 9% of methane at the cold end and ahead of it at 400 m³" is wrong at every grid cell
+(W21). And `held(T, rho) = held_W9(T) * rho^-0.21` is retired, being wrong by 32 to 44% at
+3,000 K, which is exactly where the deep expansions exit (W16).
 
 **What changed in the asks themselves.** Two inputs written into N9 and N10 below are wrong and
 are left in place with corrections marked, so the record shows what was asked. The
 11 km/s sound speed in N9 item 0 is atomic hydrogen's and the right figure is 6.0–6.3 km/s. N10
 item 4b's premise, that the chamber is 49–76% dissociated, is the thing that did not survive:
-it is 93–98%.
+it is 93–98%. Two more went out in N9 itself. The 200,000 K wall load case is
+right for the *entering* front and 6 to 37 times too hot for the *arriving* one, which has been
+decelerated by seven times its own mass of pre-charge (W11). And the 24.9° spreading cone
+belongs to water at 45.58 km/s; methane at 75 km/s opens at 28.7–30.3° (W11). The contact
+station survives both, because the two errors offset.
 
 **One sentence of context.** The paper's growth chain multiplies an uncertain projectile cost
 against a nozzle efficiency nothing computes. `sec:jet_efficiency` says so outright: nothing in
