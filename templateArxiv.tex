@@ -579,7 +579,7 @@ Deployment need not coincide with apogee. Coasting inward on the same long ellip
 
 After detachment and clearance of the rocket, each functioning dry-mass package uses its adjustment thrusters for a reserved \SI{10}{\meter\per\second} prograde burn, directed along its Earth-relative velocity. Executed near periapsis, it raises the local escape margin to approximately \SI{15}{\meter\per\second} before losses. The corresponding hyperbolic excess speed rises from about \SI{332}{} to \SI{575}{\meter\per\second}. The reserve accelerates the detached package, not the delivered payload. Both packages need independent burn capability after tether severance if both are to receive this margin.
 
-Atmospheric drag and separation consume that margin. The inbound drag acts on the intact PuffSat; the outbound drag acts on hardware with a different mass relative to its projected area. Release velocities must also enter each package's energy budget. The working \SI{5}{\meter\per\second} passive margin and \SI{10}{\meter\per\second} reserve are sizing points, not a claim that every lightweight package clears the atmosphere. The disposal condition is positive Earth-relative escape energy after the full atmospheric passage and release.
+Atmospheric drag and separation consume that margin. The inbound drag acts on the intact PuffSat; the outbound drag acts on hardware with a different mass relative to its projected area. For an uncontrolled \SI{250}{\gram} remnant exposing \SI{100}{\square\centi\meter}, the reference atmosphere gives about \SI{0.12}{\meter\per\second} of outbound drag after release at periapsis. Raising the density at \SI{200}{\kilo\meter} to \SI{1e-9}{\kilogram\per\cubic\meter} gives about \SI{0.43}{\meter\per\second}. We use \SI{0.5}{\meter\per\second} as a working outbound allowance for this geometry; \autoref{sec:remnant_drag} gives the density sensitivity. The intact PuffSat's inbound loss and each package's release velocity enter the energy budget separately. The disposal condition is positive Earth-relative escape energy after the full atmospheric passage and release.
 
 A unit that loses control after successful injection already has the initial escape trajectory; it does not depend on the reserve burn. Failure before injection leaves it on the original bound ellipse, whose \SI{200}{\kilo\meter} perigee guarantees neither escape nor prompt reentry. This is the accepted failure exposure of making injection part of normal delivery. A premature energetic breakup also changes individual fragment trajectories and is retained as a residual debris risk. Atmospheric disposal remains a contingency option. Any deliberately targeted reentry retains the remote-ocean footprint preference, and entry alone does not establish complete hardware vaporization \cite{trisolini2019demise}.
 
@@ -2576,6 +2576,30 @@ The smaller burn costs about \SI{1.1}{\percent} as argon at \SI{2000}{\second} s
 Chemical thrust can supply the inbound-deployment impulse in a short burn. At the reference \SI{380}{\second} specific impulse, \SI{211.5}{\meter\per\second} consumes about \SI{5.5}{\percent} of initial maneuvering mass, compared with \SI{22.5}{\percent} for the apogee injection. At an average acceleration of \SI{1}{\meter\per\second\squared}, the burn lasts about \SI{212}{\second}. The propellant fraction excludes the engine and tank mass. If deployment precedes injection, each PuffSat needs delivery propulsion beyond its cold-gas guidance system; burning before release instead charges the maneuver to the loaded carrier.
 
 A detached package that adds \SI{10}{\meter\per\second} prograde at periapsis raises $\delta$ to \SI{0.015}{\kilo\meter\per\second} before drag and release losses. Its $v_\infty$ becomes about \SI{0.575}{\kilo\meter\per\second}. The positive specific orbital energy rises from about \SI{55}{} to \SI{165}{\kilo\joule\per\kilo\gram}. The added burn therefore triples the approximate atmospheric braking allowance, from \SI{5}{} to \SI{15}{\meter\per\second} expressed as an equivalent loss at periapsis. The reserve is carried for each departing package and is additional to its approach and attitude-control allocation.
+
+\subsubsection{Drag On An Uncontrolled Remnant}\label{sec:remnant_drag}
+Take a detached package of mass $m=\SI{0.25}{\kilogram}$ with projected area $A=\SI{0.01}{\square\meter}$, or \SI{100}{\square\centi\meter}. These are the remnant's properties, not those of the loaded PuffSat. Assume a constant effective area during the passage and drag coefficient $C_D=2.2$, giving $A/m=\SI{0.04}{\square\meter\per\kilogram}$. No drag cancellation or disposal burn is credited.
+
+Integrate drag along the unperturbed Earth-only hyperbola with vacuum periapsis speed \SI{5}{\meter\per\second} above escape at \SI{200}{\kilo\meter}. Neglect atmospheric rotation and winds, so the atmospheric relative speed is approximated by the orbital speed $v$. For these small losses, the accumulated drag impulse per unit mass is
+\begin{equation}
+\Delta v_D \simeq \frac{C_D A}{2m}\int \rho[r(t)]\,v(t)^2\,dt.
+\end{equation}
+Use the piecewise exponential density profile in Vallado's published atmosphere table \cite{vallado_atmosexp}. Its density at \SI{200}{\kilo\meter} is \SI{2.789e-10}{\kilogram\per\cubic\meter}, with a local scale height of \SI{37.105}{\kilo\meter}. Integrating between the inbound and outbound \SI{1000}{\kilo\meter} crossings gives \autoref{tab:remnant_drag}. The other rows multiply the entire profile by a constant to reach the listed periapsis density. They are sensitivity cases, not occurrence probabilities or a solar-activity forecast.
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Drag impulse per unit mass for an uncontrolled \SI{250}{\gram}, \SI{100}{\square\centi\meter} remnant passing a \SI{200}{\kilo\meter} periapsis near \SI{11}{\kilo\meter\per\second}. The full-pass column assumes the remnant is already separate on approach. Release at periapsis exposes it only to the outbound half of the symmetric model.}
+    \label{tab:remnant_drag}
+    \begin{tabular}{|l|r|r|}
+        \hline
+        Density at \SI{200}{\kilo\meter} (\si{\kilogram\per\cubic\meter}) & Full pass (\si{\meter\per\second}) & Outbound half (\si{\meter\per\second}) \\\hline
+        \num{2.789e-10} (reference) & 0.24 & 0.12 \\\hline
+        \num{1e-9} & 0.87 & 0.43 \\\hline
+        \num{3e-9} & 2.61 & 1.30 \\\hline
+    \end{tabular}
+\end{table}
+
+The trajectory spends about \SI{3.5}{\minute} below \SI{250}{\kilo\meter}, half of that after periapsis. A \SI{0.5}{\meter\per\second} outbound allowance covers the first two density cases, while the third exceeds it. All three remnant-only losses remain below the initial \SI{5}{\meter\per\second} escape margin. Drag scales with $C_D A/m$; a deployed panel or trailing film increases the loss in proportion to its added effective area. Inbound drag before separation and any backward release impulse must be subtracted separately before concluding that a detached package escapes.
 
 \paragraph{Departure direction and thermal attitude.}
 For eccentricity $e = 1+r_i C_3/\mu$, the angle between the periapsis velocity and the outgoing asymptotic velocity is $\alpha = \arcsin(1/e)$. It is about \SI{86.5}{\degree} for the initial margin and \SI{84.0}{\degree} after the ideal reserve burn. A departure along Earth's solar orbital motion therefore does not imply the same heading at the plate. The necklace's thermal attitude wants its spin axis perpendicular to the Sun-line, while delivery wants that axis along the closing velocity (\autoref{sec:spin_reorientation}). Both can agree if the encounter plane is perpendicular to the Sun-line and contains Earth's solar orbital velocity. The approach then runs roughly perpendicular to Earth's solar orbital plane, and the rocket must share the corresponding encounter track. This is a joint route-and-timing choice, not an automatic saving for every prograde escape.
