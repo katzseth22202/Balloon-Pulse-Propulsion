@@ -22,6 +22,24 @@ mounted on a shock absorber. About 5 m wide in the near-term design, where it do
 a debris shield.
 _Avoid_: target plate, impact plate.
 
+**Downkick**:
+The downward component of the impulse a descending PuffSat transfers to the target
+rocket during interception.
+_Avoid_: treating the PuffSat's downward velocity as the rocket's acquired downward
+velocity; equating the incoming flow direction with the delivered impulse direction.
+
+**Rocket-frame inflow angle**:
+The angle of the arriving PuffSat's velocity relative to the target rocket, measured
+below the rocket's local forward direction.
+_Avoid_: conflating it with the PuffSat's Earth-frame flight-path angle or the plate's
+required tilt.
+
+**Passive missed-intercept disposal**:
+A PuffSat's disposal outcome established by its trajectory before interception,
+without requiring a successful interception or a later command, burn, or release.
+_Avoid_: treating disposal of an intact failed PuffSat as proof that every fragment
+from a breakup follows the same disposal trajectory.
+
 **Water-injected pusher plate**:
 The preferred candidate for the overtake leg, supplied with carried water that mixes
 with an overtaking PuffSat's flow near the plate and becomes pressure-driven exhaust.
