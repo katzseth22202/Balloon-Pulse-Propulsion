@@ -573,6 +573,10 @@ We recommend Earth escape for near-term Earth-delivery PuffSats. Stage the forma
 
 Take an initial ellipse with \SI{200}{\kilo\meter} perigee altitude and apogee at a geocentric radius of \SI{1000000}{\kilo\meter}. Slow motion near apogee retains the opportunity to adjust formation timing and spacing before injection. An approximately \SI{0.95}{\kilo\meter\per\second} burn, almost directly inward, supplies a vacuum periapsis speed \SI{5}{\meter\per\second} above local escape. The Earth-only coast from injection to encounter takes about \SI{8.4}{\day}. This burn belongs to the delivery propulsion budget, separate from the PuffSat's cold-gas fine-control allowance. \autoref{sec:staging_escape_geometry} derives the injection and escape margins.
 
+Retain bound staging while investigating an argon solar-electric carrier for delivery. At an assumed \SI{2000}{\second} specific impulse, the reference \SI{0.95}{\kilo\meter\per\second} costs \SI{4.7}{\percent} of initial maneuvering mass as propellant, before charging the power system. The trajectory must distribute this thrust over time. At \SI{50}{\percent} thruster efficiency and \SI{10}{\watt\per\kilogram} of total maneuvering mass, accumulating that impulse takes about \SI{22}{\day}. Allowing parabolic escape before a powered return does not itself save impulse. At the same million-kilometre radius, reversing the outward motion onto the specified arrival costs about \SI{1.84}{\kilo\meter\per\second} in an instantaneous Earth-only comparison.
+
+Deployment need not coincide with apogee. Coasting inward on the same long ellipse to \SI{150000}{\kilo\meter} altitude reduces the instantaneous injection to about \SI{212}{\meter\per\second}, leaving \SI{13.5}{\hour} to encounter. This differs from making that altitude the staging apogee. The shorter lead time limits both delivery thrust and scheduling adjustments; \autoref{sec:staging_escape_geometry} gives the comparison.
+
 After detachment and clearance of the rocket, each functioning dry-mass package uses its adjustment thrusters for a reserved \SI{10}{\meter\per\second} prograde burn, directed along its Earth-relative velocity. Executed near periapsis, it raises the local escape margin to approximately \SI{15}{\meter\per\second} before losses. The corresponding hyperbolic excess speed rises from about \SI{332}{} to \SI{575}{\meter\per\second}. The reserve accelerates the detached package, not the delivered payload. Both packages need independent burn capability after tether severance if both are to receive this margin.
 
 Atmospheric drag and separation consume that margin. The inbound drag acts on the intact PuffSat; the outbound drag acts on hardware with a different mass relative to its projected area. Release velocities must also enter each package's energy budget. The working \SI{5}{\meter\per\second} passive margin and \SI{10}{\meter\per\second} reserve are sizing points, not a claim that every lightweight package clears the atmosphere. The disposal condition is positive Earth-relative escape energy after the full atmospheric passage and release.
@@ -2529,7 +2533,7 @@ At $v_c = 0$ the relative velocity is the PuffSat's own velocity, and the fracti
 
 At fixed apogee, raising the disposal perigee to \SI{100}{\kilo\meter} lowers the incoming downward velocity to \SI{1.302}{\kilo\meter\per\second}, against \SI{1.595}{\kilo\meter\per\second} at \SI{50}{\kilo\meter}. The incoming angle is $\arctan[v\sin\gamma/(v\cos\gamma-v_c)]$. At $v_c = \SI{7.8}{\kilo\meter\per\second}$ it falls from \SI{29.1}{\degree} to \SI{24.1}{\degree}. Both retain a descending inflow, unlike the recommended periapsis encounter.
 
-\subsection{Escape Injection At The Staging Apogee}\label{sec:staging_escape_geometry}
+\subsection{Escape Injection From A Bound Staging Ellipse}\label{sec:staging_escape_geometry}
 The escape route of \autoref{sec:near_term_disposal} begins on a bound ellipse with perigee radius $r_i = R_\oplus + \SI{200}{\kilo\meter} = \SI{6578}{\kilo\meter}$ and apogee radius $r_a = \SI{1000000}{\kilo\meter}$. The apogee figure is measured from Earth's centre, not its surface. With Earth's gravitational parameter $\mu = \SI{3.986e5}{\kilo\meter\cubed\per\second\squared}$, the initial apogee speed is
 \begin{equation}
 v_{a,0} = \sqrt{\frac{2\mu r_i}{r_a(r_a+r_i)}} \approx \SI{0.0722}{\kilo\meter\per\second}.
@@ -2554,6 +2558,22 @@ These components are \SI{0.0724}{} and \SI{-0.950}{\kilo\meter\per\second}. The 
 \approx \SI{0.95}{\kilo\meter\per\second}.
 \end{equation}
 The initial ellipse takes about \SI{20.6}{\day} from perigee to apogee, and the injected hyperbola returns in about \SI{8.4}{\day}. At the shorter reference apogee altitude of \SI{150000}{\kilo\meter}, the same arrival margin requires \SI{2.23}{\kilo\meter\per\second}. The longer ellipse reduces the injection cost by accepting a longer coast. These are Earth-only transfer figures; solar and lunar perturbations enter the actual mission targeting.
+
+\paragraph{Deployment on the inbound leg.}
+Keep the million-kilometre apogee, but let gravity accelerate the carrier inward before deployment. Write $a_0=(r_a+r_i)/2$ and $h_0=\sqrt{2\mu r_a r_i/(r_a+r_i)}$ for the staging ellipse's semimajor axis and specific angular momentum. At an inbound radius $r$, its velocity components are
+\begin{equation}
+v_{t,0}=\frac{h_0}{r}, \qquad
+v_{r,0}=-\sqrt{\mu\left(\frac{2}{r}-\frac{1}{a_0}\right)-\frac{h_0^2}{r^2}}.
+\end{equation}
+The desired hyperbola has $v_t=r_i v_i/r$ and $v_r=-\sqrt{C_3+2\mu/r-v_t^2}$. The injection is the vector difference,
+\begin{equation}
+\Delta v(r)=\sqrt{(v_r-v_{r,0})^2+(v_t-v_{t,0})^2}.
+\end{equation}
+At \SI{150000}{\kilo\meter} altitude, $r=\SI{156378}{\kilo\meter}$, the radial speed changes from \SI{-2.023}{} to \SI{-2.235}{\kilo\meter\per\second}. The tangential increment is only \SI{1.73}{\meter\per\second}. The total is \SI{211.5}{\meter\per\second}, about \SI{78}{\percent} below the apogee injection, with \SI{13.5}{\hour} of hyperbolic coast remaining. If \SI{150000}{\kilo\meter} denotes geocentric radius instead, the impulse is \SI{207}{\meter\per\second}. These constructions preserve the encounter's periapsis radius and speed; encounter longitude and epoch must be targeted for the selected injection point.
+
+The smaller burn costs about \SI{1.1}{\percent} as argon at \SI{2000}{\second} specific impulse. At \SI{10}{\watt\per\kilogram} and \SI{50}{\percent} efficiency, however, accumulating \SI{211.5}{\meter\per\second} takes about \SI{4.8}{\day}. SEP must therefore begin earlier or carry more power; the instantaneous comparison is not a finite-thrust delivery solution. Waiting until periapsis would reduce the ideal burn to \SI{41}{\meter\per\second}, but would leave no coast for establishing and correcting the escaping arrival before delivery. The deployment choice trades propulsion against lead time.
+
+Chemical thrust can supply the inbound-deployment impulse in a short burn. At the reference \SI{380}{\second} specific impulse, \SI{211.5}{\meter\per\second} consumes about \SI{5.5}{\percent} of initial maneuvering mass, compared with \SI{22.5}{\percent} for the apogee injection. At an average acceleration of \SI{1}{\meter\per\second\squared}, the burn lasts about \SI{212}{\second}. The propellant fraction excludes the engine and tank mass. If deployment precedes injection, each PuffSat needs delivery propulsion beyond its cold-gas guidance system; burning before release instead charges the maneuver to the loaded carrier.
 
 A detached package that adds \SI{10}{\meter\per\second} prograde at periapsis raises $\delta$ to \SI{0.015}{\kilo\meter\per\second} before drag and release losses. Its $v_\infty$ becomes about \SI{0.575}{\kilo\meter\per\second}. The positive specific orbital energy rises from about \SI{55}{} to \SI{165}{\kilo\joule\per\kilo\gram}. The added burn therefore triples the approximate atmospheric braking allowance, from \SI{5}{} to \SI{15}{\meter\per\second} expressed as an equivalent loss at periapsis. The reserve is carried for each departing package and is additional to its approach and attitude-control allocation.
 

@@ -42,6 +42,27 @@ The existing 150,000 km guidance simulation and bound-orbit fare calculation
 remain reference cases, explicitly distinguished from this delivery route. Their
 numerical results do not include the new injection or establish its mission cost.
 
+Update, 2026-09-11: retain bound staging and investigate an argon SEP carrier
+for delivery. Propulsion choice is separate from the choice of staging orbit.
+At an assumed 2,000 s specific impulse, the 0.95 km/s reference impulse costs
+4.7% of initial maneuvering mass as argon. Power-system mass and finite-thrust
+targeting remain part of the comparison. Parabolic departure followed by powered
+return costs about 1.84 km/s at the same million-kilometre radius in the
+instantaneous Earth-only comparison, because outward radial motion must first
+be removed.
+
+An inbound-deployment alternative retains the million-kilometre apogee but
+coasts down to 150,000 km altitude before injection. Its ideal burn is about
+212 m/s, with 13.5 hours left to the same 200 km, escape-plus-5-m/s periapsis
+condition. This is not an ellipse whose apogee is 150,000 km. At 10 W/kg of
+total maneuvering mass and 50% thruster efficiency, SEP needs about 4.8 days
+to accumulate that impulse, so a finite-thrust route must start earlier or
+use more power. The comparison does not select a final deployment point.
+Chemical thrust can instead supply this impulse in minutes. At the reference
+380 s specific impulse it consumes about 5.5% of initial maneuvering mass,
+excluding engine and tank mass. Burning after release requires delivery
+propulsion on each PuffSat; burning before release accelerates the loaded carrier.
+
 
 For spacecraft launches with flexible dates, retain planetary returns as an
 alternative to direct delivery. A loaded PuffSat can burn at its first Earth
