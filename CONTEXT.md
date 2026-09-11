@@ -22,6 +22,17 @@ mounted on a shock absorber. About 5 m wide in the near-term design, where it do
 a debris shield.
 _Avoid_: target plate, impact plate.
 
+**Escape delivery**:
+The recommended Earth-delivery route: a long staging ellipse followed by an inward
+apogee injection onto a hyperbola whose periapsis is the payload encounter.
+_Avoid_: treating a tangential escape burn at apogee as an inward return; calling
+its injection part of the fine-control budget. Decision: [ADR-0018](docs/adr/0018-escape-delivery-with-periapsis-reserve.md).
+
+**Disposal reserve**:
+The prograde velocity increment reserved for each functioning dry-mass package
+after detachment near periapsis, additional to its approach and attitude-control allowance.
+_Avoid_: crediting the reserve to failed hardware or to the delivered payload.
+
 **Downkick**:
 The downward component of the impulse a descending PuffSat transfers to the target
 rocket during interception.
@@ -1767,7 +1778,7 @@ _Budget_: parks at ~1000 km perigee to clear drag across the **storage interval*
 ~200 km operating perigee for the push and returns, about 26 m/s each way, call it 50--100 m/s
 per flight all in. Under 3% of vehicle mass per flight at methalox exhaust velocity, so roughly
 30 flights per propellant load equal to dry mass. It never leaves the ellipse.
-_Vantage_: the 200 km operating perigee against the PuffSats' 50 km disposal perigee is a
+_Vantage in the bound reference calculation_: the 200 km operating perigee against the PuffSats' 50 km disposal perigee is a
 150 km **radial** offset bought for ~5 m/s at apogee, which must be paired with a comparable
 along-track offset to satisfy the **miss plane** geometry. A purely radial offset is blind in
 the radial miss axis.
@@ -3829,7 +3840,8 @@ rather than re-sweeping a cleared channel. Rate is not what limits this mechanis
 ### Lunar disposal (`sec:handling_space_debris`)
 
 **Disposal package**:
-The sub-250 g dry-mass remnant of a spent PuffSat, steered to a lunar impact instead of reentry.
+The dry-mass remnant of a spent PuffSat, routed to Earth escape in the recommended
+Earth-delivery architecture or to a disposal site in the later lunar option.
 _Avoid_: waste, garbage, trash, debris (reserve **debris** for the ejecta it throws).
 
 **Disposal site**:
@@ -3872,7 +3884,7 @@ and the discard kick is metres per second: retrograde, Jupiter-crossing, perihel
 aphelion at or beyond Jupiter, period 5--9 yr. The Earth encounter is a crossing, not a tangency;
 the package arrives with a large inward radial component and continues to a perihelion well below
 1 AU. Exact $q$, $Q$, $P$ not yet pinned from the companion repo.
-_Avoid_: **disposal package** (reserved for the Earth-orbit remnant steered to a lunar impact; the
+_Avoid_: **disposal package** (the Earth-delivery remnant; the
 heliocentric one is never disposed of), **debris** (reserved for lunar ejecta), "widely dispersed
 debris".
 
@@ -3922,11 +3934,12 @@ push, which is the whole point of staging.
 _Avoid_: depot (implies a fixed station), tanker, tug.
 
 **Staging ellipse**:
-The 50 km x 150,000 km orbit (`v_p` = 10.916 km/s, period 2.7 d, apogee speed 0.45 km/s) that the
-solar-dive PuffSats deliver the **staging carrier** into, and where it parks. Same orbit the PuffSats
-themselves fly in `sec:starship_safelaunch`, so no injection burn is ever needed.
-_Avoid_: "apogee at lunar distance" (that is the `tab:mass_scenarios` row description; the operational
-orbit of line 1444 and the companion sim is 150,000 km. Both happen to give `v_p` ~ 10.916 km/s).
+The bound Earth orbit on which a carrier holds PuffSat mass before delivery.
+In **escape delivery**, its distant apogee is the injection point; the delivery
+hyperbola is a separate trajectory.
+_Avoid_: assuming that staging and encounter share one unmodified ellipse. The
+50 km by 150,000 km orbit remains a reference in the existing carrier and tracker
+calculations, not the recommended escape-delivery trajectory.
 
 **Arrival-declination floor**:
 The lowest inclination a **staging ellipse** can be given for free, equal to the declination of

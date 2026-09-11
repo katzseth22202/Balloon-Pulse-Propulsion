@@ -1,8 +1,9 @@
 # Near-term disposal must preserve high-apogee staging and survive PuffSat failure
 
-Status: accepted. Atmospheric baseline and failure treatment agreed in the
-2026-09-10 grill and incorporated into the paper. The existing remote-ocean
-targeting remains; route-specific operating constraints are not determined here.
+Status: superseded by [ADR-0018](0018-escape-delivery-with-periapsis-reserve.md)
+on 2026-09-11. The atmospheric baseline below records the 2026-09-10 decision;
+it is no longer the recommendation. Remote-ocean targeting remains relevant to
+deliberate contingency reentries.
 
 The user requires passive disposal after complete loss of PuffSat function. Retain
 high-apogee deployment as the working requirement because its slow motion permits
