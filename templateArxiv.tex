@@ -1236,6 +1236,77 @@ For the earlier \SI{12}{\tesla} reference cap, the original first-order estimate
 
 Commercial high-temperature superconducting magnets are already built to about \SI{20}{\tesla} at \SI{20}{\kelvin} \cite{creely2020sparc}. At an \SI{11}{\tesla} peak that working point is a comfort rather than a requirement. The field must be graded in space and static in time. \autoref{sec:watering_it_down} keeps induced current out of the superconductor on purpose, so a coil field that deliberately changes during a pulse would break the quench design the same section argues for.
 
+\subsubsection{A Hydrogen Chamber Pays for Pressure Containment}\label{sec:hydrogen_pressure_shell}
+
+A non-magnetic alternative on the head-on leg is to dilute the impact into hydrogen and discharge it through a material nozzle at \SI{10000}{\kelvin}. Rubbia's Project 242 provides a cooling precedent. Its hydrogen flows inward through a porous carbon--carbon wall, keeping the hottest gas near the axis \cite{augelli2013project242}. Carbon--carbon means carbon fibers in a carbon matrix; it has no polymer resin. The gas temperature is not the permitted wall temperature, and the precedent's continuous heating at a few bar does not establish survival under our pressure pulse.
+
+Consider a \SI{10}{\kilogram} projectile arriving at \SI{75}{\kilo\meter\per\second}. Its kinetic energy is \SI{28.125}{\giga\joule}. Scaling the companion's \SI{10000}{\kelvin} hydrogen reference at fixed density gives \SI{77.7}{\kilogram} of carried hydrogen and \SI{87.7}{\kilogram} of total gas \cite{Katz_puffsat_impact_sim_2026}. That calculation assigns hydrogen's equation of state to all vaporized mass, including the projectile. With specific internal energy \SI{320.8}{\mega\joule\per\kilogram} and mean particle molar mass \SI{1.01}{\gram\per\mole}, it gives
+\begin{equation}
+    pV \simeq \frac{m_{\mathrm{gas}}}{\overline{M}}R_gT
+       \simeq \SI{7.2}{\giga\joule}.
+\end{equation}
+Here $\overline{M}$ is the mean particle molar mass. An \SI{80}{\cubic\meter} chamber therefore reaches about \SI{900}{\bar}. This scales the reference's \SI{200}{\cubic\meter} chamber and \SI{25}{\kilogram} projectile together; changing the projectile composition requires a different gas calculation.
+
+An ideal thin spherical shell has thickness $t=pr/(2\sigma_{\mathrm{allow}})$ and mass
+\begin{equation}\label{eq:hydrogen_pressure_shell_mass}
+    M_{\mathrm{shell}} \simeq \frac{3}{2}\,
+       \frac{\rho_{\mathrm{shell}}}{\sigma_{\mathrm{allow}}}\,pV.
+\end{equation}
+The allowable stress is a working limit for the finished shell at its wall temperature. For a composite it must represent the layup under pressure in both tangential directions, rather than a single fiber's breaking strength. Enlarging the chamber lowers pressure but increases the shell area, leaving this mass unchanged at fixed gas state and charge. At fixed temperature and density, reducing the energy per pulse reduces the shell mass in proportion.
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Illustrative spherical pressure-shell masses for the \SI{10}{\kilogram}, \SI{75}{\kilo\meter\per\second} hydrogen case. Assumed densities in \si{\kilogram\per\cubic\meter} are 7850 for steel, 1600 for carbon-fiber/polymer, 1450 for aramid/polymer, and 1800 for carbon--carbon. Stresses are sizing assumptions, not qualified material ratings.}
+    \label{tab:hydrogen_pressure_shell}
+    \begin{tabular}{lrr}
+        \hline
+        Material & Allowable stress (MPa) & Shell mass (tonnes) \\
+        \hline
+        Steel & 200 & 425 \\
+        Steel & 500 & 170 \\
+        Steel & 1000 & 85 \\
+        Carbon-fiber/polymer & 500 & 35 \\
+        Carbon-fiber/polymer & 1000 & 17 \\
+        Aramid/polymer & 500 & 31 \\
+        Aramid/polymer & 1000 & 16 \\
+        Carbon--carbon & 200 & 97 \\
+        Carbon--carbon & 500 & 39 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+These are membrane estimates before the liner, nozzle, penetrations, supports and local shock loads. At \SI{900}{\bar}, the \SI{200}{\mega\pascal} steel row is already outside the thin-wall regime and requires a thick-wall correction. Even the ideal estimate exceeds the reference \SI{100}{\tonne} craft by a factor of four, so it is rejected for this vehicle. Stronger steel reduces the mass, but even a \SI{1}{\giga\pascal} working allowance spends \SI{85}{\tonne} on the ideal shell alone.
+
+Carbon--carbon addresses the hot wall, but does not inherit the pressure-shell strength of a carbon-fiber/polymer winding. At the assumed density it needs an effective allowable stress of about \SI{1}{\giga\pascal} to put the ideal shell below \SI{20}{\tonne}. Fiber reinforcement can bridge cracks, so shock does not imply that the entire wall shatters. The failure modes to price are separation between layers, local damage at the nozzle contraction and attachments, and erosion in hot hydrogen. A porous transpiration liner also needs a separate sealed pressure boundary and coolant feed. It cannot simply replace that boundary while retaining its intended permeability.
+
+The construction to carry forward is a cooled hot face and a sealed liner backed by a cool composite overwrap. Carbon--carbon is one hot-face option; a cooled metal or replaceable refractory facing is another. The hot face can be thin because the overwrap carries the global pressure load, but its thickness must still cover heat penetration, erosion and bending across coolant passages. Any insulating layer in that load path must transmit the local pressure without crushing. Transpiration also needs coolant supplied above the local gas pressure.
+
+Kevlar, a para-aramid fiber, is a candidate for that cool overwrap. At equal working stress, the assumed aramid/polymer density saves about \SI{9}{\percent} against carbon-fiber/polymer, giving \SIrange{16}{31}{\tonne} across the table's stress assumptions. Aramid's tensile toughness favors impact absorption, while carbon fiber's greater stiffness limits chamber expansion and strain in the liner and seals. Aramid also pays for weaker compression behavior and moisture sensitivity \cite{kevlar_technical_guide}. Toughness under impact does not by itself set the allowable stress under repeated internal pressure pulses. Either winding must stay below its matrix's permitted temperature; Kevlar's fiber decomposition temperature is not a service rating for a resin-bound vessel. The lower-cost choice depends on the finished winding's allowable stress and fabrication price, together with the cooling and liner life that it buys. No supplier price comparison is assumed here, so both remain candidates.
+
+Springs and dampers belong between the chamber assembly and the spacecraft, where they lengthen the transmitted thrust pulse, as in \autoref{sec:pusher_plate_damping}. Springs between the metal liner and overwrap still transmit their reaction to the outer shell; they change the transient response without eliminating the containment load. The cool winding carries pressure at a mass of tens of tonnes in this estimate, before the thermal hardware.
+
+\subsubsection{A Smaller Steel Chamber Can Be Filled Between Pulses}\label{sec:batch_filled_steel}
+
+Reducing the projectile to \SI{1}{\kilogram} makes steel worth pricing beside the composite case. At the same \SI{75}{\kilo\meter\per\second} closing speed and gas state, the pulse carries \SI{2.81}{\giga\joule} and needs \SI{7.8}{\kilogram} of carried hydrogen. The ideal steel shell falls to \SI{17}{\tonne} at a \SI{500}{\mega\pascal} working allowance, or \SI{42.5}{\tonne} at \SI{200}{\mega\pascal}. The corresponding carbon-fiber/polymer and aramid/polymer shells at \SI{500}{\mega\pascal} are \SI{3.5}{\tonne} and \SI{3.1}{\tonne}. Steel therefore trades spacecraft mass for a simpler fabrication route. Scaling chamber volume to \SI{8}{\cubic\meter} preserves the reference density and roughly \SI{900}{\bar} pressure, so the smaller vessel retains the preceding strength and thick-wall qualifications.
+
+The propellant pump need not work against that hot pressure. Refill after discharge, close the inlet, and then receive the next projectile. The valve must withstand the pressure pulse and prevent backflow, but the pump only supplies the pressure difference needed during filling. Near its normal boiling point, liquid hydrogen has density about \SI{71}{\kilogram\per\cubic\meter} \cite{nist_webbook_hydrogen}. Each \SI{7.8}{\kilogram} charge therefore occupies about \SI{0.11}{\cubic\meter}, or \SI{110}{\liter}, before vaporization. Pumping this liquid before it expands into the chamber limits the volume that the feed equipment must handle.
+
+For an illustrative filling pressure difference of \SI{10}{\bar} and pump efficiency $\eta_p=0.6$, the shaft energy per charge is
+\begin{equation}\label{eq:batch_fill_pump}
+    E_{\mathrm{fill}}\simeq\frac{\Delta p_{\mathrm{fill}}\,m_{\mathrm{H_2}}}
+    {\eta_p\rho_{\mathrm{LH_2}}}
+    \simeq\SI{0.18}{\mega\joule}.
+\end{equation}
+That is about \SI{0.0065}{\percent} of the impact energy, or \SI{0.18}{\mega\watt} of average shaft power at one pulse per second. The actual filling head includes the cold chamber pressure and feed losses; \SI{10}{\bar} is a sizing example. This allowance covers liquid transfer, not hydrogen liquefaction or wall cooling. An accumulator can spread pump operation across the cycle while delivering the charge during a shorter refill window. Reducing projectile mass tenfold also requires ten times the pulse rate to preserve thrust at the same impulse per projectile kilogram. Average propellant throughput and impact power then remain unchanged.
+
+Cooling injected through the wall during the pulse has a different pressure requirement. It must enter above the local chamber pressure, even if a pump charges its accumulator between pulses. For the same liquid volume, a \SI{900}{\bar} pressure difference takes ninety times the work of the illustrative \SI{10}{\bar} fill. That cost applies to the coolant injected under pressure, not automatically to the entire hydrogen charge. A wall that stores the pulse heat and sheds it between impacts could avoid continuous high-pressure coolant injection, provided its peak temperature stays within the steel's working allowance.
+
+A replenished graphite facing is a candidate for lowering the hot-wall cost. After discharge, a manifold would apply graphite particles or a graphite-bearing coating to the supported inner surface before the next impact. This extends the between-pulse sacrificial-coating proposal in \autoref{sec:lightweight_pusher_plates}; Orion's antiablation coating supplies a precedent for renewal between pulses, not a graphite deposition process \cite{ga5009_vol3}. Replenishment could replace a machined carbon--carbon hot face with a consumable coating while retaining the steel pressure boundary. Deposition after depressurization also avoids injecting the coating against the hot chamber pressure.
+
+The coating must cover both erosion and heat penetration during exposure. A micrometre-scale ablation allowance alone does not establish insulation for the underlying steel; the thermal penetration depth grows approximately as $\sqrt{\alpha\tau}$, where $\alpha$ is thermal diffusivity and $\tau$ is exposure time. For scale, a \SI{10}{\micro\meter} equivalent coating over \SI{20}{\square\meter} at \SI{1800}{\kilogram\per\cubic\meter} costs \SI{0.36}{\kilogram} per complete renewal. At \SI{100}{\micro\meter} it costs \SI{3.6}{\kilogram}, nearly half the carried hydrogen charge. These are material accounts, not selected thicknesses. Adhesion under the pressure front and chemical erosion in hydrogen determine how much must actually be replaced. The contraction and throat can retain replaceable inserts where a deposited film cannot preserve the required contour. Coating carrier and lost graphite must enter the consumed-mass and gas-energy accounts.
+
+The proposed cost reduction comes from batch filling and inexpensive facing renewal, together with a steel pressure vessel. As an illustrative material allowance, \SI{17}{\tonne} of steel at \$5 per kilogram costs \$85{,}000. This excludes forming, joining and inspection, as well as the nozzle and feed equipment. A mature-production assembly costing several hundred thousand to a few million dollars is a budgeting hypothesis, conditional on this simple construction, rather than a supplier estimate. The remaining cost drivers are the fabricated pressure boundary and the wall's heat-removal and renewal system; the low-pressure propellant fill alone does not establish a million-dollar equipment requirement.
+
 \subsubsection{A Water-Injected Pusher Plate for the Overtake Leg}
 \label{sec:water_injected_overtake}
 
