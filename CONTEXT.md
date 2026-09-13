@@ -2013,6 +2013,29 @@ pre-measured offset rather than chasing fresh navigation noise.
 
 ### Economics
 
+**One-way data-center delivery cost**:
+Transport cost per kilogram of useful data-center cargo delivered to its operating orbit,
+with no required return cargo and no early credit for recovery or reuse of PuffSat transport hardware.
+_Avoid_: round-trip cost; including data-center purchase or operating costs in the transport figure.
+
+**Tanker upper-stage reuse**:
+The number of flights over which one Starship tanker upper stage's manufacturing cost is spread.
+It is separate from booster reuse and from reuse of the cargo ship that leaves LEO.
+_Avoid_: assigning one reuse count to every vehicle in a refueling campaign.
+
+**Earth-customer latency**:
+The end-to-end delay between a customer on Earth and an orbital computing cluster.
+For the space-data-center application, training and asynchronous inference can tolerate
+this delay while the cluster retains fast local communication.
+_Avoid_: using unqualified "latency" to imply that communication between accelerators
+inside the cluster can also be slow.
+
+**Intra-cluster latency**:
+The communication delay between computing devices within one orbital data center.
+It is distinct from Earth-customer latency and need not grow with the cluster's distance
+from Earth when its devices remain close together.
+_Avoid_: treating Earth-to-site light time as a lower bound on local training-network delay.
+
 **Momentum-amplification cascade** (in the paper as `sec:methalox_rebuttal`, "Moneyball Meets Methalox"):
 The chain that answers the obvious skeptic ("how can heat-tolerant, formation-flying
 projectiles beat a tank of methalox?"). Fast, expensive reaction mass transfers momentum
