@@ -2215,6 +2215,69 @@ the second one: the wave names identify their mission roles independently of the
 chosen propulsion hardware. `tab:two_leg_growth` is the two-magnetic-nozzle reference
 calculation and sweeps `e1` and `e2` separately.
 
+**Release** (growth wave on the three-synodic return; named in the 2026-09-13 grill):
+The moment a growth-wave PuffSat leaves the craft that carried it in from Jupiter, spin-up and
+spacing burn included. The carrying craft heats the fill until then, so every unit leaves liquid.
+Release is at 1.3 AU, which the four flown 3S returns cross 15.6-16.5 d before Earth. Those
+returns fall in nearly radially (36 km/s sunward, 12.6 km/s against Earth's motion, perihelion
+0.07-0.10 AU), so a Hohmann picture is wrong twice: it would coast 61 d from 1.3 AU and arrive
+square to the Sun-line. Spreading a 240 s push (0 -> 10.95 km/s) needs +/-108.5 s of stream time,
+not +/-120 s, because the craft runs 1,314 km downstream during the push. That is a 4.3-4.4 m/s
+release burn for the outermost units aimed for zero added miss (4.8-5.0 m/s straight along the
+velocity leaves a 3,200 km miss). **The carrying craft pays it** (decided 2026-09-13), by ejecting
+units in matched forward/back pairs or by burning between releases. Carrier delta-v under ~20 m/s
+counts as free, so the PuffSat guidance tank (123-211 N.s, which a 100 kg ring would overrun)
+never sees it. **With the burn free, the temperature floor sets 1.3 AU.** The fill is plain water
+under a bumper pattern centered on 302 K at 1 AU (see **Glycol fill**). Released at 295 K, a 9 kg
+bag bottoms out at 278 K near 1.18 AU, inside the charge's 273-300 K band, and arrives at 292 K,
+where water's 2.2 kPa (NIST WebBook, 2.18 kPa at 292 K) loads a 12 um film to 12 MPa (9 kg bag),
+14 MPa (25 kg, arriving 290 K at 1.9 kPa) and 26 MPa (100 kg), 9-19x under its strength. Relaxation time constants are 4.4 d (9 kg) and 6.2 d (25 kg). Patterns from 294 to
+310 K at 1 AU keep a 9 kg bag released at 295 K inside the band, so the bumper's alpha/eps may
+drift -10%/+11% about the 302 K center (a 25 kg body, about +/-14%). **Bumpers ride stowed inside
+the carrying craft and deploy at release** (decided 2026-09-13), so the Jupiter-belt dose never
+reaches the thermostat and each pattern starts the 16-day coast fresh. Releasing farther out
+runs the coast colder: on the glycol 280 K pattern, 1.5 AU (2.5 m/s) bottomed at 245 K and 1.7 AU
+(1.7 m/s) at 231 K. The burn scales roughly as 1/coast (6.6 m/s from 1.2 AU).
+After the last release the carrying craft diverts off the stream's Earth course. From 1.3 AU, 7.1 m/s
+moves its arrival 10,000 km sideways, against a 6,600 km atmosphere-grazing impact parameter at
+56 km/s; 50,000 km costs 35 m/s. Carrier delta-v under ~20 m/s is treated as negligible, so the
+craft's fate is a minor detail (decided 2026-09-13). The craft keeps the stream's heliocentric orbit,
+since a 10,000 km pass bends it only 1.4 deg (perihelion 0.06-0.11 AU, aphelion 4.2-7.6 AU), which
+takes it far from Earth.
+The stream arrives 40-42 deg off the plane perpendicular to the Sun-line, so the worst thermal-to-
+impact re-point is ~40 deg, and only the hub bag needs the thermal attitude at all (see
+**Centrifugal stirring geometry**). **The growth-wave ring flies without a hub bag** (decided
+2026-09-13), so the carrying craft spins it up in the impact attitude and nothing re-points. With
+the Sun 44-50 deg off the spin axis, each ring bag's sunward cap takes a steady 0.71 of normal-
+incidence flux, its antisunward cap none, and its inner, outer, leading and trailing faces 0.225
+each. The gradient lies along the spin axis, across the outward field, so the bag stays a
+side-heated cavity. **The ring arrives as a donut, and the gasification cloud is shaped to fill
+the center as well as it can** (decided 2026-09-13). No particular shaping is claimed. An
+inward-biased charge was discussed and set aside for the concept paper: the cloud also mixes with
+the water the plate injects (**Water-injected pusher plate**), so modeling the fill is a coupled
+problem that waits on expert input rather than an impact-simulation ask. This replaces the
+hub-bag argument of `sec:tethered_ring` for this ring; f and capture fraction remain single-cloud. Reproduce with `todos/jupiter_3s_release_geometry.py`.
+_Avoid_: "deploy"/"deployment" for this event, which already names the carrier perigee drop of
+**Perigee arming**; quoting a 90 deg turn at Earth for the Jupiter stream.
+
+**Glycol fill** (priced and set aside, 2026-09-13 grill):
+Not flown while the charge keeps the **Sensitizer-set thermal band**. A ~302 K pattern holds the whole
+coast from 1.3 AU at 278-292 K, so water never freezes, and glycol would add only carbon (~19% of
+fill mass), a fuel beside an oxidizer-rich charge, and 5-33x water's viscosity. It returns if the
+charge proves cold-tolerant. As priced:
+50 wt% ethylene glycol in water surrounding the gasifying charge, in place of plain water. Freezes
+near 238 K (MEGlobal guide Fig. 2, after Cordray et al. 1996), against 245.6 K equilibrium at
+1.3 AU for a pattern tuned to 280 K at 1 AU. Vapor pressure 0.76 kPa at 280 K, 40% of the paper's
+1.9 kPa water anchor, so a 12 um film carries it at 4-9 MPa. Viscosity is 5x water's at 280 K and
+33x at 246 K, but a bag spinning at 1 rad/s stays rotation-dominated (Ekman 4e-5 to 2e-4): the
+columnar onset margin rises 5-7x and the thermal-wind speed, which carries no viscosity, runs
+1.8-2.5x water's on glycol's larger expansion. Scaling estimates, not a solved flow. Frozen fill
+cannot thaw by 1.3 AU on the 280 K pattern (fully liquid only at 1.04-1.10 AU), which is why the
+carrying craft heats it until **Release**. Reproduce with `todos/glycol_fill_thermal.py`.
+Open: the charge's own temperature band, and the carbon glycol adds to the plume (~19% of fill mass).
+_Avoid_: "50/50" without "by weight" (50 vol% is about 53 wt% and freezes several kelvin lower);
+"antifreeze" in paper prose.
+
 **The split gap is 10 days in this chain, 20 in the wider architecture** (settled 2026-09-02 after
 the paper was migrated to 20 days and reverted):
 `two_wave_growth.DEFAULT_SPLIT_DAYS` is **10** per companion ADR 0013, and the paper carries 10.
@@ -3675,6 +3738,19 @@ aqueous vapor pressure crowds the nitrogen fill and the matrix coarsens. Held pa
 the louver of `sec:louver_thermal_trim`, which currently lists a target for every variant
 *except* the explosive one. Means colder is **not** strictly better for a gassed charge,
 qualifying line 232's reflective-liner argument.
+_Citation status (checked 2026-09-13)_: Kramarczyk et al. 2022 (`emulsion_tutorial`, mirrored at
+PMC9318116 because mdpi.com refuses automated clients) supports only the direction. Nitrite gassing
+"is strictly dependent on the temperature of the components", and matrix aging is ammonium nitrate
+crystallisation, which elevated temperature promotes. It states neither 273 K nor 300 K, so the
+band's numbers stay uncited, and `sec:growth_wave_release` frames its 273-300 K coast band from
+water's freezing point and NIST vapor pressure instead. Maranda 2025 (`maranda2025comprehensive`,
+read in full from a user-supplied PDF, 2026-09-13) gives no band either. Its only temperature data
+for gassing are Mishra et al. 2018 (Geotech. Geol. Eng. 36:89-94, doi 10.1007/s10706-017-0308-7):
+sodium nitrite gassing at 31, 47 and 70 C, slower and less complete at 31 C (density still falling
+at 25 min and settling 25 min later, minimum 1.14 g/cm3) than at 47 or 70 C (settled by 20 min,
+0.92 and 0.94 g/cm3). Nothing is measured at or below 300 K, so the literature supports "gassing
+slows as it cools" but neither the 273 K floor nor the 300 K ceiling. Its crystallisation passages
+concern shock desensitisation, not storage temperature. The PDF prints "31 C" as "3 C 1" once.
 
 **Isobaric charge (low-gravity advantage)**:
 In free fall the charge has no hydrostatic head, so bubble size, density, and sensitivity are
