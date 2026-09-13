@@ -158,6 +158,9 @@ By contrast, a suborbital rocket that merely reaches \SI{200}{\kilo\meter} in al
 
 Starship launches PuffSats for pulsed propulsion into a highly eccentric staging orbit around Earth. Near its distant apogee, a delivery burn sends them inward on an escaping trajectory with periapsis at the \SI{200}{\kilo\meter} interception altitude (see \autoref{sec:handling_space_debris}). They arrive horizontally, just above local escape speed. Functioning dry hardware brakes into a return ellipse after detachment, then lowers periapsis for controlled ocean reentry. Uncontrolled duds retain the escaping arrival as their passive fallback. The suborbital rocket rides the PuffSats'  momentum pulses to low Earth orbit. The PuffSat mass this takes is modest, comparable to the target rocket's own mass (see \autoref{tab:mass_scenarios}). While this approach reduces payload capacity compared to a single rocket system, most satellites are unable to take advantage of Starship's enormous payload volume anyway.
 
+
+The preceding pulses leave gas in the next PuffSat's path. For \SI{100}{\kilogram} pulses at \SI{4}{\hertz}, the estimate in \autoref{sec:leo_plume_encounter} suggests this exposure does not rule out the LEO scenario. A smooth expanding plume gives sub-millimeter trajectory errors, and a \SI{100}{\gram\per\square\meter} bumper limits heating to tens of kelvin. That assessment depends on the exhaust distribution and on dispersing the heavier membrane before plate contact or accepting its fragments in a replaceable facing.
+
 \subsection{Space Data Centers Beyond Low Earth Orbit}\label{sec:space_data_centers}
 Space data centers offer an early customer for the Jovian-return launch service of \autoref{sec:jupiter_only_growth}. Google's Project Suncatcher proposes solar-powered computing clusters in dawn--dusk sun-synchronous low Earth orbit \cite{aguera2026_suncatcher}. The orbital plane follows the day--night boundary for nearly continuous sunlight. Its computing hardware needs high-bandwidth, low-latency links within each cluster. Those links can remain short at a site much farther from Earth.
 
@@ -355,7 +358,7 @@ A second branch of this family lays the reaction mass out in advance instead of 
 
 These pellet stream propulsion ideas often prioritized interstellar speeds over economic feasibility.  Each also rests on an accelerator that was never built. Singer and Willis assume mass drivers, Nordley requires externally accelerated particles, Kare and Davoyan assume large laser arrays, and a fusion runway serves only a ship already at ignition speed. That missing accelerator, not the impact physics, is where this family has stalled since the 1970s. Our PuffSat pulsed propulsion system replaces the accelerator with low cost orbital maneuvers, so the closing velocity is paid for by the same conventional rockets that lift the PuffSats. Two prerequisites remain, cheap bulk launch and precise terminal guidance, and both have flight heritage. Reusable heavy-lift rockets supply the first \cite{starship}, and \autoref{sec:formation_challenges_current_missions} reviews the second.  Unlike pellet beam proposals, PuffSat pulsed propulsion provides very heavy lift to propel large craft into orbit.  Those proposals also leave unexamined the near-term power sources needed to lift multi-ton objects into orbit. Our PuffSats can weigh kilograms, and are composed mostly of materials that gasify to biocompatible chemicals like water vapor, nitrogen, oxygen, and carbon dioxide.   This means they generate less pollution for a given $\Delta V$, which makes them practical for very large-scale near-Earth applications.
 
-Although our PuffSats contain electronics, the majority of their mass consists of inexpensive explosives or ices. This composition enables comparable propulsion at lower cost than systems dominated by electronics or solar sail material. Water ice has been detected on the Moon, Ceres, and Phoebe \cite{colaprete2010lcross,prettyman2017dawn_ceres_water,phoebe}, making it a candidate PuffSat feedstock at several locations.  Larger PuffSats can afford heavier electronics than Nordley's snowflake-sized guided pellets.  Beamed-plasma proposals like MagBeam push on a spacecraft's magnetic field with plasma streamed from a stationary platform \cite{winglee_magbeam}. Landis analyzed the related case of a neutral particle beam pushing a magnetic sail for interstellar flight \cite{landis2004particlebeam}. He estimated roughly two million kilometers of thermal beam spread per light-year in one example, much less than laser diffraction, and concluded that particle beams could support interstellar probes. Guided masses like PuffSats replace passive beam propagation with active terminal guidance. While PuffSats could, in principle, interact with magnetic pusher plates, their largely gaseous composition (after gas generation) may make direct kinetic collision a simpler and more dependable mechanism for momentum transfer.  However, magnetic technologies would still be useful in the shock-absorber behind the pusher plate (see \autoref{sec:pusher_plate_damping}) or in magnetic nozzles (see \autoref{sec:minimum_nozzle}).  If a dense flow of small pellets hits a rocket, the resulting plumes may interfere with each other.   PuffSats have larger pulses spaced far enough apart that plume interference is negligible.  Work on pellet streams continues. In the newest variant, wind--pellet shear sailing, the craft overtakes slower pellets and pushes them backward against the interstellar medium, drawing power from the relative wind \cite{greason2022windpellet}.  PuffSats are not concerned with interstellar missions in the near term.
+Although our PuffSats contain electronics, the majority of their mass consists of inexpensive explosives or ices. This composition enables comparable propulsion at lower cost than systems dominated by electronics or solar sail material. Water ice has been detected on the Moon, Ceres, and Phoebe \cite{colaprete2010lcross,prettyman2017dawn_ceres_water,phoebe}, making it a candidate PuffSat feedstock at several locations.  Larger PuffSats can afford heavier electronics than Nordley's snowflake-sized guided pellets.  Beamed-plasma proposals like MagBeam push on a spacecraft's magnetic field with plasma streamed from a stationary platform \cite{winglee_magbeam}. Landis analyzed the related case of a neutral particle beam pushing a magnetic sail for interstellar flight \cite{landis2004particlebeam}. He estimated roughly two million kilometers of thermal beam spread per light-year in one example, much less than laser diffraction, and concluded that particle beams could support interstellar probes. Guided masses like PuffSats replace passive beam propagation with active terminal guidance. While PuffSats could, in principle, interact with magnetic pusher plates, their largely gaseous composition (after gas generation) may make direct kinetic collision a simpler and more dependable mechanism for momentum transfer.  However, magnetic technologies would still be useful in the shock-absorber behind the pusher plate (see \autoref{sec:pusher_plate_damping}) or in magnetic nozzles (see \autoref{sec:minimum_nozzle}).  If a dense flow of small pellets hits a rocket, the resulting plumes may interfere with each other.   PuffSats use larger, separated pulses, but the next body can still traverse the preceding plume. The LEO estimate in \autoref{sec:leo_plume_encounter} finds small deflection and manageable heating with a heavier bumper under its stated expansion assumptions.  Work on pellet streams continues. In the newest variant, wind--pellet shear sailing, the craft overtakes slower pellets and pushes them backward against the interstellar medium, drawing power from the relative wind \cite{greason2022windpellet}.  PuffSats are not concerned with interstellar missions in the near term.
 
 \subsection{Mass Fraction Of Rocket To PuffSat Mass}\label{sec:mass_fraction}
 For PuffSat pulsed propulsion to be a viable option, the ratio of PuffSat gas mass to target rocket mass must be low for relevant rocket velocity changes. We develop a closed-form approximation for this ratio (\autoref{eq:PuffSat_ratio} in \autoref{sec:PuffSat_ratio_approximation}). Since real collisions are not perfectly elastic, the approximation includes an energy-loss ``fudge factor'' $f$. When all the gas strikes the plate, $f$ ranges from $0.5$ for a perfectly inelastic impact, where the gas sticks, up to $1$ for a perfectly elastic one, where it rebounds and pushes the plate about twice as hard. If some of the gas misses the plate, $f$ drops below $0.5$.
@@ -2878,6 +2881,148 @@ The great circle joining New York to Tokyo spans \SI{10852}{\kilo\meter} and rea
 
 \paragraph{What the geometry does not buy.}
 Aiming the line of apsides along Earth's velocity places the interception above the dawn or dusk line, at a latitude of $\arcsin(\sin\varepsilon\cos\lambda_\odot)$ for solar ecliptic longitude $\lambda_\odot$. That latitude runs from \SI{0}{\degree} at the solstices to \SI{23.4}{\degree} at the equinoxes, and the date fixes it. The ascending node follows from the date and the roll, so placing a ground track along a named arc is a phasing problem rather than an impulse problem. The delivered orbit at \SI{200}{\kilo\meter} and \SI{69.9}{\degree} regresses \SI{3.08}{\degree} per day under the $J_2$ term of Earth's gravity field \cite{vallado_astrodynamics}. A Sun-synchronous orbit needs \SI{0.9856}{\degree} per day in the other direction, so the delivered orbit's local time drifts about \SI{4}{\degree} per day. That drift does not touch delivery, because each interception is aimed afresh.
+
+\section{Flying Through The Previous Pulse's Plume In LEO}\label{sec:leo_plume_encounter}
+The next PuffSat flies through gas left by earlier impacts. For the reference case below, the accumulated deflection is below a millimeter and a heavier bumper limits the temperature rise to tens of kelvin. These estimates favor survival of the incoming PuffSat. Survival of the pusher plate remains plausible with the heavier bumper if its debris disperses before contact or the replaceable facing accepts the surviving fragments. The calculation separates that particle load from the oil coating's thermal protection.
+
+\subsection{Assumptions And Expansion Model}
+Take \SI{100}{\kilogram} of gas per pulse, a frequency of \SI{4}{\hertz}, and \SI{11}{\kilo\meter\per\second} relative to the plume center. Write these as $m_g$, $1/\tau$, and $V$, with $\tau=\SI{0.25}{\second}$. The gas is half nitrogen and half water by mass. The incoming PuffSat has mass $M=\SI{100}{\kilogram}$ and outer radius $r_b=\SI{0.30}{\meter}$, giving projected area $A_b=\pi r_b^2=\SI{0.283}{\square\meter}$. This is a compact spherical body, not the spread ring of \autoref{sec:tethered_ring}; acceleration and displacement scale with projected area divided by mass.
+
+Use a spherical Gaussian mass distribution expanding freely from a source small compared with its eventual width,
+\begin{equation}\label{eq:leo_plume_density}
+\rho(r,t)=\frac{m_g}{(2\pi)^{3/2}(ut)^3}
+\exp\!\left[-\frac{r^2}{2u^2t^2}\right].
+\end{equation}
+Here $t$ is the age of the preceding plume and $u$ is the standard deviation of expansion velocity along any one axis. The local outward velocity is $r/t$. The spatial standard deviation is $ut$, while the radius containing 95\% of the mass is about $2.80ut$. This is a prescribed smooth gas distribution, with no droplets or membrane fragments included.
+
+The energy scale for an \SI{11}{\kilo\meter\per\second} impact is
+\begin{equation}
+E_{\rm impact}=\tfrac12m_gV^2=\SI{6.05}{\giga\joule},
+\qquad
+\frac{E_{\rm impact}}{m_g}=\SI{60.5}{\mega\joule\per\kilogram}.
+\end{equation}
+If a fraction $\epsilon$ becomes isotropic expansion about the plume's bulk motion, then
+\begin{equation}\label{eq:leo_plume_spread}
+\tfrac32u^2=\epsilon\frac{E_{\rm impact}}{m_g},
+\qquad
+u=V\sqrt{\epsilon/3}.
+\end{equation}
+The trial values $u=\SIlist{2;3;5}{\kilo\meter\per\second}$ spend about 10\%, 22\%, and 62\% of this energy on spreading. The middle value is the reference, with a three-dimensional RMS spreading speed of $\sqrt{3}u=\SI{5.20}{\kilo\meter\per\second}$. The remainder must pay for directed exhaust, chemical excitation, heat, and radiation. The chosen fractions are sensitivity inputs, not outputs of an impact calculation; chemical energy released by the PuffSat is not added to this estimate.
+
+Place the approaching body at $r(t)=V(\tau-t)$ for $0<t\leq\tau$, so it reaches the plume center at the nominal interception time. The gas ahead of it flows outward toward it, giving local closing speed
+\begin{equation}\label{eq:leo_plume_closing}
+w(t)=V+\frac{r(t)}{t}=\frac{V\tau}{t}.
+\end{equation}
+This geometry holds the cloud center at the interception point. A real pusher produces directed exhaust whose center can move away from that point. Exhaust aimed toward the incoming stream can bring the encounter forward into denser gas, while sideways escape can reduce it. Thus the centered spherical model is neither a worst-case bound nor a reconstruction of the plate's exhaust. It also neglects interactions between overlapping plumes and atmospheric entrainment.
+
+\subsection{Pressure And Exposure Time}
+Define $y=\tau/t$, $a=(V/u)^2$, and the density at the center at $t=\tau$,
+\begin{equation}
+\rho_* = \frac{m_g}{(2\pi)^{3/2}(u\tau)^3}.
+\end{equation}
+Along the approach, the density and ram pressure are
+\begin{equation}\label{eq:leo_plume_ram}
+\rho(y)=\rho_*y^3e^{-a(y-1)^2/2},
+\qquad
+P_{\rm ram}(y)=\rho_*V^2y^5e^{-a(y-1)^2/2}.
+\end{equation}
+The pressure peaks at $y_P=(1+\sqrt{1+20/a})/2$. Density peaks at $y_\rho=(1+\sqrt{1+12/a})/2$, a different point because the local closing speed changes. Conventional dynamic pressure $q$ is $P_{\rm ram}/2$; the table quotes momentum flux, not $q$ or a solved surface pressure.
+
+Use the same \SI{200}{\kilo\meter} reference atmosphere as \autoref{sec:remnant_drag}, $\rho_{\rm atm}=\SI{2.789e-10}{\kilogram\per\cubic\meter}$ \cite{vallado_atmosexp}. Its ram pressure at $V$ is \SI{0.0337}{\pascal}. Define elevated exposure as plume density above $10\rho_{\rm atm}$. Solve $\rho(y_{10})=10\rho_{\rm atm}$ on the incoming branch, $y_{10}>y_\rho$. The duration before reaching the center is $\tau(1-1/y_{10})$; all three cases remain above this threshold at interception.
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Encounter with the immediately preceding \SI{100}{\kilogram} plume at a \SI{4}{\hertz} cadence. Heat is incident translational kinetic energy per frontal area. It excludes chemical recombination and radiation.}
+    \label{tab:leo_plume_loads}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $u$ & $u\tau$ & Peak $P_{\rm ram}$ & Time above $10\rho_{\rm atm}$ & $J$ & $Q$ \\
+        (\si{\kilo\meter\per\second}) & (\si{\meter}) & (\si{\pascal}) & (\si{\milli\second}) & (\si{\pascal\second}) & (\si{\kilo\joule\per\square\meter}) \\\hline
+        2 & 500 & 8.80 & 86 & 0.541 & 3.51 \\\hline
+        3 & 750 & 3.70 & 103 & 0.297 & 2.11 \\\hline
+        5 & 1250 & 1.73 & 121 & 0.160 & 1.36 \\\hline
+    \end{tabular}
+\end{table}
+
+At $u=\SI{3}{\kilo\meter\per\second}$, $\rho_*=\SI{1.505e-8}{\kilogram\per\cubic\meter}$ and the maximum encountered density is \SI{1.990e-8}{\kilogram\per\cubic\meter}, about 71 times ambient. For intact molecules the mixture's gas constant is
+\begin{equation}
+R_{\rm mix}=R_u\left(\frac{0.5}{\SI{0.0280}{\kilogram\per\mole}}+
+\frac{0.5}{\SI{0.0180}{\kilogram\per\mole}}\right)
+\simeq\SI{379}{\joule\per\kilogram\per\kelvin}.
+\end{equation}
+Its thermal pressure at that peak density would be $p=\rho R_{\rm mix}T\simeq\SI{0.0075}{\pascal}\,(T/\SI{1000}{\kelvin})$. This temperature is a reference for the equation of state, not a predicted temperature of the expanding gas; dissociation changes the particle count.
+
+\subsection{Integrated Heat, Impulse, And Deflection}
+The mass column intercepted, momentum impulse per frontal area, and incident kinetic energy per frontal area are respectively
+\begin{align}\label{eq:leo_plume_integrals}
+\Sigma_g&=\int_0^\tau\rho w\,dt=\rho_*V\tau I_2,\\
+J&=\int_0^\tau\rho w^2\,dt=\rho_*V^2\tau I_3,\\
+Q&=\tfrac12\int_0^\tau\rho w^3\,dt=\tfrac12\rho_*V^3\tau I_4,
+\end{align}
+where
+\begin{equation}
+I_n(a)=\int_1^\infty y^n e^{-a(y-1)^2/2}\,dy
+=\sum_{j=0}^n {n\choose j}K_j,
+\quad
+K_0=\sqrt{\frac{\pi}{2a}},\quad K_1=\frac1a,\quad
+K_j=\frac{j-1}{a}K_{j-2}\quad(j\geq2).
+\end{equation}
+These half-Gaussian moments reproduce the table without a time-stepping calculation. For the middle row they give $\Sigma_g=\SI{2.136e-5}{\kilogram\per\square\meter}$, $J=\SI{0.29697}{\pascal\second}$, and $Q=\SI{2108}{\joule\per\square\meter}$. The body intercepts about \SI{596}{\joule} over its projected area.
+
+Write the force as $F=C_mA_b\rho w^2$, where $C_m=1$ represents absorption of the incident momentum. Gas reflection can raise this coefficient by a factor of order two. With $C_m=1$, the velocity loss and position lag at interception are
+\begin{align}
+\Delta v&=\frac{A_b}{M}J=\SI{8.40e-4}{\meter\per\second},\\
+\delta x&=\frac{A_b}{M}\int_0^\tau(\tau-t)\rho w^2\,dt
+=\frac{A_b}{M}\rho_*V^2\tau^2(I_3-I_2)
+=\SI{0.0439}{\milli\meter}.\label{eq:leo_plume_displacement}
+\end{align}
+Most of the force arrives too late to accumulate much position error. The spherical centerline model has no transverse force. If an asymmetric plume instead supplies a transverse force of magnitude $\beta F$ with the same time history and fixed direction, its miss is $\delta x_\perp=\beta\delta x$. Even $\beta=1$ gives only \SI{0.044}{\milli\meter} for the preceding pulse. Both results scale with $C_mA_b/M$ and assume the body stays intact.
+
+Older clouds add exposure. In the same fixed-center geometry, the $k$th preceding cloud has age $k\tau$ at interception. Replacing $\tau$ by $k\tau$ makes $\rho_*$ fall as $k^{-3}$, so $\Sigma_g$, $J$, and $Q$ fall as $k^{-2}$, while $\delta x$ falls as $k^{-1}$. Independent-cloud addition therefore gives
+\begin{equation}\label{eq:leo_plume_train}
+Q_{\rm train}=Q\sum_{k=1}^N\frac1{k^2}
+\longrightarrow\frac{\pi^2}{6}Q,
+\qquad
+\delta x_{\rm train}=\delta x\sum_{k=1}^N\frac1k.
+\end{equation}
+The long-train nominal kinetic dose is \SI{3.47}{\kilo\joule\per\square\meter}, and the velocity loss is \SI{1.38e-3}{\meter\per\second}. For 100 preceding pulses the harmonic sum is 5.187, giving \SI{0.228}{\milli\meter} of lag. A coherent transverse force with $\beta=1$ gives the same miss. Even doubling the momentum coefficient leaves this below a millimeter, compared with the centimeter-scale targeting discussed in \autoref{sec:engineering}. These sums assume exposure to each cloud throughout approach, not just during the last pulse interval.
+
+\subsection{Bumper Heating And The Mass Of Thermal Margin}
+Let $\mu_b$ be bumper mass per surface area and take $c_b=\SI{1000}{\joule\per\kilogram\per\kelvin}$ as an approximate laminate heat capacity. A directly exposed patch, absorbing fraction $C_h$ of the incident kinetic dose, has the sensible-heating estimate
+\begin{equation}\label{eq:leo_bumper_heating}
+\Delta T_b=\frac{C_hQ_{\rm train}}{\mu_bc_b}.
+\end{equation}
+Use $C_h=1$ and give no credit for radiation, conduction to the water, or the latent heat of melting. Do not divide the dose by four; the hottest forward patch receives the frontal dose. For the nominal long train, the \SI{20}{\gram\per\square\meter} film of \autoref{sec:spherical_water_thermal} rises about \SI{173}{\kelvin}. At \SI{100}{\gram\per\square\meter}, the rise is \SI{35}{\kelvin}. Across the three spreading cases, the thicker bumper's kinetic-only rise is about \SIlist{58;35;22}{\kelvin}.
+
+The thermal design already allows sunlit Mylar patches near \SI{150}{\celsius}, against melting near \SI{250}{\celsius} (\autoref{sec:spherical_water_thermal}). Thus the thin bumper can reach melting on kinetic heating alone, while the thicker one retains margin in this sweep. Increasing the whole sphere from \SI{20}{\gram\per\square\meter} to \SI{100}{\gram\per\square\meter} costs
+\begin{equation}
+\Delta m_b=4\pi r_b^2\Delta\mu_b
+=4\pi(\SI{0.30}{\meter})^2(\SI{0.080}{\kilogram\per\square\meter})
+=\SI{0.0905}{\kilogram}.
+\end{equation}
+
+Chemical energy is an additional heat source. Complete atomization stores about \SI{33.7}{\mega\joule\per\kilogram} in nitrogen and \SI{50.9}{\mega\joule\per\kilogram} in water, or \SI{42.3}{\mega\joule\per\kilogram} for the mixture \cite{crc_handbook}. As a nominal-case sensitivity, depositing all this bond energy on recombination at the bumper adds
+\begin{equation}
+Q_{\rm chem}=\Sigma_g(\SI{42.3}{\mega\joule\per\kilogram})
+=\SI{0.903}{\kilo\joule\per\square\meter}
+\end{equation}
+from the preceding pulse, or \SI{1.49}{\kilo\joule\per\square\meter} in the long train. Kinetic heating plus this chemical allowance raises the thicker bumper about \SI{50}{\kelvin}, placing an initially \SI{150}{\celsius} patch near \SI{200}{\celsius}. Complete atomization spends 70\% of the impact energy, so this allowance cannot be combined freely with every expansion fraction. It fits beside the nominal 22\% spreading allocation before paying for bulk exhaust, and is not a solved partition. Ionization and residual thermal energy require that same energy accounting.
+
+A prompt isotropic flash is smaller in this geometry. At the previous impact the next body is $V\tau=\SI{2750}{\meter}$ away. Even assigning the full \SI{6.05}{\giga\joule} impact energy to such a flash gives $E/(4\pi V^2\tau^2)=\SI{63.7}{\joule\per\square\meter}$ before absorption losses, or \SI{105}{\joule\per\square\meter} for the train. That would add about one kelvin to the thicker bumper. This is a separate extreme comparison, not energy available on top of the kinetic and chemical allocations. A delayed luminous plume closer to the body is outside this prompt-flash estimate.
+
+\subsection{The Heavier Bumper At The Pusher Plate}
+Thermal margin during approach leaves more membrane to dispose of at interception. For PET density approximated as \SI{1400}{\kilogram\per\cubic\meter}, a \SI{100}{\gram\per\square\meter} bumper is about \SI{71}{\micro\meter} thick. Its total mass is $4\pi r_b^2\mu_b=\SI{0.113}{\kilogram}$. If all of it reaches a \SI{25}{\square\meter} plate and spreads uniformly, its average loading is
+\begin{equation}\label{eq:leo_bumper_plate_column}
+\overline{\Sigma}_b=\frac{4\pi r_b^2\mu_b}{A_p}
+=\SI{4.52}{\gram\per\square\meter},
+\qquad
+\frac{\overline{\Sigma}_b}{\rho_{\rm PET}}=\SI{3.23}{\micro\meter}.
+\end{equation}
+The bumper adds only 0.11\% to the pulse mass. A \SIrange{5}{10}{\micro\meter} oil coating of density \SI{1000}{\kilogram\per\cubic\meter} carries \SIrange{5}{10}{\gram\per\square\meter}, comparable to or greater than this average bumper loading. Those coating thicknesses are a sensitivity case above the nominal spray thickness in \autoref{sec:lightweight_pusher_plates}; they are not a calculated ballistic limit. The bumper mass here excludes the inner bladder, seams, and attached hardware.
+
+Expansion does not guarantee that average thickness at each impact. Reaching \SI{3.23}{\micro\meter} by stretching alone requires roughly a 22-fold increase in membrane area. A film that tears instead can leave scraps at the original \SI{71}{\micro\meter}, or folded pieces thicker still. A face-on scrap then presents \SI{100}{\gram\per\square\meter} locally, ten to twenty times the oil's mass per area. Equal areal masses would not establish protection either. The oil is a thermal ablator, and the largest surviving fragment sets a separate particle-impact load.
+
+The small total membrane mass favors plate survival if the burst gasifies it or disperses it finely before contact. If thicker scraps survive, the replaceable solid facing of \autoref{sec:lightweight_pusher_plates} must accept their craters while the oil protects against the thermal pulse. This is the condition attached to retaining the LEO scenario with a thicker bumper. The uncomputed quantity is the fragment mass, thickness, and spatial distribution at the plate, not whether the total membrane mass can be spread to a low average column.
 
 \section{Thermal Design For A 4 Solar Radii Periapsis}\label{sec:four_radii_thermal}
 This appendix backs the claim in \autoref{sec:no_isru_rocket} that dropping the periapsis from the Parker-class baseline to the 4 solar radii of the original 2005 Solar Probe design \cite{mccomas2005solar} holds the \SI{150}{\kilo\meter\per\second} Earth-crossing speed with a boost about 30\% smaller, and it sizes the projectile shield that survives the deeper dive.
