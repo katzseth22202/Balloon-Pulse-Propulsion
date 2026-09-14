@@ -2882,8 +2882,8 @@ The great circle joining New York to Tokyo spans \SI{10852}{\kilo\meter} and rea
 \paragraph{What the geometry does not buy.}
 Aiming the line of apsides along Earth's velocity places the interception above the dawn or dusk line, at a latitude of $\arcsin(\sin\varepsilon\cos\lambda_\odot)$ for solar ecliptic longitude $\lambda_\odot$. That latitude runs from \SI{0}{\degree} at the solstices to \SI{23.4}{\degree} at the equinoxes, and the date fixes it. The ascending node follows from the date and the roll, so placing a ground track along a named arc is a phasing problem rather than an impulse problem. The delivered orbit at \SI{200}{\kilo\meter} and \SI{69.9}{\degree} regresses \SI{3.08}{\degree} per day under the $J_2$ term of Earth's gravity field \cite{vallado_astrodynamics}. A Sun-synchronous orbit needs \SI{0.9856}{\degree} per day in the other direction, so the delivered orbit's local time drifts about \SI{4}{\degree} per day. That drift does not touch delivery, because each interception is aimed afresh.
 
-\section{Flying Through The Previous Pulse's Plume In LEO}\label{sec:leo_plume_encounter}
-The next PuffSat flies through gas left by earlier impacts. For the reference case below, the accumulated deflection is below a millimeter and a heavier bumper limits the temperature rise to tens of kelvin. These estimates favor survival of the incoming PuffSat. Survival of the pusher plate remains plausible with the heavier bumper if its debris disperses before contact or the replaceable facing accepts the surviving fragments. The calculation separates that particle load from the oil coating's thermal protection.
+\section{Flying Through The Previous Pulse's Plume}\label{sec:leo_plume_encounter}
+The next PuffSat flies through gas left by earlier impacts. For the \SI{11}{\kilo\meter\per\second} LEO reference case below, the accumulated deflection is below a millimeter and a heavier bumper limits the temperature rise to tens of kelvin. These estimates favor survival of the incoming PuffSat. Survival of the pusher plate remains plausible with the heavier bumper if its debris disperses before contact or the replaceable facing accepts the surviving fragments. The calculation separates that particle load from the oil coating's thermal protection. \autoref{sec:jovian_plume_encounter} extends the estimate to the faster Jupiter return.
 
 \subsection{Assumptions And Expansion Model}
 Take \SI{100}{\kilogram} of gas per pulse, a frequency of \SI{4}{\hertz}, and \SI{11}{\kilo\meter\per\second} relative to the plume center. Write these as $m_g$, $1/\tau$, and $V$, with $\tau=\SI{0.25}{\second}$. The gas is half nitrogen and half water by mass. The incoming PuffSat has mass $M=\SI{100}{\kilogram}$ and outer radius $r_b=\SI{0.30}{\meter}$, giving projected area $A_b=\pi r_b^2=\SI{0.283}{\square\meter}$. This is a compact spherical body, not the spread ring of \autoref{sec:tethered_ring}; acceleration and displacement scale with projected area divided by mass.
@@ -3023,6 +3023,40 @@ The bumper adds only 0.11\% to the pulse mass. A \SIrange{5}{10}{\micro\meter} o
 Expansion does not guarantee that average thickness at each impact. Reaching \SI{3.23}{\micro\meter} by stretching alone requires roughly a 22-fold increase in membrane area. A film that tears instead can leave scraps at the original \SI{71}{\micro\meter}, or folded pieces thicker still. A face-on scrap then presents \SI{100}{\gram\per\square\meter} locally, ten to twenty times the oil's mass per area. Equal areal masses would not establish protection either. The oil is a thermal ablator, and the largest surviving fragment sets a separate particle-impact load.
 
 The small total membrane mass favors plate survival if the burst gasifies it or disperses it finely before contact. If thicker scraps survive, the replaceable solid facing of \autoref{sec:lightweight_pusher_plates} must accept their craters while the oil protects against the thermal pulse. This is the condition attached to retaining the LEO scenario with a thicker bumper. The uncomputed quantity is the fragment mass, thickness, and spatial distribution at the plate, not whether the total membrane mass can be spread to a low average column.
+
+\subsection{The Jupiter Return And The Cadence Trade}\label{sec:jovian_plume_encounter}
+The Jupiter return is harder on the incoming bumper, but remains manageable in this estimate with a graphite facing and a millimeter-scale targeting allowance. Take five \SI{10}{\kilogram} spheres on a necklace, gasified into an approaching disk at \SI{60}{\kilo\meter\per\second}. Mixing their \SI{50}{\kilogram} with \SI{350}{\kilogram} sprayed from the plate produces a \SI{400}{\kilogram} pulse, as in \autoref{sec:water_injected_overtake}. The plate redirects the mixture into backward exhaust that spreads toward the next necklace.
+
+Choose mean backward speed $U=\SI{15}{\kilo\meter\per\second}$ and one-axis expansion speed $u=\SI{5}{\kilo\meter\per\second}$. Including the incoming momentum, delivered impulse per unit total gas mass is $(50/400)V+U=\SI{22.5}{\kilo\meter\per\second}$. This differs from the actual backward exhaust speed. The incoming pulse supplies \SI{90}{\giga\joule}; bulk exhaust and spreading use $\tfrac12m_g(U^2+3u^2)=\SI{60}{\giga\joule},$ leaving \SI{30}{\giga\joule} for internal energy and losses. The pulse ledger neglects the one-percent addition to incoming mass from the graphite below.
+
+In the plate's locally inertial frame, let $x(t)=V(\tau-t)$ point toward the incoming sphere. The old cloud center moves to $Ut$, so the density sampled on approach is
+\begin{equation}\label{eq:jovian_plume_density}
+\rho(t)=\frac{m_g}{(2\pi)^{3/2}(ut)^3}
+\exp\!\left[-\frac{[V\tau-(V+U)t]^2}{2u^2t^2}\right],
+\qquad w(t)=\frac{V\tau}{t}.
+\end{equation}
+Use this density in \autoref{eq:leo_plume_integrals} and \autoref{eq:leo_plume_displacement}, retaining \autoref{eq:leo_plume_train}'s independent-cloud sums. This approximates the released disk by smooth expanding gas; its angular distribution is represented by the chosen $u$. At \SI{4}{\hertz}, the sphere crosses the cloud center after \SI{0.20}{\second}, \SI{3}{\kilo\meter} behind the plate. Earth's orbital motion translates both the plate and its carried water, so it supplies no automatic sideways clearance.
+
+Scale the earlier sphere to radius $r_b=0.30(10/100)^{1/3}=\SI{0.139}{\meter}$ and use $M=\SI{10.1}{\kilogram}$ including graphite. \autoref{tab:jovian_plume_cadence} takes $C_m=1$ and full absorption of the incident kinetic dose. It excludes recombination and radiation, as does \autoref{tab:leo_plume_loads}.
+\begin{table}[!htpb]
+    \centering
+    \caption{Jupiter-return plume exposure at fixed pulse mass and exhaust velocities. Heat uses the long-train limit; position lag sums 100 preceding pulses.}
+    \label{tab:jovian_plume_cadence}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Quantity & \SI{4}{\hertz} & \SI{2}{\hertz} \\\hline
+        Pulse interval (\si{\second}) & 0.25 & 0.50 \\\hline
+        Kinetic dose (\si{\kilo\joule\per\square\meter}) & 302 & 75.6 \\\hline
+        Position lag (\si{\milli\meter}) & 7.8 & 3.9 \\\hline
+        Relative average thrust & 1 & 0.5 \\\hline
+    \end{tabular}
+\end{table}
+
+The strongest loading arrives near interception, leaving little time for the velocity disturbance to accumulate into position error. These are longitudinal lags; the symmetric model has zero transverse force. The earlier coherent-asymmetry prescription gives sideways miss $\delta x_\perp=\beta\delta x$, and predictable mean lag can be included in targeting. Spreading matters to the tolerance. Reducing $u$ to \SI{3}{\kilo\meter\per\second} raises the \SI{2}{\hertz} lag to \SI{10.6}{\milli\meter} and dose to \SI{207}{\kilo\joule\per\square\meter}.
+
+Add \SI{100}{\gram} of graphite per sphere, a one-percent mass increment. Distributed over the full surface, it supplies \SI{0.41}{\kilogram\per\square\meter}, or \SI{0.23}{\milli\meter} at an assumed density of \SI{1800}{\kilogram\per\cubic\meter}. The hottest patch receives \SI{0.74}{\mega\joule\per\kilogram} of graphite at \SI{4}{\hertz} and \SI{0.18}{\mega\joule\per\kilogram} at \SI{2}{\hertz}. Using the earlier illustrative heat capacity of \SI{1000}{\joule\per\kilogram\per\kelvin} gives rises of about \SI{740}{\kelvin} and \SI{180}{\kelvin}, without cooling or ablation credit. A supported carbon facing can accept these rises while thermal separation protects the polymer underneath. The extra graphite buys the hot face's thermal margin; surviving carbon fragments still enter the plate's particle-load account above.
+
+Against the \SI{11}{\kilo\meter\per\second} case's \SI{3.47}{\kilo\joule\per\square\meter} and \SI{0.228}{\milli\meter}, these are larger loads with a small added mass allowance. At \SI{2}{\hertz}, the dose is about 22 times greater and the lag about 17 times greater. Halving cadence gives the gas twice as long to expand, reducing density eightfold, integrated heat fourfold, and position lag twofold for the same pulse count. Delivering the same total impulse then takes twice as long.
 
 \section{Thermal Design For A 4 Solar Radii Periapsis}\label{sec:four_radii_thermal}
 This appendix backs the claim in \autoref{sec:no_isru_rocket} that dropping the periapsis from the Parker-class baseline to the 4 solar radii of the original 2005 Solar Probe design \cite{mccomas2005solar} holds the \SI{150}{\kilo\meter\per\second} Earth-crossing speed with a boost about 30\% smaller, and it sizes the projectile shield that survives the deeper dive.
