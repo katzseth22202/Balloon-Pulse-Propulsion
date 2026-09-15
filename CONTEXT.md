@@ -3419,9 +3419,48 @@ _Avoid_: presenting the plug as a **mixing aid for the gas plume** (the volatili
 their own; the plug exists only for the non-volatile remnant); calling it **ship protection** (the
 discard is what protects the ship and is retained); sizing it against the **5 kg bag-table slug**
 (wrong scale -- that table is a small-unit illustration, and dry mass belongs to a 25 kg unit).
-_Open_: the aim spec on the softened kick; whether the **departure leg** (head-on, ~75 km/s) has
-any dry-mass resolution in either repo, since the **Heliocentric package** covers only the Earth
-encounter on the growth push.
+_Open_: the aim spec on the softened kick. The **departure leg** (head-on, ~75 km/s) now has a
+dry-mass resolution for the hydrogen material chamber only: tethered packages cut away before entry
+(see **Rod guidance by tethered resistojet packages** below). The magnetic head-on leg still has
+none, and the **Heliocentric package** covers only the Earth encounter on the growth push.
+
+**Rod guidance by tethered resistojet packages, and a methane plug in the hydrogen chamber**
+(decided 2026-09-15; paper `sec:material_chamber_plug`, `sec:tethered_rod_packages`).
+- _Rod_: 10 kg solid polyethylene, L/D 10, 1.10 m x 11.0 cm, no electronics. Entrance 15.0 cm at
+  2 cm clearance (0.0177 m^2). The 0.375-0.5 m^2 throat guess was kept, so throat/entrance is now
+  21-28 rather than the 30-40 printed for the old 2000 kg/m^3 body.
+- _Needle in the gas fill_: 77.7 kg of hydrogen in 80 m^3 is a 5.2 kg/m^2 column against the rod's
+  1050, 200x. Ram pressure 5.5 GPa flattens it, but a pancake estimate (radius grows at
+  `v sqrt(rho_g/rho_p)`, face ablates with heat fraction Ch) leaves 8.8 kg solid at 72 km/s at the
+  far wall for Ch = 0.1 and consumes it only near Ch = 1. Energy is never short: 2.8 GJ/kg against
+  ~84 MJ/kg to atomize PE (one C-C and two C-H bonds per CH2, ~12 eV).
+- _Plug_: depth `L sqrt(rho_p/rho_t)`, mass `(pi/4) w^2 L sqrt(rho_p rho_t)`. Liquid H2 4.04 m,
+  2.7-10.9 kg, boils in 1.0 s at a 2000 K wall; liquid CH4 1.66 m, 6.7-26.6 kg, 6.5 s, +4.8% mean
+  particle mass; ice 1.12 m, 9.8-39.3 kg, 79 s, +8.9%, 8.7 kg of oxygen per pulse. **Methane
+  chosen**: short, no oxygen (ice would oxidize the graphite hot face), freezes beside LH2 so plugs
+  are made ahead, and doubles as the heavy entrance layer. The penetration law is calibrated near
+  equal densities, so the H2 row is an extrapolation.
+- _Packages_: three x 83 g, each on two Kevlar lines (rod nose and tail) at R = 8 m; spin supplies
+  tension `m w^2 R`. Two packages leave a free axis with 5% of the restoring torque needed.
+  Assembly inertia 16.0 kg m^2 about the spin axis against 9.0 across, so the spin is stable.
+- _Along-line limit_: lines meet the rod at 3.9 deg, so axial push per package must stay under
+  ~tension/15 or the nose line slackens and the rod tips. Flown at 5 mN per package with 50% margin:
+  109 mN tension, 23 deg/s spin, 11 min, 11.5 g of water and ~6.6 Wh per m/s. A 5% thrust mismatch
+  precesses ~1 deg/min; full differential throttling corrects at 0.35 deg/s.
+- _Across-line_: forward/backward tangential thrust throttled as the sine of spin phase; three
+  packages sum to 1.5x one peak as a steady inertial force with zero spin torque, at pi/4 propellant
+  efficiency; 23 min and 15 g per m/s at a 5 mN peak. Only with the packages level with the rod's
+  middle, and never during an axial push.
+- _Resistojets_: AQUARIUS on EQUULEUS, ~6 mN, 91 s, under 14 W (`sekine2024aquarius`).
+- _Thermal_: spinning broadside, black side 299 K; 230 K with the Sun 20 deg off axis; white nose
+  under 305 K. Bend while spinning 0.03 mm (thermal skin ~0.8 mm), so no carbon-fiber spine is needed.
+- _Cut_: at the rod end, ~1 s (75 km) out. Timing mismatch gives impulse `T dt`: 1 ms -> 11 um,
+  a 1 s hot wire -> 11 mm. Packages leave at 3.2 m/s; the ship keeps its face clear beyond 8 m.
+_Avoid_: treating the slow thermal roll (a few rev/hour, ~70 uN of tension) as able to hold the
+lines; combining axial and across-line burns; hot-wire cutters.
+_Open_: a dynamics simulation of the bridled spin under thrust, especially the packages'
+out-of-plane swing near the spin frequency that a precession trim drives; how a frozen methane plug
+is placed on the intercept line in time.
 
 **The PuffSat/slug asymmetry, worth one sentence in the paper**: line 250 atomises the PuffSat's
 water into droplets *because* that "requires much less energy than vaporization", while the slug is
