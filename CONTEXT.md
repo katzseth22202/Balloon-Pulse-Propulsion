@@ -1605,12 +1605,32 @@ error.
 The largest miss the projectile can still correct in the final seconds (about 475 m).
 Set by engine thrust (a control/authority limit), *not* by sensing.
 
+**Funnel floor** (named 2026-09-16 grill):
+The smallest terminal miss a steered body can reach, where its remaining divert reach
+`a t^2/2` falls below the tracker's cross-track knowledge. For a target-side tracker
+(knowledge `sigma_theta v t`) it is `2 (sigma_theta v)^2 / a`; for a co-flyer at fixed
+standoff `D` it is `sigma_theta D`, reachable only with `sqrt(2 sigma_theta D / a)` of divert
+time left (radial knowledge is `2 h sigma_theta` for an along-track offset `x ~ h`, per the
+2026-08-12 co-flyer resolution below). Check case: 400 mN on 25 kg at 11 km/s gives 3.9-12.7 cm
+(1.6-2.9 urad), matching the ~10 cm Tier 2 claim. The departure rod (7.5 mN across-line on
+10.25 kg, 0.73 mm/s^2, 67.7 km/s) gives **32-105 m** target-side at 330-600 mas (2.9 m even at
+100 mas). With a co-flyer at h = 100 km the radial floor is **32 cm** at 330 mas, **9.7 cm** at
+100 mas (ASTRO XP class), **2.9 cm** at the 30 mas co-flyer sizing, needing 30 / 16 / 9 s of
+divert, i.e. 2000 / 1100 / 600 km before the rod reaches the ship.
+**Corrected 2026-09-16** (same session): an earlier figure of "16 cm, set 21 s out" applied the
+target-side 1.6 urad to the co-flyer and used the cross-track `h sigma_theta`.
+Reproduce with `todos/data_center_interception_altitude.py` (`funnel`, `tracker_grades`).
+_Avoid_: confusing it with **Catch radius** (the largest correctable miss, an authority limit;
+the floor is the smallest achievable one, set by knowledge and authority together); assuming
+steering later lowers it (the rod's last second of divert is 0.37 mm).
+
 **PuffSat GNSS cross-check** (accepted 2026-08-20 grill, supersedes the 2026-08-12
 blanket rejection):
 A GNSS receiver on each PuffSat, differenced against a base receiver on the target, used
 as an **independent cross-check** on the optical terminal chain. The optical chain stays
 load-bearing; GNSS never becomes primary. Scope is the near-Earth LEO cycle only, and
-within it the last ~13 minutes of the descent.
+within it the last ~13 minutes of the descent. (The Jupiter departure wave's rod is the
+exception, decided 2026-09-16: there GNSS is load-bearing; see **Port capture**.)
 _Window_: the descent crosses the ~20,200 km GNSS shell 73 min before interception and
 reaches near-terrestrial geometry (~3,000 km) 13 min out. The full-authority divert
 horizon is ~487 s (½at² for 475 m at 4 mm/s²), so **GNSS arrives about 5 minutes before
@@ -1683,7 +1703,9 @@ cycle, 19.03 cm on L1, per 8.5 s revolution) is deterministic and largely common
 satellites, so the receiver clock absorbs most of it.
 _Avoid_: fusing the ~1 m GNSS vector into the ~1.6 cm optical estimate (it moves the answer
 by nothing); assuming it helps anywhere off Earth (the Jupiter, solar-dive, lunar and
-Parker cycles have no GNSS); assuming it reaches the gas-momentum centroid (it measures the
+Parker cycles have no GNSS at their far encounters; **scope note 2026-09-16**: their
+Earth-side pushes at 300-600 km are inside the constellation, and the departure wave's rod
+is a candidate for load-bearing GNSS, see **Port capture**); assuming it reaches the gas-momentum centroid (it measures the
 dry package, same as the beacon); a commodity receiver (COCOM cuts out above 515 m/s and
 18 km, and L1 Doppler here runs to ±60 kHz).
 
@@ -1696,6 +1718,70 @@ optical *calibration bias*, not by random noise.
 The mission-success criterion: a PuffSat landing anywhere within the ~5 m plate
 (≥99 % probability), not hitting a precise point.
 _Avoid_: "centimetre centring" as the *committed* requirement (see Flagged ambiguities).
+
+**Port capture** (named 2026-09-16 grill):
+The head-on success criterion: the departure rod (11.0 cm) passes the 15.0 cm entrance
+(2 cm radial), within the 1.5-3 cm the movable insert can follow, and strikes the methane
+plug (twice the rod's width, +/-5.5 cm). About 100x tighter than **Plate capture**'s +/-2 m,
+and tighter than the Tier 2 plate (~5.8 cm at 11 km/s). Neither simulated nor sized. With
+the rod steering of `sec:tethered_rod_packages` its radial **Funnel floor** is 2.9 cm with the
+30 mas co-flyer sizing (9.7 cm at 100 mas), against 2 cm at the port, so the leg is not yet
+closed; the paper names this gap (decided 2026-09-16). A moving catcher sized to 3 sigma of that
+floor needs an 8.7 cm stroke (2.0 kN, 32 cm backing hole, 7.4 MN at 900 bar) at 30 mas, or 29 cm
+(6.5 kN, 73 cm, 38 MN) at 100 mas.
+**GNSS carries the rod** (decided 2026-09-16, option A): each of the three packages carries a
+dual-frequency GNSS receiver, differenced against a base receiver on the ship, and that is the
+rod's load-bearing position source from constellation entry (~7-8 min out at 57 km/s) until the
+ship's own trackers beat it (`sigma_G / 1.6 urad`: 12.5 km, ~0.19 s, at 2 cm; 31 km, ~0.46 s, at
+5 cm). A co-flyer becomes an optional cross-check, which retires the co-flyer layout problem below.
+Why: its error does not grow with the rod's distance from the ship, while angle-times-range does,
+and the rod must know its position 600-1100 km out. With constant knowledge `sigma_G` the funnel
+floor is `sigma_G`, reached with `sqrt(2 sigma_G / a)` of divert (7.4 s at 2 cm, 11.7 s at 5 cm).
+Unsized: the grade over a 600-1100 km baseline (broadcast orbits leave ~5 cm differential, real-time
+precise orbits a few mm; dual frequency removes most ionosphere); receiver firmware for about
++/-320 kHz of L1 Doppler (the LEO receiver already needs +/-60 kHz); acquisition and a fix within
+the 7-8 min; ~20 g per receiver inside an 83 g package; rod-to-package-circle registration (the
+carrier-phase circle fit of **PuffSat GNSS cross-check**); ship antenna to port registration.
+**The movable door is a requirement** (decided 2026-09-16): GNSS steering delivers the rod to its
+floor, and the door (the movable aperture insert, with the plug on its line) closes the rest. It
+pre-positions between pulses from the GNSS prediction, trims from the ship's own trackers once they
+beat GNSS, and locks 20 ms out. Its stroke is 3 sigma of the GNSS floor: 6-15 cm for 2-5 cm, a
+27-45 cm backing hole carrying 5.2-14 MN at 900 bar. (The co-flyer figures that follow were the
+basis before GNSS was chosen.) **Cadence does not bind it**: using
+the whole inter-pulse window (period less ~13 ms blowdown and 20 ms lock), a 127 kg door needs
+232-673 N for 10-29 cm at 2 Hz, 54-157 N at 1 Hz, 1.1-3.1 kN at 4 Hz, all under the 6.7-13.3 kN
+the paper sizes for its 30 ms insert. The stroke, and so the backing-hole load, does not change
+with cadence.
+_Why not slow the departure to 1 Hz_: the head-on nozzle points along the fixed stream, so the
+thrust cannot follow the ship's turning velocity. A planar integration from the 600 km periapsis
+(v_inf 12.13 km/s, v_e 9.57 km/s, `finite_departure`) against a 5539 m/s instant burn gives
++7 / +16 / +27 / +59 / +101 m/s for 160 / 240 / 320 / 480 / 640 s. The paper's 640-pulse bound
+for a 100 t craft is 320 s at 2 Hz and 640 s at 1 Hz, so 1 Hz adds ~74 m/s, about the whole
+300 -> 600 km Oberth premium, or ~1.8% more departure PuffSats. The loss grows with pulse count,
+i.e. with ship mass.
+**Departure cadence stays 2 Hz** (decided 2026-09-16). Reasons, in order: (1) ride. The kick
+per pulse is the same at any cadence (~8.6 m/s for 640 pulses on 100 t), but a given two-stage
+isolator (`sec:pusher_plate_damping`) passes about a quarter of the ripple at 2 Hz that it passes
+at 1 Hz, since transmissibility goes as the square of the frequency ratio; holding the ripple
+fixed at 1 Hz instead needs about twice the isolator stroke. (2) Finite-burn loss, above. (3) The
+door's late trim window is set by when the ship's trackers beat the co-flyer (~250 ms usable at
+30 mas), not by the period, so 1 Hz lengthens only the early unseat, settle and coarse-move phase
+(~200 ms at 2 Hz, ~700 ms at 1 Hz). 1 Hz remains the fallback if that early phase proves too short.
+_The door is the least mature element, and only its drive force is sized._ It carries the pulse
+through its backing: 7.4 MN on a 32 cm hole at 900 bar (30 mas co-flyer), 38 MN on 73 cm
+(100 mas). A 155 mm howitzer breech sees about 350-400 MPa on 0.0189 m^2, 6.6-7.5 MN (ARL
+closed-bomb report, via search; source the primary before citing), so the 30 mas door is
+breech-class and the 100 mas door five times that. Unlike a breech it seats at a different place
+every shot, in hot sooty gas, ~640 times per departure. Its late trim overlaps the refill, so it
+slides under ~3.1 bar fill pressure (~25 kN seating force on a 32 cm door) unless it is kept
+unseated until the lock. Unsized: seat/unseat under soot and heat, joint leakage, shock settling,
+wear per departure.
+_Open_: co-flyer geometry for this leg. The knowledge must exist 600-1100 km before each rod
+reaches the ship, and a co-flyer riding the stream holds a ~100 km standoff only for rods near it
+along the stream; a co-flyer beside the ship is ~1100 km from the rod at that moment.
+_Avoid_: "plate capture" or "the 2 m tolerance" for the nozzle leg; "a centimeter or two of
+error left after release" (unsupported by the paper's tracking grades: knowledge at the old
+75 km cut was 12 cm).
 
 **Feasibility tiers**:
 The three confidence levels the interception claim is carried at, kept deliberately
@@ -2237,6 +2323,86 @@ departure flown as two pulses ~5 days apart. Also avoid the companion's name **n
 the second one: the wave names identify their mission roles independently of the
 chosen propulsion hardware. `tab:two_leg_growth` is the two-magnetic-nozzle reference
 calculation and sweeps `e1` and `e2` separately.
+
+**Interception altitude (by stream)** (decided 2026-09-16 grill):
+The altitude floor of an Earth-side push, set per arriving stream rather than per customer.
+Every Jupiter-return Earth encounter flies above the 200 km of the 11 km/s streams: the
+**growth wave** (inbound, overtake, plate) at **400 km** every time, and the **departure wave**
+(outbound, head-on, nozzle) at **600 km** every time, reached by a periapsis raise at apoapsis.
+The LEO and 200 Mile High Club streams (both modeled at 11 km/s) stay at 200 km. Data-center
+deliveries inherit the chain's altitudes because their cargo rides the same growth push. The
+lifting stage reaches the growth push by a **Vertical lob**.
+_Why the growth wave flies high_: drag heating goes as `v^3`. At 57 km/s an inbound half-pass to a
+200 km periapsis deposits 290 kJ/m^2 on the bumper (peak 26 kW/m^2), equal to the 4 Hz plume dose
+of `tab:jovian_plume_cadence` (302); 30 kJ/m^2 at 300 km; **4.9 kJ/m^2 at 400 km**. The ring's
+bare 0.2 mm Kevlar spokes, broadside to the flow, settle within seconds at
+`(q/(pi eps sigma))^(1/4)`: 644-651 K at 200 km, past aramid's ~523 K strength limit and near its
+698 K decomposition (`sec:fiber_selection`); 349-388 K at 300 km; at 400 km 316-328 K, 348-372 K
+under 3x density and **419-464 K under 10x** (57-68 km/s), so 400 km needs no storm-day raise.
+Aim is not the reason: air-drag lag (445 mm at 200 km, 53 mm at 300, 9.3 mm at 400, crossing the
+plume's 7.8 mm near 400 km) lies along the approach line like the plume's, and the part accrued in
+the last second is 0.036 mm at 400 km. An 11 km/s stream peaks under 200 W/m^2 at 200 km.
+_Why the departure wave flies high_: drag on a tethered rod-guidance package acts as an axial push,
+which `sec:tethered_rod_packages` caps at tension/15 = 7.3 mN. At 200 km and 57 km/s a package of
+0.01-0.04 m^2 frontal area takes 9-36 mN, so a line slackens and the rod tips. The same air heats
+the rod's Kevlar lines as it heats the spokes.
+_Why 600 km and not lower_ (Seth, 2026-09-16: minimize drift on the precision leg). Priced with
+`low_departure` (air-relative 57.4 / 65.1 / 68.0 km/s, density x1 / x3 / x10, package
+0.02-0.04 m^2, 5% cross-line drag share):
+- 300 km: lines 521-537 K and slack exceeded at x3; fails at x10.
+- 350 km: holds through x3; fails at x10 (lines 554-571 K, packages to 17.6 mN).
+- 400 km: holds at x10 (lines <= 464 K, packages <= 6.9 mN, 6% under the limit at 0.04 m^2) and
+  saves **51-52 m/s** against 600 km in a finite-burn integration with ship drag
+  (`save_400_vs_600`: 5502-5515 against 5554-5566 m/s at 380 s or 976 s alike; instant-burn
+  53 m/s), about 1.2% of departure PuffSats. Declined.
+- 450 km: saves ~0.9% of departure PuffSats; caps package area at 0.14 m^2 in a storm.
+- 600 km: uncorrected cross-line drift over the last 9 s is <= 0.2 mm even at x10 (4.7 mm at
+  400 km, 12 mm at 350 km); package area may reach 1.5 m^2; storm drag takes ~4% of the
+  assembly's steering. No storm-day retarget of the precision leg.
+- 68 km/s is the closing speed on the ship; the air sees the rod's Earth-frame speed, 57 km/s on
+  the 3S returns and up to 65 km/s in the 2S family.
+_Costs_: the growth push at 400 km needs 10.785 km/s for the same 20-day orbit (10.950 at 200,
+10.867 at 300), **165 m/s less** than at 200 km. Raising periapsis 400 -> 600 km at the 613,000 km
+apoapsis (118 m/s there) takes **1.73 m/s**, carried. The departure burn at 600 km needs
+107-110 m/s more than at 200 km (instant-burn), about 2.5% more departure-wave PuffSats at
+~1000 s, plus the finite-burn loss of **Port capture** (+27 m/s at 320 s, 2 Hz). The companion owes
+the compounded net as **S9** (`docs/deferred_to_companion_repos.md`). The lifting stage pays for
+the extra height; the chain calculation excludes it.
+_Superseded the same day_: growth wave at 300 km, raised toward 350 km on forecast storms (a late
+retarget of 19-58 cm/s per 50 km, 14.5 N.s for a 50 kg ring two days out); departure briefly set
+at 400 km.
+Density multiples (3x active Sun, up to ~10x storm) are sensitivity cases, as in
+`tab:remnant_drag`, not a forecast. Reproduce with `todos/data_center_interception_altitude.py`.
+_Avoid_: calling plume or air-drag lag a "deflection" (it is a delay along the approach line);
+quoting "the 200 km interception altitude" for a Jupiter-return encounter; justifying the higher
+growth-wave altitude by aim; "inbound leg" / "outbound leg" without the wave name, since both waves
+arrive inbound from Jupiter (Seth's usage: inbound = growth wave, outbound = departure wave).
+_Open_: how the companion's 200 km chain numbers are carried until S9 lands; tethered-package
+frontal area.
+
+**Vertical lob** (named 2026-09-16 grill):
+The lifting stage's straight-up flight that leaves the growth-push craft at its push altitude with
+~0.75 km/s of upward speed and no horizontal speed beyond Earth's rotation, so the 240 s push sags
+through a ~30 km band and the apex is the push altitude plus ~30 km. Flown **booster-only**: a
+Starship upper stage carrying a heavy craft has thrust-to-weight near 1 and cannot climb vertically.
+_Sized_ (`todos/vertical_lob_lift.py`; booster 3300 t propellant from the paper's 4500 t stack less
+the ship's 1200 t, 33 Raptors at 2.26 MN = 74.4 MN from `sec:200_mile_high`, dry mass 200-300 t
+unsourced, 4 g cap): for a **400 km push** (430 km apex) the booster lofts **1250-1430 t** braking
+and **1440-1550 t** without braking at 380 s, **1070-1250 / 1270-1380 t** at 350 s, liftoff
+4670-5050 t, payload 23-31% of liftoff. Burnout near 124-134 km at 2.3 km/s after 145-165 s.
+Gravity loss is **1.4-1.6 km/s**, the dominant loss; air drag ~10 m/s. A 300 km push lofts
+1400-1810 t.
+_No boostback_: the lob keeps no downrange speed, so the booster falls back near the pad. Earth's
+rotation drifts it ~23 km west from a 430 km apex (~75 m/s of trim), ~3 km from 120 km.
+_Entry is not small in speed, only in mass_: falling from 430 km the stage reaches 60 km at
+2.6 km/s, and a vertical entry peaks near **21 g whatever its ballistic coefficient** (Allen-Eggers;
+16 g from 330 km; 6 g from 120 km). Braking right after separation so it re-enters at 1.5 km/s
+takes 1.33-1.38 km/s (apex ~179 km, peak ~9 g, ~6 km westward drift); with the 0.3 km/s landing
+burn that is 1.63-1.68 km/s, but on an empty
+200-300 t booster it is only 114-185 t of propellant, 3-6% of the load, and costs 8-16% of
+payload (without it the booster lofts 9-19% more). Landing burn alone: 17-27 t.
+_Avoid_: "boostback" for this flight; assuming the Starship upper stage helps a vertical lob;
+quoting the 150 t LEO payload for it.
 
 **Release** (growth wave on the three-synodic return; named in the 2026-09-13 grill):
 The moment a growth-wave PuffSat leaves the craft that carried it in from Jupiter, spin-up and
@@ -3456,8 +3622,21 @@ none, and the **Heliocentric package** covers only the Earth encounter on the gr
   under 305 K. Bend while spinning 0.03 mm (thermal skin ~0.8 mm), so no carbon-fiber spine is needed.
 - _Cut_: at the rod end, ~1 s (75 km) out. Timing mismatch gives impulse `T dt`: 1 ms -> 11 um,
   a 1 s hot wire -> 11 mm. Packages leave at 3.2 m/s; the ship keeps its face clear beyond 8 m.
+- _No cut_ (**Amended 2026-09-16**, supersedes the cut): the lines ride to impact, so steering
+  runs to the end. That buys only 0.37 mm (the funnel floor is set 9-16 s out with a 30-100 mas
+  co-flyer) but removes the cutters. The lines lie almost flat (3.9 deg) and land on three radial
+  strips at a
+  known spin phase: 0.54-2.17 g and 1.2-5.0 MJ per pulse (0.1-0.2 mm line), 0.005-0.02% of the
+  rod's 22.9 GJ, 26-104 kJ per metre of line. A contact oil film cannot stop them: the strand
+  carries 144-288 g/m^2 across its width against 5-10 g/m^2 of oil, the bumper-scrap argument of
+  `sec:leo_plume_encounter`. A thin **standoff** foil can, in the class of the 20 g/m^2 Echo-style
+  bumper of `sec:spherical_water_thermal`, spreading each line into vapor before the wall. Stepping
+  the spin phase ~25 urad per pulse lands each line on fresh bumper. The strips converge at the
+  axis, so the innermost decimeters fall to the replaceable insert. Packages still pass outside
+  8 m, which the face keeps clear.
 _Avoid_: treating the slow thermal roll (a few rev/hour, ~70 uN of tension) as able to hold the
-lines; combining axial and across-line burns; hot-wire cutters.
+lines; combining axial and across-line burns; cutters of any kind (retired 2026-09-16); an oil
+film in contact as line protection.
 _Open_: a dynamics simulation of the bridled spin under thrust, especially the packages'
 out-of-plane swing near the spin frequency that a precession trim drives; how a frozen methane plug
 is placed on the intercept line in time.
@@ -4343,6 +4522,17 @@ rack takes full dose. Unsized.
     and differences away like a rigid shift). RCS ringing (5--100 Hz) and impact ringing
     (hundreds of Hz) do. Slosh instead lands on the body-beacon-to-plate registration leg, which
     matters more now that the beacon has moved onto the body.
+  - **Hardware anchor for the 100 mas premise** (added 2026-09-16): Jena-Optronik ASTRO XP
+    datasheet (03/2025) gives attitude random error <= 0.1 arcsec cross-boresight and 3.5 arcsec
+    about boresight (1 sigma, five stars, no filtering, total including low- and high-spatial-
+    frequency error), bias <= +/-0.5 arcsec, thermoelastic <= 0.005 arcsec/K; 175 mm f/2.0
+    low-CTE catoptric optics, 3.3 deg FOV, 1024 px, 2/4/8 Hz, magnitude 10.2 at 100 ms,
+    slew <= 0.5 deg/s; 2.5 kg head + 1.3 kg electronics + 1.5 kg baffle, 1.5 + 5 W. Its
+    conditions match the co-flyer's quiet, free-running star channel, not the 1 ms gated
+    target-side exposure (1/100 of the light, a few deg/s). The absolute bias is common to stars
+    and beacon in one frame and cancels in star-differencing. The 0.1 arcsec is the frame's
+    attitude; a beacon adds its own centroid error, which a bright beacon keeps small. The 30 mas
+    sizing sits 3x past it with ~3x the aperture. Flight heritage not confirmed.
   Still open: the co-flyer's station-keeping and phasing against an accelerating target, and
   the migrated error terms below.
 - **Terms that bind once `σ_θ·D` drops under ~1 cm — NONE ARE SIZED ANYWHERE

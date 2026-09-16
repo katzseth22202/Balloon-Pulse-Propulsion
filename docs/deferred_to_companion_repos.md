@@ -7,6 +7,10 @@ See `docs/adr/0007-the-split-dive-ships-at-held-strength.md` for why each is hel
 Target repo for all three: `katzseth22202/aim_is_all_you_need`, module
 `src/bielliptic_dive_split.py` unless noted.
 
+**Guidance items live separately.** Four asks targeting `katzseth22202/puffsat_control_simulation`
+are in `docs/asks_for_control_sim.md`, numbered G1-G4 (raised 2026-09-16: the departure rod's GNSS
+grade, its terminal loop, the moving door's handover, and plate capture at 57 km/s).
+
 **Nozzle items live separately.** Sixteen asks targeting `katzseth22202/puffsat_impact_simulation`
 are in `docs/nozzle_asks_for_impact_sim.md`, numbered N1-N16 so they do not collide with the
 S-numbers here. N9-N16 cover the walled thermal nozzle of ADR-0016 and carry
@@ -236,3 +240,53 @@ this paper, and fly-and-park makes a third.
 **C1 turned out not to be owed.** The paper never quotes x74.8, x90.2 or a ninth cycle. One
 hazard if anyone sweeps for it: the paper does contain the phrase *"a second steering knob"*,
 about **real ephemerides** rather than the perijove burn, and that sentence is correct.
+
+---
+
+# Interception-altitude batch, raised 2026-09-16
+
+Target repo: `katzseth22202/aim_is_all_you_need`. Raised while grilling the data-center
+delivery legs. Backing entry: **Interception altitude (by stream)** in `CONTEXT.md`; paper-side
+probe `todos/data_center_interception_altitude.py`.
+
+## S9. Re-run the flown chain at the new Jupiter-return altitudes
+
+**Decision the paper has taken.** Every Jupiter-return Earth encounter now flies above the
+200 km the chain was computed at. The **growth wave** pushes at **400 km**, every time. The
+**departure wave** meets the craft at a **600 km** periapsis, every time, reached by a raise at
+the 20-day parking orbit's apoapsis. (Earlier the same day: growth 300 km with a storm raise,
+and a departure briefly at 400 km.) The 11 km/s LEO and
+200 Mile High Club streams stay at 200 km. The reasons are physical and are not up for re-scoring
+here: at 57 km/s and 200 km, air heating matches the 4 Hz plume dose and takes bare Kevlar past
+its strength limit, and drag on the tethered rod-guidance packages exceeds the tension/15 slack
+limit of `sec:tethered_rod_packages`.
+
+**Paper-side two-body numbers, for checking, not for quoting.**
+- Growth-push target at 400 km, same 20-day period: **10.785 km/s** against 10.950 (-165 m/s).
+- Periapsis raise 400 -> 600 km at apoapsis (v_apo ~118 m/s): **1.73 m/s**, carried.
+- Departure burn at 600 km against 200 km, 3S range: **+107 to +110 m/s** instant-burn. A 400 km
+  departure would save 53 m/s instant, **51-52 m/s** finite (240-320 s, thrust fixed along the
+  stream, ship drag included); the paper declined it to minimize drift on the precision leg.
+- **Finite-burn loss, new.** The head-on nozzle's thrust is locked to the stream direction, so
+  the burn cannot follow the turning velocity. From 600 km at v_inf 12.13 km/s: +7 / +16 / +27 /
+  +59 / +101 m/s over 160 / 240 / 320 / 480 / 640 s; about +16 to +29 m/s at 400 km for 240-320 s.
+  The flown cadence is 2 Hz; the paper bounds a 100 t craft at ~640 pulses (320 s).
+
+**What is wanted.**
+1. The eleven flown cycles re-run with the growth push at 400 km and the departure burn at
+   600 km, with the finite-burn loss charged at 2 Hz, all else held (split days, recovery values, `PUFFSAT_CYCLE_ORBIT_PERIOD`).
+2. The **compounded multiple** over the flown span against the 200 km baseline. The paper-side
+   departure penalty (+107-110 m/s against 200 km, plus the finite-burn loss) has not been
+   compounded, and the 165 m/s growth-push saving partly offsets it. The net is the number the paper needs.
+3. The same with the departure at **400 km**, the declined alternative, so the size of the 600 km
+   premium is on record.
+4. Whether any constant hard-codes 200 km (escape speed 11.01 km/s, the 10.95 km/s periapsis)
+   outside the orbit-geometry module.
+
+**Hazards.** Periapsis at 400 km with the period held moves apoapsis by 200 km, which is
+negligible but should not be absorbed by silently changing the period. The lifting stage that
+lofts the craft to 400 km is outside the chain calculation and stays outside; do not add it.
+
+| ask | what is wanted | status |
+| --- | --- | --- |
+| **S9** | Re-run the flown chain with the growth push at **400 km** and the departure at **600 km**, finite-burn loss charged at 2 Hz; report the compounded multiple against 200 km and against a 400 km departure | **open** |
