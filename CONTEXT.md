@@ -1050,6 +1050,47 @@ helium or 63.4 of nitrogen, so every other gas blows the launched-slug budget. T
 _Avoid_: "thermal rocket" alone (it is not reactor-heated); calling it a fallback for the
 overtake push, which is a different leg with a pusher-plate option already priced.
 
+**Cool hydrogen fallback** (framed 2026-09-16 grill; criterion: effective Isp, for now):
+If the wall cannot take 10,000 K, the hydrogen charge can run cooler by carrying more of it. The
+paper's 10,000 K choice stays as Seth framed it: hydrogen is more efficient (companion 1143 s),
+methane is cheaper, denser and easier on the vessel (738 s; pV share 18.9% against 25.7%).
+A cooler, heavier hydrogen charge is the option held behind that choice, not a replacement.
+_Paper framing_ (decided): one paragraph and a five-row table after the fluid comparison in
+`sec:steel_chamber_service`, naming **7,000 K** as the illustrative fallback, giving the
+crossover band, and flagging in one sentence that the chain's preferred `k` is not re-scored.
+_Numbers_ (`todos/cool_hydrogen_slug.py`; H2 <-> 2H stat mech, full-blowdown equilibrium nozzle,
+anchored to the companion's 1143 s at 10 kK; 80 m^3 per 10 kg rod; 75 km/s; hydrogen taken as
+fully recombining, so an upper edge):
+
+| chamber | k | peak p | effective Isp | impulse per impactor | H2 dissociated |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 10,000 K | 7.8 | 867 bar | 1144 s | 1.00x | 91% |
+| 8,000 K | 9.8 | 779 bar | 1108 s | 1.22x | 74% |
+| 7,000 K | 12.6 | 762 bar | 1080 s | 1.52x | 55% |
+| 6,000 K | 18.8 | 804 bar | 1029 s | 2.17x | 31% |
+| 5,000 K | 31.5 | 934 bar | 933 s | 3.30x | 12% |
+
+Hydrogen falls to methane-at-10,000 K (738 s) near **3,600 K** on the companion pair, or near
+**5,000 K** if both expand deeply (W17 1012-1045 s); to methane's flown 12,000 K deep cells near
+5,300-5,600 K. Isp falls because `k` rises, not because chemistry is lost: at 5,000 K only 12% of
+the hydrogen is dissociated. Peak pressure is least near 7,000 K (pV/U 0.217 against 0.246).
+_Wall, rough scalings_: liner flux ~T^1.8 (W14), hydrogen ~2x methane at equal T (Bartz, M^-0.6).
+Against 10,000 K hydrogen, 7,000 K gives ~0.5x peak flux, ~0.7x heat per pulse, ~0.46x per N.s;
+5,000 K gives ~0.3x, ~0.54x, ~0.16x. Radiation ~T^4. Far less atomic hydrogen at the graphite.
+_Fill_: at 77 K the charge sits at 5.0 bar (7,000 K) or 12.5 bar (5,000 K) against 3.1 bar, so the
+throat film thickens from 250 um to ~400 um or ~1 mm (tear near 10 bar per 250 um).
+_Open, stated plainly in the paper_ (no companion ask, decided): the growth chain prefers the
+departure `k` near 7 (8.52 returns 92% of achievable growth, magnetic `e2`); a larger charge moves
+away from it unless the efficiency's rise with `k` (0.53 -> 0.72 here) shifts the optimum. Not
+re-scored.
+_No water in the charge_ (decided): its oxygen attacks the graphite hot face
+(`sec:material_chamber_plug`), and regenerative coolant carried into the 77 K fill warms it before
+impact (28 kg boiled and frozen ~82 MJ, +33 K, +43% fill pressure at the 5,000 K charge).
+Regenerative cooling stays with the hydrogen feed, as the paper already describes.
+_Avoid_: "10% impactor at 5,000 K" (10% fixes k = 9, about 8,600 K); presenting the cool charge as
+a pressure cushion (peak pressure is not lower at 5,000 K); a water additive in a graphite-faced
+chamber.
+
 **Confinement recovery (why a wall beats a field on chemistry)**:
 The argument that earns the thermal nozzle its place rather than merely substituting for a
 magnet. `sec:watering_it_down` finds the water plume freezes chemically because a magnetic
