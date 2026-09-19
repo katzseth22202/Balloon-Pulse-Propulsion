@@ -2163,6 +2163,49 @@ It is distinct from Earth-customer latency and need not grow with the cluster's 
 from Earth when its devices remain close together.
 _Avoid_: treating Earth-to-site light time as a lower bound on local training-network delay.
 
+### Orbital data-center threat model (`sec:space_data_centers`)
+
+Framing decision: [ADR-0022](docs/adr/0022-low-orbit-threat-argued-as-asymmetric-deterrence.md)
+(the threat is argued as an exchange, not a capability, and concentration is conceded).
+
+**Direct-ascent intercept**:
+A satellite kill in which the interceptor flies a suborbital ballistic arc and meets the
+target once near its own apex, never entering orbit.
+_Avoid_: **co-orbital** (an interceptor that does enter orbit and closes over one or more
+revolutions, e.g. the Soviet IS system); calling a direct-ascent shot "orbital" because its
+target is. The 2007 FY-1C kill was direct-ascent: a two-stage solid-fuel MRBM off a TEL near
+Xichang, target at 845-865 km sun-synchronous, ~8 km/s head-on closing speed.
+
+**Pellet** (hostile-weapon sense only):
+A gram-class unguided projectile lofted into a satellite's track so the target's own orbital
+speed supplies the closing energy.
+_Avoid_: ever using this word for a **PuffSat** (see Core propulsion, where it is on the
+Avoid list). The two senses stay separate; do not "fix" one into the other.
+
+**Compact-satellite kill model**:
+The `pi R^2 / sigma` pellet count at `sec:space_data_centers`, valid only where one hit
+disables one satellite.
+_Avoid_: applying it to large-area architectures. Starcloud's 4 km x 4 km unit gives
+sigma = 1.6e7 m^2 and the formula returns ~1.6 pellets, which counts hits, not kills.
+
+**Exposure asymmetry**:
+What each side stands to lose in the orbit band an attack would contaminate, which is what
+decides whether debris blowback deters the attacker. Quantify the defender's side, which is
+sourceable (Suncatcher 81 satellites; Starcloud filed for up to 88,000). State the attacker's
+side qualitatively, as having little in the band it would miss.
+_Avoid_: counting the attacker's satellites. A count invites a quibble over the number when
+the claim is about what the attacker values, and the tracking-site sources are thin.
+_Avoid_: reading the 19-year gap since FY-1C as evidence the attack will not happen. Every
+intercept since was flown low on purpose (USA-193 ~250 km, Microsat-R ~283 km,
+Cosmos-1408 ~480 km); the gap reflects restraint by states that own assets in the band.
+_Avoid_: imputing strategy to a named state. Assert what an actor demonstrably did and the
+general principle; let the reader close the step.
+
+**One-missile threshold**:
+This attack needs one successful lob, so counterforce that cuts an arsenal by an order of
+magnitude leaves the threat intact.
+_Avoid_: arguing from total arsenal size or from percentage degradation of production.
+
 **Momentum-amplification cascade** (in the paper as `sec:methalox_rebuttal`, "Moneyball Meets Methalox"):
 The chain that answers the obvious skeptic ("how can heat-tolerant, formation-flying
 projectiles beat a tank of methalox?"). Fast, expensive reaction mass transfers momentum
@@ -4657,6 +4700,23 @@ rack takes full dose. Unsized.
   data past 20 km is published; the figure exists in the Flights 5/6 comparison paper but the
   numbers were not extractable from the open-access text.
 
+
+- **"pellet" is on the Core-propulsion Avoid list but is used freely in
+  `sec:space_data_centers` - RESOLVED 2026-09-19 (grill): both are correct, and they are
+  different words.** The glossary bans "pellet" for a **PuffSat** because it evokes the
+  pellet-beam prior art the paper distinguishes itself from. The data-center section uses
+  "pellet" for a hostile gram-class projectile, where the pellet-beam association is harmless
+  and the word is the plain one. Decision: keep the ban in Core propulsion, keep the usage in
+  the threat model, and never let an edit merge the two senses. See **Pellet (hostile-weapon
+  sense only)**.
+- **Does naming the 2007 FY-1C test invite the objection that nobody has repeated it? -
+  RESOLVED 2026-09-19 (grill): yes, and the answer is the exposure asymmetry.** FY-1C remains
+  the only destructive intercept above 500 km in 19 years, and every later test was flown low
+  on purpose to make the debris fall. That restraint is priced in assets held in the band, so
+  it does not bind an attacker with little in the band it would miss, against a defender whose
+  constellation is filed at up to 88,000 satellites. Russia shot at 480 km anyway. Decision: state the
+  asymmetry rather than the gap, and treat debris denial of the band as part of the attacker's
+  payload rather than its cost.
 
 ## P21 radiation accounting accepted after the nozzle handback review
 
