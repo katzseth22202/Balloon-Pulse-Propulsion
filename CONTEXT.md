@@ -2187,6 +2187,39 @@ The `pi R^2 / sigma` pellet count at `sec:space_data_centers`, valid only where 
 disables one satellite.
 _Avoid_: applying it to large-area architectures. Starcloud's 4 km x 4 km unit gives
 sigma = 1.6e7 m^2 and the formula returns ~1.6 pellets, which counts hits, not kills.
+_Avoid_: reading it as the whole requirement. It is the **coverage** half only (see
+**Coverage versus aiming**).
+
+**Coverage versus aiming** (named 2026-09-19 grill):
+The pellet attack has two separate requirements and they favour opposite target sizes.
+*Coverage* asks whether a cloud that lands on the cluster is dense enough to hit everything
+inside it; that is `pi R^2 / sigma`, and it favours a **compact** target (1 km, 300 kg).
+*Aiming* asks whether the cloud lands on the cluster at all; a few m/s of burnout-speed error
+on a vertical lob to 650 km is ~350 m of apex error per m/s, so the cloud arrives one to a few
+km off, and that favours a **large** target. Suncatcher's 1 km cluster is smaller than the
+error; Starcloud's 4 km unit is larger. Compact targets are easy to kill and easy to miss;
+large targets are easy to hit and hard to kill outright.
+_Avoid_: re-deriving the 300 kg from the aiming error. The 300 kg is the coverage figure and
+answers a different question; that was decided rather than overlooked.
+_Avoid_: citing `wright2005_physics_space_security` only where it agrees. Its headline verdict
+is that a simple pellet ASAT "may have limited effectiveness," and the paper answers that
+verdict directly rather than skipping it.
+
+**Irreducible signature** (named 2026-09-19 grill):
+The thermal emission an orbital data center cannot reduce without ceasing to compute, since
+computing does no mechanical work and stores no energy. Anchors: `eq:orbital_radiator_area`
+puts 5 GW at ~12 km^2 of emitting area at 300 K, the scale of Starcloud's filed 4 km panels;
+a collector that size intercepts ~16 GW of sunlight against the ISS's 3.4 MW over 2500 m^2
+(84-120 kW electrical), so ~5000x, and ~70x in seeker acquisition range by the inverse-square
+law. It is a **permissive** condition, not a motivating one.
+_Avoid_: arguing that the bright signature explains why data centers are attacked and other
+satellites are not. Motive is carried by concentration plus the demonstrated March 2026
+outage; a science platform is brighter than most and removing it buys an attacker nothing.
+_Avoid_: printing an absolute seeker acquisition range. That needs an aperture and noise floor
+nobody has published. The ratio and the square-root scaling are what the paper claims.
+_Avoid_: the phrase **terminal guidance** for the hostile-seeker sense. That phrase is reserved
+for the PuffSat rendezvous sense (see Heliocentric re-intercept). Say *homing*, *seeker*, or
+*homing interceptor* instead.
 
 **Exposure asymmetry**:
 What each side stands to lose in the orbit band an attack would contaminate, which is what
@@ -4709,6 +4742,23 @@ rack takes full dose. Unsized.
   and the word is the plain one. Decision: keep the ban in Core propulsion, keep the usage in
   the threat model, and never let an edit merge the two senses. See **Pellet (hostile-weapon
   sense only)**.
+- **"terminal guidance" now has a hostile-seeker sense pulling at the PuffSat sense -
+  RESOLVED 2026-09-19 (grill): the phrase stays reserved, and the threat model uses other
+  words.** `sec:space_data_centers` now argues that an orbital data center's thermal signature
+  makes a homing antisatellite shot easier. The natural phrase for that is "terminal guidance,"
+  which the glossary reserves for the PuffSat rendezvous sense. Decision: in the threat model
+  say *homing*, *seeker*, or *homing interceptor*, and never "terminal guidance." See
+  **Irreducible signature**.
+- **Does citing `wright2005_physics_space_security` undercut the pellet attack, since it calls
+  a simple pellet ASAT marginal? - RESOLVED 2026-09-19 (grill): no, because both of its stated
+  limits scale with the target.** The manual's two limits are orbit-determination accuracy and
+  missile CEP, and it doubts a low-capability state can even obtain a ranging radar. All three
+  were priced for satellites a few metres wide. A 4 km structure is larger than a several-km
+  error, and a ~5000x infrared signature is not the tracking problem the manual assumed.
+  Decision: state the verdict in the paper and answer it, rather than citing the manual only
+  where it agrees. Its 500 kg / Nodong benchmark and its 1 g, 1 cm shielding floor also
+  validate the 300 kg and 1 g figures, which were previously uncited. See **Coverage versus
+  aiming**.
 - **Does naming the 2007 FY-1C test invite the objection that nobody has repeated it? -
   RESOLVED 2026-09-19 (grill): yes, and the answer is the exposure asymmetry.** FY-1C remains
   the only destructive intercept above 500 km in 19 years, and every later test was flown low
