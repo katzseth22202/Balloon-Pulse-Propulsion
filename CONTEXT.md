@@ -2163,6 +2163,131 @@ It is distinct from Earth-customer latency and need not grow with the cluster's 
 from Earth when its devices remain close together.
 _Avoid_: treating Earth-to-site light time as a lower bound on local training-network delay.
 
+### Data-center site selection (`sec:space_data_centers`)
+
+Named in the 2026-09-20 grill, when "why not just use MEO?" was priced rather than dismissed.
+
+**Arrival burn**:
+The delta-V a payload supplies itself at its destination, beyond the perigee push PuffSats
+deliver at the 200 km interception altitude.
+Anchors: 30 m/s for Sun-Earth L1 halo insertion (SOHO/ACE/DSCOVR class), 140 m/s for the LEO
+perigee raise after aerobraking, 180 m/s for Earth-Moon L4/L5 (the paper's own figure at
+line 693), 1449 m/s to circularise at 22,000 km, 1340 m/s at 80,000 km. At Isp 320 s those
+are 1.0%, 4.4%, 5.6%, 37.0% and 34.8% of arriving mass as propellant. Sun-Earth L1 is
+therefore cheaper to arrive at than low orbit, by 4.7x.
+_Avoid_: folding it into **One-way data-center delivery cost**, which is dollars per kilogram
+of cargo delivered and excludes what the cargo burns on arrival. The arrival burn changes the
+delivered-mass denominator instead, so it is a third category.
+_Avoid_: quoting total delta-V from the ground, which is always higher for L1 than for LEO.
+The claim is about the payload's own share, which is the share PuffSats cannot supply.
+
+**MEO verdict** (decided 2026-09-20 grill):
+Medium Earth orbit is priced and declined, and the **arrival burn** leads the argument, not
+radiation. 1,449 m/s to circularise at 22,000 km, 37.0% of arriving mass at Isp 320 s,
+against Sun-Earth L1's 30 m/s and 1.0%. Every input is already in the paper, so a reader can
+check it with a calculator.
+_Avoid_: leading on radiation. 22,000 km sits at 4.45 Earth radii, inside the outer electron
+belt that peaks at L = 4-5, and `li2019vanallen` (already cited at line 707) will carry that
+much. It will not carry a dose figure, and no MEO dose source is in `references.bib`. State
+the belt qualitatively; do not print rad/year at MEO without a source that clears the bar.
+_Avoid_: declining MEO on battery mass. 31,000 t at 5 GW is only 2.8x what the dawn-dusk LEO
+baseline already needs, and in a paper arguing delivered mass gets cheap it reads as a price,
+not a refusal.
+_Avoid_: conceding the latency point. MEO does win it (147 ms against 2.56 s at Earth-Moon
+L4/L5 and 10 s at Sun-Earth L1/L2), and the section's own line 183 is that the target
+customers tolerate Earth-customer latency, so winning it buys little.
+
+**Arrival-cost trough**:
+Arrival is cheap only where the air stops you (low orbit) or where gravity has already
+stopped you (a libration point), so the arrival burn peaks between them.
+Anchor: circularisation from a 200 km-perigee ellipse peaks at 32,300 km altitude, where
+apogee is 5.88 times perigee, at 1.479 km/s, and stays above 1.2 km/s from 8,000 km to
+120,000 km.
+Decided 2026-09-20: the section shows the trough (the principle plus the 32,300 km peak),
+not just the single number at 22,000 km, so the claim is that MEO is near the worst altitude
+available rather than merely worse than the endpoints.
+_Avoid_: treating orbit altitude as a two-point choice between LEO and a libration point.
+It is a curve, and it is not monotonic: the arrival burn peaks near 32,300 km, the outer
+electron belt peaks at 19,000-25,500 km, and eclipse duration keeps growing as roughly the
+square root of semi-major axis until a = L/3 = 461,333 km, past the Moon.
+
+**Eclipse frequency versus duration**:
+Which of a battery or a scheduled outage an orbit forces, set by how often eclipses come
+rather than how long they last.
+Anchors at 5 GW: 22,000 km gives 56-minute eclipses 114 times a year (68 h/yr dark, a
+31,000 t battery at 200 Wh/kg pack, 80% depth of discharge); 80,000 km gives longer
+93-minute eclipses but only 6.7 times a year (6.7 h/yr, 99.92% availability, so no battery).
+Dawn-dusk LEO is the paper's 96% sunlit, about 351 h/yr.
+_Avoid_: assuming a higher orbit shortens the eclipse. It lengthens it. What collapses is the
+count.
+_Avoid_: citing eclipse cycle life as an MEO problem. 111 cycles a year against dawn-dusk
+LEO's ~4,600 makes MEO the gentler duty on the cells.
+
+**No sun-synchronous orbit above 5,974 km**:
+The J2 nodal drift that keeps a dawn-dusk plane on the terminator falls off as roughly
+a^(-7/2), so above about 5,974 km altitude no inclination can supply the 0.9856 deg/day the
+Sun demands.
+Anchor: at 22,000 km the best available (polar retrograde) is 0.054 deg/day, a factor of 18
+short. This is why any MEO or higher site carries an eclipse at all.
+_Avoid_: proposing a dawn-dusk MEO. It does not exist.
+
+**Eclipse avoidance at a libration point** (2026-09-20 grill):
+All three candidate sites are eclipse-free, at increasing design cost. Sun-Earth L1 is
+eclipse-free *structurally*: Earth's shadow points anti-sunward and L1 sits 1.5e6 km sunward,
+so the shadow never points at it, and the Moon's 374,376 km umbra falls short by a factor of
+four. Sun-Earth L2 cannot be *totally* eclipsed: Earth's angular radius there is 0.2436 deg
+against the Sun's 0.2639 deg, so Earth is the smaller disc and the worst case is 85.2%
+obscuration; Earth's umbra ends 116,388 km short of L2 and a halo removes the partial, which
+is what JWST does. Earth-Moon L4/L5 needs a tadpole orbit. Line 185's "not *automatically*
+eclipse-free" says this correctly; it means avoidance takes design, not that it is impossible.
+Anchors: the Moon's umbra is 374,376 km long against the 384,400 km triangle side, so it
+falls 10,024 km short and can never totally eclipse L4/L5 (the same shortfall that makes some
+solar eclipses annular). Earth's penumbra at lunar distance is 8,150 km in radius, so a
+tadpole orbit needs only that much out-of-ecliptic clearance, against the 34,472 km the
+Moon's own 5.145 deg inclination already supplies. Parked exactly at the point, the eclipse
+would be about 2.5 h, roughly twice a year. JWST (`gardner2023jwst_mission`, already cited at
+line 189) is the flown precedent at Sun-Earth L2.
+_Avoid_: reading line 185 as a contradiction of the no-eclipse advantage. It is a statement
+that the orbit has to be chosen, and the section resolves it.
+_Avoid_: stating the L4/L5 case as a static geometric clearance. At Sun-Earth L1 and L2 the
+shadow is fixed in the rotating frame, since the point lies on the Sun-Earth line. At
+Earth-Moon L4/L5 the Sun direction sweeps the rotating frame once a synodic month, so
+avoidance is a phasing constraint holding at a sequence of times. Concede this.
+
+**Sun-Earth L2 as a third site** (2026-09-20 grill):
+Same 1.5e6 km distance, 10 s round trip and particle regime as L1, with JWST
+(`gardner2023jwst_mission`) as the flown precedent. Its advantage over L1 is communications:
+from Earth, L1 lies toward the Sun, so a ground antenna tracking it takes solar radio noise
+and SOHO/ACE/DSCOVR fly halos sized partly to stay 4-15 deg off the Sun-Earth line. L2 lies
+anti-sunward, so the antenna always points away from the Sun. This lands on line 183's
+"sustained data-transfer throughput still matters."
+_Avoid_: claiming a thermal advantage for L2. That is JWST's reason and it does not transfer.
+Earth's IR and albedo at 1.5e6 km are 0.0043 and 0.0074 W/m^2 against the 413 W/m^2 a 300 K,
+eps=0.9 radiator already emits, one part in 1e5. JWST cares because it runs at 40 K.
+
+**Entry-speed class** (2026-09-20 grill, after a correction):
+Speed at the 100 km entry interface for a vehicle returning to Earth, which sorts into low
+orbit versus everything else rather than into Lagrange versus everything else.
+Anchors: 8.00 km/s returning from a 650 km deorbit burn, 10.01 km/s dropping periapsis from
+22,000 km, 10.70 km/s from 80,000 km, 11.00 km/s from Earth-Moon L4/L5, 11.09 km/s from
+Sun-Earth L1. Peak stagnation flux goes as roughly v^3, so L1 costs 2.66x a LEO return but
+only 1.36x a MEO return.
+_Avoid_: comparing a Lagrange return against circular orbital speed at the destination
+altitude (7.53 km/s at 650 km). The vehicle returns from apoapsis on an ellipse and arrives
+at the interface, and a MEO return does not circularise either; it drops periapsis into the
+air and arrives fast too.
+_Avoid_: presenting the return-leg delta-V saving (30 m/s off L1 against 140 m/s to deorbit
+from 650 km) without the entry alongside it. Pair it with the aerobraking paragraph, which
+holds flux to 0.6 W/cm^2 over repeated shallow 170 km passes.
+
+**Defense ring versus point**:
+An Earth orbit must be guarded along its whole circumference while a libration point is a
+single location, which is what lets one interceptor stockpile cover many operators.
+Anchors at a 1 km/s interceptor coast: 12 stockpiles at 22,000 km (2.2 h of lob warning,
+178,000 km ring), 7 at 80,000 km (12.3 h, 543,000 km ring), 1 at each libration point.
+_Avoid_: claiming one stockpile guards every libration point. L4 and L5 are 666,000 km
+apart and need one each, as line 181 already says.
+
 ### Orbital data-center threat model (`sec:space_data_centers`)
 
 Framing decision: [ADR-0022](docs/adr/0022-low-orbit-threat-argued-as-asymmetric-deterrence.md)
