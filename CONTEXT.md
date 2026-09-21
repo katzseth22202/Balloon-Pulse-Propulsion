@@ -2138,17 +2138,100 @@ Two-tier control (a gross early correction of ~tens of m/s plus a fine, late ~mm
 about 1 s before impact) that defeats the `v²` homing-miss floor by nulling a known,
 pre-measured offset rather than chasing fresh navigation noise.
 
-### Economics
+### Economics (`sec:heat_shield_bill`, "The Heat Shield Is The Bill")
 
 **One-way data-center delivery cost**:
 Transport cost per kilogram of useful data-center cargo delivered to its operating orbit,
 with no required return cargo and no early credit for recovery or reuse of PuffSat transport hardware.
-_Avoid_: round-trip cost; including data-center purchase or operating costs in the transport figure.
+Printed as a single derived **$500/kg**: $250M per delivery over 500 t of cargo (decided
+2026-09-21 grill, replacing the asserted $150/kg LEO and $200/kg L1 scenarios, which had no
+derivation). It is nearly flat with destination, because the booster lob and growth push are
+the same and only the arrival burn differs (140 m/s LEO, 30 m/s Sun-Earth L1). We therefore do
+not compete in LEO and do compete beyond it, where Starship's cost multiplies with tanker flights.
+_Avoid_: round-trip cost; including data-center purchase or operating costs in the transport figure;
+separate LEO and L1 figures for the Jupiter-return service.
 
-**Tanker upper-stage reuse**:
+**Heat-shield-limited Starship** (decided 2026-09-21 grill):
+The Starship the data-center delivery comparison is made against: fully reusable booster, upper
+stage whose reuse is capped by its heat shield, so launch cost to LEO stays near the
+$100-250/kg that Miller, Rasky and Camarda argue current tiles cannot get below. The mature
+case (a rapidly reusable heat shield) is neither conceded nor analyzed. Both sides would
+optimize, and how close either gets to its optimistic case is too uncertain to price.
+_Avoid_: "even the most aggressive estimates" (Suncatcher's undated $15-60/kg component model
+is already cited in the paper); conceding that mature Starship wins; comparing our cost with
+a Starship customer price without naming the basis.
+
+**Heat-shield dispute** (decided 2026-09-21 grill):
+How the section handles Musk's Aug 4, 2026 earnings-call claim that he would "consider the
+heat shield problem solved", made a week after Miller, Rasky and Camarda called current tiles
+"a dead-end" from the same Flight 13 ship. The claim is noted and judged not credible. Against
+it: three credentialed TPS experts (Rasky co-invented PICA and consulted on Dragon's shield;
+Camarda headed Langley's Thermal Structures Branch and flew the post-Columbia Return to
+Flight); SpaceX's own S-1 risk factor two months earlier; the underwriters' 2030 costs,
+which sit at or above the experts' $100-250/kg and are 9-25x Musk's 2019 $20/kg ($2 million
+per flight over 100 t); and Musk's Starship-specific record. As of September 2026 no ship has flown twice, so reuse is unmeasured.
+The argument must still survive if Musk is right: the underwriter figures already assume rapid
+reuse of both stages and still put Starship at L1 above our ledger through 2030.
+_Avoid_: saying the bankers doubt the heat shield (their numbers assume it works; what agrees
+with the experts is their cost level); track-record examples outside Starship (Tesla,
+self-driving); the 2022 Mars cargo date (primary text of Musk's 2018 New Space paper not
+verified); ad hominem wording rather than dated claim against dated outcome.
+
+**Parity threshold band** (decided 2026-09-21 grill):
+The launch price at which orbital computing is said to rival terrestrial data centers, printed
+as a band with each end attributed to whoever computed it. **$500/kg**: break-even by Philip
+Johnston, Starcloud's CEO, in an interview on McKinsey's site (May 2026). **$200/kg**: Google
+Suncatcher's energy-only parity, launch cost amortized per kW-year against a terrestrial
+data center's power bill, excluding buildings and chips. The paper cites these; it does not
+compute terrestrial parity itself (scope from the 2026-09-13 grill stands).
+One paragraph converts the band to price per kilowatt-hour over a 5-year life (decided
+2026-09-21, explaining the band rather than endorsing either end). Johnston's interview text
+(todos/mckinsey.txt, May 8, 2026) gives no kg/kW directly; his Starcloud 3 is "approximately
+200-kW ... about three tons", so **15 kg/kW**, and $500/kg is 17.1 cents/kWh. Suncatcher's
+$200/kg at 20.5 kg/kW (575 kg, 28 kW) is 9.4 cents/kWh. The gap is scope as well as mass:
+Johnston also credits the infrastructure a space facility skips (under $5M/MW against $12-15M/MW
+terrestrial, his figures), and at 15 kg/kW launch costs that $7,000-10,000/kW saving at
+$467-667/kg, which is consistent with his threshold (our reconstruction, not his stated
+derivation). Suncatcher compares launch with the power bill alone. Cooling is paid on both
+sides, as radiator mass inside kg/kW in orbit and as PUE inside Suncatcher's terrestrial range.
+_Avoid_: "McKinsey's $500/kg" (it is an interviewee's figure, and an interested party's);
+"matches terrestrial data centers" (the $200 bar is energy-only, and BCG finds a 1.5-1.8x
+premium even at $100/kg); citing the $500 end without the $200 end.
+
+**Delivery ledger** (decided 2026-09-21 grill):
+Per-lob cost of Jupiter-return delivery. **500 t of cargo** is the printed baseline and
+**1,000 t** the upside (the lob carries 1,070-1,430 t with the braking burn, the plate about a
+tenth of the craft). Lines: booster lob at $25/kg of lofted mass ($27-36M, at or above the
+$18-27M Goldman's 2030 figure implies for a whole Starship flight, although we fly only the booster); PuffSats consumed,
+one eighth of lofted mass on an unaugmented plate, at $20/kg to make plus $25/kg for their own
+lob; pusher plate expended at L1; departure-nozzle share as cycle overhead, since the nozzle
+never flies with the cargo. Plate and nozzle are priced two ways: pessimistic ($50M, $25M)
+and the paper's own anchors ($5M at 10x steel; $0.4M from `sec:steel_chamber_service`).
+Before R&D: $216-238/kg (500 t, pessimistic), $76-98 (500 t, paper), $110-119 (1,000 t,
+pessimistic), $41-49 (1,000 t, paper). Every row beats $500/kg; $200/kg needs 1,000 t or the
+paper's own hardware prices. Starship at L1 reaches $500/kg only if LEO <= $110-142/kg and
+$200/kg only if LEO <= $44-57/kg.
+_Avoid_: leaving the booster lob off the ledger; charging the nozzle as delivery hardware;
+calling 1,000 t conservative.
+
+**Starship L1 floor** (decided 2026-09-21 grill):
+Starship's cost per kilogram at Sun-Earth L1, extrapolated as its heat-shield-limited LEO cost
+times 3.5-4.6, the LEO mass launched per kilogram delivered (the cargo plus 252-356 t of
+propellant for 3.2-4.0 km/s at 380 s). It is a floor. Boil-off, settling and depot operations
+are named but not priced. The cargo ship is also left out of the dollar figure: it either
+returns at 11.1 km/s, 2.67 times the peak heating of an 8.0 km/s LEO return, or is expended.
+The heat shield enters twice: it sets the LEO cost the multiplier scales, and it adds the
+ship's harder return. Tanker tile refurbishment is already inside the multiplier.
+_Avoid_: charging tanker heat-shield wear on top of the multiplier (double count); printing a
+Starship upper-stage hull cost (no sourced figure); calling the extrapolation an estimate
+rather than a floor.
+
+**Tanker upper-stage reuse** (retired from the paper 2026-09-21):
 The number of flights over which one Starship tanker upper stage's manufacturing cost is spread.
-It is separate from booster reuse and from reuse of the cargo ship that leaves LEO.
-_Avoid_: assigning one reuse count to every vehicle in a refueling campaign.
+The $nS/R$ charge that used it was removed when `sec:heat_shield_bill` replaced the old cost
+paragraphs; tanker costs now sit inside the **Starship L1 floor** multiplier.
+_Avoid_: assigning one reuse count to every vehicle in a refueling campaign; reintroducing a
+separate tanker-hardware charge on top of the multiplier (double count).
 
 **Earth-customer latency**:
 The end-to-end delay between a customer on Earth and an orbital computing cluster.
