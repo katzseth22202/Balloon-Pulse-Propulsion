@@ -399,7 +399,7 @@
     year         = {2023},
     doi          = {10.18434/T4D303},
     howpublished = {National Institute of Standards and Technology, \url{https://webbook.nist.gov/cgi/cbook.cgi?ID=C1333740}},
-    note         = {Critical temperature of normal hydrogen \SI{33.19}{\kelvin}, above which no pressure holds it liquid.}
+    note         = {Critical temperature of normal hydrogen \SI{33.19}{\kelvin}, above which no pressure holds it liquid. From the WebBook fluid-properties equation of state: density \SI{54.4}{\kilogram\per\cubic\meter} at \SI{90}{\kelvin} and \SI{300}{\bar}; enthalpy rise \SI{5.98}{\mega\joule\per\kilogram} from \SI{90}{\kelvin} to \SI{500}{\kelvin} at \SI{300}{\bar}; isobaric heat capacity near \SI{14.5}{\kilo\joule\per\kilogram\per\kelvin} at \SI{500}{\kelvin}.}
 }
 
 @misc{nist_webbook_methane,
@@ -408,7 +408,7 @@
     year         = {2023},
     doi          = {10.18434/T4D303},
     howpublished = {National Institute of Standards and Technology, \url{https://webbook.nist.gov/cgi/cbook.cgi?ID=C74828}},
-    note         = {Methane triple point \SI{90.67}{\kelvin} at \SI{0.1169}{\bar} (\SI{11.69}{\kilo\pascal}).}
+    note         = {Methane triple point \SI{90.67}{\kelvin} at \SI{0.1169}{\bar} (\SI{11.69}{\kilo\pascal}). Critical point \SI{190.56}{\kelvin} and \SI{45.99}{\bar}. Enthalpies from \SI{91}{\kelvin} liquid to warm gas, and saturation temperature, latent heat, liquid density and surface tension at \SIrange{1.5}{3.3}{\bar}, were evaluated from the Setzmann--Wagner equation of state and the property correlations the WebBook fluid-properties tool implements.}
 }
 
 @misc{dupont_kapton_hn_datasheet,
@@ -4696,7 +4696,7 @@
   author       = {{National Institute of Standards and Technology}},
   title        = {Cryogenic Material Properties: Nickel Steel (Fe-2.25 Ni)},
   howpublished = {\url{https://trc.nist.gov/cryogenics/materials/NickelSteel/NickelSteel_Fe2.25Ni)_rev.htm}},
-  note         = {Linear expansion fit $10^5 (L - L_{293})/L_{293} = a + bT + cT^2 + dT^3 + eT^4$ with $a = -210.4$, $b = -5.699\times10^{-2}$, $c = 5.072\times10^{-3}$, $d = -1.381\times10^{-5}$, $e = 1.897\times10^{-8}$, valid 4 to 300 K with 1.5 percent fit error. It gives 0.10 percent contraction from 293 K to 200 K, 0.19 percent to 77 K and 0.21 percent to 20 K. Used here as the nearest NIST ferritic steel to Cr--Mo. Accessed: 2026-09-14}
+  note         = {Linear expansion fit $10^5 (L - L_{293})/L_{293} = a + bT + cT^2 + dT^3 + eT^4$ with $a = -210.4$, $b = -5.699\times10^{-2}$, $c = 5.072\times10^{-3}$, $d = -1.381\times10^{-5}$, $e = 1.897\times10^{-8}$, valid 4 to 300 K with 1.5 percent fit error. It gives 0.10 percent contraction from 293 K to 200 K, 0.19 percent to 77 K and 0.21 percent to 20 K. The page also gives log-polynomial fits for thermal conductivity (4 to 300 K) and specific heat (55 to 300 K); they give 25.2 W/(m K) and 226 J/(kg K) at 100 K and 39.2 W/(m K) and 458 J/(kg K) at 300 K. Used here as the nearest NIST ferritic steel to Cr--Mo. Accessed: 2026-09-14 (thermal fits 2026-09-22)}
 }
 
 @misc{accurate_acculam_g10,
@@ -5295,4 +5295,69 @@
   year         = {2026},
   howpublished = {\url{https://www.epa.gov/radiation/radionuclide-basics-strontium-90}},
   note         = {Gives the half-life of strontium-90 as 29 years and identifies it as a fission product. Last updated 22 January 2026. Accessed: 2026-09-22}
+}
+
+@techreport{homer1991_hydrocarbon_copper,
+  author       = {Homer, G. David and Rosenberg, Sanders D.},
+  title        = {Hydrocarbon-Fuel/Combustion-Chamber-Liner Materials Compatibility},
+  institution  = {GenCorp Aerojet Propulsion Division, for NASA Lewis Research Center},
+  type         = {Final Report},
+  number       = {NASA CR-187104},
+  year         = {1991},
+  month        = apr,
+  howpublished = {\url{https://ntrs.nasa.gov/citations/19910011994}},
+  note         = {Contract NAS 3-25070, report KBQ-FR-2. Summary table: RP-1 formed carbon-containing deposits above a copper wall temperature of 580 F; methane formed none up to 934 F; propane none up to 865 F. Dynamic tests with low-sulfur methane (0.5 ppm isobutyl mercaptan) at coolant-channel wall temperatures up to 1094 F showed no measurable loss of heat transfer, mass flow or pressure drop over 15--25 minute runs, with minor carbon only at the most severe condition. Sulfur as low as 1 ppm corroded NASA-Z copper to Cu2S; recommended methane sulfur limit 0.5 ppm. Accessed: 2026-09-22}
+}
+
+@techreport{ellis2005_grcop84_tm,
+  author       = {Ellis, David L.},
+  title        = {{GRCop-84}: A High-Temperature Copper Alloy for High-Heat-Flux Applications},
+  institution  = {NASA Glenn Research Center},
+  number       = {NASA/TM---2005-213566},
+  year         = {2005},
+  month        = feb,
+  howpublished = {\url{https://ntrs.nasa.gov/citations/20050123582}},
+  note         = {Thermal conductivity 305--320 W/(m K) over the liner operating range. In a typical hydrogen engine the hot wall reaches 400--600 C while the cold wall and lands stay near room temperature, producing strains typically over 1 percent. Figure 19 plots low-cycle-fatigue life against total strain range (0.5--4 percent tested); GRCop-84 lives show no statistically significant difference between room temperature and 600 C, the highest temperature tested. Describes rocket liner heat fluxes as multimegawatt per square meter. Accessed: 2026-09-22}
+}
+
+@book{turns2012_combustion,
+  author    = {Turns, Stephen R.},
+  title     = {An Introduction to Combustion: Concepts and Applications},
+  edition   = {3},
+  publisher = {McGraw-Hill},
+  address   = {New York},
+  year      = {2012},
+  note      = {Derives the $d^2$ law for droplet evaporation, $D^2(t)=D_0^2-Kt$ with $K=8k_g\ln(1+B)/(\rho_l c_{p,g})$ for heat-transfer-limited evaporation, and applies it to fuel sprays.}
+}
+
+@article{ranz1952_evaporation,
+  author  = {Ranz, W. E. and Marshall, W. R.},
+  title   = {Evaporation from Drops},
+  journal = {Chemical Engineering Progress},
+  volume  = {48},
+  number  = {3},
+  pages   = {141--146},
+  year    = {1952},
+  note    = {Part I; Part II follows in volume 48, number 4, pages 173--180. Source of the correlation $\mathrm{Nu}=2+0.6\,\mathrm{Re}^{1/2}\mathrm{Pr}^{1/3}$ for heat transfer to a moving drop.}
+}
+
+@book{clift1978_bubbles,
+  author    = {Clift, R. and Grace, J. R. and Weber, M. E.},
+  title     = {Bubbles, Drops, and Particles},
+  publisher = {Academic Press},
+  address   = {New York},
+  year      = {1978},
+  note      = {Standard drag curve for spheres, including the Schiller--Naumann fit $C_D=(24/\mathrm{Re})(1+0.15\,\mathrm{Re}^{0.687})$ below $\mathrm{Re}\approx800$ and $C_D\approx0.44$ above about $10^3$.}
+}
+
+@article{pilch1987_breakup,
+  author  = {Pilch, M. and Erdman, C. A.},
+  title   = {Use of Breakup Time Data and Velocity History Data to Predict the Maximum Size of Stable Fragments for Acceleration-Induced Breakup of a Liquid Drop},
+  journal = {International Journal of Multiphase Flow},
+  volume  = {13},
+  number  = {6},
+  pages   = {741--757},
+  year    = {1987},
+  doi     = {10.1016/0301-9322(87)90063-2},
+  note    = {Critical Weber number for aerodynamic drop breakup about 12 at low Ohnesorge number.}
 }
