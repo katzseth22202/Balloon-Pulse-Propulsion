@@ -145,6 +145,30 @@ much as `e` (a 0.3 drop in `f` costs what a 0.2 swing in `e` does).
 _Avoid_: quoting an `e` without the `f` it assumed, or vice versa; calling the `e = 0.25` row a
 thrust floor; using `η_jet`'s 0.5 three-to-one floor as if it bounded `e`.
 
+**Retrieval charge (`h`)** (named 2026-09-22, `sec:ntr_departure`):
+The PuffSat mass spent bringing a spent departure chamber home, as a fraction of the departing
+stack, paid every cycle. After the burn, PuffSats brake the chamber off its escape trajectory
+and park it for the next wave (`sec:steel_chamber_service`). If the chamber is instead thrown
+away each cycle, `h` is just the chamber's own mass fraction, so the same threshold answers both
+cases. **Not yet priced.** It is one of the two numbers that decide the chamber-vs-reactor
+departure; see **Nuclear thermal departure**.
+_Avoid_: calling it "recovery". That word is taken by **recovery (`e`)**, and the chemistry
+discussion also speaks of the dissociation store being "returned". The first draft of
+`sec:ntr_departure` used "recovery charge" and Seth read it as chemical-energy recovery.
+
+**Coupling factor (`φ`)** (named 2026-09-22, `sec:ntr_departure`, `eq:isp_coupling`):
+The fraction of the *companion-modeled* exhaust speed a walled chamber actually delivers.
+`Isp_eff(φ) = (1+k)/k · φ · Isp_true − w/(k g0)`. It sits on top of the companion's own
+modeled losses (jet efficiency 0.64-0.73, 41-53% conversion at the 10,000 K cells), so `φ = 1`
+means "the quasi-1D model is right", not "perfect coupling". Energy coupling is `φ²`.
+Distinguished from the other efficiencies:
+- vs **jet efficiency (`η_jet`)**: same position (before the debit, so it inherits the
+  leverage), but relative to the companion model rather than to an ideal jet.
+- vs **recovery (`e`)**: `e` scales net impulse *after* the debit and has no floor. `φ` scales
+  before it, so a shortfall costs more effective Isp than its own size. A 10% `φ` shortfall
+  costs hydrogen 19% of effective Isp (debit 985 s) and methane 15% (debit 391 s).
+_Avoid_: quoting a `φ` threshold without the retrieval charge it assumed.
+
 **Gas speed (`v_g`) vs effective exhaust velocity (`v_e`)**:
 Two distinct quantities in `sec:dv_effective`. `v_g = 2 v_p √m_rp` is what the collision energy
 alone allows, the speed the merged mass would carry if every gram left at one speed along one
@@ -4630,6 +4654,67 @@ five-month park is ~100 crossings against deliberately cheap electronics. The mi
 stowed PuffSats are shielded by the carrier hull and by each other, so only the outer layer of the
 rack takes full dose. Unsized.
 
+### Nuclear thermal departure (`sec:ntr_departure`)
+
+**Nuclear thermal departure** (priced 2026-09-22): replacing the walled departure chamber with a
+nuclear thermal rocket (NTR). Reference engine is Borowski's DRA 5.0 Pewee-derived 25 klbf:
+906 s, 12.5 kg/s, engine T/W 3.5, 93% HEU, ~560 MWt; tank 0.205 kg per kg LH2 (DRA drop tank).
+Pessimistic HALEU row: T/W 1.5 (GA reactor-only cap 3500 kg at 57 kN). All priced on the
+companion's synodic-lock model (`fly_and_park`), which charges no projectile stream. That omission
+is correct for the reactor and is added by hand for the chambers. Probes: `todos/ntr_ledger.py`,
+`todos/methane_vs_ntr.py`, `todos/walled_10kK_vs_ntr.py`, `todos/breakeven_h.py`,
+`todos/coupling_breakeven.py`, `todos/h2_decompose.py`.
+
+**The reactor cannot burn in minutes.** Matching the chamber's 320 s burn needs engines weighing
+37% of the stack. Best burn is 42-53 min, costing ~600 m/s (3S) to ~900 m/s (2S) of finite-burn
+loss. The engine is expended: the cycle orbit is built to return to Earth, so a retrieved
+reactor would bring an irradiated core back to a 600 km periapsis every cycle.
+
+**Headline (10,000 K walled chambers at 200 m^3, retrieval free):** reference NTR 2.176 yr (3S, with the kick);
+hydrogen 2 m^2 1.646 yr (2S), methane 2 m^2 1.763 yr (2S); at the 7 m^2 reference throat
+hydrogen 2.027, methane 2.084, water 2.243 (loses). Ties with the reference reactor: retrieval
+4.0% / 2.0% at 7 m^2 and 13.9% / 10.1% at 2 m^2 (H2 / CH4); coupling `φ` 0.957 / 0.969 at
+7 m^2 and 0.843 / 0.846 at 2 m^2. Water 2 m^2 ties at 5.3% retrieval, `φ` 0.901.
+
+**Hydrogen's edge is the clock, not the mass.** Per cycle the reactor grows more (2.84x on 3S
+against hydrogen's 2.51x on 2S). Hydrogen wins because its Isp affords the 2.18 yr 2S cycle.
+Its ledger from true Isp down: 0.880 yr, +985 s debit 0.999, +projectiles (33% of batch, k = 7.77)
+1.362, +tanks 1.646. Tank mass mostly cancels against the reactor because both carry LH2
+(at tank 0.10: H2 1.481 vs NTR 1.933).
+
+**Pre-ignition chemical kick** (Seth, 2026-09-22): the stack reaches periapsis at 10.63 km/s,
+60 m/s under the 10.69 km/s escape speed at 600 km. A methalox kick (380 s, 1.6% of stack) adds
+that 60 m/s first, so the reactor goes critical only on an unbound orbit. Meets the UN
+"not critical before interplanetary trajectory" rule exactly. Costs the reference 0.2% in
+doubling (2.171 -> 2.176). Kick failure leaves a cold fresh core, no worse than the pad.
+
+**Nominal disposal:** separate after the burn; a storable thruster (not a reactor restart, the
+LH2 won't keep a year) retargets the Jupiter flyby to the far side, <10 m/s (1 m/s early ->
+~35,000 km at Jupiter). The forward turn raises perihelion beyond 1 AU in a rough in-plane
+estimate. **Unverified against companion cycle states**: the same sketch (12 km/s tangential
+departure, stage at ~17.7 km/s heliocentric at Jupiter) suggests a 30 deg forward turn beats the
+18.5 km/s solar escape speed. Not in the paper until checked.
+
+**Accident mode** (framing agreed 2026-09-22): failure mid-burn or before retargeting leaves an
+Earth-crossing solar orbit. Earliest return is about one solar orbit (>1 yr), more likely years
+to decades; per-pass hit probability not computed. Inventory is FULL, not "briefly irradiated":
+16-21 MWd per engine. A year removes I-131 (8.02 d); Cs-137 (30.17 yr) and Sr-90 (29 yr) remain,
+only ~a fifth gone after a decade. Entry at >= 11 km/s: mostly burn-up and high-altitude
+dispersal, some fragments may reach ground (Cosmos 954 precedent).
+_Avoid_: "we don't fire until past escape velocity" without the kick; "briefly irradiated";
+"the decade makes it safe" (it clears iodine, not caesium/strontium).
+
+**HALEU is the paper's position** (Seth, 2026-09-22). The UN 1992 HEU-only clause is read as a
+radiological limit on actinides (plutonium breeding) from the Cosmos 954 era. Current policy
+(SPD-6) runs on proliferation, where HEU is the problem. Bound on bred plutonium: at most ~22 g
+per engine per burn (17-22 g U-235 fissioned), against the IAEA's 8 kg significant quantity.
+Cosmos 954's ~90% enrichment is **not** cited: only Wikipedia/Grokipedia/enthusiast sources found.
+
+**Framing, 2026-09-22:** the reactor was first written as a "floor" under the pulsed nozzle,
+against the two-wave chain's idealized water magnetic nozzle (tie at chain recovery ~0.48). Seth
+redirected the comparison to the physical 10,000 K walled chambers, which flipped it to "close
+competitor". Retrieval pricing is the next departure calculation.
+
 ## Relationships
 
 - A **PuffSat** strikes the **pusher plate** (or the **Medusa-style sail**); plate and
@@ -4669,6 +4754,10 @@ rack takes full dose. Unsized.
 
 ## Flagged ambiguities
 
+- **"Recovery" of what? - RESOLVED 2026-09-22.** Three senses were colliding: nozzle impulse
+  **recovery (`e`)**; the dissociation store "returned" in the expansion; and bringing the spent
+  chamber home. The third is now **retrieval (`h`)**. Seth asked whether "recovery costs 5%" meant
+  chemical-energy recovery from dissociation. It did not.
 - **Does argon implantation in the tube wall work at the low arrival speeds of lunar, Ceres and
   Jupiter-cycle payloads? - RESOLVED 2026-08-19 (grill): yes, and the mechanism in the paper is
   currently attached to the wrong case.** `sec:vacuum_tube_details` claims argon rebounds off the
