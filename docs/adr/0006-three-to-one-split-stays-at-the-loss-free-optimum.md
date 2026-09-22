@@ -56,7 +56,7 @@ the paper already assumes.
 - **Restate the architecture at ~5:1. Rejected, but it is the better *design*.** A minimax
   over `η_jet ∈ [0.7, 1.0]` puts the robust ratio near 5:1 (retrograde fraction ~0.17), which
   stays within 4% of the achievable optimum across that whole range where 3:1 falls to 82% at
-  the low end. It also cuts the average lunar departure ΔV, since retrograde departure costs
+  the low end. It also cuts the average lunar departure Δv, since retrograde departure costs
   3.7 km/s against 3.0 prograde. Rejected on revision cost, not on merit. The paper now says
   explicitly that a flown architecture should bias prograde.
 - **Broaden the existing fudge factor `f` to cover the nozzle. Rejected.** `f` is pusher-plate

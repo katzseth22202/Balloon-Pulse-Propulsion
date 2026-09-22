@@ -4488,7 +4488,7 @@ _Avoid_: waste, garbage, trash, debris (reserve **debris** for the ejecta it thr
 
 **Disposal site**:
 One of a handful of fixed lunar impact points, spread in longitude so one always sits near the
-low-$\Delta V$ approach geometry as the Moon rotates.
+low-$\Delta v$ approach geometry as the Moon rotates.
 
 **Ejecta trap**:
 A roofed disposal site (sintered enclosure or lava tube) whose small aperture subtends a narrow
