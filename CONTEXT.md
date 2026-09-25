@@ -2274,6 +2274,17 @@ _Avoid_: treating Earth-to-site light time as a lower bound on local training-ne
 
 Named in the 2026-09-20 grill, when "why not just use MEO?" was priced rather than dismissed.
 
+**Child repo**:
+The repository `katzseth22202/puffsats_for_datacenters`
+(https://github.com/katzseth22202/puffsats_for_datacenters), *PuffSat Pulsed Propulsion: A
+Condensed Summary With Near-Term Applications*, built around the data-center case of
+`sec:space_data_centers`. This paper is its **parent**, and cites it as
+`katz2026_puffsat_condensed`. The child adds no facts the parent lacks: its `references.bib`
+entries are copied down unchanged from the parent's, so a new source is added here first. The
+child marks claims still awaiting that with `\citepending{...}`.
+_Avoid_: **companion repo**, which means the public calculation and simulation repos
+(`aim_is_all_you_need`, `puffsat_impact_simulation`, `puffsat_control_simulation`).
+
 **Arrival burn**:
 The delta-V a payload supplies itself at its destination, beyond the perigee push PuffSats
 deliver at the 200 km interception altitude.
