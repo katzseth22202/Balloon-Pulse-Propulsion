@@ -71,7 +71,7 @@
     <text x="415" y="371" text-anchor="middle" class="small">electronics</text>
     <path id="wire" d="M 516,345 L 490,345 L 490,365 L 470,365" stroke="#444" stroke-width="2" fill="none"/>
     <rect id="absorber" x="250" y="514" width="110" height="10" fill="#7A2E0E"/>
-    <text x="215" y="480">Frozen-volatile shield</text>
+    <text x="215" y="480">Volatile shield (kept liquid)</text>
   </g>
   <g inkscape:groupmode="layer" id="layer-cavity" inkscape:label="Mirrored light cavity">
     <path id="cavity-channel" d="M 620,520 L 620,450 L 550,450 L 520,420 L 520,350 L 550,350 L 550,420 L 620,420 L 650,450 L 650,520 Z" fill="#FFF7DC" stroke="#444" stroke-width="2"/>
