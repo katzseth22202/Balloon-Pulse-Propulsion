@@ -11,6 +11,8 @@
 *.fdb_latexmk
 *.synctex.gz
 *.pdf
+# Figure PDFs are sources, not build output
+!images/*.pdf
 
 # Build/export output
 out.html
