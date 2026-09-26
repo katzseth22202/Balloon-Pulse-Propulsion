@@ -5,6 +5,7 @@
 #   ./build.sh --clean    remove aux files first, then build
 #   ./build.sh --quiet    suppress pdflatex chatter (errors still surface)
 #   ./build.sh --open     open the PDF in the default viewer when done
+# Figures drawn as images/*.svg are re-exported to PDF first when out of date.
 
 set -euo pipefail
 
@@ -21,7 +22,7 @@ for arg in "$@"; do
         --quiet) QUIET=1 ;;
         --open)  OPEN=1 ;;
         -h|--help)
-            sed -n '2,7p' "$0"
+            sed -n '2,8p' "$0"
             exit 0
             ;;
         *)
@@ -42,6 +43,35 @@ if [[ $CLEAN -eq 1 ]]; then
     echo "==> Cleaning aux files"
     rm -f "$JOB".{aux,bbl,bcf,blg,log,out,run.xml,toc,pdf}
 fi
+
+# Re-export images/*.svg to PDF when the SVG is newer, since pdflatex reads the
+# PDF. Without Inkscape, warn and fall back to the committed PDF.
+find_inkscape() {
+    if command -v inkscape >/dev/null 2>&1; then
+        command -v inkscape
+    elif [[ -x /Applications/Inkscape.app/Contents/MacOS/inkscape ]]; then
+        echo /Applications/Inkscape.app/Contents/MacOS/inkscape
+    fi
+}
+
+export_svgs() {
+    local inkscape svg pdf
+    inkscape="$(find_inkscape)"
+    shopt -s nullglob
+    for svg in images/*.svg; do
+        pdf="${svg%.svg}.pdf"
+        [[ -f "$pdf" && ! "$svg" -nt "$pdf" ]] && continue
+        if [[ -z "$inkscape" ]]; then
+            echo "Warning: Inkscape not found; $pdf may be older than $svg." >&2
+            continue
+        fi
+        echo "==> inkscape: $svg -> $pdf"
+        "$inkscape" "$svg" -o "$pdf" 2>/dev/null
+    done
+    shopt -u nullglob
+}
+
+export_svgs
 
 run() {
     local label="$1"; shift
