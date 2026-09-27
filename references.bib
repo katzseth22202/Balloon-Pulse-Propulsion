@@ -1949,7 +1949,7 @@
   month        = {8},
   number       = {NASA TN D-3409},
   howpublished = {\url{https://ntrs.nasa.gov/citations/19660025569}},
-  note         = {NASA Technical Note documenting the aluminum-mylar-aluminum laminate used to construct the Echo II passive communications balloon satellite. NTRS ID: 19660025569.}
+  note         = {NASA Technical Note documenting the aluminum-mylar-aluminum laminate used to construct the Echo II passive communications balloon satellite: a \SI{0.35}{mil} Mylar film between two \SI{0.18}{mil} aluminum foils, about \SI{37}{\gram\per\square\meter}. Echo II used a permanent rigidization concept: the laminate was pressurized to a skin stress that plastically deformed both aluminum layers while the Mylar stayed elastic, and the work-hardened aluminum held the sphere's shape after the inflation gas escaped (p.~1). NTRS ID: 19660025569.}
 }
 
 @article{brouwer1959satellite,
@@ -2087,7 +2087,7 @@
   publisher = {Wiley},
   address   = {Hoboken, New Jersey},
   isbn      = {9781118753651},
-  note      = {Tabulated vacuum specific impulses: about \SI{450}{\second} for liquid oxygen/liquid hydrogen and about \SI{360}{\second} for liquid oxygen/methane.}
+  note      = {Tabulated vacuum specific impulses: about \SI{450}{\second} for liquid oxygen/liquid hydrogen and about \SI{360}{\second} for liquid oxygen/methane}
 }
 
 @misc{sia_satellite_industry_2025,
@@ -2458,7 +2458,7 @@
   title        = {{Kevlar} Aramid Fiber Technical Guide},
   year         = {2019},
   howpublished = {\url{https://www.dupont.com/content/dam/aramids/amer/us/en/safety/public/documents/en/Kevlar_Technical_Guide_0319.pdf}},
-  note         = {Kevlar para-aramid does not melt; it retains most of its room-temperature tensile strength to roughly 250 C and decomposes only at 427--482 C in air, giving it a higher thermal ceiling than UHMWPE. Accessed: 2026-06-05}
+  note         = {Kevlar para-aramid does not melt; it retains most of its room-temperature tensile strength to roughly 250 C and decomposes only at 427--482 C in air, giving it a higher thermal ceiling than UHMWPE. Kevlar~49 yarn breaks at about \SI{3000}{\mega\pascal} (\SI{435000}{psi}), and resin-impregnated strands at about \SI{3600}{\mega\pascal}. Accessed: 2026-06-05}
 }
 
 @misc{vectran_brochure,
@@ -3852,7 +3852,7 @@
   address   = {Berlin, Heidelberg},
   year      = {2005},
   doi       = {10.1007/b136244},
-  note      = {Review of closed-cell crosslinked polyethylene foams, covering production routes, typical densities of tens of \si{\kilo\gram\per\cubic\meter}, and the low water uptake that follows from a closed-cell structure. Cited in \autoref{sec:icy_puffsat} for the foam scaffold.}
+  note      = {Review of closed-cell crosslinked polyethylene foams, covering production routes, typical densities of tens of \si{\kilo\gram\per\cubic\meter}, and the low water uptake that follows from a closed-cell structure. The foam scaffold's material basis.}
 }
 
 @article{moradian2020_foamed_coax,
@@ -3874,7 +3874,7 @@
   address   = {Princeton, New Jersey},
   year      = {1948},
   isbn      = {978-0-691-06922-7},
-  note      = {Standard treatment of explosion shock waves in water, including reflection at a low-impedance boundary as a rarefaction and the cavitation that follows because water sustains almost no tension. Cited in \autoref{sec:icy_puffsat}.}
+  note      = {Standard treatment of explosion shock waves in water, including reflection at a low-impedance boundary as a rarefaction and the cavitation that follows because water sustains almost no tension.}
 }
 
 @article{atchley1989crevice,
@@ -3886,7 +3886,7 @@
   pages   = {1065--1084},
   year    = {1989},
   doi     = {10.1121/1.398098},
-  note    = {Gas trapped in crevices of non-wetted solid surfaces acts as the stabilized nucleus from which cavitation grows when the liquid is put into tension. Cited in \autoref{sec:icy_puffsat} for nucleation on the foam beads.}
+  note    = {Gas trapped in crevices of non-wetted solid surfaces acts as the stabilized nucleus from which cavitation grows when the liquid is put into tension, the basis for nucleation on foam beads.}
 }
 
 @book{gibson1997cellular,
@@ -5731,4 +5731,59 @@
   year    = {1961},
   doi     = {10.1364/JOSA.51.000719},
   note    = {Reflectance of fresh evaporated aluminum, about 0.9 across the visible.}
+}
+
+@techreport{jsc_mmod_handbook,
+  author       = {Christiansen, Eric L.},
+  title        = {Handbook for Designing {MMOD} Protection},
+  institution  = {NASA Johnson Space Center},
+  year         = {2009},
+  number       = {JSC-64399 Version A / NASA/TM-2009-214785},
+  howpublished = {\url{https://ntrs.nasa.gov/citations/20090010053}},
+  note         = {Section 4.2.2, eq.~4-21: a Whipple bumper that fragments a projectile of diameter $d$ and density $\rho_p$ needs areal density $t_b\rho_b = c_b d \rho_p$, with $c_b = 0.25$ for $S/d<30$ and $0.2$ for $S/d \ge 30$, valid for normal impact speeds of \SI{7}{\kilo\meter\per\second} and above. Takes meteoroid density as \SI{1.0}{\gram\per\cubic\centi\meter}. Section 4.5 describes multi-shock shields of several spaced fabric bumpers. Accessed: 2026-09-26}
+}
+
+@article{cour_palais1990multishock,
+  author  = {Cour-Palais, Burton G. and Crews, Jeanne Lee},
+  title   = {A Multi-Shock Concept for Spacecraft Shielding},
+  journal = {International Journal of Impact Engineering},
+  volume  = {10},
+  number  = {1--4},
+  pages   = {135--146},
+  year    = {1990},
+  doi     = {10.1016/0734-743X(90)90054-Y},
+  note    = {Several thin, spaced bumpers shock a hypervelocity projectile and its debris repeatedly, raising its internal energy until it fragments, melts or vaporizes, at lower total shield mass than a single-bumper Whipple shield.}
+}
+
+@inproceedings{forward_hoyt1995hoytether,
+  author    = {Forward, Robert L. and Hoyt, Robert P.},
+  title     = {Failsafe Multiline Hoytether Lifetimes},
+  booktitle = {31st AIAA/ASME/SAE/ASEE Joint Propulsion Conference and Exhibit},
+  address   = {San Diego, California},
+  year      = {1995},
+  number    = {AIAA 95-2890},
+  doi       = {10.2514/6.1995-2890},
+  note      = {A single-strand tether is cut by any micrometeoroid larger than about a third of its diameter. A net of several spaced, cross-linked thin lines survives for months to years at over 99\% probability, because one grain cuts at most one line and the load redistributes.}
+}
+
+@article{grun1985collisional,
+  author  = {Gr{\"u}n, E. and Zook, H. A. and Fechtig, H. and Giese, R. H.},
+  title   = {Collisional Balance of the Meteoritic Complex},
+  journal = {Icarus},
+  volume  = {62},
+  number  = {2},
+  pages   = {244--272},
+  year    = {1985},
+  doi     = {10.1016/0019-1035(85)90121-6},
+  note    = {Interplanetary meteoroid flux model at \SI{1}{\astronomicalunit}: cumulative flux of particles above mass $m$ onto a spinning flat plate, per unit area and time.}
+}
+
+@techreport{ng_propulsion_catalog,
+  author       = {{Northrop Grumman}},
+  title        = {Propulsion Products Catalog},
+  institution  = {Northrop Grumman Innovation Systems},
+  year         = {2016},
+  number       = {Approved for Public Release OSR No. 16-S-1432},
+  howpublished = {\url{https://cdn.northropgrumman.com/-/media/wp-content/uploads/NG-Propulsion-Products-Catalog.pdf}},
+  note         = {STAR 15G datasheet (p.~77): total impulse \SI{50210}{lbf.s} (\SI{223}{\kilo\newton\second}), effective specific impulse \SI{281.8}{\second}, total loaded mass \SI{206.6}{lb} (\SI{93.7}{\kilogram}) excluding ETA and S\&A, propellant mass fraction 0.85, burn time \SI{33.3}{\second}, average thrust \SI{1470}{lbf}. Accessed: 2026-09-26}
 }
