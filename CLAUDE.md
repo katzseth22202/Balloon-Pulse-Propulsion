@@ -18,13 +18,15 @@ The companion calculations repo is `katzseth22202/aim_is_all_you_need` on GitHub
 
 ## Building the Paper
 
-Always build/test the main paper via `./build.sh` rather than invoking `pdflatex`/`biber` directly. It handles the full pdflatex → biber → pdflatex → pdflatex sequence with `-halt-on-error`.
+Always build/test the main paper via `bash build.sh` rather than invoking `pdflatex`/`biber` directly. It handles the full pdflatex → biber → pdflatex → pdflatex sequence with `-halt-on-error`.
+
+Invoke it as `bash build.sh`, never `./build.sh`. The script's execute bit is not reliably present in the checkout, and `./build.sh` then fails with "Permission denied".
 
 ```bash
-./build.sh            # build the paper
-./build.sh --clean    # remove aux files first, then build
-./build.sh --quiet    # suppress pdflatex chatter (errors still surface)
-./build.sh --open     # open the PDF in the default viewer when done
+bash build.sh            # build the paper
+bash build.sh --clean    # remove aux files first, then build
+bash build.sh --quiet    # suppress pdflatex chatter (errors still surface)
+bash build.sh --open     # open the PDF in the default viewer when done
 ```
 
 Compile `templatePRIME.tex` (uses natbib, not biblatex) manually if needed:
