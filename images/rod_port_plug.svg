@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Rod, port and plug: one example configuration of the head-on hydrogen chamber.
+     (a) A solid metallized polyethylene rod on three tethered electronics packages
+     threads the 15 cm port and meets a porous frozen-methane plug. (b) After impact,
+     sketched: rod and plug turn to plasma and the front sweeps the hydrogen toward
+     the wider exhaust throat. Chamber, port, plug, throat and rod share one scale
+     (60 px per meter); tether lines and packages do not.
+     Each element sits in a named Inkscape layer.
+     Export for the paper with:
+       inkscape images/rod_port_plug.svg -o images/rod_port_plug.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="880" viewBox="0 0 1000 880">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .small { font-size: 15px; }
+      .tiny { font-size: 14px; }
+      .title { font-size: 19px; font-weight: bold; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .kevlar { stroke: #555; stroke-width: 1.3; fill: none; }
+      .wall { stroke: #5E6A73; stroke-width: 5; fill: none; }
+      .flow { stroke: #1F5F8B; stroke-width: 2.2; fill: none; }
+    </style>
+    <pattern id="porous" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#B9A3DC"/>
+      <circle cx="1.8" cy="1.8" r="1.1" fill="#ffffff"/>
+      <circle cx="4.7" cy="4.6" r="0.8" fill="#ffffff"/>
+    </pattern>
+    <linearGradient id="plasma" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFE08A"/>
+      <stop offset="1" stop-color="#E4572E"/>
+    </linearGradient>
+    <marker id="arrowDark" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowBig" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto">
+      <path d="M 0,3 L 22,11 L 0,19 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#C62828"/>
+    </marker>
+    <marker id="arrowFlow" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M 0,1 L 12,7 L 0,13" fill="none" stroke="#1F5F8B" stroke-width="2.2"/>
+    </marker>
+    <!-- Chamber with a 15 cm entrance on the left and a 0.75 m throat on the right.
+         Circle center (640,220), r = 160 px = 2.67 m. -->
+    <g id="chamber">
+      <circle cx="640" cy="220" r="158" fill="#E3F0FA"/>
+      <path d="M 798.4,197.5 A 160 160 0 0 0 480.06,215.5" class="wall"/>
+      <path d="M 480.06,224.5 A 160 160 0 0 0 798.4,242.5" class="wall"/>
+      <path d="M 798.4,197.5 C 840,191 882,162 922,136" class="wall"/>
+      <path d="M 798.4,242.5 C 840,249 882,278 922,304" class="wall"/>
+    </g>
+    <!-- Ship's forward face with the movable insert around the port and a standoff foil. -->
+    <g id="shipface">
+      <rect x="464" y="40" width="10" height="164" fill="#7F8C96"/>
+      <rect x="464" y="236" width="10" height="164" fill="#7F8C96"/>
+      <rect x="459" y="204" width="21" height="11.5" fill="#C9A227" stroke="#8A6D12" stroke-width="1"/>
+      <rect x="459" y="224.5" width="21" height="11.5" fill="#C9A227" stroke="#8A6D12" stroke-width="1"/>
+      <line x1="446" y1="40" x2="446" y2="200" stroke="#999" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <line x1="446" y1="240" x2="446" y2="400" stroke="#999" stroke-width="1.5" stroke-dasharray="5 4"/>
+    </g>
+  </defs>
+  <rect id="background" width="1000" height="880" fill="#ffffff"/>
+
+  <!-- ============================ (a) Arrival ============================ -->
+  <g inkscape:groupmode="layer" id="layer-a-title" inkscape:label="(a) Title">
+    <text x="20" y="28" class="title">(a) Arrival</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-a-chamber" inkscape:label="(a) Chamber, ship face and plug">
+    <use href="#chamber"/>
+    <use href="#shipface"/>
+    <rect x="482" y="213.4" width="141" height="13.2" fill="url(#porous)" stroke="#7E5FA8" stroke-width="1"/>
+    <text x="562" y="140" class="small">hydrogen, 77.7 kg in 80 m³</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-a-rod" inkscape:label="(a) Rod, tethers and packages">
+    <!-- lines to nose (396,220) and tail (330,220) -->
+    <g opacity="0.45">
+      <line x1="371" y1="286" x2="330" y2="220" class="kevlar"/>
+      <line x1="371" y1="286" x2="396" y2="220" class="kevlar"/>
+      <rect x="363" y="281" width="16" height="11" fill="#2F3B45"/>
+    </g>
+    <line x1="363" y1="86" x2="330" y2="220" class="kevlar"/>
+    <line x1="363" y1="86" x2="396" y2="220" class="kevlar"/>
+    <line x1="363" y1="290" x2="330" y2="220" class="kevlar"/>
+    <line x1="363" y1="290" x2="396" y2="220" class="kevlar"/>
+    <line x1="343" y1="80" x2="355" y2="80" stroke="#3B6EA5" stroke-width="4"/>
+    <line x1="371" y1="80" x2="383" y2="80" stroke="#3B6EA5" stroke-width="4"/>
+    <rect x="355" y="74" width="16" height="12" fill="#2F3B45"/>
+    <line x1="343" y1="290" x2="355" y2="290" stroke="#3B6EA5" stroke-width="4"/>
+    <line x1="371" y1="290" x2="383" y2="290" stroke="#3B6EA5" stroke-width="4"/>
+    <rect x="355" y="284" width="16" height="12" fill="#2F3B45"/>
+    <rect x="330" y="216.7" width="66" height="6.6" rx="1.5" fill="#B8C2CA" stroke="#4A90B8" stroke-width="1.4"/>
+    <path d="M 318,204 A 5 16 0 1 0 323,236" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+    <line x1="232" y1="220" x2="306" y2="220" stroke="#333" stroke-width="2.5" marker-end="url(#arrowBig)"/>
+    <text x="215" y="206" class="small">68–75 km/s</text>
+    <text x="238" y="256" class="small">spin 23°/s</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-a-labels" inkscape:label="(a) Labels">
+    <text x="20" y="72" class="small">electronics package, one of three</text>
+    <text x="20" y="90" class="small">(GNSS, resistojets, solar cells)</text>
+    <line x1="268" y1="80" x2="339" y2="80" class="leader"/>
+    <text x="20" y="136" class="small">Kevlar lines to nose and tail</text>
+    <text x="20" y="154" class="small">hold the rod's angle; 8 m long,</text>
+    <text x="20" y="172" class="small">not to scale</text>
+    <line x1="252" y1="150" x2="346" y2="150" class="leader"/>
+    <text x="20" y="336" class="small">solid polyethylene rod, 1.10 m by 11 cm,</text>
+    <text x="20" y="354" class="small">metal under a clear coat, no electronics</text>
+    <line x1="300" y1="322" x2="338" y2="226" class="leader"/>
+    <text x="458" y="28" class="small" text-anchor="end">ship's forward face,</text>
+    <text x="458" y="46" class="small" text-anchor="end">standoff foil dashed</text>
+    <line x1="462" y1="40" x2="468" y2="56" class="leader"/>
+    <text x="440" y="392" class="small" text-anchor="end">movable insert carries</text>
+    <text x="440" y="410" class="small" text-anchor="end">the port to the intercept</text>
+    <line x1="442" y1="384" x2="466" y2="238" class="leader"/>
+    <text x="508" y="400" class="small">porous frozen methane plug, 2.35 m deep</text>
+    <line x1="560" y1="386" x2="555" y2="228" class="leader"/>
+    <text x="812" y="334" class="small">exhaust throat,</text>
+    <text x="812" y="352" class="small">0.69–0.80 m across,</text>
+    <text x="812" y="370" class="small">21–28× entrance area</text>
+    <line x1="850" y1="320" x2="852" y2="262" class="leader"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-a-inset" inkscape:label="(a) Port inset, end-on">
+    <rect x="800" y="12" width="194" height="114" fill="#ffffff" stroke="#999" stroke-width="1"/>
+    <circle cx="845" cy="69" r="40" fill="#E3F0FA" stroke="#C9A227" stroke-width="3"/>
+    <circle cx="845" cy="69" r="29.3" fill="#B8C2CA" stroke="#4A90B8" stroke-width="1.4"/>
+    <line x1="874.3" y1="69" x2="885" y2="69" stroke="#C62828" stroke-width="1.6"/>
+    <text x="892" y="34" class="tiny">port 15 cm</text>
+    <text x="892" y="52" class="tiny">rod 11 cm</text>
+    <text x="892" y="74" class="tiny" fill="#C62828">2 cm clear</text>
+    <text x="892" y="96" class="tiny">located to</text>
+    <text x="892" y="114" class="tiny">2 mm at lock</text>
+  </g>
+
+  <line x1="20" y1="432" x2="980" y2="432" stroke="#DDD" stroke-width="1"/>
+
+  <!-- ======================== (b) After impact ======================== -->
+  <g inkscape:groupmode="layer" id="layer-b-title" inkscape:label="(b) Title">
+    <text x="20" y="468" class="title">(b) After impact (sketch)</text>
+  </g>
+
+  <g transform="translate(0,440)">
+    <g inkscape:groupmode="layer" id="layer-b-chamber" inkscape:label="(b) Chamber and plasma front">
+      <use href="#chamber"/>
+      <use href="#shipface"/>
+      <path d="M 482,216 L 700,118 Q 742,220 700,322 L 482,224 Z" fill="url(#plasma)" opacity="0.9"/>
+      <path d="M 704,110 Q 752,220 704,330" fill="none" stroke="#1F5F8B" stroke-width="7" opacity="0.6"/>
+      <line x1="755" y1="160" x2="790" y2="200" class="flow" marker-end="url(#arrowFlow)"/>
+      <line x1="755" y1="280" x2="790" y2="240" class="flow" marker-end="url(#arrowFlow)"/>
+      <line x1="770" y1="220" x2="800" y2="220" class="flow" marker-end="url(#arrowFlow)"/>
+      <line x1="880" y1="190" x2="960" y2="170" class="flow" marker-end="url(#arrowFlow)"/>
+      <line x1="890" y1="220" x2="975" y2="220" class="flow" marker-end="url(#arrowFlow)"/>
+      <line x1="880" y1="250" x2="960" y2="270" class="flow" marker-end="url(#arrowFlow)"/>
+      <line x1="458" y1="220" x2="410" y2="220" stroke="#C62828" stroke-width="2" marker-end="url(#arrowRed)"/>
+      <!-- tether lines vaporizing on the standoff foil -->
+      <circle cx="446" cy="110" r="6" fill="#F4A259" opacity="0.8"/>
+      <circle cx="446" cy="330" r="6" fill="#F4A259" opacity="0.8"/>
+    </g>
+
+    <g inkscape:groupmode="layer" id="layer-b-labels" inkscape:label="(b) Labels">
+      <text x="520" y="44" class="small">front spreads as it sweeps the hydrogen</text>
+      <line x1="700" y1="50" x2="718" y2="118" class="leader"/>
+      <text x="20" y="100" class="small">tether lines strike the standoff foil;</text>
+      <text x="20" y="118" class="small">packages pass outside the ship</text>
+      <line x1="282" y1="110" x2="438" y2="110" class="leader"/>
+      <text x="400" y="186" class="small" text-anchor="end">a small share leaks back</text>
+      <text x="400" y="204" class="small" text-anchor="end">out the 15 cm entrance</text>
+      <text x="508" y="400" class="small">rod and plug turn to plasma together</text>
+      <line x1="560" y1="386" x2="530" y2="232" class="leader"/>
+      <text x="812" y="334" class="small">most gas leaves</text>
+      <text x="812" y="352" class="small">through the wide</text>
+      <text x="812" y="370" class="small">throat</text>
+    </g>
+  </g>
+</svg>
