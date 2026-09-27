@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Side-heated convection: one necklace sphere cut through the spin axis,
+     sunlit at about 45 degrees, with effective gravity across the
+     cap-to-cap temperature difference and one slow convection loop. Each element sits in a named Inkscape layer.
+     Export for the paper with:
+       inkscape images/sidewall_convection.svg -o images/sidewall_convection.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="740" viewBox="0 0 1000 740">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .small { font-size: 15px; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .kevlar { stroke: #555; stroke-width: 1.3; fill: none; }
+      .struct { stroke: #7F8C96; stroke-width: 2; fill: none; }
+      .ray { stroke: #D9A400; stroke-width: 2.5; fill: none; }
+      .particle { stroke: #C62828; stroke-width: 2.5; stroke-dasharray: 9 5; fill: none; }
+    </style>
+    <marker id="arrowSun" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#D9A400"/>
+    </marker>
+    <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#C62828"/>
+    </marker>
+    <marker id="arrowDark" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowBig" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto">
+      <path d="M 0,3 L 22,11 L 0,19 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowFlow" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M 0,1 L 12,7 L 0,13" fill="none" stroke="#1F5F8B" stroke-width="2.2"/>
+    </marker>
+
+    <linearGradient id="capTint" x1="0" y1="0" x2="1" y2="0"
+        gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#E57373" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#D6E8F5"/>
+      <stop offset="1" stop-color="#64B5F6" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="gradArrow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E57373"/>
+      <stop offset="1" stop-color="#64B5F6"/>
+    </linearGradient>
+
+  </defs>
+  <rect id="background" width="1000" height="740" fill="#ffffff"/>
+
+  <g inkscape:groupmode="layer" id="layer-axis" inkscape:label="Spin axis">
+    <line x1="20.0" y1="90.0" x2="980.0" y2="90.0" class="leader" stroke="#333" stroke-width="2" stroke-dasharray="18 5 3 5"/>
+    <line x1="820.0" y1="72.0" x2="900.0" y2="72.0" class="leader" stroke="#333" stroke-width="2" marker-end="url(#arrowDark)"/>
+    <text x="20.0" y="76.0" class="small">spin axis (along the stream)</text>
+    <text x="812.0" y="60.0" class="small" text-anchor="end">stream</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-spoke" inkscape:label="Spoke and bridle">
+    <line x1="470.0" y1="90.0" x2="470.0" y2="174.0" class="kevlar" stroke="#9AA3AA"/>
+    <line x1="470.0" y1="174.0" x2="544.9" y2="214.6" class="kevlar" stroke="#9AA3AA" stroke-width="1"/>
+    <line x1="470.0" y1="174.0" x2="470.0" y2="200.0" class="kevlar" stroke="#9AA3AA" stroke-width="1"/>
+    <line x1="470.0" y1="174.0" x2="395.1" y2="214.6" class="kevlar" stroke="#9AA3AA" stroke-width="1"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-water" inkscape:label="Water and inner bag">
+    <circle cx="470" cy="400" r="180" fill="url(#capTint)" stroke="#5B7C99" stroke-width="2"/>
+    <circle cx="470" cy="400" r="78" fill="#A9A39A" stroke="#6E675E" stroke-width="2"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-blanket" inkscape:label="Blanket patchwork">
+    <circle cx="470" cy="400" r="200" fill="none" stroke="#C9CED3" stroke-width="7"/>
+    <path d="M 668.1,372.2 A 200.0,200.0 0 0 0 655.4,325.1" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 606.4,253.7 A 200.0,200.0 0 0 0 584.7,236.2" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 442.2,201.9 A 200.0,200.0 0 0 0 421.6,205.9" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 338.8,249.1 A 200.0,200.0 0 0 0 304.2,288.2" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 272.5,368.7 A 200.0,200.0 0 0 0 270.5,386.0" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 304.2,511.8 A 200.0,200.0 0 0 0 344.1,555.4" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 442.2,598.1 A 200.0,200.0 0 0 0 463.0,599.9" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 560.8,578.2 A 200.0,200.0 0 0 0 601.2,550.9" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+    <path d="M 655.4,474.9 A 200.0,200.0 0 0 0 660.2,461.8" fill="none" stroke="#4A4A4A" stroke-width="7"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-loop" inkscape:label="Convection loop">
+    <circle cx="470" cy="400" r="129" fill="none" stroke="#1F5F8B" stroke-width="2.2"/>
+    <path d="M 341.7,413.5 L 341.7,386.5" fill="none" stroke="#1F5F8B" stroke-width="2.2" marker-end="url(#arrowFlow)"/>
+    <path d="M 456.5,271.7 L 483.5,271.7" fill="none" stroke="#1F5F8B" stroke-width="2.2" marker-end="url(#arrowFlow)"/>
+    <path d="M 598.3,386.5 L 598.3,413.5" fill="none" stroke="#1F5F8B" stroke-width="2.2" marker-end="url(#arrowFlow)"/>
+    <path d="M 483.5,528.3 L 456.5,528.3" fill="none" stroke="#1F5F8B" stroke-width="2.2" marker-end="url(#arrowFlow)"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-sunlight" inkscape:label="Sunlight">
+    <path d="M 149.9,292.1 L 256.0,398.1" class="ray" marker-end="url(#arrowSun)"/>
+    <path d="M 163.0,220.3 L 269.1,326.4" class="ray" marker-end="url(#arrowSun)"/>
+    <path d="M 192.9,165.3 L 299.0,271.4" class="ray" marker-end="url(#arrowSun)"/>
+    <path d="M 235.3,122.9 L 341.4,229.0" class="ray" marker-end="url(#arrowSun)"/>
+    <path d="M 290.3,93.0 L 396.4,199.1" class="ray" marker-end="url(#arrowSun)"/>
+    <text x="20.0" y="170.0" class="small">sunlight, about 45°</text>
+    <text x="20.0" y="190.0" class="small">off the axis</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-gravity" inkscape:label="Effective gravity">
+    <line x1="940.0" y1="250.0" x2="940.0" y2="430.0" class="leader" stroke="#333" stroke-width="5" marker-end="url(#arrowBig)"/>
+    <text x="924.0" y="310.0" class="small" text-anchor="end">effective</text>
+    <text x="924.0" y="330.0" class="small" text-anchor="end">gravity</text>
+    <text x="924.0" y="350.0" class="small" text-anchor="end">from spin</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-deltaT" inkscape:label="Temperature difference">
+    <rect x="320" y="646" width="290" height="8" fill="url(#gradArrow)"/>
+    <path d="M 610,638 L 634,650 L 610,662 Z" fill="#64B5F6"/>
+    <text x="308.0" y="655.0" class="small" text-anchor="end">sunward cap</text>
+    <text x="646.0" y="655.0" class="small">shaded cap</text>
+    <text x="470.0" y="686.0" class="small" text-anchor="middle">warm → cold, across gravity</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-labels" inkscape:label="Labels">
+    <line x1="285.1" y1="486.2" x2="150.0" y2="520.0" class="leader"/>
+    <text x="20.0" y="540.0" class="small">blanket with</text>
+    <text x="20.0" y="558.0" class="small">emittance patches</text>
+    <line x1="530.0" y1="440.0" x2="712.0" y2="452.0" class="leader"/>
+    <text x="716.0" y="450.0" class="small">inner bag,</text>
+    <text x="716.0" y="468.0" class="small">explosive emulsion</text>
+    <line x1="605.9" y1="463.4" x2="712.0" y2="520.0" class="leader"/>
+    <text x="716.0" y="526.0" class="small">outer bag and water</text>
+    <line x1="611.2" y1="527.1" x2="712.0" y2="584.0" class="leader"/>
+    <text x="716.0" y="590.0" class="small">standoff gap,</text>
+    <text x="716.0" y="608.0" class="small">about 1 cm</text>
+  </g>
+</svg>

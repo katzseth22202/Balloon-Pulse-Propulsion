@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tethered necklace: one PuffSat of six spheres seen along its spin axis,
+     with bridled Kevlar spokes, two tethered electronics packages, and the
+     tangential drift of a sphere whose support fails. Each element sits in a named Inkscape layer.
+     Export for the paper with:
+       inkscape images/tethered_necklace.svg -o images/tethered_necklace.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="780" viewBox="0 0 1000 780">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .small { font-size: 15px; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .kevlar { stroke: #555; stroke-width: 1.3; fill: none; }
+      .struct { stroke: #7F8C96; stroke-width: 2; fill: none; }
+      .ray { stroke: #D9A400; stroke-width: 2.5; fill: none; }
+      .particle { stroke: #C62828; stroke-width: 2.5; stroke-dasharray: 9 5; fill: none; }
+    </style>
+    <marker id="arrowSun" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#D9A400"/>
+    </marker>
+    <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#C62828"/>
+    </marker>
+    <marker id="arrowDark" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowBig" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto">
+      <path d="M 0,3 L 22,11 L 0,19 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowFlow" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M 0,1 L 12,7 L 0,13" fill="none" stroke="#1F5F8B" stroke-width="2.2"/>
+    </marker>
+
+  </defs>
+  <rect id="background" width="1000" height="780" fill="#ffffff"/>
+
+  <g inkscape:groupmode="layer" id="layer-target" inkscape:label="Target outline">
+    <circle cx="360" cy="400" r="232" fill="none" stroke="#7F8C96" stroke-width="2" stroke-dasharray="10 7"/>
+    <line x1="217.2" y1="217.2" x2="118.0" y2="118.0" class="leader"/>
+    <text x="20.0" y="90.0" class="small">target vehicle's</text>
+    <text x="20.0" y="110.0" class="small">widest radius</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-drift" inkscape:label="Ring path and failure drift">
+    <circle cx="360" cy="400" r="140" fill="none" stroke="#B0B7BD" stroke-width="1.2"/>
+    <circle cx="360" cy="400" r="172" fill="none" stroke="#C9CED3" stroke-width="1.2" stroke-dasharray="4 5"/>
+    <g opacity="0.55"><circle cx="376.5" cy="571.2" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5" stroke-dasharray="5 4"/>
+    <circle cx="376.5" cy="571.2" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1" stroke-dasharray="5 4"/></g>
+    <line x1="314.2" y1="535.2" x2="352.3" y2="557.2" class="leader" stroke="#333" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrowDark)"/>
+    <line x1="386.5" y1="595.2" x2="470.0" y2="682.0" class="leader"/>
+    <text x="420.0" y="700.0" class="small">support fails: drifts outward</text>
+    <text x="420.0" y="720.0" class="small">9 cm in 0.3 s</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-spokes" inkscape:label="Spokes, bridles and hub">
+    <line x1="360.0" y1="400.0" x2="460.0" y2="400.0" class="kevlar"/>
+    <line x1="460.0" y1="400.0" x2="481.1" y2="385.2" class="kevlar" stroke-width="1"/>
+    <line x1="460.0" y1="400.0" x2="476.0" y2="400.0" class="kevlar" stroke-width="1"/>
+    <line x1="460.0" y1="400.0" x2="481.1" y2="414.8" class="kevlar" stroke-width="1"/>
+    <line x1="360.0" y1="400.0" x2="410.0" y2="313.4" class="kevlar"/>
+    <line x1="410.0" y1="313.4" x2="407.7" y2="287.7" class="kevlar" stroke-width="1"/>
+    <line x1="410.0" y1="313.4" x2="418.0" y2="299.5" class="kevlar" stroke-width="1"/>
+    <line x1="410.0" y1="313.4" x2="433.3" y2="302.5" class="kevlar" stroke-width="1"/>
+    <line x1="360.0" y1="400.0" x2="310.0" y2="313.4" class="kevlar"/>
+    <line x1="310.0" y1="313.4" x2="286.7" y2="302.5" class="kevlar" stroke-width="1"/>
+    <line x1="310.0" y1="313.4" x2="302.0" y2="299.5" class="kevlar" stroke-width="1"/>
+    <line x1="310.0" y1="313.4" x2="312.3" y2="287.7" class="kevlar" stroke-width="1"/>
+    <line x1="360.0" y1="400.0" x2="260.0" y2="400.0" class="kevlar"/>
+    <line x1="260.0" y1="400.0" x2="238.9" y2="414.8" class="kevlar" stroke-width="1"/>
+    <line x1="260.0" y1="400.0" x2="244.0" y2="400.0" class="kevlar" stroke-width="1"/>
+    <line x1="260.0" y1="400.0" x2="238.9" y2="385.2" class="kevlar" stroke-width="1"/>
+    <line x1="360.0" y1="400.0" x2="310.0" y2="486.6" class="kevlar"/>
+    <line x1="310.0" y1="486.6" x2="312.3" y2="512.3" class="kevlar" stroke-width="1"/>
+    <line x1="310.0" y1="486.6" x2="302.0" y2="500.5" class="kevlar" stroke-width="1"/>
+    <line x1="310.0" y1="486.6" x2="286.7" y2="497.5" class="kevlar" stroke-width="1"/>
+    <line x1="360.0" y1="400.0" x2="410.0" y2="486.6" class="kevlar"/>
+    <line x1="410.0" y1="486.6" x2="433.3" y2="497.5" class="kevlar" stroke-width="1"/>
+    <line x1="410.0" y1="486.6" x2="418.0" y2="500.5" class="kevlar" stroke-width="1"/>
+    <line x1="410.0" y1="486.6" x2="407.7" y2="512.3" class="kevlar" stroke-width="1"/>
+    <circle cx="360" cy="400" r="5" fill="#333"/>
+    <line x1="356.0" y1="406.0" x2="300.0" y2="470.0" class="leader"/>
+    <text x="262.0" y="488.0" class="small">hub</text>
+    <text x="277.5" y="327.3">2 m</text>
+    <line x1="315.5" y1="331.3" x2="327.5" y2="337.3" class="leader"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-spin" inkscape:label="Spin arrow">
+    <path d="M 311.1,417.8 A 52.0,52.0 0 0 0 399.8,433.4" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrowDark)"/>
+    <text x="372.0" y="480.0" class="small">1 rad/s</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-packages" inkscape:label="Package tethers and electronics">
+    <line x1="524.0" y1="400.0" x2="623.0" y2="400.0" class="kevlar"/>
+    <line x1="633.0" y1="400.0" x2="663.0" y2="400.0" class="kevlar"/>
+    <line x1="619.0" y1="409.0" x2="627.0" y2="391.0" class="leader" stroke="#333" stroke-width="1.6"/>
+    <line x1="629.0" y1="409.0" x2="637.0" y2="391.0" class="leader" stroke="#333" stroke-width="1.6"/>
+    <rect x="663.0" y="387.0" width="38" height="26" fill="#E9ECEF" stroke="#555" stroke-width="1.5"/>
+    <line x1="672.5" y1="390.0" x2="672.5" y2="410.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <line x1="682.0" y1="390.0" x2="682.0" y2="410.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <line x1="691.5" y1="390.0" x2="691.5" y2="410.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <line x1="666.0" y1="400.0" x2="698.0" y2="400.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <path d="M 686.0,387.0 L 694.0,387.0 L 696.0,380.0 L 684.0,380.0 Z" fill="#555"/>
+    <path d="M 690.0,380.0 L 700.8,352.0 L 712.6,360.3 Z" fill="#F2B400" opacity="0.55"/>
+    <path d="M 686.0,413.0 L 694.0,413.0 L 696.0,420.0 L 684.0,420.0 Z" fill="#555"/>
+    <path d="M 690.0,420.0 L 712.6,439.7 L 700.8,448.0 Z" fill="#F2B400" opacity="0.55"/>
+    <line x1="196.0" y1="400.0" x2="97.0" y2="400.0" class="kevlar"/>
+    <line x1="87.0" y1="400.0" x2="57.0" y2="400.0" class="kevlar"/>
+    <line x1="83.0" y1="409.0" x2="91.0" y2="391.0" class="leader" stroke="#333" stroke-width="1.6"/>
+    <line x1="93.0" y1="409.0" x2="101.0" y2="391.0" class="leader" stroke="#333" stroke-width="1.6"/>
+    <rect x="19.0" y="387.0" width="38" height="26" fill="#E9ECEF" stroke="#555" stroke-width="1.5"/>
+    <line x1="28.5" y1="390.0" x2="28.5" y2="410.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <line x1="38.0" y1="390.0" x2="38.0" y2="410.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <line x1="47.5" y1="390.0" x2="47.5" y2="410.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <line x1="22.0" y1="400.0" x2="54.0" y2="400.0" class="leader" stroke="#4A6FA5" stroke-width="1"/>
+    <path d="M 26.0,387.0 L 34.0,387.0 L 36.0,380.0 L 24.0,380.0 Z" fill="#555"/>
+    <path d="M 30.0,380.0 L 7.4,360.3 L 19.2,352.0 Z" fill="#F2B400" opacity="0.55"/>
+    <path d="M 26.0,413.0 L 34.0,413.0 L 36.0,420.0 L 24.0,420.0 Z" fill="#555"/>
+    <path d="M 30.0,420.0 L 19.2,448.0 L 7.4,439.7 Z" fill="#F2B400" opacity="0.55"/>
+    <text x="562.0" y="390.0" class="small">15 m</text>
+    <line x1="690.0" y1="444.0" x2="716.0" y2="506.0" class="leader"/>
+    <text x="632.0" y="526.0" class="small">electronics and</text>
+    <text x="632.0" y="546.0" class="small">thrusters, 125 g</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-spheres" inkscape:label="Spheres">
+    <g><circle cx="500.0" cy="400.0" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5"/>
+    <circle cx="500.0" cy="400.0" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/></g>
+    <g><circle cx="430.0" cy="278.8" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5"/>
+    <circle cx="430.0" cy="278.8" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/></g>
+    <g><circle cx="290.0" cy="278.8" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5"/>
+    <circle cx="290.0" cy="278.8" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/></g>
+    <g><circle cx="220.0" cy="400.0" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5"/>
+    <circle cx="220.0" cy="400.0" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/></g>
+    <g><circle cx="290.0" cy="521.2" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5"/>
+    <circle cx="290.0" cy="521.2" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/></g>
+    <g><circle cx="430.0" cy="521.2" r="24" fill="#ffffff" stroke="#7F8C96" stroke-width="2.5"/>
+    <circle cx="430.0" cy="521.2" r="17" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/></g>
+    <line x1="440.0" y1="256.0" x2="520.0" y2="176.0" class="leader"/>
+    <text x="470.0" y="168.0" class="small">sphere</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-inset" inkscape:label="Inset: one bridle">
+    <rect x="745" y="40" width="243" height="400" fill="#ffffff" stroke="#B0B7BD" stroke-width="1.2"/>
+    <text x="757.0" y="66.0" class="small">one bridle, magnified</text>
+    <circle cx="866.5" cy="330.0" r="80" fill="#ffffff" stroke="#7F8C96" stroke-width="3"/>
+    <circle cx="866.5" cy="330.0" r="66" fill="#D6E8F5" stroke="#9DBBD3" stroke-width="1"/>
+    <line x1="866.5" y1="80.0" x2="866.5" y2="120.0" class="kevlar" stroke-width="2.2"/>
+    <line x1="866.5" y1="120.0" x2="888.1" y2="182.5" class="kevlar" stroke-width="2"/>
+    <line x1="895.3" y1="203.3" x2="917.9" y2="268.7" class="kevlar" stroke-width="2"/>
+    <line x1="866.5" y1="120.0" x2="866.5" y2="250.0" class="kevlar" stroke-width="2"/>
+    <line x1="866.5" y1="120.0" x2="815.1" y2="268.7" class="kevlar" stroke-width="2"/>
+    <path d="M 953.7,162.9 L 897.7,189.9" class="particle" marker-end="url(#arrowRed)"/>
+    <circle cx="891.7" cy="192.9" r="4" fill="#C62828"/>
+    <text x="875.0" y="112.0" class="small">one grain</text>
+    <text x="875.0" y="130.0" class="small">cuts one line</text>
+    <path d="M 866.5,238.0 A 92.0,92.0 0 0 0 807.4,259.5" fill="none" stroke="#888" stroke-width="1.2"/>
+    <line x1="835.0" y1="243.5" x2="789.0" y2="190.0" class="leader"/>
+    <text x="757.0" y="208.0" class="small">centimeters apart</text>
+    <line x1="862.5" y1="140.0" x2="811.0" y2="142.0" class="leader"/>
+    <text x="757.0" y="96.0" class="small">Kevlar 49,</text>
+    <text x="757.0" y="114.0" class="small">100 µm each</text>
+  </g>
+</svg>
