@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Plate stack: side section through the axis of a water-injected pusher plate on the
+     overtake leg of the Jupiter return. Gas arrives from the left and the vehicle sits at
+     the right. Rim nozzles spray carried water into the arriving gas just ahead of the
+     face. The lower panel magnifies the face layers. Not to scale: layer thicknesses are
+     drawn to be readable, and the real values are in the labels where the paper gives one.
+     No plate diameter is printed, because the plate is sized to its vehicle.
+     Each element sits in a named Inkscape layer.
+     Export for the paper with:
+       inkscape images/plate_stack.svg -o images/plate_stack.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="830" viewBox="0 0 1000 830">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .small { font-size: 15px; }
+      .title { font-size: 17px; font-weight: bold; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .struct { stroke: #7F8C96; stroke-width: 2; fill: none; }
+      .ray { stroke: #D9A400; stroke-width: 2.5; fill: none; }
+      .particle { stroke: #C62828; stroke-width: 2.5; stroke-dasharray: 9 5; fill: none; }
+      .kevlar { stroke: #555; stroke-width: 1.3; fill: none; }
+      .gas { stroke: #C77D1A; stroke-width: 3; fill: none; }
+      .flow { stroke: #1F5F8B; stroke-width: 2.5; fill: none; }
+      .dim { stroke: #333; stroke-width: 1.3; fill: none; }
+    </style>
+    <marker id="arrowGas" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="18" refX="15" refY="9" orient="auto">
+      <path d="M 0,2 L 18,9 L 0,16 Z" fill="#C77D1A"/>
+    </marker>
+    <marker id="arrowFlow" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#1F5F8B"/>
+    </marker>
+    <marker id="arrowRay" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#D9A400"/>
+    </marker>
+    <marker id="arrowDim" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto-start-reverse">
+      <path d="M 0,1.5 L 12,6 L 0,10.5 Z" fill="#333"/>
+    </marker>
+    <marker id="arrowBig" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="24" refX="20" refY="12" orient="auto">
+      <path d="M 0,3 L 24,12 L 0,21 Z" fill="#333"/>
+    </marker>
+    <pattern id="felt" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#E6D8B5"/>
+      <circle cx="1.5" cy="1.5" r="0.9" fill="#B9A67A"/>
+      <circle cx="4.5" cy="4.5" r="0.9" fill="#B9A67A"/>
+    </pattern>
+  </defs>
+
+  <!-- ===================== Main view ===================== -->
+
+  <g inkscape:groupmode="layer" id="layer_gas" inkscape:label="Arriving PuffSat gas">
+    <!-- Edge-on disk; its height spans half the plate radius on each side of the axis. -->
+    <ellipse cx="70" cy="270" rx="15" ry="100" fill="#F6C177" fill-opacity="0.75" stroke="#C77D1A" stroke-width="1.5"/>
+    <line x1="100" y1="270" x2="245" y2="270" class="gas" marker-end="url(#arrowGas)"/>
+    <text x="163" y="258" text-anchor="middle" font-style="italic">w</text>
+    <text x="20" y="405">arriving PuffSat gas</text>
+    <text x="20" y="427" class="small">footprint ≈ half the plate radius</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer_water" inkscape:label="Sprayed water">
+    <!-- Rim nozzles, just forward of the face at the top and bottom rim. -->
+    <path d="M 436,60 L 452,60 L 452,72 L 440,78 Z" fill="#555"/>
+    <path d="M 436,480 L 452,480 L 452,468 L 440,462 Z" fill="#555"/>
+    <g fill="#3A7BD5">
+      <circle cx="430.4" cy="93.2" r="2.3"/><circle cx="420.8" cy="110.4" r="2.3"/>
+      <circle cx="411.2" cy="127.6" r="2.3"/><circle cx="401.6" cy="144.8" r="2.3"/>
+      <circle cx="392.0" cy="162.0" r="2.3"/><circle cx="382.4" cy="179.2" r="2.3"/>
+      <circle cx="372.8" cy="196.4" r="2.3"/>
+      <circle cx="433.6" cy="96.3" r="2.3"/><circle cx="427.2" cy="116.5" r="2.3"/>
+      <circle cx="420.8" cy="136.8" r="2.3"/><circle cx="414.4" cy="157.1" r="2.3"/>
+      <circle cx="408.0" cy="177.3" r="2.3"/><circle cx="401.6" cy="197.6" r="2.3"/>
+      <circle cx="395.2" cy="217.9" r="2.3"/>
+      <circle cx="436.8" cy="97.9" r="2.3"/><circle cx="433.6" cy="119.7" r="2.3"/>
+      <circle cx="430.4" cy="141.6" r="2.3"/><circle cx="427.2" cy="163.5" r="2.3"/>
+      <circle cx="424.0" cy="185.3" r="2.3"/><circle cx="420.8" cy="207.2" r="2.3"/>
+      <circle cx="417.6" cy="229.1" r="2.3"/>
+      <circle cx="430.4" cy="446.8" r="2.3"/><circle cx="420.8" cy="429.6" r="2.3"/>
+      <circle cx="411.2" cy="412.4" r="2.3"/><circle cx="401.6" cy="395.2" r="2.3"/>
+      <circle cx="392.0" cy="378.0" r="2.3"/><circle cx="382.4" cy="360.8" r="2.3"/>
+      <circle cx="372.8" cy="343.6" r="2.3"/>
+      <circle cx="433.6" cy="443.7" r="2.3"/><circle cx="427.2" cy="423.5" r="2.3"/>
+      <circle cx="420.8" cy="403.2" r="2.3"/><circle cx="414.4" cy="382.9" r="2.3"/>
+      <circle cx="408.0" cy="362.7" r="2.3"/><circle cx="401.6" cy="342.4" r="2.3"/>
+      <circle cx="395.2" cy="322.1" r="2.3"/>
+      <circle cx="436.8" cy="442.1" r="2.3"/><circle cx="433.6" cy="420.3" r="2.3"/>
+      <circle cx="430.4" cy="398.4" r="2.3"/><circle cx="427.2" cy="376.5" r="2.3"/>
+      <circle cx="424.0" cy="354.7" r="2.3"/><circle cx="420.8" cy="332.8" r="2.3"/>
+      <circle cx="417.6" cy="310.9" r="2.3"/>
+    </g>
+    <path d="M 496,40 L 453,62" class="leader"/>
+    <text x="500" y="30">rim nozzles spray carried water,</text>
+    <text x="500" y="52"><tspan font-style="italic">k</tspan> kg per kg PuffSat</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer_exhaust" inkscape:label="Rebounding exhaust and spill">
+    <line x1="352" y1="200" x2="282" y2="175" class="flow" marker-end="url(#arrowFlow)"/>
+    <line x1="352" y1="340" x2="282" y2="365" class="flow" marker-end="url(#arrowFlow)"/>
+    <text x="330" y="160" text-anchor="end">rebounding exhaust ≈ <tspan font-style="italic">w</tspan>/√(1+<tspan font-style="italic">k</tspan>)</text>
+    <path d="M 434,452 C 422,492 456,512 506,508" class="flow" stroke-dasharray="6 4" marker-end="url(#arrowFlow)"/>
+    <text x="516" y="514" class="small">spill past rim</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer_plate" inkscape:label="Plate: film, petals, felt">
+    <!-- Sprayed film on the face. -->
+    <rect x="450" y="70" width="6" height="400" fill="#222"/>
+    <!-- Three clamped steel petals with open seams. -->
+    <rect x="456" y="70" width="30" height="129" fill="#7F8C96"/>
+    <rect x="456" y="203" width="30" height="134" fill="#7F8C96"/>
+    <rect x="456" y="341" width="30" height="129" fill="#7F8C96"/>
+    <!-- Ceramic felt behind the petals. -->
+    <rect x="486" y="70" width="12" height="400" fill="url(#felt)"/>
+    <!-- Region magnified in the lower panel. -->
+    <rect x="440" y="232" width="68" height="76" fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="4 3"/>
+    <path d="M 440,308 L 402,562" class="leader"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer_springs" inkscape:label="Gas springs and stroke">
+    <!-- Stacked toroidal bags seen in section: each torus cuts as a pair of ovals. -->
+    <g fill="#EFE3B8" stroke="#8C7A3A" stroke-width="2">
+      <ellipse cx="545" cy="150" rx="45" ry="48"/>
+      <ellipse cx="640" cy="150" rx="45" ry="48"/>
+      <ellipse cx="545" cy="390" rx="45" ry="48"/>
+      <ellipse cx="640" cy="390" rx="45" ry="48"/>
+    </g>
+    <path d="M 604,86 L 626,106" class="leader"/>
+    <text x="560" y="82">Vectran gas springs (toroidal bags, in section)</text>
+    <!-- Stroke dimension along the axis. -->
+    <line x1="500" y1="252" x2="500" y2="288" class="dim"/>
+    <line x1="690" y1="252" x2="690" y2="288" class="dim"/>
+    <line x1="502" y1="270" x2="688" y2="270" class="dim" marker-start="url(#arrowDim)" marker-end="url(#arrowDim)"/>
+    <text x="595" y="258" text-anchor="middle">stroke <tspan font-style="italic">s</tspan></text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer_vehicle" inkscape:label="Vehicle">
+    <!-- Hull cut off at the right with a break line. -->
+    <path d="M 690,100 L 955,100 L 945,160 L 965,220 L 945,280 L 965,340 L 945,400 L 955,440 L 690,440 Z"
+          fill="#E4E9ED" stroke="#7F8C96" stroke-width="2"/>
+    <rect x="690" y="100" width="12" height="340" fill="#7F8C96"/>
+    <text x="716" y="128">vehicle, aft bulkhead</text>
+    <line x1="745" y1="330" x2="925" y2="330" stroke="#333" stroke-width="5" marker-end="url(#arrowBig)"/>
+    <text x="760" y="316">thrust</text>
+  </g>
+
+  <!-- ===================== Face detail ===================== -->
+
+  <g inkscape:groupmode="layer" id="layer_detail" inkscape:label="Face detail">
+    <rect x="20" y="562" width="960" height="255" rx="6" fill="none" stroke="#AAA" stroke-width="1.3"/>
+    <text x="964" y="588" class="title" text-anchor="end">Face detail (thicknesses not to scale)</text>
+
+    <!-- Film -->
+    <rect x="460" y="630" width="12" height="130" fill="#222"/>
+    <!-- Optional steel tile facing, dashed -->
+    <g fill="#C4CBD1" stroke="#555" stroke-width="1.3" stroke-dasharray="5 3">
+      <rect x="472" y="630" width="38" height="41"/>
+      <rect x="472" y="674.5" width="38" height="41"/>
+      <rect x="472" y="719" width="38" height="41"/>
+    </g>
+    <!-- Interleaf -->
+    <rect x="510" y="630" width="8" height="130" fill="#8D6E63"/>
+    <!-- Petal -->
+    <rect x="518" y="630" width="142" height="130" fill="#7F8C96"/>
+    <!-- Felt -->
+    <rect x="660" y="630" width="40" height="130" fill="url(#felt)"/>
+    <text x="716" y="700" class="small">→ to gas springs</text>
+
+    <path d="M 459,618 L 465,632" class="leader"/>
+    <text x="456" y="614" text-anchor="end">carbon-loaded sprayed film (Orion: ~150 µm)</text>
+    <path d="M 526,610 L 514,632" class="leader"/>
+    <text x="530" y="606">Vespel SP-3 interleaf</text>
+    <path d="M 708,621 L 684,632" class="leader"/>
+    <text x="712" y="625">ceramic felt</text>
+    <path d="M 486,780 L 491,760" class="leader"/>
+    <text x="482" y="796" text-anchor="end">1 mm steel tiles (reusable plate only)</text>
+    <path d="M 580,780 L 590,760" class="leader"/>
+    <text x="538" y="796">steel petals, clamped, not welded</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer_nir" inkscape:label="NIR readout">
+    <rect x="200" y="640" width="22" height="14" fill="#444"/>
+    <rect x="200" y="736" width="22" height="14" fill="#444"/>
+    <path d="M 222,647 L 470,695" class="ray" marker-end="url(#arrowRay)"/>
+    <path d="M 472,695 L 226,743" class="ray" marker-end="url(#arrowRay)"/>
+    <text x="192" y="653" class="small" text-anchor="end">lamp</text>
+    <text x="192" y="749" class="small" text-anchor="end">camera</text>
+    <text x="40" y="692">NIR readout</text>
+    <text x="40" y="714">between pulses</text>
+  </g>
+</svg>
