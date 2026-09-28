@@ -1848,6 +1848,7 @@ The second group starts at the entrance. The rod and the throat shrink together.
     \begin{tabular}{|r|r|r|r|r|r|}\hline
         \textbf{Rod (\si{\kilogram})} & \textbf{Rod width (\si{\centi\meter})} & \textbf{Entrance (\si{\centi\meter})} & \textbf{Throat (\si{\square\meter})} & \textbf{Entrance share (\si{\percent})} & \textbf{Packages (\si{\percent})} \\\hline
         10 & 11.0 & 15.0 & 0.375--0.5 & 3.5--4.7 & 2.5 \\\hline
+        2.5 & 6.9 & 10.9 & 0.149--0.198 & 4.7--6.3 & 10 \\\hline
         1 & 5.1 & 9.1 & 0.081--0.108 & 6.1--8.1 & 25 \\\hline
         0.1 & 2.4 & 6.4 & 0.017--0.023 & 13.8--18.3 & 250 \\\hline
     \end{tabular}
@@ -1866,6 +1867,37 @@ The plume therefore stops being the clock, and the chamber's own cycle takes ove
 Firing several small chambers in turn relaxes each one's cycle, but it gives back the saving. Shell mass tracks pulse energy, so ten \SI{1}{\kilogram} chambers weigh about what one \SI{10}{\kilogram} chamber does. Each one still carries its own door, feed and liner coolant. A small pulse saves mass only if a single chamber can cycle faster than the large pulse's rate.
 
 No calculation here picks the best size. That needs a chamber cycle model that times blowdown, renewal, refill and door motion together. It also needs the entrance discharge calculation that the throat guess of \autoref{sec:needle_through_fog} still lacks. Radiation bounds the small end separately. \autoref{sec:minimum_nozzle} puts that edge near \SI{100}{\gram}.
+
+\subsubsection{A \SI{2.5}{\kilogram} Rod at \SI{4}{\hertz} Trades Burn Time for Chamber Mass}\label{sec:rod_2p5kg}
+
+One point on that trade is worth pricing as an option in its own right. Cut the rod to \SI{2.5}{\kilogram} and fire it at \SI{4}{\hertz}, a cadence the plume analysis already covers (\autoref{tab:jovian_plume_cadence}). Each pulse carries a quarter of the \SI{10}{\kilogram} rod's impulse and arrives twice as often, so the thrust halves. At $L/D=10$ the rod is \SI{69}{\centi\meter} long and \SI{6.9}{\centi\meter} across. At \SI{75}{\kilo\meter\per\second} it carries \SI{7.0}{\giga\joule}. That takes \SI{19.4}{\kilogram} of carried hydrogen in a \SI{20}{\cubic\meter} chamber at the same \SI{900}{\bar}, a sphere \SI{1.68}{\meter} in radius.
+
+The wall is the reason to go smaller. \autoref{tab:layered_wall_mass} sizes only the \SI{1}{\kilogram} and \SI{10}{\kilogram} chambers. Its fixed-thickness layers grow with the wall's area and its carbon grows with the chamber's volume. Fitting those two terms to both columns puts the autofrettaged wall for the \SI{20}{\cubic\meter} chamber near \SI{35}{\tonne}, with about \SI{34}{\centi\meter} of carbon. That is an interpolation, not a sizing. It is a third of a \SI{100}{\tonne} craft, where the \SI{10}{\kilogram} wall outweighs the craft. Each pulse's kick is a quarter as large, so at a fixed chamber mass the shock absorber of \autoref{sec:hydrogen_pressure_shell} stores a sixteenth of the energy per pulse.
+
+The entrance costs a little more. With the same \SI{2}{\centi\meter} of clearance, the port is \SI{10.9}{\centi\meter} across. That is 4.7 to 6.3\% of a throat scaled from the \SI{10}{\kilogram} guess (\autoref{tab:pulse_size_entrance}). A plug twice the rod's width lets the rod strike \SI{3.5}{\centi\meter} off center, against \SI{5.5}{\centi\meter} for the larger rod. A wider plug buys that back for a few kilograms.
+
+The rod gets easier to steer, but no easier to aim. The \SI{250}{\gram} of packages is now a tenth of the rod. Across the line they push the \SI{2.75}{\kilogram} assembly at \SI{2.7}{\milli\meter\per\second\squared}, nearly four times the larger rod's rate. The last \SI{2}{\centi\meter} of correction then takes \SI{3.8}{\second} instead of \SI{7.4}{\second}. The miss is set by the GNSS knowledge of \autoref{sec:tethered_rod_packages}, and that does not depend on the rod. The shorter rod costs the lines something. They meet it at \SI{2.5}{\degree}, so an axial push must stay under a twenty-third of the tension rather than a fifteenth. Holding \SI{5}{\milli\newton} per package with the same margin takes \SI{173}{\milli\newton} of tension, which a spin of \SI{29}{\degree\per\second} supplies.
+
+The chamber's cycle has room at this cadence. The \SIrange{25}{33}{\milli\second} blowdown fits inside the \SI{250}{\milli\second} interval, as it does for the larger rod at \SI{4}{\hertz} (\autoref{sec:hydrogen_pressure_shell}). The plug shrinks with the rod to about \SI{7}{\kilogram}, so the \SI{100}{\kilogram} insert moves on \SIrange{0.8}{2.3}{\kilo\newton}. A \SI{100}{\tonne} craft that spends half its mass on hydrogen fires about \num{2600} pulses. Five flights then load the wall about \num{13000} times, between the two counts of \autoref{sec:steel_chamber_service}.
+
+Halving the thrust doubles the burn. The \num{2600} pulses take \SI{640}{\second}, twice the \SI{320}{\second} of the \SI{10}{\kilogram} rod at \SI{2}{\hertz} and four times its \SI{160}{\second} at \SI{4}{\hertz}. The mean push starts near \SI{0.9}{g} and ends near \SI{1.8}{g}. The fixed-direction loss of \autoref{sec:jovian_meeting_altitudes} grows about as the square of the burn time, so doubling the burn roughly quadruples it. Integrating each burn centered on the \SI{600}{\kilo\meter} periapsis, the \SI{5.4}{\kilo\meter\per\second} three-synodic departure loses \SI{27}{\meter\per\second} over \SI{320}{\second} and \SI{98}{\meter\per\second} over \SI{640}{\second}. The \SI{8.6}{\kilo\meter\per\second} two-synodic departure loses \SI{42}{\meter\per\second} and \SI{151}{\meter\per\second}. \autoref{tab:rod_2p5kg_doubling} carries those losses through the synodic-lock model of \autoref{sec:ntr_departure}.
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Doubling time of the \SI{10000}{\kelvin} walled chambers of \autoref{tab:ntr_departure} with the \SI{320}{\second} burn and the \SI{640}{\second} burn of the \SI{2.5}{\kilogram} rod, on the companion's synodic-lock model \cite{Katz_aim_is_all_you_need_2025,Katz_puffsat_impact_sim_2026}. Finite-burn losses are \SI{27}{} and \SI{42}{\meter\per\second} at \SI{320}{\second}, and \SI{100}{} and \SI{150}{\meter\per\second} at \SI{640}{\second}, for the three-synodic and two-synodic burns. Tanks and the projectile stream are charged as in \autoref{tab:ntr_departure}, and retrieval is free. The \SI{320}{\second} two-synodic rows sit \SIrange{0.003}{0.005}{\year} above \autoref{tab:ntr_departure}, which charges those burns \SI{27}{\meter\per\second}. The reference reactor doubles in \SI{2.18}{\year}.}
+    \label{tab:rod_2p5kg_doubling}
+    \begin{tabular}{|l|r|r|r|}\hline
+        \textbf{Chamber} & \textbf{\SI{320}{\second} burn (yr)} & \textbf{\SI{640}{\second} burn (yr)} & \textbf{Slower by} \\\hline
+        Hydrogen, \SI{7}{\square\meter} & 2.027 & 2.049 & 1.1\% \\\hline
+        Hydrogen, \SI{2}{\square\meter} & 1.649 & 1.675 & 1.6\% \\\hline
+        Methane, \SI{7}{\square\meter} & 2.084 & 2.108 & 1.2\% \\\hline
+        Methane, \SI{2}{\square\meter} & 1.768 & 1.799 & 1.8\% \\\hline
+        Water, \SI{7}{\square\meter} & 2.243 & 2.274 & 1.4\% \\\hline
+        Water, \SI{2}{\square\meter} & 1.942 & 1.962 & 1.0\% \\\hline
+    \end{tabular}
+\end{table}
+
+The longer burn costs each chamber 1 to 2\% of its doubling time. The losses are \SIrange{70}{110}{\meter\per\second} against burns of \SIrange{5.4}{8.6}{\kilo\meter\per\second}, and every chamber keeps its place against the reactor. At the reference throat the hydrogen chamber's lead falls from 7\% to 6\% and the methane chamber's from 4\% to 3\%. That is small next to the \SI{95}{\tonne} the interpolated wall saves. Whether the saving is real waits on a sizing of the \SI{20}{\cubic\meter} wall and on the chamber cycle model named above.
 
 \subsubsection{A Nuclear Thermal Rocket Competes With The Walled Chamber}\label{sec:ntr_departure}
 The departure burn is the hardest device in the chain. Its chamber must survive hypervelocity impacts, and it must turn the collision's heat into one-directional exhaust well enough to beat the incoming projectile's momentum. The companion solves that conversion for walled chambers in a quasi-one-dimensional model, and no experiment has checked it \cite{Katz_puffsat_impact_sim_2026}. A nuclear thermal rocket is the obvious conventional alternative, so we price it here. It is a fission reactor that heats hydrogen, which then leaves through an ordinary bell nozzle. Nothing collides with anything, so there is no coupling problem to solve.
