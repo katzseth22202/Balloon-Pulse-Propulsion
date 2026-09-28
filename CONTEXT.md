@@ -4699,12 +4699,17 @@ that 60 m/s first, so the reactor goes critical only on an unbound orbit. Meets 
 "not critical before interplanetary trajectory" rule exactly. Costs the reference 0.2% in
 doubling (2.171 -> 2.176). Kick failure leaves a cold fresh core, no worse than the pad.
 
-**Nominal disposal:** separate after the burn; a storable thruster (not a reactor restart, the
-LH2 won't keep a year) retargets the Jupiter flyby to the far side, <10 m/s (1 m/s early ->
-~35,000 km at Jupiter). The forward turn raises perihelion beyond 1 AU in a rough in-plane
-estimate. **Unverified against companion cycle states**: the same sketch (12 km/s tangential
-departure, stage at ~17.7 km/s heliocentric at Jupiter) suggests a 30 deg forward turn beats the
-18.5 km/s solar escape speed. Not in the paper until checked.
+**Nominal disposal: Jupiter impact** (Seth, 2026-09-28; supersedes the far-side flyby).
+Separate after the burn; a storable thruster (not a reactor restart, the LH2 won't keep a year)
+aims the stage into Jupiter. Checked against the companion's `fly_and_park` phase grid at
+`e384232` (probe `todos/ntr_jupiter_impact.py`, run with PYTHONPATH at a companion clone): 3S cycles with a ~5.39 km/s burn
+arrive at v_inf 16.0-16.7 km/s after 415-434 d; capture radius
+`R_J sqrt(1 + v_esc^2/v_inf^2)` = 3.7-3.8 R_J (v_esc 59.5 km/s at cloud tops). Two trajectory
+families share that burn: perijove 1.6 R_J (aim point 4.8 R_J) and 4.3-4.5 R_J (aim 8.6-8.9 R_J).
+Aim shift 81,000-367,000 km -> 2.3-10 m/s by linear drift over the cruise. The 2S lock skims
+1.07 R_J and would need 0.3 m/s. Impact at ~62 km/s. Precedent: Galileo, 21 Sep 2003, with its
+two Pu-238 RTGs (`nasa_galileo`). The old far-side / raised-perihelion sketch was never verified
+and is dropped.
 
 **Accident mode** (framing agreed 2026-09-22): failure mid-burn or before retargeting leaves an
 Earth-crossing solar orbit. Earliest return is about one solar orbit (>1 yr), more likely years
@@ -4720,6 +4725,18 @@ radiological limit on actinides (plutonium breeding) from the Cosmos 954 era. Cu
 (SPD-6) runs on proliferation, where HEU is the problem. Bound on bred plutonium: at most ~22 g
 per engine per burn (17-22 g U-235 fissioned), against the IAEA's 8 kg significant quantity.
 Cosmos 954's ~90% enrichment is **not** cited: only Wikipedia/Grokipedia/enthusiast sources found.
+
+**Scale, not category** (Seth, 2026-09-28): the reactor is no longer rejected on waste. The
+million-year repository argument (commit `4901b45`) compared categories, not activity. Per engine
+(16-21 MWd, 4.3-5.7e22 fissions, IAEA yields Cs-137 6.22%, Sr-90 5.73%): ~2-2.6e12 Bq of each,
+100-140 Ci together. Chernobyl Cs-137 85 PBq (`unscear2000annexj`) = 30,000-40,000x; SNAP-9A
+17 kCi Pu-238 (`hardy1972snap9a`) = >100x; one burn ~1/50,000 of a 3 GWt reactor-year. What
+remains: per-cycle failed-burn risk (not computed) and licensing/public trust.
+**HALEU is required** (Seth, 2026-09-28: "not highly enriched fuel"): the T/W 1.5 rows
+(2.150 / 2.526 yr) are the reactor we would fly; the 93% rows are the published reference only.
+**Reactor status:** live alternative departure device, not rejected. Walled chamber stays the
+baseline. Open: failure-and-return probability, alongside chamber retrieval pricing.
+_Avoid_: "the reactor fails on waste"; "million-year standard" as a disqualifier.
 
 **Framing, 2026-09-22:** the reactor was first written as a "floor" under the pulsed nozzle,
 against the two-wave chain's idealized water magnetic nozzle (tie at chain recovery ~0.48). Seth
