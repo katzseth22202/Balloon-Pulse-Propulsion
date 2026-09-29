@@ -1847,6 +1847,71 @@ along the stream; a co-flyer beside the ship is ~1100 km from the rod at that mo
 _Avoid_: "plate capture" or "the 2 m tolerance" for the nozzle leg; "a centimeter or two of
 error left after release" (unsupported by the paper's tracking grades: knowledge at the old
 75 km cut was 12 cm).
+**Amended 2026-09-29**: the movable door no longer carries the plug. The plug stands off on
+wires (**Plug stand-off**, **Plug wires**), so the insert moves only itself: 0.18-0.53 kN at
+2 Hz for a 100 kg insert (was 0.23-0.67 kN with the 27 kg plug), 0.75-2.2 kN at 4 Hz, and
+44-129 kN in a 30 ms move. The 10 g limit now applies to the insert and the wire-held plug.
+
+**Port gate** (`sec:port_gate`, adopted 2026-09-29): two leaves that slide across the port in a
+slot through the insert (knife-gate style, pressure-balanced while moving), each driven by a
+piston fed from a tap to the chamber, so the pulse itself shuts the gate. No timing signal; the
+rod has cleared the port (9 us) before the pulse exists. 20 cm^2 piston at 500 bar = 100 kN on a
+1-2 kg leaf over ~7 cm: ~2 ms, budget **2-3 ms**, arrival 70-85 m/s into a cushion. Covers, does
+not seal: <= 1 mm gap costs 0.42%, whole leak ~1% of thrust vs 9.4-12.5% open (open port loses
+71-85 kg/s at peak, 0.19-0.25% of thrust per ms). Closed load p x port area: 460 kN (CH4, 496
+bar), 760 kN (H2, 818 bar). A ~5 kN spring preload (above the 9.5 bar H2 fill's 1.9 kN, a
+twentieth of the pulse's push) reopens it below ~25 bar, ~2.5 e-folds = 115-150 ms after impact,
+before the 230 ms insert lock. With the gate, the `sec:leak_radiation_trade` reason to grow the
+chamber is gone (open-port methane optimum 45-70 m^3 / 140-220 bar); keep 20 m^3, since
+pressure also helps recombination (H2 eta at A/A* 14: 0.64 at 20 m^3 vs 0.44 at 1000 m^3 / 10 bar).
+Unmodeled: leak past moving leaves, cushion, detailed cycle timing.
+_Avoid_: calling the gate "the door" (the door is the movable insert, **The movable door is a
+requirement**); "rotating disk" for the adopted closure (the disk of `sec:vacuum_airlock` stays
+as the magnetic-bag option); "seal" (it covers).
+
+**Plug stand-off** (decided 2026-09-29): the plug's front face sits at the chamber's center, one
+radius (1.68 m for the 20 m^3 chamber, 2.67 m for 80 m^3) inside the port. Why: after the rod
+sticks to the plug, v_cm / v_fireball = sqrt(m_rod / m_plug), so the fireball's rear runs back
+toward the port whenever the plug outweighs the rod (4.4 kg vs 2.5 kg: 9 km/s back; 13.1 vs
+10 kg: 5 km/s back). Pressure near E/(4/3 pi d^3) with E = 4.5 GJ (64% of the rod's 7.03 GJ):
+tens of GPa at 0.3 m, ~1 GPa at 1 m, ~0.2 GPa at 1.68 m; each halving of d is 8x. The 0.2 GPa
+microsecond wall transient is 4x the 50 MPa static design and unchecked. The charge fills the
+whole chamber, so the rod crosses 1.68 m of 3.4 kg/m^3 gas: 5.8 kg/m^2 vs the rod's 670 kg/m^2,
+~15% of the rod eroded by the penetration law (depth 11.5 m), <1 mm of deflection. Plug still
+sized for the whole rod. Open: 2-D axisymmetric Euler run of port load vs stand-off.
+_Avoid_: "a plug at the entrance" / "just inside the port" for the walled chamber; "the insert
+carries the plug".
+
+**Plug wires**: UHMWPE wires through the plug's axis, tied at each end. Port side: through small
+holes in the insert to poles on its outer face (move with the insert, outside the chamber). Throat
+side: through small fixed holes in the shell to winches outside, which pay wire in and out (a
+fixed hole pins the wire's entry, so moving an outside anchor would not move the plug). Tension
+T resists offset delta with T delta (1/l1 + 1/l2), l1 = 1.68 m, l2 ~ 0.75 m: 13 kN at 3 g for
+5 mm, 45 kN at 10 g. SK99 ~4 GPa (430 km breaking length), worked at 1/4: ~30 g of wire at 3 g,
+~0.1 kg at 10 g, burned each pulse. Hung at both ends the plug's bending moment is 1/4 of the
+cantilever, so the 15 mm / 5 mm skins are an upper bound (~4 mm / 1.3 mm suffice). Unsized:
+reloading plug and wires every 250 ms.
+
+**Near-term chamber verdict** (`sec:methane_7000_near_term`, 2026-09-29, from the companion's
+solved runs, `puffsat_impact_simulation` near-term geometry, ADR-0052 there): eta is measured over
+the real blowdown (peak-state expansion runs 16-20% high). At A/A* = 300 (design point, 7.5-8.7 m
+exit, cf. RL10B-2 285:1 C-C): H2 5500 K eta 0.858, CH4 7000 K 0.485 (frozen C) to 0.538. With the
+gate: **H2 1112 s, 1.66 yr; CH4 762-777 s, 1.89-1.90 yr** (1.99-2.00 frozen C); reactor 2.18 yr.
+Open port: CH4 2.07-2.18 yr (ties the reactor), H2 1.83-1.89. Harness: `todos/methane_7000K_scripts/
+door_rescore.py` on `aim_is_all_you_need@e384232` (reproduces the old table's 53% rows).
+**Hydrogen wins on Isp; methane is proposed on practice** (steel shell + sprayed coat, no
+embrittlement in methane, tanks, radiative zero boil-off), which the paper says it cannot price.
+Walls: H2 on bare GRCop-84 (surface 370-1110 K; LH2 spray 21-350 MJ/pulse vs ~230 MJ to room T;
+never graphite, H2 dissolves 0.5 kg C/kg at 2500 K). CH4 on Cr-Mo steel with 0.2 mm pitch (steel
+395-441 K, 1.4-5.6 kg/pulse, keeps 28-50 MJ), optional 1-2 mm porous graphite base. Graphite alone
+rejected on heat: carbon melts (~4800 K) before subliming above its 107 atm triple point (Haaland
+1976), so it keeps 110-243 MJ vs ~100 MJ the charge absorbs to 500 K. No coolant passages: the
+next charge is sprayed over the wall and boils to gas (whole CH4 charge boils at ~35 MJ; up to
+~4 bar CH4, 9.5 bar H2), held by entrance/throat films (60-140 g aramid + Kapton). The rod/plug
+carbon in the H2 chamber: 5.9 kg, 9% of mass, <1% of atoms, <0.5% of eta; the plug's mass costs
+H2 ~30 s (1142 s at P = 0). Methane at 10,000 K dropped as a pairing (eta unsolved, 2x lining).
+_Avoid_: the borrowed 41/53/69% efficiencies for these chambers; "methane beats hydrogen at equal
+efficiency" (retired); "coolant channels are the backup" (dropped).
 
 **Feasibility tiers**:
 The three confidence levels the interception claim is carried at, kept deliberately

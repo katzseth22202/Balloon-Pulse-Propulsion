@@ -1,6 +1,12 @@
 # Port capture is closed by GNSS steering and a moving door, with the lines left uncut
 
-Status: accepted (2026-09-16 grill). Recorded because the head-on nozzle asks for an aim about a
+Status: accepted (2026-09-16 grill). **Amended 2026-09-29**: the plug no longer rides on the door. It
+stands one chamber radius inside the port on UHMWPE wires (port side to poles on the insert,
+throat side to winches outside the shell), because a plug heavier than the rod sends the
+fireball's rear back at the port (`sec:material_chamber_plug`). The door now moves only itself
+(0.18-0.53 kN at 2 Hz). The port is closed after the rod by a separate, pulse-driven **port gate**
+(`sec:port_gate`), which this ADR's "door" does not mean. See CONTEXT.md **Plug stand-off**,
+**Plug wires**, **Port gate**. Recorded because the head-on nozzle asks for an aim about a
 hundred times tighter than the plate, and the architecture that meets it is not the one the plate
 uses.
 

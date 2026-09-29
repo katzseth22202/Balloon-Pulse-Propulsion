@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Cooling the 2.5 kg rod's 20 m^3 chamber without coolant passages.
+     (a) Between pulses: spray heads wet the wall with the next charge, which becomes gas;
+     films over the entrance and the throat hold it in. Gate open, plug on its wires.
+     (b) Hydrogen at 5500 K on a bare copper liner.
+     (c) Methane at 7000 K on Cr-Mo steel lined with pitch, over an optional porous
+     graphite base.
+     Layer thicknesses are not to scale.
+     Each element sits in a named Inkscape layer.
+     Export for the paper with:
+       inkscape images/chamber_cooling.svg -o images/chamber_cooling.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="1010" viewBox="0 0 1000 1010">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .small { font-size: 15px; }
+      .tiny { font-size: 13.5px; }
+      .title { font-size: 18px; font-weight: bold; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .wall { stroke: #5E6A73; stroke-width: 5; fill: none; }
+      .wire { stroke: #2E7D32; stroke-width: 1.4; fill: none; }
+      .spray { stroke: #1F5F8B; stroke-width: 1.2; fill: none; }
+      .film { stroke: #7E57C2; stroke-width: 2.4; fill: none; }
+      .rad { stroke: #D9822B; stroke-width: 2.2; fill: none; }
+      .conv { stroke: #B03A2E; stroke-width: 2.2; fill: none; }
+    </style>
+    <pattern id="foam" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect width="5" height="5" fill="#C9D3DA"/>
+      <circle cx="1.5" cy="1.6" r="1.0" fill="#ffffff"/>
+      <circle cx="3.9" cy="3.8" r="0.8" fill="#ffffff"/>
+    </pattern>
+    <pattern id="steel" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#AEB8BF"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#98A3AB" stroke-width="2"/>
+    </pattern>
+    <pattern id="pitch" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#5A4632"/>
+      <circle cx="2" cy="2" r="0.8" fill="#6E5840"/>
+    </pattern>
+    <pattern id="char" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect width="5" height="5" fill="#2B2B2B"/>
+      <circle cx="1.5" cy="1.5" r="0.9" fill="#4A4A4A"/>
+    </pattern>
+    <pattern id="porousC" width="7" height="7" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" fill="#6F7479"/>
+      <circle cx="2" cy="2" r="1.3" fill="#9AA0A5"/>
+      <circle cx="5.3" cy="5.1" r="1.0" fill="#9AA0A5"/>
+    </pattern>
+    <linearGradient id="copperHeat" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E0642C"/>
+      <stop offset="0.45" stop-color="#C77A3E"/>
+      <stop offset="1" stop-color="#B87333"/>
+    </linearGradient>
+    <linearGradient id="hot" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFE08A"/>
+      <stop offset="1" stop-color="#F29E4C"/>
+    </linearGradient>
+    <marker id="arrowRad" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto">
+      <path d="M 0,1 L 11,5.5 L 0,10 Z" fill="#D9822B"/>
+    </marker>
+    <marker id="arrowConv" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto">
+      <path d="M 0,1 L 11,5.5 L 0,10 Z" fill="#B03A2E"/>
+    </marker>
+    <marker id="arrowBlue" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M 0,1 L 10,5 L 0,9 Z" fill="#1F5F8B"/>
+    </marker>
+    <!-- A spray head on the wall, pointing +x, with a fan of droplets along the wall. -->
+    <g id="sprayHead">
+      <rect x="-9" y="-7" width="18" height="14" rx="3" fill="#1F5F8B"/>
+      <path class="spray" d="M 9,-3 L 70,-20 M 9,0 L 74,0 M 9,3 L 70,20"/>
+      <circle cx="34" cy="-8" r="1.8" fill="#1F5F8B"/>
+      <circle cx="48" cy="4" r="1.8" fill="#1F5F8B"/>
+      <circle cx="60" cy="-12" r="1.8" fill="#1F5F8B"/>
+      <circle cx="28" cy="7" r="1.8" fill="#1F5F8B"/>
+      <circle cx="64" cy="13" r="1.8" fill="#1F5F8B"/>
+    </g>
+  </defs>
+  <rect id="background" width="1000" height="1010" fill="#ffffff"/>
+
+  <!-- ============================ (a) Between pulses ============================ -->
+  <g inkscape:groupmode="layer" id="layer-a-title" inkscape:label="(a) Title">
+    <text x="12" y="28" class="title">(a) Between pulses: spray the wall, hold the gas in</text>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-a-parts" inkscape:label="(a) Chamber, sprays, films, plug">
+    <!-- chamber: center (450,280), r = 200 px -->
+    <circle cx="450" cy="280" r="198" fill="#E3F0FA"/>
+    <g fill="#9CC3DE">
+      <circle cx="380" cy="190" r="2.2"/><circle cx="520" cy="170" r="2.2"/><circle cx="470" cy="230" r="2.2"/>
+      <circle cx="560" cy="320" r="2.2"/><circle cx="400" cy="360" r="2.2"/><circle cx="330" cy="260" r="2.2"/>
+      <circle cx="500" cy="400" r="2.2"/><circle cx="590" cy="220" r="2.2"/><circle cx="440" cy="120" r="2.2"/>
+      <circle cx="360" cy="420" r="2.2"/><circle cx="600" cy="400" r="2.2"/><circle cx="300" cy="330" r="2.2"/>
+    </g>
+    <path d="M 648,252 A 200 200 0 0 0 265,204" class="wall"/>
+    <path d="M 265,356 A 200 200 0 0 0 648,308" class="wall"/>
+    <path d="M 648,252 L 900,184" class="wall"/>
+    <path d="M 648,308 L 900,376" class="wall"/>
+    <!-- entrance: backing and insert with the open gate, film on the outside -->
+    <rect x="242" y="170" width="14" height="96" fill="#7F8C96"/>
+    <rect x="242" y="294" width="14" height="96" fill="#7F8C96"/>
+    <line x1="256" y1="170" x2="265" y2="204" class="wall" stroke-width="4"/>
+    <line x1="256" y1="390" x2="265" y2="356" class="wall" stroke-width="4"/>
+    <rect x="256" y="224" width="14" height="49" fill="#C9A227" stroke="#8A6D12" stroke-width="1"/>
+    <rect x="256" y="287" width="14" height="49" fill="#C9A227" stroke="#8A6D12" stroke-width="1"/>
+    <rect x="260" y="238" width="6" height="30" fill="#4A5560"/>
+    <rect x="260" y="292" width="6" height="30" fill="#4A5560"/>
+    <line x1="253" y1="272" x2="253" y2="288" class="film"/>
+    <!-- throat film, bulging outward -->
+    <path d="M 648,252 Q 672,280 648,308" class="film"/>
+    <!-- plug on its wires -->
+    <rect x="450" y="274.5" width="117" height="11" fill="url(#foam)" stroke="#5E6F7C" stroke-width="1.2"/>
+    <path class="wire" d="M 262,262 L 450,278 M 262,298 L 450,282"/>
+    <path class="wire" d="M 567,278 L 627,212 M 567,282 L 627,348"/>
+    <!-- spray heads around the wall, each spraying along it -->
+    <use href="#sprayHead" transform="translate(450,84) rotate(10)"/>
+    <use href="#sprayHead" transform="translate(330,122) rotate(-30)"/>
+    <use href="#sprayHead" transform="translate(570,122) rotate(40)"/>
+    <use href="#sprayHead" transform="translate(330,438) rotate(30)"/>
+    <use href="#sprayHead" transform="translate(450,476) rotate(-10)"/>
+    <use href="#sprayHead" transform="translate(570,438) rotate(-40)"/>
+  </g>
+
+  <g inkscape:groupmode="layer" id="layer-a-labels" inkscape:label="(a) Labels">
+    <text x="660" y="70" class="small">spray heads wet the wall</text>
+    <text x="660" y="88" class="small">with the next charge, LH₂</text>
+    <text x="660" y="106" class="small">or LCH₄, which takes back</text>
+    <text x="660" y="124" class="small">the heat the wall kept</text>
+    <line x1="656" y1="100" x2="596" y2="120" class="leader"/>
+    <text x="700" y="430" class="small">throat film: woven aramid</text>
+    <text x="700" y="448" class="small">and 12.7 µm Kapton, 60–140 g;</text>
+    <text x="700" y="466" class="small">the pulse bursts it</text>
+    <line x1="720" y1="416" x2="664" y2="290" class="leader"/>
+    <text x="12" y="120" class="small">entrance film, a few grams;</text>
+    <text x="12" y="138" class="small">the rod punctures it</text>
+    <line x1="120" y1="144" x2="250" y2="276" class="leader"/>
+    <text x="12" y="420" class="small">port gate open</text>
+    <text x="12" y="438" class="small">behind the film</text>
+    <line x1="120" y1="424" x2="262" y2="318" class="leader"/>
+    <text x="360" y="252" class="tiny">charge gas, up to 4 bar (CH₄)</text>
+    <text x="360" y="268" class="tiny">or 9.5 bar (H₂)</text>
+    <text x="470" y="312" class="tiny">plug on its wires</text>
+    <text x="12" y="512" class="tiny">No coolant passages. The charge boils as it takes up the heat, so the chamber fills with gas and the films hold it until the next rod.</text>
+  </g>
+
+  <line x1="20" y1="532" x2="980" y2="532" stroke="#DDD" stroke-width="1"/>
+
+  <!-- ============================ (b) Hydrogen on copper ============================ -->
+  <g inkscape:groupmode="layer" id="layer-b" inkscape:label="(b) Hydrogen, copper liner">
+    <text x="12" y="562" class="title">(b) Hydrogen, 5500 K: bare copper</text>
+    <rect x="20" y="580" width="220" height="210" fill="url(#hot)"/>
+    <text x="32" y="604" class="small">H₂ at 818 bar peak</text>
+    <path class="rad" marker-end="url(#arrowRad)" d="M 36,650 q 10,-9 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 14,0"/>
+    <text x="36" y="636" class="tiny">radiation ≤ 52 MW/m²</text>
+    <line class="conv" marker-end="url(#arrowConv)" x1="36" y1="712" x2="234" y2="712"/>
+    <text x="36" y="700" class="tiny">convection 14–189 MW/m²</text>
+    <text x="36" y="774" class="tiny">0.6–9.8 MJ/m² per pulse</text>
+    <rect x="240" y="580" width="70" height="210" fill="url(#copperHeat)"/>
+    <rect x="310" y="580" width="160" height="210" fill="url(#steel)"/>
+    <line x1="240" y1="580" x2="240" y2="790" stroke="#111" stroke-width="1.5"/>
+    <line x1="310" y1="580" x2="310" y2="790" stroke="#333" stroke-width="1.2"/>
+    <text x="248" y="604" class="tiny" fill="#ffffff">copper</text>
+    <text x="318" y="604" class="tiny">pressure shell</text>
+    <text x="20" y="822" class="small">Copper conducts the heat inward faster than</text>
+    <text x="20" y="840" class="small">it builds, so its surface peaks at 370–1110 K,</text>
+    <text x="20" y="858" class="small">below its 1356 K melting point.</text>
+    <text x="20" y="886" class="small">An LH₂ spray takes 21–350 MJ per pulse;</text>
+    <text x="20" y="904" class="small">warming the charge to room temperature</text>
+    <text x="20" y="922" class="small">absorbs about 230 MJ.</text>
+    <text x="20" y="950" class="small" fill="#C62828">Never graphite: hydrogen dissolves it,</text>
+    <text x="20" y="968" class="small" fill="#C62828">0.5 kg of carbon per kg of gas at 2500 K.</text>
+  </g>
+
+  <!-- ============================ (c) Methane on pitch-lined steel ============================ -->
+  <g inkscape:groupmode="layer" id="layer-c" inkscape:label="(c) Methane, pitch on steel">
+    <text x="512" y="562" class="title">(c) Methane, 7000 K: pitch on steel</text>
+    <rect x="520" y="580" width="200" height="210" fill="url(#hot)"/>
+    <text x="532" y="604" class="small">CH₄ at 496 bar peak</text>
+    <path class="rad" marker-end="url(#arrowRad)" d="M 536,650 q 10,-9 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 4,0"/>
+    <text x="536" y="636" class="tiny">radiation 136 MW/m²</text>
+    <line class="conv" marker-end="url(#arrowConv)" x1="536" y1="712" x2="714" y2="712"/>
+    <text x="536" y="700" class="tiny">convection 4–55 MW/m²</text>
+    <text x="536" y="774" class="tiny">3.9–18.1 MJ/m² per pulse</text>
+    <rect x="720" y="580" width="10" height="210" fill="url(#char)"/>
+    <rect x="730" y="580" width="22" height="210" fill="url(#pitch)"/>
+    <rect x="752" y="580" width="34" height="210" fill="url(#porousC)"/>
+    <rect x="752" y="580" width="34" height="210" fill="none" stroke="#333" stroke-width="1.2" stroke-dasharray="5 4"/>
+    <rect x="786" y="580" width="194" height="210" fill="url(#steel)"/>
+    <line x1="720" y1="580" x2="720" y2="790" stroke="#111" stroke-width="1.5"/>
+    <text x="796" y="604" class="tiny">Cr–Mo steel</text>
+    <text x="796" y="622" class="tiny">395–441 K</text>
+    <text x="520" y="822" class="small">0.2 mm of pitch chars and ablates at</text>
+    <text x="520" y="840" class="small">~3900 K, losing 30–120 µm (1.4–5.6 kg)</text>
+    <text x="520" y="858" class="small">a pulse; a 0.1 mm recoat replaces it.</text>
+    <text x="520" y="886" class="small">An LCH₄ spray takes the 28–50 MJ the</text>
+    <text x="520" y="904" class="small">wall keeps, 4–7 MW/m² between pulses.</text>
+    <text x="520" y="932" class="small">Dashed: optional porous graphite base,</text>
+    <text x="520" y="950" class="small">1–2 mm. Graphite alone keeps 110–243 MJ,</text>
+    <text x="520" y="968" class="small">more than the charge can carry away.</text>
+  </g>
+  <text x="20" y="998" class="tiny">Layer thicknesses are not to scale.</text>
+</svg>

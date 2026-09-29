@@ -2,9 +2,9 @@
 <!-- Wall detail of the near-term walled chamber: methane at 7000 K on a steel shell lined
      with sprayed pitch, for the 2.5 kg rod in its 20 m^3 chamber.
      (a) During the pulse: flux on the wall, the pitch charring and ablating, steel behind it.
-     (b) Between pulses: liquid methane quench spray, then a ~0.1 mm pitch recoat; backup
-         coolant channels in the steel are drawn dashed.
-     (c) One 250 ms cycle at 4 Hz.
+     (b) Between pulses: liquid methane quench spray, then a ~0.1 mm pitch recoat; no
+         coolant channels.
+     (c) One 250 ms cycle at 4 Hz, with the port gate's close and reopening.
      (d) Mass carried per pulse.
      Layer thicknesses are not to scale.
      Each element sits in a named Inkscape layer.
@@ -66,11 +66,11 @@
 
   <!-- ===================== (a) During the pulse ===================== -->
   <g inkscape:groupmode="layer" id="panel_a" inkscape:label="(a) during the pulse">
-    <text x="30" y="36" class="title">(a) During the pulse, 25 to 53 ms</text>
+    <text x="30" y="36" class="title">(a) During the pulse</text>
     <!-- gas -->
     <rect x="40" y="60" width="430" height="250" fill="url(#plasma)"/>
-    <text x="60" y="92">Methane plasma, 7000 K, 493 bar peak</text>
-    <text x="60" y="116" class="small">62 kg charge + 4.4 kg plug + rod</text>
+    <text x="60" y="92">Methane plasma, 7000 K, 496 bar peak</text>
+    <text x="60" y="116" class="small">68.8 kg charge + 4.4 kg plug + rod</text>
     <!-- layers -->
     <rect x="470" y="60" width="18" height="250" fill="url(#char)"/>
     <rect x="488" y="60" width="32" height="250" fill="url(#pitch)"/>
@@ -84,8 +84,8 @@
     <!-- convection: straight arrows -->
     <line class="conv" marker-end="url(#arrowConv)" x1="110" y1="248" x2="462" y2="248"/>
     <line class="conv" marker-end="url(#arrowConv)" x1="110" y1="276" x2="462" y2="276"/>
-    <text x="110" y="238" class="small">convection, 39 to 74 MW/m²</text>
-    <text x="110" y="300" class="small">4.4 to 11.1 MJ/m² per pulse</text>
+    <text x="110" y="238" class="small">convection, 4 to 55 MW/m²</text>
+    <text x="110" y="300" class="small">3.9 to 18.1 MJ/m² per pulse</text>
     <!-- pyrolysis gas blowing out -->
     <line class="gasout" marker-end="url(#arrowGas)" x1="468" y1="96" x2="420" y2="96"/>
     <line class="gasout" marker-end="url(#arrowGas)" x1="468" y1="120" x2="420" y2="120"/>
@@ -96,12 +96,12 @@
     <path class="leader" d="M 504,316 L 504,340 L 560,340"/>
     <text x="566" y="345" class="small">pitch, 0.2 mm standing layer</text>
     <text x="790" y="96" class="small">Cr–Mo steel shell</text>
-    <text x="790" y="120" class="small">peaks at 450–490 K</text>
+    <text x="790" y="120" class="small">peaks at 395–441 K</text>
     <text x="790" y="170" class="small">pitch lost per pulse:</text>
-    <text x="790" y="192" class="small">43 to 117 µm</text>
-    <text x="790" y="214" class="small">2.0 to 5.4 kg</text>
+    <text x="790" y="192" class="small">30 to 120 µm</text>
+    <text x="790" y="214" class="small">1.4 to 5.6 kg</text>
     <text x="790" y="264" class="small">left in the wall:</text>
-    <text x="790" y="286" class="small">1.0 to 2.2 MJ/m²</text>
+    <text x="790" y="286" class="small">0.8 to 1.4 MJ/m²</text>
     <text x="318" y="146" class="tiny" fill="#6B4E2E">pyrolysis gas</text>
   </g>
 
@@ -116,10 +116,6 @@
     <line x1="520" y1="420" x2="520" y2="670" stroke="#333" stroke-width="1.2"/>
     <!-- fresh pitch band being laid down -->
     <rect x="460" y="555" width="10" height="115" fill="#8A6A48" stroke="#5A4632" stroke-width="1"/>
-    <!-- backup channels, dashed -->
-    <circle cx="700" cy="475" r="13" fill="#ffffff" stroke="#1F5F8B" stroke-width="1.6" stroke-dasharray="4 3"/>
-    <circle cx="700" cy="545" r="13" fill="#ffffff" stroke="#1F5F8B" stroke-width="1.6" stroke-dasharray="4 3"/>
-    <circle cx="700" cy="615" r="13" fill="#ffffff" stroke="#1F5F8B" stroke-width="1.6" stroke-dasharray="4 3"/>
     <!-- methane quench spray head -->
     <rect x="70" y="440" width="46" height="36" rx="5" fill="#1F5F8B"/>
     <text x="64" y="500" class="tiny">LCH₄</text>
@@ -130,7 +126,7 @@
       <circle cx="240" cy="480" r="2.2"/><circle cx="410" cy="462" r="2.2"/>
     </g>
     <text x="150" y="518" class="small">1. liquid methane quench spray</text>
-    <text x="150" y="538" class="tiny">takes back the 1.0–2.2 MJ/m² left in the wall;</text>
+    <text x="150" y="538" class="tiny">takes back the 0.8–1.4 MJ/m² left in the wall;</text>
     <text x="150" y="555" class="tiny">the warmed methane joins the next charge</text>
     <!-- pitch recoat spray head -->
     <rect x="70" y="590" width="46" height="36" rx="5" fill="#5A4632"/>
@@ -139,13 +135,13 @@
     <text x="150" y="586" class="small">2. pitch recoat, about 0.1 mm</text>
     <text x="150" y="662" class="tiny">sets as a cold layer on the chilled wall</text>
     <!-- labels right -->
-    <text x="790" y="462" class="small">backup coolant</text>
-    <text x="790" y="484" class="small">channels, used only</text>
-    <text x="790" y="506" class="small">if spray cooling</text>
-    <text x="790" y="528" class="small">falls short</text>
-    <text x="790" y="590" class="small">no regenerative</text>
-    <text x="790" y="612" class="small">liner in the</text>
-    <text x="790" y="634" class="small">baseline</text>
+    <text x="790" y="462" class="small">no coolant channels:</text>
+    <text x="790" y="484" class="small">the spray carries</text>
+    <text x="790" y="506" class="small">28–50 MJ per pulse</text>
+    <text x="790" y="528" class="small">into the next charge</text>
+    <text x="790" y="590" class="small">4–7 MW/m² over</text>
+    <text x="790" y="612" class="small">the ~200 ms</text>
+    <text x="790" y="634" class="small">between pulses</text>
     <text x="40" y="694" class="tiny">Layer thicknesses are not to scale. Pitch is exaggerated about 100 times against the steel.</text>
   </g>
 
@@ -153,45 +149,50 @@
   <g inkscape:groupmode="layer" id="panel_c" inkscape:label="(c) one 250 ms cycle">
     <text x="30" y="742" class="title">(c) One 250 ms cycle at 4 Hz</text>
     <!-- 250 ms spans x 60..940 : 3.52 px per ms -->
-    <rect x="60" y="760" width="186" height="40" fill="#F29E4C"/>
-    <rect x="246" y="760" width="176" height="40" fill="#1F5F8B"/>
-    <rect x="422" y="760" width="176" height="40" fill="#8A6A48"/>
-    <rect x="598" y="760" width="272" height="40" fill="#9CC3DE"/>
+    <rect x="60" y="760" width="215" height="40" fill="#F29E4C"/>
+    <rect x="275" y="760" width="175" height="40" fill="#1F5F8B"/>
+    <rect x="450" y="760" width="160" height="40" fill="#8A6A48"/>
+    <rect x="610" y="760" width="260" height="40" fill="#9CC3DE"/>
     <rect x="870" y="760" width="70" height="40" fill="#5E6A73"/>
     <rect x="60" y="760" width="880" height="40" fill="none" stroke="#333" stroke-width="1.2"/>
     <text x="72" y="786" class="small" fill="#222">pulse, blowdown</text>
-    <text x="262" y="786" class="small" fill="#ffffff">methane quench</text>
-    <text x="440" y="786" class="small" fill="#ffffff">pitch recoat</text>
-    <text x="620" y="786" class="small">charge fill</text>
+    <text x="290" y="786" class="small" fill="#ffffff">methane quench</text>
+    <text x="466" y="786" class="small" fill="#ffffff">pitch recoat</text>
+    <text x="630" y="786" class="small">charge fill</text>
     <text x="876" y="786" class="tiny" fill="#ffffff">lock</text>
     <line x1="60" y1="808" x2="60" y2="818" stroke="#333"/>
-    <line x1="246" y1="808" x2="246" y2="818" stroke="#333"/>
+    <line x1="275" y1="808" x2="275" y2="818" stroke="#333"/>
     <line x1="870" y1="808" x2="870" y2="818" stroke="#333"/>
     <line x1="940" y1="808" x2="940" y2="818" stroke="#333"/>
     <text x="52" y="836" class="tiny">0</text>
-    <text x="226" y="836" class="tiny">~53 ms</text>
+    <text x="255" y="836" class="tiny">~61 ms</text>
     <text x="840" y="836" class="tiny">230 ms</text>
     <text x="920" y="836" class="tiny">250 ms</text>
-    <text x="330" y="858" class="tiny">phase lengths after the pulse are illustrative, not timed</text>
+    <!-- port gate: shuts at 2-3 ms, reopens at 115-150 ms -->
+    <path d="M 69,842 L 64,852 L 74,852 Z" fill="#C62828"/>
+    <text x="80" y="858" class="tiny" fill="#C62828">gate shuts, 2–3 ms</text>
+    <path d="M 465,842 L 465,848 L 588,848 L 588,842" fill="none" stroke="#C62828" stroke-width="1.6"/>
+    <text x="600" y="858" class="tiny" fill="#C62828">gate reopens, 115–150 ms</text>
+    <text x="330" y="882" class="tiny">phase lengths after the pulse are illustrative, not timed</text>
   </g>
-
   <!-- ===================== (d) Mass per pulse ===================== -->
   <g inkscape:groupmode="layer" id="panel_d" inkscape:label="(d) mass per pulse">
     <text x="30" y="906" class="title">(d) Mass per pulse, 2.5 kg rod</text>
-    <!-- scale: 10 px per kg, total ~74.5 kg -->
-    <rect x="60" y="924" width="620" height="40" fill="#9CC3DE"/>
-    <rect x="680" y="924" width="44" height="40" fill="#C9D3DA"/>
-    <rect x="724" y="924" width="46" height="40" fill="#8A6A48"/>
-    <rect x="770" y="924" width="25" height="40" fill="#5E6A73"/>
-    <rect x="60" y="924" width="735" height="40" fill="none" stroke="#333" stroke-width="1.2"/>
-    <text x="72" y="950">methane charge, 62 kg</text>
-    <path class="leader" d="M 702,968 L 702,990"/>
-    <text x="600" y="1006" class="small">plug 4.4 kg</text>
-    <path class="leader" d="M 747,968 L 747,1026"/>
-    <text x="700" y="1044" class="small">pitch 2.0–5.4 kg</text>
-    <path class="leader" d="M 782,920 L 782,904 L 810,904"/>
-    <text x="814" y="909" class="small">rod 2.5 kg</text>
-    <text x="814" y="931" class="tiny">(arrives, not carried)</text>
-    <text x="60" y="1006" class="small">pitch is 3 to 8% of the carried 68 to 72 kg</text>
+    <!-- scale: 10 px per kg; pitch drawn at 3.5 kg -->
+    <rect x="60" y="924" width="688" height="40" fill="#9CC3DE"/>
+    <rect x="748" y="924" width="44" height="40" fill="#C9D3DA"/>
+    <rect x="792" y="924" width="35" height="40" fill="#8A6A48"/>
+    <rect x="827" y="924" width="25" height="40" fill="#5E6A73"/>
+    <rect x="60" y="924" width="792" height="40" fill="none" stroke="#333" stroke-width="1.2"/>
+    <text x="72" y="950">methane charge, 68.8 kg</text>
+    <path class="leader" d="M 770,968 L 770,990"/>
+    <text x="668" y="1006" class="small">plug 4.4 kg</text>
+    <path class="leader" d="M 809,968 L 809,1026"/>
+    <text x="750" y="1044" class="small">pitch 1.4–5.6 kg</text>
+    <path class="leader" d="M 840,920 L 840,904 L 860,904"/>
+    <text x="864" y="909" class="small">rod 2.5 kg</text>
+    <text x="820" y="1006" class="tiny">(rod arrives,</text>
+    <text x="820" y="1024" class="tiny">not carried)</text>
+    <text x="60" y="1006" class="small">pitch is 2 to 7% of the carried 75 to 79 kg</text>
   </g>
 </svg>

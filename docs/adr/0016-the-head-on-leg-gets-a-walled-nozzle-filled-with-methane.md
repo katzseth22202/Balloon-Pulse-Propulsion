@@ -1,6 +1,11 @@
 # The head-on leg gets a walled nozzle, and methane fills it
 
-Status: **proposed**. Resolved in a grill session on 2026-09-08, amended
+Status: **proposed**. **Amended 2026-09-29**: on the companion's solved near-term runs (20 m^3,
+2.5 kg rod, A/A* = 300, port gate) hydrogen at 5500 K on copper beats methane at 7000 K on
+pitch-lined steel, 1112 s / 1.66 yr against 762-777 s / 1.89-1.90 yr. The decision to fly
+methane stands, now argued on practice (steel shell, sprayed coat, tanks, boil-off,
+embrittlement) rather than performance, and the paper says so. See CONTEXT.md **Near-term
+chamber verdict**. Resolved in a grill session on 2026-09-08, amended
 2026-09-09 when the flown fluid changed from ammonia to methane, amended again
 the same day when the companion returned N9 item 0 and all of N10, and amended
 2026-09-10 when it returned N9 items 1 to 7 and the whole of N16. Terms are

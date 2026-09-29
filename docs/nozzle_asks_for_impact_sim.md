@@ -895,6 +895,38 @@ allows, not what the hardware permits.**
 **Lifts.** ADR-0016's "The cold end is where the unclaimed impulse is", and the throat
 recommendation in W6, which stops at 2 m² only because that is where the ask happened to stop.
 
+## N17. The near-term chamber: what came back, and what the stand-off and gate now owe
+
+Raised 2026-09-28 as asks A1-A6 (`todos/impact_sim_asks_methane_7000K.md`, section 3), answered
+by `puffsat_impact_simulation` on 2026-09-29 (uncommitted there; `docs/walled_nozzle_near_term.md`,
+ADR-0052, `make walled-nozzle-near-term`, `make walled-nozzle-wall-layers`). Applied to the paper
+the same day in `sec:material_chamber_plug`, `sec:port_gate` and `sec:methane_7000_near_term`.
+
+**Landed.** A1/A2 methane 7000 K eta vs A/A* with the carbon bracket; A3 hydrogen 5500 K with the
+polyethylene carbon (<0.5% of eta); A4 wall heat (methane opaque, 3.9-18.1 MJ/m^2); A5 carbon
+triple point 107 atm (Haaland 1976) and the 1-D pitch/graphite/steel wall solve; A6 leak vs
+radiation re-solve (45-70 m^3 with an open port); the port-door scan (0.19-0.25% of thrust per
+ms open). Blowdown e-fold 46-61 ms replaces the paper's 25-33 ms in `sec:rod_2p5kg`.
+
+**Still owed, in priority order.**
+
+1. **Rod-plug fireball in the charge gas, 2-D axisymmetric Euler.** The paper now says: "The
+   backward load on the port as a function of stand-off needs a two-dimensional flow
+   calculation." and "It is four times the \SI{50}{\mega\pascal} peak the shell is designed to
+   hold, and the shell's response to it has not been checked." Wanted: peak and impulse on the
+   port lip vs stand-off (0.5, 0.84, 1.2, 1.68 m) for the 2.5 kg rod and 4.4 kg plug in 68.8 kg
+   of methane (20 m^3), and the wall pressure history at 1.68 m. Blocks: the stand-off distance.
+2. **Gate leak while the leaves move.** Paper: "neither the cushion nor the leak past the leaves
+   while they move has been modeled." Wanted: port mass flux against leaf position for a 2-3 ms
+   close, 1 mm residual gap. Cheap partial answer welcome: the open-port choked flux times the
+   uncovered fraction.
+3. **Finite-rate soot nucleation in methane's nozzle** (N10 item 5). Paper: "Soot may nucleate
+   in methane's nozzle and return some of the carbon's bond energy, and its rate has not been
+   modeled." Could lift methane off its frozen-carbon floor (0.485 at A/A* = 300).
+
+Not impact-sim scope: pitch removal heat at hundreds of bar (arc-jet data), the Leidenfrost
+limit on a 4-7 MW/m^2 spray quench, and reloading the plug and wires every 250 ms.
+
 ## Suggested order
 
 **Updated 2026-09-10.** The walled-nozzle items now outrank the magnetic ones, because the
