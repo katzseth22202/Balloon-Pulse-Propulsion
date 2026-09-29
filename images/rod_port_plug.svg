@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Rod, port and plug: one example configuration of the head-on hydrogen chamber.
      (a) A solid metallized polyethylene rod on three tethered electronics packages
-     threads the 15 cm port and meets a porous frozen-methane plug. (b) After impact,
+     threads the 15 cm port and meets a polyethylene foam plug in a solid skin. (b) After impact,
      sketched: rod and plug turn to plasma and the front sweeps the hydrogen toward
      the wider exhaust throat. Chamber, port, plug, throat and rod share one scale
-     (60 px per meter); tether lines and packages do not.
+     (60 px per meter); tether lines and packages do not. (c) Port detail for the
+     2.5 kg rod at 400 px per meter: sliding insert, its motors and lock, and the
+     skinned foam plug.
      Each element sits in a named Inkscape layer.
      Export for the paper with:
        inkscape images/rod_port_plug.svg -o images/rod_port_plug.pdf -->
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
      xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-     width="1000" height="880" viewBox="0 0 1000 880">
+     width="1000" height="1360" viewBox="0 0 1000 1360">
   <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
   <defs>
     <style>
@@ -24,10 +26,10 @@
       .wall { stroke: #5E6A73; stroke-width: 5; fill: none; }
       .flow { stroke: #1F5F8B; stroke-width: 2.2; fill: none; }
     </style>
-    <pattern id="porous" width="6" height="6" patternUnits="userSpaceOnUse">
-      <rect width="6" height="6" fill="#B9A3DC"/>
-      <circle cx="1.8" cy="1.8" r="1.1" fill="#ffffff"/>
-      <circle cx="4.7" cy="4.6" r="0.8" fill="#ffffff"/>
+    <pattern id="foam" width="5" height="5" patternUnits="userSpaceOnUse">
+      <rect width="5" height="5" fill="#C9D3DA"/>
+      <circle cx="1.5" cy="1.6" r="1.0" fill="#ffffff"/>
+      <circle cx="3.9" cy="3.8" r="0.8" fill="#ffffff"/>
     </pattern>
     <linearGradient id="plasma" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#FFE08A"/>
@@ -64,7 +66,7 @@
       <line x1="446" y1="240" x2="446" y2="400" stroke="#999" stroke-width="1.5" stroke-dasharray="5 4"/>
     </g>
   </defs>
-  <rect id="background" width="1000" height="880" fill="#ffffff"/>
+  <rect id="background" width="1000" height="1360" fill="#ffffff"/>
 
   <!-- ============================ (a) Arrival ============================ -->
   <g inkscape:groupmode="layer" id="layer-a-title" inkscape:label="(a) Title">
@@ -74,7 +76,8 @@
   <g inkscape:groupmode="layer" id="layer-a-chamber" inkscape:label="(a) Chamber, ship face and plug">
     <use href="#chamber"/>
     <use href="#shipface"/>
-    <rect x="482" y="213.4" width="141" height="13.2" fill="url(#porous)" stroke="#7E5FA8" stroke-width="1"/>
+    <!-- Foam plug 1.56 m deep and 15 cm wide at 60 px/m; the stroke is the 15 mm solid skin. -->
+    <rect x="482" y="215.5" width="93.6" height="9" fill="url(#foam)" stroke="#5E6F7C" stroke-width="1.2"/>
     <text x="562" y="140" class="small">hydrogen, 77.7 kg in 80 m³</text>
   </g>
 
@@ -119,8 +122,9 @@
     <text x="440" y="392" class="small" text-anchor="end">movable insert carries</text>
     <text x="440" y="410" class="small" text-anchor="end">the port to the intercept</text>
     <line x1="442" y1="384" x2="466" y2="238" class="leader"/>
-    <text x="508" y="400" class="small">porous frozen methane plug, 2.35 m deep</text>
-    <line x1="560" y1="386" x2="555" y2="228" class="leader"/>
+    <text x="508" y="400" class="small">polyethylene foam plug, 1.56 m deep,</text>
+    <text x="508" y="418" class="small">inside a solid polyethylene skin</text>
+    <line x1="560" y1="386" x2="540" y2="226" class="leader"/>
     <text x="812" y="334" class="small">exhaust throat,</text>
     <text x="812" y="352" class="small">0.69–0.80 m across,</text>
     <text x="812" y="370" class="small">21–28× entrance area</text>
@@ -177,6 +181,63 @@
       <text x="812" y="334" class="small">most gas leaves</text>
       <text x="812" y="352" class="small">through the wide</text>
       <text x="812" y="370" class="small">throat</text>
+    </g>
+  </g>
+  <!-- ====================== (c) Port detail, 2.5 kg rod ====================== -->
+  <line x1="20" y1="872" x2="980" y2="872" stroke="#DDD" stroke-width="1"/>
+  <g transform="translate(0,880)">
+    <g inkscape:groupmode="layer" id="layer-c-parts" inkscape:label="(c) Port detail parts">
+      <!-- 400 px per meter. Rod axis at y=206. -->
+      <rect x="392" y="40" width="598" height="400" fill="#E3F0FA"/>
+      <!-- 2.5 kg rod, 69 cm by 6.9 cm -->
+      <rect x="64" y="192.2" width="277" height="27.7" rx="2" fill="#B8C2CA" stroke="#4A90B8" stroke-width="1.4"/>
+      <!-- fixed backing with a 31 cm hole, part of the ship's face -->
+      <rect x="360" y="80" width="32" height="88" fill="#7F8C96"/>
+      <rect x="360" y="292" width="32" height="108" fill="#7F8C96"/>
+      <!-- electromagnetic lock pads in the backing face -->
+      <rect x="385" y="140" width="7" height="20" fill="#8B3A3A"/>
+      <rect x="385" y="300" width="7" height="20" fill="#8B3A3A"/>
+      <!-- insert where centered (dashed) and where the trim has put it, 6 cm up -->
+      <rect x="393" y="130" width="20" height="200" fill="none" stroke="#8A6D12" stroke-width="1" stroke-dasharray="4 3"/>
+      <rect x="393" y="106" width="20" height="78.2" fill="#C9A227" stroke="#8A6D12" stroke-width="1"/>
+      <rect x="393" y="227.8" width="20" height="78.2" fill="#C9A227" stroke="#8A6D12" stroke-width="1"/>
+      <!-- linear motors and their links -->
+      <rect x="381" y="46" width="44" height="22" fill="#2F3B45"/>
+      <line x1="403" y1="68" x2="403" y2="106" stroke="#2F3B45" stroke-width="3"/>
+      <rect x="381" y="410" width="44" height="22" fill="#2F3B45"/>
+      <line x1="403" y1="306" x2="403" y2="410" stroke="#2F3B45" stroke-width="3"/>
+      <!-- skinned foam plug riding on the insert: 0.98 m by 10.9 cm, 5 mm skin -->
+      <rect x="413" y="185.2" width="392" height="41.6" fill="url(#foam)" stroke="#5E6F7C" stroke-width="2"/>
+      <!-- chamber pressure pressing the insert onto the backing -->
+      <line x1="480" y1="140" x2="420" y2="140" stroke="#1F5F8B" stroke-width="2.2" marker-end="url(#arrowFlow)"/>
+      <line x1="480" y1="276" x2="420" y2="276" stroke="#1F5F8B" stroke-width="2.2" marker-end="url(#arrowFlow)"/>
+      <!-- final trim, up to 5 cm either way -->
+      <line x1="350" y1="200" x2="350" y2="182" stroke="#C62828" stroke-width="1.8" marker-end="url(#arrowRed)"/>
+      <line x1="350" y1="212" x2="350" y2="230" stroke="#C62828" stroke-width="1.8" marker-end="url(#arrowRed)"/>
+    </g>
+    <g inkscape:groupmode="layer" id="layer-c-labels" inkscape:label="(c) Labels">
+      <text x="20" y="24" class="title">(c) Port detail for the 2.5 kg rod (enlarged)</text>
+      <text x="70" y="180" class="small">2.5 kg rod, 69 cm by 6.9 cm</text>
+      <text x="440" y="62" class="small">linear motors slide the insert in two axes</text>
+      <text x="440" y="80" class="small">(third motor out of the page), at most 10 g</text>
+      <line x1="436" y1="58" x2="426" y2="58" class="leader"/>
+      <text x="490" y="136" class="small">900 bar presses the insert onto the backing</text>
+      <text x="530" y="262" class="small">foam plug, 0.98 m by 10.9 cm, in a 5 mm</text>
+      <text x="530" y="280" class="small">solid skin; it rides on the insert</text>
+      <line x1="526" y1="256" x2="560" y2="228" class="leader"/>
+      <text x="480" y="340" class="small">insert with the 10.9 cm port, shown 6 cm</text>
+      <text x="480" y="358" class="small">off center; dashed where centered</text>
+      <line x1="476" y1="336" x2="414" y2="300" class="leader"/>
+      <text x="480" y="400" class="small">fixed backing carries the pulse; its 31 cm</text>
+      <text x="480" y="418" class="small">hole spans the insert's stroke</text>
+      <line x1="476" y1="396" x2="392" y2="380" class="leader"/>
+      <text x="70" y="262" class="small">final trim, up to 5 cm,</text>
+      <text x="70" y="280" class="small">in the last 103 ms</text>
+      <line x1="240" y1="258" x2="346" y2="232" class="leader"/>
+      <text x="70" y="318" class="small">electromagnetic lock pulls</text>
+      <text x="70" y="336" class="small">the insert onto the backing</text>
+      <text x="70" y="354" class="small">20 ms before arrival</text>
+      <line x1="280" y1="314" x2="384" y2="310" class="leader"/>
     </g>
   </g>
 </svg>
