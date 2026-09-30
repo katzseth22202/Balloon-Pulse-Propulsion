@@ -6,7 +6,10 @@ throat side to winches outside the shell), because a plug heavier than the rod s
 fireball's rear back at the port (`sec:material_chamber_plug`). The door now moves only itself
 (0.18-0.53 kN at 2 Hz). The port is closed after the rod by a separate, pulse-driven **port gate**
 (`sec:port_gate`), which this ADR's "door" does not mean. See CONTEXT.md **Plug stand-off**,
-**Plug wires**, **Port gate**. Recorded because the head-on nozzle asks for an aim about a
+**Plug wires**, **Port gate**. **Amended 2026-09-30** (ADR-0024): the packages' primary thruster is now propane cold gas at
+each package's tip, with the water resistojet as fallback; thrust and tension are unchanged. GNSS
+starts at ~40,000 km with aiding from the Jupiter co-flyers, which also act as reference stations.
+Recorded because the head-on nozzle asks for an aim about a
 hundred times tighter than the plate, and the architecture that meets it is not the one the plate
 uses.
 

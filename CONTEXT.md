@@ -1841,7 +1841,8 @@ every shot, in hot sooty gas, ~640 times per departure. Its late trim overlaps t
 slides under ~3.1 bar fill pressure (~25 kN seating force on a 32 cm door) unless it is kept
 unseated until the lock. Unsized: seat/unseat under soot and heat, joint leakage, shock settling,
 wear per departure.
-_Open_: co-flyer geometry for this leg. The knowledge must exist 600-1100 km before each rod
+**Closed 2026-09-30** by the **Jupiter co-flyers** (ADR-0024), which serve both waves; the entry below is kept for history.
+_Open (historical)_: co-flyer geometry for this leg. The knowledge must exist 600-1100 km before each rod
 reaches the ship, and a co-flyer riding the stream holds a ~100 km standoff only for rods near it
 along the stream; a co-flyer beside the ship is ~1100 km from the rod at that moment.
 _Avoid_: "plate capture" or "the 2 m tolerance" for the nozzle leg; "a centimeter or two of
@@ -2873,6 +2874,56 @@ problem that waits on expert input rather than an impact-simulation ask. This re
 hub-bag argument of `sec:tethered_ring` for this ring; f and capture fraction remain single-cloud. Reproduce with `todos/jupiter_3s_release_geometry.py`.
 _Avoid_: "deploy"/"deployment" for this event, which already names the carrier perigee drop of
 **Perigee arming**; quoting a 90 deg turn at Earth for the Jupiter stream.
+
+**Jupiter co-flyer** (decided 2026-09-30 grill; ADR-0024; paper `sec:jupiter_coflyers`):
+One of four ~50 kg coasting craft released with **each** Jupiter-return wave (growth and departure)
+that fly with it from release to Earth. Three sit on a 500 km ring around the track, one outward
+from Earth and two out of the orbit plane, never Earth-ward (a symmetric triangle puts a vertex
+250 km Earth-ward, ~150 km altitude on the growth wave's 400 km pass; focusing at 56 km/s is under
+2%, so offset maps ~1:1 to altitude). The fourth flies outward at the trailing quarter point as the
+spare and adds the along-track axis. ~0.7 m/s each to reach station. They never divert, carry
+GNSS below twice-MEO as differential reference stations, and end as heliocentric debris. Tracked by
+delta-DOR (1.9 nrad per fix, `dsn810005_210c_ddor`: 151 m at release, 37 m at 4 d, 9 m at 1 d) plus
+two-way Doppler and range (0.1 mm/s, 3 m, `leonard2024orex_od`). They plan and broadcast (GNSS
+ground-segment model): orbit, slots, satellite gaps, predicted Doppler, wake schedule.
+The departure wave's release point is assumed to match the growth wave's (~1.3 AU, ~16 d).
+_Avoid_: calling them "the co-flyer" unqualified (the LEO co-flyer is the launch rocket); an
+Earth-ward vertex; atomic clocks on co-flyers or PuffSats.
+
+**Co-flyer ranging broadcast** (decided 2026-09-30 grill):
+The co-flyers' synchronized one-way radio signal, from which each PuffSat's receive-only GNSS-class
+receiver fixes its own cross-track position by arrival-time differences (its clock cancels, so a
+crystal suffices). Co-flyers hold quartz USOs in step by dual one-way ranging among themselves
+(`kim2009grace_kbr`, `enzer2013grail_uso`). With the chosen layout the fix at the stream's end
+(L = 6,750 km, R = 500 km) is **16.6 sigma_range radial, 9.6 out of plane** (not the symmetric
+`L/(R sqrt 1.5)` = 11.1), so 20 m radial needs ~1.2 m ranging, a requirement; carrier phase reaches
+cm. Along-track ~290 sigma_range, ~350 m = 6 ms of arrival time. Reproduce with
+`todos/coflyer_geometry.py`.
+_Avoid_: optical for this link (the PuffSats span nearly half the sky from mid-stream).
+
+**Beacon PuffSat** (decided 2026-09-30 grill):
+One of 1-3 small rigid units at the head of each wave carrying GNSS and a transmitter. From
+~40,000 km in it broadcasts its position so the target sees the formation's true place, then passes
+the target unused. The signal version of the sacrificial lead PuffSat.
+_Avoid_: treating the beacon share of each wave as free; the growth budget must carry it.
+
+**Cancelling burn** (decided 2026-09-30 grill; paper `sec:tethered_rod_packages`):
+A package-thruster pulse timed to null the rod's swing: the second half of a split steering pulse
+fired **half** a swing period after the first (posicast, `smith1957posicast`), or a balanced burst
+against the packages' swing velocity at equilibrium. The rod needs its swing predicted, not zero;
+the filter dead-reckons it from the three packages' carrier phase on a line model whose accuracy is
+a requirement. Passive backup: viscoelastic links in series with the lines at the rod ends (not
+polymer on the rod or boxes, which damps only their own ringing). Safe because the assembly is a
+major-axis spinner (16.0 vs 9.0 kg m^2; `bracewell1958rotation`).
+_Avoid_: unbalanced bursts that also move the centre of mass; "a full swing period later" (that
+reinforces the swing).
+
+**Ring centre-of-mass aiming** (decided 2026-09-30 grill):
+The growth-wave ring's swing is internal motion and cannot move its centre of mass, which is the
+gas cloud's centroid and the plate's aim point. Swing is a footprint-shape requirement against the
+plate's ~2 m tolerance. The spheres' water damps it (a ring is a major-axis spinner, 2:1), provided
+each sphere has ullage or baffles (`alfriend1974ring_damper`).
+_Avoid_: treating ring swing as a navigation error; a brim-full sphere as a damper.
 
 **Glycol fill** (priced and set aside, 2026-09-13 grill):
 Not flown while the charge keeps the **Sensitizer-set thermal band**. A ~302 K pattern holds the whole
@@ -4043,6 +4094,16 @@ none, and the **Heliocentric package** covers only the Earth encounter on the gr
   efficiency; 23 min and 15 g per m/s at a 5 mN peak. Only with the packages level with the rod's
   middle, and never during an axial push.
 - _Resistojets_: AQUARIUS on EQUULEUS, ~6 mN, 91 s, under 14 W (`sekine2024aquarius`).
+- **Amended 2026-09-30 (ADR-0024): propane cold gas is primary, the water resistojet the fallback.**
+  Paper section retitled "Tethered Cold-Gas Packages". Propane at ~45 s (43 s flown on butane,
+  `tummala2017cubesat`), 1% of the assembly (~100 g) in three ~6 g tanks: 23 g per m/s along the
+  line, 30 g per m/s across it, ~3.4 m/s across in all against <1 m/s needed. Tank and thrusters at
+  each package's tip, plumes canted outward (`dettleff_plume`); electronics a few metres inboard.
+  5 W for electronics and a 5 W propane heater, time-shared, on ~0.04 m^2 / ~40 g of spin-averaged
+  array (1361 W/m^2 x 30% / pi, 1 kg/m^2 assembled, a requirement) plus a 10 g battery; ~170 g
+  outside the 250 g electronics budget. Resistojets would draw ~35 W (AQUARIUS scaling), ~270 g
+  of array; propane saves ~170 g net. Thrust (5 mN), tension and the 0.73 mm/s^2 are unchanged.
+  The 11.5 g / 15 g of water and 6.6 Wh per m/s above are the fallback's figures.
 - _Thermal_: spinning broadside, black side 299 K; 230 K with the Sun 20 deg off axis; white nose
   under 305 K. Bend while spinning 0.03 mm (thermal skin ~0.8 mm), so no carbon-fiber spine is needed.
 - _Cut_: at the rod end, ~1 s (75 km) out. Timing mismatch gives impulse `T dt`: 1 ms -> 11 um,

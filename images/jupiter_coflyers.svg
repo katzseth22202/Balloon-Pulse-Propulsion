@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Jupiter co-flyers: the four coasting craft that fly with each returning stream.
+     (a) View down the track. Three co-flyers on a 500 km ring: one outward from Earth, two out
+     of the orbit plane. The Earth-ward sector is left empty; a vertex there would pass below
+     the stream's own periapsis. The dashed triangle is the rejected symmetric layout.
+     (b) Side view of the compressed ~13,500 km stream at arrival, with the triangle at
+     mid-stream, the spare at the trailing quarter point, beacons at the head, and range lines
+     to one end PuffSat. Not to scale.
+     Export for the paper with:
+       inkscape images/jupiter_coflyers.svg -o images/jupiter_coflyers.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="630" viewBox="0 0 1000 630">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .small { font-size: 15px; }
+      .tiny { font-size: 14px; }
+      .title { font-size: 19px; font-weight: bold; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .ring { stroke: #6B7780; stroke-width: 1.5; fill: none; stroke-dasharray: 6 5; }
+      .range { stroke: #1F5F8B; stroke-width: 1.6; fill: none; }
+      .ghost { stroke: #C62828; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+    </style>
+    <marker id="arrowDark" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M 0,2 L 14,7 L 0,12 Z" fill="#333"/>
+    </marker>
+    <g id="coflyer">
+      <rect x="-9" y="-9" width="18" height="18" fill="#2E7D32" stroke="#1B4D1F" stroke-width="1.2"/>
+      <line x1="-17" y1="0" x2="-9" y2="0" stroke="#1B4D1F" stroke-width="3"/>
+      <line x1="9" y1="0" x2="17" y2="0" stroke="#1B4D1F" stroke-width="3"/>
+    </g>
+  </defs>
+
+  <!-- ===================== (a) down the track ===================== -->
+  <g inkscape:groupmode="layer" id="panel_a" inkscape:label="(a) down the track">
+    <text x="20" y="32" class="title">(a) Looking down the track</text>
+    <!-- Earth-ward sector, within 65 deg of the Earth direction (down) -->
+    <path d="M 250,320 L 385.9,383.4 A 150 150 0 0 1 114.1,383.4 Z" fill="#F6D5D0" stroke="none"/>
+    <circle cx="250" cy="320" r="150" class="ring"/>
+    <!-- orbit plane seen edge-on -->
+    <line x1="250" y1="120" x2="250" y2="500" stroke="#999" stroke-width="1.2" stroke-dasharray="2 4"/>
+    <text x="258" y="132" class="tiny" style="fill:#666">orbit plane (edge-on)</text>
+    <!-- rejected symmetric layout -->
+    <polygon points="250,170 120.1,395 379.9,395" class="ghost"/>
+    <circle cx="120.1" cy="395" r="6" fill="#C62828"/>
+    <circle cx="379.9" cy="395" r="6" fill="#C62828"/>
+    <!-- chosen layout -->
+    <use href="#coflyer" x="250" y="170"/>
+    <use href="#coflyer" x="100" y="320"/>
+    <use href="#coflyer" x="400" y="320"/>
+    <text x="272" y="176" class="small">outward from Earth</text>
+    <text x="20" y="300" class="small">out of plane</text>
+    <text x="405" y="300" class="small">out of plane</text>
+    <!-- stream as a point -->
+    <circle cx="250" cy="320" r="7" fill="#F4A259" stroke="#8A6D12" stroke-width="1.2"/>
+    <text x="262" y="314" class="small">stream</text>
+    <!-- radius label -->
+    <line x1="250" y1="320" x2="144" y2="214" class="leader"/>
+    <text x="120" y="262" class="small">500 km</text>
+    <!-- Earth direction -->
+    <line x1="250" y1="478" x2="250" y2="530" stroke="#333" stroke-width="2" marker-end="url(#arrowDark)"/>
+    <text x="262" y="520" class="small">toward Earth's center</text>
+    <text x="20" y="566" class="tiny" style="fill:#C62828">Shaded: a vertex here passes 250 km below the stream:</text>
+    <text x="20" y="584" class="tiny" style="fill:#C62828">about 150 km altitude for the 400 km growth wave.</text>
+    <text x="20" y="612" class="tiny" style="fill:#555">Dashed red: the symmetric layout, rejected.</text>
+  </g>
+
+  <!-- ===================== (b) side view ===================== -->
+  <g inkscape:groupmode="layer" id="panel_b" inkscape:label="(b) side view">
+    <text x="520" y="32" class="title">(b) Side view of one stream at arrival</text>
+    <!-- stream: tail at x=540, head at x=920 -->
+    <line x1="540" y1="400" x2="920" y2="400" stroke="#F4A259" stroke-width="3"/>
+    <g fill="#F4A259" stroke="#8A6D12" stroke-width="0.8">
+      <circle cx="540" cy="400" r="5"/><circle cx="578" cy="400" r="4"/><circle cx="616" cy="400" r="4"/>
+      <circle cx="654" cy="400" r="4"/><circle cx="692" cy="400" r="4"/><circle cx="730" cy="400" r="4"/>
+      <circle cx="768" cy="400" r="4"/><circle cx="806" cy="400" r="4"/><circle cx="844" cy="400" r="4"/>
+      <circle cx="882" cy="400" r="4"/><circle cx="920" cy="400" r="4"/>
+    </g>
+    <!-- beacons at the head -->
+    <g fill="#C62828">
+      <circle cx="944" cy="400" r="5"/><circle cx="962" cy="400" r="5"/>
+    </g>
+    <text x="900" y="436" class="small">beacons</text>
+    <line x1="950" y1="420" x2="950" y2="408" class="leader"/>
+    <!-- direction of travel -->
+    <line x1="820" y1="520" x2="960" y2="520" stroke="#333" stroke-width="2" marker-end="url(#arrowDark)"/>
+    <text x="826" y="510" class="small">toward Earth</text>
+    <!-- triangle at mid-stream (x=730): outward above; two out-of-plane drawn on the track line -->
+    <use href="#coflyer" x="730" y="230"/>
+    <use href="#coflyer" x="730" y="400"/>
+    <text x="748" y="226" class="small">outward</text>
+    <text x="700" y="460" class="small">two out-of-plane,</text>
+    <text x="700" y="478" class="small">in front of and behind the page</text>
+    <line x1="730" y1="442" x2="730" y2="414" class="leader"/>
+    <!-- spare at trailing quarter point (x=635) -->
+    <use href="#coflyer" x="635" y="230"/>
+    <text x="560" y="206" class="small">spare, quarter point</text>
+    <!-- range lines to the tail PuffSat -->
+    <line x1="540" y1="400" x2="730" y2="230" class="range"/>
+    <line x1="540" y1="400" x2="730" y2="400" class="range" stroke-dasharray="7 4"/>
+    <line x1="540" y1="400" x2="635" y2="230" class="range"/>
+    <text x="520" y="430" class="small">end PuffSat</text>
+    <!-- L and R dimensions -->
+    <line x1="540" y1="580" x2="730" y2="580" stroke="#333" stroke-width="1.2"/>
+    <line x1="540" y1="572" x2="540" y2="588" stroke="#333" stroke-width="1.2"/>
+    <line x1="730" y1="572" x2="730" y2="588" stroke="#333" stroke-width="1.2"/>
+    <text x="578" y="608" class="small">L, up to 6,750 km</text>
+    <line x1="790" y1="230" x2="790" y2="400" stroke="#333" stroke-width="1.2"/>
+    <line x1="782" y1="230" x2="798" y2="230" stroke="#333" stroke-width="1.2"/>
+    <line x1="782" y1="400" x2="798" y2="400" stroke="#333" stroke-width="1.2"/>
+    <text x="800" y="320" class="small">R = 500 km</text>
+    <text x="520" y="100" class="tiny" style="fill:#555">Stream about 13,500 km long; drawn compressed.</text>
+    <text x="520" y="120" class="tiny" style="fill:#555">Co-flyers coast and never divert.</text>
+  </g>
+</svg>
