@@ -5307,5 +5307,5 @@ dollar (dear / cheap ship) after the 2.18 yr delay at 10%. Dear-seed break-evens
 routes on conventional launchers. The point is enough mass to start, even dear, because the
 seed is paid once and growth divides it. Directional, not priced.
 
-**Argon supply**: about 30,000 t per cycle for a 50-unit fleet; stated in `sec:growth_ledger`
-as unchecked against world output.
+**Argon supply** (Seth, 2026-10-03): not a concern and not mentioned in the paper. Argon is
+about 1% of the atmosphere and easy to get; the fleet's ~30,000 t per cycle is not worth a caveat.
