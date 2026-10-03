@@ -5270,3 +5270,42 @@ its optimum is k=9.20401; k=8.52 is 0.224927% below the maximum. Moving to k=5.2
 reduces that gross momentum by 7.812997%, even while eta_chem rises. These figures
 are not mission growth optima. Pulse-speed fractions and the expansion/ship-frame
 efficiency mapping remain separate open questions.
+
+
+## Growth charge, expected-value valuation and the seed route (2026-10-03)
+
+From `aim_is_all_you_need` at `22853ce` (ADRs 0037-0040), re-run in the sandbox before
+editing `sec:mass_interest`. Supersedes the IRR framing of `tab:seed_return` and every
+growth figure computed before ADR 0038.
+
+**Growth charge**: every launch unit the returning waves push is charged: lob, expended
+plate + absorber + spray, departure chamber or Raptors, tanks, propellant, cryostats, argon,
+and fleet manufacture. Prices are in `tab:growth_prices`; all but the $25/kg lob are
+hypotheses. Leaving the charge out (the old `tab:seed_return`) cut the solved chambers'
+cheap-seed break-even to a third.
+
+**Steady-state cost**: dollars per kilogram delivered to L1 once the fleet runs level, seed
+excluded, including the 1/G of each return sent back. Overhead goes as `C_g/(G-1)`.
+Solved chambers $100/kg, methalox $169/kg (Estimate). Supersedes the delivery-only
+`tab:delivery_ledger` as the figure to set against the data-center bars; that table's $2M
+chamber and 100th-plate price are still in the paper and still owed a fix.
+
+**First growth return**: the first time a launch unit pushed by returning PuffSats comes
+home, 5.46 yr (chambers) or 6.55 yr (methalox). It settles whether the cycle works.
+
+**Valuation (ADR 0040)**: time at 10%/yr, a 50% chance the cycle works settled once at the
+first growth return; flows before it are certain, flows after it are weighted; no risk after
+it (optimistic). 25% and 100% are printed beside it. _Avoid_: compounding a venture rate per
+year of waiting (it charges failure risk again for every year and decided the seed-route
+question by assumption).
+
+**Seed route (ADR 0039)**: one Earth loop (EEJ) on methalox, 1.33x / 1.16x direct seed per
+dollar (dear / cheap ship) after the 2.18 yr delay at 10%. Dear-seed break-evens fall to $179
+(solved H2) and $201 (solved CH4). SEP is out of scope; do not offer it as a seed option.
+
+**No-Starship hedge** (Seth, 2026-10-03): without a refuelled Starship the seed flies assisted
+routes on conventional launchers. The point is enough mass to start, even dear, because the
+seed is paid once and growth divides it. Directional, not priced.
+
+**Argon supply**: about 30,000 t per cycle for a 50-unit fleet; stated in `sec:growth_ledger`
+as unchecked against world output.
