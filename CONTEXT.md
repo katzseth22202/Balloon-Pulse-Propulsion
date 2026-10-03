@@ -2288,7 +2288,7 @@ _Avoid_: "McKinsey's $500/kg" (it is an interviewee's figure, and an interested 
 "matches terrestrial data centers" (the $200 bar is energy-only, and BCG finds a 1.5-1.8x
 premium even at $100/kg); citing the $500 end without the $200 end.
 
-**Delivery ledger** (decided 2026-09-21 grill):
+**Delivery ledger** (decided 2026-09-21 grill; **superseded 2026-10-03**: `tab:delivery_ledger` is now the all-in steady-state cost per kg at L1 from the growth model, $100 solved chambers / $169 methalox estimate, $410-506 pessimistic. Seth chose the all-in figure as the more honest one. The per-lob history below is kept for the record):
 Per-lob cost of Jupiter-return delivery. **500 t of cargo** is the printed baseline and
 **1,000 t** the upside (the lob carries 1,070-1,430 t with the braking burn, the plate about a
 tenth of the craft). Lines: booster lob at $25/kg of lofted mass ($27-36M, at or above the
@@ -5286,9 +5286,9 @@ cheap-seed break-even to a third.
 
 **Steady-state cost**: dollars per kilogram delivered to L1 once the fleet runs level, seed
 excluded, including the 1/G of each return sent back. Overhead goes as `C_g/(G-1)`.
-Solved chambers $100/kg, methalox $169/kg (Estimate). Supersedes the delivery-only
-`tab:delivery_ledger` as the figure to set against the data-center bars; that table's $2M
-chamber and 100th-plate price are still in the paper and still owed a fix.
+Solved chambers $100/kg, methalox $169/kg (Estimate). It replaced the delivery-only
+`tab:delivery_ledger` on 2026-10-03 and is the figure set against the data-center bars in
+`tab:l1_comparison`.
 
 **First growth return**: the first time a launch unit pushed by returning PuffSats comes
 home, 5.46 yr (chambers) or 6.55 yr (methalox). It settles whether the cycle works.
