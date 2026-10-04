@@ -2299,22 +2299,27 @@ never flies with the cargo. Plate and nozzle are priced two ways: pessimistic ($
 and the paper's own anchors ($5M at 10x steel; $0.4M from `sec:steel_chamber_service`).
 Before R&D: $216-238/kg (500 t, pessimistic), $76-98 (500 t, paper), $110-119 (1,000 t,
 pessimistic), $41-49 (1,000 t, paper). Every row beats $500/kg; $200/kg needs 1,000 t or the
-paper's own hardware prices. Starship at L1 reaches $500/kg only if LEO <= $110-142/kg and
-$200/kg only if LEO <= $44-57/kg.
+paper's own hardware prices. Starship at L1 reaches $500/kg only if LEO <= $118-198/kg and
+$200/kg only if LEO <= $47-79/kg (both cargo cases of the **Starship L1 floor**).
 _Avoid_: leaving the booster lob off the ledger; charging the nozzle as delivery hardware;
 calling 1,000 t conservative.
 
-**Starship L1 floor** (decided 2026-09-21 grill):
+**Starship L1 floor** (decided 2026-09-21 grill; multiplier revised 2026-10-04):
 Starship's cost per kilogram at Sun-Earth L1, extrapolated as its heat-shield-limited LEO cost
-times 3.5-4.6, the LEO mass launched per kilogram delivered (the cargo plus 252-356 t of
-propellant for 3.2-4.0 km/s at 380 s). It is a floor. Boil-off, settling and depot operations
-are named but not priced. The cargo ship is also left out of the dollar figure: it either
-returns at 11.1 km/s, 2.67 times the peak heating of an 8.0 km/s LEO return, or is expended.
+times the LEO mass launched per kilogram delivered, for 3.2-4.0 km/s at 380 s. Two cargo
+cases are shown. Full tanks (1200 t, less 7-17 t kept for the dry ship's return and landing)
+carry 510-790 t, a multiplier of 2.5-3.3. A bay capped at the 150 t LEO payload burns
+350-490 t, a multiplier of 3.3-4.3. The rocket-equation ratio 2.36-2.93 is the limit for a
+weightless ship. At Goldman's $183 the full-tank case reaches $460-610/kg and can just clear
+$500; no case clears $200. It is a floor. Boil-off, settling and depot operations are named
+but not priced. The cargo ship is treated as reused; its ship-time and its return at 11.1 km/s,
+2.67 times the peak heating of an 8.0 km/s LEO return, are named but not priced.
 The heat shield enters twice: it sets the LEO cost the multiplier scales, and it adds the
 ship's harder return. Tanker tile refurbishment is already inside the multiplier.
 _Avoid_: charging tanker heat-shield wear on top of the multiplier (double count); printing a
 Starship upper-stage hull cost (no sourced figure); calling the extrapolation an estimate
-rather than a floor.
+rather than a floor; pricing only a 100 t cargo (it overstates the dry-mass tax for a
+data-center-sized load); claiming Starship misses $500 at every underwriter figure.
 
 **Tanker upper-stage reuse** (retired from the paper 2026-09-21):
 The number of flights over which one Starship tanker upper stage's manufacturing cost is spread.
