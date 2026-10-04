@@ -91,7 +91,7 @@
       <circle cx="417.6" cy="310.9" r="2.3"/>
     </g>
     <path d="M 496,40 L 453,62" class="leader"/>
-    <text x="500" y="30">rim nozzles spray carried water,</text>
+    <text x="500" y="30">rim nozzles spray carried water or argon,</text>
     <text x="500" y="52"><tspan font-style="italic">k</tspan> kg per kg PuffSat</text>
   </g>
 

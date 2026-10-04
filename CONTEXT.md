@@ -51,13 +51,19 @@ without requiring a successful interception or a later command, burn, or release
 _Avoid_: treating disposal of an intact failed PuffSat as proof that every fragment
 from a breakup follows the same disposal trajectory.
 
-**Water-injected pusher plate**:
-The preferred candidate for the overtake leg, supplied with carried water that mixes
-with an overtaking PuffSat's flow near the plate and becomes pressure-driven exhaust.
-The injected water is bulk reaction mass, distinct from a thin protective coating.
-_Avoid_: treating it as an unaugmented plate; calling the water only a coolant;
+**Water- or argon-injected pusher plate**:
+The preferred candidate for the overtake leg, supplied with carried water or argon that
+mixes with an overtaking PuffSat's flow near the plate and becomes pressure-driven exhaust.
+The injected mass is bulk reaction mass, distinct from a thin protective coating.
+`sec:growth_ledger` flies argon (8 to 11% faster doubling, no bond toll); the ceiling and the
+companion impact-sim results in `sec:water_injected_overtake` are for water. Short form after
+first use: "the injected plate".
+_Avoid_: treating it as an unaugmented plate; calling the injectant only a coolant;
 calling k = 9–10 a computed optimum or the greater-than-fifteen delivery target a
-simulated result.
+simulated result; "water-injected pusher plate" as the device name (retired 2026-10-04,
+since argon is the headline injectant). The cite key `Katz_water_injected_plate_2026` and the
+label `sec:water_injected_overtake` keep "water": the cite names the companion document's
+real title, and the label is internal.
 
 **Medusa-style sail**:
 A flexible pusher mounted *behind* the rocket on shock-absorbing struts. Because it sits
@@ -139,7 +145,7 @@ Distinguished from the other two on purpose:
   collimation claim about a plume. They coincide numerically only in the `k → 0` limit, which is
   why `astro_constants.STD_FUDGE_FACTOR = 0.8` is reused as the ideal-ceiling `e`. Different
   hardware claims. The `k -> 0` coincidence is arithmetic and does not select the
-  overtake device; see **Water-injected pusher plate** and **Overtake leg vs head-on leg**.
+  overtake device; see **Water- or argon-injected pusher plate** and **Overtake leg vs head-on leg**.
 ADR `0013` makes `e ≈ 0.3` the architecture's survival threshold and finds `f` worth about as
 much as `e` (a 0.3 drop in `f` costs what a 0.2 swing in `e` does).
 _Avoid_: quoting an `e` without the `f` it assumed, or vice versa; calling the `e = 0.25` row a
@@ -2692,7 +2698,7 @@ its plasma is cooler and less radiative, not more).
 
 **Overtake leg vs head-on leg** (`sec:jupiter_only_growth`; first decided 2026-08-20 grill,
 **verdict reversed later the same day** after the companion two-leg sweep was regenerated):
-The current preferred overtake candidate is the **water-injected pusher plate**.
+The current preferred overtake candidate is the **water- or argon-injected pusher plate**.
 The historical comparisons below use unaugmented plates and magnetic nozzles.
 Superseded content: the earlier version of this entry
 argued the plate wins on *payload delivered per kilogram launched off Earth* (plate 1.000 vs
@@ -2874,7 +2880,7 @@ each. The gradient lies along the spin axis, across the outward field, so the ba
 side-heated cavity. **The ring arrives as a donut, and the gasification cloud is shaped to fill
 the center as well as it can** (decided 2026-09-13). No particular shaping is claimed. An
 inward-biased charge was discussed and set aside for the concept paper: the cloud also mixes with
-the water the plate injects (**Water-injected pusher plate**), so modeling the fill is a coupled
+the water or argon the plate injects (**Water- or argon-injected pusher plate**), so modeling the fill is a coupled
 problem that waits on expert input rather than an impact-simulation ask. This replaces the
 hub-bag argument of `sec:tethered_ring` for this ring; f and capture fraction remain single-cloud. Reproduce with `todos/jupiter_3s_release_geometry.py`.
 _Avoid_: "deploy"/"deployment" for this event, which already names the carrier perigee drop of
@@ -3338,7 +3344,7 @@ tests and ADRs owed. Three rules were decided in that grill:
 2. **Added reaction water** is carried mass that collision heat accelerates into
    exhaust. The earlier claim that it adds no plate impulse confused unchanged
    incoming bulk momentum with the full pressure-driven impulse; see
-   **Water-injected pusher plate**.
+   **Water- or argon-injected pusher plate**.
 
 - **`tab:bag_state`'s leak line is bracketed, not rescaled.** Stored energy is now pinned and rises to
   12.2 GJ, but the leak *fraction* is an integral over two regimes: while the fireball is at 26 000 K and
@@ -3805,7 +3811,7 @@ single-ended mirror in the same hardware with no moving parts.
 A comparison using a plate with no added reaction water, as in `tab:equivalent_plate`.
 Its elastic-bounce ceiling does not bound a plate that accelerates added water into
 exhaust.
-_Avoid_: extending an unaugmented plate's restitution factor to water-injected
+_Avoid_: extending an unaugmented plate's restitution factor to injected-plate
 performance without accounting for the heated reaction mass.
 
 **RESOLVED 2026-08-21 (was flagged OPEN the same day; the flag was my arithmetic error, not the
