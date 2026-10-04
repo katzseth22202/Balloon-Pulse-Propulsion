@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lithium deuteride impact-fusion target, schematic and not to scale.
+     Top: two targets close head-on near perihelion.
+     (a) Default kinetic spark: an impact-driven central column re-shocks against a
+         tungsten anvil behind a carbon liner and lights a deuterium-tritium plug.
+     (b) Fission-assisted spark: the implosion crushes a small fissile plug instead.
+     Both: lithium deuteride fuel, a lithium-6 absorber shell, a graded tungsten tamper.
+     Deliberately qualitative: no dimensions, masses, or densities.
+     Each element sits in a named Inkscape layer.
+     Export for the paper with:
+       inkscape images/lithium_target.svg -o images/lithium_target.pdf -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1000" height="800" viewBox="0 0 1000 800">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" inkscape:document-units="px"/>
+  <defs>
+    <style>
+      text { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 17px; fill: #222; }
+      .title { font-size: 19px; font-weight: bold; }
+      .small { font-size: 15px; }
+      .leader { stroke: #888; stroke-width: 1.2; fill: none; }
+      .squeeze { stroke: #444; stroke-width: 2.5; fill: none; }
+      .neutron { stroke: #2E6DB4; stroke-width: 2.5; stroke-dasharray: 7 5; fill: none; }
+      .path { stroke: #999; stroke-width: 1.5; stroke-dasharray: 6 5; fill: none; }
+    </style>
+    <marker id="arrowDark" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0,1 L 12,6 L 0,11 Z" fill="#444"/>
+    </marker>
+    <marker id="arrowBlue" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0,1 L 12,6 L 0,11 Z" fill="#2E6DB4"/>
+    </marker>
+    <radialGradient id="tamperGrade" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0.76" stop-color="#C3CBD3"/>
+      <stop offset="1" stop-color="#5E6A77"/>
+    </radialGradient>
+    <radialGradient id="dtGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFB347"/>
+      <stop offset="0.55" stop-color="#F28C28" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#F28C28" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fissGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#D9607E"/>
+      <stop offset="0.55" stop-color="#A23B57" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#A23B57" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sunGrad" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE38A"/>
+      <stop offset="1" stop-color="#F2B233"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ===== Inset: head-on closing near perihelion ===== -->
+  <g inkscape:groupmode="layer" id="inset" inkscape:label="Near-Sun inset">
+    <rect x="20" y="15" width="960" height="175" rx="10" fill="#FAFAFA" stroke="#CCC"/>
+    <circle cx="105" cy="102" r="58" fill="url(#sunGrad)"/>
+    <text x="105" y="108" text-anchor="middle">Sun</text>
+    <!-- orbit hints: both targets swing around the Sun, in opposite senses -->
+    <path class="path" d="M 412,102 C 320,35 210,30 150,52"/>
+    <path class="path" d="M 728,106 C 940,205 260,205 150,152"/>
+    <!-- prograde target -->
+    <circle cx="430" cy="102" r="18" fill="url(#tamperGrade)" stroke="#555"/>
+    <line x1="455" y1="102" x2="525" y2="102" class="squeeze" marker-end="url(#arrowDark)"/>
+    <text x="430" y="145" text-anchor="middle" class="small">prograde target</text>
+    <!-- retrograde target -->
+    <circle cx="710" cy="102" r="18" fill="url(#tamperGrade)" stroke="#555"/>
+    <line x1="685" y1="102" x2="615" y2="102" class="squeeze" marker-end="url(#arrowDark)"/>
+    <text x="696" y="145" text-anchor="middle" class="small">retrograde target</text>
+    <!-- meeting point -->
+    <path d="M 570,86 L 575,97 L 587,98 L 578,106 L 581,118 L 570,111 L 559,118 L 562,106 L 553,98 L 565,97 Z" fill="#F28C28"/>
+    <text x="570" y="45" text-anchor="middle">Head-on impact near perihelion</text>
+    <text x="570" y="68" text-anchor="middle" class="small">closing speed about 400–870 km/s, set by dive depth</text>
+  </g>
+
+  <!-- ===== Panel (a): default kinetic spark ===== -->
+  <g inkscape:groupmode="layer" id="panelA" inkscape:label="(a) Kinetic spark">
+    <text x="250" y="232" text-anchor="middle" class="title">(a) Default: kinetic spark</text>
+    <circle cx="250" cy="420" r="160" fill="url(#tamperGrade)" stroke="#555" stroke-width="1.5"/>
+    <circle cx="250" cy="420" r="122" fill="#CFE9C6" stroke="#5F8F55" stroke-width="1.2"/>
+    <circle cx="250" cy="420" r="92" fill="#FBE3B0" stroke="#B8962E" stroke-width="1.2"/>
+    <!-- recessed central column driven in by the impact -->
+    <rect x="241" y="330" width="18" height="70" fill="#F3CF85" stroke="#B8962E" stroke-width="1"/>
+    <line x1="250" y1="336" x2="250" y2="392" stroke="#7A5A10" stroke-width="2.5" marker-end="url(#arrowDark)"/>
+    <!-- hotspot on the anvil -->
+    <circle cx="250" cy="420" r="38" fill="url(#dtGlow)"/>
+    <!-- carbon liner and tungsten anvil -->
+    <rect x="226" y="424" width="48" height="16" fill="#222"/>
+    <rect x="229" y="428" width="42" height="24" fill="#4A4F55"/>
+    <!-- neutron caught in the lithium-6 shell -->
+    <path class="neutron" d="M 268,410 Q 310,385 338,372" marker-end="url(#arrowBlue)"/>
+    <circle cx="346" cy="368" r="6" fill="#2E6DB4"/>
+    <!-- squeeze arrows on the tamper -->
+    <line class="squeeze" x1="250" y1="236" x2="250" y2="256" marker-end="url(#arrowDark)" transform="rotate(45 250 420)"/>
+    <line class="squeeze" x1="250" y1="236" x2="250" y2="256" marker-end="url(#arrowDark)" transform="rotate(135 250 420)"/>
+    <line class="squeeze" x1="250" y1="236" x2="250" y2="256" marker-end="url(#arrowDark)" transform="rotate(225 250 420)"/>
+    <line class="squeeze" x1="250" y1="236" x2="250" y2="256" marker-end="url(#arrowDark)" transform="rotate(315 250 420)"/>
+    <text x="250" y="612" text-anchor="middle" class="small">Impact drives a fast column onto the anvil.</text>
+    <text x="250" y="632" text-anchor="middle" class="small">The re-shock lights the deuterium–tritium plug.</text>
+    <text x="250" y="652" text-anchor="middle" class="small" fill="#2E6DB4">Neutron + ⁶Li → tritium + alpha, both charged.</text>
+  </g>
+
+  <!-- ===== Panel (b): fission-assisted spark ===== -->
+  <g inkscape:groupmode="layer" id="panelB" inkscape:label="(b) Fission-assisted spark">
+    <text x="750" y="232" text-anchor="middle" class="title">(b) Fission-assisted spark</text>
+    <circle cx="750" cy="420" r="160" fill="url(#tamperGrade)" stroke="#555" stroke-width="1.5"/>
+    <circle cx="750" cy="420" r="122" fill="#CFE9C6" stroke="#5F8F55" stroke-width="1.2"/>
+    <circle cx="750" cy="420" r="92" fill="#FBE3B0" stroke="#B8962E" stroke-width="1.2"/>
+    <circle cx="750" cy="420" r="42" fill="url(#fissGlow)"/>
+    <circle cx="750" cy="420" r="16" fill="#A23B57" stroke="#5E1F31" stroke-width="1.2"/>
+    <!-- neutron caught in the lithium-6 shell -->
+    <path class="neutron" d="M 768,410 Q 810,385 838,372" marker-end="url(#arrowBlue)"/>
+    <circle cx="846" cy="368" r="6" fill="#2E6DB4"/>
+    <!-- squeeze arrows on the tamper -->
+    <line class="squeeze" x1="750" y1="236" x2="750" y2="256" marker-end="url(#arrowDark)" transform="rotate(45 750 420)"/>
+    <line class="squeeze" x1="750" y1="236" x2="750" y2="256" marker-end="url(#arrowDark)" transform="rotate(135 750 420)"/>
+    <line class="squeeze" x1="750" y1="236" x2="750" y2="256" marker-end="url(#arrowDark)" transform="rotate(225 750 420)"/>
+    <line class="squeeze" x1="750" y1="236" x2="750" y2="256" marker-end="url(#arrowDark)" transform="rotate(315 750 420)"/>
+    <text x="750" y="612" text-anchor="middle" class="small">The implosion crushes a small fissile plug</text>
+    <text x="750" y="632" text-anchor="middle" class="small">until it fissions and heats the fuel.</text>
+    <text x="750" y="652" text-anchor="middle" class="small" fill="#A23B57">Surer ignition, a little fission waste, treaty-barred.</text>
+  </g>
+
+  <!-- ===== Legend ===== -->
+  <g inkscape:groupmode="layer" id="legend" inkscape:label="Legend">
+    <rect x="40"  y="690" width="22" height="22" fill="url(#tamperGrade)" stroke="#555"/>
+    <text x="72"  y="707" class="small">Tungsten tamper, graded heavy to light</text>
+    <rect x="390" y="690" width="22" height="22" fill="#CFE9C6" stroke="#5F8F55"/>
+    <text x="422" y="707" class="small">Lithium-6 absorber (⁶LiD or ⁶LiH)</text>
+    <rect x="700" y="690" width="22" height="22" fill="#FBE3B0" stroke="#B8962E"/>
+    <text x="732" y="707" class="small">Lithium deuteride fuel</text>
+    <circle cx="51" cy="751" r="11" fill="url(#dtGlow)"/>
+    <text x="72"  y="757" class="small">Deuterium–tritium plug</text>
+    <rect x="390" y="740" width="22" height="7" fill="#222"/>
+    <rect x="390" y="747" width="22" height="15" fill="#4A4F55"/>
+    <text x="422" y="757" class="small">Carbon liner on tungsten anvil</text>
+    <circle cx="711" cy="751" r="10" fill="#A23B57" stroke="#5E1F31"/>
+    <text x="732" y="757" class="small">Fissile plug</text>
+    <text x="960" y="790" text-anchor="end" class="small" fill="#777">Schematic, not to scale</text>
+  </g>
+</svg>
