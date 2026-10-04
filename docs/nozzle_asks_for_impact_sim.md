@@ -50,6 +50,8 @@ Two answer documents are carried in this repo,
 | **N14** | folded into N16, answered there (W17). **The answer reverses the ask** |
 | **N15** | folded into N16, answered there (W19, W20, W24) |
 | **N16** | **answered in full (W16–W22).** Four paper-side premises did not survive |
+| N17 | landed in part (A1–A6); three items still owed, see its section |
+| **N18** | **open, raised 2026-10-04.** Carbon-on-hydrogen B′ and a coupled surface balance for the near-term chamber walls. The paper already carries the hydrogen hot-band coat on a paper-side estimate; this confirms or breaks it |
 
 **The one number still owed by anybody is the Stanton number** behind W12 and W23. It is a
 factor of ten on the only channel that delivers meaningful energy to the wall, and closing it
@@ -926,6 +928,130 @@ ms open). Blowdown e-fold 46-61 ms replaces the paper's 25-33 ms in `sec:rod_2p5
 
 Not impact-sim scope: pitch removal heat at hundreds of bar (arc-jet data), the Leidenfrost
 limit on a 4-7 MW/m^2 spray quench, and reloading the plug and wires every 250 ms.
+
+## N18. Does a renewed carbon coat survive hydrogen? B′ and a coupled surface balance for the near-term chamber
+
+Raised 2026-10-04 in the paper repo. This repeats context so it can be copied verbatim into
+`puffsat_impact_simulation`.
+
+**What the paper said until 2026-10-04.** `sec:methane_7000_near_term` ruled any carbon coat out of
+the hydrogen chamber: "Hydrogen must never meet a graphite coat. At \SI{2500}{\kelvin} it can
+dissolve \SI{0.5}{\kilogram} of carbon per kilogram of gas, and at \SI{3900}{\kelvin}
+\SI{3.5}{\kilogram}. That is the corrosion that ate the graphite fuel of the NERVA reactors." It
+built part of the methane safety case on that: "No coat can take the surplus, because hydrogen
+dissolves graphite."
+
+**What it says now, provisionally, on the paper-side estimate below.** The hydrogen chamber
+stays at 5500 K on bare GRCop-84, with pitch sprayed only on a hot band around the throat. The
+paper prices a whole-wall coat at a hotter charge and declines it. It states the chemical-recession
+figures as "our estimate from a single transfer coefficient, not a solved balance of heat and
+chemistry at the surface", and lists that balance as open. This item confirms or breaks those
+figures.
+
+**Why we doubt it.** NERVA's graphite had to survive flowing hydrogen for hours (XE: 115 min over
+28 starts). A sprayed coat faces one 30–40 ms blowdown and is renewed. The 0.5 and 3.5 kg/kg
+figures are an equilibrium ratio, B′ in ablation terms. They set how much carbon each kilogram of
+gas at the wall can take, not how much gas reaches the wall. Your W15 already showed that the wall
+boundary layer is in chemical equilibrium with five decades of margin. That is exactly the
+condition under which a B′ table plus a transfer coefficient gives the loss.
+
+**The paper-side estimate this should confirm or break.** Transfer coefficient
+`rho_e u_e C_H = q_conv / (h_r - h_w)`, with the near-term table's hydrogen convection of
+14–189 MW/m² and `h_r - h_w` ≈ 94 MJ/kg (H₂ at 5500 K with ~5% dissociation, against a 1000 K
+wall). That gives 0.15–2.0 kg/m²/s. Film-theory blowing correction `m = rho_e u_e C_H ln(1 + B′)`.
+Held over 30–40 ms on pitch at 1300 kg/m³:
+
+| surface T | B′ (paper's figure) | low flux edge | high flux edge |
+| ---: | ---: | ---: | ---: |
+| 2500 K | 0.5 | 1–2 µm | 19–25 µm |
+| 3900 K | 3.5 | 5–7 µm | 70–93 µm |
+
+On a hot band three times the throat area (0.45–0.59 m²), even chemical plus thermal at a 2× hot
+spot is under 0.4 kg per pulse, under 1% of the 59.9 kg charge. If that holds, the hydrogen chamber
+gets the same reserve against hot spots that the methane chamber claims.
+
+**Weaknesses in that estimate, for you to fix rather than inherit.**
+- One transfer coefficient, taken from the cold-wall Bartz flux. A 3900 K ablating surface changes
+  both `h_w` and the blowing.
+- Chemical and thermal recession are treated as separate. They draw on the same heat, so they
+  partly overlap.
+- B′ is the paper's quoted number, and we are unsure of its pressure or composition. Pressure
+  should matter little for C + H₂ → C₂H₂, since gas moles are unchanged, but please check.
+- Pitch is not graphite. It brings its own hydrogen and pyrolyzes.
+
+**Methane is not exempt, and the ask covers it too.** W15 found the methane gas undersaturated at
+3900 K (S = 0.032 at 623 bar), so it takes carbon off the wall too. The near-term methane pitch
+loss of 1.4–5.6 kg per pulse comes from a thermal-only model ("heat beyond that removes pitch at
+graphite's \SI{59.3}{\mega\joule\per\kilogram}"), so it is a floor. The paper's comparison of
+the two walls holds only if both get the same treatment.
+
+**Geometry.** The near-term chamber of N17: 2.5 kg rod at 75 km/s, 20 m³ sphere (35.6 m² wall),
+4.4 kg polyethylene plug, throats 0.149–0.198 m², 15° cone.
+- Hydrogen: 5500 K, 59.9 kg, 818 bar peak, emptying e-fold 30–40 ms, convection 14–189 MW/m²,
+  radiation up to 52 MW/m². The gas carries the rod and plug's 5.9 kg of carbon.
+- Methane: 7000 K, 68.8 kg, 496 bar peak, e-fold 46–61 ms, convection 4–55 MW/m², radiation
+  136 MW/m².
+- Pitch as in A5: k = 0.2 W/m/K, ρ = 1300 kg/m³, c = 1600 J/kg/K, surface clamp 3900 K.
+
+### What is wanted, in order
+
+1. **B′ tables for carbon, from the existing equilibrium EOS.** Wall temperature 1500–4500 K,
+   pressure 1–900 bar. Two edge-gas compositions: the hydrogen chamber's (H plus the rod and
+   plug carbon) and the methane chamber's. Report B′ as kg of carbon removed per kg of edge gas,
+   with the species split (C₂H₂, CH₄, C₂H, C₃, C). **This is the cheap partial answer.** It
+   falls out of the machinery behind W15's saturation table, and with it alone the paper can
+   redo the estimate above honestly.
+2. **The coupled surface balance in the A5 wall solver** (`make walled-nozzle-wall-layers`). Add
+   the B′ chemical term and blowing to the existing 1-D pitch layer, and run it over the real
+   blowdown history at both flux edges and both throats, for both gases. Hydrogen runs pitch over
+   GRCop-84 and over A-286 (the throat inserts). Report per pulse:
+   - recession in µm, split chemical against thermal;
+   - kg over the whole wall and over a 3× throat-area hot band;
+   - the surface temperature history;
+   - the substrate's peak temperature.
+3. **Strip threshold.** For starting layers of 0.1, 0.2 and 0.3 mm, the flux multiplier on the
+   high edge at which the layer is gone in one pulse. The paper currently says 1.7× for methane,
+   on the thermal-only model.
+4. **Specific impulse cost of the picked-up carbon,** through the A3 machinery that priced the
+   polyethylene carbon at under 0.5% of η. One number per gas at the item 2 recession.
+5. **Thermography, from the same solver.** After the pulse, the surface cools by conducting into
+   the substrate on a time scale of about L²/α, which is 26 ms at 50 µm and 0.3 s at 170 µm on A5's
+   pitch. Wanted:
+   - surface temperature at +10, 25, 50, 100 and 150 ms after the flux falls away, for
+     remaining thicknesses of 20–200 µm;
+   - dT/dL at each time;
+   - the same with char conductivity bracketed at 0.2, 1 and 5 W/m/K, since charred pitch
+     conducts better than raw.
+
+   This decides when in the 250 ms interval a camera must look. The port gate reopens only at
+   115–150 ms.
+
+### What would settle it
+
+- **The hot-band text stands if** the hydrogen hot band loses under ~0.5 kg per pulse at the
+  high edge, and a ≤0.3 mm spray survives a 2× hot spot. The paper then swaps its estimate for
+  your numbers.
+- **The hot band comes out again if** chemical recession at the high edge exceeds the spray that
+  can be laid down in the interval, roughly ≥0.3 mm per pulse. The NERVA time-scale argument
+  stays either way, now carrying your B′ number.
+- **Either way the methane pitch figure moves** if the chemical term in item 2 is not small
+  against the thermal one.
+
+### Not impact-sim scope
+
+Pitch pyrolysis in 800 bar hydrogen, char conductivity and emissivity, and the camera's view of
+the throat. These are lab or design questions.
+
+### Reproducing the paper-side numbers
+
+`todos/hydrogen_coat_thermography_draft.md` in the paper repo (gitignored) carries the draft
+text and the arithmetic. The numbers above come from `m = (q/ΔH) ln(1+B′) τ` with the inputs
+listed, and from `t = L²/α` with α = 0.2/(1300 × 1600) = 9.6e-8 m²/s.
+
+**Rests on this in the paper:** the hot-band coat and its under-1% mass claim in
+`sec:methane_7000_near_term`, and the softened hot-spot safety case there. The extension stays
+carbon-free regardless, since it sees hydrogen for the whole burn without renewal, which is the
+NERVA regime. The thermography paragraph does not rest on this item.
 
 ## Suggested order
 

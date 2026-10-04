@@ -1909,7 +1909,7 @@ door_rescore.py` on `aim_is_all_you_need@e384232` (reproduces the old table's 53
 **Hydrogen wins on Isp; methane is proposed on practice** (steel shell + sprayed coat, no
 embrittlement in methane, tanks, radiative zero boil-off), which the paper says it cannot price.
 Walls: H2 on bare GRCop-84 (surface 370-1110 K; LH2 spray 21-350 MJ/pulse vs ~230 MJ to room T;
-never graphite, H2 dissolves 0.5 kg C/kg at 2500 K). CH4 on Cr-Mo steel with 0.2 mm pitch (steel
+pitch only on a hot band ~3x throat area, <0.4 kg/pulse, <1% of charge, on a paper-side B' estimate pending N18; 5500 K kept, whole-wall coat to run hotter priced at >=4 kg/pulse and declined 2026-10-04. NERVA argument replaced: hours of exposure vs one 30-40 ms blowdown on a renewed coat). CH4 on Cr-Mo steel with 0.2 mm pitch (steel
 395-441 K, 1.4-5.6 kg/pulse, keeps 28-50 MJ), optional 1-2 mm porous graphite base. Graphite alone
 rejected on heat: carbon melts (~4800 K) before subliming above its 107 atm triple point (Haaland
 1976), so it keeps 110-243 MJ vs ~100 MJ the charge absorbs to 500 K. No coolant passages: the
