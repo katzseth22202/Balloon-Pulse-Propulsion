@@ -99,13 +99,13 @@ Conceived in the 1950s and recently brought to a new audience by \textit{The Thr
 
 Our approach replaces nuclear bombs with precisely aimed, hypervelocity gas puffs from specialized ``PuffSat'' microsatellites (see \autoref{sec:puffsat_design}) sequentially impacting a rocket's pusher plate.  These gas puffs can be scaled down to practical sizes.  Unlike nuclear explosions, small hypervelocity gas impacts could be efficiently contained within a pulsed propulsion chamber. With gravity assists and the Oberth effect \cite{oberth_effect}, hypervelocity PuffSat impacts could achieve energy densities and specific impulses well above those of chemical rockets.
 
-Picture two rockets. The first rocket deploys a series of these fast-moving PuffSats. As shown in \autoref{fig:PuffSat_impact}, the deployed PuffSats follow precise paths to a shock-absorbing pusher plate (see \autoref{sec:lightweight_pusher_plates}) on a separate target rocket. Each one gasifies and strikes the plate in sequence. These collisions deliver concentrated pulses of energy and momentum to the target vehicle.
+Picture two rockets. The first rocket deploys a series of these fast-moving PuffSats. They follow precise paths to a separate target rocket and strike it in sequence. These collisions deliver concentrated pulses of energy and momentum to the target vehicle. \autoref{fig:puffsat_collision} shows the two ways the target can catch them. A PuffSat that overtakes the target from behind gasifies and strikes a shock-absorbing pusher plate (see \autoref{sec:lightweight_pusher_plates}). One that meets the target nearly head-on arrives as a solid rod instead. It enters a pulsed propulsion chamber through a narrow port and turns to plasma inside, and the hot gas leaves through a nozzle at the back (see \autoref{sec:needle_through_fog}).
 
 \begin{figure}[htpb]
     \centering
-    \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
-    \caption{PuffSats from a first rocket (not shown) crash their gas puffs into a second target rocket, transferring momentum for propulsion. \cite{earth_image}}
-    \label{fig:PuffSat_impact}
+    \includegraphics[width=0.9\linewidth]{images/puffsat_collision.pdf}
+    \caption{Not to scale. The two ways one ship catches PuffSats, drawn in the ship's frame. The ship travels to the right in both panels. On the Jupiter return the same ship carries both devices, the plate at its aft end and the chamber at its forward end (\autoref{sec:jupiter_only_growth}). (a) Pusher plate, growth wave. PuffSats overtake the ship from behind at closing speed $w$, and the nearest has dispersed into a gas cloud. Rim nozzles spray a slug of carried water into the gas just ahead of the plate, which rides on gas springs. The gas and slug leave backward, so the thrust points the way the PuffSats travel (\autoref{fig:plate_stack}). (b) Pulsed nozzle, departure wave. PuffSats meet the ship nearly head-on at \SIrange{68}{75}{\kilo\meter\per\second}. The nearest is still a solid rod and does not disperse before it arrives. It enters a narrow port in the ship's forward face and erodes into a plug inside the chamber. Rod and plug turn to plasma with the gas charge held there. The gas leaves through a throat at the back, so the thrust points toward the incoming PuffSats (\autoref{fig:rod_port_plug}, \autoref{fig:chamber_cooling}).}
+    \label{fig:puffsat_collision}
 \end{figure}
 
 Our goal is to stimulate fresh thinking and new research directions. At minimum, the concept suggests new uses of formation flying.
@@ -158,7 +158,14 @@ By contrast, a suborbital rocket that merely reaches \SI{200}{\kilo\meter} in al
     \label{fig:suborbital-cartoon}
 \end{figure}
 
-Starship launches PuffSats for pulsed propulsion into a highly eccentric staging orbit around Earth. Near its distant apogee, a delivery burn sends them inward on an escaping trajectory with periapsis at the \SI{200}{\kilo\meter} interception altitude (see \autoref{sec:handling_space_debris}). They arrive horizontally, just above local escape speed. Functioning dry hardware brakes into a return ellipse after detachment, then lowers periapsis for controlled ocean reentry. Uncontrolled duds retain the escaping arrival as their passive fallback. The suborbital rocket rides the PuffSats'  momentum pulses to low Earth orbit. The PuffSat mass this takes is modest, comparable to the target rocket's own mass (see \autoref{tab:mass_scenarios}). While this approach reduces payload capacity compared to a single rocket system, most satellites are unable to take advantage of Starship's enormous payload volume anyway.
+Starship launches PuffSats for pulsed propulsion into a highly eccentric staging orbit around Earth. Near its distant apogee, a delivery burn sends them inward on an escaping trajectory with periapsis at the \SI{200}{\kilo\meter} interception altitude (see \autoref{sec:handling_space_debris}). They arrive horizontally, just above local escape speed. Functioning dry hardware brakes into a return ellipse after detachment, then lowers periapsis for controlled ocean reentry. Uncontrolled duds retain the escaping arrival as their passive fallback. The suborbital rocket rides the PuffSats'  momentum pulses to low Earth orbit. The PuffSat mass this takes is modest, comparable to the target rocket's own mass (see \autoref{tab:mass_scenarios}). While this approach reduces payload capacity compared to a single rocket system, most satellites are unable to take advantage of Starship's enormous payload volume anyway. \autoref{fig:PuffSat_impact} sketches the interception.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/Starship_Impact_ellipse.png}
+    \caption{PuffSats from a first rocket (not shown) crash their gas puffs into a second target rocket in low Earth orbit, transferring momentum for propulsion. \cite{earth_image}}
+    \label{fig:PuffSat_impact}
+\end{figure}
 
 
 The preceding pulses leave gas in the next PuffSat's path. For \SI{100}{\kilogram} pulses at \SI{4}{\hertz}, the estimate in \autoref{sec:leo_plume_encounter} suggests this exposure does not rule out the LEO scenario. A smooth expanding plume delays each PuffSat by under a millimeter of travel. That delay lies along the approach line, so it moves the landing point on the plate by under a micrometer. A \SI{100}{\gram\per\square\meter} bumper limits heating to tens of kelvin. That assessment depends on the exhaust distribution and on dispersing the heavier membrane before plate contact or accepting its fragments in a replaceable facing.
