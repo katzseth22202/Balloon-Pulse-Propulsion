@@ -2,7 +2,7 @@
 <!-- Cooling the 2.5 kg rod's 20 m^3 chamber without coolant passages.
      (a) Between pulses: spray heads wet the wall with the next charge, which becomes gas;
      films over the entrance and the throat hold it in. Gate open, plug on its wires.
-     (b) Hydrogen at 5500 K on a bare copper liner.
+     (b) Hydrogen at 5500 K on a bare copper liner, pitch sprayed on a hot band only.
      (c) Methane at 7000 K on Cr-Mo steel lined with pitch, over an optional porous
      graphite base.
      Layer thicknesses are not to scale.
@@ -160,6 +160,7 @@
     <text x="36" y="774" class="tiny">0.6–9.8 MJ/m² per pulse</text>
     <rect x="240" y="580" width="70" height="210" fill="url(#copperHeat)"/>
     <rect x="310" y="580" width="160" height="210" fill="url(#steel)"/>
+    <rect x="232" y="730" width="8" height="60" fill="url(#pitch)"/>
     <line x1="240" y1="580" x2="240" y2="790" stroke="#111" stroke-width="1.5"/>
     <line x1="310" y1="580" x2="310" y2="790" stroke="#333" stroke-width="1.2"/>
     <text x="248" y="604" class="tiny" fill="#ffffff">copper</text>
@@ -170,8 +171,8 @@
     <text x="20" y="886" class="small">An LH₂ spray takes 21–350 MJ per pulse;</text>
     <text x="20" y="904" class="small">warming the charge to room temperature</text>
     <text x="20" y="922" class="small">absorbs about 230 MJ.</text>
-    <text x="20" y="950" class="small" fill="#C62828">Never graphite: hydrogen dissolves it,</text>
-    <text x="20" y="968" class="small" fill="#C62828">0.5 kg of carbon per kg of gas at 2500 K.</text>
+    <text x="20" y="950" class="small">Pitch only on a hot band (dark strip),</text>
+    <text x="20" y="968" class="small">under 0.4 kg a pulse; hydrogen strips carbon.</text>
   </g>
 
   <!-- ============================ (c) Methane on pitch-lined steel ============================ -->
