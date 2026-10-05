@@ -293,7 +293,7 @@ At 75 km/s head-on, 10,000 K chamber, 400 m^3, `eta_geom = 0.852`, 25 kg impacto
 | ammonia* | 28.54 | 714 kg | 95.2 | *0.410* | *0.624* | *640 s* | *0.628* | 9.5 t | 682 kg/m^3 @ 240 K |
 | liquid hydrogen | 7.77 | 194 kg | 320.8 | 0.532 | 0.711 | 1,087 s | 0.604 | 11.6 t | 71 kg/m^3 @ 20 K |
 | water alone | 39.55 | 989 kg | 69.4 | 0.415 | 0.628 | 579 s | 0.568 | 9.2 t | ambient |
-| (water on the magnetic nozzle) | 8.52 | 213 kg | -- | -- | *0.775* | 1,249 s | 1.225 | 17.3-37.6 t | ambient |
+| (water on the magnetic nozzle) | 8.52 | 213 kg | -- | -- | *0.775* | 1,249 s | 1.225 | 30-87 t | ambient |
 
 `eta_jet` is `sqrt(conversion)` from the companion times a walled `eta_geom` of 0.974
 (divergence 0.98 x radiative escape 0.994; no field, so nothing fails to grip). **The magnetic
@@ -1058,8 +1058,8 @@ depth.
 Self-contained subsection under `sec:jupiter_only_growth`, carrying its own ladder table, plus
 one sentence in `sec:minimum_nozzle` pointing at a non-magnetic option on the head-on leg.
 **Nothing existing is re-scored.** Deliberately declined: re-scoring the minimum-rocket
-conclusion (the 8.7 t methane vessel against the magnet's 17.3-37.6 t of structure plus
-conductor would move the 8-38%-of-a-100-t-craft headline) and re-scoring the growth chain at
+conclusion (the 8.7 t methane vessel against the magnet's 30-87 t of structure plus
+conductor, after fringe and D=1.7, would move the 13-87%-of-a-100-t-craft headline) and re-scoring the growth chain at
 709 s. Both are companion-repo asks and both stay open, and the second is now the one that
 matters: forward thrust needs only `eta_jet > 1/sqrt(1+k)` = 0.220, which the wall clears at
 0.621, and `tab:mass_interest_growth` crosses from losing to growing near 0.55, which it also
