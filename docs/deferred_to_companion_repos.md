@@ -290,3 +290,56 @@ lofts the craft to 400 km is outside the chain calculation and stays outside; do
 | ask | what is wanted | status |
 | --- | --- | --- |
 | **S9** | Re-run the flown chain with the growth push at **400 km** and the departure at **600 km**, finite-burn loss charged at 2 Hz; report the compounded multiple against 200 km and against a 400 km departure | **open** |
+
+# Spray-plate batch, raised 2026-10-06
+
+From applying `aim_is_all_you_need` @ `a440fba` (ADR 0041) and the impact sim's Draft 2 @
+`7e1d8f7`. Paper-side record: `docs/adr/0025-the-growth-push-flies-the-spray-cup.md`.
+
+## S10. The climbing lob is charged from the wrong baseline (aim_is_all_you_need)
+
+`src/lob_rise.booster_growth` returns `lofted_mass(0) / lofted_mass(v)`, an apex at 400 km. The
+parent's `sec:vertical_lob` lofts its 1250-1430 t to a ~430 km top, so it already passes 400 km
+at ~0.75 km/s, and ADR 0037's 1.1-1.2x booster was sized from those figures. The charge should
+be `lofted_mass(750) / lofted_mass(v)`. Same integrator, 380 s: **1.029 / 1.044 / 1.059** at
+1.0 / 1.1 / 1.2 km/s (350 s: 1.032 / 1.048 / 1.065), against ADR 0041's 1.070-1.101. The paper
+charges **1.044** (1.1 km/s, the operating point that holds ±65 km). Wanted: confirm, and make
+`plate-designs-cost` take the baseline as a parameter.
+
+## S11. Commit targets for the cells the paper now prints (aim_is_all_you_need)
+
+The paper prints these behind the spray cup (and the grid behind the plug), run paper-side
+from a scratch driver over the companion's own functions, no code changes:
+- `tab:growth_ledger_doubling` / `_ten_year`: every chamber share (50/70/90/100%) plus solved,
+  and methalox, at k <= 8.52 with k <= 10 in parentheses, `PlateDesign` SPRAY_CUP and PLUG.
+- The ledger sensitivities: hold sweep, methane pitch 1.4/5.6 kg, the 10-day orbit, and water
+  at all-in η_jet 0.50/0.53/0.56 (`WATER_SLUG`, `NO_BONDS`).
+- The full `growth_cost_report` sections 2-9 behind SPRAY_CUP, and the headline and odds
+  behind PLUG and ADR_0033_PLATE, with the S10 lob.
+- `seed_cost` amortization and the `harvest` delivery and grow-or-harvest tables behind
+  SPRAY_CUP.
+**Hazard found while doing it:** `two_wave_growth.DEFAULT_SPLIT_DAYS` is **10** and
+`growth_ledger.DEFAULT_PARKING_DAYS` is **20**. Calling `adaptive_two_wave_cycles()` bare
+silently flies the 10-day orbit; only the ledger's `main` and `seed_cost.chains` pass 20.
+Consider one default.
+
+## S12. Carry the plate film's mass (aim_is_all_you_need)
+
+The spray cup burns 4-6 kg of pitch per 12 MN·s pulse vapor-shielded, 28-33 kg unshielded
+(impact sim P5): 5-9 t or 34-50 t per 1200-1500-pulse push. The ledger does not carry it, and
+the cost book's film line is 0.1% / 4% of PuffSat mass against 4-8% / 30-45%. Wanted: the
+doubling with the film charged as launched mass at both ends.
+
+## S13. The plug in the deep bowl, and the push as a finite burn (puffsat_impact_simulation)
+
+- The plug's best cases were on a shallow dish with an 8 m skirt; run it in the d/D 0.30 bowl
+  with the 2 m skirt, so the paper's two designs share a plate.
+- The handoff's ~250 s push and ~70 km stream climb disagree with the companion's in-plane
+  integration (~300 s, ~185 km). The paper prints the latter.
+
+| ask | what is wanted | status |
+| --- | --- | --- |
+| **S10** | lob climb charged from 0.75 km/s, not an apex | answered by companion ADR 0042 (patch in `todos/`, pending apply) |
+| **S11** | make targets for the spray-cup and plug grids and cost cells | answered: `make plate-grid`, `plate-cost`, `plate-seed` (same patch) |
+| **S12** | film mass in the ledger | open; named as unpriced |
+| **S13** | plug in the deep bowl; push duration reconciled | open |

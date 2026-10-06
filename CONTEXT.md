@@ -55,15 +55,44 @@ from a breakup follows the same disposal trajectory.
 The preferred candidate for the overtake leg, supplied with carried water or argon that
 mixes with an overtaking PuffSat's flow near the plate and becomes pressure-driven exhaust.
 The injected mass is bulk reaction mass, distinct from a thin protective coating.
-`sec:growth_ledger` flies argon (8 to 11% faster doubling, no bond toll); the ceiling and the
-companion impact-sim results in `sec:water_injected_overtake` are for water. Short form after
-first use: "the injected plate".
+`sec:growth_ledger` flies argon. Since 2026-10-06 the flown design is the **spray cup**
+(`sec:spray_cup`); the ceiling and the early water results in `sec:water_injected_overtake`
+are kept as background. Short form after first use: "the injected plate".
 _Avoid_: treating it as an unaugmented plate; calling the injectant only a coolant;
 calling k = 9–10 a computed optimum or the greater-than-fifteen delivery target a
 simulated result; "water-injected pusher plate" as the device name (retired 2026-10-04,
 since argon is the headline injectant). The cite key `Katz_water_injected_plate_2026` and the
 label `sec:water_injected_overtake` keep "water": the cite names the companion document's
 real title, and the label is internal.
+
+**Spray cup**:
+The injected plate as the impact simulation sized it (ADR-0055 there; paper ADR 0025): a
+maraging bowl of depth over diameter 0.25-0.30, 20 m across, with a 2 m straight skirt, argon
+sprayed into a diffuse cloud ~4 m deep standing ~1 m off the floor. Flies first, at
+**η_jet = 0.60** (0.57 unmixed downside, 0.67-0.71 fully mixed). η_jet here is all-in: it
+already charges the PuffSat's water bonds, so the ledger runs it with no separate toll and
+takes energy efficiency η = η_jet².
+_Avoid_: comparing it to "the paper's 0.775" (that is the magnetic nozzle's literature target);
+the plate the ledger flew before was η = 0.7, i.e. **η_jet 0.84**, called "the earlier plate".
+
+**Plug (overtake)**:
+The later overtake design: each PuffSat sphere buries itself in a wire-held argon-ice plug
+ahead of the bowl. η_jet ~0.70 (estimate carried from 2-D). Needs millimeter last-100-ms aim
+and more enclosure; not yet run in the deep bowl.
+_Avoid_: confusing it with the head-on chamber's foam plug (`sec:material_chamber_plug`).
+
+**Skirt (spray cup)**:
+The straight wall continuing the bowl's rim toward the gas. Fixed to the **vehicle** on its own
+frame; the floor slides inside it like a piston, behind a sprung segmented seal. A thin
+maraging liner in a **carbon** hoop wrap (16 t), sized to 0.7% hoop strain. Carbon, not aramid:
+a strain-sized wrap's mass goes as density over modulus (aramid 43 t vs carbon 32 t on the same
+skirt).
+_Avoid_: drawing the skirt attached to the floor (a rigid joint takes a 1-3 GPa ρcΔv wave);
+calling the wrap Kevlar.
+
+**Sprung mass (spray cup)**:
+The floor plus the hoop wrap on its steep band, 134 t of the 150 t plate; the skirt (16 t) is
+not sprung. Pulse size `J ≈ 8 m_s ν s` uses this mass: 12 MN·s at 4 Hz on 2.8 m.
 
 **Medusa-style sail**:
 A flexible pusher mounted *behind* the rocket on shock-absorbing struts. Because it sits
