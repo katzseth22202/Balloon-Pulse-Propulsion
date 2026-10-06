@@ -339,7 +339,44 @@ doubling with the film charged as launched mass at both ends.
 
 | ask | what is wanted | status |
 | --- | --- | --- |
-| **S10** | lob climb charged from 0.75 km/s, not an apex | answered by companion ADR 0042 (patch in `todos/`, pending apply) |
-| **S11** | make targets for the spray-cup and plug grids and cost cells | answered: `make plate-grid`, `plate-cost`, `plate-seed` (same patch) |
-| **S12** | film mass in the ledger | open; named as unpriced |
+| **S10** | lob climb charged from 0.75 km/s, not an apex | answered by companion ADR 0042 (`67d0a36`); charge superseded by ADR 0043's braked lob, x1.065 |
+| **S11** | make targets for the spray-cup and plug grids and cost cells | answered: `make plate-grid`, `plate-cost`, `plate-seed` (`67d0a36`) |
+| **S12** | film mass in the ledger | answered by companion ADR 0043 (`46ea0db`); paper carries 6 kg/pulse, ADR 0026 |
 | **S13** | plug in the deep bowl; push duration reconciled | open |
+
+# Film and brake batch, raised 2026-10-06
+
+From applying `aim_is_all_you_need` @ `46ea0db` (ADR 0043). Paper-side record:
+`docs/adr/0026-the-film-is-carried-and-the-brake-charged.md`.
+
+## S14. Make targets for the film-carried cells the paper now prints (aim_is_all_you_need)
+
+The paper headlines the spray cup with its film carried at 6 kg/pulse (`SPRAY_CUP_SHIELDED`),
+not the film-in-the-book `SPRAY_CUP` that `make plate-grid`, `plate-cost` and `plate-seed` run.
+Reproduced paper-side with the companion's own CLIs, no code changes:
+`growth_ledger --designs-grid spray-cup-shielded`, `growth_cost_report --plate
+spray-cup-shielded`, `seed_cost --plate spray-cup-shielded`, `harvest --plate
+spray-cup-shielded`, and `seed_cost --plate spray-cup-unshielded` for the worst-case row of
+`tab:plate_designs_cost`. Wanted: point the three plate targets at the shielded design (or add
+`-film` twins), so `make` reproduces the printed cells.
+
+Also: the unmixed downside (`spray-cup-unmixed`, 2.10 / 2.38 yr) still flies with no film. The
+paper says so. Wanted: an unmixed design carrying 6 kg.
+
+## S15. The plug's film (puffsat_impact_simulation)
+
+The plug carries no film figure, so its cost rows price film from the book (0.1%). Wanted: film
+burned per 12 MN s pulse on the plug, shielded and unshielded, as P5 gave for the spray cup.
+
+## S16. Unit mass through the push, and the brake as a finite burn (aim_is_all_you_need)
+
+- `sec:vertical_lob` says the unit's mass falls to about 0.8 of its start; ADR 0043 says ~0.65
+  and integrates ~1060 pulses (the paper now prints 1060). Reconcile the end fraction, and the
+  push duration with S13 (1060 pulses at 4 Hz is ~265 s against the printed ~300 s).
+- The brake is impulsive at separation. Integrate it as a finite burn under 4 g with drag.
+
+| ask | what is wanted | status |
+| --- | --- | --- |
+| **S14** | make targets for the film-carried grid, cost and seed cells; unmixed with film | open |
+| **S15** | the plug's film per pulse | open |
+| **S16** | end mass fraction and duration of the push; finite brake | open |

@@ -72,6 +72,8 @@ sprayed into a diffuse cloud ~4 m deep standing ~1 m off the floor. Flies first,
 **η_jet = 0.60** (0.57 unmixed downside, 0.67-0.71 fully mixed). η_jet here is all-in: it
 already charges the PuffSat's water bonds, so the ledger runs it with no separate toll and
 takes energy efficiency η = η_jet².
+Its pitch film is carried as launched mass (ADR 0026): 6 kg per 12 MN s pulse vapor-shielded,
+the headline; 33 kg unshielded, the worst-case row. A push is ~1060 pulses.
 _Avoid_: comparing it to "the paper's 0.775" (that is the magnetic nozzle's literature target);
 the plate the ledger flew before was η = 0.7, i.e. **η_jet 0.84**, called "the earlier plate".
 
