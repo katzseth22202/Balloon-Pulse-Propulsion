@@ -93,7 +93,7 @@
     <path class="leader" d="M 426.52,466.0 L 480.52,510.0"/>
     <text x="484.52" y="514.0" class="small">carbon hoop wrap on the steep band (36 t)</text>
     <path class="leader" d="M 370.0,488.0 L 200,506.0"/>
-    <text x="20" y="510.0" class="small">2 m skirt: maraging liner,</text>
+    <text x="20" y="510.0" class="small">2 m skirt: barrier-coated maraging liner,</text>
     <text x="20" y="528.0" class="small">carbon hoop wrap (16 t)</text>
     <path class="leader" d="M 509.91999999999996,318.0 L 680.0,450.0"/>
     <text x="684.0" y="454.0" class="small">maraging floor, 98 t, tapered,</text>
@@ -398,14 +398,18 @@
     <rect x="20" y="640" width="470" height="300" rx="8" class="box"/>
     <text x="34" y="666" class="title">Face (thicknesses not to scale)</text>
     <rect x="232" y="700" width="10" height="190" fill="#1A1A1A"/>
-    <rect x="242" y="700" width="96" height="190" fill="#7F8C96"/>
+    <rect x="242" y="700" width="6" height="190" fill="#7FB6C9"/>
+    <rect x="248" y="700" width="90" height="190" fill="#7F8C96"/>
     <path d="M 338,700 L 352,700 L 352,890 L 338,890 Z" fill="#9AA6AE"/>
     <rect x="352" y="700" width="26" height="190" fill="url(#felt)"/>
     <text x="388" y="800" class="small">→ gas springs</text>
     <path class="leader" d="M 237,700 L 200,686"/>
     <text x="34" y="690" class="small">pitch film, 225–300 µm standing</text>
+    <path class="leader" d="M 245,716 L 222,716"/>
+    <text x="34" y="712" class="small">alumina hydrogen barrier,</text>
+    <text x="34" y="729" class="small">under 1 µm</text>
     <path class="leader" d="M 290,890 L 270,916"/>
-    <text x="150" y="932" class="small">maraging 300/350, 2.5 GPa face limit</text>
+    <text x="150" y="932" class="small">maraging 300, 2.5 GPa face limit</text>
     <path class="leader" d="M 365,700 L 380,684"/>
     <text x="330" y="680" class="small">ceramic felt</text>
     <rect x="58" y="780" width="26" height="16" class="camera"/>

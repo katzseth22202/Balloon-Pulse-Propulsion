@@ -81,7 +81,7 @@ the plate the ledger flew before was η = 0.7, i.e. **η_jet 0.84**, called "the
 The later overtake design: each PuffSat sphere buries itself in a wire-held argon-ice plug
 ahead of the bowl. η_jet ~0.70 (estimate carried from 2-D). Needs millimeter last-100-ms aim
 and more enclosure; not yet run in the deep bowl.
-_Avoid_: confusing it with the head-on chamber's foam plug (`sec:material_chamber_plug`).
+_Avoid_: confusing it with the head-on chamber's plug, now 10 kg of frozen methane in a polyethylene can per 2.5 kg of rod (`sec:chamber_shape`; the foam plug of `sec:material_chamber_plug` is the hydrogen worked example).
 
 **Skirt (spray cup)**:
 The straight wall continuing the bowl's rim toward the gas. Fixed to the **vehicle** on its own
@@ -91,6 +91,22 @@ a strain-sized wrap's mass goes as density over modulus (aramid 43 t vs carbon 3
 skirt).
 _Avoid_: drawing the skirt attached to the floor (a rigid joint takes a 1-3 GPa ρcΔv wave);
 calling the wrap Kevlar.
+
+**Alumina barrier (plate face, chamber shell)**:
+A sub-micron dense alumina film between steel and pitch, sputtered or ALD-grown after the final
+480 C age, to keep atomic hydrogen out. Required on the maraging 300 plate floor and skirt liner
+(maraging is "extreme" in NASA/TM-2016-218602); defense in depth on the chamber's Cr-Mo shell;
+required for the chamber's maraging-band fallback. Anchor: Levchuk 2004 (1 um alpha-alumina, up
+to 1000x lower deuterium permeation). Untested under pulsed atomic hydrogen; that test is owed.
+Fallback if unqualified: A-286 / NASA-HR1 / 718 (1038 C) face, which clears the 0.89 GPa merged
+pulse but not a failed merge, so merge monitoring becomes a primary safety system.
+_Avoid_: "maraging 300/350" (300 only, since 2026-10-06); calling the pitch film a hydrogen barrier.
+
+**Merge (structural requirement)**:
+The merged pulse (0.89 GPa, ~36 us rise) keeps the plate floor out of tension; an unmerged pulse
+(2.5-4.1 GPa, 0.5 us rise) kills it in fatigue within 0-1053 pulses. So a failed merge must be
+detected and the push stopped within a few pulses, and the face pressure must rise over at least
+one stress-wave round trip of the floor (~10 us for 30 mm).
 
 **Sprung mass (spray cup)**:
 The floor plus the hoop wrap on its steep band, 134 t of the 150 t plate; the skirt (16 t) is
@@ -1929,6 +1945,23 @@ T resists offset delta with T delta (1/l1 + 1/l2), l1 = 1.68 m, l2 ~ 0.75 m: 13 
 ~0.1 kg at 10 g, burned each pulse. Hung at both ends the plug's bending moment is 1/4 of the
 cantilever, so the 15 mm / 5 mm skins are an upper bound (~4 mm / 1.3 mm suffice). Unsized:
 reloading plug and wires every 250 ms.
+
+**Bulged chamber** (`sec:chamber_shape`, ADR 0027, 2026-10-08):
+The departure chamber that survives its own blast. Domed head r 1.4 m, bulge to r 3.0 m beside
+the plug (z 1.4-2.8 m, opened over 0.5 m, closed by a 3 m taper), 12 deg cone; 106 m^3 per 2.5 kg
+of rod, ~94 bar. The flown one is the **5 kg chamber**: the same shape x 2^(1/3), 212 m^3, 7.6 m
+across, 2 Hz, 48.2 t wall, one per stack (`tab:one_chamber`). The bulge works because the stopped
+rod is a **line blast**, `p ~ (E/L)/R^2` (Lin 1954), independent of gas density, so only stand-off
+acts. The **taper** is the hottest zone (thickest wrap, worst fling).
+_Avoid_: "the 20 m^3 chamber" as the proposal (it is the record of the sphere solve); "2.5 kg rod
+at 4 Hz" as the flown cadence; cushions, mist or dense layers as blast relief.
+
+**Dry wrap** (`sec:dry_wrap_wall`):
+Kevlar 49 wound without resin over a 10 mm Cr-Mo shell. The thin shell cancels the spike (round
+trip 3.4 us vs a 2-4 us spike, <=0.03x spall); the wrap takes it as **fling**, outer layers thrown
+off as free rings, worst 1.68% (2.5 kg) / 1.91% (5 kg) against Kevlar's 2.4% break.
+_Avoid_: "overwrap" for the flown wall (the bonded overwrap of `sec:carbon_overwrap` peels at a
+0.12-0.22 GPa spike); sizing the hoop with one D = 1.7 (solved D is 1.7-5.7 by zone).
 
 **Near-term chamber verdict** (`sec:methane_7000_near_term`, 2026-09-29, from the companion's
 solved runs, `puffsat_impact_simulation` near-term geometry, ADR-0052 there): eta is measured over

@@ -380,3 +380,40 @@ burned per 12 MN s pulse on the plug, shielded and unshielded, as P5 gave for th
 | **S14** | make targets for the film-carried grid, cost and seed cells; unmixed with film | open |
 | **S15** | the plug's film per pulse | open |
 | **S16** | end mass fraction and duration of the push; finite brake | open |
+
+# Survivable chamber batch, raised 2026-10-08
+
+From applying `puffsat_impact_simulation` @ `69d1f40` (chamber note §1/§3e-§5; plate P10/P12).
+Paper-side record: `docs/adr/0027-the-departure-chamber-bulges-and-wraps-dry.md`. Full text of
+S17 for the aim repo: `docs/survivable_chamber_asks_for_aim_repo.md`.
+
+## S17. Recompute the ledger, cost book and seed with the survivable chamber (aim_is_all_you_need)
+
+One 5 kg methane chamber at 2 Hz, 212 m^3, 48.2 t dry-wrap wall, 4.9 / 14.7 t extension, 117 kg
+charge+plug and 3.5-24 kg pitch per pulse, 906 / 971 kN s net, on 500-600 t stacks with the
+finite-burn loss (+3.1-4.8%) charged. Lead with methane; hydrogen rows labeled wall-unverified.
+The paper flags its ledger tables as pricing the old 19 t chamber until this lands.
+
+## S18. The hydrogen chamber with the rod and plug as material, the bulge and the dry wrap (puffsat_impact_simulation)
+
+Centred spike ~2.95 GPa at 20 m^3, at steel's spall strength. Not run with the solved rod and
+plug, the bulge, or the dry wrap; and its copper liner is bonded, the arrangement that peels
+for carbon. Wanted: the same zone-by-zone wall study as the methane chamber, and whether a
+bonded or unbonded copper liner survives. The paper proposes methane until then.
+
+## S19. Loose ends the paper now prints as open (puffsat_impact_simulation)
+
+- The port gate in the bulged chamber: at ~94 bar and a 1.33 m^2 throat the open port is under
+  1% of the throat (leak cost ~2% against 10.5%), and the gate's pistons push about a fifth as
+  hard. The paper says whether the gate still earns its place is open (`sec:port_gate`). Wanted:
+  the leak with and without the gate in the 212 m^3 chamber, and the gate's close time at 94 bar.
+- Peaks are not converged (+15-25% per halving at 0.25 cm); a real-EOS run is owed.
+- Wall heat at the bulged chamber's own state; the high pitch edge (24 kg/pulse) comes from
+  unresolved radiation.
+
+| ask | what is wanted | status |
+| --- | --- | --- |
+| **S17** | ledger, cost and seed with the one 5 kg chamber; methane headline | open |
+| **S18** | hydrogen chamber wall study at this pulse size | open |
+| **S19** | gate in the bulged chamber; convergence; wall heat at 94 bar | open |
+

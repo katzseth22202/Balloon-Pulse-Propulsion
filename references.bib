@@ -2458,7 +2458,7 @@
   title        = {{Kevlar} Aramid Fiber Technical Guide},
   year         = {2019},
   howpublished = {\url{https://www.dupont.com/content/dam/aramids/amer/us/en/safety/public/documents/en/Kevlar_Technical_Guide_0319.pdf}},
-  note         = {Kevlar para-aramid does not melt; it retains most of its room-temperature tensile strength to roughly 250 C and decomposes only at 427--482 C in air, giving it a higher thermal ceiling than UHMWPE. Kevlar~49 yarn breaks at about \SI{3000}{\mega\pascal} (\SI{435000}{psi}), and resin-impregnated strands at about \SI{3600}{\mega\pascal}. Accessed: 2026-06-05}
+  note         = {Kevlar para-aramid does not melt; it retains most of its room-temperature tensile strength to roughly 250 C and decomposes only at 427--482 C in air, giving it a higher thermal ceiling than UHMWPE. Kevlar~49 yarn breaks at about \SI{3000}{\mega\pascal} (\SI{435000}{psi}), and resin-impregnated strands at about \SI{3600}{\mega\pascal}. Kevlar~49 has a tensile modulus near \SI{112}{\giga\pascal}, a density of \SI{1.44}{\gram\per\cubic\centi\meter} and an elongation at break of 2.4\%. Accessed: 2026-06-05}
 }
 
 @misc{vectran_brochure,
@@ -6272,5 +6272,84 @@
   number       = {Publication 4419},
   year         = {1976},
   howpublished = {\url{https://nickelinstitute.org/media/1598/18_nickelmaragingsteel_engineeringproperties_4419_.pdf}},
-  note         = {Tables 7 and 19 give strength, modulus and expansion of the 18Ni(300) and 18Ni(350) grades; maraging is an aging treatment near 480 \si{\celsius}, so the bulk must stay below it in service. Cited in \autoref{sec:spray_cup_pressure}.}
+  note         = {Tables 7 and 19 give strength, modulus and expansion of the 18Ni(300) and 18Ni(350) grades, and Table 12 gives plane-strain fracture toughness near \SI{66.5}{} and \SI{33}{\mega\pascal\meter\tothe{1/2}} for them; maraging is an aging treatment near 480 \si{\celsius}, so the bulk must stay below it in service. Cited in \autoref{sec:spray_cup_pressure}.}
+}
+
+@article{levchuk2004_alumina_eurofer,
+  author  = {Levchuk, D. and Koch, F. and Maier, H. and Bolt, H.},
+  title   = {Deuterium permeation through {Eurofer} and $\alpha$-alumina coated {Eurofer}},
+  journal = {Journal of Nuclear Materials},
+  volume  = {328},
+  number  = {2--3},
+  pages   = {103--106},
+  year    = {2004},
+  doi     = {10.1016/j.jnucmat.2004.03.008},
+  note    = {Gas-driven deuterium permeation through the fusion steel Eurofer, bare and with a crystalline alumina coat about \SI{1}{\micro\meter} thick; the coat reduces permeation by up to a factor of about 1000. Cited in \autoref{sec:spray_cup_pressure} for the plate's hydrogen barrier.}
+}
+
+@article{nemanic2019_permeation_barriers,
+  author  = {Nemani{\v{c}}, Vincenc},
+  title   = {Hydrogen permeation barriers: Basic requirements, materials selection, deposition methods, and quality evaluation},
+  journal = {Nuclear Materials and Energy},
+  volume  = {19},
+  pages   = {451--457},
+  year    = {2019},
+  doi     = {10.1016/j.nme.2019.04.001},
+  note    = {Open-access review. Barriers are sought among materials of lowest hydrogen solubility and diffusivity, chiefly dense oxides such as alumina, nitrides and carbides; defects and adhesion decide how well a real coat performs. Cited in \autoref{sec:spray_cup_pressure}.}
+}
+
+@article{mescheryakov2017_maraging_spall,
+  author  = {Mescheryakov, Yu. I. and Zhigacheva, N. I. and Divakov, A. K. and Petrov, Yu. A.},
+  title   = {Shock-induced structural instabilities and spall-strength of maraging steels},
+  journal = {Materials Physics and Mechanics},
+  volume  = {32},
+  pages   = {152--164},
+  year    = {2017},
+  howpublished = {\url{https://mpm.spbstu.ru/userfiles/files/MPM232_07_mescheryakov.pdf}},
+  note    = {Plate-impact pull-back measurements; an 18Ni--9Co--5Mo maraging steel of the 300 chemistry gives spall strengths of about 4.1 to \SI{5.4}{\giga\pascal}, and a quenched-and-tempered Cr--Ni--Mo--V steel about \SI{2.9}{\giga\pascal}. Cited in \autoref{sec:spray_cup_pressure} and the chamber wall sections.}
+}
+
+@article{lin1954_cylindrical_blast,
+  author  = {Lin, Shao-Chi},
+  title   = {Cylindrical Shock Waves Produced by Instantaneous Energy Release},
+  journal = {Journal of Applied Physics},
+  volume  = {25},
+  number  = {1},
+  pages   = {54--57},
+  year    = {1954},
+  doi     = {10.1063/1.1721520},
+  note    = {Similarity solution for the strong blast from energy $E/L$ released along a line: the shock radius grows as $(E/L\rho)^{1/4}t^{1/2}$, so the pressure behind it falls as $(E/L)/R^2$ independent of the ambient density. Cited in \autoref{sec:chamber_shape}.}
+}
+
+@book{kinney1985_explosive_shocks,
+  author    = {Kinney, Gilbert F. and Graham, Kenneth J.},
+  title     = {Explosive Shocks in Air},
+  edition   = {2},
+  publisher = {Springer},
+  address   = {Berlin, Heidelberg},
+  year      = {1985},
+  doi       = {10.1007/978-3-642-86682-1},
+  note      = {Cube-root (Hopkinson--Cranz) scaling: blasts of energies differing by a factor $n$ give the same pressures at distances and times scaled by $n^{1/3}$. Cited in \autoref{sec:chamber_shape} and \autoref{sec:chamber_wall_tests}.}
+}
+
+@article{gourdin1989_ring_expansion,
+  author  = {Gourdin, William H.},
+  title   = {Analysis and assessment of electromagnetic ring expansion as a high-strain-rate test},
+  journal = {Journal of Applied Physics},
+  volume  = {65},
+  number  = {2},
+  pages   = {411--422},
+  year    = {1989},
+  doi     = {10.1063/1.343121},
+  note    = {Thin rings driven outward by a transient magnetic field at 50 to \SI{300}{\meter\per\second}, the standard laboratory test of a ring's response to an impulsive hoop load. Cited in \autoref{sec:chamber_wall_tests}.}
+}
+
+@techreport{rogers1986_challenger,
+  author      = {{Presidential Commission on the Space Shuttle Challenger Accident}},
+  title       = {Report to the President by the Presidential Commission on the Space Shuttle Challenger Accident},
+  institution = {NASA},
+  address     = {Washington, DC},
+  year        = {1986},
+  howpublished = {\url{https://sma.nasa.gov/SignificantIncidents/assets/rogers_commission_report.pdf}},
+  note        = {Volume I, Chapter IV: each Space Shuttle solid rocket motor case was built from steel cylinder segments joined in the field by circumferential tang-and-clevis joints held by pins, with O-ring seals; the joint's seal, not its strength, failed. Cited in \autoref{sec:chamber_assembly}.}
 }
