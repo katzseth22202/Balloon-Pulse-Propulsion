@@ -411,9 +411,76 @@ bonded or unbonded copper liner survives. The paper proposes methane until then.
 - Wall heat at the bulged chamber's own state; the high pitch edge (24 kg/pulse) comes from
   unresolved radiation.
 
+## S20. The charge per pulse in the bulged chamber (puffsat_impact_simulation)
+
+Raised by the S17 answer (aim `a45604d`, `docs/survivable_chamber_for_parent.md` item 3). The
+117 kg of charge and plug per 5 kg rod is `k + P` = 23.4, against the sphere's 29.3 at 7000 K.
+That is 120 MJ/kg against 96 MJ/kg, and the ~94 bar the note reports is 26% above the 75 bar a
+7000 K charge would give by `p ~ m/V`. Both say the charge runs about 25% hotter. Holding 7000 K
+would take ~146 kg. Wanted: which is meant, the impulse or the pitch at that state, and the
+plug's share of the energy. Full text: `docs/survivable_chamber_asks_for_impact_sim.md`. The
+paper prints the 117 kg rows with the source stated and this ask cited.
+
+## S21. Fly the survivable chamber behind the film-carrying spray cup (aim_is_all_you_need)
+
+`src/survivable_chamber.py` (aim `a45604d`) flies `SPRAY_CUP`, which carries no film, while every
+other row the paper prints flies `SPRAY_CUP_SHIELDED` (6 kg of film a pulse as launched mass,
+paper `353e1a1`). The handback's hydrogen check ("$120, matching the previous published figure")
+compares against the companion's own earlier figure; the paper prints $122 and $192 / $377, which
+`growth_cost_report --plate spray-cup-shielded` at `a45604d` still reproduces. Carried, the
+headline methane row goes from 2.76 to 2.78 yr; every other ledger row moves 0.01-0.03 yr.
+The fix swaps the plate in four places. The parent applied it in a scratch clone and prints the
+rerun; the patch is in `todos/` for the aim repo to take.
+
+Also correct in the handback: **`tab:delivery_ledger` does change.** Its rows are the steady-state
+$/kg columns of the cost book, and "Departure hardware" is the chamber each reinvested growth unit
+expends. The chamber never flies a delivery, but it is charged to every kilogram sold.
+`tab:l1_comparison` changes with it.
+
+## S22. Make targets for the survivable cells the paper now prints (aim_is_all_you_need)
+
+ADR 0028 prints cells for the survivable methane chamber (A/A* 300, 24 kg pitch, priced by mass)
+that no target produces. The parent ran them on the companion's own functions; the drivers and
+their output are in `todos/survivable_parent_drivers/` for reference. Wanted, as S11/S14 did:
+- `tab:growth_ledger_doubling` / `_ten_year`: methane at 50/70/solved/90/100% of the 0.669
+  ceiling behind the plug and the 0.84 plate, and k <= 10 behind the spray cup and plug.
+- `tab:plate_designs_cost`: methane behind the unshielded cup, the plug and the 0.84 plate, by mass.
+- `tab:seed_return` / prose: odds 25/100%, liquidation, Earth loop, stepped and flat rates,
+  growth uncharged, lob $10/$50, the flat chamber and package prices that match methalox, plates
+  built, pass rates and steady/liquidation at 7.6% and 30%, all by mass.
+- `tab:growth_ledger_slug` and the smaller settings: water at 0.50/0.53/0.56, the 10-day orbit,
+  the unmixed 0.57 cup, all for the survivable chamber.
+- Methane at half its ceiling: its cost rows (no growth; liquidation $1750 / >$3000).
+
+## S23. The methane wall at the ledger's longest burns (puffsat_impact_simulation)
+
+Behind the spray cup the ledger's two-synodic departures fire up to 4470 five-kilogram pulses
+(A/A* 300, 24 kg pitch; 5167 at the 3.5 kg edge, where the stack burns more gas). The dry-wrap
+wall was checked for 4200. Wanted: the fatigue and crack margin at ~4500-5200 pulses, or the cap
+the chain must respect. The paper prints the 6% overrun as open (`sec:one_chamber`).
+
+**S20 answered** 2026-10-08, sim `79e40d9`: the 117 kg is 7000 K. At the bulged chamber's lower
+density more of the methane is dissociated and ionized, so each kilogram holds 115-120 MJ at
+7000 K against 93 MJ in the 20 m^3 sphere. The paper-side `p ~ m/V` check assumed a fixed
+composition and was wrong. Verified against the sim's `near_term/volume_trade.csv`: 7000 K charge
+per 2.5 kg rod is 55.7 kg at 80 m^3 and 53.7 kg at 120 m^3, so ~54.4 + 4.4 plug at 106 m^3, x2 =
+~117 kg. With the frozen-methane plug it is 115 kg; the ledger's 117 kg is kept (2%). The sim's
+first fix printed "0.28 kg/m^3, ~46 bar"; sim `2491d15` corrected it to ~0.55 kg/m^3 and ~95 bar,
+matching the ~94 bar the paper prints.
+
+**S17 landed** 2026-10-08 as aim `a45604d` (ADR 0044, `make survivable-chamber`). It corrected
+the ask on three points: the ledger has charged a fixed-direction finite-burn loss since ADR
+0032 (7-12% of the burn, not 3-5%); the departing stack is ~800 t, not 500-600 t; and the
+117 kg above. The paper prices the chamber by mass against the sphere's 21.2 t (Seth,
+2026-10-08), not per unit.
+
 | ask | what is wanted | status |
 | --- | --- | --- |
-| **S17** | ledger, cost and seed with the one 5 kg chamber; methane headline | open |
+| **S17** | ledger, cost and seed with the one 5 kg chamber; methane headline | landed (aim `a45604d`) |
 | **S18** | hydrogen chamber wall study at this pulse size | open |
 | **S19** | gate in the bulged chamber; convergence; wall heat at 94 bar | open |
+| **S20** | is 117 kg charge+plug per 5 kg pulse intended, and at what temperature | answered (sim `79e40d9`): 7000 K |
+| **S21** | survivable rows behind the film-carrying spray cup; `tab:delivery_ledger` does change | landed (aim `502a64f`) |
+| **S22** | make targets for the survivable cells the paper runs on companion functions | open |
+| **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open |
 

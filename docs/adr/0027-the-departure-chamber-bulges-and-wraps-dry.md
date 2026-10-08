@@ -32,7 +32,7 @@ stacks.
    wall, 53-63 t hardware, 500-600 t stacks, 2000-2650 pulses, +3-5% finite-burn loss.
 4. **Methane is the proposed chamber; hydrogen is unverified** (author's choice). Hydrogen's
    centred spike is ~2.95 GPa and its wall has not been run with the bulge or wrap (S18).
-5. **Ledger and cost tables are flagged, not changed** (author's choice) until S17 lands. The
+5. **Ledger and cost tables are flagged, not changed** (author's choice) until S17 lands. Landed 2026-10-08; see ADR 0028. The
    business-case hydrogen-first ordering is left for that pass.
 6. **Plate face:** maraging 300 only (K_Ic 66.5 vs 33); the merge is a structural requirement
    (failed merge detected and stopped within a few pulses; face rise >= one ~10 us round trip);
