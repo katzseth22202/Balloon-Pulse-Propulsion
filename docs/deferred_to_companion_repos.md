@@ -485,6 +485,17 @@ area ratio buys only `sqrt(2)` more time. Wanted: which limit the 971 kN s takes
 finite-rate quasi-1D solve for today's nozzle and S24's options (a) and (b), with the sphere for
 calibration. Full text: `docs/throat_kinetics_asks_for_impact_sim.md`. S24's impulse waits on it.
 
+**S26 answered** 2026-10-13, sim `2addc17` (`docs/throat_kinetics_answers_from_impact_sim.md`). The
+971 kN s is full equilibrium in carbon and hydrogen, without the 1% gate (958 with it). Over the
+whole blowdown, hydrogen at its measured rate costs 1.3-1.5% of thrust at A/A* 300. Net impulse
+is 938 kN s on the 1.33 m^2 throat and 941 on option (b), if carbon trades atoms freely. If
+carbon is frozen at the chamber state the floor is 845 / 849. These replace the sim's 861 / 892
+of 2026-10-12, whose sudden freeze tripled the hydrogen loss. Option (a) gives 908, losing to the
+shorter expansion rather than to chemistry. The sphere loses 0.6% against 1.5%, so density is
+the cause, at about 1/25 of the size feared. A 10 degree cone is not worth a row. Carbon has no
+measured rate, so it stays bracketed, but keeping up needs a coefficient about 100x below the
+one carbon measurement. S24's impulse can now proceed on these figures.
+
 **S20 answered** 2026-10-08, sim `79e40d9`: the 117 kg is 7000 K. At the bulged chamber's lower
 density more of the methane is dissociated and ionized, so each kilogram holds 115-120 MJ at
 7000 K against 93 MJ in the 20 m^3 sphere. The paper-side `p ~ m/V` check assumed a fixed
@@ -511,5 +522,5 @@ the ask on three points: the ledger has charged a fixed-direction finite-burn lo
 | **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open |
 | **S24** | a wider throat for the survivable chamber: cycle, impulse, ledger | open |
 | **S25** | the Earth turn and mirror visibility on the flown chain, at the chamber's burns | open |
-| **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | open |
+| **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | answered (sim `2addc17`): 938 / 941 kN s, floor 845 / 849 |
 
