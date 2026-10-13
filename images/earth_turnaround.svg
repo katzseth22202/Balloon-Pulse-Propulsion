@@ -74,10 +74,10 @@
     <text x="54.0" y="376.0" text-anchor="start" class="small" font-weight="bold">At 3, the payload's frame</text>
     <line x1="150" y1="460" x2="150" y2="540" stroke="#1F5F8B" stroke-width="3.2" marker-end="url(#arrowBlue)"/>
     <text x="160.0" y="536.0" text-anchor="start" class="small" style="fill:#1F5F8B"><tspan x="160.0" dy="0em">thrust, along</tspan><tspan x="160.0" dy="1.2em">the payload's travel</tspan></text>
-    <line x1="150.0" y1="460.0" x2="189.5" y2="390.4" stroke="#C62828" stroke-width="3" marker-end="url(#arrowRed)"/>
-    <text x="197.5" y="398.4" text-anchor="start" class="small" style="fill:#C62828">PuffSats</text>
-    <path d="M 150.0,494.0 A 34,34 0 0 0 166.8,430.4" fill="none" stroke="#333" stroke-width="1.5"/>
-    <text x="190.0" y="466.0" text-anchor="start" class="small" font-weight="bold">150.4°</text>
+    <line x1="150.0" y1="460.0" x2="171.4" y2="382.9" stroke="#C62828" stroke-width="3" marker-end="url(#arrowRed)"/>
+    <text x="179.4" y="390.9" text-anchor="start" class="small" style="fill:#C62828">PuffSats</text>
+    <path d="M 150.0,494.0 A 34,34 0 0 0 159.1,427.2" fill="none" stroke="#333" stroke-width="1.5"/>
+    <text x="190.0" y="466.0" text-anchor="start" class="small" font-weight="bold">164.5°</text>
     <text x="134.0" y="412.0" text-anchor="end" class="small" style="fill:#5E6A73"><tspan x="134.0" dy="0em">180° is</tspan><tspan x="134.0" dy="1.2em">head-on</tspan></text>
     <path d="M 300.0,258.0 C 296.0,340.0 340.0,400.0 450.0,450.0" fill="none" stroke="#1F5F8B" stroke-width="3.2" marker-end="url(#arrowBlue)"/>
     <circle cx="480.0" cy="456.0" r="12" fill="#1F5F8B"/>
