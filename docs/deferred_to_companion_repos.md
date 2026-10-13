@@ -459,6 +459,23 @@ Behind the spray cup the ledger's two-synodic departures fire up to 4470 five-ki
 wall was checked for 4200. Wanted: the fatigue and crack margin at ~4500-5200 pulses, or the cap
 the chain must respect. The paper prints the 6% overrun as open (`sec:one_chamber`).
 
+## S24. A wider throat for the survivable methane chamber (aim_is_all_you_need)
+
+ADR 0044's AR 100 and AR 300 nozzles share the 1.33 m^2 throat, so the throat that sets the
+pulse rate has never been varied. Doubling it halves blowdown to fill pressure (278-336 ms to
+139-168 ms) and could open 4 Hz. Wanted: the cycle, the impulse and the ledger for a 2.66 m^2
+throat at the same 22.5 m exit (A/A* 150) and at the same A/A* 300 (31.9 m exit, ~29.5 t
+extension), with the recombination question S20 raised. Full text:
+`docs/throat_and_turn_asks_for_aim_repo.md`. The paper prints no wider throat until it lands.
+
+## S25. The Earth turn on the flown chain (aim_is_all_you_need)
+
+The paper now prints 164.5 deg (circular 3S, visible mirror) in place of the chain's 150.4, and
+the turn through head-on during the burn at the reference loading `k` = 3. Wanted: visibility on
+each flown cycle (is the 2S 160.6 occulted?), the turn at the methane chamber's 24-37 minute
+burns and its own `k + P` of ~23, and the loading behind the retired 0.9% / 0.5%. Full text:
+`docs/throat_and_turn_asks_for_aim_repo.md`.
+
 **S20 answered** 2026-10-08, sim `79e40d9`: the 117 kg is 7000 K. At the bulged chamber's lower
 density more of the methane is dissociated and ionized, so each kilogram holds 115-120 MJ at
 7000 K against 93 MJ in the 20 m^3 sphere. The paper-side `p ~ m/V` check assumed a fixed
@@ -483,4 +500,6 @@ the ask on three points: the ledger has charged a fixed-direction finite-burn lo
 | **S21** | survivable rows behind the film-carrying spray cup; `tab:delivery_ledger` does change | landed (aim `502a64f`) |
 | **S22** | make targets for the survivable cells the paper runs on companion functions | open |
 | **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open |
+| **S24** | a wider throat for the survivable chamber: cycle, impulse, ledger | open |
+| **S25** | the Earth turn and mirror visibility on the flown chain, at the chamber's burns | open |
 
