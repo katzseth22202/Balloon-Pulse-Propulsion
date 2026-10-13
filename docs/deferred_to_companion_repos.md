@@ -476,6 +476,15 @@ each flown cycle (is the 2S 160.6 occulted?), the turn at the methane chamber's 
 burns and its own `k + P` of ~23, and the loading behind the retired 0.9% / 0.5%. Full text:
 `docs/throat_and_turn_asks_for_aim_repo.md`.
 
+## S26. Recombination rates in the bulged chamber's nozzle (puffsat_impact_simulation)
+
+Every methane eta the paper prints is a limit, carbon frozen or in equilibrium
+(`tab:nozzle_area_ratio`). The bulged chamber's charge is about 6.3 times thinner than the
+sphere's, so three-body recombination runs about 40 times slower, and a doubled throat at a fixed
+area ratio buys only `sqrt(2)` more time. Wanted: which limit the 971 kN s takes, and a
+finite-rate quasi-1D solve for today's nozzle and S24's options (a) and (b), with the sphere for
+calibration. Full text: `docs/throat_kinetics_asks_for_impact_sim.md`. S24's impulse waits on it.
+
 **S20 answered** 2026-10-08, sim `79e40d9`: the 117 kg is 7000 K. At the bulged chamber's lower
 density more of the methane is dissociated and ionized, so each kilogram holds 115-120 MJ at
 7000 K against 93 MJ in the 20 m^3 sphere. The paper-side `p ~ m/V` check assumed a fixed
@@ -502,4 +511,5 @@ the ask on three points: the ledger has charged a fixed-direction finite-burn lo
 | **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open |
 | **S24** | a wider throat for the survivable chamber: cycle, impulse, ledger | open |
 | **S25** | the Earth turn and mirror visibility on the flown chain, at the chamber's burns | open |
+| **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | open |
 

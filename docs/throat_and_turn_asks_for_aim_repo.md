@@ -2,7 +2,7 @@
 
 Raised 2026-10-13, applying aim `9ade857` (`docs/orbit_turn_for_parent.md`, ADRs 0045, 0049,
 0052, 0053) to the paper. **Written to be copied verbatim into `katzseth22202/aim_is_all_you_need`**,
-so it repeats context the paper repo already has. Register items **S24-S25**,
+so it repeats context the paper repo already has. Register items **S24-S25** (S24's impulse waits on **S26**, asked of the impact sim),
 `docs/deferred_to_companion_repos.md`.
 
 Same ground rules as your own handbacks: neither document is the source of truth; if a number
@@ -70,13 +70,21 @@ on the way out. It could return more than AR 300 does today. Option (a) cuts the
 and should return less. The parent cannot rank them. The 0.669 ceiling (52% returned at AR 300,
 carbon in equilibrium) was set on the sphere's density, and this is a kinetics question.
 
+**Added 2026-10-13: the size of the gap.** The sphere's charge was about 3.4 kg/m^3 and the bulged
+chamber's about 0.55, so recombination runs about 40 times slower at the same point in the
+expansion. Option (b)'s `sqrt(2)` of extra time does not close that, unless the sphere had time
+to spare. Every methane eta the paper prints is a limit, frozen or equilibrium
+(`tab:nozzle_area_ratio`), not a finite-rate solve. The rate question belongs to the impact sim
+and is asked there as **S26** (`docs/throat_kinetics_asks_for_impact_sim.md` in the paper repo).
+
 ### Wanted
 
 1. **The cycle.** ADR 0053's timing table for options (a) and (b) at 2, 3 and 4 Hz: time to fill
    pressure and time left in the period. Say which rates fit.
-2. **The impulse.** eta, or the impulse per pulse, for (a) and (b). If it needs the impact sim's
-   nozzle solver, say so and pass the ask on with the bulged chamber's peak state. Otherwise state
-   which ceiling you scaled and how.
+2. **The impulse.** eta for (a) and (b) comes from S26, not from here. Until it lands, fly both
+   options at the two limits, carbon in equilibrium and carbon frozen, scaled from the impact
+   sim's A/A* sweep, and label each row with its limit. Do not quote an equilibrium-only row as
+   the answer.
 3. **The ledger.** Doubling, steady $/kg and break-even for (a) and (b) at every rate that fits,
    behind the spray cup with the film carried, at 24 kg pitch, next to the 2.76 yr / $162 headline.
    Charge the finite-burn loss as ADR 0032 does, integrated, in the fixed direction.
