@@ -529,6 +529,15 @@ throat because it empties sooner. That bracket applies on top of every S26 figur
 still owed: the B-series wall loads are gamma-law 2-D at 0.5 cm, scaled to real-gas pressure, and
 peaks still rise 15-25% per halving. The port gate's leak and close time at 94 bar were not run.
 
+**S24 landed** 2026-10-13 as aim `dbeec7e` (ADR 0056), carried verbatim in
+`docs/throat_answers_from_aim_repo.md`. The 1.33 m^2 throat does not close even 2 Hz with a
+polymer throat film sealed at 0.3 bar (548 ms cycle), so the doubled 2.66 m^2 throat is required,
+not optional. The paper flies option (b), A/A* 300 on a 31.9 m exit (Seth, 2026-10-13), at 2 Hz,
+on the finite-rate 941 kN s. Headline moves 2.78 -> 3.33 yr and $162 -> $197/kg. Option (a) is
+printed as one sentence (3.26 yr, $10/kg cheaper); 3 Hz is not printed. Verified by re-running
+`--paper-grid`, `--paper-cost`, `--ledger` and `--cost`; three corrections and the cells the
+note skipped are listed in the carried file's header. Item 5 (a hydrogen-sphere row) is open.
+
 **S23 is not answered, and its count moved.** The calcs repo's ADR 0055 ledger
 (`hydrocode_answers_for_parent.md` item 5) has the longest cycles firing 4,630 (A/A* 100) to 4,880
 (A/A* 300) pulses on one wall, 10-16% past the 4,200-pulse check, on 790-860 t stacks. It suggests
@@ -557,9 +566,9 @@ the ask on three points: the ledger has charged a fixed-direction finite-burn lo
 | **S19** | gate in the bulged chamber; convergence; wall heat at 94 bar | partly (sim `7afdba3`): wall heat 2-12% of impulse; gate and convergence open |
 | **S20** | is 117 kg charge+plug per 5 kg pulse intended, and at what temperature | answered (sim `79e40d9`): 7000 K |
 | **S21** | survivable rows behind the film-carrying spray cup; `tab:delivery_ledger` does change | landed (aim `502a64f`) |
-| **S22** | make targets for the survivable cells the paper runs on companion functions | open |
-| **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open; ADR 0055 ledger now fires 4,630-4,880 (10-16% past) |
-| **S24** | a wider throat for the survivable chamber: cycle, impulse, ledger | open |
+| **S22** | make targets for the survivable cells the paper runs on companion functions | partly: `--paper-grid` / `--paper-cost` cover the methane tables; water-slug row, 10-day orbit, unmixed cup, parity and pass rates still run on functions |
+| **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open; doubled-throat ledger fires up to 4,708 (12% past), as the paper now prints |
+| **S24** | a wider throat for the survivable chamber: cycle, impulse, ledger | landed (aim `dbeec7e`): 2.66 m^2 at A/A* 300, 3.33 yr, $197; item 5 (hydrogen row) open |
 | **S25** | the Earth turn and mirror visibility on the flown chain, at the chamber's burns | open |
 | **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | answered (sim `2addc17`, second issue `df4bc6e`): 885 / 941 kN s on 2.66 m^2, floor 810 / 849 |
 
