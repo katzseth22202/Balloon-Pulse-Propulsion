@@ -488,7 +488,7 @@ calibration. Full text: `docs/throat_kinetics_asks_for_impact_sim.md`. S24's imp
 **S26 answered** 2026-10-13, sim `2addc17` (`docs/throat_kinetics_answers_from_impact_sim.md`). The
 971 kN s is full equilibrium in carbon and hydrogen, without the 1% gate (958 with it). Over the
 whole blowdown, hydrogen at its measured rate costs 1.3-1.5% of thrust at A/A* 300. Net impulse
-is 938 kN s on the 1.33 m^2 throat and 941 on option (b), if carbon trades atoms freely. If
+is 938 kN s (gated) on the 1.33 m^2 throat and 941 on option (b), if carbon trades atoms freely. If
 carbon is frozen at the chamber state the floor is 845 / 849. These replace the sim's 861 / 892
 of 2026-10-12, whose sudden freeze tripled the hydrogen loss. Option (a) gives 908, losing to the
 shorter expansion rather than to chemistry. The sphere loses 0.6% against 1.5%, so density is
