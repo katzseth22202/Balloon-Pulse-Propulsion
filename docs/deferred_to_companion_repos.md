@@ -496,6 +496,45 @@ the cause, at about 1/25 of the size feared. A 10 degree cone is not worth a row
 measured rate, so it stays bracketed, but keeping up needs a coefficient about 100x below the
 one carbon measurement. S24's impulse can now proceed on these figures.
 
+**S26 second issue** 2026-10-13, sim `df4bc6e`, replacing the first in the same file. It adds the
+row the calcs ledger actually flies since aim ADR 0055: the doubled 2.66 m^2 throat at A/A* 100
+on an 18.4 m exit, **885 kN s** with free carbon exchange (floor 810), against 883 / 808 on the
+1.33 m^2 throat. The printable pair is now **885 / 941 kN s** on 2.66 m^2 (floor 810 / 849).
+Checked against the sim's `finite_rate/pulses.csv`: the 2.66 m^2 AR 100 thrust ratio is 0.9936
+against 0.9925 on 1.33 m^2, which is the +0.2%. The sim also flew the calcs ledger on {885, 941}
+at 24 kg pitch: doubling 3.36 / 3.33 yr against ADR 0055's 3.57 / 3.86, so **A/A* 100 loses its
+lead and the two ratios are level**; the carbon-frozen floor gives 4.66 / 4.94 yr. The handoff
+cites the calcs repo's `docs/companion_replies_2026-10-13.md` for these, but that file on GitHub
+(aim `37cc336`) is still the first issue's ~78%-share note with no 3.36 / 3.33. Unverified on
+the calcs side, so nothing paper-side moves on them until S24 lands.
+
+**S18 answered** 2026-10-12, sim `7afdba3` (B5 of the calcs repo's hydrocode asks, carried as
+`docs/hydrocode_answers_from_impact_sim.md`). The r 3.0 m bulge with the dry wrap holds hydrogen:
+2.5 kg rod with rod and plug as material, 106 m^3, 142 bar, 0.84 m^2 throat, **37.0 t wrap,
+passes** at 2.20% fling in the taper against Kevlar's 2.4% (1.09x, against methane's 1.43x).
+Hydrogen adds a 1.19 GPa hit on the cone, where solid steel would crack in 80 pulses. Checked
+against `zone_loads.csv` (zones sum to 36.96 t). The costs: 6-8% impulse per rod against the
+sphere (624 / 658 kN s against 666 / 697 at A/A* 100 / 300), and **~2-3 Hz, not 4**; the
+ledger's 4 Hz belongs to the sphere, whose wall is still unresolved at ~2.95 GPa. A doubled
+hydrogen throat fails the wrap (2.69%). Still owed: the 0.25 cm grid check of the 1.09x margin.
+Not addressed: the bonded-versus-unbonded copper liner, which the bulged design does not use (it
+carries a 10 mm liner under the wrap). **One caution before printing the 6-8%.** B5's impulse
+uses the same sudden (Bray) freeze that S26 found tripled methane's hydrogen loss, and the sim
+says the bulge's cost is "mostly in the nozzle freeze." The finite-rate figure is likely
+smaller; no one has run it.
+
+**S19 partly answered**, same commit. Wall heat at the bulged chamber's own state: 3-14% of the
+pulse energy (B1), or 2-12% of the impulse at 212 m^3 (B6, 1.33 m^2 throat), less on the doubled
+throat because it empties sooner. That bracket applies on top of every S26 figure. Convergence is
+still owed: the B-series wall loads are gamma-law 2-D at 0.5 cm, scaled to real-gas pressure, and
+peaks still rise 15-25% per halving. The port gate's leak and close time at 94 bar were not run.
+
+**S23 is not answered, and its count moved.** The calcs repo's ADR 0055 ledger
+(`hydrocode_answers_for_parent.md` item 5) has the longest cycles firing 4,630 (A/A* 100) to 4,880
+(A/A* 300) pulses on one wall, 10-16% past the 4,200-pulse check, on 790-860 t stacks. It suggests
+the paper say the chamber must be rated for ~5,000 pulses. The 4,470 / 5,167 in S23 are the ADR
+0044 counts.
+
 **S20 answered** 2026-10-08, sim `79e40d9`: the 117 kg is 7000 K. At the bulged chamber's lower
 density more of the methane is dissociated and ionized, so each kilogram holds 115-120 MJ at
 7000 K against 93 MJ in the 20 m^3 sphere. The paper-side `p ~ m/V` check assumed a fixed
@@ -514,13 +553,13 @@ the ask on three points: the ledger has charged a fixed-direction finite-burn lo
 | ask | what is wanted | status |
 | --- | --- | --- |
 | **S17** | ledger, cost and seed with the one 5 kg chamber; methane headline | landed (aim `a45604d`) |
-| **S18** | hydrogen chamber wall study at this pulse size | open |
-| **S19** | gate in the bulged chamber; convergence; wall heat at 94 bar | open |
+| **S18** | hydrogen chamber wall study at this pulse size | answered (sim `7afdba3`, B5): bulge + 37.0 t dry wrap passes at 1.09x; 2-3 Hz; 0.25 cm check owed |
+| **S19** | gate in the bulged chamber; convergence; wall heat at 94 bar | partly (sim `7afdba3`): wall heat 2-12% of impulse; gate and convergence open |
 | **S20** | is 117 kg charge+plug per 5 kg pulse intended, and at what temperature | answered (sim `79e40d9`): 7000 K |
 | **S21** | survivable rows behind the film-carrying spray cup; `tab:delivery_ledger` does change | landed (aim `502a64f`) |
 | **S22** | make targets for the survivable cells the paper runs on companion functions | open |
-| **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open |
+| **S23** | the methane wall at 4470 pulses, 6% past its 4200-pulse check | open; ADR 0055 ledger now fires 4,630-4,880 (10-16% past) |
 | **S24** | a wider throat for the survivable chamber: cycle, impulse, ledger | open |
 | **S25** | the Earth turn and mirror visibility on the flown chain, at the chamber's burns | open |
-| **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | answered (sim `2addc17`): 938 / 941 kN s, floor 845 / 849 |
+| **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | answered (sim `2addc17`, second issue `df4bc6e`): 885 / 941 kN s on 2.66 m^2, floor 810 / 849 |
 
