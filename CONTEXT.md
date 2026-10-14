@@ -5075,6 +5075,22 @@ speed whatever the converter: 530-1,120 s at eta 0.1-0.45 (0.25 kg case, no slee
 _Avoid_: "a direct gas push" as the pass-through's low-speed baseline (the fireball recedes);
 "most of the impactor's energy" reaching the plate.
 
+**X-ray-driven spray plate** (Seth, 2026-10-14; `todos/departure_xray_spray.py`; **rejected
+for the departure wave**, ADR 0030):
+The departure-wave form of the pinch idea. A pass-through pinch (impactor:anchor 1:3, so 25%
+of the energy leaves astern) shines through a **window** in its case across the standoff onto
+**argon gas sprayed against the pusher plate**. The argon pushes off the plate, so there is no
+pulse split (a free-floating slab would throw half its mass astern). A bowl centered on the
+source evens the illumination. At 75 km/s with 2.11 GJ field-available per kg impactor,
+eta_x (window escape) 0.3-0.5, bowl share 0.5-0.8, eta_jet 0.60: 10 kg argon per kg impactor
+gives 48-78 kN s and 367-600 s; 20 kg gives 68-110 kN s and 296-483 s. Against the walled
+methane chamber (~770 s, ~53-64 kN s per kg rod, inferred) it **ties or wins on projectiles
+and loses on Isp**. Isp is tunable only through the anchor: best when argon mass = anchor
+mass, and beating 770 s needs anchor <= ~1 kg per kg impactor at ~20 kN s (~3x the departure
+PuffSats). Rejected on that trade. Unpriced: plate against the 48.2 t chamber on hardware mass.
+_Avoid_: calling it a high-Isp device (energy per kg and the carried anchor cap Isp, not
+temperature); "spray cup" alone (that is the overtake leg's gas-driven plate).
+
 **Vacuum generator, absorber outside, small case** (Seth, 2026-10-14):
 The coax gap and wire array stay near vacuum: gas in the gap breaks down and shunts flux
 around the piston, and dense gas around the wires slows the implosion and softens the flash.
