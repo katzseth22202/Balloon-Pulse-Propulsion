@@ -4944,6 +4944,159 @@ against the two-wave chain's idealized water magnetic nozzle (tie at chain recov
 redirected the comparison to the physical 10,000 K walled chambers, which flipped it to "close
 competitor". Retrieval pricing is the next departure calculation.
 
+### Pass-through X-ray pusher (`sec:pass_through_pusher`)
+
+**Radiation case**:
+The expendable heavy-metal shell around the pulse unit's lattice target. It re-emits the
+collision's X-rays into the channel filler until they are absorbed. It is charged as spent
+mass on every pulse, and its mass is the largest single lever on the pusher's specific
+impulse (`tab:pass_through_isp`: 5040 s at 0 kg, 2930 s at 5 kg per kg of projectile).
+
+**Hold time**:
+How long the radiation case must keep the X-rays inside, together with the size of the
+volume it has to enclose. In the baseline this is ~5 us around a 1.6 m x 0.4 m tube, set by
+the disk's sweep through the lattice. ICF cavities hold radiation for ns to tens of ns.
+_Avoid_: "confinement time" (that term belongs to fusion plasma).
+
+**Flash compression (goal of the magnetic variant)** (Seth, 2026-10-14):
+The two-stage magnetic variant (an impactor in two pieces whose second piece crushes a
+trapped field: flux compression or a z-pinch) is judged on whether it **shortens and shrinks
+the X-ray flash so the case gets lighter**, not on brightness. The efficiency ceiling is low:
+merged debris carries 1/(1+k) of the energy astern whatever mechanism runs inside, and the
+baseline fireball already radiates 71% of the heat, so a perfect converter would add at most
+~19% to the impulse. Price the variant assuming it radiates *less* than 71% and ask whether
+the case savings pay for that.
+_Avoid_: pitching the variant as "more efficient X-ray generation".
+
+**Lead piece / trailing piece** (Seth, 2026-10-14):
+The two halves of the two-stage impactor. The **lead piece** is small and only sets up the
+crush (turns seed material into conducting plasma and traps flux). The **trailing piece**
+carries most of the mass and does the crushing, so the main energy release, and the flash, is
+the crush. The split is an **optimization variable**, not fixed. A full-energy first hit
+would recreate the baseline's 5 us glow and leave the case as large as today's.
+The field must lean on something, so the mass anchoring it takes the target's role and the
+1/(1+k) astern share still applies.
+_Avoid_: "first mass hits a similar mass" (that is the baseline collision, not the setup hit).
+
+**Coaxial compressor** (Seth, 2026-10-14):
+The generator stage of the magnetic variant. The rod joining lead and trailing pieces is the
+inner conductor, a stationary sleeve on the pulse unit the outer. Seed current makes an
+azimuthal field across the trailing piece's path; the trailing piece shorts rod to sleeve and
+herds the flux into the far end, so current rises as the gap shrinks. 1 m stroke at 618 km/s
+= 1.6 us, last 10 cm ~160 ns. Scale: 2500-5000 T at 5-20 cm radius needs 1-5 GA in the rod
+(Z machine ~26 MA; 127 GJ vs Z's ~20 MJ stored).
+_Avoid_: a solenoid wrapped around the flight path (axial field lines run along the piston's
+motion and are not compressed by it).
+
+**Generator and load**:
+The flux compressor is the **generator** (projectile motion into current); a z-pinch is the
+**load** (current into a short, small X-ray flash). They are series stages, not rival
+designs. The lead piece's backward plasma is a **conductor** in the circuit, not the energy
+source; it carries only the small lead piece's share.
+
+**Pinch load and switch** (Seth, 2026-10-14):
+The load is a dedicated **wire array** at the coax's far end, part of the expendable pulse
+unit; its mass is tuned so it implodes as current peaks in the last ~160 ns. The **lead
+piece** reaches the far end first and **closes the circuit** (rod tip to array and end wall).
+(It also drives the first cascade stage; see **Seed cascade**.)
+_Avoid_: using the lead piece's impact plasma as the load (uncontrolled mass and timing).
+
+**Seed cascade** (Seth, 2026-10-14):
+A flux compressor multiplies a seed; it does not create one. Single-stage coax gain is
+~30-600 (600 nH at start, 1 m x 0.2 m sleeve x 1 cm rod; 1-10 nH load floor), so 127 GJ needs
+a ~1 GJ seed per pulse. At ~54 pulses/s (illustrative: ~290 t arriving, 1 kg projectiles,
+~1000 s periapsis burn) that is ~54 GW, so the ship cannot seed it; 1 MW aboard gives ~18 kJ
+per pulse and needs total gain ~7e6. **Baseline: a projectile-driven cascade.** A small
+ship-charged capacitor (~10 kJ) seeds a first stage driven by the **lead piece**, whose output
+seeds the trailing-piece stage(s); ~3 stages at ~200x. The lead piece is therefore a working
+first-stage driver as well as the circuit-closing switch, and its mass is set by that stage.
+**Self-generated (Biermann) seed** fields from the lead piece's impact plasma are a possible
+bonus, not the design. Gain per stage is the variant's make-or-break number.
+_Avoid_: seeding from ship power; calling the lead piece "only a switch"
+
+**Crowbar hand-off**:
+How a cascade stage passes flux on. Stage *n*'s rising current fills stage *n+1*; at peak,
+stage *n+1*'s piston shorts its own input ("crowbars"), trapping the flux, after which stage
+*n* may vaporize harmlessly. Conditions: crowbar within a few tens of ns of stage *n*'s peak,
+and a few cm (or an insulating barrier) between stages so dying-stage plasma (~100-200 km/s)
+cannot short the next gap first. The **rigid core is the clock**: the lead-to-trailing
+spacing on one projectile sets stage timing, and at 618 km/s 1 cm = 16 ns, so timing is a
+machining tolerance, not an aim requirement.
+_Avoid_: "rigid" in the structural sense; nothing carries load across the impact in a us.
+
+**Inner conductor tube** (Seth, 2026-10-14):
+The coax's inner conductor is a **hollow, thin-walled aluminum tube a few cm in radius**
+carried by the projectile (lead piece on its tip, trailing disk at its back). Current rides a
+thin surface layer over ~1 us, so a solid core adds nothing. A 4 cm, ~0.5 mm wall tube is
+~0.35 kg and sees ~5,000 T at 1 GA, against 20,000 T (~1,600 Mbar, crushed in the last
+~100 ns) for a 1 cm solid rod that alone weighs ~0.85 kg. Its mass is working projectile
+mass. It may collapse into the pinch at the end; flux lost to it is counted in stage gain.
+Rejected: a stationary post on the pulse unit with a ring-shaped trailing piece (needs mm
+aim; the tube needs cm).
+_Avoid_: "thin rod" (a thin rod is neither light nor survivable at these currents).
+
+**Annular propellant plate** (Seth, 2026-10-14):
+The trailing piece pushes flux astern, so the pinch flashes at the coax's far (astern) end,
+with the 0.4 m x 1 m sleeve between it and the ship. The small case wraps the pinch and an
+annulus of filler; a **ring-shaped propellant plate** around the sleeve's far end faces
+forward. The jet arrives as a ring, which suits the ring ship's clear bore; its uneven feed
+of the pusher plate is priced as a loss factor, not a rejection. Rejected: routing current
+through a radial line to a load ahead of the coax (added inductance cuts gain).
+
+**Anchor mass**:
+What the compressed field rests against: the coax's astern end wall, doubling as the case's
+astern wall. The field pushes the trailing piece forward and the anchor astern equally, so
+the anchor plays the baseline lattice target's role in the k/(1+k) rule (k = 2: 67% of the
+energy available to the field, 33% leaving astern at 206 km/s). It **replaces** the 2 kg
+lattice; it does not remove it. Case savings must come from the rest of the case.
+_Avoid_: "free" anchor; the mass moves, it does not disappear.
+
+**Chain efficiency and the break-even** (scratch calc, 2026-10-14, `todos/pinch_breakeven.md`):
+Chain efficiency = field-available energy reaching filler+propellant motion (baseline
+0.71 x 0.80 = 0.568). The variant clears the 2650 s bar easily (eta ~0.15-0.27), but to match
+the baseline's **projectile bill** it needs eta 0.44-0.58 across a 0.25-2 kg case and
+0-3.4 kg sleeve, about 86% per hand-off. **Case mass is a weak lever on the bill**: even a
+free case cuts the baseline's bill only 24% (0.133 to 0.101 kg/kg at the bar), because
+impulse per projectile goes as sqrt(E x mass). Flash compression buys specific impulse;
+projectiles are bought with chain efficiency.
+_Avoid_: claiming the magnetic variant saves projectiles because its case is lighter.
+
+**The pinch at sub-blackbody closing speeds** (Seth's framing, 2026-10-14; `todos/pinch_150.py`):
+In the head-on pass-through the merged fireball recedes astern at v/(1+k), so gas cannot
+carry its heat upstream to a plate on the ship side (the ray-count ceiling is 31.2% even at
+k = 7.06, less at k = 2); **light is the only upstream carrier**. Below ~600 km/s the
+fireball is too cool to radiate (at 150 km/s ~470 eV per C atom, kT ~40-50 eV, T^4 output
+~5e4x weaker), so the pinch is the *only* X-ray source there, and its fields fall to
+600-1,200 T (demonstrated flux-compressor range). But at most k/(1+k) of the energy ever
+reaches the field (30% of the impactor's energy at eta 0.45), and Isp falls with closing
+speed whatever the converter: 530-1,120 s at eta 0.1-0.45 (0.25 kg case, no sleeve),
+400-840 s with a 1.7 kg sleeve. That is the band of the walled methane chamber
+(762-777 s), hydrogen-on-copper (1112 s), and the companion's tamper bowl (984 s at 75 km/s).
+_Avoid_: "a direct gas push" as the pass-through's low-speed baseline (the fireball recedes);
+"most of the impactor's energy" reaching the plate.
+
+**Vacuum generator, absorber outside, small case** (Seth, 2026-10-14):
+The coax gap and wire array stay near vacuum: gas in the gap breaks down and shunts flux
+around the piston, and dense gas around the wires slows the implosion and softens the flash.
+(A thin gas-puff argon *load* is a separate, legitimate pinch type.) The channel filler sits
+outside the return-current cage, and a **small radiation case** still encloses the
+few-cm source. The case collects *and* aims the light, and it evens out the drive across the
+propellant plate. A caseless source loses both: an all-directions blanket caps the plate at
+the ~31% ray-count share (`5e7edbf`), and a bare point source lights a 0.4 m plate's edge at
+9% of its center from 10 cm, needing ~a plate-width of standoff to reach ~70%.
+_Avoid_: immersing the wires or coax in the filler or in spray-cup argon.
+
+**Pressure coupling vs standoff** (Seth, 2026-10-14):
+Gas pushes only on the surface it expands *from*. Inside the pulse unit everything is
+pressure-coupled: the filler blows off astern by pushing the propellant plate forward. Only
+the propellant jet crosses the gap ballistically. The **standoff stays** (near today's
+5-10 m), set by matching the jet's spread to the pusher plate, as Orion did. A contact-range
+plate would gain coupling but take ~90 GJ of ~300 eV X-rays at its face every pulse. The
+merged projectile debris leaving astern brings its momentum in with the projectile and
+pushes nothing aboard.
+_Avoid_: "gas moving away from the plate still pushes it" without naming the surface it
+pushed off.
+
 ## Relationships
 
 - A **PuffSat** strikes the **pusher plate** (or the **Medusa-style sail**); plate and
