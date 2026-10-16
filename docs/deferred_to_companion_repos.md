@@ -554,6 +554,15 @@ The heat a 100 km/s Kapton face really keeps, whether a sheet that gasifies 0.1-
 works as the impactor, a 1 mm sheet on a 1 cm charge, and where Kevlar strands fail. Full text:
 `docs/plume_cadence_asks_for_impact_sim.md`.
 
+## S38. Is the canted departure behind Earth? (aim_is_all_you_need)
+
+`departure_nozzle_ledger` picks the departure's mirror sign on delivery alone and never places the
+ship. The paper's planar scratch check finds the flown sign puts periapsis on the night side, 11-21
+degrees from the sheets' direction of travel, so they would pass through Earth. The other sign is
+visible and no worse on `earth_ve` (extrapolated, impact 117-130 deg). Wanted: confirm with
+`departure_visibility`, constrain the sign, check the apoapsis turn, and rerun the headline. Full
+text: `docs/departure_occultation_ask_for_aim_repo.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
