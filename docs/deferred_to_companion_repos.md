@@ -522,6 +522,38 @@ Only an Estimate book exists. The paper prints the two worst single levers (lob 
 cap) in place of a pessimistic column until one lands. Full text:
 `docs/solar_dive_asks_for_aim_repo.md`.
 
+## S33. The 1 g push from a faster lob (aim_is_all_you_need)
+
+At the priced 4 Hz, thin sheets overheat in the earlier pulses' gas. 1 Hz at 1 g fixes the sheets
+but needs the unit climbing ~2.5 km/s at 400 km (paper's 2D scratch integration). The booster then
+lofts ~28% less, and its braked return does not close (`brake_dv` NaN at 191 km / 3.16 km/s).
+Wanted: the solved climb speed, the lofted mass, and a booster return that works. Full text:
+`docs/plume_cadence_asks_for_aim_repo.md`.
+
+## S34. The plate and absorber for 14.7 MN s pulses (aim_is_all_you_need)
+
+The paper's impulsive bound: a 16 g peak needs ~10 m of stroke on a ~47 t plate (~78 g on the 2 m
+stroke). Wanted: the least plate-plus-absorber mass on the gas-spring model at 16 g and 100 g caps.
+Full text: `docs/plume_cadence_asks_for_aim_repo.md`.
+
+## S35. Rerun the ledger on the 1 Hz push (aim_is_all_you_need)
+
+Growth, doubling and break-even with S33-S34 charged, against the 4 Hz headline. Also the L1
+delivery's peak g at 1 Hz, since the data-center hardware rides it. Full text:
+`docs/plume_cadence_asks_for_aim_repo.md`.
+
+## S36. The flat plate's backward plume (puffsat_impact_simulation)
+
+The exhaust's speed and angle distribution up the stream axis, the best-fit receding-cloud U and u,
+the species, and whether a canted plate clears the axis cheaply. The paper's dose depends mostly on u,
+which is a free input today. Full text: `docs/plume_cadence_asks_for_impact_sim.md`.
+
+## S37. The sheet's response, and the 1 mm option (puffsat_impact_simulation)
+
+The heat a 100 km/s Kapton face really keeps, whether a sheet that gasifies 0.1-0.3 s out still
+works as the impactor, a 1 mm sheet on a 1 cm charge, and where Kevlar strands fail. Full text:
+`docs/plume_cadence_asks_for_impact_sim.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
