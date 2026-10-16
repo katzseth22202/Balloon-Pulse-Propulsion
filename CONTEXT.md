@@ -5695,6 +5695,19 @@ on the ship are all negligible beside it. Two non-heat items drive design:
   of cold gas covers. Sensing the drift, not paying for it, is the requirement. Edge-on at 4 R_sun
   the disk runs at ~700 K instead of 2430-2890 K. **Depth barely matters**: the push is 6-15x
   weaker at 9.86 R_sun, but a CME takes ~2.5x longer to pass, and drift goes as time squared.
+  **Open (2026-10-16):** the edge-on figures assume purely radial CME flow. An 11-degree tilt
+  (20% out-of-plane flow) returns ~15 m/s and ~27 km in an extreme CME at 4 R_sun (est.). Asked of
+  the sim with CME densities at depth (answers doc, item 4). Edge-on sunlight is ~11% of face-on at
+  4 R_sun, not 1/139, because the Sun is 14.5 degrees in radius there.
+  **Sun-wave co-flyers (Seth, 2026-10-16):** four, at the corners, ~500,000 km off the disk train
+  (radially and out of plane), plus the ship. Ranging fixes the network's **shape** to centimetres.
+  Shape is all a hit needs; the network's orientation enters only at millimetres through the Sun's
+  differential gravity. Each disk carries a pointed laser transponder; each co-flyer a wide-range
+  electrostatic accelerometer to bridge range fixes (loose spec, possibly optional). The first one
+  or two disks are **calibration disks**: they aim to miss the ship by tens of metres, and the
+  measured pass gives the disks' shared error. Repeat after a long pause in pulses or a CME.
+  Answers doc, item 6.
+_Avoid_: "coordinators" for these; they are co-flyers, as for the Earth streams.
 **Charging:** Parker flew positive inside ~25 R_sun, against pre-launch predictions. Not a driver.
 **Dust:** 4 R_sun is at or inside the depletion zone (Howard 2019). Retrograde disks meet prograde
 dust at 400-600 km/s, which matters for forward-facing optics only.

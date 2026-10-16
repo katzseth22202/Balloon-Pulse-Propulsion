@@ -529,6 +529,13 @@ The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.
 push on the disks as a guidance budget, ~1% SEP attrition with >= 100 krad electronics, and fluence
 (not peak-flux) scaling for dose. Owed by whoever has the tools: a CREME96/SPENVIS shielded-dose run,
 and Parker's measured dust and CME-density data at 9.86 R_sun.
+Added 2026-10-16 (item 4 of that doc): the edge-on disk rule assumes purely radial CME flow. A
+20% out-of-plane flow tilts it 11 degrees and returns ~15 m/s and ~27 km for an extreme CME at
+4 R_sun (est.). Owed: CME density at 4-10 R_sun with its peak-to-mean ratio, and a bound on
+non-radial CME flow near the Sun. Item 5 corrects the edge-on sunlight error from ~5 m to ~80 m.
+Item 6 adds four Sun-wave co-flyers at the corners, ~500,000 km off the disk train, ranging the
+network's shape to centimetres. Owed: (c) aim repo, whether a Jupiter flyby supplies the ~1.3 km/s
+out-of-plane offset; (d) control sim, the Sun-wave landing tolerance and the network error budget.
 
 **S26 answered** 2026-10-13, sim `2addc17` (`docs/throat_kinetics_answers_from_impact_sim.md`). The
 971 kN s is full equilibrium in carbon and hydrogen, without the 1% gate (958 with it). Over the
