@@ -485,6 +485,43 @@ area ratio buys only `sqrt(2)` more time. Wanted: which limit the 971 kN s takes
 finite-rate quasi-1D solve for today's nozzle and S24's options (a) and (b), with the sphere for
 calibration. Full text: `docs/throat_kinetics_asks_for_impact_sim.md`. S24's impulse waits on it.
 
+## S27. Charge the solar dive's apoapsis methalox stage (aim_is_all_you_need)
+
+ADR 0072's departure-wave unit burns 0.237 km/s of methalox at apoapsis (0.211 at 4 R_sun), about
+68 t per unit. Nearly all of it turns the orbit from the push axis to the thrust axis. The
+propellant is charged; the engine and tanks are not. The paper's "no new kind of nozzle" wording
+rests on this stage being priced. Full text: `docs/solar_dive_asks_for_aim_repo.md`.
+
+## S28. Does the push wave's aim shrink the apoapsis turn? (aim_is_all_you_need)
+
+Whether the turn angle was in the objective of ADR 0072's push-wave route solve. A curiosity;
+nothing waits on it. Full text: `docs/solar_dive_asks_for_aim_repo.md`.
+
+## S29. A smaller solar-dive seed (aim_is_all_you_need)
+
+The seed is hard-coded at one launch unit of ships (676 t, $0.88-3.37B at 9.86 R_sun). Wanted:
+whether anything is indivisible below that, and the headline on a 1- and 2-ship seed. The paper
+prints the one-unit seed now and says plainly it is dearer up front; nothing waits on S29. Full
+text: `docs/solar_dive_asks_for_aim_repo.md`.
+
+## S30. Bare-sheet hits on the flat plate (puffsat_impact_simulation)
+
+A charge that fails to deploy lets a Kapton sheet hit the flat plate bare. Wanted: peak pressure,
+spall fragments (the debris risk), how many hits at 2 Hz the plate takes, whether a canted
+departure sheet with no charge even strikes the plate, and a furled sheet's hit. Full text:
+`docs/departure_abort_asks_for_impact_sim.md`.
+
+## S31. The abort buffer spray (puffsat_impact_simulation)
+
+The lowest k of methane sprayed on the face, spray-cup style, that makes a bare hit survivable,
+and its lead time and spread. Full text: `docs/departure_abort_asks_for_impact_sim.md`.
+
+## S32. A pessimistic price book for the solar dive (aim_is_all_you_need)
+
+Only an Estimate book exists. The paper prints the two worst single levers (lob at $50/kg; 20 g
+cap) in place of a pessimistic column until one lands. Full text:
+`docs/solar_dive_asks_for_aim_repo.md`.
+
 **S26 answered** 2026-10-13, sim `2addc17` (`docs/throat_kinetics_answers_from_impact_sim.md`). The
 971 kN s is full equilibrium in carbon and hydrogen, without the 1% gate (958 with it). Over the
 whole blowdown, hydrogen at its measured rate costs 1.3-1.5% of thrust at A/A* 300. Net impulse

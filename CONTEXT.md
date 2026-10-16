@@ -2833,6 +2833,33 @@ Every Jupiter-return Earth encounter flies above the 200 km of the 11 km/s strea
 The LEO and 200 Mile High Club streams (both modeled at 11 km/s) stay at 200 km. Data-center
 deliveries inherit the chain's altitudes because their cargo rides the same growth push. The
 lifting stage reaches the growth push by a **Vertical lob**.
+
+**Solar-dive charge pusher (the lead growth cycle)** (decided 2026-10-16 grill; companion ADR 0072,
+impact sim ADRs 0060-0063):
+The paper's headline growth cycle. It runs on the three-synodic Earth -> Jupiter -> Sun -> Earth
+closure (`sec:three_synodic`). Returning Kapton sheets strike polyethylene charges held off a flat
+plate at Earth. At the solar periapsis, graphite disks strike charges in a δ/D 0.5 paraboloid.
+**No chamber and no nozzle (thermal or magnetic) flies anywhere in the loop.** The chamber and
+magnetic-nozzle sections stay in the paper as the **backup departure**, not the headline.
+_Avoid_: calling it "the Jovian dive cycle" without qualification. That name belongs to the
+magnetic-nozzle version (5-day two-wave departure, methalox re-aim, impactors flying their own
+Earth departure), which is now history.
+
+**The Earth plate is flat on purpose** (decided 2026-10-16 grill):
+One flat plate takes both the push and the canted departure. A paraboloid would grow faster.
+On the overtake push at k = 10, the sim's paraboloid keeps 74% of the ideal momentum against the
+flat skirted plate's 61% (mass ratio 1.42 against 1.48 for 11 km/s; `overtake_pusher_handoff.md`).
+A paraboloid with a hole that the impactors pass through, opened for the departure wave, could
+fly both legs. That version has not been simulated. The paper says the flat plate does well
+enough that this optimization is not needed at first. Quote the push-leg number, and say the
+departure-leg gain is unsimulated rather than estimating it.
+
+**"No new kind of nozzle"** (decided 2026-10-16 grill): the wording for what the lead cycle spares
+the program. No pulsed chamber and no magnetic nozzle fly in it. It does keep one ordinary engine:
+a flown methalox stage that turns the 10-day orbit at apoapsis, from the push axis to the
+departure's thrust axis. That burn is 0.237 km/s at 9.86 R_sun (0.211 at 4), about 6% of the
+stack. Its engine and tanks are uncharged in ADR 0072 (asked as S27).
+_Avoid_: "no nozzles", "no engines". Both are false, and a reader can check them against the ledger.
 _Why the growth wave flies high_: drag heating goes as `v^3`. At 57 km/s an inbound half-pass to a
 200 km periapsis deposits 290 kJ/m^2 on the bumper (peak 26 kW/m^2), equal to the 4 Hz plume dose
 of `tab:jovian_plume_cadence` (302); 30 kJ/m^2 at 300 km; **4.9 kJ/m^2 at 400 km**. The ring's
@@ -5537,7 +5564,7 @@ Solved chambers $100/kg, methalox $169/kg (Estimate). It replaced the delivery-o
 **First growth return**: the first time a launch unit pushed by returning PuffSats comes
 home, 5.46 yr (chambers) or 6.55 yr (methalox). It settles whether the cycle works.
 
-**Valuation (ADR 0040)**: time at 10%/yr, a 50% chance the cycle works settled once at the
+**Valuation (ADR 0040)** (SUPERSEDED 2026-10-16 by the **Gated rNPV** below): time at 10%/yr, a 50% chance the cycle works settled once at the
 first growth return; flows before it are certain, flows after it are weighted; no risk after
 it (optimistic). 25% and 100% are printed beside it. _Avoid_: compounding a venture rate per
 year of waiting (it charges failure risk again for every year and decided the seed-route
@@ -5553,3 +5580,103 @@ seed is paid once and growth divides it. Directional, not priced.
 
 **Argon supply** (Seth, 2026-10-03): not a concern and not mentioned in the paper. Argon is
 about 1% of the atmosphere and easy to get; the fleet's ~30,000 t per cycle is not worth a caveat.
+
+## Gated rNPV valuation (decided 2026-10-16 grill; companion ADR 0072)
+
+**Gated rNPV**: the valuation every finance table in the paper uses, chamber and methalox rows
+included. rNPV is risk-adjusted net present value, the drug-development convention. Money is
+discounted at **10% a year**. Each cash flow is weighted by the odds of every milestone (gate)
+before it:
+- 95%: the seed departs, and the carrier splits the disks off at Jupiter
+- 75%: the first Sun boost works
+- 85%: the sheets arrive
+- 90%: the first push and canted departure work
+Together that is about 55%. A chamber row's first departure is its 75% gate.
+_Avoid_: ADR 0040's single 50% odds; any flat venture rate. **30% is not the right rate** (Seth,
+2026-10-16), so the paper prints no flat-30% row, even as a sensitivity.
+
+**Growth phase**: **15 synodic periods** (about 16.4 yr) of reinvesting every return before any
+mass is sold, then held level. This is a drug programme's ~15 years, counted in the cycle's own
+unit. The headline uses it (Seth, 2026-10-16: "comparable to drug timelines, so I think its fine"). 10 and 21 synodic periods are the quoted sensitivities ($224 and $85
+dear-seed break-even at 9.86 R_sun).
+
+**Development cost is deliberately left out** (Seth, 2026-10-16): R&D, test flights, factories
+and tracking are carried by neither architecture. The paper says so in **one sentence**, to
+answer the obvious question before a reader asks it. The comparison stands, and every absolute
+figure is flattered.
+
+**Break-even (levelized)**: the L1 price at which the gated rNPV is zero, i.e. PV of every dollar
+spent (seed included) over PV of every kilogram delivered. After the harvest the fleet is held level
+and the surplus is sold every 3.28-yr return, to 300 years (numerically a perpetuity). In effect
+that is a level perpetual dividend, but the paper does not frame it as one, prints no per-cycle
+dividend, and adds no demand caveat (Seth, 2026-10-16: "probably OK as is").
+
+**Seed (solar dive)** (decided 2026-10-16 grill): one launch unit's worth of departing **ships**,
+push and departure roles in the steady mix, built new and sent direct by stripped, refuelled
+Starships to the closure's departure excess. It is not a batch of PuffSats, unlike the old chain's
+seed, because nothing comes home until a loaded ship has flown the whole loop. Recomputed
+2026-10-16 from aim `127162f` (`seed_size.py` scratch, break-evens reproduce exactly):
+
+| | 9.86 R_sun | 4 R_sun |
+|---|---|---|
+| seed mass | 676 t | 798 t |
+| Starships, cheap / dear | 4.4 / 5.0 | 5.7 / 6.6 |
+| launch bill, cheap / dear | $0.88B / $3.37B | $1.14B / $4.44B |
+| seed $/kg sent, cheap / dear | $1297 / $4993 | $1423 / $5559 |
+| fleet multiple at 15 synodic | x110 | x401 |
+| seed $ per fleet kg, cheap / dear | $21 / $80 | $7 / $25 |
+
+**Say plainly that this seed is bigger and dearer up front** than the old chain's (102-130 t,
+$34M-$1.21B) (Seth, 2026-10-16: "we should be honest"). Then make the amortization argument.
+Print both ends per fleet kg; ADR 0072 gives only the cheap end. Whether a smaller seed works is
+asked as S29.
+
+**Depth: 9.86 R_sun headlines, 4 R_sun is the upgrade** (decided 2026-10-16 grill): 9.86 R_sun is
+Parker's flown perihelion (3.60x per 3S, 1.77 yr doubling, $104 dear). 4 R_sun (4.92x, 1.43 yr,
+$67 dear) is the upgrade the same hardware grows into, with its shade labelled unsolved and pointed
+at the E-items. The clock is fixed at 3.276 yr, so all of the gain is growth per cycle, from two
+mechanisms. At the Sun, Oberth (`X^2 ~ 2 v_p dv`, v_p 308 against 196 km/s) lets the optimizer buy
+a faster return (90 against 60 km/s). At Earth, the faster push wave (128 against 87 km/s) spends
+25% less polyethylene reaching the parking orbit, and 14% more sheet comes home. The cycle ends at
+~12-15 R_sun on geometry: the disks cannot turn onto the mirror dive.
+**Retire in so many words** `tab:jovian_dive_cycles`'s 23x / 0.724 yr at 4 R_sun (uncharged
+magnetic-nozzle figure) and the "150 km/s at 4 R_sun" return as the growth optimum (it is 90-110).
+
+**Charge material: polyethylene** (decided 2026-10-16 grill, G9): it stays polyethylene for now.
+At the flown k ~ 6, the bonds take ~12% of the sheet's energy, and the "bonds returned" bound moves
+break-even under $6. Argon gets one sentence as a priced option; no cryostat is flown.
+**A lost charge is not long-lived debris.** One sentence: a charge lost to an anomaly in low orbit
+is a thin polyethylene sheet (~0.5-0.75 kg/m^2), which drag brings down within weeks. Atomic oxygen
+also erodes polyethylene faster than almost any polymer flown: more than 3.74e-24 cm^3/atom on MISSE 2,
+eroded through, so at least ~80 um/yr facing ram (NASA/TM-2008-215490).
+_Avoid_: citing UV as the mechanism. In vacuum UV embrittles polyethylene but removes little mass.
+Seth's water-charge idea for debris is an open question, not in the paper.
+
+**Earth-side abort (solar dive)** (decided 2026-10-16 grill): what happens when a charge fails to
+deploy in front of a sheet.
+- **Sheets make no debris.** A 35-62 um Kapton sheet vaporises on any hard contact, and a missed or
+  diverted sheet leaves on a hyperbolic path at ~100 km/s, about 9x escape. The Sun dive has nothing
+  in orbit to hit.
+- **The stream is steered, not the ship.** At ~2 Hz the next sheet is 0.5 s behind, and dodging a
+  1500 t unit by ~10 m needs 0.5-8 g. On a fault the ship stops the train. Sheets more than a few
+  seconds out divert by tens of metres on their cold gas (<0.5 m/s^2) and leave on hyperbolic paths.
+- **Buffer spray for the sheets that cannot divert.** About 1 s of bare hits is likely more than the
+  flat plate can take (Seth). After the first detected failure, the ship sprays methane onto the
+  plate face, timed per pulse, spray-cup style, at k ~ 1-2. The methane comes from the fuel side of
+  the correction (deep-space maneuver) reserve. No LOX is sprayed. Roughly 0.6-1.2 t covers 5 s at
+  departure, against a ~5-8.5 t reserve at 30-50 m/s (scratch estimate; the reserve is uncharged,
+  see S27).
+- **Sheets aim off the plate until their unfurl is confirmed**, so a failed unfurl (a compact,
+  penetrating roll) is a miss by construction.
+- **A part-burned ship is the largest debris object** in the failure tree. It goes to the existing
+  Venus-atmosphere disposal from an above-GEO park.
+_Avoid_: "the ship dodges"; calling a failed unfurl an attrition miss without the aim-off rule.
+
+**Wave names in the solar dive** (2026-10-16 grill; follows the **Growth wave vs departure wave**
+rule that names follow mission roles):
+- **Earth wave**: the whole returning stream of Kapton sheets (the Sun ships' released remainder).
+  It splits by role into the **growth wave** (overtake push at 400 km into the 10-day orbit; the
+  companion's "push wave") and the **departure wave** (canted departure ten days later).
+- **Sun wave**: the graphite disks that boost the **Sun ship** head-on at perihelion. They ride out
+  with the ship and are split onto the mirror dive by a carrier burn at Jupiter.
+_Avoid_: "push wave" in paper prose (companion name); "impactors" for the sheets alone.
