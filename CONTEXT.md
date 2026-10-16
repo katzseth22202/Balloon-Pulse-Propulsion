@@ -5680,3 +5680,22 @@ rule that names follow mission roles):
 - **Sun wave**: the graphite disks that boost the **Sun ship** head-on at perihelion. They ride out
   with the ship and are split onto the mirror dive by a carrier burn at Jupiter.
 _Avoid_: "push wave" in paper prose (companion name); "impactors" for the sheets alone.
+
+## Near-Sun environment (answered 2026-10-16, `docs/solar_environment_answers_for_impact_sim.md`)
+
+**Steady sunlight is the design heat load** at 9.86 and 4 R_sun. CME heat, flare heat and CME push
+on the ship are all negligible beside it. Two non-heat items drive design:
+- **SEP dose.** Dose follows fluence, which falls as r^-0.7 to r^-1.5 (Lario), not the peak flux's
+  r^-1.3 to r^-3. So 4 R_sun is ~2-4x the 9.86 R_sun dose. Carry >= 100 krad rad-hard guidance
+  behind ~1 g/cm^2, and ~1% of passes lost at solar maximum (est.).
+- **CME push on the Sun-wave disks, answered by attitude.** A 1 kg, 0.5 m disk (2.8 mm thick) has
+  ~2000x the ship's area per kg face-on, and 139x less edge-on. **The disks fly edge-on**, with the
+  face normal out of the orbital plane, and **flip 90 degrees to face the ship in the last minute**
+  (Seth, 2026-10-16). Even an extreme CME then costs <= 0.6 m/s and ~1 km of drift, which a few m/s
+  of cold gas covers. Sensing the drift, not paying for it, is the requirement. Edge-on at 4 R_sun
+  the disk runs at ~700 K instead of 2430-2890 K. **Depth barely matters**: the push is 6-15x
+  weaker at 9.86 R_sun, but a CME takes ~2.5x longer to pass, and drift goes as time squared.
+**Charging:** Parker flew positive inside ~25 R_sun, against pre-launch predictions. Not a driver.
+**Dust:** 4 R_sun is at or inside the depletion zone (Howard 2019). Retrograde disks meet prograde
+dust at 400-600 km/s, which matters for forward-facing optics only.
+

@@ -522,6 +522,14 @@ Only an Estimate book exists. The paper prints the two worst single levers (lob 
 cap) in place of a pessimistic column until one lands. Full text:
 `docs/solar_dive_asks_for_aim_repo.md`.
 
+## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
+
+The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
+`docs/solar_environment_answers_for_impact_sim.md`. It returns three new items to the sim: the CME
+push on the disks as a guidance budget, ~1% SEP attrition with >= 100 krad electronics, and fluence
+(not peak-flux) scaling for dose. Owed by whoever has the tools: a CREME96/SPENVIS shielded-dose run,
+and Parker's measured dust and CME-density data at 9.86 R_sun.
+
 **S26 answered** 2026-10-13, sim `2addc17` (`docs/throat_kinetics_answers_from_impact_sim.md`). The
 971 kN s is full equilibrium in carbon and hydrogen, without the 1% gate (958 with it). Over the
 whole blowdown, hydrogen at its measured rate costs 1.3-1.5% of thrust at A/A* 300. Net impulse
