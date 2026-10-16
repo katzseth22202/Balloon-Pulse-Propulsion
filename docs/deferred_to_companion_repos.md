@@ -536,6 +536,10 @@ non-radial CME flow near the Sun. Item 5 corrects the edge-on sunlight error fro
 Item 6 adds four Sun-wave co-flyers at the corners, ~500,000 km off the disk train, ranging the
 network's shape to centimetres. Owed: (c) aim repo, whether a Jupiter flyby supplies the ~1.3 km/s
 out-of-plane offset; (d) control sim, the Sun-wave landing tolerance and the network error budget.
+**Item 4 answered** 2026-10-16, sim `ec90d3f` (`docs/cme_drift_answers_from_impact_sim.md`). Densities
+at 4 R_sun ~1e5-6e5 cm^-3 typical; tilt ~1 deg in ejecta, 23 deg in Parker's sheath. Edge-on holds;
+worst stacked sheath 14 m/s, 25 km, 23 g of gas. Item 5 confirmed (0.108 / 0.048). Still owed: the
+out-of-plane flow inside near-Sun ejecta and the sheath thickness at 4 R_sun (an MHD CME run), plus (c), (d).
 
 **S26 answered** 2026-10-13, sim `2addc17` (`docs/throat_kinetics_answers_from_impact_sim.md`). The
 971 kN s is full equilibrium in carbon and hydrogen, without the 1% gate (958 with it). Over the

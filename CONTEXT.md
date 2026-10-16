@@ -5695,10 +5695,14 @@ on the ship are all negligible beside it. Two non-heat items drive design:
   of cold gas covers. Sensing the drift, not paying for it, is the requirement. Edge-on at 4 R_sun
   the disk runs at ~700 K instead of 2430-2890 K. **Depth barely matters**: the push is 6-15x
   weaker at 9.86 R_sun, but a CME takes ~2.5x longer to pass, and drift goes as time squared.
-  **Open (2026-10-16):** the edge-on figures assume purely radial CME flow. An 11-degree tilt
-  (20% out-of-plane flow) returns ~15 m/s and ~27 km in an extreme CME at 4 R_sun (est.). Asked of
-  the sim with CME densities at depth (answers doc, item 4). Edge-on sunlight is ~11% of face-on at
-  4 R_sun, not 1/139, because the Sun is 14.5 degrees in radius there.
+  **CME tilt and density answered (2026-10-16, sim `ec90d3f`, `docs/cme_drift_answers_from_impact_sim.md`).**
+  Ejecta flow is ~1 deg from radial (1 au); Parker's flank sheath was 23 deg out of plane. Densities
+  at 4 R_sun are ~1e5-6e5 cm^-3 typical (coronagraph scaled, and in situ), peak/mean ~2. A typical
+  CME costs <= 0.3 m/s, <= 0.55 km at any tilt; extreme ejecta 0.8 m/s, 1.4 km. The stacked worst
+  case (densest of 29 x 2, 2500 km/s, 23 deg for 1 h) is 14 m/s, 25 km, 23 g. **Each disk carries
+  ~25 g of cold gas (2.5%).** Face-on extreme: ~34 m/s, ~61 km. Still open: out-of-plane flow inside
+  near-Sun ejecta and sheath thickness at 4 R_sun (needs an MHD CME run). Edge-on sunlight is ~11%
+  of face-on at 4 R_sun (sim: 0.108 limb-darkened), not 1/139, because the Sun is 14.5 deg in radius.
   **Sun-wave co-flyers (Seth, 2026-10-16):** four, at the corners, ~500,000 km off the disk train
   (radially and out of plane), plus the ship. Ranging fixes the network's **shape** to centimetres.
   Shape is all a hit needs; the network's orientation enters only at millimetres through the Sun's

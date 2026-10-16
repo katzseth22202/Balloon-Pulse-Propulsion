@@ -272,6 +272,8 @@ overtake it as design drivers, and neither is heat:
      the tilt in the table above.
    Together these decide between a ~1 km tracking requirement and a tens-of-m/s correction budget
    for roughly one pass in ten at solar maximum.
+   **Answered** 2026-10-16 by the sim (`ec90d3f`, `docs/cme_drift_answers_from_impact_sim.md`): the
+   ~1 km tracking requirement, plus ~25 g of cold gas per disk for the rare extreme sheath.
 5. **Correction to item 1's sunlight figure.** The Sun is not a point source at depth. Its angular
    radius is 14.5 degrees at 4 R_sun and 5.8 degrees at 9.86 R_sun, so an edge-on disk still sees
    the upper and lower halves of the Sun on its two faces. The pressure across the face cancels by
