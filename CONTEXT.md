@@ -2838,14 +2838,54 @@ lifting stage reaches the growth push by a **Vertical lob**.
 impact sim ADRs 0060-0063):
 The paper's headline growth cycle. It runs on the three-synodic Earth -> Jupiter -> Sun -> Earth
 closure (`sec:three_synodic`). Returning Kapton sheets strike polyethylene charges held off a flat
-plate at Earth. At the solar periapsis, graphite disks strike charges in a δ/D 0.5 paraboloid.
+push plate at Earth, and the departure's compact impactors thread a hole in a bowl (ADR 0073, below). At the solar periapsis, graphite disks strike charges in a δ/D 0.5 paraboloid.
 **No chamber and no nozzle (thermal or magnetic) flies anywhere in the loop.** The chamber and
 magnetic-nozzle sections stay in the paper as the **backup departure**, not the headline.
 _Avoid_: calling it "the Jovian dive cycle" without qualification. That name belongs to the
 magnetic-nozzle version (5-day two-wave departure, methalox re-aim, impactors flying their own
 Earth departure), which is now history.
 
-**The Earth plate is flat on purpose** (decided 2026-10-16 grill):
+**Two Earth plates** (decided 2026-10-19; aim ADR 0073, sim ADR-0064 amendment and ADR-0065):
+Both fly up in each launch unit.
+- **Push plate**: flat, ~12 t (absorber-set, `I^2/(2 s M a)` at 100 g on a 2 m stroke), 9.5 m with
+  a 2 m skirt. It is released in the 10-day orbit before the methalox turn and deorbited by a
+  ~4 m/s nudge at apoapsis (paper estimate; S39 item 5).
+- **Bowl**: the departure plate, a δ/D 0.5 paraboloid with a ~1 m hole and a 1 t collar, 13-16 t
+  (point-blast floor). It is steered into Jupiter after the departure. Its law is x1.6-1.9 the
+  flat plate's Isp: the flat plate lets the fireball slide off, and the bowl turns 60-73% of the
+  expansion's momentum back along its axis.
+_Avoid_: "canted plate" for anything flown; it is retired. "The flat plate" alone is ambiguous;
+say push plate.
+
+**Visible sign** (decided 2026-10-19; S38): the departure hyperbola's mirror orientation whose
+stream arrives outside Earth's 66.1 deg occultation cone at the 600 km periapsis. It meets the
+stream at 129.9 deg / 84.0 km/s at 9.86 R_sun (117.0 / 107.9 at 4 R_sun). The ~89 deg sign first
+flown put periapsis behind Earth. The angle costs x0.73-1.07 on the bowl; the plate change gains
+x1.6-1.9.
+
+**One cadence** (decided 2026-10-19, Seth: "consistent numbers"): the growth push (inbound) and
+the L1 delivery both fly **2 Hz at 1 g** (7.35 MN s) from the **2.43 km/s lob**, whose booster
+brakes on the way down (entry burn) and lofts 1/1.48 as much ($39.4/kg lofted). The departure
+(outbound) flies **1 Hz at 0.25 g** (~32 min, 0.46 km/s finite-burn loss), slow so that each
+impactor can be aimed through the hole. 0.5 g is a one-line lever (-$4 dear), not the design.
+_Avoid_: any 4 Hz or 1 Hz / 14.7 MN s push figure as the flown design; they survive only as the
+history rows of `tab:charge_pusher_plume`.
+
+**Return (return excess)** (2026-10-19): the climb-out speed the Sun boost leaves the ship with,
+`X^2 ≈ 2 v_p Δv`. Paper prose says "a 60 km/s return", never "X 60". The headline is the cheapest
+return at each depth: **60 km/s at 9.86 R_sun** (3.81x, 1.70 yr, $134 dear) and **90 km/s at
+4 R_sun** (5.72x, 1.30 yr, $89). Faster returns lose because the boost grows as `X^2` and is paid
+in disks and Sun charge that would otherwise come home as sheets. The aim repo's 90 / 150 km/s
+closures are the comparison rows of `tab:charge_pusher_fast`.
+**Growth stream vs departure stream**: the growth wave crosses 400 km faster than the departure
+wave crosses 600 km, because its ships come home ten days early: 99 vs 76 km/s at 9.86 R_sun,
+60; 137 vs 103 at 4 R_sun, 90. Sheet survival depends on the growth stream. Above ~130 km/s,
+100 um Kapton fails both heat and plate pressure (paper ballpark; S40), so the 4 R_sun loop and
+the faster returns "probably need graphite sheets". Graphite near Earth is a commodity film, not
+the $1000/kg Sun disk (Seth, 2026-10-19).
+_Avoid_: calling ~100 km/s "the Earth wave" without saying which stream.
+
+**Superseded 2026-10-19 — The Earth plate is flat on purpose** (2026-10-16 grill):
 One flat plate takes both the push and the canted departure. A paraboloid would grow faster.
 On the overtake push at k = 10, the sim's paraboloid keeps 74% of the ideal momentum against the
 flat skirted plate's 61% (mass ratio 1.42 against 1.48 for 11 km/s; `overtake_pusher_handoff.md`).
@@ -2857,8 +2897,8 @@ departure-leg gain is unsimulated rather than estimating it.
 **"No new kind of nozzle"** (decided 2026-10-16 grill): the wording for what the lead cycle spares
 the program. No pulsed chamber and no magnetic nozzle fly in it. It does keep one ordinary engine:
 a flown methalox stage that turns the 10-day orbit at apoapsis, from the push axis to the
-departure's thrust axis. That burn is 0.237 km/s at 9.86 R_sun (0.211 at 4), about 6% of the
-stack. Its engine and tanks are uncharged in ADR 0072 (asked as S27).
+departure's thrust axis. That burn is 0.33 km/s at 9.86 R_sun (0.31 at 4), about 9% of the
+stack, on the visible sign (ADR 0073; 0.237 / 0.211 and 6% on the retired occulted sign). Its engine and tanks are uncharged in ADR 0072 (asked as S27).
 _Avoid_: "no nozzles", "no engines". Both are false, and a reader can check them against the ledger.
 _Why the growth wave flies high_: drag heating goes as `v^3`. At 57 km/s an inbound half-pass to a
 200 km periapsis deposits 290 kJ/m^2 on the bumper (peak 26 kW/m^2), equal to the 4 Hz plume dose
@@ -5590,15 +5630,15 @@ before it:
 - 95%: the seed departs, and the carrier splits the disks off at Jupiter
 - 75%: the first Sun boost works
 - 85%: the sheets arrive
-- 90%: the first push and canted departure work
+- 90%: the first push and the bowl departure work
 Together that is about 55%. A chamber row's first departure is its 75% gate.
 _Avoid_: ADR 0040's single 50% odds; any flat venture rate. **30% is not the right rate** (Seth,
 2026-10-16), so the paper prints no flat-30% row, even as a sensitivity.
 
 **Growth phase**: **15 synodic periods** (about 16.4 yr) of reinvesting every return before any
 mass is sold, then held level. This is a drug programme's ~15 years, counted in the cycle's own
-unit. The headline uses it (Seth, 2026-10-16: "comparable to drug timelines, so I think its fine"). 10 and 21 synodic periods are the quoted sensitivities ($224 and $85
-dear-seed break-even at 9.86 R_sun).
+unit. The headline uses it (Seth, 2026-10-16: "comparable to drug timelines, so I think its fine"). 10 and 21 synodic periods are the quoted sensitivities ($249 and $118
+dear-seed break-even at 9.86 R_sun on the 2026-10-19 one-cadence rerun; were $224 and $85).
 
 **Development cost is deliberately left out** (Seth, 2026-10-16): R&D, test flights, factories
 and tracking are carried by neither architecture. The paper says so in **one sentence**, to
@@ -5676,7 +5716,7 @@ _Avoid_: "the ship dodges"; calling a failed unfurl an attrition miss without th
 rule that names follow mission roles):
 - **Earth wave**: the whole returning stream of Kapton sheets (the Sun ships' released remainder).
   It splits by role into the **growth wave** (overtake push at 400 km into the 10-day orbit; the
-  companion's "push wave") and the **departure wave** (canted departure ten days later).
+  companion's "push wave") and the **departure wave** (the bowl departure on the visible sign ten days later).
 - **Sun wave**: the graphite disks that boost the **Sun ship** head-on at perihelion. They ride out
   with the ship and are split onto the mirror dive by a carrier burn at Jupiter.
 _Avoid_: "push wave" in paper prose (companion name); "impactors" for the sheets alone.

@@ -563,6 +563,46 @@ visible and no worse on `earth_ve` (extrapolated, impact 117-130 deg). Wanted: c
 `departure_visibility`, constrain the sign, check the apoapsis turn, and rerun the headline. Full
 text: `docs/departure_occultation_ask_for_aim_repo.md`.
 
+**S33-S35, S37 (part) and S38 answered** 2026-10-19: aim `a27448e` (ADR 0073,
+`docs/two_plates_and_1g_push_for_parent.md`) and sim `bfea495` / `a8924b3` (Results 13-14,
+ADR-0064 amendment, ADR-0065). Taken into the paper the same day.
+- **S33:** the 1 g push needs a 2.43 km/s climb. The booster brakes on the way down (entry burn),
+  and every lob costs x1.48 ($39.4/kg lofted).
+- **S34:** the push flies 2 Hz, 1 g, 7.35 MN s. Its plate is absorber-set at 12.2 t; the 41-47 t
+  point-blast floor does not apply to a planar sheet.
+- **S35:** rerun. The paper flies deliveries at 2 Hz too (S39 item 1).
+- **S37:** 1 mm sheets rejected (5-9 GPa), ~100 um sheets hold at u >= 8 km/s, coatings do not
+  help. Still open: 37.1 accommodation and sputtering, 37.2 a sheet with a decomposed face, 37.4
+  strands.
+- **S38:** the flown sign was occulted. The ship departs on the visible sign (130 deg at 9.86 R_sun,
+  117 deg at 4 R_sun) on a second plate, a bowl with a 1 m hole. The bowl is x1.6-1.9 the flat
+  plate's Isp. Apoapsis turn 0.33 km/s.
+
+The paper's headline moved to the cheapest closure per depth, on one cadence: 3.81x, 1.70 yr,
+$134 dear at 9.86 R_sun (60 km/s return), and 5.72x, 1.30 yr, $89 at 4 R_sun (90 km/s). These
+come from a paper-side rerun, `todos/two_plates_figures_2026-10-19.md`.
+
+## S39. The two-plate cycle on one cadence (aim_is_all_you_need)
+
+Make the 2 Hz delivery the default and confirm the paper's rerun. Resize the 156 t delivery plate
+for the 7.35 MN s pulse at a data-center g cap. Print the growth stream's speed beside the
+departure stream's. Price graphite growth sheets. Dispose of the push plate (~4 m/s at apoapsis).
+Fix two sensitivity rows that change the delivery's footing. Print `corrections_report` for the
+flown headline. The paper prints the rerun now and says the companion has been asked. Full text:
+`docs/two_plates_followup_asks_for_aim_repo.md`.
+
+## S40. The growth wave above 100 km/s (puffsat_impact_simulation)
+
+Result 13 ran at 100 km/s. The 4 R_sun headline's growth wave arrives at 137 km/s, and the faster
+returns at 132-208 km/s. Wanted:
+- the sheet heating at those speeds;
+- whether any Kapton thickness survives both heat and plate pressure;
+- graphite impactors' geometry, their overtake law and the compact point-blast plate floor;
+- a bare compact impactor on the bowl.
+
+The paper prints its own ballpark (Kapton fails above ~130 km/s, graphite holds thermally) and
+says "probably needs graphite". Full text: `docs/fast_growth_wave_asks_for_impact_sim.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
