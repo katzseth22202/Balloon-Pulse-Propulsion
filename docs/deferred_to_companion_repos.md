@@ -603,6 +603,23 @@ returns at 132-208 km/s. Wanted:
 The paper prints its own ballpark (Kapton fails above ~130 km/s, graphite holds thermally) and
 says "probably needs graphite". Full text: `docs/fast_growth_wave_asks_for_impact_sim.md`.
 
+## S41. The Jupiter-only chain on plates, no Sun dive (aim_is_all_you_need)
+
+Seth's question (2026-10-19): fly the Jupiter-only loop on ADR 0073's plates, with no nozzle and
+no Sun dive. The paper's ballpark (`todos/no_sun_plate_loop_2026-10-19.md`) gives 2.49x, 2.48 yr
+and $292 dear at the best exact-3S phase, against the Sun dive's 3.81x, 1.70 yr and $134. The 2S
+lock does not grow. Wanted:
+- the full chain on plates, with real ephemerides and a dollar-optimal k;
+- the departure-rate trade;
+- the seed route at 12-14 km/s;
+- whether a faster unpowered return exists.
+The paper prints the ballpark as `tab:no_sun_loop` (`sec:why_sun_dive`), flagged as our rerun. Full text: `docs/plate_jupiter_loop_asks.md`.
+
+## S42. The bowl nearly head-on, the push at 57-69 km/s (puffsat_impact_simulation)
+
+Confirm `hole_ve` at 160-168 deg and 70-85 km/s, and `push_ve` plus the sheets' heating at
+57-69 km/s, for S41. Full text: `docs/plate_jupiter_loop_asks.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
