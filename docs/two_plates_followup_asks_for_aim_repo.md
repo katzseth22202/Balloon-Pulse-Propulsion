@@ -149,3 +149,59 @@ also feeds items 1-2.
    sweep's headline points from `HEADLINE_STARTS` so the two agree.
 5. **Propagate the push plate's disposal with the Moon.** The 4.2 m/s nudge at a 385,000 km
    apoapsis is two-body. The paper says the 100 km perigee is unpropagated.
+
+---
+
+# S45. Size the Earth plates on a lossless spring (raised 2026-10-19)
+
+**Written to be copied verbatim into `katzseth22202/aim_is_all_you_need`.**
+
+## The problem
+
+`_inertia_plate` (and ADR-0064's absorber-set plate) sizes each Earth plate by
+`m_p = I^2 / (2 s M a)`. That is a plate brought to rest within each pulse by a constant-force
+absorber, which must dissipate the plate's kinetic energy `I^2 / (2 m_p)` every pulse:
+
+| plate | per pulse | power | per push / burn | per kg of plate |
+|---|---|---|---|---|
+| growth push, 12.2 t, 7.35 MN s at 2 Hz | 2.2 GJ | 4.4 GW | 4.4 TJ (2000 pulses) | 363 MJ/kg |
+| departure bowl, 13.2 t, 1.97 MN s at 1 Hz | 0.15 GJ | 0.15 GW | 0.28 TJ | 21 MJ/kg |
+| delivery, 51 t, 7.35 MN s at 2 Hz | 0.53 GJ | 1.1 GW | 1.1 TJ | 21 MJ/kg |
+
+Steel vaporizes at ~7 MJ/kg, so no dissipative absorber of that mass survives. The paper's own
+`sec:pusher_plate_damping` already requires a nearly lossless gas spring tuned across pulses: the
+plate never stops, and each pulse reverses its swing. Its law, checked here by direct integration
+(stroke to under 1% at theta = 2 pi / 3; exact for a heavy craft; theta must use the reduced mass,
+so theta = pi is the edge of contact), is
+
+    peak / mean = (theta/2) / sin(theta/2)
+    stroke      = (M a / (m nu^2)) tan(theta/4) / (2 theta)
+
+At theta = 2 pi / 3 that fixes `m x stroke = 0.138 F / nu^2`, with F the mean thrust, whatever g cap
+is chosen. Cargo then sees ~1.2x the mean (under 2 g at the delivery's end), so the delivery's g
+cap (ADR 0074 item 2) stops mattering.
+
+## The paper's ballpark (Seth chose an 8 m stroke, 2026-10-19)
+
+| plate | m x stroke | at 8 m | ledger now |
+|---|---|---|---|
+| growth push (2 Hz, 14.7 MN) | 507 t m | 63 t | 12.2 t |
+| departure bowl (1 Hz, 1.97 MN) | 272 t m | 34 t | 13.2 t |
+| delivery (2 Hz, 14.7 MN) | 507 t m | 63 t | 51 t |
+
+Seth's suggestion: one spring and one moving assembly for both growth-unit legs. The push plate and
+the bowl fly up together; as one 63 t assembly the departure needs only 4.3 m of the same stroke.
+
+## S45. Wanted
+
+1. **Replace `_inertia_plate` with the spring law** above, the stroke a parameter (default 8 m,
+   theta = 2 pi / 3), for the push plate, the bowl and the delivery plate. Keep the bowl's blast
+   floor as a minimum. Rerun both headlines, the sweep and the sensitivities.
+2. **The shared assembly.** Fly the push plate and the bowl on one spring as one moving mass, with
+   whatever stays attached for the departure charged to it. Compare it against two separate springs
+   (the push plate left in the parking orbit as now). Report which grows faster and is cheaper.
+3. **The bags' mass.** Charge the gas spring itself. Peak gas `PV` is fixed at `gamma F^2 / k` (the
+   paper's form). A fiber bag needs at least ~3 PV rho / sigma; the paper used 2.5 GPa at
+   1600 kg/m^3 with a safety factor of 2.
+4. **Drop the delivery g-cap rows** (10 / 25 / 50 g) once the spring law is in, or say what they
+   mean on it.

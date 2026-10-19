@@ -2899,7 +2899,14 @@ compact carbon impactor (point blast, 35-49 t plate, ~1/5 of the impulse lost).
 sized by `I^2/(2 s M a)` to hold the cargo to **25 g** at the push's end: 51 t at 9.86 R_sun,
 46 t at 4 R_sun (not the child's 156 t). Pulses are flat-topped, 24-28 ms, ~7 m/s, against the
 server rating's 10 ms half-sine. Headline 25 g, with 10 g ($130 dear) and 50 g ($115) printed
-(Seth, 2026-10-19).
+(Seth, 2026-10-19). Superseded the same day by the lossless spring, on which the cap is moot.
+
+**Lossless spring** (2026-10-19, Seth: 8 m stroke): every Earth plate rides the nearly lossless
+gas spring of `sec:pusher_plate_damping`, which fixes plate mass x stroke (507 t m at 2 Hz / 1 g)
+and gives the cargo ~1.2x the mean. _Avoid_: the absorber-set / inertia-bound plate
+`I^2/(2 s M a)` as a design. It brings the plate to rest each pulse and would dissipate 4.4 TJ a
+push in the 12.2 t plate. The printed 12.2 t / 13.2 t / 51 t plates are flagged as too light
+pending S45.
 
 **Growth-to-departure gap** (decided 2026-10-19; aim ADR 0074): 10 days. 5 days is ~$2-3 cheaper
 dear for 2-3% less growth and is printed as one sentence, not the design (Seth).

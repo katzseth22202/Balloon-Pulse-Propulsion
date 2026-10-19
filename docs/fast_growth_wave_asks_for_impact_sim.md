@@ -87,3 +87,23 @@ geometry at 130 deg. S42 (`docs/plate_jupiter_loop_asks.md`) is still open.
    the law at 2.5 F, and say whether the hole's share or the rim spray changes.
 3. **Still open:** S36 (the plume's spread `u`), the push plate's S30 / S31 (a bare film on the
    flat plate, and its abort spray), and S42.
+
+---
+
+# S46. The gas spring's loss (raised 2026-10-19)
+
+**Written to be copied verbatim into `katzseth22202/puffsat_impact_simulation`.** ADR-0064's
+absorber-set plate (`I^2 / (2 s M a)`) is a plate brought to rest within each pulse. It would
+dissipate 2.2 GJ a pulse (4.4 TJ a push) in the 12.2 t growth-push plate. The parent now requires the
+lossless gas spring of its `sec:pusher_plate_damping`, at an 8 m stroke (about 63 t of moving mass
+for the 2 Hz, 1 g push; 34 t for the 1 Hz bowl), and has asked the aim repo to reprice (S45).
+
+## S46. Wanted
+
+1. **The spring's loss per cycle and the bags' heating.** The swing stores about 0.1 GJ (63 t at
+   +-58 m/s). At 1% a cycle that is ~2 GJ a push into some 6 t of fiber bag and gas. Give the
+   hysteresis of an adiabatic bag spring at 2 Hz, the gas, and the bag wall's peak temperature over
+   2000 cycles.
+2. **The plate's ring-down at the pulse.** The plate now swings at up to ~120 m/s against the
+   spring, not 600 m/s into a stop. Confirm that ADR-0064's face and skirt results carry over to a
+   63 t plate (thicker face, same sheet load).

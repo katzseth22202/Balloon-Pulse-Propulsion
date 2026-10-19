@@ -652,6 +652,21 @@ Kapton at 115-122 km/s, where three printed closures sit (4 R_sun X 75 on Kapton
 would move the headline). The bowl's capture with the charge at 2.5 F, at 117 deg. S36, the push
 plate's S30 / S31, and S42 stay open. Full text: `docs/fast_growth_wave_asks_for_impact_sim.md`.
 
+## S45. Size the Earth plates on a lossless spring (aim_is_all_you_need)
+
+`_inertia_plate` brings each plate to rest within every pulse, which would dissipate 4.4 TJ a push in
+the 12.2 t push plate (363 MJ/kg). Replace it with the paper's lossless-spring law
+(`sec:pusher_plate_damping`; mass x stroke = 507 t m at 2 Hz / 1 g), at Seth's 8 m stroke: 63 t
+push and delivery plates, a 34 t bowl. Price one shared spring and assembly for push and bowl (Seth),
+charge the bags, and drop the delivery g-cap rows. Full text:
+`docs/two_plates_followup_asks_for_aim_repo.md`. The paper flags the plates as too light and keeps
+its figures until this lands.
+
+## S46. The gas spring's loss (puffsat_impact_simulation)
+
+The bag spring's hysteresis and heating over 2000 cycles at 2 Hz, and whether ADR-0064's face results
+carry to a 63 t plate. Full text: `docs/fast_growth_wave_asks_for_impact_sim.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
