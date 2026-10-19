@@ -67,4 +67,28 @@ Depth sweep, dear optimum per depth: 4 -> 90 km/s (5.72, $89); 6 -> 90 (4.78, $1
    Please print the report for the flown headline as well (4.21 km/s, 15.05 km/s, 6.79 R_J at
    9.86 R_sun, 60).
 
+8. **Make the growth-to-departure gap a parameter** (added 2026-10-19, Seth). `PARKING_DAYS` is
+   frozen into the defaults of `departure_burn`, `apoapsis_methalox` and `push_route` when
+   they are defined. `push_route` also sits behind `lru_cache`, so overriding its default does
+   nothing: a first paper-side run at 3 days silently kept the 10-day growth wave. Please thread
+   the gap through `Design` (or the closure key) to every use, add `--parking-days` to
+   `make solar-dive`, and sweep 3 / 5 / 10 days at both headline depths. The paper-side run,
+   with `push_route` called explicitly:
+
+   | gap | turn | growth stream | growth | doubling | steady | BE cheap / dear |
+   |---|---|---|---|---|---|---|
+   | 9.86 R_sun, 10 d | 0.33 km/s | 99.2 | 3.81 | 1.70 | $98.6 | $122 / $134 |
+   | 9.86 R_sun, 5 d | 0.54 | 87.1 | 3.71 | 1.73 | $96.2 | $118 / $131 |
+   | 9.86 R_sun, 3 d | 0.76 | 82.6 | 3.52 | 1.81 | $97.1 | $121 / $136 |
+   | 4 R_sun, 10 d | 0.31 | 137.1 | 5.72 | 1.30 | $78.2 | $88 / $89 |
+   | 4 R_sun, 5 d | 0.50 | 119.0 | 5.60 | 1.32 | $76.4 | $85 / $87 |
+   | 4 R_sun, 3 d | 0.71 | 112.3 | 5.36 | 1.35 | $76.3 | $85 / $87 |
+
+   The gap acts through geometry. Arriving `d` days early means crossing 1 AU about `d` degrees
+   earlier in Earth's orbit, which a near-Sun hyperbola does only by straightening: X 60 -> 87.4
+   swings 139.3 -> 129.7 deg past perihelion. At 4 R_sun a 5-day gap brings the growth stream to
+   119 km/s, where the sim's model keeps 100 um Kapton under its rating (640 K at u = 8) and the
+   plate under HY-100's allowable (1.31 GPa), so the graphite swap (item 4, S40) may not be needed
+   there.
+
 The paper's figure sheet is `todos/two_plates_figures_2026-10-19.md` on request.

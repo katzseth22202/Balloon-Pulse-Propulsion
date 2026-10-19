@@ -588,7 +588,7 @@ Make the 2 Hz delivery the default and confirm the paper's rerun. Resize the 156
 for the 7.35 MN s pulse at a data-center g cap. Print the growth stream's speed beside the
 departure stream's. Price graphite growth sheets. Dispose of the push plate (~4 m/s at apoapsis).
 Fix two sensitivity rows that change the delivery's footing. Print `corrections_report` for the
-flown headline. The paper prints the rerun now and says the companion has been asked. Full text:
+flown headline. The paper prints the rerun now and says the companion has been asked. Item 8 (added the same day): make the growth-to-departure gap (`PARKING_DAYS`) a real parameter, which is frozen in defaults and an `lru_cache` today, and sweep 3 / 5 / 10 days. A 5-day gap at 4 R_sun brings the growth stream to 119 km/s and may keep Kapton viable there. Full text:
 `docs/two_plates_followup_asks_for_aim_repo.md`.
 
 ## S40. The growth wave above 100 km/s (puffsat_impact_simulation)
