@@ -2845,15 +2845,17 @@ _Avoid_: calling it "the Jovian dive cycle" without qualification. That name bel
 magnetic-nozzle version (5-day two-wave departure, methalox re-aim, impactors flying their own
 Earth departure), which is now history.
 
-**Two Earth plates** (decided 2026-10-19; aim ADR 0073, sim ADR-0064 amendment and ADR-0065):
-Both fly up in each launch unit.
-- **Push plate**: flat, ~12 t (absorber-set, `I^2/(2 s M a)` at 100 g on a 2 m stroke), 9.5 m with
-  a 2 m skirt. It is released in the 10-day orbit before the methalox turn and deorbited by a
-  ~4 m/s nudge at apoapsis (paper estimate; S39 item 5).
-- **Bowl**: the departure plate, a δ/D 0.5 paraboloid with a ~1 m hole and a 1 t collar, 13-16 t
-  (point-blast floor). It is steered into Jupiter after the departure. Its law is x1.6-1.9 the
-  flat plate's Isp: the flat plate lets the fireball slide off, and the bowl turns 60-73% of the
-  expansion's momentum back along its axis.
+**Two Earth plates, one spring** (decided 2026-10-19; aim ADR 0073 and 0076, sim ADR-0064
+amendment, ADR-0065 and ADR-0068): both fly up in each launch unit and ride **one nitrogen gas
+spring as one ~63 t assembly** (Seth). The push sets the mass; the departure uses 4.2-4.9 m of the
+8 m stroke. Nothing is left in the parking orbit; the assembly is steered into Jupiter.
+- **Push plate**: flat, **9.5 m radius (19 m across)**, sandwich floor ~0.3 m, 2 m skirt hung on
+  the craft's frame (not the plate's rim). Two springs (push plate left in orbit) are a priced
+  sensitivity, within $1; its Moon-flown disposal nudge is 0-15 m/s (aim ADR 0076).
+- **Bowl**: a δ/D 0.5 paraboloid with a ~1 m hole and a 1 t collar. Its 12-19 t point-blast floor
+  never binds against the shared 63 t. Its law is x1.6-1.9 the flat plate's Isp. At 4 R_sun
+  (117 deg) the charge sits at **2.5 F**, costing 8-10% of `hole_ve` (sim Result 16).
+_Avoid_: "9.5 m across" for the plate (9.5 m is its radius).
 _Avoid_: "canted plate" for anything flown; it is retired. "The flat plate" alone is ambiguous;
 say push plate.
 
@@ -2875,20 +2877,38 @@ history rows of `tab:charge_pusher_plume`.
 `X^2 ≈ 2 v_p Δv`. Paper prose says "a 60 km/s return", never "X 60". The headline is the cheapest
 return at each depth: **60 km/s at 9.86 R_sun** (3.80x, 1.70 yr, $118 dear) and **90 km/s at
 4 R_sun** (5.71x, 1.30 yr, $88 on carbon fabric sheets). Both from aim `db158ed` (ADR 0074) with
-the 25 g delivery plate; the 4 R_sun row is its `graphite sheets $100/kg` sensitivity. At 4 R_sun
-the 110 km/s return is $2 cheaper on carbon and grows less, so 90 stays the headline (Seth,
-2026-10-19). If Kapton holds at 122 km/s, the 75 km/s return on Kapton is $83 (S44). Faster returns lose because the boost grows as `X^2` and is paid
+the 25 g delivery plate. **Superseded 2026-10-19** by the consolidated ledger: **3.36x, 1.87 yr,
+$94 steady, $124 / $146 at 9.86 R_sun, 60 km/s** and **4.99x, 1.41 yr, $74, $84 / $87 at
+4 R_sun, 90 km/s, on Kapton** (Seth). These are the paper's rerun of aim `efe6121` (ADR 0076)
+with sim Results 16-18 applied (Kapton to 140 km/s, nitrogen bags with bladder, 2.5 F bowl below
+122 deg); the override script is in `docs/consolidation_asks_for_aim_repo.md` (S47). At 9.86 R_sun the 75 km/s return
+is $1 cheaper ($145), a tie; the headline keeps 60. At 4 R_sun the 110 km/s return grows more
+(5.35x) but needs carbon (159 km/s stream), $90. X is the return's **hyperbolic excess speed
+relative to the Sun**, not the stream's speed at Earth (75.5 km/s for a 60 km/s return); the paper
+defines it in `sec:charge_pusher_cycle`. Faster returns lose because the boost grows as `X^2` and is paid
 in disks and Sun charge that would otherwise come home as sheets. The aim repo's 90 / 150 km/s
 closures are the comparison rows of `tab:charge_pusher_fast`.
 **Growth stream vs departure stream**: the growth wave crosses 400 km faster than the departure
 wave crosses 600 km, because its ships come home ten days early: 99 vs 76 km/s at 9.86 R_sun,
-60; 137 vs 103 at 4 R_sun, 90. Sheet survival depends on the growth stream. Kapton holds at 99 km/s; at
-132-137 km/s it has no window at the flown 2 m standoff (sim Result 15, S40). Above ~130 km/s the
-sheets are **carbon fabric sheets** (below). 100-130 km/s is unrun, so the paper prints both
-policies in `tab:charge_pusher_depth` (Seth, 2026-10-19).
+60; 137 vs 103 at 4 R_sun, 90. Sheet survival depends on the growth stream. **Kapton holds through 137 km/s** on a sheet as wide
+as the plate (sim Result 18: computed plume, effective u 8.0 at 99 km/s and 9.2-11.2 at
+115-137), on a maraging-300 face. Result 15's "no window at 137" assumed u = 8 on the narrow
+8 m sheet and is retired. At 208 km/s Kapton holds on maraging only, thinly; the ledger flies
+**carbon fabric** above **140 km/s**. The both-policies columns of `tab:charge_pusher_depth` are
+gone (Seth, 2026-10-19: "Kapton is fine").
+
+**Floor-wide sheet** (decided 2026-10-19; sim ADR-0068/0069): the Kapton sheet is as wide as the
+push plate (9.5 m radius), ~70 um at 9.86 R_sun (28 kg a pulse), held to a few percent, erring
+wide. A narrower sheet focuses its own rebound onto the axis (u 5.4, Kapton fails) and leaves
+~38% of each kick ringing in the plate's bending. _Avoid_: the ~100 um / 142 g/m^2 / 8 m sheet as
+the flown design.
+
+**Carbon veil** (2026-10-19; sim Result 18): the light fallback if the plume runs hotter. A
+2-12 g/m^2 carbon veil held off the Kapton by a scrim (MLI-style); the gap makes it work. Not
+priced. Bonded coats and foams do not help.
 
 **Carbon fabric sheet** (decided 2026-10-19; sim Result 15, ADR-0066 proposed): the growth
-impactor where the speed rules Kapton out. A dry (resin-free) woven carbon fabric, 0.06-0.23
+impactor above 140 km/s, and the heavy fallback wherever Kapton flies ($164 / $98 dear). A dry (resin-free) woven carbon fabric, 0.06-0.23
 kg/m^2, flown flat like the Kapton sheet, triaxial or stitched so it does not trellis. Priced at
 **$100/kg of body** (Seth's choice; our hypothesis between bulk tow ~$34/kg and retail spread-tow
 fabric ~$165/kg; no citable bulk-fabric price). _Avoid_: "graphite sheet" or "graphite film" for
@@ -2899,14 +2919,19 @@ compact carbon impactor (point blast, 35-49 t plate, ~1/5 of the impulse lost).
 sized by `I^2/(2 s M a)` to hold the cargo to **25 g** at the push's end: 51 t at 9.86 R_sun,
 46 t at 4 R_sun (not the child's 156 t). Pulses are flat-topped, 24-28 ms, ~7 m/s, against the
 server rating's 10 ms half-sine. Headline 25 g, with 10 g ($130 dear) and 50 g ($115) printed
-(Seth, 2026-10-19). Superseded the same day by the lossless spring, on which the cap is moot.
+(Seth, 2026-10-19). Superseded the same day by the lossless spring, on which the cap is moot:
+the delivery plate is 63.4 t on the spring and the cargo sees 1.21 -> 1.52-1.66 g.
 
-**Lossless spring** (2026-10-19, Seth: 8 m stroke): every Earth plate rides the nearly lossless
-gas spring of `sec:pusher_plate_damping`, which fixes plate mass x stroke (507 t m at 2 Hz / 1 g)
-and gives the cargo ~1.2x the mean. _Avoid_: the absorber-set / inertia-bound plate
-`I^2/(2 s M a)` as a design. It brings the plate to rest each pulse and would dissipate 4.4 TJ a
-push in the 12.2 t plate. The printed 12.2 t / 13.2 t / 51 t plates are flagged as too light
-pending S45.
+**Lossless spring** (2026-10-19, Seth: 8 m stroke; priced in aim ADR 0076, solved nonlinearly in
+sim Result 17): every Earth plate rides a nearly lossless **nitrogen** gas spring
+(`sec:pusher_plate_damping`), which fixes plate mass x stroke (507 t m at 2 Hz / 1 g): 63.4 t on
+8 m. It loses 0.14-0.37% of the swing a cycle; bags warm 65-74 K; ~5.5 t of fibre, gas and
+bladder per plate. Helium is rejected (warms 140-152 K). The **gas column is 18.6 m** at
+theta = 2 pi/3: the paper keeps that design and names **theta = pi** (8.3 m column, 1.61x peak,
+~2.2 g at push end, +$4 / +$1 dear) as the priced fix (Seth, 2026-10-19: anything under 10 g is
+fine for ruggedized cargo). _Avoid_: the absorber-set plate `I^2/(2 s M a)` as a design (4.4 TJ a
+push in the 12.2 t plate); **burst and coast for the plate** (its damper would take 0.85 TJ a push
+on 63 t, about twice what vaporizes the plate; it stays a chamber-only idea).
 
 **Growth-to-departure gap** (decided 2026-10-19; aim ADR 0074): 10 days. 5 days is ~$2-3 cheaper
 dear for 2-3% less growth and is printed as one sentence, not the design (Seth).

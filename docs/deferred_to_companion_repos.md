@@ -667,6 +667,36 @@ its figures until this lands.
 The bag spring's hysteresis and heating over 2000 cycles at 2 Hz, and whether ADR-0064's face results
 carry to a 63 t plate. Full text: `docs/fast_growth_wave_asks_for_impact_sim.md`.
 
+**S36, S42, S43, S44, S45 and S46 answered** 2026-10-19: aim `fd33d3a` / `efe6121` (ADR 0076,
+`docs/spring_plates_and_fast_law_for_parent.md`) and sim `1bed1c6` (Results 16-17) and `9bcc8be`
+(Result 18). Each reproduced here (ADR 0076 headlines exact; plate loop exact) before editing.
+
+- **S45:** every plate on the spring, 63.4 t on 8 m; one shared push-and-bowl assembly (two springs
+  within $1); g-cap rows dropped. **S43:** the sim's law vendored as a grid ($10 / $1 dear);
+  carbon fabric by stream; the Moon-flown disposal nudge is 0-15 m/s, and ~1/9 of lunar phases
+  put the Moon near the push's path (new constraint, unsolved).
+- **S44 / S42 (sim Result 16):** Kapton holds at 115-122 km/s on maraging; 2.5 F costs 8-10% of
+  `hole_ve`; the head-on bowl interpolation is 0-3% optimistic; the push at 54-69 km/s is 9-17%
+  below the linear law.
+- **S46 (sim Result 17):** the spring law holds nonlinearly (1.22x, stroke within 1%); loss
+  0.14-0.37% a cycle; **nitrogen** bags (+65-74 K); the **gas column is 18.6 m**; a sheet narrower
+  than the plate rings ~38% of each kick in bending, so the sheet flies **as wide as the plate**.
+- **S36 (sim Result 18):** the computed plume gives u = 8.0 at 99 km/s on the floor-wide sheet;
+  Kapton holds through 137 km/s; a spaced carbon veil is the light fallback; cones rejected.
+
+The paper prints a rerun of ADR 0076 with Results 16-18 applied (3.36x / $146 at 9.86 R_sun;
+4.99x / $87 at 4 R_sun on Kapton) and asks aim to adopt them (S47). Seth (2026-10-19): keep
+theta = 2 pi/3 and name theta = pi as the column fix; burst and coast is not for the plate.
+Still open on the sim side (its own lists): the plume's axis density within 1 deg, aim scatter,
+face erosion, Kapton decomposition kinetics (not yet in a module), S30 / S31.
+
+## S47. Consolidate sim Results 16-18 into the ledger (aim_is_all_you_need)
+
+Kapton to 140 km/s on the floor-wide sheet, nitrogen bags with bladder, the 2.5 F bowl below
+122 deg, theta = pi with nitrogen, the 9.86 R_sun 60 / 75 tie, the Jupiter loop's steady column,
+and a launch-window rule for the Moon. Full text and the paper's override script:
+`docs/consolidation_asks_for_aim_repo.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in
