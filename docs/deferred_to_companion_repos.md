@@ -620,6 +620,38 @@ The paper prints the ballpark as `tab:no_sun_loop` (`sec:why_sun_dive`), flagged
 Confirm `hole_ve` at 160-168 deg and 70-85 km/s, and `push_ve` plus the sheets' heating at
 57-69 km/s, for S41. Full text: `docs/plate_jupiter_loop_asks.md`.
 
+**S39, S40 and S41 answered** 2026-10-19: aim `db158ed` (ADR 0074,
+`docs/two_plates_followup_answers_for_parent.md`) and `e18dc45` (ADR 0075,
+`docs/plate_jupiter_loop_answers_for_parent.md`), sim `f7cce80` (Result 15, ADR-0066 proposed,
+`docs/fast_growth_wave_answers_for_parent.md`). Reproduced here with `make solar-dive ARGS="--gaps"`,
+`ARGS="--sweep"` and `make plate-jupiter-loop`, then taken into the paper the same day.
+- **S39:** the paper's rerun is confirmed. The delivery plate is the 25 g absorber bound (51 / 46 t,
+  not 156 t), so the dear break-even falls to $118 at 9.86 R_sun and $79 at 4 R_sun on Kapton. The
+  push plate's disposal is charged (4.2 m/s, two-body). The gap is a parameter, and 5 days is ~$2
+  cheaper; the paper keeps 10 (Seth).
+- **S40:** Kapton has no window at 137 km/s on the flown 2 m standoff, and none at u = 5 at any
+  speed. Above ~130 km/s the sheets are dry woven carbon fabric. The paper charges it $100/kg
+  (Seth), so the 4 R_sun headline is $88 dear. A bare compact impactor leaves the 130 deg bowl
+  through its mouth; at 117 deg the charge moves to 2.5 F. The re-derived overtake law runs 1-9%
+  below the ledger's (S43 item 1).
+- **S41:** the flown Jupiter-only chain on plates is 2.01x / $573 dear at 0.25 g and 2.59x / $238
+  at 1 g, against the dive's 3.80x / $118. The ballpark was too kind. The 2S windows do grow.
+- **S42** is still open.
+
+## S43. Follow-up to ADR 0074 (aim_is_all_you_need)
+
+Adopt the sim's re-derived `push_ve`. Make the sheet material a function of the growth stream,
+with carbon fabric at $100/kg above 130 km/s and a switch for the 100-130 km/s band. Settle the
+8 R_sun optimum (X 60 $107 in the answer, X 75 $102 in its own sweep). Start the sweep's headline
+points from `HEADLINE_STARTS`. Propagate the push plate's disposal with the Moon. Full text:
+`docs/two_plates_followup_asks_for_aim_repo.md`.
+
+## S44. Follow-up to Result 15 (puffsat_impact_simulation)
+
+Kapton at 115-122 km/s, where three printed closures sit (4 R_sun X 75 on Kapton would be $83 and
+would move the headline). The bowl's capture with the charge at 2.5 F, at 117 deg. S36, the push
+plate's S30 / S31, and S42 stay open. Full text: `docs/fast_growth_wave_asks_for_impact_sim.md`.
+
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 
 The sim's near-Sun environment ask (`docs/solar_environment_ask_from_impact_sim.md`) is answered in

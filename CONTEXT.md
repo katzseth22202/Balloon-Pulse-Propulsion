@@ -2867,22 +2867,48 @@ x1.6-1.9.
 the L1 delivery both fly **2 Hz at 1 g** (7.35 MN s) from the **2.43 km/s lob**, whose booster
 brakes on the way down (entry burn) and lofts 1/1.48 as much ($39.4/kg lofted). The departure
 (outbound) flies **1 Hz at 0.25 g** (~32 min, 0.46 km/s finite-burn loss), slow so that each
-impactor can be aimed through the hole. 0.5 g is a one-line lever (-$4 dear), not the design.
+impactor can be aimed through the hole. 0.5 g is a one-line lever (-$3 dear), not the design.
 _Avoid_: any 4 Hz or 1 Hz / 14.7 MN s push figure as the flown design; they survive only as the
 history rows of `tab:charge_pusher_plume`.
 
 **Return (return excess)** (2026-10-19): the climb-out speed the Sun boost leaves the ship with,
 `X^2 ≈ 2 v_p Δv`. Paper prose says "a 60 km/s return", never "X 60". The headline is the cheapest
-return at each depth: **60 km/s at 9.86 R_sun** (3.81x, 1.70 yr, $134 dear) and **90 km/s at
-4 R_sun** (5.72x, 1.30 yr, $89). Faster returns lose because the boost grows as `X^2` and is paid
+return at each depth: **60 km/s at 9.86 R_sun** (3.80x, 1.70 yr, $118 dear) and **90 km/s at
+4 R_sun** (5.71x, 1.30 yr, $88 on carbon fabric sheets). Both from aim `db158ed` (ADR 0074) with
+the 25 g delivery plate; the 4 R_sun row is its `graphite sheets $100/kg` sensitivity. At 4 R_sun
+the 110 km/s return is $2 cheaper on carbon and grows less, so 90 stays the headline (Seth,
+2026-10-19). If Kapton holds at 122 km/s, the 75 km/s return on Kapton is $83 (S44). Faster returns lose because the boost grows as `X^2` and is paid
 in disks and Sun charge that would otherwise come home as sheets. The aim repo's 90 / 150 km/s
 closures are the comparison rows of `tab:charge_pusher_fast`.
 **Growth stream vs departure stream**: the growth wave crosses 400 km faster than the departure
 wave crosses 600 km, because its ships come home ten days early: 99 vs 76 km/s at 9.86 R_sun,
-60; 137 vs 103 at 4 R_sun, 90. Sheet survival depends on the growth stream. Above ~130 km/s,
-100 um Kapton fails both heat and plate pressure (paper ballpark; S40), so the 4 R_sun loop and
-the faster returns "probably need graphite sheets". Graphite near Earth is a commodity film, not
-the $1000/kg Sun disk (Seth, 2026-10-19).
+60; 137 vs 103 at 4 R_sun, 90. Sheet survival depends on the growth stream. Kapton holds at 99 km/s; at
+132-137 km/s it has no window at the flown 2 m standoff (sim Result 15, S40). Above ~130 km/s the
+sheets are **carbon fabric sheets** (below). 100-130 km/s is unrun, so the paper prints both
+policies in `tab:charge_pusher_depth` (Seth, 2026-10-19).
+
+**Carbon fabric sheet** (decided 2026-10-19; sim Result 15, ADR-0066 proposed): the growth
+impactor where the speed rules Kapton out. A dry (resin-free) woven carbon fabric, 0.06-0.23
+kg/m^2, flown flat like the Kapton sheet, triaxial or stitched so it does not trellis. Priced at
+**$100/kg of body** (Seth's choice; our hypothesis between bulk tow ~$34/kg and retail spread-tow
+fabric ~$165/kg; no citable bulk-fabric price). _Avoid_: "graphite sheet" or "graphite film" for
+it (a film is brittle; the sim's runs use graphite properties, but the flown form is fabric); a
+compact carbon impactor (point blast, 35-49 t plate, ~1/5 of the impulse lost).
+
+**Delivery plate** (decided 2026-10-19; aim ADR 0074): the L1 delivery's plate and absorber,
+sized by `I^2/(2 s M a)` to hold the cargo to **25 g** at the push's end: 51 t at 9.86 R_sun,
+46 t at 4 R_sun (not the child's 156 t). Pulses are flat-topped, 24-28 ms, ~7 m/s, against the
+server rating's 10 ms half-sine. Headline 25 g, with 10 g ($130 dear) and 50 g ($115) printed
+(Seth, 2026-10-19).
+
+**Growth-to-departure gap** (decided 2026-10-19; aim ADR 0074): 10 days. 5 days is ~$2-3 cheaper
+dear for 2-3% less growth and is printed as one sentence, not the design (Seth).
+
+**Jupiter-only loop on plates** (2026-10-19; aim ADR 0075): flown, it grows 2.01x per 3.276 yr
+and breaks even at $573 dear at 0.25 g (2.59x, $238 at 1 g), against the dive's 3.80x / $118.
+The paper-side ballpark (2.49x, $292) was too kind. The 2S windows do grow on plates (1.2-1.8x
+each) and the mixed chain beats 3S-only. _Avoid_: "the two-synodic lock does not grow on plates"
+(retired). Its bowl at 160-180 deg and push at 54-65 km/s still rest on S42.
 _Avoid_: calling ~100 km/s "the Earth wave" without saying which stream.
 
 **Superseded 2026-10-19 — The Earth plate is flat on purpose** (2026-10-16 grill):

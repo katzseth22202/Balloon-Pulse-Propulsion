@@ -92,3 +92,60 @@ Depth sweep, dear optimum per depth: 4 -> 90 km/s (5.72, $89); 6 -> 90 (4.78, $1
    there.
 
 The paper's figure sheet is `todos/two_plates_figures_2026-10-19.md` on request.
+
+---
+
+# S43. Follow-up to ADR 0074 (raised 2026-10-19)
+
+**Written to be copied verbatim into `katzseth22202/aim_is_all_you_need`.** Responds to
+`docs/two_plates_followup_answers_for_parent.md` @ `db158ed`, which the paper has taken.
+`make solar-dive ARGS="--gaps"` and `ARGS="--sweep"` reproduce every printed figure here, except
+item 3. The impact sim's Result 15 (`docs/fast_growth_wave_answers_for_parent.md` @ `f7cce80`)
+also feeds items 1-2.
+
+## What the paper did (Seth, 2026-10-19)
+
+- The delivery plate's headline cap is 25 g, with 10 g ($130) and 50 g ($115) printed.
+- The gap stays 10 days; 5 days is one sentence.
+- Above ~130 km/s the growth sheets are **dry woven carbon fabric** (the sim's call, not a
+  graphite film), charged at **$100/kg of body**. Your `graphite sheets $100/kg` row is the 4 R_sun
+  headline: 5.71x, 1.30 yr, $75 steady, $87 / $88.
+- Kapton is shown to hold at 99 km/s and to fail at 132 km/s, and 100-130 km/s is unrun. So
+  `tab:charge_pusher_depth` prints both policies. The paper's rerun, each point re-optimized
+  from `_SWEEP_START` with `sheet_body = 100`, at every point whose growth stream passes 100 km/s:
+
+| r_p, X | stream | growth | doubling | steady | BE cheap / dear |
+|---|---|---|---|---|---|
+| 4, 60 | 107.5 | 4.81 | 1.45 | $86 | $102 / $107 |
+| 4, 75 | 121.8 | 5.46 | 1.34 | $79 | $92 / $94 |
+| 4, 90 | 137.1 | 5.76 | 1.30 | $76 | $87 / $88 |
+| 4, 110 | 159.1 | 5.61 | 1.32 | $74 | $85 / $86 |
+| 4, 150 | 207.8 | 3.85 | 1.68 | $82 | $104 / $117 |
+| 6, 75 | 117.9 | 4.83 | 1.44 | $83 | $99 / $102 |
+| 6, 90 | 133.9 | 4.79 | 1.45 | $81 | $96 / $100 |
+| 8, 75 | 115.9 | 4.23 | 1.57 | $88 | $108 / $115 |
+| 8, 90 | 132.6 | 3.94 | 1.66 | $88 | $111 / $121 |
+| 9.86, 75 | 114.8 | 3.72 | 1.73 | $94 | $121 / $134 |
+| 9.86, 90 | 132.1 | 3.27 | 1.92 | $97 | $134 / $163 |
+| 9.86, 110 | 157.8 | 2.33 | 2.69 | $121 | $261 / $494 |
+| 15, 75 | 113.8 | 2.49 | 2.49 | $123 | $223 / $356 |
+
+## S43. Wanted
+
+1. **Adopt the sim's re-derived overtake law.** `fast_wave_law.csv` gives `push_ve` 1-4% below
+   yours at 99-137 km/s (35.5 against 36.7 km/s at 99.2, k 7.07) and 9% below at 208 km/s. Most
+   of the low-speed gap is your linear-in-log-k interpolation between the k = 5 and 10 rows. Rerun
+   both headlines and the sweep on it, and say how far growth and the dear break-even move.
+2. **Make the sheet material a function of the growth stream.** Charge carbon fabric at
+   $100/kg by default above 130 km/s. Carry the 100-130 km/s band as a switch (Kapton / carbon),
+   so the sweep prints both, as the paper does. Confirm or correct the table above. If you have a
+   citable bulk price for dry spread-tow or triaxial carbon fabric, use it. The paper calls $100/kg
+   its own hypothesis, between bulk tow (~$34/kg) and retail fabric (~$165/kg).
+3. **The 8 R_sun optimum.** Your answer's sweep summary says 8 -> X 60 (4.13, $107), but your
+   own sweep table, rerun here, has X 75 at $80 / $102. The paper prints X 75 at $102. Which is
+   right?
+4. **One number at 9.86 R_sun, X 60.** The headline prints 3.80x and the sweep 3.81x, from
+   different optimizer starts (`HEADLINE_STARTS` against `_SWEEP_START`). Please start the
+   sweep's headline points from `HEADLINE_STARTS` so the two agree.
+5. **Propagate the push plate's disposal with the Moon.** The 4.2 m/s nudge at a 385,000 km
+   apoapsis is two-body. The paper says the 100 km perigee is unpropagated.

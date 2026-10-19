@@ -58,3 +58,32 @@ faster returns "probably need graphite sheets".
    charge puts a compact body on the bowl, not a film. Extend S30/S31 to it: the peak, the spall
    and the abort spray.
 5. **S36 stays open.** The plume's spread `u` still sets most of the dose at every speed.
+
+---
+
+# S44. Follow-up to Result 15 (raised 2026-10-19)
+
+**Written to be copied verbatim into `katzseth22202/puffsat_impact_simulation`.** Responds to
+`docs/fast_growth_wave_answers_for_parent.md` @ `f7cce80`, which the paper has taken: Kapton to
+~100 km/s, dry carbon fabric above ~130 km/s at $100/kg, the bowl's bare hits settled by
+geometry at 130 deg. S42 (`docs/plate_jupiter_loop_asks.md`) is still open.
+
+## S44. Wanted
+
+1. **Kapton in the 100-130 km/s band.** Nothing between 99 and 132 km/s has been run, and three
+   closures the paper prints sit there. Each is the ledger's own k and `push_ve` on Kapton:
+
+   | closure | growth stream | k_push | push v_e (calcs) |
+   |---|---|---|---|
+   | 9.86 R_sun, X 75 | 114.8 km/s | 7.45 | 40.9 km/s |
+   | 4 R_sun, X 90, 5-day gap | 119.0 | 6.20 | 48.4 |
+   | 4 R_sun, X 75 | 121.8 | 6.53 | 47.8 |
+
+   For each, give the Kapton window at u = 5 / 8 / 12 on HY-100 and maraging 300 at the flown
+   2 m standoff. If 4 R_sun X 75 holds on Kapton, it breaks even at $83 dear, against $88 for the
+   carbon X 90 headline, and the paper would move.
+2. **The bowl's capture with the charge at 2.5 F, at 117 deg.** Result 15 moves the charge out
+   so a bare impactor clears the rim at 4 R_sun. `hole_ve` has only been run at 1.5 F. Please give
+   the law at 2.5 F, and say whether the hole's share or the rim spray changes.
+3. **Still open:** S36 (the plume's spread `u`), the push plate's S30 / S31 (a bare film on the
+   flat plate, and its abort spray), and S42.
