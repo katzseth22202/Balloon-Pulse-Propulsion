@@ -824,3 +824,6 @@ rather than craters back toward the ship; the rim's solid fragments and their sp
 damage elsewhere in the 63 t assembly; and whether the next bare impactors still clear. The
 fragment speeds also price Seth's methalox pre-burn (200-300 m/s before the PuffSat burn, so most
 fragments escape). Full text: `docs/errant_departure_impactor_asks_for_impact_sim.md`.
+Items 5-6 added the same day (Seth): the departure charge stacked outboard as a thick sacrificial
+shield over the bags and frame, and dark water snow in sealed polyethylene balloons as that charge.
+The paper names both, and the methalox pre-burn (unpriced), in `sec:charge_pusher_abort`.

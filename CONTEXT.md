@@ -2933,6 +2933,20 @@ fine for ruggedized cargo). _Avoid_: the absorber-set plate `I^2/(2 s M a)` as a
 push in the 12.2 t plate); **burst and coast for the plate** (its damper would take 0.85 TJ a push
 on 63 t, about twice what vaporizes the plate; it stays a chamber-only idea).
 
+**Departure debris rule** (Seth, 2026-10-20; S49): a missed aim on the departure aborts it, and
+survival is not the goal. Not leaving **solid debris in Earth orbit** is. Main defense: the
+**charge shield**, the ~370 t departure charge stacked outboard between the approach cone and
+the bags/frame, drawn from the inside out, so a stray disk craters it and ejecta leave back along
+the approach. Backup: a 200-300 m/s **methalox pre-burn** before the first pulse (ship starts
+96 m/s short of escape; unpriced in the ledger). The bowl's back face should be thin enough that
+a disk punches through and its cloud exits the mouth.
+**Snow charge** (candidate, 2026-10-20): the departure charge as water, launched liquid and
+frozen to snow in orbit inside thin sealed polyethylene balloons. The balloons hold its shape
+and vapor. It is **darkened** (albedo ~0.1), because clean snow lasts ~2 years as debris and dark
+snow ~1 day. The Sun-wave and push charges stay polyethylene (three-year loop, no cryostat).
+_Avoid_: calling the charge shield a Whipple shield. It is a thick block that craters, not a thin
+bumper.
+
 **Growth-to-departure gap** (decided 2026-10-19; aim ADR 0074): 10 days. 5 days is ~$2-3 cheaper
 dear for 2-3% less growth and is printed as one sentence, not the design (Seth).
 

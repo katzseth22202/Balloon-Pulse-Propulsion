@@ -43,8 +43,28 @@ a shared 63 t sprung assembly (aim ADR 0076), and its wall thickness has not bee
    window (1 Hz, a few seconds) still aim at the hole and should fly out the mouth bare (Result 14
    geometry). Confirm, and say whether the new hole or a slot sits on any of their lines.
 
+5. **The charge stack as a shield** (added 2026-10-20, Seth). The ship carries ~370 t of departure
+   charge. Stacked outboard on the stream's side, between the approach cone and the bags and
+   frame, it is a thick sacrificial block, drawn from the inside out. For a disk striking that
+   block (polyethylene, or the dark water snow of item 6): the crater's direction (we expect
+   ejecta back out along the approach, away from the ship), the recoil on the ship (we guess
+   0.8-1.6 MN s), the ejecta's sizes and speeds, and the block depth that keeps the shock off the
+   frame behind it.
+6. **Water snow as the departure charge** (added 2026-10-20, Seth). The departure charge is spent
+   ~10 days after launch, so it need not be polyethylene. Water launched liquid, sprayed in orbit
+   into thin, sealed polyethylene balloons where it freezes to snow (bulk density perhaps
+   300-600 kg/m^3), darkened (a few % carbon black, or black film). Wanted: its push law in the
+   bowl against polyethylene. Water's atomization is ~51 MJ/kg against polyethylene's ~84, so the
+   bond toll may fall, and the lower density at the focus may change the capture. Also wanted:
+   whether the balloon film matters.
+
 Item 2's speed distribution also prices a proposed mitigation (below), so a histogram is more
 useful than a peak value.
+
+**Paper-side estimate behind item 6: dark ice is cleaner debris.** A tumbling 1 cm piece of clean
+snow (albedo 0.9) in sunlight at 1 AU runs ~160 K and lasts ~2 years. At albedo 0.5 it lasts
+~3 days, and at 0.1 ~1 day, near 190-195 K (sublimation balance, Clausius-Clapeyron vapor pressure;
+no Earth shadow or Earth IR). So the darkening is what makes it short-lived.
 
 ## The mitigation it feeds (the paper's estimate)
 
