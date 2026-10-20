@@ -696,6 +696,17 @@ Kapton to 140 km/s on the floor-wide sheet, nitrogen bags with bladder, the 2.5 
 122 deg, theta = pi with nitrogen, the 9.86 R_sun 60 / 75 tie, the Jupiter loop's steady column,
 and a launch-window rule for the Moon. Full text and the paper's override script:
 `docs/consolidation_asks_for_aim_repo.md`.
+The doc is written to be copied into aim and is self-contained: it explains each run-time
+override and how to run it (verified 2026-10-20: the script as published reproduces $146 / $87).
+
+## S48. Keeping the lossless spring on its cycle (puffsat_impact_simulation)
+
+A lossless spring never forgets an impulse error. At 2-10% pulse scatter the 63 t plate's swing
+walks off the 8 m stroke within ~25-625 pulses, and the bags' 0.14-0.37% loss holds it only at
+0.7-5x the swing (paper estimate). Burst and coast is ruled out for the plate. Wanted: the scatter's
+sources, the drift flown on the nonlinear spring, and the trim that holds it (next charge's mass,
+standoff, arrival time, a switched orifice), also at theta = pi. The paper holds its text until this
+lands (Seth, 2026-10-20). Full text: `docs/spring_trim_asks_for_impact_sim.md`.
 
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
 

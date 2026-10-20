@@ -1,6 +1,8 @@
 # Consolidating sim Results 16-18 into the ledger: ask S47 (for aim_is_all_you_need)
 
-Raised 2026-10-19 in `Balloon-Pulse-Propulsion`. Answers in, and follow-up to, aim `efe6121`
+Raised 2026-10-19 in `Balloon-Pulse-Propulsion` (commit `f5ba491`). **Written to be copied into
+`aim_is_all_you_need`.** It is self-contained: the script below runs against an unmodified aim
+checkout. Answers in, and follow-up to, aim `efe6121`
 (ADR 0076, `docs/spring_plates_and_fast_law_for_parent.md`) and the impact simulation's
 `1bed1c6` (Results 16-17) and `9bcc8be` (Result 18).
 
@@ -50,8 +52,32 @@ The paper labels all of them "our rerun of" ADR 0076.
 
 ## The override script (paper side, scratch)
 
-Run from an aim checkout at `efe6121` with its `.venv`:
-`AIM=$PWD CONSOLIDATE=kapton137,nitrogen,bowl25 .venv/bin/python -I consolidate.py --sweep --gaps`.
+It changes nothing in `src/`. It imports `src.solar_dive_growth`, overrides three things at run
+time, then calls that module's own `main()`, so every report, sweep and sensitivity comes out of
+your code unchanged:
+
+- `kapton137` sets `KAPTON_FAILS` from 130 to 140 km/s. That one constant picks both the sheet
+  price and the overtake law's impactor (`"Kapton"` vs `"graphite"`), so 137 km/s flies Kapton on
+  its own law at $3/kg.
+- `nitrogen` sets `HELIUM_GAMMA` to 1.4 and `HELIUM_GAS_CONSTANT` to 296.8, which moves both the
+  bags' `PV` and the gas mass. It wraps `bag_mass` to add a bladder at 1.3/2.9 of the gas mass.
+  That lands at 5.5 t per Earth plate (sim: 1.5 t fibre, 2.9 t gas, up to 1.3 t bladder).
+- `bowl25` wraps the law class's `hole_ve` and multiplies it by 0.909 / 0.912 / 0.922 at
+  k = 10 / 20 / 30 (log-interpolated, clamped) whenever `theta_deg < 122`. Only the 4 R_sun
+  closures depart that steep (117 deg).
+
+The flags stack, and the printed figures use all three. Save the block as `consolidate.py` next
+to the checkout, then from the aim root at `efe6121`, with the `.venv` from your CLAUDE.md:
+
+```bash
+AIM=$PWD CONSOLIDATE=kapton137,nitrogen,bowl25 .venv/bin/python -I ../consolidate.py --sweep --gaps
+```
+
+(~10 min with the sweep). For the Jupiter-only loop, replace the last line with
+`import src.plate_jupiter_loop as j; j.main(sys.argv[1:])`. Drop flags one at a time to reproduce
+the step table above. To adopt this properly, retire the three overrides into real switches,
+for example `SolarDivePrices.kapton_limit`, a `Design.bag_gas` with a bladder term, and a
+2.5 F capture table in `data/`.
 
 ```python
 """Paper-side rerun of aim's ADR 0076 ledger with the sim's Results 16-18 folded in.
@@ -90,7 +116,6 @@ if "nitrogen" in flags:
     g.bag_mass = bag_mass
 
 if "bowl25" in flags:
-    _orig_hole = g.SolarDiveLaw.hole_ve if hasattr(g, "SolarDiveLaw") else None
     cls = next(
         c for c in vars(g).values() if isinstance(c, type) and "hole_ve" in vars(c)
     )
