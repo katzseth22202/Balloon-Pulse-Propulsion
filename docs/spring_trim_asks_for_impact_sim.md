@@ -74,5 +74,16 @@ candidates we see, none computed:
    (8.3 m column, 1.61x peak). It should be more forgiving, since its swing is closer to the edge
    of contact and its stiffness is higher, but the edge of contact is also closer.
 
+5. **The rocking mode.** The departure aims the bowl's line by tilting the assembly on the
+   spring, with the bags split into cells and nitrogen moved between them (paper,
+   `sec:charge_pusher_plume`, our estimate). With cells spread evenly under the plate, the tilt
+   stiffness is k R^2/4 (about 2.5e7 N m/rad at R = 9.5 m) and the tilt inertia m R^2/4, so the
+   rocking mode runs at the same frequency as the swing and is just as lossless. A pulse landing
+   a distance delta off center kicks it by about 4 delta/R of the swing; an untrimmed steady
+   0.5 m offset would tilt the push plate ~17 deg on average, and countering it moves ~130 kg of
+   nitrogen. Wanted: the rocking drift under item 1's footprint scatter, and whether the
+   cell-to-cell gas trim that aims the bowl can also hold it.
+
 Paper edits that wait on this: a sentence in `sec:charge_pusher_plume` (the spring needs per-pulse
-trim, and what does it) and an item in `sec:charge_pusher_open`.
+trim, and what does it) and an item in `sec:charge_pusher_open`, plus a
+sentence on the rocking mode beside the tilt aim in `sec:charge_pusher_plume`.

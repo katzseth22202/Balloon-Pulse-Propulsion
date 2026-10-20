@@ -705,7 +705,8 @@ A lossless spring never forgets an impulse error. At 2-10% pulse scatter the 63 
 walks off the 8 m stroke within ~25-625 pulses, and the bags' 0.14-0.37% loss holds it only at
 0.7-5x the swing (paper estimate). Burst and coast is ruled out for the plate. Wanted: the scatter's
 sources, the drift flown on the nonlinear spring, and the trim that holds it (next charge's mass,
-standoff, arrival time, a switched orifice), also at theta = pi. The paper holds its text until this
+standoff, arrival time, a switched orifice), also at theta = pi. Also the plate's rocking mode, which is as
+lossless as the swing and must be held by the same cell-to-cell gas trim that aims the bowl. The paper holds its text until this
 lands (Seth, 2026-10-20). Full text: `docs/spring_trim_asks_for_impact_sim.md`.
 
 ## E1-E6, G5-G9 answered for puffsat_impact_simulation (2026-10-16)
