@@ -2943,7 +2943,7 @@ a disk punches through and its cloud exits the mouth.
 **Snow charge** (candidate, 2026-10-20): the departure charge as water, launched liquid and
 frozen to snow in orbit inside thin sealed polyethylene balloons. The balloons hold its shape
 and vapor. It is **darkened** (albedo ~0.1), because clean snow lasts ~2 years as debris and dark
-snow ~1 day. The Sun-wave and push charges stay polyethylene (three-year loop, no cryostat).
+snow ~1 day. An emptied balloon (~120 g over 2-3 m^2) is minor: a satellite bumper is ~100x its areal density (Seth). The Sun-wave and push charges stay polyethylene (three-year loop, no cryostat).
 _Avoid_: calling the charge shield a Whipple shield. It is a thick block that craters, not a thin
 bumper.
 
