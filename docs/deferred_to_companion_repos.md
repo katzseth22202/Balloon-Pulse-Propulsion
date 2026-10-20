@@ -828,3 +828,30 @@ fragments escape). Full text: `docs/errant_departure_impactor_asks_for_impact_si
 Items 5-6 added the same day (Seth): the departure charge stacked outboard as a thick sacrificial
 shield over the bags and frame, and dark water snow in sealed polyethylene balloons as that charge.
 The paper names both, and the methalox pre-burn (unpriced), in `sec:charge_pusher_abort`.
+
+## S50. A water bag on the overtake plate, with carried charge (puffsat_impact_simulation)
+
+For the Iapetus water cycle (not in the paper; Seth, 2026-10-20). Returning water bags overtake the
+Earth ship at 51.1 km/s (60 and 68-70 km/s as sensitivities). Unlike the floor-wide Kapton sheet, a bag
+bursts from near a point, so the face load peaks on axis; Seth expects a heavier plate, possibly a
+paraboloid with the burst near its focus. Wanted: the arrival state (intact, released ahead, partly
+frozen), a `k` sweep from 0 to about 30 with `eta_jet`, flat against paraboloid plates, the plate mass
+on the spring law, aim tolerance and rocking, and face erosion. Parent placeholder: 10.3x push per kg at
+`k = 8.5`, `eta_jet = 0.775`, against 6.7x bare. Full text: `docs/iapetus_bag_plate_asks_for_impact_sim.md`.
+
+## S51. The Iapetus water cycle: ledger and true cost (aim_is_all_you_need)
+
+A 9.5-year round with Saturn dog-legs, a single-use water nuclear thermal stage (UO2-tungsten cermet,
+SiC barrier eroding to SiO2 in steam, Seth 2026-10-20) disposed into Saturn behind redundant
+reactors, and two rounds in 19 years. Base exhaust 1300 K at about 1 MPa (200 s, 1.85x NERVA's thrust per
+reactor): NASA's SiC recession law puts 1800 K at centimeters of coat, 1300 K at 0.3-0.6 mm for the run.
+Burn policy: 12-hour periapsis burn, 32.5 h of engine run, about 826 t of PuffSat per 560 MW engine;
+3-hour growth policy as a second row. Wanted: the mass ledger; a cost ledger with the engines priced per
+kg of U-235 ($40M / $60M / $100M per 560 MW engine, fixed plus per-MW); and $/kg to the eccentric orbit against the paper's current route there, printed as two ledgers: A, reuse at scale ($200K
+Earth plate per flight, $1/kg electronics, 12 h burn) and B, no reuse ($5M plate, 6 h burn, 554 t).
+Parent estimates: reactor about $5/kg of the ~8,000 t pushed, Earth charge about $25/kg. Valued on gated
+rNPV (10%) and a 4% government loan, both gated (odds 95/90/85/90%, about 65%, Seth confirmed). A tankage row with
+walls made at Saturn from local carbon by a 40 kWe surface fission unit. Parent ballpark from the earlier 3-4 h life sizing: about 23x over
+19 years base, 120x
+optimistic. Waits on S50 for leverage and plate mass. Full text:
+`docs/iapetus_cycle_ledger_asks_for_aim_repo.md`.
