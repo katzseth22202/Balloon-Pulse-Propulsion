@@ -814,3 +814,13 @@ the ask on three points: the ledger has charged a fixed-direction finite-burn lo
 | **S25** | the Earth turn and mirror visibility on the flown chain, at the chamber's burns | open |
 | **S26** | finite-rate recombination in the bulged chamber's nozzle, both throat options | answered (sim `2addc17`, second issue `df4bc6e`): 885 / 941 kN s on 2.66 m^2, floor 810 / 849 |
 
+
+## S49. An errant departure impactor on the bowl (puffsat_impact_simulation)
+
+Goal (Seth, 2026-10-20): a missed aim aborts the departure but must not turn the ship into solid
+debris. The bags sit behind the bowl, off the approach line, so a miss hits the bowl's back face.
+Wanted: the wall thickness below which the disk punches cleanly through (cloud out the mouth)
+rather than craters back toward the ship; the rim's solid fragments and their speed distribution;
+damage elsewhere in the 63 t assembly; and whether the next bare impactors still clear. The
+fragment speeds also price Seth's methalox pre-burn (200-300 m/s before the PuffSat burn, so most
+fragments escape). Full text: `docs/errant_departure_impactor_asks_for_impact_sim.md`.
