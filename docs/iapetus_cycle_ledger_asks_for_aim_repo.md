@@ -273,6 +273,16 @@ anchoring by hold-down thrusters (`sec:greedy_phoebe`). Compute the outbound Sat
 delta-v to match Phoebe's retrograde orbit on your propagator. The parent's coplanar scratch
 estimate is about 4.1 km/s, against Iapetus's 4.76; see item 6 under Wanted.
 
+**Ceres, Mars and near-Earth asteroids were considered and set aside (Seth, 2026-10-21); no rows
+wanted.** Mars is worse than Ceres, since its ice must first climb out of a 5 km/s surface
+escape. Near-Earth asteroids are hard to mine for water in the quantities this cycle needs.
+For Ceres, with no deep gravity
+well there is no Oberth effect, so the departure delta-v is paid in full: about 8 km/s from Ceres
+for a 50 km/s Earth closing speed through a retrograde Jupiter flyby, against 3.70 from Iapetus.
+A direct return to Earth points a nuclear stage at Earth, and a direct methalox return pushes at
+best about 0.24 kg to the eccentric orbit per kg of propellant (two stages, about 25 km/s
+closing), against about 4.8 at Iapetus (parent scratch, coplanar orbits).
+
 **The stage.** Single use, with engines from Earth and tanks made at Saturn or shipped (the
 tankage row). It needs no disposal brake, because it carries no reactor. After separation, the
 empty stage is still on the PuffSats' Earth-bound arc. It needs a small divert burn to miss Earth
