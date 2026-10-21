@@ -5828,3 +5828,24 @@ _Avoid_: "coordinators" for these; they are co-flyers, as for the Earth streams.
 **Dust:** 4 R_sun is at or inside the depletion zone (Howard 2019). Retrograde disks meet prograde
 dust at 400-600 km/s, which matters for forward-facing optics only.
 
+
+## Earth bag plate and the shaped plug (S50 answered 2026-10-21; S52 open)
+
+The nuclear Iapetus cycle (water NTR at Saturn) is a **new scenario beside** the paper's
+PuffSat-propelled Iapetus scenario, not a replacement; it is pursued for NASA's renewed nuclear
+interest. **All its plates are at Earth.** Sim Result 20 (`1d7cedf`,
+`docs/iapetus_bag_plate_answers_from_impact_sim.md`): 25 kg water bags at 51.1 km/s push ~8x per
+kg of bag, not the 10.3x placeholder. Compact ice plug on a delta/D 0.5 paraboloid at 2 F: 8.12x at
+k = 4, 7.20x at k = 8.5 (`eta_jet` falls with k for a column); point-fireball ceiling 8.42x / 8.83x.
+Frozen-rebound edge ~1x lower. **Decided (Seth, 2026-10-21):** the plug is shaped (a squat lens
+about the bag's depth) to spread the bag; the gun's 100 g ice bullet fires **only on a predicted
+miss** (a bag that reaches the plate unspread peaks at 29-40 GPa and holes it; bullet-spread,
+1.03 GPa); residual gun failure is a labelled ledger loss rate, not a third layer; the bags get
+their own **Earth bag plate** (25-32 t graded 0.5 paraboloid, graphite liner over the inner ~6 m),
+not the Kapton push's 0.30 bowl. k is chosen on $/kg (aim S51), not leverage.
+**Catch radius**: the largest lateral miss of the bag's centre that still lands the whole bag on
+the plug (plug radius minus 0.18 m bag radius; ~0.12 m at k = 4, ~0.26 m at k = 8.5 for a 0.38 m
+deep lens, parent sizing). Open in S52: lens sweep, punch-through, safe overlap (sets the trigger),
+backup pulse, k = 1-4. Paper text waits on S52 and S51.
+_Avoid_: "Iapetus plate" for the Earth bag plate (nothing at Iapetus catches PuffSats in this
+scenario); "the bullet spreads the bag" as the primary mechanism.

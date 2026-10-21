@@ -3,9 +3,15 @@
 Raised 2026-10-20 in `Balloon-Pulse-Propulsion` (after `5d63e81`). **Written to be copied into
 `aim_is_all_you_need`; self-contained.** Nothing here is in the paper yet. Seth wants the cycle
 priced as a ledger, including the nuclear engines as a cost line (Seth, 2026-10-20: "Need to be
-part of the ledger"). The leverage and plate mass come from the impact sim's S50
-(`docs/iapetus_bag_plate_asks_for_impact_sim.md` in the parent). Until S50 lands, run both the
-placeholder rows below.
+part of the ledger"). The leverage and plate mass come from the impact sim's S50, now answered
+(Result 20, sim `1d7cedf`; see "The Earth push" below). The answer is lower than the 10.3x
+placeholder this ask first carried. The shaped plug that Seth chose as the primary spreader is
+still unrun (the sim's S52), so the push is priced as a band.
+
+**All plates in this scenario are at Earth.** At Saturn the water nuclear thermal stage does all
+the propulsion. This nuclear cycle is a new scenario, pursued because of NASA's renewed interest in
+nuclear propulsion. It sits beside the paper's existing PuffSat-propelled Iapetus scenario and does
+not replace it.
 
 ## Why NASA's interest frames this
 
@@ -292,7 +298,65 @@ empty stage is still on the PuffSats' Earth-bound arc. It needs a small divert b
 and the plate; price a reserve (50 m/s, parent guess). Price a reuse row as well: brake back to a
 bound orbit (the 2.89 km/s above) to recover the engines.
 
+## The Earth push (S50 answered 2026-10-21; S52 pending)
+
+The returning PuffSats are 25 kg bags of water. They overtake the Earth-launched ship at 51.1 km/s
+and strike a **plug**, an ice charge of `k` kg per kg of bag held 4.75 m above the plate's vertex
+(two focal lengths). The bag and plug merge into a fireball that pushes on the plate. The impact
+sim's answers are carried in the parent as `docs/iapetus_bag_plate_answers_from_impact_sim.md`.
+
+**Seth's architecture (2026-10-21).**
+- **The plug spreads the bag.** It is shaped as a squat lens about the bag's own depth, so the
+  merged fireball forms close to a point at the focus. This is unrun (S52,
+  `docs/shaped_plug_asks_for_impact_sim.md` in the parent).
+- **A gun's 100 g ice bullet is the backup.** It fires only when the track at about 6 km
+  predicts the bag will miss the plug. A bag that reaches the plate unspread peaks at 29-40 GPa,
+  holes the plate and dumps 25-30 GJ into its nitrogen spring. A bullet-spread bag peaks at
+  1.03 GPa, inside maraging steel's 2.3 GPa.
+- **The bags get their own plate at Earth, the Earth bag plate.** It is a graded delta/D 0.5
+  paraboloid, 25-32 t on the 8 m spring at 1 g and 2 Hz, with a graphite liner over its inner
+  ~6 m. It is separate from the Kapton push's 0.30 bowl and is not shared with it.
+
+**Leverage**, kg pushed to 10.916 km/s per kg of bag, ice plug, 2 F paraboloid, sim Result 20.
+The frozen-rebound edge is in brackets.
+
+| k | Base: compact plug (simulated) | Optimistic: shaped plug, point-fireball ceiling (unrun, label it) |
+|---|---|---|
+| 2 | not run | 7.89 (7.11) |
+| 4 | **8.12 (7.26)** | 8.42 (7.53) |
+| 8.5 | 7.20 (6.21) | **8.83 (7.67)** |
+| 15 | 4.52 (3.87) | 8.37 (7.35) |
+| 20 | 3.28 (2.72) | 8.06 (7.00) |
+
+At 60 and 68 km/s and k = 8.5 the compact plug gives 9.34x and 11.26x, the 2.5 m spread disk
+10.74x and 12.88x. Carrying the liner's eroded graphite as charge costs about 0.1-0.15x (7.20 to
+7.06x on the compact plug at k = 8.5).
+
+- **Pick k on dollars per kilogram, not on leverage.** The Earth charge is the largest Earth-side
+  line. The compact plug's leverage peaks at or below k = 4, the lowest k run, and k = 4 carries
+  under half the charge of k = 8.5. Interpolate the table and print the cost optimum on each column.
+  S52 item 7 will add k = 1-4.
+- **Backup pulses.** On a pulse where the gun fires, the spread bag misses the plug and delivers
+  2.22 MN s (J/mv 1.74; production grid), against about 2.6-3.0 for a plug pulse. Count that pulse's
+  plug as spent, in case S52 item 4 finds it destroyed. Weight the per-bag impulse as
+  `(1 - p) J_plug + p J_backup` with the miss rate `p` = **5% (placeholder, labelled)**. Print
+  rows at 1% and 20%. S52 item 3 replaces it.
+- **Residual loss row.** The gun can fail on a pulse it was meant to save. Carry a per-pulse
+  probability `p x q` of losing the plate, with backup failure `q` = 1e-3 (placeholder,
+  labelled), and price the loss as the Earth bag plate plus the ship it was pushing (worst case).
+  Report the `q` at which this row reaches 1% of $/kg. Do not stack it with the other worst cases.
+  Print it as its own labelled row.
+- **Plate and consumables.** Price the Earth bag plate at 25-32 t (not 63.4 t) at the ledger's
+  plate $/kg on both ledgers. Price the graphite liner, consumed at 2-18 t a push, on its own
+  evidence for bulk isostatic graphite. Print the paper's $1000/kg graphite-disk price as a
+  labelled pessimistic row, since at that price the liner alone is $2-18M a push. Price the gun as
+  an Earth-sourced line, with bullets at about 0.1 kg x `p` x pulses a push (about 10 kg at 5% over
+  a 2000-pulse push).
+
 ## Parent results to reproduce (bare plate unless noted)
+
+The 10.3x rows below used the parent's placeholder `eta_jet` = 0.775. Reproduce them only as a
+check of the module, then replace them with "The Earth push" above.
 
 These came from the earlier 200 s, 3-4 h life sizing (flat 1.00 km/s Iapetus escape, engines sized
 by life) and predate the 12-hour burn policy. Reproduce them at that point as a check, then rerun
@@ -317,11 +381,15 @@ rounding the push to about 8,000 t):
 | Reactor with cost of capital (9.5 years from purchase to delivery) | x1.45 at 4%, x5.6 at 20% |
 | Earth charge, $/kg pushed | **about $25**: 8.5 x 826 = 7,000 t lofted at $26.6/kg (lob) plus $2/kg (polyethylene), about $200M |
 
-The charge, not the reactor, is the larger Earth-side line. Both await S50's leverage.
+The charge, not the reactor, is the larger Earth-side line. S50 has now set its leverage. At the
+simulated k = 4 base (8.12x) the push is about 826 x 8.1 = 6,700 t per engine and the charge is
+4 x 826 = 3,300 t lofted, about half the k = 8.5 charge for about 80% of the old 8,500 t pushed.
+Rerun both lines on "The Earth push" above.
 
 Leverage law used for the charge, from the parent's overtake impulse
 `I/(m w) = eta_jet sqrt(1+k) + 1`: `M_f/m = k / ((w/(w - v_f))^(k/B) - 1)`, with
-`B = 1 + eta_jet sqrt(1+k)`. Replace with S50's numbers when they land.
+`B = 1 + eta_jet sqrt(1+k)`. S50's table above already applies this law with its measured `B`.
+Use the law only to interpolate between the tabled k.
 
 ## S51. Wanted
 
@@ -427,7 +495,7 @@ Leverage law used for the charge, from the parent's overtake impulse
    Earth plates (Ledger A) and low capital cost). Report whether any cell reaches it. If none
    does, report which lines must fall, and how far, to get there. The parent's own estimate
    points at the Earth charge first: about $25/kg pushed at k = 8.5 lofted at $26.6/kg, against
-   about $5/kg for the reactor. Cheaper Saturn-side propulsion cannot reach $1-2 while that
+   about $5/kg for the reactor. At the k = 4 base it is about $14/kg (4 x $28.6 / 8.12), still the largest line. Cheaper Saturn-side propulsion cannot reach $1-2 while that
    line stands at that price. The $1-2 target assumes the Earth charge itself rides reusable
    plates on an optimised trajectory (Seth, 2026-10-21); the parent's $26.6/kg lob price does not
    assume that. Price the charge on that basis, say what lob price it implies, and print it next
@@ -482,7 +550,8 @@ Leverage law used for the charge, from the parent's overtake impulse
 7. **Sensitivities worth printing.** Arrival speed (51 vs 68-70 km/s; the faster arrival raises
    push leverage but costs more at Saturn), engine price, reactor power per engine, exhaust
    temperature (1300 K base; 1800 K labelled), chamber pressure, burn policy (3 h growth, 12 h
-   base, 16 h), and `k`.
+   base, 16 h), `k`, the plug column (compact base against the shaped-plug ceiling), and the
+   backup miss rate `p`.
 
 Paper edits that wait on this: the whole cycle. The parent will not print the Iapetus option
 until S50 and S51 land.

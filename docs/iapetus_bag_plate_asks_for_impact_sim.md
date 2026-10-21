@@ -5,6 +5,11 @@ Raised 2026-10-20 in `Balloon-Pulse-Propulsion` (after `5d63e81`). **Written to 
 sizes for the slug ratio `k` and the plate before the companion `aim_is_all_you_need` builds a
 ledger for the cycle (S51, `docs/iapetus_cycle_ledger_asks_for_aim_repo.md`).
 
+**Answered 2026-10-21** (sim `1d7cedf`, Result 20, ADR-0071), carried as
+`docs/iapetus_bag_plate_answers_from_impact_sim.md`. Seth's follow-up is S52
+(`docs/shaped_plug_asks_for_impact_sim.md`): a shaped plug spreads the bag, the gun's bullet is
+the backup.
+
 ## The cycle this serves
 
 A new source of returning PuffSats: water mined on Saturn's moon Iapetus, shipped to Earth by a
