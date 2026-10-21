@@ -146,6 +146,138 @@ with thrust, so PuffSat per engine scales with reactor power.
 **Redundancy.** Price two rows. (a) A second full engine set. (b) A brake-only reactor sized for
 the empty stage, which needs only a small share of the main thrust.
 
+## The comparison: nuclear rocket vs nuclear reactor plus chemical rockets (Seth, 2026-10-21)
+
+**The question for aim (Seth, 2026-10-21).** Compare two ways to spend uranium at Saturn. (a) The
+nuclear rocket: one single-use water NTR engine per stage, its reactor dumped into Saturn after
+one 32.5-hour run. (b) A nuclear reactor plus chemical rockets: one reactor, launched once, stays
+at Saturn for years. It fuels many single-use methalox stages, so its cost is spread over every
+stage it fuels. The rest of this section describes (b).
+
+**Framing.** The water cycle stays the paper's base case. Its case is simplicity
+and certainty: the cycle has few steps, and the water is known to be there. Methalox is a priced
+comparison and a later upgrade, not a replacement. It is examined because on a dollar basis it may
+be much cheaper. The uranium in a single-use engine is the expensive line. This alternative keeps
+the reactor at Saturn and throws away only a chemical engine and tanks. A methalox engine also
+lifts more for the same delta-v and burn time. A Raptor Vacuum-class engine gives roughly 2.5 MN
+from about 1.6 t, against 205 kN from the 3.23 t water engine, so about 12x the thrust. At the same
+12-hour burn it could push roughly 10x the stack. Price it beside the water stage, at both
+Iapetus and Phoebe.
+
+Parent pairing check: an 8,000 t PuffSat stage needs about 17,000 t of methalox and about 230 TJ
+from the ceria plant. A 10 MWt ceria plant (1 MW of fuel at 10%) makes that in about 7 years, so
+one large stage per round. An electric plant at about 20% does it in about 3.6 years.
+
+**The plant.** A heat-only fission reactor drives a two-step ceria cycle. Ceria (CeO2) is reduced
+at about 1773 K in vacuum, releasing oxygen. It is then reoxidised at about 1073 K by water vapour
+and CO2, releasing H2 and CO. A methanation step (CO + 3H2 -> CH4 + H2O) turns the gas into
+methane, and the oxygen from reduction is captured as LOX. The reactor never touches steam, so the
+SiC recession limit above does not apply and the core can be reused for years (Seth). Heat reaches
+the ceria by radiation (Seth's base) or through a molten-tin loop (Seth's alternative). Ice Fresnel
+lenses (`sec:greedy_phoebe`) are a labelled backup only. At Saturn's 15 W/m^2 they need about
+75,000x concentration and an optical error under about 3.7 mrad to hold 1773 K, over about 2 km^2
+for 25 MWt.
+
+Parent sizing notes, to check and replace:
+- **Radiative coupling.** At an effective emissivity of 0.8, a 1900 K reactor face delivers about
+  143 kW/m^2 to 1773 K ceria (about 175 m^2 for 25 MWt, 700 m^2 for 100 MWt). A 2000 K face
+  delivers about 278 kW/m^2.
+- **Oxygen near the core.** Reduction releases O2 right where the reactor radiates. Tungsten
+  oxide volatilises and graphite burns at these temperatures, so the core needs a sealed ceramic
+  wall between it and the ceria. Price that wall.
+- **Molten tin.** The demonstrated pumping record is about 1673 K (Amy et al., Nature 2017,
+  ceramic pump). That is about 100 K short of the 1773 K reduction temperature, so label the tin
+  row as needing a modest extension.
+- **Core life.** Fuel swelling and fission-gas release at about 2000 K over years set the life.
+  The closest flown analogue is the Soviet TOPAZ thermionic reactor, whose emitters ran near
+  1800 K for about a year (Cosmos 1867). Find a sourced life for a heat-only core at this
+  temperature.
+- **Burnup.** 25 MWt for 9.5 years fissions about 91 kg of U-235; 100 MWt fissions about 366 kg.
+  Size the inventory for the burnup, not only for criticality.
+- **Ceria efficiency.** Heat into the ceria converted to chemical energy: 10% base, 5%
+  pessimistic. The parent's energy balance gives 9-18% with no recovery of the solid's sensible
+  heat and 15-27% with 50% recovery, at a vacuum reduction extent of 0.02-0.05. Demonstrated
+  solar-to-fuel is about 4-5% (ETH Zurich's reactors), but that figure includes concentrator and
+  receiver losses a reactor does not have. Cool the ceria only to the oxidation temperature, with
+  the incoming cold vapour as both oxidant and coolant, and use low-grade waste heat to sublimate
+  the next feed. Quenching against ice wastes the sensible heat and slows oxidation below about
+  773 K.
+- **Ceria inventory.** About 15-25 t at 100 MWt for minute-scale cycles, 150-250 t for 10-minute
+  cycles; scale with power.
+
+**Propellant per stage (parent scratch, impulsive, Isp 370 s base and 380 s optimistic (Raptor
+Vacuum class), dry mass 8-12% of propellant, 826 t of PuffSat to match the water stage's 12-hour
+base).** Chemical thrust is high, so the 20.3% Oberth loss of the long nuclear burn goes away.
+The Iapetus escape is taken at the doc's 0.74 km/s impulsive figure.
+
+| Site | Delta-v from the moon to the departure (km/s) | Methalox | CO2 needed (or carbon equivalent) | Ceria output |
+|---|---|---|---|---|
+| Iapetus | 0.74 + 0.59 + 2.37 = 3.70 | 1,620-1,860 t | 970-1,110 t | 22-25 TJ |
+| Phoebe | about 0.10 + 1.45 + 2.42 = 3.97 | 1,850-2,160 t | 1,110-1,290 t | 25-30 TJ |
+
+The Phoebe 1.45 km/s cancels most of Phoebe's 1.71 km/s retrograde orbital speed to drop
+periapsis to 150,000 km straight from Phoebe's 12.95 million km orbit. Per kg of methalox at O/F
+3.6, the plant makes 13.7 MJ of chemical energy and consumes 0.60 kg of CO2 (0.163 kg of carbon)
+and 0.49 kg of net water.
+
+**Power policy: target 5-10 MWt (Seth, 2026-10-21).** Methane boils at 112 K and LOX at 90 K,
+close to the moons' 90-130 K surfaces. Shaded storage can therefore hold the propellant for years
+without a deep cryocooler. The plant can run all round and stockpile. At 10%, one stage per round
+needs about 1 MWt running for nine years, or about 20 MWt if it runs only during a 0.4-year stay.
+5-10 MWt running all round fuels about 5-10 stages per round (about 4,000-8,000 t of PuffSat), so
+stage count is no longer set by engine price. 100 MWt (about 100 stages) stays as a sensitivity
+row only. Please solve the number of stages per round against reactor power, Earth-sourced
+chemical engines and the Earth plates' push capacity, and report $/kg against power.
+
+**Electric route at the same power (Seth asked whether it wins at 5-10 MW).** Price a second plant:
+the same reactor class run at about 1150 K into a Brayton converter (about 25% thermal to
+electric), with solid-oxide co-electrolysis of H2O and CO2 (about 80% electric to chemical; MOXIE
+on Mars is the flown small-scale analogue) feeding the same methanation step. That chain turns
+about 20% of the heat into fuel, against the ceria plant's 10% base. Parent ballpark, per MW of
+chemical output:
+
+| | Ceria plant | Electric plant |
+|---|---|---|
+| Heat per MW of fuel | 10 MWt | about 5 MWt |
+| Reactor | heat-only core at about 2000 K, years of life not demonstrated | about 1150 K, the Kilopower/KRUSTY and SP-100 class |
+| Big items | ceria, ceramic wall, high-temperature heat rejection | converter, about 900 m^2 of radiator per MWe at 450 K (about 5 t), electrolyser stacks (2-5 kg/kWe) |
+| Total, t per MW of fuel | about 10-20 (parent guess) | about 15-30, at 10-20 kg/kWe for MW-class space fission power (NASA NEP study targets) |
+
+The two are close on mass. The electric plant is more mature, and its power also runs mining, the
+cryogenic radiators and PuffSat charging. Both plants can dump waste heat into mined ice instead of
+radiators if they sit on the surface; price that option for both. Fuel cost does not separate them
+at this power: 5 MWt for 9.5 years fissions about 18 kg of U-235, well below a HALEU core's
+criticality inventory, so the inventory is set by criticality either way. Report $/kg for both
+plants across 1-20 MWt and say where, if anywhere, ceria wins.
+
+**Carbon is the open gate.** Neither moon has a measured bulk carbon content (see the parent's
+note below the table in item 2, tankage). CO2 ice and organics are detected only in the top
+surface layer. A stage needs about 1,000 t of CO2 or its carbon equivalent. At 1% CO2 in mined
+dark material that is about 100,000 t of regolith per stage; at 0.1%, about a million. Print
+rows at 0.1%, 1% and 10% CO2 (or carbon) in the mined material for each moon. No hydrolox row:
+liquid hydrogen needs a cryocooler of a few hundred kWe per stage and years of storage below 20 K,
+which Seth ruled out (2026-10-21). If carbon fails, the water stage is the fallback.
+
+**Carbon processing kit (Seth, 2026-10-21).** Charge the equipment that turns surface material
+into feedstock as its own Earth-sourced line, priced by the tonnes of regolith it must handle.
+Do not assume it is light. The methanation reactor is small, but the dig scales with carbon
+grade: at 10% carbon about 10,000 t of regolith per stage, at 1% about 100,000 t, at 0.1% about a
+million. Include excavation, heating the regolith to release CO2 or pyrolyse organics, and gas
+cleanup. Use the mining kit's kg per tonne figures as the starting rows, and report the grade at
+which the kit stops paying.
+
+**Site rows.** Iapetus: ice about 75-80% by mass (parent estimate from its 1.09 g/cm^3 density),
+surface gravity 0.22 m/s^2, a 79-day synchronous rotation. Phoebe: about 50% ice
+(`castillo_rogez2012_phoebe` in the paper), about 0.05 m/s^2 and 100 m/s escape, a 9.3-hour day,
+anchoring by hold-down thrusters (`sec:greedy_phoebe`). Compute the outbound Saturn-side
+delta-v to match Phoebe's retrograde orbit on your propagator; the parent has not.
+
+**The stage.** Single use, with engines from Earth and tanks made at Saturn or shipped (the
+tankage row). It needs no disposal brake, because it carries no reactor. After separation, the
+empty stage is still on the PuffSats' Earth-bound arc. It needs a small divert burn to miss Earth
+and the plate; price a reserve (50 m/s, parent guess). Price a reuse row as well: brake back to a
+bound orbit (the 2.89 km/s above) to recover the engines.
+
 ## Parent results to reproduce (bare plate unless noted)
 
 These came from the earlier 200 s, 3-4 h life sizing (flat 1.00 km/s Iapetus escape, engines sized
@@ -222,7 +354,9 @@ Leverage law used for the charge, from the parent's overtake impulse
    - **Earth pusher plates,** per the two ledgers above.
    - **Tankage and the mining kit.** Price a second tankage row: **walls made at Saturn** from
      local carbon and water (Seth, 2026-10-20). Iapetus's dark leading hemisphere carries organics
-     and CO2 ice; Phoebe (`sec:greedy_phoebe`) is carbonaceous. Polyethylene from CO2 and water
+     and CO2 ice, and Phoebe's surface shows CO2 ice. Neither moon's bulk carbon is measured: the
+     dark, flat spectra also fit metallic iron and iron oxides (Clark et al., Icarus 2012, for
+     Iapetus), and reflectance sees only the top millimetres. Polyethylene from CO2 and water
      takes electrolysis plus synthesis, roughly 50-100 MJ of electricity per kg (parent estimate;
      polyethylene's heat of combustion is about 46 MJ/kg). The propulsion reactor has no power
      conversion, and running steam through it to idle erodes its barrier, so the row uses a
@@ -261,7 +395,30 @@ Leverage law used for the charge, from the parent's overtake impulse
 4. **The comparison.** Price mass delivered to the same eccentric orbit by this cycle, in dollars
    per kg, against the paper's current recommended route to that orbit. Use whatever the
    ledger now prints for that route, not a convenient reference.
-5. **Sensitivities worth printing.** Arrival speed (51 vs 68-70 km/s; the faster arrival raises
+5. **The core comparison: nuclear rocket vs reactor plus chemical rockets (Seth, 2026-10-21).**
+   One reactor launch fuels many chemical stages, so amortise the plant over every stage it fuels
+   across its life (rounds served, stages per round). Report how many chemical stages one reactor
+   fuels, and the reactor's $/kg pushed in each option. Price the methalox option at
+   Iapetus and at Phoebe, on both ledgers and both valuation models, beside the water stage.
+   Lines: the reactor-heated ceria plant (reactor, ceramic wall or tin loop, ceria, methanation,
+   LOX capture), amortised over its life and the stages it fuels; the electric plant as a second
+   row; the carbon processing kit; chemical engines at the ledger's methalox prices; tanks; the
+   divert reserve; and the carbon-abundance rows. Replace the water-stage gate with "ceria plant runs at Saturn and fuels the
+   first stage". Use the water stage's 90% as a labelled placeholder until Seth sets the odds.
+   Report $/kg to the eccentric orbit for water NTR, methalox at Iapetus and methalox at Phoebe
+   side by side. Size the methalox stage by burn time as well as by plant output, since its
+   engine is not the scarce item.
+
+   **Target: about $1-2 per kg for data-center launch** (Seth's hope, 2026-10-21, with reusable
+   Earth plates (Ledger A) and low capital cost). Report whether any cell reaches it. If none
+   does, report which lines must fall, and how far, to get there. The parent's own estimate
+   points at the Earth charge first: about $25/kg pushed at k = 8.5 lofted at $26.6/kg, against
+   about $5/kg for the reactor. Cheaper Saturn-side propulsion cannot reach $1-2 while that
+   line stands at that price. The $1-2 target assumes the Earth charge itself rides reusable
+   plates on an optimised trajectory (Seth, 2026-10-21); the parent's $26.6/kg lob price does not
+   assume that. Price the charge on that basis, say what lob price it implies, and print it next
+   to the $26.6/kg base, a bare-plate row (6.7x, no Earth charge) and any cheaper charge source.
+6. **Sensitivities worth printing.** Arrival speed (51 vs 68-70 km/s; the faster arrival raises
    push leverage but costs more at Saturn), engine price, reactor power per engine, exhaust
    temperature (1300 K base; 1800 K labelled), chamber pressure, burn policy (3 h growth, 12 h
    base, 16 h), and `k`.
