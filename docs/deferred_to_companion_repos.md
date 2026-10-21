@@ -839,6 +839,20 @@ frozen), a `k` sweep from 0 to about 30 with `eta_jet`, flat against paraboloid 
 on the spring law, aim tolerance and rocking, and face erosion. Parent placeholder: 10.3x push per kg at
 `k = 8.5`, `eta_jet = 0.775`, against 6.7x bare. Full text: `docs/iapetus_bag_plate_asks_for_impact_sim.md`.
 
+**Answered 2026-10-21** (sim `1d7cedf`, Result 20, ADR-0071;
+`docs/iapetus_bag_plate_answers_from_impact_sim.md`). About 8x, not 10.3x: compact ice plug on a
+delta/D 0.5 paraboloid at 2 F gives 8.12x at k = 4 and 7.20x at k = 8.5; point-fireball ceiling
+8.42x / 8.83x. Plate 25-32 t, graded, graphite liner. An unspread bag holes the plate (29-40 GPa);
+a gun's bullet-spread bag peaks at 1.03 GPa. Follow-up is S52.
+
+## S52. A shaped plug spreads the bag, the bullet is the backup (puffsat_impact_simulation)
+
+Seth (2026-10-21): a squat-lens ice plug about the bag's depth spreads the bag into a near-point
+burst; the gun fires only on a predicted miss; the bags get their own Earth bag plate. Wanted: the
+lens sweep (depth 1-2x the bag's at k = 2-15), punch-through, the safe overlap that sets the
+trigger, the backup pulse, the trigger window, the plate regraded for the lens, and k = 1-4. Items
+1-3 first. Full text: `docs/shaped_plug_asks_for_impact_sim.md`.
+
 ## S51. The Iapetus water cycle: ledger and true cost (aim_is_all_you_need)
 
 A 9.5-year round with Saturn dog-legs, a single-use water nuclear thermal stage (UO2-tungsten cermet,
@@ -853,5 +867,8 @@ Parent estimates: reactor about $5/kg of the ~8,000 t pushed, ship-carried plug 
 rNPV (10%) and a 4% government loan, both gated (odds 95/90/85/90%, about 65%, Seth confirmed). A tankage row with
 walls made at Saturn from local carbon by a 40 kWe surface fission unit. The core comparison (Seth, 2026-10-21): the nuclear rocket (one single-use reactor per stage) vs a nuclear reactor plus chemical rockets (one reactor launch fuels many stages). A reusable heat-only reactor drives a ceria cycle that makes methalox from ice and CO2, and only the chemical stage is thrown away; about 1,600-2,200 t of methalox per 826 t of PuffSat, priced at Iapetus and Phoebe, at a 5-10 MWt target with an electric plant (Brayton plus solid-oxide electrolysis) as a second row, a carbon processing kit priced by regolith handled, and bulk carbon as the open gate (0.1/1/10% rows). No hydrolox. The water cycle stays the paper's base (simplicity, certain water); methalox is the later upgrade, with about 12x the thrust per engine. Target: about $1-2/kg for data-center launch on reusable plates; report what must fall to reach it, starting with the ship-carried plug mass, priced on reusable plates along an optimised trajectory (the target's assumption). Score the sites on growth rate `ln(G)/T`, not growth per round (Seth, 2026-10-21): the Iapetus dog-leg costs 2.34 yr of the 9.5-yr round, and Phoebe has none (about 7.7-yr round, outbound Saturn side about 4.1 km/s against 4.76 in parent scratch); dropping the dog-leg at Iapetus costs 2.5x the methalox, so it stays. Report both pipelined and whole-round counts, since two rounds fit 20 years either way. Parent ballpark from the earlier 3-4 h life sizing: about 23x over
 19 years base, 120x
-optimistic. Waits on S50 for leverage and plate mass. Full text:
+optimistic (all on the stale 10.3x). **Updated 2026-10-21 for S50:** the Earth push is a band
+(compact 8.12x at k = 4 base, shaped-plug ceiling labelled unrun), k solved on the whole ledger's
+$/kg, backup pulses at a 5% placeholder miss rate, a residual plate-loss row, the Earth bag plate,
+graphite liner and gun as lines, and no survivable bare-plate row. Ready to send. Full text:
 `docs/iapetus_cycle_ledger_asks_for_aim_repo.md`.

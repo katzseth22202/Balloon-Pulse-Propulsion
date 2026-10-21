@@ -38,7 +38,8 @@ paper's non-nuclear routes, not assume it wins.
    orbit and, at apoapsis, falls into Saturn. Single use. **Two redundant reactors** guard the
    brake (Seth dropped a trajectory-based safety feature in favour of redundancy).
 6. **Earth push.** The PuffSats overtake the next round's Earth-launched ship and push it to the
-   eccentric orbit, with a carried charge of `k` kg per kg of PuffSat.
+   eccentric orbit, striking a ship-carried ice plug of `k` kg per kg of PuffSat ("The Earth push"
+   below).
 
 Two rounds fit a 20-year horizon (years 0-9.5 and 9.5-19).
 
@@ -337,14 +338,15 @@ At 60 and 68 km/s and k = 8.5 the compact plug gives 9.34x and 11.26x, the 2.5 m
   It is not the bags themselves. Water is free at Iapetus, but each kilogram of bag still carries
   its share of the reactor, its skins and electronics, tankage, the mining kit and the outbound
   stages. Leverage spreads that bag cost, so a higher k can pay even when it adds plug mass. Per kg
-  pushed the cost is `(C_bag + k c_plug) / L(k)`, with `c_plug` the lob price plus the ice. Parent
-  scratch at `c_plug` = $28.6/kg on the table above:
+  pushed the cost is `(C_bag + k c_plug) / L(k)`, with `c_plug` the lob price plus the ice. The plug
+  is water ice, not the polyethylene the paper's Kapton push carries, so `c_plug` is about the
+  $26.6/kg lob price alone. Parent scratch at that price on the table above:
 
   | Bag cost `C_bag` | Compact: best k | Shaped-plug ceiling: best k |
   |---|---|---|
   | $0-500/kg | 4 (the lowest run) | 2 |
-  | k = 2 and k = 4 tie | n/a (leverage falls with k) | about $790/kg |
-  | k = 4 and k = 8.5 tie | n/a | about $2,500/kg |
+  | k = 2 and k = 4 tie | n/a (leverage falls with k) | about $740/kg |
+  | k = 4 and k = 8.5 tie | n/a | about $2,300/kg |
 
   On these numbers low k wins unless a kilogram of bag costs several hundred dollars, because
   leverage barely rises with k (7.89x to 8.83x on the ceiling) while the plug mass quadruples.
@@ -359,6 +361,10 @@ At 60 and 68 km/s and k = 8.5 the compact plug gives 9.34x and 11.26x, the 2.5 m
   items 2-3 land. Until then print `p` rows at 5% and 20% for k <= 4. (2) A cheaper plug source
   (reusable plates on an optimised trajectory, item 5) lowers `c_plug`, which pushes k up further.
   S52 item 7 will add k = 1-4 to the leverage table.
+- **No bare-plate row for water bags.** A bag with nothing in front of it peaks at 29-40 GPa and
+  holes the plate, so the parent's 6.7x bare plate (`eq:PuffSat_ratio`, f = 0.8) is not a
+  survivable push for this cycle. Where this doc asks for a bare-plate row, print it labelled
+  **not survivable, reference only**.
 - **Backup pulses.** On a pulse where the gun fires, the spread bag misses the plug and delivers
   2.22 MN s (J/mv 1.74; production grid), against about 2.6-3.0 for a plug pulse. Count that pulse's
   plug as spent, in case S52 item 4 finds it destroyed. Weight the per-bag impulse as
@@ -369,8 +375,10 @@ At 60 and 68 km/s and k = 8.5 the compact plug gives 9.34x and 11.26x, the 2.5 m
   labelled), and price the loss as the Earth bag plate plus the ship it was pushing (worst case).
   Report the `q` at which this row reaches 1% of $/kg. Do not stack it with the other worst cases.
   Print it as its own labelled row.
-- **Plate and consumables.** Price the Earth bag plate at 25-32 t (not 63.4 t) at the ledger's
-  plate $/kg on both ledgers. Price the graphite liner, consumed at 2-18 t a push, on its own
+- **Plate and consumables.** Carry Seth's per-flight plate prices (item 2: $200K reused in Ledger
+  A, $5M expended in Ledger B) for the Earth bag plate. Also print the ledger's plate $/kg at
+  25-32 t (not 63.4 t) as a check, and say which is lower. The Kapton push's plate is a separate
+  line and is not shared. Price the graphite liner, consumed at 2-18 t a push, on its own
   evidence for bulk isostatic graphite. Print the paper's $1000/kg graphite-disk price as a
   labelled pessimistic row, since at that price the liner alone is $2-18M a push. Price the gun as
   an Earth-sourced line, with bullets at about 0.1 kg x `p` x pulses a push (about 10 kg at 5% over
@@ -402,11 +410,11 @@ rounding the push to about 8,000 t):
 | Mass pushed to the eccentric orbit per engine | 826 t x 10.3 = about 8,500 t with the charge (includes the plate; Seth carries 8,000 t); 5,500 t on a bare plate |
 | Reactor, $/kg pushed | **about $5** ($40M / 8,000 t); $7.5 at $60M, $12.5 at $100M, $7 on a bare plate; 2x with a second full engine set |
 | Reactor with cost of capital (9.5 years from purchase to delivery) | x1.45 at 4%, x5.6 at 20% |
-| Ship-carried plug mass, $/kg pushed | **about $25**: 8.5 x 826 = 7,000 t lofted at $26.6/kg (lob) plus $2/kg (polyethylene), about $200M |
+| Ship-carried plug mass, $/kg pushed | **about $25**: 8.5 x 826 = 7,000 t lofted at $26.6/kg (lob) plus $2/kg (polyethylene, the old plug material), about $200M |
 
 The ship-carried plug mass, not the reactor, is the larger Earth-side line. S50 has now set its leverage. At the
-simulated k = 4 base (8.12x) the push is about 826 x 8.1 = 6,700 t per engine and the charge is
-4 x 826 = 3,300 t lofted, about half the k = 8.5 charge for about 80% of the old 8,500 t pushed.
+simulated k = 4 base (8.12x) the push is about 826 x 8.1 = 6,700 t per engine and the plug is
+4 x 826 = 3,300 t of ice lofted, about half the k = 8.5 charge for about 80% of the old 8,500 t pushed.
 Rerun both lines on "The Earth push" above.
 
 Leverage law used for the charge, from the parent's overtake impulse
@@ -418,7 +426,8 @@ Use the law only to interpolate between the tabled k.
 
 1. **The mass ledger.** Build the cycle as a parameterised module, for example
    `src/iapetus_cycle.py`, with every row above as an input. Reproduce the parent's base, then
-   report growth per round and over 19 years for the three cases. Size engines by
+   report growth per round and over 19 years for the Earth push band (compact base, shaped-plug
+   ceiling, frozen-rebound edge). Size engines by
    `max(window, life)`.
 2. **The cost ledger.** Price each line on its own evidence, and carry the worst cases as a
    labelled row rather than stacking them (the parent's rule). Seth also wants two whole ledgers
@@ -429,7 +438,7 @@ Use the law only to interpolate between the tabled k.
    | Earth pusher plate, per flight | **$200K** (reused; see below) | **$5M** (expended each flight) |
    | PuffSat electronics | **$1/kg of delivered payload** (at scale) | the ledger's existing prices |
    | Burn policy off Iapetus | 12 h: 826 t of PuffSat per engine | 6 h: 554 t (a less ambitious payload) |
-   | Engine, tankage, charge | per-line base rows | per-line base rows |
+   | Engine, tankage, ship-carried plug mass | per-line base rows | per-line base rows |
 
    Plate reuse is credible because Saturn departures can spread across a broad window, perhaps
    half the year, each onto a fast Earth-crossing orbit. Returns then arrive as a steady stream
@@ -492,7 +501,7 @@ Use the law only to interpolate between the tabled k.
    | Outbound stack captures at Saturn and lands the kit on Iapetus | 95% | Hydrogen NTP and methalox, flight-analog manoeuvres |
    | Water stage qualified (ground test) and its first Saturn departure works, ice mined and loaded | 90% | Earth-testable reactor; first ice throw and long periapsis burn are new |
    | PuffSats coast 3.7 years and home onto the Earth plate at 51 km/s | 85% | The paper's homing gate at a new closing speed |
-   | First Earth push with the carried charge | 90% | The paper's first-push gate |
+   | First Earth push with the ship-carried plug (shaped plug, gun backup) | 90% | The paper's first-push gate |
 
    Together about 65%, against the solar-dive cycle's 55%. Growth: two rounds (19 years, the
    paper's drug-timeline analogue) reinvested, then held level and the surplus sold. Report the
@@ -518,11 +527,12 @@ Use the law only to interpolate between the tabled k.
    Earth plates (Ledger A) and low capital cost). Report whether any cell reaches it. If none
    does, report which lines must fall, and how far, to get there. The parent's own estimate
    points at the ship-carried plug mass first: about $25/kg pushed at k = 8.5 lofted at $26.6/kg, against
-   about $5/kg for the reactor. At the k = 4 base it is about $14/kg (4 x $28.6 / 8.12), still the largest line. Cheaper Saturn-side propulsion cannot reach $1-2 while that
+   about $5/kg for the reactor. At the k = 4 base it is about $13/kg (4 x $26.6 / 8.12), still the largest line. Cheaper Saturn-side propulsion cannot reach $1-2 while that
    line stands at that price. The $1-2 target assumes the ship-carried plug mass itself rides reusable
    plates on an optimised trajectory (Seth, 2026-10-21); the parent's $26.6/kg lob price does not
-   assume that. Price the charge on that basis, say what lob price it implies, and print it next
-   to the $26.6/kg base, a bare-plate row (6.7x, no ship-carried plug mass) and any cheaper charge source.
+   assume that. Price the plug on that basis, say what lob price it implies, and print it next
+   to the $26.6/kg base and any cheaper plug source. A bare-plate row (6.7x, no plug) is reference
+   only, labelled not survivable (see "The Earth push").
 6. **Score the sites on growth rate, not growth per round (Seth, 2026-10-21).** The Iapetus
    dog-leg takes 1.17 years each way, 2.34 of the 9.5-year round. Phoebe needs none. It already
    orbits at 12.95 million km, so its leg is the 0.27-year fall between its orbit and the
@@ -530,7 +540,9 @@ Use the law only to interpolate between the tabled k.
    0.46-year stay + 0.27 + 3.7). With departures every Earth-Saturn window, the pipeline grows at
    `ln(G)/T`, with `G` the growth per round and `T` the round time. Parent scratch (circular
    coplanar orbits, Saturn point mass, capture fitted to the doc's ~2.5 km/s, which implies an
-   arrival v_inf of 10.7 km/s):
+   arrival v_inf of 10.7 km/s). **The G values below are stale.** G = 6.3 used the 10.3x
+   placeholder, and G = 4.4 the bare plate, which water bags cannot survive. Recompute G on "The
+   Earth push" band and reprint this table; treat it as a method check only:
 
    | Round time | G = 4.4 (bare) | G = 6.3 (k = 8.5) |
    |---|---|---|
@@ -576,5 +588,5 @@ Use the law only to interpolate between the tabled k.
    base, 16 h), `k`, the plug column (compact base against the shaped-plug ceiling), and the
    backup miss rate `p`.
 
-Paper edits that wait on this: the whole cycle. The parent will not print the Iapetus option
-until S50 and S51 land.
+Paper edits that wait on this: the whole cycle. The parent will not print the nuclear Iapetus
+option until S51 lands; the shaped plug also waits on the impact sim's S52.

@@ -5846,7 +5846,7 @@ not the Kapton push's 0.30 bowl. k is chosen on the whole ledger's $/kg (aim S51
 **Ship-carried plug mass**: the ice the ship lofts from Earth for the bags to strike, k kg per kg
 of incoming bag, at the lob price plus the ice. Cost per kg pushed is (C_bag + k c_plug) / L(k);
 C_bag (reactor, skins and electronics, tankage, mining kit, outbound share) is not free even
-though the water is. Parent scratch: low k wins below about $790/kg of bag, but catch radius
+though the water is. Parent scratch: low k wins below about $740/kg of bag (plug at the $26.6/kg lob price), but catch radius
 shrinks with k and pushes it back up.
 **Catch radius**: the largest lateral miss of the bag's centre that still lands the whole bag on
 the plug (plug radius minus 0.18 m bag radius; ~0.12 m at k = 4, ~0.26 m at k = 8.5 for a 0.38 m
