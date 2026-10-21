@@ -274,9 +274,12 @@ delta-v to match Phoebe's retrograde orbit on your propagator. The parent's copl
 estimate is about 4.1 km/s, against Iapetus's 4.76; see item 6 under Wanted.
 
 **Ceres, Mars and near-Earth asteroids were considered and set aside (Seth, 2026-10-21); no rows
-wanted.** Mars is worse than Ceres, since its ice must first climb out of a 5 km/s surface
-escape. Near-Earth asteroids are hard to mine for water in the quantities this cycle needs.
-For Ceres, with no deep gravity
+wanted.** Mars is worse than Ceres, since its propellant must first climb 4.1 km/s from the
+surface to low orbit. Via Jupiter that makes about 10.9 km/s for a 50 km/s closing speed, which
+pushes about 0.23 kg per kg of methalox. Near-Earth asteroids barely move relative to Earth, so
+a 50 km/s closing speed needs about 33 km/s of burn with no gravity well to help, which no
+stack closes. Their water is also bound in clays and must be baked out, unlike ice. Supply is
+not the limit: Bennu alone is about 7e10 kg. For Ceres, with no deep gravity
 well there is no Oberth effect, so the departure delta-v is paid in full: about 8 km/s from Ceres
 for a 50 km/s Earth closing speed through a retrograde Jupiter flyby, against 3.70 from Iapetus.
 A direct return to Earth points a nuclear stage at Earth, and a direct methalox return pushes at
