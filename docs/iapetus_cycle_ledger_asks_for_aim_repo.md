@@ -270,7 +270,8 @@ which the kit stops paying.
 surface gravity 0.22 m/s^2, a 79-day synchronous rotation. Phoebe: about 50% ice
 (`castillo_rogez2012_phoebe` in the paper), about 0.05 m/s^2 and 100 m/s escape, a 9.3-hour day,
 anchoring by hold-down thrusters (`sec:greedy_phoebe`). Compute the outbound Saturn-side
-delta-v to match Phoebe's retrograde orbit on your propagator; the parent has not.
+delta-v to match Phoebe's retrograde orbit on your propagator. The parent's coplanar scratch
+estimate is about 4.1 km/s, against Iapetus's 4.76; see item 6 under Wanted.
 
 **The stage.** Single use, with engines from Earth and tanks made at Saturn or shipped (the
 tankage row). It needs no disposal brake, because it carries no reactor. After separation, the
@@ -418,7 +419,54 @@ Leverage law used for the charge, from the parent's overtake impulse
    plates on an optimised trajectory (Seth, 2026-10-21); the parent's $26.6/kg lob price does not
    assume that. Price the charge on that basis, say what lob price it implies, and print it next
    to the $26.6/kg base, a bare-plate row (6.7x, no Earth charge) and any cheaper charge source.
-6. **Sensitivities worth printing.** Arrival speed (51 vs 68-70 km/s; the faster arrival raises
+6. **Score the sites on growth rate, not growth per round (Seth, 2026-10-21).** The Iapetus
+   dog-leg takes 1.17 years each way, 2.34 of the 9.5-year round. Phoebe needs none. It already
+   orbits at 12.95 million km, so its leg is the 0.27-year fall between its orbit and the
+   150,000 km periapsis. A Phoebe round is therefore about 7.7 years (3.0 + 0.27 + the same
+   0.46-year stay + 0.27 + 3.7). With departures every Earth-Saturn window, the pipeline grows at
+   `ln(G)/T`, with `G` the growth per round and `T` the round time. Parent scratch (circular
+   coplanar orbits, Saturn point mass, capture fitted to the doc's ~2.5 km/s, which implies an
+   arrival v_inf of 10.7 km/s):
+
+   | Round time | G = 4.4 (bare) | G = 6.3 (k = 8.5) |
+   |---|---|---|
+   | 9.5 yr, Iapetus with dog-leg | doubling 4.4 yr, x19 in 19 yr | 3.6 yr, x40 |
+   | 7.7 yr, Phoebe | 3.6 yr, x39 | 2.9 yr, x94 |
+   | 7.2 yr, Iapetus direct | 3.4 yr, x49 | 2.7 yr, x125 |
+
+   **Iapetus direct is out.** Capturing straight onto an ellipse that reaches Iapetus costs 0.38
+   km/s more at capture and 2.34 km/s to match the moon, against the dog-leg's 0.59 + 0.99. On the
+   return, the moon-to-departure delta-v rises from 3.70 to 5.45 km/s. At Isp 370 s and 10% dry
+   mass, methalox per kg of PuffSat goes from 2.15 to 5.35 kg, so a plant of fixed power fuels
+   about 40% as many stages. That loses more `ln(G)` than the time saves. The dog-leg stays for
+   Iapetus.
+
+   **Phoebe is the live comparison.** Its outbound Saturn-side leg is cheaper in the parent's
+   estimate. Capture retrograde onto an ellipse with apoapsis at Phoebe's orbit, which costs the
+   same as prograde because the side of Saturn the ship passes is free, and only 0.045 km/s more
+   than capture to 20 million km. Then match Phoebe at apoapsis (1.45 km/s) and land (about 0.1).
+   That is about 4.1 km/s, against Iapetus's 4.76. Phoebe's orbit lies near Saturn's orbital plane,
+   which should suit an arrival from Earth; the coplanar model cannot check that. Against this, the
+   return costs 3.97 km/s against 3.70 (about 15% more methalox per kg of PuffSat at the same
+   Isp and dry fraction), Phoebe is about 50% ice against 75-80%, and its anchoring is harder. A 15%
+   cut to `G` at 6.3 gives `ln(5.4)/ln(6.3)` = 0.92, against a 1.23x faster rate from the shorter
+   round. On the parent's numbers Phoebe wins on rate unless mining, anchoring or carbon grade
+   take a larger share of `G`.
+
+   Please:
+   - Run Phoebe's retrograde outbound leg on your propagator, with the real arrival asymptote and
+     both moons' orbital planes, and redo Iapetus's dog-leg with Iapetus's inclination charged.
+   - For water NTR, methalox at Iapetus and methalox at Phoebe, report `G`, `T`, `ln(G)/T`,
+     doubling time and the 19-year multiple, both ways. **Pipelined:** a departure every window.
+     **Whole rounds:** rounds counted inside the 20-year horizon. Two rounds fit at either 9.5 or
+     7.7 years and a third needs 6.67 or less, so in this count the dog-leg costs nothing. Say which
+     count the gated rNPV uses.
+   - If the stay at the moon can shrink (the methalox plant stockpiles all round, so the stage need
+     only load and leave), report the shortest stay each site allows and the `T` it gives.
+   - Report which site each count prefers, and the carbon grade or ice fraction at which the
+     preference flips.
+
+7. **Sensitivities worth printing.** Arrival speed (51 vs 68-70 km/s; the faster arrival raises
    push leverage but costs more at Saturn), engine price, reactor power per engine, exhaust
    temperature (1300 K base; 1800 K labelled), chamber pressure, burn policy (3 h growth, 12 h
    base, 16 h), and `k`.
