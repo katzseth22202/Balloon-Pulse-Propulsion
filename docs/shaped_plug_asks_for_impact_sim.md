@@ -98,7 +98,7 @@ punching through. That trade is the main thing to size.
    push. Include the liner's consumption on a backup pulse (your miss row's inner rings take
    about 53 MJ/m^2).
 7. **Lower k.** Your compact ice optimum may lie below k = 4, the lowest run. Run k = 1-4 for the
-   lens and the compact column. The Earth charge is the largest Earth-side ledger line, so the
+   lens and the compact column. The ship-carried plug mass is the largest Earth-side ledger line, so the
    companion `aim_is_all_you_need` will choose k on dollars per kilogram, not on leverage.
 
 The parent needs items 1, 2 and 3 first. Items 1 and 7 set the leverage curve for the ledger.

@@ -332,10 +332,33 @@ At 60 and 68 km/s and k = 8.5 the compact plug gives 9.34x and 11.26x, the 2.5 m
 10.74x and 12.88x. Carrying the liner's eroded graphite as charge costs about 0.1-0.15x (7.20 to
 7.06x on the compact plug at k = 8.5).
 
-- **Pick k on dollars per kilogram, not on leverage.** The Earth charge is the largest Earth-side
-  line. The compact plug's leverage peaks at or below k = 4, the lowest k run, and k = 4 carries
-  under half the charge of k = 8.5. Interpolate the table and print the cost optimum on each column.
-  S52 item 7 will add k = 1-4.
+- **Pick k on the whole ledger's dollars per kilogram, not on leverage.** The **ship-carried plug
+  mass** is the ice the ship lofts from Earth for the bags to strike, `k` kg per kg of incoming bag.
+  It is not the bags themselves. Water is free at Iapetus, but each kilogram of bag still carries
+  its share of the reactor, its skins and electronics, tankage, the mining kit and the outbound
+  stages. Leverage spreads that bag cost, so a higher k can pay even when it adds plug mass. Per kg
+  pushed the cost is `(C_bag + k c_plug) / L(k)`, with `c_plug` the lob price plus the ice. Parent
+  scratch at `c_plug` = $28.6/kg on the table above:
+
+  | Bag cost `C_bag` | Compact: best k | Shaped-plug ceiling: best k |
+  |---|---|---|
+  | $0-500/kg | 4 (the lowest run) | 2 |
+  | k = 2 and k = 4 tie | n/a (leverage falls with k) | about $790/kg |
+  | k = 4 and k = 8.5 tie | n/a | about $2,500/kg |
+
+  On these numbers low k wins unless a kilogram of bag costs several hundred dollars, because
+  leverage barely rises with k (7.89x to 8.83x on the ceiling) while the plug mass quadruples.
+  The parent's engine line alone is about $48/kg of bag at $40M on the 12-hour policy, $121 at
+  $100M, and twice that with a second engine set. Build `C_bag` from the ledger's own lines and
+  solve k on it. Do not assume the parent's answer.
+
+  **Two things push k back up, and the scratch omits both.** (1) Catch radius: a smaller plug
+  catches a smaller miss (parent lens sizing, 0.38 m deep: about 0.03 m at k = 2, 0.12 m at k = 4,
+  0.26 m at k = 8.5, against 0.1-0.15 m of track error at 6 km). More bags then fall to the backup,
+  at J/mv 1.74 with the plug spent. Tie the miss rate `p` to k through the catch radius once S52
+  items 2-3 land. Until then print `p` rows at 5% and 20% for k <= 4. (2) A cheaper plug source
+  (reusable plates on an optimised trajectory, item 5) lowers `c_plug`, which pushes k up further.
+  S52 item 7 will add k = 1-4 to the leverage table.
 - **Backup pulses.** On a pulse where the gun fires, the spread bag misses the plug and delivers
   2.22 MN s (J/mv 1.74; production grid), against about 2.6-3.0 for a plug pulse. Count that pulse's
   plug as spent, in case S52 item 4 finds it destroyed. Weight the per-bag impulse as
@@ -379,9 +402,9 @@ rounding the push to about 8,000 t):
 | Mass pushed to the eccentric orbit per engine | 826 t x 10.3 = about 8,500 t with the charge (includes the plate; Seth carries 8,000 t); 5,500 t on a bare plate |
 | Reactor, $/kg pushed | **about $5** ($40M / 8,000 t); $7.5 at $60M, $12.5 at $100M, $7 on a bare plate; 2x with a second full engine set |
 | Reactor with cost of capital (9.5 years from purchase to delivery) | x1.45 at 4%, x5.6 at 20% |
-| Earth charge, $/kg pushed | **about $25**: 8.5 x 826 = 7,000 t lofted at $26.6/kg (lob) plus $2/kg (polyethylene), about $200M |
+| Ship-carried plug mass, $/kg pushed | **about $25**: 8.5 x 826 = 7,000 t lofted at $26.6/kg (lob) plus $2/kg (polyethylene), about $200M |
 
-The charge, not the reactor, is the larger Earth-side line. S50 has now set its leverage. At the
+The ship-carried plug mass, not the reactor, is the larger Earth-side line. S50 has now set its leverage. At the
 simulated k = 4 base (8.12x) the push is about 826 x 8.1 = 6,700 t per engine and the charge is
 4 x 826 = 3,300 t lofted, about half the k = 8.5 charge for about 80% of the old 8,500 t pushed.
 Rerun both lines on "The Earth push" above.
@@ -448,7 +471,7 @@ Use the law only to interpolate between the tabled k.
      Earth-sourced mass and price, amortised over the rounds and stages it serves, and report the
      break-even against shipping the tank from Earth. Chemical propellant from the same plant is
      out: 13,000 t per stage at about 60 MJ/kg would take a 40 kWe unit about 600 years.
-   - **The Earth charge,** `k` kg per kg of returned PuffSat, at the ledger's lob price.
+   - **The ship-carried plug mass,** `k` kg per kg of returned PuffSat, at the ledger's lob price.
    - **Round 1's launch to LEO,** at the ledger's Starship price book.
 3. **Valuation: two models, each on both ledgers** (Seth, 2026-10-20), so four cells:
    - **Gated rNPV**, the paper's drug-development convention (CONTEXT.md "Gated rNPV"; companion
@@ -494,12 +517,12 @@ Use the law only to interpolate between the tabled k.
    **Target: about $1-2 per kg for data-center launch** (Seth's hope, 2026-10-21, with reusable
    Earth plates (Ledger A) and low capital cost). Report whether any cell reaches it. If none
    does, report which lines must fall, and how far, to get there. The parent's own estimate
-   points at the Earth charge first: about $25/kg pushed at k = 8.5 lofted at $26.6/kg, against
+   points at the ship-carried plug mass first: about $25/kg pushed at k = 8.5 lofted at $26.6/kg, against
    about $5/kg for the reactor. At the k = 4 base it is about $14/kg (4 x $28.6 / 8.12), still the largest line. Cheaper Saturn-side propulsion cannot reach $1-2 while that
-   line stands at that price. The $1-2 target assumes the Earth charge itself rides reusable
+   line stands at that price. The $1-2 target assumes the ship-carried plug mass itself rides reusable
    plates on an optimised trajectory (Seth, 2026-10-21); the parent's $26.6/kg lob price does not
    assume that. Price the charge on that basis, say what lob price it implies, and print it next
-   to the $26.6/kg base, a bare-plate row (6.7x, no Earth charge) and any cheaper charge source.
+   to the $26.6/kg base, a bare-plate row (6.7x, no ship-carried plug mass) and any cheaper charge source.
 6. **Score the sites on growth rate, not growth per round (Seth, 2026-10-21).** The Iapetus
    dog-leg takes 1.17 years each way, 2.34 of the 9.5-year round. Phoebe needs none. It already
    orbits at 12.95 million km, so its leg is the 0.27-year fall between its orbit and the

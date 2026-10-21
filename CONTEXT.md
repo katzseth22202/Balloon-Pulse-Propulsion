@@ -5842,10 +5842,15 @@ about the bag's depth) to spread the bag; the gun's 100 g ice bullet fires **onl
 miss** (a bag that reaches the plate unspread peaks at 29-40 GPa and holes it; bullet-spread,
 1.03 GPa); residual gun failure is a labelled ledger loss rate, not a third layer; the bags get
 their own **Earth bag plate** (25-32 t graded 0.5 paraboloid, graphite liner over the inner ~6 m),
-not the Kapton push's 0.30 bowl. k is chosen on $/kg (aim S51), not leverage.
+not the Kapton push's 0.30 bowl. k is chosen on the whole ledger's $/kg (aim S51), not leverage.
+**Ship-carried plug mass**: the ice the ship lofts from Earth for the bags to strike, k kg per kg
+of incoming bag, at the lob price plus the ice. Cost per kg pushed is (C_bag + k c_plug) / L(k);
+C_bag (reactor, skins and electronics, tankage, mining kit, outbound share) is not free even
+though the water is. Parent scratch: low k wins below about $790/kg of bag, but catch radius
+shrinks with k and pushes it back up.
 **Catch radius**: the largest lateral miss of the bag's centre that still lands the whole bag on
 the plug (plug radius minus 0.18 m bag radius; ~0.12 m at k = 4, ~0.26 m at k = 8.5 for a 0.38 m
 deep lens, parent sizing). Open in S52: lens sweep, punch-through, safe overlap (sets the trigger),
 backup pulse, k = 1-4. Paper text waits on S52 and S51.
-_Avoid_: "Iapetus plate" for the Earth bag plate (nothing at Iapetus catches PuffSats in this
+_Avoid_: "Earth charge" (reads as the incoming mass); "Iapetus plate" for the Earth bag plate (nothing at Iapetus catches PuffSats in this
 scenario); "the bullet spreads the bag" as the primary mechanism.
