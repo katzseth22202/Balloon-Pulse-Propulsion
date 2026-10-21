@@ -5851,6 +5851,7 @@ shrinks with k and pushes it back up.
 **Catch radius**: the largest lateral miss of the bag's centre that still lands the whole bag on
 the plug (plug radius minus 0.18 m bag radius; ~0.12 m at k = 4, ~0.26 m at k = 8.5 for a 0.38 m
 deep lens, parent sizing). Open in S52: lens sweep, punch-through, safe overlap (sets the trigger),
-backup pulse, k = 1-4. Paper text waits on S52 and S51.
+backup pulse, k = 1-4. S51 is answered and printed as `sec:saturn_cycle_priced` on the compact plug (k = 4);
+the shaped-plug ceiling (S52) stays unrun and moves the Saturn break-even little ($309 -> $278).
 _Avoid_: "Earth charge" (reads as the incoming mass); "Iapetus plate" for the Earth bag plate (nothing at Iapetus catches PuffSats in this
 scenario); "the bullet spreads the bag" as the primary mechanism.

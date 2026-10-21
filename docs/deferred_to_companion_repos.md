@@ -872,3 +872,4 @@ optimistic (all on the stale 10.3x). **Updated 2026-10-21 for S50:** the Earth p
 $/kg, backup pulses at a 5% placeholder miss rate, a residual plate-loss row, the Earth bag plate,
 graphite liner and gun as lines, and no survivable bare-plate row. Ready to send. Full text:
 `docs/iapetus_cycle_ledger_asks_for_aim_repo.md`.
+**Answered 2026-10-21** (aim `80dceb6`, ADRs 0078-0081; carried verbatim as `docs/iapetus_cycle_answers_from_aim_repo.md`). The solar dive wins the gated break-even in every Saturn scenario (best Saturn cell $172, aerocapture with the water NTR at Iapetus, against $143 / $86). Printed in `sec:saturn_cycle_priced` (`tab:saturn_cycle`). Not run: the head-on-impactor Saturn cycle; if it is, re-check the headline.
