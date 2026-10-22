@@ -956,5 +956,16 @@ returning for the next cycle, 50% MHD at 20 Hz, straw and plant not priced. Pare
 cheapest Ceres prices together give $1.78. **Already printed** in the paper at `247db94`, which
 replaced the old $0.22/MWh raw claim. Wanted: an energy objective, S57's plate prices, the speed
 sweep with X_C re-optimized, freight re-solved, plate policy, ice-pellet cargo survival, the
-sensitivities, package mass, and uncharged lines. Ready to send. Full text:
+sensitivities, package mass, and uncharged lines. Full text:
 `docs/ceres_straw_energy_asks_for_aim_repo.md`.
+
+**Answered** by aim `edc9d3e` (`src/ceres_energy.py`, `make ceres-energy`; no answers doc, and
+the ADR 0084 its CONTEXT.md names is not in the tree). It reproduces the parent harness exactly
+($4.35 / $5.83 / $4.47) but its own book prints **$5.03/MWh_e** at 4 R_sun, 137 km/s, X_C 120:
+the 1.5 kg Earth-made steering package per 10 kg impactor pays freight ($0.76/kg caught) and the
+freight is re-solved ($4.28). Ceres stream $1.29, Sun propellant $2.17 of $6.56. Earth plates
+$6.58; 200 km/s $7.20; 250 $16.93; flies to 286 km/s, not 200. Parker depth $11.30 at 100 km/s.
+Bare ice released inside 1 AU sublimates (51% from 0.8 AU); a 31 g cap held to 0.3 AU cuts it
+to 0.01%. All Ceres levers together, re-optimized: $1.65. Plate recovered at 2 Hz, 72 h: $4.80
+(not adopted; the headline keeps the companion's minimum). **Printed** in the paper with the
+new `Katz_ceres_energy_2026` cite.
