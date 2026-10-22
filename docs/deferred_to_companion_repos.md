@@ -944,3 +944,17 @@ Wanted: a `ceres_plate` price and `plate_import` share, freight on the packages'
 a re-optimized plate policy, the freight leg re-priced, and the Earth-hardware sensitivities
 re-run. **Parked** (Seth, 2026-10-22): about $0.05 on $1.46 is not worth a round trip; the
 delivery lob ($1.01) dominates. Not sent. Full text: `docs/ceres_made_plates_asks_for_aim_repo.md`.
+
+## S58. Straw Way energy from the Ceres loop (aim_is_all_you_need)
+
+Seth (2026-10-22): use the mature Ceres loop (everything but electronics Ceres-made) to make
+electricity on Earth. Ceres → Sun Oberth dive → Straw Way, no L1 delivery, the Ceres stream still
+returning for the next cycle, 50% MHD at 20 Hz, straw and plant not priced. Parent scratch on aim
+`0aa5813`'s own solver, with ice-pellet cargo and S57's $10 Ceres plates: $4.47/MWh electric at
+4 R_sun and 137 km/s ($2.24 raw). The minimum is flat over 100-137 km/s. Faster loses ($6.94 at
+200), and above about 200 nothing flies. Parker's depth is $9.75. Earth plates give $5.88. The
+cheapest Ceres prices together give $1.78. **Already printed** in the paper at `247db94`, which
+replaced the old $0.22/MWh raw claim. Wanted: an energy objective, S57's plate prices, the speed
+sweep with X_C re-optimized, freight re-solved, plate policy, ice-pellet cargo survival, the
+sensitivities, package mass, and uncharged lines. Ready to send. Full text:
+`docs/ceres_straw_energy_asks_for_aim_repo.md`.
