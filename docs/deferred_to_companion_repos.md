@@ -896,3 +896,22 @@ best-case `SolarDivePrices` with in-ledger reuse counts, re-optimize on the stea
 lob sweep with a sourced propellant floor, break down lofted kg per kg sold, list lines that reach
 $0.10/kg at $5, and say what must fall to reach $3. Ready to send. Full text:
 `docs/solar_dive_best_case_asks_for_aim_repo.md`.
+
+## S54. Meeting the miss farther out (puffsat_impact_simulation)
+
+Seth (2026-10-22), on Result 21: the miss has to be met farther from the plate, and the scheme is
+still doable. That holds at k = 8.5 (46 m meeting, 1.80 GPa). At k = 4 the peak rose with
+distance (2.41 GPa at 31 m, 3.04 at 46 m). Wanted: a meeting sweep to 120 m at k = 4, 6 and 8.5,
+the smallest k whose backup holds, the backup with the plug at 2.5 F, the trigger window, and the
+mechanism. Items 1-2 set the floor on k that S55 carries. Ready to send. Full text:
+`docs/backup_meeting_asks_for_impact_sim.md`.
+
+## S55. Re-solve k on the shaped plug's catch and backup (aim_is_all_you_need)
+
+S51 chose k = 4 with placeholder backups (p = 5%, q = 1e-3). Result 21 gives the lens curve
+(8.18x / 8.81x / 8.39x at k = 4 / 8.5 / 15), a catch radius of plug minus bag (0.04 m at k = 4,
+0.14 m at 8.5), and a backup that holds only at k >= 8.5. Wanted: swap in the lens curve and
+plate, the backup rate `exp(-c^2/2 sigma^2)` at sigma = 3/5/10 cm, two policies across the unrun
+band (backup fails below 8.5, or holds down to 4), k re-solved, the S51 headline cells reprinted
+against the solar dive, and the sigma budget. Feeds `tab:saturn_cycle`. Ready to send. Full text:
+`docs/plug_k_resolve_asks_for_aim_repo.md`.
