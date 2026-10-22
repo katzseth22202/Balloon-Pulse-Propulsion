@@ -853,6 +853,15 @@ lens sweep (depth 1-2x the bag's at k = 2-15), punch-through, the safe overlap t
 trigger, the backup pulse, the trigger window, the plate regraded for the lens, and k = 1-4. Items
 1-3 first. Full text: `docs/shaped_plug_asks_for_impact_sim.md`.
 
+**Answered 2026-10-22** (sim `2992448`, Result 21, ADR-0072;
+`docs/shaped_plug_answers_from_impact_sim.md`). The 1x lens fails (bag punches through, 2.8 GPa);
+a 2x-deep plug (~0.73 m) holds at 0.69-0.90 GPa and gives 8.18x / 8.81x / 8.39x at k = 4 / 8.5 / 15,
+the point fireball's to within 3%. The 2-D code cannot credit partial overlap, so the catch radius
+is plug minus bag: 0.04 m at k = 4, 0.14 m at k = 8.5. The 5% backup rate needs 1.5 cm of track at
+the plug at k = 4 and 5.6 cm at k = 8.5. With the plug in the cloud, the bullet must meet the bag
+~46 m out at k = 8.5 (1.80 GPa); at k = 4 no tested meeting holds (2.41 GPa at 31 m, 3.04 at 46 m).
+A ~1 km/s gun fires 2.2 km out, after the plug steers. Plate 27-39 t. Retires aim's k = 4 base (S51).
+
 ## S51. The Iapetus water cycle: ledger and true cost (aim_is_all_you_need)
 
 A 9.5-year round with Saturn dog-legs, a single-use water nuclear thermal stage (UO2-tungsten cermet,
