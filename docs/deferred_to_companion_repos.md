@@ -918,3 +918,17 @@ against the solar dive, and the sigma budget. Feeds `tab:saturn_cycle`. **Parked
 2026-10-22). Known gap left open: `tab:saturn_cycle` is still priced at k = 4, where Result 21's
 backup does not hold the plate. The solar dive wins every cell either way. Full text:
 `docs/plug_k_resolve_asks_for_aim_repo.md`.
+
+## S56. The solar dive grown at Ceres (aim_is_all_you_need)
+
+Seth (2026-10-22): remove the growth lob with ISRU at Ceres. Water costs $0.02/kg, and nuclear
+power makes graphite, tanks and carbon foam there. Only plates and electronics come from Earth.
+Sun impactors cost about $30/kg. The Ceres plate pushes water onto prograde (ship) and retrograde
+(disk) dives at about 80 deg to the returning stream. Earth plates are reused and push only to high
+orbit. Parent scratch on S53's conventions gives about $0.99/kg at L1 at 4 R_sun ($1.16 at 9.86).
+The delivery lob's $0.62 is now the floor. The Ceres stream's speed is worth only about a cent:
+best k is 14-30, and X_C of 150-200 is best. The direct return misses Ceres by 30-120 deg, so the
+parent closes it with a co-orbital water depot (0.76 km/s over 20 yr). Wanted: the Ceres push law,
+orbits, phasing closure, the two clocks, the steady ledger on `MATURE` with Ceres prices, an Earth
+push re-solved on c_E, Ceres plate sizing, sensitivities to the $1 line, and uncharged lines.
+Ready to send. Full text: `docs/ceres_isru_dive_asks_for_aim_repo.md`.
