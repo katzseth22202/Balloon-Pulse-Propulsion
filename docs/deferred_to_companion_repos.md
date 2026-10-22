@@ -932,3 +932,14 @@ parent closes it with a co-orbital water depot (0.76 km/s over 20 yr). Wanted: t
 orbits, phasing closure, the two clocks, the steady ledger on `MATURE` with Ceres prices, an Earth
 push re-solved on c_E, Ceres plate sizing, sensitivities to the $1 line, and uncharged lines.
 Ready to send. Full text: `docs/ceres_isru_dive_asks_for_aim_repo.md`.
+
+## S57. Ceres-made plates and Sun bowls (aim_is_all_you_need)
+
+Seth (2026-10-22): a mature Ceres industry makes the plates, Sun bowls, bags and tiles from
+chondritic iron and nickel. About 1% of plate mass (molybdenum, cobalt) ships from Earth. Ship
+avionics and every PuffSat's steering package stay Earth-made. Parent scratch on aim `0aa5813`'s
+`sun_bowl` line: a Ceres plate at $10/kg saves about $0.05, so $1.46 becomes about $1.41 at
+4 R_sun. Found in passing: `steady_loop` charges packages per piece with no mass and no freight.
+Wanted: a `ceres_plate` price and `plate_import` share, freight on the packages' Earth-made mass,
+a re-optimized plate policy, the freight leg re-priced, and the Earth-hardware sensitivities
+re-run. Ready to send. Full text: `docs/ceres_made_plates_asks_for_aim_repo.md`.
