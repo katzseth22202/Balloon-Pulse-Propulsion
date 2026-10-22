@@ -873,3 +873,17 @@ $/kg, backup pulses at a 5% placeholder miss rate, a residual plate-loss row, th
 graphite liner and gun as lines, and no survivable bare-plate row. Ready to send. Full text:
 `docs/iapetus_cycle_ledger_asks_for_aim_repo.md`.
 **Answered 2026-10-21** (aim `80dceb6`, ADRs 0078-0081; carried verbatim as `docs/iapetus_cycle_answers_from_aim_repo.md`). The solar dive wins the gated break-even in every Saturn scenario (best Saturn cell $172, aerocapture with the water NTR at Iapetus, against $143 / $86). Printed in `sec:saturn_cycle_priced` (`tab:saturn_cycle`). Not run: the head-on-impactor Saturn cycle; if it is, re-check the headline.
+
+## S53. The solar dive's best long-term price (aim_is_all_you_need)
+
+Seth (2026-10-22): how low can the charge pusher's steady $/kg at L1 go, against a $3 target?
+His levers are Sun hardware at about $30/kg blended (disks $10, shade and avionics $100), growth
+push plates and delivery plates reused, and the departure bowl and Sun plate single-use. Parent
+scratch over aim `80dceb6`'s `value_design` holds the headline designs. Cheap hardware plus 10x
+reuse gives only $85 / $68. The lob lines are 86-88% of the total. With the lob at $1/kg lofted
+(about 2x booster propellant) and polyethylene at $1.2, the total is $7.1 / $5.2 at 9.86 / 4 R_sun.
+$3 needs a lob near $0.5/kg, about the propellant alone. Wanted: confirm the method, add a
+best-case `SolarDivePrices` with in-ledger reuse counts, re-optimize on the steady objective, run a
+lob sweep with a sourced propellant floor, break down lofted kg per kg sold, list lines that reach
+$0.10/kg at $5, and say what must fall to reach $3. Ready to send. Full text:
+`docs/solar_dive_best_case_asks_for_aim_repo.md`.
