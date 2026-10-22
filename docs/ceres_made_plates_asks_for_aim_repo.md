@@ -4,6 +4,8 @@ Raised 2026-10-22 against aim `0aa5813` (S56's answer, ADR 0083). **Written to b
 into `katzseth22202/aim_is_all_you_need`**, so it repeats context the paper repo already has.
 Register entry: S57 in `docs/deferred_to_companion_repos.md`.
 
+**Parked 2026-10-22, not sent.** The saving is about $0.05 on $1.46; the delivery lob dominates.
+
 Same ground rules as your own handbacks. Neither document is the source of truth. If a number here
 looks wrong, say so rather than working around it. The figures below are a parent scratch estimate
 read off your `make ceres-dive` output. None of it is a companion result yet.

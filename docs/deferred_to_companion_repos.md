@@ -942,4 +942,5 @@ avionics and every PuffSat's steering package stay Earth-made. Parent scratch on
 4 R_sun. Found in passing: `steady_loop` charges packages per piece with no mass and no freight.
 Wanted: a `ceres_plate` price and `plate_import` share, freight on the packages' Earth-made mass,
 a re-optimized plate policy, the freight leg re-priced, and the Earth-hardware sensitivities
-re-run. Ready to send. Full text: `docs/ceres_made_plates_asks_for_aim_repo.md`.
+re-run. **Parked** (Seth, 2026-10-22): about $0.05 on $1.46 is not worth a round trip; the
+delivery lob ($1.01) dominates. Not sent. Full text: `docs/ceres_made_plates_asks_for_aim_repo.md`.
