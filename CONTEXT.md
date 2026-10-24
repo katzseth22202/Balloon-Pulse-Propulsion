@@ -5823,6 +5823,30 @@ on the ship are all negligible beside it. Two non-heat items drive design:
   or two disks are **calibration disks**: they aim to miss the ship by tens of metres, and the
   measured pass gives the disks' shared error. Repeat after a long pause in pulses or a CME.
   Answers doc, item 6.
+  **Printed 2026-10-24 as `sec:sun_wave_ranging`** (parent scratch, est.), with these changes:
+  the train is 6.8e6 km of disk orbit at the start (disks 196 km apart); 3.4e6 km is the ship's
+  path. **The disk is a one-way beacon, not a transponder**: one laser, five steered outputs
+  (four co-flyers plus ship), no laser receiver; its emission time is solved as a fourth unknown
+  like a GNSS clock offset, which costs only along-track (lateral DOP 2.5 mid-train, 5.4 at the
+  ends, 500,000 km offsets). 3 mrad beams, 1 W per beam in a 1 s burst every 50 s, into 10 cm
+  staring cameras (the train spans >150 deg of a co-flyer's sky). Fix every 50 s in a worst
+  CME holds consecutive disks within 5 m; last disk correction 1-2 min out (thrust-limited),
+  later push = deliberate miss. **No co-flyers at the ship** (a coaster is left ~86,000 km
+  behind; lag costs <1 m). Ship's centroid tracker measures calibration passes and residuals,
+  not steering. Hardware 85-130 g on the 1 kg disk plus 25 g gas; edge-on disk ~730 K at
+  9.86 R_sun, so a brow-shaded pod (20-40 g, unsized). Disk mass stays 1 kg (Seth, 2026-10-24).
+  **Disk floor 1 kg; pod is impactor mass (Seth, 2026-10-24).** Pod + brow sit at the disk's
+  centre, split across both faces, and strike the charge (stops in ~4 cm of the ~11 cm charge,
+  Birkhoff law); a central lump is a sim ask. The earlier "~700 K edge-on at 4 R_sun" is retired
+  for ~1400 K (5% per face, as `sec:pass_through_pusher`). The ledger flies ~0.20 kg of disk per
+  pulse per launch unit (7.2 t, 2 Hz, 4.97 h); raising it to 1 kg: k_sun 10 (Seth: k stays ~10-20)
+  gives 0.35 kg, BE -$3 (extrapolated below the k >= 20 table); a 1 h arc (0.28 g mean, not 3 g)
+  gives 0.98 kg, Sun bowl 5.3 -> 15.6 t/unit, growth 3.23, BE +$12; stacking ~5 units into one
+  Sun ship is ledger-neutral to first order (docking uncharged). **Seth chose the harder boost**
+  (2026-10-24): re-optimized with a 1 kg/pulse floor, 9.86 R_sun flies a 0.98 h arc (0.28 g), 3.23x,
+  1.94 y, $131/$158; 4 R_sun 1.13 h, 4.88x, 1.43 y, $86/$89. Printed as corrections; ask S59. Train
+  shrinks to 1.4e6 km (lateral DOP 0.9-1.3); ship kick 1.4 m/s per pulse, 1 mrad tilt = 5 m/min.
+  Scratch: `scripts/ksun_sweep.py`, `scripts/arc_sweep.py` against aim edc9d3e.
 _Avoid_: "coordinators" for these; they are co-flyers, as for the Earth streams.
 **Charging:** Parker flew positive inside ~25 R_sun, against pre-launch predictions. Not a driver.
 **Dust:** 4 R_sun is at or inside the depletion zone (Howard 2019). Retrograde disks meet prograde

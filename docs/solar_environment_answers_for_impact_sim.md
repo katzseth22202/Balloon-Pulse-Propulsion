@@ -281,7 +281,9 @@ overtake it as design drivers, and neither is heat:
    ~11% of face-on at 4 R_sun and ~5% at 9.86 R_sun, not 1/139. A 1% modeling error then misses by
    ~80 m at 4 R_sun (not ~5 m), still a steady, plannable term.
 6. **Sun-wave co-flyers: how the disks' drift is measured** (Seth's proposal, 2026-10-16; parent
-   scratch numbers, est.). The paper gives the Sun wave no tracking architecture yet. The four
+   scratch numbers, est.). **Printed 2026-10-24 as `sec:sun_wave_ranging`**, with the disk flown
+   as a one-way beacon (emission time solved per fix) instead of the pointed transponder below,
+   3 mrad beams into 10 cm staring cameras, and no co-flyers at the ship; see CONTEXT. The paper gives the Sun wave no tracking architecture yet. The four
    co-flyers of `sec:jupiter_coflyers` serve the Earth-return streams only.
    - **Layout.** Four co-flyers ride the disks' retrograde dive, ~500,000 km off the train. The
      train is ~3.4e6 km long (4.85 h at 197 km/s at 9.86 R_sun). Put them at the corners: each

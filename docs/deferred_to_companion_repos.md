@@ -969,3 +969,16 @@ Bare ice released inside 1 AU sublimates (51% from 0.8 AU); a 31 g cap held to 0
 to 0.01%. All Ceres levers together, re-optimized: $1.65. Plate recovered at 2 Hz, 72 h: $4.80
 (not adopted; the headline keeps the companion's minimum). **Printed** in the paper with the
 new `Katz_ceres_energy_2026` cite.
+
+## S59. A 1 kg floor on the Sun-wave disk (aim_is_all_you_need)
+
+Seth (2026-10-24): below a 1 kg disk the guidance hardware (85-130 g plus 25 g of gas,
+`sec:sun_wave_ranging`) is implausible miniaturization. The ledger flies 0.20 kg of disk per pulse
+per launch unit at the 9.86 R_sun headline. Of lower k (Seth: stays ~10-20), stacking units, and a
+harder boost, Seth chose the **harder boost**. Parent scratch on aim `edc9d3e`, arc capped until
+1 kg/pulse: 9.86 R_sun 0.98 h arc (0.28 g), growth 3.23, doubling 1.94 y, BE $131 / $158; 4 R_sun
+1.13 h, 4.88, 1.43 y, $86 / $89. **Printed as corrections** in `sec:sun_wave_ranging`; the rest of
+the paper keeps the unfloored optimum until aim reruns every table with the floor. Wanted: a
+floor constraint, every printed table rerun, the Sun plate/spring law checked at 1 kg pulses, the
+spent gas as disk-mass loss, stacking as a comparison only. Full text:
+`docs/sun_disk_floor_asks_for_aim_repo.md`.
