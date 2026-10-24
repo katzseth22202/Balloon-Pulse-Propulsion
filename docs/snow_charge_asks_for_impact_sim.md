@@ -99,6 +99,18 @@ third of that, if snow couples as well as solid polyethylene.
 6. **Debris from a missed or failed pulse.** For ice and snow, what pieces leave a charge struck
    off-center, or not struck at all? This is S49 items 5 and 6 for the departure, extended to the
    push.
+7. **A graded charge** (added 2026-10-24, Seth). Light and porous where the impactor enters,
+   dense where it stops. The light front heats by pore collapse, and the dense back keeps the
+   column compact and tamps the hot gas. In water this is one material at two densities: snow or
+   froth over slush or ice, in one bag or two stacked bags. Your methane-faced charge
+   (`canted_2d_layers.jsonl`) is the closest run so far. A 5x denser layer holding 25-50% of k on
+   the plate side gave the domed half-cylinder +4% at k = 10 and +3 to +6% at k = 30. It gave the
+   square block -1% and +2.5%. That run's gamma gas carries density only, so it cannot see the pore
+   heating, and it was the canted flat plate. Wanted: the best dense share and density step on
+   each plate, with pore heating if it can be modeled. Also wanted: the orientation. The rule puts
+   the dense side toward the plate on the growth push and toward the floor on the Sun bowl. On
+   the departure bowl the impactor enters through the hole, so the dense side faces the open
+   mouth, away from the bowl. Does grading still help there, or should it flip?
 
 ## Paper-side estimates (not asked of you; context for the ledger)
 

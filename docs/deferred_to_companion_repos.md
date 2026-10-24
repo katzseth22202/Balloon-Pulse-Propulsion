@@ -1011,7 +1011,10 @@ But the charge must stay a compact source (`xray_collision_study.md`: 30 kg/m^3 
 line source). The parent expects a sweet spot, and snow at 300-600 kg/m^3 may sit inside it. So
 the ask sweeps density and porosity on each plate: ice 917, liquid 1000, snow 300/600, froth ~500,
 with PE foam as the material control. It also asks for argon's frozen toll, the bag's effect, the
-growth sheet charge's thickness, and debris. Parent scratch: the bond toll is ~30% of the departure's
+growth sheet charge's thickness, debris, and (item 7) a graded charge: snow or froth front over
+slush or ice back. The sim's methane-faced run gave +4% to +6% on the domed half-cylinder and
+-1% to +2.5% on the square block. On the departure bowl the dense side would face the open
+mouth, away from the bowl. Parent scratch: the bond toll is ~30% of the departure's
 dissipated energy for PE and ~19% for water, ~13% / ~8% on the push, and ~2% at the Sun. Charge
 rates ~400 / ~190 / ~40 kg/s. Vacuum flash-freezing is fast, but water must vent ~12% as steam in
 real time. Only the push needs real time. Widens S49 item 6, which is still open. Ready to send.
