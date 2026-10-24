@@ -998,3 +998,21 @@ now 622 t). **Still owed by aim:** the S53 best case restated under the floor (i
 k_E 5.5-6.2, an interpolation artefact), the `make ceres-energy` rerun under the floor (Straw Way
 $5.03/MWh_e still printed), and the bowl law's interpolation seam (k_E ~7.4 basin $7 cheaper dear
 at 9.86 R_sun; wants sim nodes at k = 7.5 and 15).
+
+## S60. Water or argon snow as the charge, on all three plates (puffsat_impact_simulation)
+
+Seth (2026-10-24): fly the charges as water snow or argon snow in thin polyethylene bags, or water
+and bubbles, on the growth push, departure bowl and Sun bowl. Reasons: lost ice sublimes rather
+than staying as debris, and water launches compact and is made into snow in flight. Seth's
+premise is dense-into-light coupling with pores collapsing in the shock, like polyethylene foam.
+Two effects pull opposite ways. Lighter, porous charges heat and vaporize more fully
+(`sec:pass_through_pusher` snowplow; `sec:needle_through_fog` porous plug, Zel'dovich-Raizer).
+But the charge must stay a compact source (`xray_collision_study.md`: 30 kg/m^3 foam is a 5 m
+line source). The parent expects a sweet spot, and snow at 300-600 kg/m^3 may sit inside it. So
+the ask sweeps density and porosity on each plate: ice 917, liquid 1000, snow 300/600, froth ~500,
+with PE foam as the material control. It also asks for argon's frozen toll, the bag's effect, the
+growth sheet charge's thickness, and debris. Parent scratch: the bond toll is ~30% of the departure's
+dissipated energy for PE and ~19% for water, ~13% / ~8% on the push, and ~2% at the Sun. Charge
+rates ~400 / ~190 / ~40 kg/s. Vacuum flash-freezing is fast, but water must vent ~12% as steam in
+real time. Only the push needs real time. Widens S49 item 6, which is still open. Ready to send.
+Full text: `docs/snow_charge_asks_for_impact_sim.md`.
