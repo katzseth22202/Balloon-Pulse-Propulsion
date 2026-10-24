@@ -5844,7 +5844,16 @@ on the ship are all negligible beside it. Two non-heat items drive design:
   gives 0.98 kg, Sun bowl 5.3 -> 15.6 t/unit, growth 3.23, BE +$12; stacking ~5 units into one
   Sun ship is ledger-neutral to first order (docking uncharged). **Seth chose the harder boost**
   (2026-10-24): re-optimized with a 1 kg/pulse floor, 9.86 R_sun flies a 0.98 h arc (0.28 g), 3.23x,
-  1.94 y, $131/$158; 4 R_sun 1.13 h, 4.88x, 1.43 y, $86/$89. Printed as corrections; ask S59. Train
+  1.94 y, $131/$158; 4 R_sun 1.13 h, 4.88x, 1.43 y, $86/$89. **S59 answered** by aim `7ce7628`
+  (ADR 0085): floor is `Design.disk_floor`, binds on the departure-wave ship (push ship then 1.70
+  kg); 9.86 R_sun 0.99 h, 3.23x, 1.94 y, $96.5, $131/$158; 4 R_sun 1.17 h, 4.88x, 1.43 y, $74.1,
+  $85/$89; 25 g gas charged ($0.1-0.3). 1 kg at 9.86 R_sun is the Sun plate's own rating (0.96);
+  4 R_sun is 2.4x rated (scaling). Stacking 5 units is NOT ledger-neutral: shared bowl (survival
+  floor ~ E^(2/3)) and split collar give $143 / $85 dear; not adopted. Now the paper's headline
+  everywhere; Ceres loop $1.49 / $1.74. Not restated by aim: S53 best case ($2.81 / $3.79, flagged
+  in the paper as pre-floor) and the Straw Way $5.03/MWh_e. Open: bowl-law interpolation seam
+  (product of interpolated factors humps between k nodes; a k_E ~7.4 basin is $7 cheaper dear at
+  9.86 R_sun; wants sim k = 7.5 and 15 nodes). Train
   shrinks to 1.4e6 km (lateral DOP 0.9-1.3); ship kick 1.4 m/s per pulse, 1 mrad tilt = 5 m/min.
   Scratch: `scripts/ksun_sweep.py`, `scripts/arc_sweep.py` against aim edc9d3e.
 _Avoid_: "coordinators" for these; they are co-flyers, as for the Earth streams.

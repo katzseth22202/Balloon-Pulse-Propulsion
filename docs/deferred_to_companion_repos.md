@@ -982,3 +982,19 @@ the paper keeps the unfloored optimum until aim reruns every table with the floo
 floor constraint, every printed table rerun, the Sun plate/spring law checked at 1 kg pulses, the
 spent gas as disk-mass loss, stacking as a comparison only. Full text:
 `docs/sun_disk_floor_asks_for_aim_repo.md`.
+
+**Answered** by aim `7ce7628` (ADR 0085, `make sun-disk-floor`; answers doc copied to
+`docs/sun_disk_floor_answers_from_aim_repo.md`). Parent reran `--disk-floor`, `--sweep --gaps`,
+`--eccentric` and `make ceres-dive` on a fresh clone; every figure in the answers doc reproduces.
+Floored headline: 9.86 R_sun 0.99 h, 3.23x, 1.94 y, $96.5, $131/$158; 4 R_sun 1.17 h, 4.88x,
+1.43 y, $74.1, $85/$89; 9.86 X 90 $153/$204; 4 X 150 clears the floor ($111/$119). Gas charged.
+Stacking pays ($143 / $85 dear) but is not adopted. Ceres $1.488 / $1.741. **Printed** everywhere
+the paper carried the unfloored optimum, new cite `Katz_sun_disk_floor_2026`. Three figures stale
+since `d8f4e46` were corrected on the way: the L1 comparison rows (87/75/163/137 against the
+ledger's then 94/74/175/138), the 10/21-period sale ($219/$104; the ledger gave $290/$120
+unfloored, now $322/$126, fleet a tenth not a fourteenth), and the seed table's mass (the
+departure-wave unit's 566 t, where the code seeds the steady push/departure mix, 619 t unfloored,
+now 622 t). **Still owed by aim:** the S53 best case restated under the floor (its optima land at
+k_E 5.5-6.2, an interpolation artefact), the `make ceres-energy` rerun under the floor (Straw Way
+$5.03/MWh_e still printed), and the bowl law's interpolation seam (k_E ~7.4 basin $7 cheaper dear
+at 9.86 R_sun; wants sim nodes at k = 7.5 and 15).
