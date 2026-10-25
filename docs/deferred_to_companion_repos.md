@@ -1019,3 +1019,15 @@ dissipated energy for PE and ~19% for water, ~13% / ~8% on the push, and ~2% at 
 rates ~400 / ~190 / ~40 kg/s. Vacuum flash-freezing is fast, but water must vent ~12% as steam in
 real time. Only the push needs real time. Widens S49 item 6, which is still open. Ready to send.
 Full text: `docs/snow_charge_asks_for_impact_sim.md`.
+
+**Answered 2026-10-25** (sim `d7d1141`, Result 22, ADR-0073;
+`docs/snow_charge_answers_from_impact_sim.md`). Density enters only as column length: within 2% of
+solid PE down to ~580 (Sun) / ~590 (departure) kg/m^3, any thickness on the push; 300 kg/m^3 costs
+3% / 9%. Pores add nothing (last-struck kg gets 5.5-57x its vaporization energy). Water vs PE:
+push 0.97-1.01, departure 0.95-1.06, Sun 1.01-1.02; argon 0.91-0.95 / 0.90-1.01 / 0.84 (radiates
+into the face). Grading never beats solid, but light at entry cuts the on-axis splash-back peak
+~4-10x (unconverged). Sun-bowl grading rule was inverted: the impactor enters through the bore. A
+sealed argon bag cannot hold 22% vapour at 60 K. Push bag film at 0.05 kg/m^2 is 22% of the charge.
+At 44 km/s: k = 10 water ties argon, PE -29%; k = 20 argon +1-10% over water, PE zero; k = 5 water
++6-10%. Printed in sec:charge_pusher_cycle, sec:charge_pusher_abort, the plug paragraph and the
+best case. Not repriced by aim (water's toll at the departure, the bag film).
