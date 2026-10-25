@@ -4,6 +4,9 @@ Answers 2026-10-25 to `docs/no_sun_loop_asks_for_parent.md` at child `60de421`, 
 as `docs/no_sun_loop_asks_from_child.md`. Parent `860b570`, aim `7ce7628`. **Written to be copied
 into the child's `docs/`.**
 
+**Item 1 revised later on 2026-10-25,** after the impact simulation answered S60 (sim `d7d1141`,
+Result 22, ADR-0073; carried in the parent as `docs/snow_charge_answers_from_impact_sim.md`).
+
 Every number below is from a rerun of aim at `7ce7628`. `make plate-jupiter-loop` reproduces the
 paper's growth and doubling columns exactly, and its 0.5 g and 1 g break-evens to within 0.5%.
 The probe that reads the plate, pulse and seed lines out of the same ledger is
@@ -18,7 +21,7 @@ Short version:
 | 3. Departure cadence | **Answered.** 1 Hz on every row. A slower cadence makes the bowl heavier. |
 | 4. Time inside GNSS coverage | **Answered.** 10-13 min for the Jupiter-only streams, 7-9 for the dive's. |
 | 5. Seed in tonnes and Starships | **Answered.** 183 t, 2.0-2.5 stripped Starships, at 0.5 g. |
-| 1. Argon charges | **Bracketed, not priced.** The direction holds and the bound is large. The real number waits on S60, which does not yet cover this loop's speeds. |
+| 1. Argon charges | **Answered in substance, not priced. The sentence is wrong.** Argon recovers the bond toll but not the impulse. On this loop's push it is the worst of the three charges; on the bowl it ties water. Cut the sentence. |
 
 ## 2. The plate masses: the same plates, on a lighter ship
 
@@ -122,21 +125,48 @@ seed tonne costs about 1.9 times as much because a stripped Starship carries abo
 12 km/s. The seed is still smaller in tonnes and Starships, because each Jupiter-only ship leaves
 lighter. Item 2 gives the reason.
 
-## 1. Argon charges: the direction holds, the price waits
+## 1. Argon charges: the toll goes, the push does not come back
 
-**The sentence is right in direction.** On the S60 convention (polyethylene's 84 MJ/kg of bonds
-charged on the charge's share of the merged mass, against the dissipated energy per kilogram), the
-bonds take a larger share on the slower loop:
+**The child's sentence is wrong, and so is the "low bond losses" design bullet.** Argon does
+recover the bond toll. The impact simulation's S60 answer (Result 22) finds its frozen share near
+0.1% of the heat, since its ions recombine fast enough. But a charge is judged by its push, not
+its toll, and argon pays in two other ways. Its effective gamma is 1.30-1.33, softer than a
+monatomic gas should be, because ionization soaks up heat as it expands. And hot argon radiates
+into the plate face instead of pushing on it. Water recovers most of what polyethylene loses
+without either cost, because its bonds break but recombine before the gas leaves the plate.
 
-| Plate | Dive | Jupiter only |
+**What the simulation ran.** S60 asked for the dive's three plates. Result 22 also ran a
+low-speed panel for Seth's follow-ups: a 15 kg compact impactor on its axis, at 44, 55 and
+100 km/s and k = 5, 10 and 20, with water and polyethylene as ratios to argon at the same k. Each
+cell gives three values, for a common gamma and for the push sheet's and the bowl's gamma brackets.
+This loop's own points (push 54-65 km/s at k 5.0; bowl 69-77 km/s at k 12.1) were not run. The
+cells below bracket them. The parent reads them from `snow_charge_low_speed.csv`; no interpolation
+was run.
+
+| Cell | Polyethylene over argon | Water over argon |
 |---|---|---|
-| Push | ~13% at 99 km/s, k 6.4 | 24-35% at 54-65 km/s, k 5.0 |
-| Bowl | ~30-32% at 84 km/s, k 12.4 | 37-46% at 69-77 km/s, k 12.1 |
+| 55 km/s, k 5 | 1.05-1.09 | 1.10-1.12 |
+| 100 km/s, k 5 | 1.12-1.16 | 1.13-1.15 |
+| 55 km/s, k 10 | 0.89-0.92 | 1.00-1.04 |
+| 100 km/s, k 10 | 1.03-1.07 | 1.06-1.07 |
+| 55 km/s, k 20 | 0.57-0.58 | 0.92-0.98 |
+| 100 km/s, k 20 | 0.97-1.00 | 1.03-1.04 |
 
-**An upper bound, from aim's own switches.** aim carries two bond-free variants. The first is the
-bowl's "bonds returned" law (its `condensed` rows). The second is the push's `linear` law, the
-100 km/s rows scaled by speed, which removes the extra toll a slower stream pays. Re-optimized at
-each loop's headline:
+- **The push (k 5.0, 54-65 km/s): argon is last.** Both bracketing cells put polyethylene 5-16%
+  ahead of argon and water 10-15% ahead. At k = 5 the dissipated energy per kilogram is high, so
+  polyethylene's bonds are a small toll, and argon's softness costs more than they do.
+- **The bowl (k 12.1, 69-77 km/s): argon may edge polyethylene, but ties water.** The nearest cells
+  are at k = 10, where polyethylene runs from 8-11% behind argon at 55 km/s to 3-7% ahead at
+  100 km/s. The k = 20 cell at 55 km/s puts polyethylene 42% behind, so the bowl's gain from argon
+  could be larger than the k = 10 cells say, up to perhaps 10-15% (parent's read, not run). Water
+  sits at 1.00-1.07 of argon in the k = 10 cells, and 0.92-1.04 in the k = 20 cells.
+- **The dive, for comparison.** Result 22 at the dive's own plates, against polyethylene: argon
+  0.91-0.95 on the push, 0.90-1.01 on the departure bowl, 0.84 on the Sun bowl. Water 0.97-1.01,
+  0.95-1.06 and 1.01-1.02.
+
+**What happens to the bound.** The bond-free table below is aim's own switches at `7ce7628`. It is
+still the ceiling on what removing polyethylene's bonds could buy, but argon cannot reach it.
+On this loop's push argon lowers the impulse, so it gives back part of whatever the bowl gains.
 
 | Case | Jupiter only, 0.5 g: growth / doubling / BE cheap / dear | Dive 9.86 R_sun: growth / doubling / BE cheap / dear |
 |---|---|---|
@@ -144,28 +174,31 @@ each loop's headline:
 | Bowl bonds returned | 2.22x / 2.85 yr / $265 / $440 | 3.52x / 1.80 yr / $122 / $141 |
 | Bowl bonds returned, push linear | 2.52x / 2.45 yr / $194 / $266 | 3.63x / 1.76 yr / $117 / $131 |
 
-So a fully bond-free charge would recover far more on the Jupiter-only loop: $1607 of its dear
-break-even against $27 on the dive. Even then the dive stays ahead, at $131 against $266.
+The bond shares themselves still stand, on the S60 convention (polyethylene's 84 MJ/kg charged on
+the charge's share of the merged mass, against the dissipated energy per kilogram):
 
-**Why this is not yet the argon price.** It is a bound, and it is optimistic in four ways:
+| Plate | Dive | Jupiter only |
+|---|---|---|
+| Push | ~13% at 99 km/s, k 6.4 | 24-35% at 54-65 km/s, k 5.0 |
+| Bowl | ~30-32% at 84 km/s, k 12.4 | 37-46% at 69-77 km/s, k 12.1 |
 
-- argon has no bonds but does ionize, and its first ionization alone is ~38 MJ/kg, about 45% of
-  polyethylene's bond energy per kilogram (S60 item 3 asks for its frozen toll);
-- the `linear` push is the 100 km/s law scaled, not a bond-free law;
-- the cryostat and argon's price are not charged;
-- solid argon (1620 kg/m^3) and argon snow do not have a simulated coupling yet.
+**The candidate is water, not argon.** On this loop water beats argon on the push by 10-15% and
+ties or beats it on the bowl, needs no cryostat, and is the charge the parent's departure bowl
+already considers (`sec:charge_pusher_abort`). Its own costs are the snow-making, the ~12% vented
+as steam during real-time freezing, and the bag, whose 0.05 kg/m^2 film is 22% of a push sheet
+charge (4% at 10 um). Snow must be packed to about 600 kg/m^3 to hold within 2% of solid on a
+bowl. Nothing here is priced. aim has not repriced either loop with water or argon charges, so
+there is no growth number in kilograms to give the child.
 
-**S60 does not cover this loop.** S60 asks for argon at the dive's three plates only: the push at
-99 km/s and k 6.4, the bowl at 84 km/s and 130 deg, and the Sun bowl. The Jupiter-only push at
-54-65 km/s and the bowl at 161-180 deg and 69-77 km/s are outside it. The parent proposes
-adding them to S60 as an item 8, if the simulation can take it while S60 is running. Then aim
-reprices both loops with argon charges and the cryostat.
+**For the child now.** Cut the argon sentence and the "low bond losses" bullet's argon clause. The
+parent can stand behind these two sentences:
 
-**For the child now.** The parent will not print the sentence until S60 lands. A bond-free charge
-is an unpriced upside, and the bound above leaves argon's ionization uncharged. The child should
-cut the sentence for now. If the child wants to say something, the parent can stand behind this
-much: *the charges' bonds take a larger share of this loop's slower collisions, 24-46% against
-13-32% in the dive.* That restates `sec:why_sun_dive` in numbers and claims no gain.
+- *The charges' bonds take a larger share of this loop's slower collisions, 24-46% against 13-32%
+  in the dive.* (Unchanged from the first answer.)
+- *The impact simulation finds argon charges no better than polyethylene on the slower loop's push,
+  and no better than water on its bowl, because argon radiates its heat into the plate face.*
+
+If the child wants a priced water row, say so and the parent will raise it with aim as a new ask.
 
 ## Parent-side corrections found while answering
 
