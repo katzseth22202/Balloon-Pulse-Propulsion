@@ -1031,3 +1031,32 @@ sealed argon bag cannot hold 22% vapour at 60 K. Push bag film at 0.05 kg/m^2 is
 At 44 km/s: k = 10 water ties argon, PE -29%; k = 20 argon +1-10% over water, PE zero; k = 5 water
 +6-10%. Printed in sec:charge_pusher_cycle, sec:charge_pusher_abort, the plug paragraph and the
 best case. Not repriced by aim (water's toll at the departure, the bag film).
+
+## S61. Aiming the Sun-wave disk train; the child's 1 Hz thick disk (aim_is_all_you_need)
+
+Raised by the child (its thick-disk aim request): a 2.5 kg, 1 cm, 38 cm disk at 1 Hz in place of
+the 1 kg disk at 2 Hz. Coupling went to the sim (Result 23, `3581fbd`), aim to aim.
+
+**Answered** by aim `d37a7ec` (ADR 0086, `make disk-train-aim`; answers doc copied to
+`docs/thick_disk_aim_answers_from_aim_repo.md`). Parent reran on a fresh clone (52 s); every figure
+reproduces. One labelling note: the doc's sunlight 1/13 and 0.8 m/s are the 2.5 kg disk's; the
+1 kg disk's are 1/19 and 1.56 m/s. Findings: tolerance is 1.35 cm per axis (1 kg, 5 cm bore
+clearance), not meters; the minute-long blind window is unstable (loop gain 35-134); the ship holds
+its track (25 m/s, 4.1 t on the departure ship); kick knowledge 0.048 mm/s (5e-5) is the open
+requirement; extreme CME (3.7 mPa, 23 deg sheath) drifts the 1 kg disk 3.8 cm in a 20 s fix, so
+those disks are deliberate misses. Prices (9.86 R_sun, dear): matched flown at cm $142 / $181;
+1 kg on x1.3 $129 / $155 (proposed, assumed inputs); thick disk $150 / $195. **Printed**
+2026-10-27 in `sec:sun_wave_ranging`, the limitations list and the harder-boost headline
+paragraph. Headline kept at $131 / $158 with $142 / $181 stated beside it; $155 waits on S62.
+One line for the child (Seth pastes): "The 1 Hz, 2.5 kg train closes on aim but costs $40/kg dear
+more than the 1 kg disk flown on the same 1.3x-wide charge ($195 against $155): keep the 1 kg disk,
+and aim it to about 1.5 cm with the ship holding its own track."
+
+## S62. The thin 1 kg disk on a wider charge, and 4 R_sun (puffsat_impact_simulation)
+
+From S61. aim's $129 / $155 headline rests on the thin disk on x1.3 at the 0.025 m grid only, a
+5 cm bore clearance assumed, and the thick disk's side-impulse slope. Wanted: that case at
+0.0125 m, its bore clearance and side impulse traced at two or more offsets, the best width if not
+x1.3, and items 1-2 at the 4 R_sun closing speed. **Blocks** adopting $155 (8 places plus the
+$216/$146 stroke, $178 carbon fabric, $143 stacking and Saturn-caption sensitivities) and any
+restatement of $85 / $89. Ready to send. Full text: `docs/thin_disk_wide_charge_asks_for_impact_sim.md`.
