@@ -5856,6 +5856,15 @@ on the ship are all negligible beside it. Two non-heat items drive design:
   9.86 R_sun; wants sim k = 7.5 and 15 nodes). Train
   shrinks to 1.4e6 km (lateral DOP 0.9-1.3); ship kick 1.4 m/s per pulse, 1 mrad tilt = 5 m/min.
   Scratch: `scripts/ksun_sweep.py`, `scripts/arc_sweep.py` against aim edc9d3e.
+  **Superseded 2026-10-28 (S62):** the headline is the 1 kg disk on a charge 1.2x its radius,
+  flown at the centimetre aim (1.36 cm an axis) with the ship holding its track: 9.86 R_sun
+  0.93 h, 3.24x, 1.93 y, $96, $130/$156; 4 R_sun 1.10 h, 4.84x, 1.44 y, $74, $86/$89
+  (aim `c559cc7`, ADR 0087; sim `1eb4115`, Result 24). Train 1.3e6 km, ship kick ~1.5 m/s.
+  Stacking re-priced at $141 / $85. The ADR 0085 figures above are the centred, matched-charge
+  footing that the depth and fast-return tables' non-headline rows still use.
+  **Wide charge**: the polyethylene charge in the Sun bowl, cut wider than the disk (1.2x its
+  radius) so an off-centre disk is still struck whole, to 4 cm. _Avoid_: "matched charge" for it;
+  that is the charge as wide as the disk.
 _Avoid_: "coordinators" for these; they are co-flyers, as for the Earth streams.
 **Charging:** Parker flew positive inside ~25 R_sun, against pre-launch predictions. Not a driver.
 **Dust:** 4 R_sun is at or inside the depletion zone (Howard 2019). Retrograde disks meet prograde

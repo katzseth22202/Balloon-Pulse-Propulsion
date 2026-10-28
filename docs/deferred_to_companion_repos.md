@@ -1060,3 +1060,29 @@ From S61. aim's $129 / $155 headline rests on the thin disk on x1.3 at the 0.025
 x1.3, and items 1-2 at the 4 R_sun closing speed. **Blocks** adopting $155 (8 places plus the
 $216/$146 stroke, $178 carbon fabric, $143 stacking and Saturn-caption sensitivities) and any
 restatement of $85 / $89. Ready to send. Full text: `docs/thin_disk_wide_charge_asks_for_impact_sim.md`.
+
+**Answered 2026-10-28** by sim `1eb4115` (Result 24, ADR-0075;
+`docs/thin_disk_wide_charge_answers_from_impact_sim.md`) and aim `c559cc7` (ADR 0087,
+`make disk-train-aim`; `docs/thin_disk_wide_charge_answers_from_aim_repo.md`). Premise correction:
+a run resolves a charge only to whole cells, so Result 23's "x1.3, 1.08x" was x1.25. On the
+0.0125 m grid x1.3 couples 1.047x; **x1.2 is best at 1.074x** through the unchanged 0.25 m bore
+(5.05 cm clearance, whole to 4.0 cm). Side impulse 0.136 / m on any wide charge (0.072 / m matched),
+linear to 3% from 3 cm. 4 R_sun changes no ratio. Parent reran `make disk-train-aim` on a fresh
+clone (72 s); every figure reproduces. **Headline adopted:** x1.2 flown at 1.36 cm with the track
+hold, $130 / $156 (129.54 / 156.13; aim's doc writes $129) and $86 / $89 (85.63 / 89.06); growth
+3.24 / 4.84, doubling 1.93 / 1.44 y, steady $96 / $74, arc 0.93 / 1.10 h. Matched at the aim
+$143 / $181; measured x1.3 $163 dear. Aim on x1.2: 1.36 cm, side 0.14%/cm, hold 23 + 13 m/s (6.1 t
+departure ship, 11.7 t push ship), loop gain 75 at a 60 s blind window, kick knowledge 0.055 mm/s.
+Sensitivities rerun by the parent on the x1.2 optimum with aim's own `sensitivity_report` and the
+same held-design method (matched optimum first, which reproduces every printed figure): stroke
+4 / 12 m $213 / $144; all-carbon sheets $175 / $100; lob $50 $253 / $160 (160.495); bonds -$16; odds -$10;
+growth 10 / 21 synodic $317 / $125; shade with sunlight 4.61x, $98; 5-day gap 3.10x $155, 4.72x
+$86; stacking (re-optimized) $141 / $85. Delivery ledger: growth lob 23.5 / 12.0, disks 4.1 / 2.4,
+other 2.9 / 1.8, lob at $50 $178 / $139. **Printed** 2026-10-28 everywhere $158 stood.
+**Not rerun, labelled instead:** the depth and fast-return tables' non-headline rows stay on the
+matched, centred footing (captions say so). A default-start sweep did not reproduce them: at
+(4 R_sun, X 90) it found $86.25 dear on the matched charge, $2.4 under the headline optimum, the
+known bowl-law seam (S59's open note). The Saturn table's solar-dive rows (156 / 87 to the
+eccentric orbit) are aim's ADR 0085 pricing, not restated; its caption now quotes $156 / $89 at L1.
+Open from aim: at 4 R_sun the network error and the CME budget reuse 9.86 R_sun figures; off-centre
+hits are axisymmetric plus a tracer.
