@@ -168,3 +168,28 @@ both figures.
   674 t. Held for S63 item 4.
 - `sec:why_sun_dive` still says "The heavier spring plates cost it most". The 2026-10-25 answers
   (`docs/no_sun_loop_answers_for_child.md`, item 2) said the parent would reword it; it has not.
+
+## Update 2026-10-29: aim answered S63 (aim `4f13f3c`, ADR 0088)
+
+This corrects items 1, 2 and 5 above. Full answer: `docs/milestone_one_answers_from_aim_repo.md`.
+
+- **Item 1: milestone 1 barely grows.** On today's Kapton sheets and spring plate, with the push
+  plate left at apoapsis, it grows **1.08x per 3.276 yr** (30.6 yr doubling) on the three-synodic
+  windows. Steady cost $1344/kg at L1, break-even **$10,559 cheap / $34,376 dear**. On the flown
+  2S/3S chain it shrinks (0.82x). "It grows" holds only in sign. The spray-cup rows above overstated
+  it; your shrink estimate was closer. The lob is $1098 of the $1344.
+- **Item 2: confirmed, with a different reason.** No departure below 11.5 km/s closes within 2 km/s
+  of correction on a 3S, 4S or 5S clock. The returns stay at 49-58 km/s, not ~14 km/s. A slow
+  departure fails on the correction it needs, not on a weak next push.
+- **Item 5: the smaller seed works.** Only the Sun plate is indivisible. A 2-ship seed raises the
+  break-even by $3 / $11 at Parker's depth and $1 / $3 at 4 R_sun, and takes one more cycle. One
+  ship: $12 / $42 and $5 / $21, two to three more cycles.
+- **The seed is 568 t** (3.7-4.2 ships) at Parker's depth and **674 t** (4.8-5.6) at 4 R_sun. The
+  parent's 622 t / 725 t was wrong and is corrected. "About four stripped Starships" holds at
+  Parker's depth; at 4 R_sun say about five.
+
+Suggested milestone-1 sentence (aim's):
+
+> On the sheets and spring plate, the Jupiter-only loop with a methalox departure only just
+> grows: about 1.08 times per 3.28 years on the three-synodic windows, a 31-year doubling, and it
+> breaks even at over \$10,000 per kilogram at L1. With the departure bowl it grows 1.65 times.

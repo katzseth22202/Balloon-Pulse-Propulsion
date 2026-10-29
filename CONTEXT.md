@@ -5740,8 +5740,10 @@ seed, because nothing comes home until a loaded ship has flown the whole loop. R
 
 **Say plainly that this seed is bigger and dearer up front** than the old chain's (102-130 t,
 $34M-$1.21B) (Seth, 2026-10-16: "we should be honest"). Then make the amortization argument.
-Print both ends per fleet kg; ADR 0072 gives only the cheap end. Whether a smaller seed works is
-asked as S29.
+Print both ends per fleet kg; ADR 0072 gives only the cheap end. The smaller seed is answered
+(S29/S63, aim ADR 0088): one smaller unit, only the Sun plate indivisible, 2 ships +$3 / +$11 at
+Parker's depth. The headline seed is 568 t / 674 t (3.7 / 4.2 and 4.8 / 5.6 ships); the figures in
+the table above predate the disk floor.
 
 **Depth: 9.86 R_sun headlines, 4 R_sun is the upgrade** (decided 2026-10-16 grill): 9.86 R_sun is
 Parker's flown perihelion (3.60x per 3S, 1.77 yr doubling, $104 dear). 4 R_sun (4.92x, 1.43 yr,

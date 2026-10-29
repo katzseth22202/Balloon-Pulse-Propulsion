@@ -1098,3 +1098,16 @@ Kapton push (growth, prices, stream band, seed); a sweep of slower departures; S
 the headline seed's tonnage, since the paper prints 622 t / 725 t and `headline_report` gives
 567 t / 674 t. Nothing in the headline waits on it. Full text:
 `docs/milestone_one_asks_for_aim_repo.md`.
+
+**Answered** by aim `4f13f3c` (ADR 0088), copied to `docs/milestone_one_answers_from_aim_repo.md`.
+Reproduced on a fresh clone with `src.methalox_jupiter_loop` and `src.small_seed`; every figure
+matches. (1) Milestone 1 on today's plates grows only 1.08x per 3.276 yr (30.6 yr doubling) on the
+three-synodic windows, $1344 steady, $10,559 / $34,376 break-even; the flown 2S/3S chain shrinks
+(0.82x). Its optimum sits at k = 5, the Kapton table's floor, so a run below k = 5 might lift it.
+Not added to `tab:no_sun_loop` (Seth's call). (2) No departure below 11.5 km/s closes within
+2 km/s of correction on a 3S-5S clock, and every return comes home at 49-58 km/s; the parent's
+"~14 km/s stream" reasoning was wrong, the conclusion stands. (3) S29 answered: only the Sun plate
+is indivisible; 2 ships cost +$3 / +$11 (9.86 R_sun) and +$1 / +$3 (4 R_sun), 1 ship +$12 / +$42 and
++$5 / +$21. (4) The seed is 567.5 t / 673.9 t; 622 t / 725 t came from no aim commit. Paper
+`tab:seed_amortization`, `sec:mass_interest` and the open-items list corrected; fleet multiples now
+71 / 376. Child told in `docs/milestone_answers_for_child.md`.
