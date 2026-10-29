@@ -1086,3 +1086,15 @@ known bowl-law seam (S59's open note). The Saturn table's solar-dive rows (156 /
 eccentric orbit) are aim's ADR 0085 pricing, not restated; its caption now quotes $156 / $89 at L1.
 Open from aim: at 4 R_sun the network error and the CME budget reuse 9.86 R_sun figures; off-centre
 hits are axisymmetric plus a tracer.
+
+## S63. Milestone 1: a methalox departure behind the Kapton push (aim_is_all_you_need)
+
+Raised 2026-10-29 from the child's milestone asks (child `480194d`; copied to
+`docs/milestone_asks_from_child.md`, answered in `docs/milestone_answers_for_child.md`). The child
+prints the cycle as three milestones; the first is the Jupiter-only loop leaving Earth on methalox.
+The parent's only methalox Jupiter-only ledger sits behind the spray cup (7.92 / 9.66 yr, about
+1.33x / 1.27x per 3.276 yr; $353, $2323 / >$5000). Wanted: that departure on ADR 0075's plates and
+Kapton push (growth, prices, stream band, seed); a sweep of slower departures; S29 re-raised; and
+the headline seed's tonnage, since the paper prints 622 t / 725 t and `headline_report` gives
+567 t / 674 t. Nothing in the headline waits on it. Full text:
+`docs/milestone_one_asks_for_aim_repo.md`.
