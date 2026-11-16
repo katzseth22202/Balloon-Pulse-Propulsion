@@ -1111,3 +1111,29 @@ is indivisible; 2 ships cost +$3 / +$11 (9.86 R_sun) and +$1 / +$3 (4 R_sun), 1 
 +$5 / +$21. (4) The seed is 567.5 t / 673.9 t; 622 t / 725 t came from no aim commit. Paper
 `tab:seed_amortization`, `sec:mass_interest` and the open-items list corrected; fleet multiples now
 71 / 376. Child told in `docs/milestone_answers_for_child.md`.
+
+## S64. A perforated Kapton sheet on the fast growth wave (puffsat_impact_simulation)
+
+Seth (2026-11-16): would the growth sheet couple or mix better as a grid of thicker strands that
+cuts deeper into the charge? Parent scratch says coupling cannot move. Past ~75 km/s every layer
+of the charge vaporizes many times over, and mm structure washes out long before the 2 m standoff.
+The real lever is heat. The plume is free-molecular at the sheet, so a perforated film at fill `f`
+puts `1/f` the thermal mass behind each exposed square metre. Kapton's ~90-125 um diffusion
+length caps the gain near 2x. Wanted: face temperature at fills 0.2 / 0.3 / 0.5 at 137, 158 and
+208 km/s on the computed plume; whether strands print on the plate at 2 m; overtake law against
+the film; channel radiation above 130 km/s; and the thickest web that holds at 208 km/s. A pass
+would replace carbon fabric above 140 km/s. The headline does not wait on it. Ready to send.
+Full text: `docs/perforated_sheet_asks_for_impact_sim.md`.
+
+## S65. Does a penetrating Sun disk couple better? (puffsat_impact_simulation)
+
+Same question for the Sun wave. The 1 kg thin disk erodes ~3.9 mm into its 11.6 cm x1.2 charge
+(3% of the depth). Spears reaching two-thirds of the depth would be ~5.6 cm of graphite covering
+~5% of the face. The sign is unknown. A cooler mouth-side layer would radiate less (argon's
+-16% on this bowl), but that layer may be the part already blowing usefully out of the mouth. The
+2-D runs carry no radiation (Result 24). Wanted, in order and stopping early if losses are small:
+(1) today's radiation and frozen-loss share, plus charge energy against depth; (2) Result 23's
+thick plate (1.177x) against the thin disk (1.074x) as J/mv on one footing, depth against width;
+(3) a rod-and-rings disk of the same 1 kg, including the length at which it reaches the floor;
+(4) the open central-pod disk beside it; (5) 4 R_sun only if (3) moves J/mv by over 2%. Ready to
+send. Full text: `docs/penetrating_sun_disk_asks_for_impact_sim.md`.
