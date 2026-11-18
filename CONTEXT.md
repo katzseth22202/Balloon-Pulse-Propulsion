@@ -2907,8 +2907,16 @@ the flown design.
 2-12 g/m^2 carbon veil held off the Kapton by a scrim (MLI-style); the gap makes it work. Not
 priced. Bonded coats and foams do not help.
 
+**Half-fill web** (decided 2026-11-18; sim Result 25, ADR-0076; S64): a Kapton growth sheet
+laser-perforated to fill f = 0.5 (fill = share of area left) at the film's mean areal density, so
+strands are 2x thick and the face's rise is 0.54-0.61x the film's. Pushes 0.994x the film.
+Priced as plain film (Seth). Flies above 140 km/s only where the push's k is held to ~8.2 (the
+4 R_sun X110 row); the first guard on the unconverged 1 deg axis, ahead of carbon fabric and the
+veil. _Avoid_: "grid" or "net" (a knotted crossing doubles the thickness); fills of 0.3 and below
+(strands under-stopped at k f, 6-16% of the push lost in the inviscid gas).
+
 **Carbon fabric sheet** (decided 2026-10-19; sim Result 15, ADR-0066 proposed): the growth
-impactor above 140 km/s, and the heavy fallback wherever Kapton flies ($164 / $98 dear). A dry (resin-free) woven carbon fabric, 0.06-0.23
+impactor above 140 km/s where the push's k is too high for the half-fill web (k 17, 26), and the heavy fallback wherever Kapton flies ($164 / $98 dear). A dry (resin-free) woven carbon fabric, 0.06-0.23
 kg/m^2, flown flat like the Kapton sheet, triaxial or stitched so it does not trellis. Priced at
 **$100/kg of body** (Seth's choice; our hypothesis between bulk tow ~$34/kg and retail spread-tow
 fabric ~$165/kg; no citable bulk-fabric price). _Avoid_: "graphite sheet" or "graphite film" for
@@ -5839,7 +5847,8 @@ on the ship are all negligible beside it. Two non-heat items drive design:
   9.86 R_sun, so a brow-shaded pod (20-40 g, unsized). Disk mass stays 1 kg (Seth, 2026-10-24).
   **Disk floor 1 kg; pod is impactor mass (Seth, 2026-10-24).** Pod + brow sit at the disk's
   centre, split across both faces, and strike the charge (stops in ~4 cm of the ~11 cm charge,
-  Birkhoff law); a central lump is a sim ask. The earlier "~700 K edge-on at 4 R_sun" is retired
+  Birkhoff law); a central pod moves coupling by <= 2.2% (sim Result 26, S65). The disk stays
+  flat: a spear disk (rod + rings, 5.1 cm, 4.5 cm pitch) ties it at 0.999x (Seth asked; 2026-11-18). The earlier "~700 K edge-on at 4 R_sun" is retired
   for ~1400 K (5% per face, as `sec:pass_through_pusher`). The ledger flies ~0.20 kg of disk per
   pulse per launch unit (7.2 t, 2 Hz, 4.97 h); raising it to 1 kg: k_sun 10 (Seth: k stays ~10-20)
   gives 0.35 kg, BE -$3 (extrapolated below the k >= 20 table); a 1 h arc (0.28 g mean, not 3 g)

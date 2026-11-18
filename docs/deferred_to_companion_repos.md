@@ -1125,6 +1125,25 @@ the film; channel radiation above 130 km/s; and the thickest web that holds at 2
 would replace carbon fabric above 140 km/s. The headline does not wait on it. Ready to send.
 Full text: `docs/perforated_sheet_asks_for_impact_sim.md`.
 
+**Answered 2026-11-16** by sim `9fa9934` (Result 25, ADR-0076;
+`docs/perforated_sheet_answers_from_impact_sim.md`). Premise corrections: the film already held at
+208 km/s on maraging (41 K margin on the 3 deg cone); fabric was the ledger's choice. And the
+208 km/s row flies at k ~ 26, outside every run (k 6.67-8.21). **Fly fill 0.5 only:** face rise
+0.54-0.61x the film's; 480 K at 208 km/s (3 deg), 645 K on the 1 deg axis where the film fails at
+874 K; at 137 km/s film 838 K fails on the 1 deg axis, web 624 K holds. Push 0.994x the film;
+prints 5% at 20 pitches. Fills 0.28 / 0.20 / 0.16 push 0.943 / 0.873 / 0.838x in the inviscid gas
+(strands under-stopped at k f). Radiation < 0.1%. At k 26 a half-fill web fails (815 K). Also
+caught: the paper's 485-540 K was Result 18's 100 um test sheet; the flown 52 um film at 137 km/s
+peaks at 597 K. **Parent rerun** (aim `4f13f3c`, fresh clone; `Design.kapton_limit` raised to
+210 and the push law x0.994 above 140 km/s): the printed carbon rows reproduce exactly
+(343/673, 89/91, 111/119). Rows at k 17 (9.86, X110) and 26 (4, X150) stay carbon. 4 R_sun X110
+on the web, x1.2 charge at the cm aim with hold, k_push capped at 8.21: growth 4.978, doubling
+1.415 y, steady $73.4, **$84.66 / $87.67** (uncapped k 10.96: $84.94 / $87.49; same footing on
+fabric $86.92 / $89.75; X90 headline reproduces $85.63 / $89.06). Seth (2026-11-18): web priced as
+film; keep the 90 headline, print the 110 web row; web named as the first guard on the 1 deg axis,
+ahead of fabric and the veil. **Printed** 2026-11-18 in `sec:charge_pusher_plume`,
+`tab:charge_pusher_fast` and its text, the ledger paragraph and the open items.
+
 ## S65. Does a penetrating Sun disk couple better? (puffsat_impact_simulation)
 
 Same question for the Sun wave. The 1 kg thin disk erodes ~3.9 mm into its 11.6 cm x1.2 charge
@@ -1137,3 +1156,13 @@ thick plate (1.177x) against the thin disk (1.074x) as J/mv on one footing, dept
 (3) a rod-and-rings disk of the same 1 kg, including the length at which it reaches the floor;
 (4) the open central-pod disk beside it; (5) 4 R_sun only if (3) moves J/mv by over 2%. Ready to
 send. Full text: `docs/penetrating_sun_disk_asks_for_impact_sim.md`.
+
+**Answered 2026-11-18** by sim `42c931f` (Result 26, ADR-0077;
+`docs/penetrating_sun_disk_answers_from_impact_sim.md`). Withdrawn on the way: a 12% gain and a
+6-10% loss (both 2026-11-17); neither reached the paper. Premise: spear length 5.1 cm, not 5.6;
+7.7 cm reaches the far face. Losses that move with depth < 0.05% at 392 km/s, < 0.1% at 4 R_sun;
+the bowl's 12.6% stagnation radiation is shape-independent. Thick vs thin per kg 1.032x on the
+finest grid, all charge shape, no depth effect. Spear disk struck on the bowl (two-stage fine box):
+0.999x at 4.5 cm pitch, 0.940x at 9 cm, 0.0125 m grid; grid/handover spread ~5%. Pod: 0-2.2%,
+open item closed. Nothing to aim. **Printed** 2026-11-18 in `sec:sun_wave_ranging` (pod
+paragraph plus one on spears) and the navigation open item.
